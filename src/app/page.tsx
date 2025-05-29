@@ -1,3 +1,4 @@
+import Footer from '@components/Footer';
 import Header from '@components/Header';
 import About from '@components/home/About';
 import Contact from '@components/home/Contact';
@@ -20,6 +21,8 @@ export default function Home() {
       <Experience />
       <Projects />
       <Contact />
+      <Footer />
+
     </div>
   );
 }
