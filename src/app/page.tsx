@@ -3,6 +3,7 @@ import Header from '@components/Header';
 import About from '@components/home/About';
 import Contact from '@components/home/Contact';
 import Experience from '@components/home/Experience';
+import GetQuote from '@components/home/GetQuote';
 import Hero from '@components/home/Hero';
 import Projects from '@components/home/Projects';
 import Services from '@components/home/Services';
@@ -20,6 +21,7 @@ export default function Home() {
       <Timeline />
       <Experience />
       <Projects />
+      <GetQuote />
       <Contact />
       <Footer />
 
