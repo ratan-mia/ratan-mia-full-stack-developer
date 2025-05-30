@@ -3,6 +3,7 @@ import Header from '@components/Header';
 import About from '@components/home/About';
 import Contact from '@components/home/Contact';
 import Experience from '@components/home/Experience';
+import FAQ from '@components/home/FAQ';
 import GetQuote from '@components/home/GetQuote';
 import Hero from '@components/home/Hero';
 import ProcessHowIWork from '@components/home/ProcessHowIWork';
@@ -28,6 +29,7 @@ export default function Home() {
       <TrainingCertificates />
       <Projects />
       <GetQuote />
+      <FAQ />
       <Contact />
       <Footer />
 
