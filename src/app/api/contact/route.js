@@ -1,20 +1,11 @@
 import { adminEmailTemplate } from "@/lib/email-templates/admin-template";
 import { clientEmailTemplate } from "@/lib/email-templates/client-template";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
-interface ContactFormData {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-  projectType: string;
-  budget: string;
-}
-
-export async function POST(request: NextRequest) {
+export async function POST(request) {
   try {
-    const body: ContactFormData = await request.json();
+    const body = await request.json();
     const { name, email, subject, message, projectType, budget } = body;
 
     // Validate required fields

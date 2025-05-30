@@ -1,4 +1,4 @@
-// components/Contact.tsx
+// components/Contact.jsx
 'use client';
 import { motion } from 'framer-motion';
 import {
@@ -16,22 +16,8 @@ import {
 } from 'lucide-react';
 import { useState } from 'react';
 
-interface FormData {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-  projectType: string;
-  budget: string;
-}
-
-interface FormStatus {
-  type: 'idle' | 'loading' | 'success' | 'error';
-  message: string;
-}
-
 const Contact = () => {
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
@@ -40,7 +26,7 @@ const Contact = () => {
     budget: ''
   });
 
-  const [status, setStatus] = useState<FormStatus>({ type: 'idle', message: '' });
+  const [status, setStatus] = useState({ type: 'idle', message: '' });
 
   const fadeInUp = {
     initial: { opacity: 0, y: 40 },
@@ -85,14 +71,14 @@ const Contact = () => {
     'Not sure yet'
   ];
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   };
 
-  const validateForm = (): boolean => {
+  const validateForm = () => {
     if (!formData.name.trim()) {
       setStatus({ type: 'error', message: 'Please enter your name.' });
       return false;
@@ -112,7 +98,7 @@ const Contact = () => {
     return true;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     if (!validateForm()) return;
