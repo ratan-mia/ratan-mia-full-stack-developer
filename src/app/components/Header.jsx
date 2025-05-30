@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import {
   Briefcase,
+  ChevronDown,
   Clock,
   Code,
   Download,
@@ -20,14 +21,42 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [activeDropdown, setActiveDropdown] = useState(null);
 
-  const menuItems = [
+  // Main navigation items (always visible on desktop)
+  const mainMenuItems = [
     { name: 'Home', id: 'home', icon: Home },
     { name: 'About', id: 'about', icon: User },
-    { name: 'Skills', id: 'skills', icon: Code },
-    { name: 'Timeline', id: 'timeline', icon: Clock },
-    { name: 'Experience', id: 'experience', icon: Briefcase },
-    { name: 'Projects', id: 'projects', icon: FolderOpen },
+    { name: 'Services', id: 'services', icon: Briefcase },
+    { name: 'Skills', id: 'skills', icon: Code }
+  ];
+
+  // Dropdown navigation groups
+  const dropdownMenus = [
+    {
+      title: 'Experience',
+      icon: Briefcase,
+      items: [
+        { name: 'Timeline', id: 'timeline', icon: Clock },
+        { name: 'Experience', id: 'experience', icon: Briefcase },
+        { name: 'Certificates', id: 'certificates', icon: ExternalLink }
+      ]
+    },
+    {
+      title: 'Portfolio',
+      icon: FolderOpen,
+      items: [
+        { name: 'Projects', id: 'projects', icon: FolderOpen },
+        { name: 'Testimonials', id: 'testimonials', icon: User },
+        { name: 'FAQ', id: 'faq', icon: Menu }
+      ]
+    }
+  ];
+
+  // All menu items for mobile and section detection
+  const allMenuItems = [
+    ...mainMenuItems,
+    ...dropdownMenus.flatMap(dropdown => dropdown.items),
     { name: 'Contact', id: 'contact', icon: Mail }
   ];
 
@@ -38,12 +67,12 @@ const Header = () => {
       setScrolled(scrollPosition > 50);
 
       // Detect active section
-      const sections = menuItems.map(item => item.id);
+      const sections = allMenuItems.map(item => item.id);
       for (const sectionId of sections) {
         const element = document.getElementById(sectionId);
         if (element) {
           const rect = element.getBoundingClientRect();
-          if (rect.top <= 100 && rect.bottom >= 100) {
+          if (rect.top <= 150 && rect.bottom >= 150) {
             setActiveSection(sectionId);
             break;
           }
@@ -80,6 +109,18 @@ const Header = () => {
     };
   }, [isMenuOpen]);
 
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.target.closest('.dropdown-container')) {
+        setActiveDropdown(null);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, []);
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -99,17 +140,26 @@ const Header = () => {
       }
     }
     setIsMenuOpen(false);
+    setActiveDropdown(null);
   };
 
   const handleDownloadCV = () => {
     // Replace with your actual CV URL
-    const cvUrl = '/path-to-your-cv.pdf';
+    const cvUrl = '/Ratan_Mia_CV.pdf';
     const link = document.createElement('a');
     link.href = cvUrl;
     link.download = 'Ratan_Mia_CV.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+  };
+
+  const isItemActive = (itemId) => {
+    return activeSection === itemId;
+  };
+
+  const isDropdownActive = (dropdown) => {
+    return dropdown.items.some(item => item.id === activeSection);
   };
 
   return (
@@ -145,26 +195,27 @@ const Header = () => {
             </div>
           </motion.div>
           
-          {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center gap-1">
-            {menuItems.map((item, index) => (
+          {/* Desktop Menu with Dropdowns */}
+          <div className="hidden lg:flex items-center gap-2">
+            {/* Main Navigation Items */}
+            {mainMenuItems.map((item, index) => (
               <motion.button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`flex items-center gap-2 px-4 py-2 font-medium transition-all duration-200 hover:bg-blue-50 group ${
-                  activeSection === item.id 
+                className={`flex items-center gap-2 px-4 py-2 font-medium transition-all duration-200 hover:bg-blue-50 group relative ${
+                  isItemActive(item.id)
                     ? 'text-blue-600 bg-blue-50' 
                     : 'text-slate-700 hover:text-blue-600'
                 }`}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
                 <item.icon className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
                 <span className="text-sm">{item.name}</span>
-                {activeSection === item.id && (
+                {isItemActive(item.id) && (
                   <motion.div
                     className="absolute bottom-0 left-1/2 w-1 h-1 bg-blue-600"
                     layoutId="activeIndicator"
@@ -174,6 +225,103 @@ const Header = () => {
                 )}
               </motion.button>
             ))}
+
+            {/* Dropdown Menus */}
+            {dropdownMenus.map((dropdown, index) => (
+              <div key={dropdown.title} className="relative dropdown-container">
+                <motion.button
+                  onClick={() => setActiveDropdown(activeDropdown === dropdown.title ? null : dropdown.title)}
+                  className={`flex items-center gap-2 px-4 py-2 font-medium transition-all duration-200 hover:bg-blue-50 group relative ${
+                    isDropdownActive(dropdown) || activeDropdown === dropdown.title
+                      ? 'text-blue-600 bg-blue-50' 
+                      : 'text-slate-700 hover:text-blue-600'
+                  }`}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: (mainMenuItems.length + index) * 0.1 }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <dropdown.icon className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
+                  <span className="text-sm">{dropdown.title}</span>
+                  <motion.div
+                    animate={{ rotate: activeDropdown === dropdown.title ? 180 : 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <ChevronDown className="w-3 h-3" />
+                  </motion.div>
+                  {isDropdownActive(dropdown) && (
+                    <motion.div
+                      className="absolute bottom-0 left-1/2 w-1 h-1 bg-blue-600"
+                      layoutId="activeDropdownIndicator"
+                      initial={false}
+                      style={{ x: '-50%' }}
+                    />
+                  )}
+                </motion.button>
+
+                {/* Dropdown Content */}
+                <AnimatePresence>
+                  {activeDropdown === dropdown.title && (
+                    <motion.div
+                      className="absolute top-full left-0 mt-2 bg-white shadow-xl border border-slate-200 py-2 min-w-48 z-50"
+                      initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      {dropdown.items.map((item, itemIndex) => (
+                        <motion.button
+                          key={item.id}
+                          onClick={() => scrollToSection(item.id)}
+                          className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-all duration-200 ${
+                            isItemActive(item.id)
+                              ? 'text-blue-600 bg-blue-50'
+                              : 'text-slate-700 hover:text-blue-600 hover:bg-blue-50'
+                          }`}
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.2, delay: itemIndex * 0.05 }}
+                          whileHover={{ x: 5 }}
+                        >
+                          <item.icon className="w-4 h-4" />
+                          <span className="text-sm font-medium">{item.name}</span>
+                          {isItemActive(item.id) && (
+                            <div className="ml-auto w-2 h-2 bg-blue-600"></div>
+                          )}
+                        </motion.button>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ))}
+
+            {/* Contact Button */}
+            <motion.button
+              onClick={() => scrollToSection('contact')}
+              className={`flex items-center gap-2 px-4 py-2 font-medium transition-all duration-200 hover:bg-blue-50 group relative ${
+                isItemActive('contact')
+                  ? 'text-blue-600 bg-blue-50' 
+                  : 'text-slate-700 hover:text-blue-600'
+              }`}
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: (mainMenuItems.length + dropdownMenus.length) * 0.1 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <Mail className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
+              <span className="text-sm">Contact</span>
+              {isItemActive('contact') && (
+                <motion.div
+                  className="absolute bottom-0 left-1/2 w-1 h-1 bg-blue-600"
+                  layoutId="activeContactIndicator"
+                  initial={false}
+                  style={{ x: '-50%' }}
+                />
+              )}
+            </motion.button>
           </div>
 
           {/* Desktop CTA Buttons */}
@@ -199,7 +347,7 @@ const Header = () => {
             </motion.button>
           </div>
 
-          {/* Mobile/Tablet Menu Button */}
+          {/* Mobile Menu Button */}
           <motion.button
             className="lg:hidden p-2 text-slate-700 hover:text-blue-600 transition-colors duration-200"
             onClick={toggleMenu}
@@ -216,7 +364,7 @@ const Header = () => {
         </nav>
       </motion.header>
 
-      {/* Mobile/Tablet Menu Overlay */}
+      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMenuOpen && (
           <>
@@ -262,23 +410,23 @@ const Header = () => {
               {/* Mobile Menu Items */}
               <div className="p-6">
                 <div className="space-y-2">
-                  {menuItems.map((item, index) => (
+                  {allMenuItems.map((item, index) => (
                     <motion.button
                       key={item.id}
                       onClick={() => scrollToSection(item.id)}
                       className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-all duration-200 group ${
-                        activeSection === item.id 
+                        isItemActive(item.id)
                           ? 'text-blue-600 bg-blue-50' 
                           : 'text-slate-700 hover:text-blue-600 hover:bg-slate-50'
                       }`}
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.3, delay: index * 0.1 }}
+                      transition={{ duration: 0.3, delay: index * 0.05 }}
                       whileHover={{ x: 5 }}
                     >
                       <item.icon className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" />
                       <span className="font-medium">{item.name}</span>
-                      {activeSection === item.id && (
+                      {isItemActive(item.id) && (
                         <div className="ml-auto w-2 h-2 bg-blue-600"></div>
                       )}
                     </motion.button>
@@ -349,7 +497,7 @@ const Header = () => {
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.4, delay: 1.1 }}
                 >
-                  <div className="w-2 h-2 bg-green-400 animate-pulse"></div>
+                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                   <span className="text-green-600 font-medium">Available for Projects</span>
                 </motion.div>
               </div>
