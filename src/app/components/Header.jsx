@@ -505,9 +505,6 @@ const Header = () => {
           </>
         )}
       </AnimatePresence>
-
-      {/* Page Content Spacer */}
-      <div className="h-20"></div>
     </>
   );
 };
