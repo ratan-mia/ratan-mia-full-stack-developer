@@ -6,7 +6,6 @@ import Experience from '@components/home/Experience';
 import FAQ from '@components/home/FAQ';
 import GetQuote from '@components/home/GetQuote';
 import HeroMain from '@components/home/HeroMain';
-import HeroTech from '@components/home/HeroTech';
 import ProcessHowIWork from '@components/home/ProcessHowIWork';
 import Projects from '@components/home/Projects';
 import Services from '@components/home/Services';
@@ -23,7 +22,7 @@ export default function Home() {
     <div className="font-sans text-gray-800">
       <Header />
       <HeroMain />
-      <HeroTech />
+
       {/* <Hero /> */}
       <About />
       <Services />
