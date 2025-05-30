@@ -9,6 +9,7 @@ import Projects from '@components/home/Projects';
 import Services from '@components/home/Services';
 import Skills from '@components/home/Skills';
 import Timeline from '@components/home/Timeline';
+import TrainingCertificates from '@components/home/TrainingCertificates';
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <Skills />
       <Timeline />
       <Experience />
+      <TrainingCertificates />
       <Projects />
       <GetQuote />
       <Contact />
