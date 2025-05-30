@@ -1,27 +1,27 @@
 'use client';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import {
-  ArrowRight,
-  Award,
-  CheckCircle,
-  ChevronDown,
-  Clock,
-  Code2,
-  Download,
-  ExternalLink,
-  Globe,
-  Mail,
-  MapPin,
-  MessageCircle,
-  Phone,
-  Star,
-  Target,
-  Users,
-  Zap
+    ArrowRight,
+    Award,
+    CheckCircle,
+    ChevronDown,
+    Clock,
+    Code2,
+    Download,
+    ExternalLink,
+    Globe,
+    Mail,
+    MapPin,
+    MessageCircle,
+    Phone,
+    Star,
+    Target,
+    Users,
+    Zap
 } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
-const Hero = ({ compact = false }) => {
+const HeroMain = ({ compact = false }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [currentRole, setCurrentRole] = useState(0);
   const containerRef = useRef(null);
@@ -145,17 +145,6 @@ const Hero = ({ compact = false }) => {
       description: 'Enterprise-grade solutions and code standards',
       color: 'text-blue-400'
     }
-  ];
-
-  const technologies = [
-    { name: 'React.js', expertise: 95, category: 'Frontend' },
-    { name: 'Next.js', expertise: 92, category: 'Frontend' },
-    { name: 'Laravel', expertise: 94, category: 'Backend' },
-    { name: 'PHP', expertise: 96, category: 'Backend' },
-    { name: 'JavaScript', expertise: 97, category: 'Language' },
-    { name: 'TypeScript', expertise: 88, category: 'Language' },
-    { name: 'MySQL', expertise: 90, category: 'Database' },
-    { name: 'Docker', expertise: 85, category: 'DevOps' }
   ];
 
   const achievements = [
@@ -564,61 +553,6 @@ const Hero = ({ compact = false }) => {
           )}
         </div>
 
-        {/* Technology Stack Section */}
-        <motion.div 
-          className={`${compact ? 'mt-12 pt-8' : 'mt-16 pt-12'} border-t border-white/20`}
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5, duration: 0.8 }}
-        >
-          <div className="text-center mb-10">
-            <motion.div
-              className="inline-block bg-white/10 backdrop-blur-sm rounded-full px-8 py-4 border border-white/20 mb-6"
-              whileHover={{ scale: 1.05 }}
-            >
-              <span className="text-blue-200 font-bold text-sm tracking-wider uppercase">Technical Expertise</span>
-            </motion.div>
-            <h3 className={`${compact ? 'text-2xl md:text-3xl' : 'text-3xl md:text-4xl'} font-bold text-white mb-4`}>
-              Technologies I Master
-            </h3>
-            <p className="text-blue-200 text-lg font-light max-w-2xl mx-auto">
-              Cutting-edge tools and frameworks for modern web development
-            </p>
-          </div>
-          
-          <div className={`grid ${compact ? 'grid-cols-2 md:grid-cols-4 gap-4' : 'grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-6'} max-w-6xl mx-auto`}>
-            {technologies.map((tech, index) => (
-              <motion.div
-                key={tech.name}
-                className="group relative p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 cursor-pointer text-center"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 2 + index * 0.1, duration: 0.6 }}
-                whileHover={{ scale: 1.05, y: -5 }}
-              >
-                <div className="space-y-3">
-                  <div className="w-4 h-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mx-auto"></div>
-                  <div className="text-white font-bold text-sm group-hover:text-blue-300 transition-colors">
-                    {tech.name}
-                  </div>
-                  <div className="text-blue-300 text-xs font-medium">{tech.category}</div>
-                  
-                  {/* Expertise Bar */}
-                  <div className="w-full bg-white/10 rounded-full h-1.5 mt-2">
-                    <motion.div
-                      className="bg-gradient-to-r from-blue-500 to-purple-500 h-1.5 rounded-full"
-                      initial={{ width: 0 }}
-                      animate={{ width: `${tech.expertise}%` }}
-                      transition={{ delay: 2.5 + index * 0.1, duration: 1 }}
-                    />
-                  </div>
-                  <div className="text-white/60 text-xs">{tech.expertise}%</div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
         {/* Quick Contact Section (Compact Mode) */}
         {compact && (
           <motion.div
@@ -667,13 +601,13 @@ const Hero = ({ compact = false }) => {
             transition={{ delay: 3, duration: 0.8 }}
           >
             <motion.a 
-              href="#about"
+              href="#tech"
               className="group flex flex-col items-center gap-3 text-white/70 hover:text-white transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-white/50 p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 hover:bg-white/10"
               animate={{ y: [0, 8, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               whileHover={{ scale: 1.05, y: -5 }}
             >
-              <span className="text-sm font-medium tracking-wider uppercase">Discover More</span>
+              <span className="text-sm font-medium tracking-wider uppercase">Explore Technologies</span>
               <motion.div
                 className="flex flex-col items-center gap-1"
                 animate={{ y: [0, 4, 0] }}
@@ -685,63 +619,9 @@ const Hero = ({ compact = false }) => {
             </motion.a>
           </motion.div>
         )}
-
-        {/* Bottom CTAs (Non-Compact Mode) */}
-        {!compact && (
-          <motion.div
-            className="mt-12 pt-8 border-t border-white/20 text-center"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 3.2, duration: 0.8 }}
-          >
-            <div className="space-y-6">
-              <div>
-                <h4 className="text-xl font-bold text-white mb-2">Let's Build Something Amazing Together</h4>
-                <p className="text-blue-200 font-light max-w-2xl mx-auto">
-                  Whether you need a complete web application, performance optimization, or technical consultation, 
-                  I'm here to help bring your vision to life.
-                </p>
-              </div>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <motion.a
-                  href="#quote"
-                  className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <span>Get Free Quote</span>
-                  <ArrowRight className="w-4 h-4" />
-                </motion.a>
-                
-                <div className="flex items-center gap-4">
-                  <motion.a
-                    href="tel:+8801751010966"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-xl border border-white/20 transition-all duration-300"
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    <Phone className="w-4 h-4" />
-                    <span>Call Now</span>
-                  </motion.a>
-                  
-                  <motion.a
-                    href="https://wa.me/8801751010966"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-xl transition-all duration-300"
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    <MessageCircle className="w-4 h-4" />
-                    <span>WhatsApp</span>
-                  </motion.a>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        )}
       </div>
     </motion.section>
   );
 };
 
-export default Hero;
+export default HeroMain;
