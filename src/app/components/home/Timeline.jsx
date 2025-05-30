@@ -1,6 +1,30 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
+import {
+  Award,
+  Bot,
+  Briefcase,
+  Building2,
+  Calendar,
+  Car,
+  ChevronDown,
+  ChevronUp,
+  Clock,
+  Code2,
+  ExternalLink,
+  Factory,
+  GraduationCap,
+  MapPin,
+  Rocket,
+  ShoppingCart,
+  Star,
+  Target,
+  TrendingUp,
+  Trophy,
+  Users,
+  Zap
+} from 'lucide-react';
 import { useState } from 'react';
 
 const Timeline = () => {
@@ -8,15 +32,27 @@ const Timeline = () => {
   const [selectedItem, setSelectedItem] = useState(null);
 
   const fadeInUp = {
-    initial: { opacity: 0, y: 60 },
+    initial: { opacity: 0, y: 40 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.8, ease: "easeOut" }
+    transition: { duration: 0.6, ease: "easeOut" }
+  };
+
+  const slideInLeft = {
+    initial: { opacity: 0, x: -50 },
+    animate: { opacity: 1, x: 0 },
+    transition: { duration: 0.6 }
+  };
+
+  const slideInRight = {
+    initial: { opacity: 0, x: 50 },
+    animate: { opacity: 1, x: 0 },
+    transition: { duration: 0.6 }
   };
 
   const staggerContainer = {
     animate: {
       transition: {
-        staggerChildren: 0.2
+        staggerChildren: 0.1
       }
     }
   };
@@ -29,7 +65,8 @@ const Timeline = () => {
       company: "Kawasaki Bangladesh",
       type: "current",
       duration: "2018 - Present",
-      description: "Leading full-stack development initiatives and managing complex web applications.",
+      location: "Dhaka, Bangladesh",
+      description: "Leading full-stack development initiatives and managing complex web applications with modern technologies.",
       achievements: [
         "Built Chery Bangladesh website with 97% speed optimization",
         "Developed Car Parts E-commerce platform with 200% sales increase",
@@ -37,8 +74,10 @@ const Timeline = () => {
         "Led cross-functional teams in API development and integration"
       ],
       technologies: ["React.js", "Next.js", "PHP", "Laravel", "Docker", "AWS"],
-      icon: "💼",
-      gradient: "from-blue-500 to-cyan-500"
+      icon: Briefcase,
+      gradient: "from-blue-500 to-cyan-500",
+      bgColor: "bg-blue-500/10",
+      borderColor: "border-blue-400/30"
     },
     {
       id: 2,
@@ -47,7 +86,8 @@ const Timeline = () => {
       company: "Continental Motors",
       type: "management",
       duration: "2018 - Present",
-      description: "Strategic IT operations management and infrastructure optimization.",
+      location: "Dhaka, Bangladesh",
+      description: "Strategic IT operations management and infrastructure optimization for automotive industry solutions.",
       achievements: [
         "Reduced IT operational costs by 40% through strategic optimization",
         "Implemented real-time attendance system with automated payroll",
@@ -55,8 +95,10 @@ const Timeline = () => {
         "Established integrated call center for enhanced customer support"
       ],
       technologies: ["Windows Server", "VPS", "Network Management", "System Administration"],
-      icon: "⚙️",
-      gradient: "from-purple-500 to-pink-500"
+      icon: Building2,
+      gradient: "from-purple-500 to-pink-500",
+      bgColor: "bg-purple-500/10",
+      borderColor: "border-purple-400/30"
     },
     {
       id: 3,
@@ -65,7 +107,8 @@ const Timeline = () => {
       company: "Bengal Group of Industries",
       type: "development",
       duration: "Jan 2018 - Sep 2018",
-      description: "Led development team and created scalable e-commerce solutions.",
+      location: "Dhaka, Bangladesh",
+      description: "Led development team and created scalable e-commerce solutions for diverse business requirements.",
       achievements: [
         "Led team of 15 developers with 25% client satisfaction increase",
         "Developed scalable Laravel-based e-commerce solutions",
@@ -73,8 +116,10 @@ const Timeline = () => {
         "Managed end-to-end project lifecycle using Agile methodologies"
       ],
       technologies: ["Laravel", "PHP", "MySQL", "JavaScript", "WHMCS"],
-      icon: "🚀",
-      gradient: "from-green-500 to-teal-500"
+      icon: Code2,
+      gradient: "from-green-500 to-teal-500",
+      bgColor: "bg-green-500/10",
+      borderColor: "border-green-400/30"
     },
     {
       id: 4,
@@ -83,7 +128,8 @@ const Timeline = () => {
       company: "University of Dhaka",
       type: "education",
       duration: "2011 - 2017",
-      description: "Completed comprehensive English literature and language studies.",
+      location: "Dhaka, Bangladesh",
+      description: "Completed comprehensive English literature and language studies with focus on communication skills.",
       achievements: [
         "Graduated with strong communication and critical thinking skills",
         "Enhanced written and verbal communication abilities",
@@ -91,8 +137,10 @@ const Timeline = () => {
         "Built foundation for technical documentation and client communication"
       ],
       technologies: ["Academic Research", "Writing", "Communication", "Analysis"],
-      icon: "🎓",
-      gradient: "from-orange-500 to-red-500"
+      icon: GraduationCap,
+      gradient: "from-orange-500 to-red-500",
+      bgColor: "bg-orange-500/10",
+      borderColor: "border-orange-400/30"
     }
   ];
 
@@ -104,7 +152,8 @@ const Timeline = () => {
       company: "Kawasaki Bangladesh",
       type: "featured",
       duration: "3 months",
-      description: "Official website with 360° car viewer and exceptional performance optimization.",
+      location: "Remote",
+      description: "Official automotive website with 360° car viewer and exceptional performance optimization.",
       achievements: [
         "Achieved 97% speed optimization score",
         "Implemented 360-degree car model viewer",
@@ -112,8 +161,10 @@ const Timeline = () => {
         "Enhanced customer engagement with WhatsApp Business API"
       ],
       technologies: ["Next.js", "React.js", "CRM Integration", "Performance Optimization"],
-      icon: "🚗",
+      icon: Car,
       gradient: "from-blue-600 to-purple-600",
+      bgColor: "bg-blue-500/10",
+      borderColor: "border-blue-400/30",
       link: "cherybd.vercel.app"
     },
     {
@@ -123,6 +174,7 @@ const Timeline = () => {
       company: "Custom Development",
       type: "innovation",
       duration: "2 months",
+      location: "Remote",
       description: "WordPress plugin integrating ChatGPT for mental health counselling services.",
       achievements: [
         "Integrated OpenAI ChatGPT API",
@@ -131,8 +183,10 @@ const Timeline = () => {
         "Added chat download and export features"
       ],
       technologies: ["WordPress", "OpenAI API", "ChatGPT", "Text-to-Speech"],
-      icon: "🤖",
-      gradient: "from-indigo-600 to-purple-600"
+      icon: Bot,
+      gradient: "from-indigo-600 to-purple-600",
+      bgColor: "bg-indigo-500/10",
+      borderColor: "border-indigo-400/30"
     },
     {
       id: 3,
@@ -141,6 +195,7 @@ const Timeline = () => {
       company: "Japan Parts Limited",
       type: "ecommerce",
       duration: "4 months",
+      location: "Remote",
       description: "Comprehensive e-commerce platform with advanced car parts specification system.",
       achievements: [
         "Built make, model, and year specification system",
@@ -149,8 +204,10 @@ const Timeline = () => {
         "Connected CRM for enhanced customer service"
       ],
       technologies: ["React.js", "PHP", "API Integration", "E-commerce"],
-      icon: "🛒",
-      gradient: "from-green-600 to-blue-600"
+      icon: ShoppingCart,
+      gradient: "from-green-600 to-blue-600",
+      bgColor: "bg-green-500/10",
+      borderColor: "border-green-400/30"
     },
     {
       id: 4,
@@ -159,6 +216,7 @@ const Timeline = () => {
       company: "Custom Development",
       type: "integration",
       duration: "3 months",
+      location: "Remote",
       description: "Custom Shopify app connecting with Japanese car auction systems.",
       achievements: [
         "Developed custom Shopify App using Laravel",
@@ -167,8 +225,10 @@ const Timeline = () => {
         "Implemented automated pricing and cost evaluation"
       ],
       technologies: ["Laravel", "Shopify API", "Custom App Development", "Price Calculator"],
-      icon: "🏭",
-      gradient: "from-cyan-600 to-teal-600"
+      icon: Factory,
+      gradient: "from-cyan-600 to-teal-600",
+      bgColor: "bg-cyan-500/10",
+      borderColor: "border-cyan-400/30"
     },
     {
       id: 5,
@@ -177,6 +237,7 @@ const Timeline = () => {
       company: "Continental Motors",
       type: "platform",
       duration: "5 months",
+      location: "Dhaka, Bangladesh",
       description: "Comprehensive car listing platform with automated brochure generation.",
       achievements: [
         "Built car listing and filtering system",
@@ -185,8 +246,10 @@ const Timeline = () => {
         "Enhanced user experience with advanced search"
       ],
       technologies: ["PHP", "Laravel", "PDF Generation", "Email Templates"],
-      icon: "🏢",
-      gradient: "from-orange-600 to-pink-600"
+      icon: Building2,
+      gradient: "from-orange-600 to-pink-600",
+      bgColor: "bg-orange-500/10",
+      borderColor: "border-orange-400/30"
     }
   ];
 
@@ -195,33 +258,69 @@ const Timeline = () => {
       id: 1,
       year: "2025",
       title: "10+ Years Milestone",
-      description: "Celebrating over a decade of excellence in web development",
-      icon: "🏆",
-      gradient: "from-yellow-500 to-orange-500"
+      company: "Professional Achievement",
+      description: "Celebrating over a decade of excellence in web development with continuous innovation.",
+      achievements: [
+        "Completed 100+ successful projects",
+        "Maintained 97% client satisfaction rate",
+        "Mastered modern web technologies",
+        "Built strong industry reputation"
+      ],
+      icon: Trophy,
+      gradient: "from-yellow-500 to-orange-500",
+      bgColor: "bg-yellow-500/10",
+      borderColor: "border-yellow-400/30"
     },
     {
       id: 2,
       year: "2024",
       title: "100+ Projects Completed",
-      description: "Successfully delivered over 100 diverse WordPress and web projects",
-      icon: "📈",
-      gradient: "from-green-500 to-blue-500"
+      company: "Portfolio Milestone",
+      description: "Successfully delivered over 100 diverse WordPress and web projects across multiple industries.",
+      achievements: [
+        "Diverse project portfolio spanning multiple industries",
+        "Consistent delivery and quality standards",
+        "Strong client relationships and referrals",
+        "Technical expertise across multiple platforms"
+      ],
+      icon: Target,
+      gradient: "from-green-500 to-blue-500",
+      bgColor: "bg-green-500/10",
+      borderColor: "border-green-400/30"
     },
     {
       id: 3,
       year: "2023",
       title: "AI Integration Pioneer",
-      description: "Early adopter of AI technologies in web development solutions",
-      icon: "🤖",
-      gradient: "from-purple-500 to-indigo-500"
+      company: "Technology Innovation",
+      description: "Early adopter of AI technologies in web development solutions for enhanced user experiences.",
+      achievements: [
+        "First to integrate OpenAI in local market",
+        "Pioneered AI-powered web solutions",
+        "Created innovative chatbot systems",
+        "Established expertise in AI integration"
+      ],
+      icon: Bot,
+      gradient: "from-purple-500 to-indigo-500",
+      bgColor: "bg-purple-500/10",
+      borderColor: "border-purple-400/30"
     },
     {
       id: 4,
       year: "2020",
       title: "DevOps Mastery",
-      description: "Achieved expertise in Docker, cloud deployment, and CI/CD pipelines",
-      icon: "⚡",
-      gradient: "from-cyan-500 to-teal-500"
+      company: "Technical Achievement",
+      description: "Achieved expertise in Docker, cloud deployment, and CI/CD pipelines for modern development workflows.",
+      achievements: [
+        "Mastered containerization with Docker",
+        "Implemented CI/CD pipelines",
+        "Expertise in cloud deployment",
+        "Modern development workflow optimization"
+      ],
+      icon: Zap,
+      gradient: "from-cyan-500 to-teal-500",
+      bgColor: "bg-cyan-500/10",
+      borderColor: "border-cyan-400/30"
     }
   ];
 
@@ -234,44 +333,88 @@ const Timeline = () => {
     }
   };
 
+  const getTabIcon = (tabId) => {
+    switch(tabId) {
+      case 'career': return Briefcase;
+      case 'projects': return Rocket;
+      case 'milestones': return Trophy;
+      default: return Briefcase;
+    }
+  };
+
   return (
-    <section className="py-24 px-8 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white relative overflow-hidden">
+    <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white relative overflow-hidden">
       {/* Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-500/5 rounded-full blur-3xl"></div>
+      <div className="absolute inset-0 overflow-hidden">
+        <motion.div 
+          className="absolute top-1/4 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-blue-500/10 rounded-full blur-3xl"
+          animate={{
+            x: [0, 50, 0],
+            y: [0, -25, 0],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        />
+        <motion.div 
+          className="absolute bottom-1/4 right-1/4 w-48 h-48 md:w-96 md:h-96 bg-purple-500/10 rounded-full blur-3xl"
+          animate={{
+            x: [0, -40, 0],
+            y: [0, 30, 0],
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        />
+        <motion.div 
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[800px] md:h-[800px] bg-indigo-500/5 rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.1, 1],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
         <motion.div
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
         >
           <motion.div
             variants={fadeInUp}
-            className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full mb-6"
+            className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm px-6 py-3 mb-6"
           >
-            <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-            <span className="text-blue-300 font-semibold text-sm uppercase tracking-wider">
+            <Calendar className="w-4 h-4 text-blue-400" />
+            <span className="text-blue-300 font-medium text-sm tracking-wider uppercase">
               My Journey
             </span>
           </motion.div>
           
           <motion.h2 
             variants={fadeInUp}
-            className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-blue-200 to-indigo-200 bg-clip-text text-transparent"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-white via-blue-200 to-indigo-200 bg-clip-text text-transparent"
           >
-            Timeline
+            Professional Timeline
           </motion.h2>
           
           <motion.p 
             variants={fadeInUp}
-            className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed"
+            className="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed font-light"
           >
             Explore my professional journey, key projects, and major milestones that shaped my expertise in web development.
           </motion.p>
@@ -284,27 +427,30 @@ const Timeline = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-2 flex gap-2">
+          <div className="bg-white/10 backdrop-blur-md p-2 flex gap-2 flex-wrap justify-center">
             {[
-              { id: 'career', label: 'Career', icon: '💼' },
-              { id: 'projects', label: 'Projects', icon: '🚀' },
-              { id: 'milestones', label: 'Milestones', icon: '🏆' }
-            ].map((tab) => (
-              <motion.button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 flex items-center gap-2 ${
-                  activeTab === tab.id 
-                    ? 'bg-white text-slate-800 shadow-lg' 
-                    : 'text-white/70 hover:text-white hover:bg-white/5'
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span className="text-lg">{tab.icon}</span>
-                {tab.label}
-              </motion.button>
-            ))}
+              { id: 'career', label: 'Career' },
+              { id: 'projects', label: 'Projects' },
+              { id: 'milestones', label: 'Milestones' }
+            ].map((tab) => {
+              const TabIcon = getTabIcon(tab.id);
+              return (
+                <motion.button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`px-4 md:px-6 py-3 font-semibold transition-all duration-300 flex items-center gap-2 text-sm md:text-base ${
+                    activeTab === tab.id 
+                      ? 'bg-white text-slate-800 shadow-lg' 
+                      : 'text-white/70 hover:text-white hover:bg-white/5'
+                  }`}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <TabIcon className="w-4 h-4" />
+                  {tab.label}
+                </motion.button>
+              );
+            })}
           </div>
         </motion.div>
 
@@ -312,39 +458,39 @@ const Timeline = () => {
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -50 }}
-            transition={{ duration: 0.5 }}
+            exit={{ opacity: 0, y: -30 }}
+            transition={{ duration: 0.4 }}
             className="relative"
           >
-            {/* Timeline Line */}
+            {/* Timeline Line - Desktop only */}
             <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-blue-400 via-purple-400 to-indigo-400 opacity-30 hidden lg:block" 
-                 style={{ height: `${getCurrentData().length * 400}px` }}></div>
+                 style={{ height: `${getCurrentData().length * 320}px` }}></div>
 
             {/* Timeline Items */}
-            <div className="space-y-12">
+            <div className="space-y-8 md:space-y-12">
               {getCurrentData().map((item, index) => (
                 <motion.div
                   key={item.id}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: index * 0.1 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
                   className={`flex items-center gap-8 ${
                     index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
                   } flex-col lg:relative`}
                 >
-                  {/* Timeline Node */}
+                  {/* Timeline Node - Desktop */}
                   <div className="absolute left-1/2 transform -translate-x-1/2 z-20 hidden lg:block">
                     <motion.div 
-                      className={`w-16 h-16 bg-gradient-to-br ${item.gradient} rounded-full flex items-center justify-center text-2xl shadow-2xl border-4 border-white/20`}
-                      whileHover={{ scale: 1.2, rotate: 360 }}
+                      className={`w-12 h-12 bg-gradient-to-br ${item.gradient} flex items-center justify-center shadow-2xl border-4 border-white/20`}
+                      whileHover={{ scale: 1.2 }}
                       transition={{ duration: 0.3 }}
                     >
-                      {item.icon}
+                      <item.icon className="w-6 h-6 text-white" />
                     </motion.div>
-                    <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-white text-slate-800 px-3 py-1 rounded-full text-sm font-bold shadow-lg">
+                    <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-white text-slate-800 px-3 py-1 text-sm font-bold shadow-lg">
                       {item.year}
                     </div>
                   </div>
@@ -352,30 +498,59 @@ const Timeline = () => {
                   {/* Content Card */}
                   <motion.div 
                     className="lg:w-5/12 w-full"
-                    whileHover={{ scale: 1.02, y: -5 }}
+                    whileHover={{ scale: 1.02, y: -3 }}
                     transition={{ duration: 0.3 }}
                   >
                     <div 
-                      className="bg-white/10 backdrop-blur-md rounded-2xl p-8 shadow-2xl border border-white/20 cursor-pointer hover:bg-white/15 transition-all duration-300"
+                      className={`bg-white/10 backdrop-blur-md p-6 md:p-8 shadow-2xl border border-white/20 cursor-pointer hover:bg-white/15 transition-all duration-300 ${
+                        selectedItem === item.id ? 'bg-white/20' : ''
+                      }`}
                       onClick={() => setSelectedItem(selectedItem === item.id ? null : item.id)}
                     >
-                      <div className="flex items-center gap-4 mb-4">
-                        <div className={`w-12 h-12 bg-gradient-to-br ${item.gradient} rounded-xl flex items-center justify-center text-xl lg:hidden`}>
-                          {item.icon}
+                      {/* Header */}
+                      <div className="flex items-start gap-4 mb-4">
+                        <div className={`w-12 h-12 bg-gradient-to-br ${item.gradient} flex items-center justify-center lg:hidden flex-shrink-0`}>
+                          <item.icon className="w-6 h-6 text-white" />
                         </div>
-                        <div>
-                          <div className="text-sm text-blue-300 font-semibold lg:hidden">{item.year}</div>
-                          <h3 className="text-xl md:text-2xl font-bold text-white mb-1">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-2 lg:hidden">
+                            <Calendar className="w-4 h-4 text-blue-300" />
+                            <span className="text-sm text-blue-300 font-semibold">{item.year}</span>
+                          </div>
+                          <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-white mb-1">
                             {item.title}
                           </h3>
-                          <p className="text-blue-200 font-semibold">{item.company}</p>
-                          {item.duration && (
-                            <p className="text-blue-300 text-sm">{item.duration}</p>
-                          )}
+                          <p className="text-blue-200 font-semibold mb-1">{item.company}</p>
+                          
+                          <div className="flex flex-wrap items-center gap-4 text-sm text-blue-300">
+                            {item.duration && (
+                              <div className="flex items-center gap-1">
+                                <Clock className="w-3 h-3" />
+                                <span>{item.duration}</span>
+                              </div>
+                            )}
+                            {item.location && (
+                              <div className="flex items-center gap-1">
+                                <MapPin className="w-3 h-3" />
+                                <span>{item.location}</span>
+                              </div>
+                            )}
+                          </div>
                         </div>
+                        
+                        <motion.div
+                          animate={{ rotate: selectedItem === item.id ? 180 : 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="flex-shrink-0"
+                        >
+                          {selectedItem === item.id ? 
+                            <ChevronUp className="w-5 h-5 text-blue-300" /> : 
+                            <ChevronDown className="w-5 h-5 text-blue-300" />
+                          }
+                        </motion.div>
                       </div>
                       
-                      <p className="text-blue-100 mb-4 leading-relaxed">
+                      <p className="text-blue-100 mb-4 leading-relaxed text-sm md:text-base">
                         {item.description}
                       </p>
 
@@ -383,7 +558,7 @@ const Timeline = () => {
                       {item.technologies && (
                         <div className="flex flex-wrap gap-2 mb-4">
                           {item.technologies.map((tech, i) => (
-                            <span key={i} className="bg-white/20 text-white px-3 py-1 rounded-full text-xs font-medium">
+                            <span key={i} className="bg-white/20 text-white px-3 py-1 text-xs font-medium">
                               {tech}
                             </span>
                           ))}
@@ -392,18 +567,17 @@ const Timeline = () => {
 
                       {/* Link */}
                       {item.link && (
-                        <a 
+                        <motion.a 
                           href={`https://${item.link}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center text-blue-300 hover:text-blue-200 font-semibold text-sm"
+                          className="inline-flex items-center gap-2 text-blue-300 hover:text-blue-200 font-semibold text-sm mb-4"
                           onClick={(e) => e.stopPropagation()}
+                          whileHover={{ scale: 1.05 }}
                         >
-                          View Project 
-                          <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                          </svg>
-                        </a>
+                          <ExternalLink className="w-4 h-4" />
+                          View Project
+                        </motion.a>
                       )}
 
                       {/* Expandable Achievements */}
@@ -414,9 +588,12 @@ const Timeline = () => {
                             animate={{ opacity: 1, height: 'auto' }}
                             exit={{ opacity: 0, height: 0 }}
                             transition={{ duration: 0.3 }}
-                            className="mt-6 pt-6 border-t border-white/20"
+                            className="pt-4 border-t border-white/20"
                           >
-                            <h4 className="text-lg font-bold text-white mb-3">Key Achievements:</h4>
+                            <div className="flex items-center gap-2 mb-3">
+                              <Star className="w-4 h-4 text-yellow-400" />
+                              <h4 className="text-base md:text-lg font-bold text-white">Key Achievements</h4>
+                            </div>
                             <ul className="space-y-2">
                               {item.achievements.map((achievement, i) => (
                                 <motion.li 
@@ -426,7 +603,7 @@ const Timeline = () => {
                                   transition={{ delay: i * 0.1 }}
                                   className="flex items-start gap-3 text-blue-100 text-sm"
                                 >
-                                  <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                                  <div className="w-1.5 h-1.5 bg-blue-400 mt-2 flex-shrink-0"></div>
                                   {achievement}
                                 </motion.li>
                               ))}
@@ -445,28 +622,64 @@ const Timeline = () => {
           </motion.div>
         </AnimatePresence>
 
-        {/* Call to Action */}
+        {/* Stats Section */}
         <motion.div 
-          className="text-center mt-20"
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-16 md:mt-20"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <h3 className="text-3xl font-bold mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
-            Ready to Add Your Project to My Timeline?
-          </h3>
-          <p className="text-blue-100 mb-8 max-w-2xl mx-auto text-lg">
-            Let's create the next milestone together. I'm excited to bring your vision to life with cutting-edge technology and exceptional craftsmanship.
-          </p>
-          <motion.button
-            onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
-            className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl transition-all duration-300"
-            whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(59, 130, 246, 0.3)' }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Start Our Journey Together
-          </motion.button>
+          {[
+            { number: '10+', label: 'Years Experience', icon: Award, color: 'text-yellow-400' },
+            { number: '100+', label: 'Projects Delivered', icon: Target, color: 'text-green-400' },
+            { number: '15+', label: 'Team Members Led', icon: Users, color: 'text-blue-400' },
+            { number: '97%', label: 'Client Satisfaction', icon: TrendingUp, color: 'text-purple-400' }
+          ].map((stat, index) => (
+            <motion.div
+              key={stat.label}
+              className="text-center p-4 md:p-6 bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/15 hover:shadow-lg transition-all duration-300 group cursor-pointer"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+              whileHover={{ scale: 1.05, y: -3 }}
+            >
+              <stat.icon className={`w-6 h-6 md:w-8 md:h-8 ${stat.color} mx-auto mb-2 group-hover:scale-110 transition-transform duration-200`} />
+              <div className={`text-xl md:text-2xl lg:text-3xl font-bold ${stat.color} mb-1 group-hover:scale-105 transition-transform duration-200`}>
+                {stat.number}
+              </div>
+              <div className="text-xs md:text-sm text-blue-200 font-light leading-relaxed">
+                {stat.label}
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Call to Action */}
+        <motion.div 
+          className="text-center mt-16 md:mt-20"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+        >
+          <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-6 md:p-8 text-white">
+            <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4">
+              Ready to Add Your Project to My Timeline?
+            </h3>
+            <p className="text-blue-100 mb-6 md:mb-8 max-w-2xl mx-auto text-base md:text-lg font-light">
+              Let's create the next milestone together. I'm excited to bring your vision to life with cutting-edge technology and exceptional craftsmanship.
+            </p>
+            <motion.button
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              className="bg-white text-blue-600 px-6 md:px-8 py-3 md:py-4 font-bold text-sm md:text-base hover:bg-blue-50 transition-colors duration-200"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Start Our Journey Together
+            </motion.button>
+          </div>
         </motion.div>
       </div>
     </section>
