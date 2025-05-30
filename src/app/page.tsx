@@ -5,11 +5,14 @@ import Contact from '@components/home/Contact';
 import Experience from '@components/home/Experience';
 import GetQuote from '@components/home/GetQuote';
 import Hero from '@components/home/Hero';
+import ProcessHowIWork from '@components/home/ProcessHowIWork';
 import Projects from '@components/home/Projects';
 import Services from '@components/home/Services';
 import Skills from '@components/home/Skills';
 import Timeline from '@components/home/Timeline';
+
 import TrainingCertificates from '@components/home/TrainingCertificates';
+
 
 export default function Home() {
   return (
@@ -19,6 +22,7 @@ export default function Home() {
       <About />
       <Services />
       <Skills />
+      <ProcessHowIWork />
       <Timeline />
       <Experience />
       <TrainingCertificates />
