@@ -12,6 +12,7 @@ import {
   Home,
   Mail,
   Menu,
+  Phone,
   User,
   X
 } from 'lucide-react';
@@ -165,9 +166,9 @@ const Header = () => {
   return (
     <>
       <motion.header 
-        className={`fixed top-0 left-0 right-0 px-4 sm:px-6 lg:px-8 py-4 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 px-4 sm:px-6 lg:px-8 xl:px-12 py-3 sm:py-4 z-50 transition-all duration-300 ${
           scrolled 
-            ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-200' 
+            ? 'bg-white/95 backdrop-blur-md shadow-xl border-b border-slate-200/50' 
             : 'bg-white/80 backdrop-blur-sm'
         }`}
         initial={{ y: -100 }}
@@ -175,37 +176,37 @@ const Header = () => {
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <nav className="flex justify-between items-center max-w-7xl mx-auto">
-          {/* Enhanced Logo */}
+          {/* Enhanced Logo - Fully Responsive */}
           <motion.div 
-            className="flex items-center gap-3 cursor-pointer group"
+            className="flex items-center gap-2 sm:gap-3 cursor-pointer group min-w-0"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => scrollToSection('home')}
           >
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center text-white font-bold text-lg">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-indigo-600 via-purple-600 to-blue-700 rounded-lg flex items-center justify-center text-white font-bold text-sm sm:text-lg shadow-lg">
               R
             </div>
-            <div>
-              <div className="text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <div className="min-w-0">
+              <div className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent truncate">
                 Ratan Mia
               </div>
-              <div className="text-xs text-slate-500 -mt-1 hidden sm:block">
+              <div className="text-xs text-slate-500 -mt-0.5 hidden sm:block truncate">
                 Full Stack Developer
               </div>
             </div>
           </motion.div>
           
-          {/* Desktop Menu with Dropdowns */}
-          <div className="hidden lg:flex items-center gap-2">
+          {/* Desktop Menu with Enhanced Responsiveness */}
+          <div className="hidden lg:flex items-center gap-1 xl:gap-2">
             {/* Main Navigation Items */}
             {mainMenuItems.map((item, index) => (
               <motion.button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`flex items-center gap-2 px-4 py-2 font-medium transition-all duration-200 hover:bg-blue-50 group relative ${
+                className={`flex items-center gap-2 px-3 xl:px-4 py-2 rounded-lg font-medium transition-all duration-200 hover:bg-indigo-50 group relative ${
                   isItemActive(item.id)
-                    ? 'text-blue-600 bg-blue-50' 
-                    : 'text-slate-700 hover:text-blue-600'
+                    ? 'text-indigo-600 bg-indigo-50 shadow-sm' 
+                    : 'text-slate-700 hover:text-indigo-600'
                 }`}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -214,10 +215,10 @@ const Header = () => {
                 whileTap={{ scale: 0.98 }}
               >
                 <item.icon className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
-                <span className="text-sm">{item.name}</span>
+                <span className="text-sm font-medium">{item.name}</span>
                 {isItemActive(item.id) && (
                   <motion.div
-                    className="absolute bottom-0 left-1/2 w-1 h-1 bg-blue-600"
+                    className="absolute bottom-0 left-1/2 w-1 h-1 bg-indigo-600 rounded-full"
                     layoutId="activeIndicator"
                     initial={false}
                     style={{ x: '-50%' }}
@@ -226,15 +227,15 @@ const Header = () => {
               </motion.button>
             ))}
 
-            {/* Dropdown Menus */}
+            {/* Enhanced Dropdown Menus */}
             {dropdownMenus.map((dropdown, index) => (
               <div key={dropdown.title} className="relative dropdown-container">
                 <motion.button
                   onClick={() => setActiveDropdown(activeDropdown === dropdown.title ? null : dropdown.title)}
-                  className={`flex items-center gap-2 px-4 py-2 font-medium transition-all duration-200 hover:bg-blue-50 group relative ${
+                  className={`flex items-center gap-2 px-3 xl:px-4 py-2 rounded-lg font-medium transition-all duration-200 hover:bg-indigo-50 group relative ${
                     isDropdownActive(dropdown) || activeDropdown === dropdown.title
-                      ? 'text-blue-600 bg-blue-50' 
-                      : 'text-slate-700 hover:text-blue-600'
+                      ? 'text-indigo-600 bg-indigo-50 shadow-sm' 
+                      : 'text-slate-700 hover:text-indigo-600'
                   }`}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -243,7 +244,7 @@ const Header = () => {
                   whileTap={{ scale: 0.98 }}
                 >
                   <dropdown.icon className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
-                  <span className="text-sm">{dropdown.title}</span>
+                  <span className="text-sm font-medium">{dropdown.title}</span>
                   <motion.div
                     animate={{ rotate: activeDropdown === dropdown.title ? 180 : 0 }}
                     transition={{ duration: 0.2 }}
@@ -252,7 +253,7 @@ const Header = () => {
                   </motion.div>
                   {isDropdownActive(dropdown) && (
                     <motion.div
-                      className="absolute bottom-0 left-1/2 w-1 h-1 bg-blue-600"
+                      className="absolute bottom-0 left-1/2 w-1 h-1 bg-indigo-600 rounded-full"
                       layoutId="activeDropdownIndicator"
                       initial={false}
                       style={{ x: '-50%' }}
@@ -260,11 +261,11 @@ const Header = () => {
                   )}
                 </motion.button>
 
-                {/* Dropdown Content */}
+                {/* Enhanced Dropdown Content */}
                 <AnimatePresence>
                   {activeDropdown === dropdown.title && (
                     <motion.div
-                      className="absolute top-full left-0 mt-2 bg-white shadow-xl border border-slate-200 py-2 min-w-48 z-50"
+                      className="absolute top-full left-0 mt-2 bg-white/95 backdrop-blur-md shadow-2xl border border-slate-200/50 rounded-xl py-2 min-w-48 z-50"
                       initial={{ opacity: 0, y: -10, scale: 0.95 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: -10, scale: 0.95 }}
@@ -276,8 +277,8 @@ const Header = () => {
                           onClick={() => scrollToSection(item.id)}
                           className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-all duration-200 ${
                             isItemActive(item.id)
-                              ? 'text-blue-600 bg-blue-50'
-                              : 'text-slate-700 hover:text-blue-600 hover:bg-blue-50'
+                              ? 'text-indigo-600 bg-indigo-50'
+                              : 'text-slate-700 hover:text-indigo-600 hover:bg-indigo-50'
                           }`}
                           initial={{ opacity: 0, x: -10 }}
                           animate={{ opacity: 1, x: 0 }}
@@ -287,7 +288,7 @@ const Header = () => {
                           <item.icon className="w-4 h-4" />
                           <span className="text-sm font-medium">{item.name}</span>
                           {isItemActive(item.id) && (
-                            <div className="ml-auto w-2 h-2 bg-blue-600"></div>
+                            <div className="ml-auto w-2 h-2 bg-indigo-600 rounded-full"></div>
                           )}
                         </motion.button>
                       ))}
@@ -300,10 +301,10 @@ const Header = () => {
             {/* Contact Button */}
             <motion.button
               onClick={() => scrollToSection('contact')}
-              className={`flex items-center gap-2 px-4 py-2 font-medium transition-all duration-200 hover:bg-blue-50 group relative ${
+              className={`flex items-center gap-2 px-3 xl:px-4 py-2 rounded-lg font-medium transition-all duration-200 hover:bg-indigo-50 group relative ${
                 isItemActive('contact')
-                  ? 'text-blue-600 bg-blue-50' 
-                  : 'text-slate-700 hover:text-blue-600'
+                  ? 'text-indigo-600 bg-indigo-50 shadow-sm' 
+                  : 'text-slate-700 hover:text-indigo-600'
               }`}
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -312,10 +313,10 @@ const Header = () => {
               whileTap={{ scale: 0.98 }}
             >
               <Mail className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
-              <span className="text-sm">Contact</span>
+              <span className="text-sm font-medium">Contact</span>
               {isItemActive('contact') && (
                 <motion.div
-                  className="absolute bottom-0 left-1/2 w-1 h-1 bg-blue-600"
+                  className="absolute bottom-0 left-1/2 w-1 h-1 bg-indigo-600 rounded-full"
                   layoutId="activeContactIndicator"
                   initial={false}
                   style={{ x: '-50%' }}
@@ -324,32 +325,34 @@ const Header = () => {
             </motion.button>
           </div>
 
-          {/* Desktop CTA Buttons */}
-          <div className="hidden lg:flex items-center gap-3">
+          {/* Enhanced Desktop CTA Buttons */}
+          <div className="hidden lg:flex items-center gap-2 xl:gap-3">
             <motion.button
               onClick={handleDownloadCV}
-              className="flex items-center gap-2 px-4 py-2 text-slate-700 hover:text-blue-600 border border-slate-300 hover:border-blue-300 transition-all duration-200 text-sm font-medium"
+              className="flex items-center gap-2 px-3 xl:px-4 py-2 text-slate-700 hover:text-indigo-600 border border-slate-300 hover:border-indigo-300 rounded-lg transition-all duration-200 text-sm font-medium"
               whileHover={{ scale: 1.05, y: -1 }}
               whileTap={{ scale: 0.95 }}
             >
               <Download className="w-4 h-4" />
-              Download CV
+              <span className="hidden xl:inline">Download CV</span>
+              <span className="xl:hidden">CV</span>
             </motion.button>
             
             <motion.button
               onClick={() => scrollToSection('contact')}
-              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 transition-all duration-200 text-sm font-medium"
+              className="flex items-center gap-2 px-3 xl:px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700 rounded-lg transition-all duration-200 text-sm font-medium shadow-lg"
               whileHover={{ scale: 1.05, y: -1 }}
               whileTap={{ scale: 0.95 }}
             >
               <Mail className="w-4 h-4" />
-              Hire Me
+              <span className="hidden xl:inline">Hire Me</span>
+              <span className="xl:hidden">Hire</span>
             </motion.button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Enhanced Mobile Menu Button */}
           <motion.button
-            className="lg:hidden p-2 text-slate-700 hover:text-blue-600 transition-colors duration-200"
+            className="lg:hidden p-2 text-slate-700 hover:text-indigo-600 transition-colors duration-200 rounded-lg hover:bg-indigo-50"
             onClick={toggleMenu}
             whileTap={{ scale: 0.95 }}
             aria-label="Toggle menu"
@@ -364,7 +367,7 @@ const Header = () => {
         </nav>
       </motion.header>
 
-      {/* Mobile Menu Overlay */}
+      {/* Enhanced Mobile Menu Overlay */}
       <AnimatePresence>
         {isMenuOpen && (
           <>
@@ -378,19 +381,19 @@ const Header = () => {
               onClick={() => setIsMenuOpen(false)}
             />
 
-            {/* Mobile Menu */}
+            {/* Enhanced Mobile Menu */}
             <motion.div
-              className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white shadow-2xl z-50 lg:hidden overflow-y-auto"
+              className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white/95 backdrop-blur-md shadow-2xl z-50 lg:hidden overflow-y-auto"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ duration: 0.4, ease: "easeOut" }}
             >
-              {/* Mobile Menu Header */}
-              <div className="p-6 border-b border-gray-200">
+              {/* Enhanced Mobile Menu Header */}
+              <div className="p-6 border-b border-slate-200/50 bg-gradient-to-r from-indigo-50 to-purple-50">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center text-white font-bold text-sm">
+                    <div className="w-8 h-8 bg-gradient-to-br from-indigo-600 via-purple-600 to-blue-700 rounded-lg flex items-center justify-center text-white font-bold text-sm shadow-lg">
                       R
                     </div>
                     <div>
@@ -400,24 +403,24 @@ const Header = () => {
                   </div>
                   <button
                     onClick={() => setIsMenuOpen(false)}
-                    className="p-2 text-slate-500 hover:text-slate-700 transition-colors"
+                    className="p-2 text-slate-500 hover:text-slate-700 transition-colors rounded-lg hover:bg-white/50"
                   >
                     <X className="w-5 h-5" />
                   </button>
                 </div>
               </div>
 
-              {/* Mobile Menu Items */}
+              {/* Enhanced Mobile Menu Items */}
               <div className="p-6">
-                <div className="space-y-2">
+                <div className="space-y-1">
                   {allMenuItems.map((item, index) => (
                     <motion.button
                       key={item.id}
                       onClick={() => scrollToSection(item.id)}
-                      className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-all duration-200 group ${
+                      className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-all duration-200 group rounded-lg ${
                         isItemActive(item.id)
-                          ? 'text-blue-600 bg-blue-50' 
-                          : 'text-slate-700 hover:text-blue-600 hover:bg-slate-50'
+                          ? 'text-indigo-600 bg-indigo-50 shadow-sm' 
+                          : 'text-slate-700 hover:text-indigo-600 hover:bg-indigo-50'
                       }`}
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -427,17 +430,17 @@ const Header = () => {
                       <item.icon className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" />
                       <span className="font-medium">{item.name}</span>
                       {isItemActive(item.id) && (
-                        <div className="ml-auto w-2 h-2 bg-blue-600"></div>
+                        <div className="ml-auto w-2 h-2 bg-indigo-600 rounded-full"></div>
                       )}
                     </motion.button>
                   ))}
                 </div>
 
-                {/* Mobile CTA Buttons */}
+                {/* Enhanced Mobile CTA Buttons */}
                 <div className="mt-8 space-y-3">
                   <motion.button
                     onClick={handleDownloadCV}
-                    className="w-full flex items-center justify-center gap-2 px-4 py-3 text-slate-700 border border-slate-300 hover:border-blue-300 hover:text-blue-600 transition-all duration-200 font-medium"
+                    className="w-full flex items-center justify-center gap-2 px-4 py-3 text-slate-700 border border-slate-300 hover:border-indigo-300 hover:text-indigo-600 transition-all duration-200 font-medium rounded-lg"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: 0.8 }}
@@ -450,7 +453,7 @@ const Header = () => {
                   
                   <motion.button
                     onClick={() => scrollToSection('contact')}
-                    className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 transition-all duration-200 font-medium"
+                    className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 font-medium rounded-lg shadow-lg"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: 0.9 }}
@@ -462,9 +465,9 @@ const Header = () => {
                   </motion.button>
                 </div>
 
-                {/* Contact Info */}
+                {/* Enhanced Contact Info */}
                 <motion.div 
-                  className="mt-8 p-4 bg-slate-50 border border-slate-200"
+                  className="mt-8 p-4 bg-gradient-to-br from-slate-50 to-indigo-50 border border-slate-200/50 rounded-xl"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 1.0 }}
@@ -475,24 +478,24 @@ const Header = () => {
                   <div className="space-y-2 text-sm">
                     <a 
                       href="mailto:shorifull@gmail.com" 
-                      className="flex items-center gap-2 text-slate-600 hover:text-blue-600 transition-colors"
+                      className="flex items-center gap-2 text-slate-600 hover:text-indigo-600 transition-colors"
                     >
                       <Mail className="w-4 h-4" />
                       shorifull@gmail.com
                     </a>
                     <a 
                       href="tel:+8801751010966" 
-                      className="flex items-center gap-2 text-slate-600 hover:text-blue-600 transition-colors"
+                      className="flex items-center gap-2 text-slate-600 hover:text-indigo-600 transition-colors"
                     >
-                      <ExternalLink className="w-4 h-4" />
+                      <Phone className="w-4 h-4" />
                       +880 175 101 0966
                     </a>
                   </div>
                 </motion.div>
 
-                {/* Mobile Status Indicator */}
+                {/* Enhanced Mobile Status Indicator */}
                 <motion.div 
-                  className="mt-6 flex items-center justify-center gap-2 text-sm"
+                  className="mt-6 flex items-center justify-center gap-2 text-sm bg-green-50 border border-green-200 rounded-lg p-3"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.4, delay: 1.1 }}
