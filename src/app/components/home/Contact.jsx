@@ -1,5 +1,5 @@
-// components/Contact.jsx
 'use client';
+
 import { motion } from 'framer-motion';
 import {
   AlertCircle,
@@ -342,7 +342,7 @@ const Contact = () => {
             viewport={{ once: true }}
             className="bg-white/10 backdrop-blur-md p-6 md:p-8 border border-white/20"
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="space-y-6">
               {/* Status Message */}
               {status.type !== 'idle' && (
                 <motion.div
@@ -469,7 +469,8 @@ const Contact = () => {
               </div>
               
               <motion.button
-                type="submit"
+                type="button"
+                onClick={handleSubmit}
                 disabled={status.type === 'loading'}
                 className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold py-4 px-6 hover:from-blue-700 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2"
                 whileHover={{ scale: status.type !== 'loading' ? 1.02 : 1 }}
@@ -487,7 +488,7 @@ const Contact = () => {
                   </>
                 )}
               </motion.button>
-            </form>
+            </div>
           </motion.div>
         </div>
 
