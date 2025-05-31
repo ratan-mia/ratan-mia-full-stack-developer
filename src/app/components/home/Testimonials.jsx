@@ -2,24 +2,24 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 import {
-    ArrowRight,
-    Award,
-    Building2,
-    Calendar,
-    CheckCircle,
-    ChevronLeft,
-    ChevronRight,
-    Heart,
-    Mail,
-    MapPin,
-    Play,
-    Quote,
-    Shield,
-    Star,
-    Target,
-    ThumbsUp,
-    Users,
-    Zap
+  ArrowRight,
+  Award,
+  Building2,
+  Calendar,
+  CheckCircle,
+  ChevronLeft,
+  ChevronRight,
+  Heart,
+  Mail,
+  MapPin,
+  Play,
+  Quote,
+  Shield,
+  Star,
+  Target,
+  ThumbsUp,
+  Users,
+  Zap
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
@@ -175,36 +175,46 @@ const Testimonials = () => {
     { id: 'tech', name: 'Tech', icon: Shield, count: testimonials.filter(t => t.category === 'tech').length }
   ];
 
+  // Get only featured testimonials
+  const featuredTestimonials = testimonials.filter(t => t.featured);
+  
+  // Reset active testimonial if it exceeds featured testimonials length
+  useEffect(() => {
+    if (activeTestimonial >= featuredTestimonials.length) {
+      setActiveTestimonial(0);
+    }
+  }, [activeTestimonial, featuredTestimonials.length]);
+
   // Auto-play functionality
   useEffect(() => {
-    if (!isAutoPlaying) return;
+    if (!isAutoPlaying || featuredTestimonials.length === 0) return;
     
     const interval = setInterval(() => {
       setActiveTestimonial(prev => 
-        prev === testimonials.length - 1 ? 0 : prev + 1
+        prev >= featuredTestimonials.length - 1 ? 0 : prev + 1
       );
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [isAutoPlaying, testimonials.length]);
+  }, [isAutoPlaying, featuredTestimonials.length]);
 
   const nextTestimonial = () => {
+    if (featuredTestimonials.length === 0) return;
     setActiveTestimonial(prev => 
-      prev === testimonials.length - 1 ? 0 : prev + 1
+      prev >= featuredTestimonials.length - 1 ? 0 : prev + 1
     );
   };
 
   const prevTestimonial = () => {
+    if (featuredTestimonials.length === 0) return;
     setActiveTestimonial(prev => 
-      prev === 0 ? testimonials.length - 1 : prev - 1
+      prev === 0 ? featuredTestimonials.length - 1 : prev - 1
     );
   };
 
   const filteredTestimonials = activeFilter === 'all' 
     ? testimonials 
     : testimonials.filter(t => t.category === activeFilter);
-
-  const featuredTestimonials = testimonials.filter(t => t.featured);
 
   const renderStars = (rating) => {
     return Array.from({ length: 5 }, (_, i) => (
@@ -214,6 +224,9 @@ const Testimonials = () => {
       />
     ));
   };
+
+  // Get current testimonial safely
+  const currentTestimonial = featuredTestimonials[activeTestimonial] || featuredTestimonials[0];
 
   return (
     <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-white via-slate-50 to-blue-50 relative overflow-hidden">
@@ -313,151 +326,161 @@ const Testimonials = () => {
         </motion.div>
 
         {/* Featured Testimonials Carousel */}
-        <motion.div 
-          className="mb-12 md:mb-16"
-          variants={slideInLeft}
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true }}
-        >
-          <h3 className="text-2xl md:text-3xl font-bold text-slate-800 mb-8 text-center">
-            Featured Client Reviews
-          </h3>
+        {featuredTestimonials.length > 0 && (
+          <motion.div 
+            className="mb-12 md:mb-16"
+            variants={slideInLeft}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            <h3 className="text-2xl md:text-3xl font-bold text-slate-800 mb-8 text-center">
+              Featured Client Reviews
+            </h3>
 
-          <div className="relative">
-            {/* Main Testimonial Display */}
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 md:p-12 border border-blue-200 relative overflow-hidden">
-              {/* Quote Icon */}
-              <Quote className="absolute top-6 right-6 w-12 h-12 text-blue-200" />
-              
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeTestimonial}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.5 }}
-                  className="relative z-10"
-                >
-                  {featuredTestimonials[activeTestimonial] && (
-                    <div className="grid md:grid-cols-3 gap-8 items-center">
-                      {/* Client Info */}
-                      <div className="text-center md:text-left">
-                        <div className="w-20 h-20 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full mx-auto md:mx-0 mb-4 flex items-center justify-center text-white text-2xl font-bold">
-                          {featuredTestimonials[activeTestimonial].name.charAt(0)}
-                        </div>
-                        <h4 className="text-xl font-bold text-slate-800 mb-1">
-                          {featuredTestimonials[activeTestimonial].name}
-                        </h4>
-                        <p className="text-blue-600 font-semibold mb-1">
-                          {featuredTestimonials[activeTestimonial].position}
-                        </p>
-                        <p className="text-slate-600 text-sm mb-3">
-                          {featuredTestimonials[activeTestimonial].company}
-                        </p>
-                        
-                        {/* Rating */}
-                        <div className="flex justify-center md:justify-start gap-1 mb-3">
-                          {renderStars(featuredTestimonials[activeTestimonial].rating)}
-                        </div>
-
-                        {/* Verification Badge */}
-                        {featuredTestimonials[activeTestimonial].verified && (
-                          <div className="inline-flex items-center gap-2 bg-green-100 text-green-800 px-3 py-1 text-xs font-medium">
-                            <CheckCircle className="w-3 h-3" />
-                            Verified Client
+            <div className="relative">
+              {/* Main Testimonial Display - Fixed Height Container */}
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 md:p-12 border border-blue-200 relative overflow-hidden min-h-[400px] md:min-h-[350px]">
+                {/* Quote Icon */}
+                <Quote className="absolute top-6 right-6 w-12 h-12 text-blue-200" />
+                
+                <AnimatePresence mode="wait">
+                  {currentTestimonial && (
+                    <motion.div
+                      key={`testimonial-${currentTestimonial.id}-${activeTestimonial}`}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      transition={{ duration: 0.5 }}
+                      className="relative z-10 h-full"
+                    >
+                      <div className="grid md:grid-cols-3 gap-8 items-start h-full">
+                        {/* Client Info */}
+                        <div className="text-center md:text-left">
+                          <div className="w-20 h-20 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full mx-auto md:mx-0 mb-4 flex items-center justify-center text-white text-2xl font-bold">
+                            {currentTestimonial.name.charAt(0)}
                           </div>
-                        )}
-                      </div>
+                          <h4 className="text-xl font-bold text-slate-800 mb-1">
+                            {currentTestimonial.name}
+                          </h4>
+                          <p className="text-blue-600 font-semibold mb-1">
+                            {currentTestimonial.position}
+                          </p>
+                          <p className="text-slate-600 text-sm mb-3">
+                            {currentTestimonial.company}
+                          </p>
+                          
+                          {/* Rating */}
+                          <div className="flex justify-center md:justify-start gap-1 mb-3">
+                            {renderStars(currentTestimonial.rating)}
+                          </div>
 
-                      {/* Testimonial Content */}
-                      <div className="md:col-span-2">
-                        <blockquote className="text-lg md:text-xl text-slate-700 leading-relaxed mb-6 italic">
-                          "{featuredTestimonials[activeTestimonial].testimonial}"
-                        </blockquote>
-
-                        {/* Project Results */}
-                        <div className="grid grid-cols-2 gap-3 mb-6">
-                          {featuredTestimonials[activeTestimonial].results.map((result, index) => (
-                            <div key={index} className="flex items-center gap-2 text-sm text-slate-600">
-                              <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                              {result}
+                          {/* Verification Badge */}
+                          {currentTestimonial.verified && (
+                            <div className="inline-flex items-center gap-2 bg-green-100 text-green-800 px-3 py-1 text-xs font-medium">
+                              <CheckCircle className="w-3 h-3" />
+                              Verified Client
                             </div>
-                          ))}
+                          )}
                         </div>
 
-                        {/* Project Info */}
-                        <div className="flex flex-wrap gap-4 text-sm text-slate-500">
-                          <div className="flex items-center gap-2">
-                            <Calendar className="w-4 h-4" />
-                            {featuredTestimonials[activeTestimonial].date}
+                        {/* Testimonial Content */}
+                        <div className="md:col-span-2 flex flex-col justify-between h-full">
+                          <div>
+                            <blockquote className="text-lg md:text-xl text-slate-700 leading-relaxed mb-6 italic">
+                              "{currentTestimonial.testimonial}"
+                            </blockquote>
+
+                            {/* Project Results */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
+                              {currentTestimonial.results.map((result, index) => (
+                                <div key={index} className="flex items-center gap-2 text-sm text-slate-600">
+                                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                                  {result}
+                                </div>
+                              ))}
+                            </div>
                           </div>
-                          <div className="flex items-center gap-2">
-                            <MapPin className="w-4 h-4" />
-                            {featuredTestimonials[activeTestimonial].location}
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <Target className="w-4 h-4" />
-                            {featuredTestimonials[activeTestimonial].projectValue}
+
+                          {/* Project Info */}
+                          <div className="flex flex-wrap gap-4 text-sm text-slate-500 mt-auto">
+                            <div className="flex items-center gap-2">
+                              <Calendar className="w-4 h-4" />
+                              {currentTestimonial.date}
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <MapPin className="w-4 h-4" />
+                              {currentTestimonial.location}
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <Target className="w-4 h-4" />
+                              {currentTestimonial.projectValue}
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </motion.div>
                   )}
-                </motion.div>
-              </AnimatePresence>
-            </div>
+                </AnimatePresence>
+              </div>
 
-            {/* Navigation Controls */}
-            <div className="flex items-center justify-between mt-6">
-              <div className="flex gap-2">
-                {featuredTestimonials.map((_, index) => (
-                  <button
-                    key={index}
+              {/* Navigation Controls */}
+              <div className="flex items-center justify-between mt-6">
+                <div className="flex gap-2">
+                  {featuredTestimonials.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => {
+                        setActiveTestimonial(index);
+                        setIsAutoPlaying(false);
+                      }}
+                      className={`w-3 h-3 transition-all duration-200 ${
+                        activeTestimonial === index ? 'bg-blue-600' : 'bg-slate-300 hover:bg-slate-400'
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                <div className="flex gap-2">
+                  <motion.button
                     onClick={() => {
-                      setActiveTestimonial(index);
+                      prevTestimonial();
                       setIsAutoPlaying(false);
                     }}
-                    className={`w-3 h-3 transition-all duration-200 ${
-                      activeTestimonial === index ? 'bg-blue-600' : 'bg-slate-300 hover:bg-slate-400'
+                    className="p-2 bg-white border border-slate-200 hover:bg-blue-50 hover:border-blue-300 transition-all duration-200"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <ChevronLeft className="w-5 h-5 text-slate-600" />
+                  </motion.button>
+                  <motion.button
+                    onClick={() => {
+                      nextTestimonial();
+                      setIsAutoPlaying(false);
+                    }}
+                    className="p-2 bg-white border border-slate-200 hover:bg-blue-50 hover:border-blue-300 transition-all duration-200"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <ChevronRight className="w-5 h-5 text-slate-600" />
+                  </motion.button>
+                  <motion.button
+                    onClick={() => setIsAutoPlaying(!isAutoPlaying)}
+                    className={`p-2 border transition-all duration-200 ${
+                      isAutoPlaying 
+                        ? 'bg-blue-600 border-blue-600 text-white' 
+                        : 'bg-white border-slate-200 text-slate-600 hover:bg-blue-50'
                     }`}
-                  />
-                ))}
-              </div>
-
-              <div className="flex gap-2">
-                <motion.button
-                  onClick={prevTestimonial}
-                  className="p-2 bg-white border border-slate-200 hover:bg-blue-50 hover:border-blue-300 transition-all duration-200"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <ChevronLeft className="w-5 h-5 text-slate-600" />
-                </motion.button>
-                <motion.button
-                  onClick={nextTestimonial}
-                  className="p-2 bg-white border border-slate-200 hover:bg-blue-50 hover:border-blue-300 transition-all duration-200"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <ChevronRight className="w-5 h-5 text-slate-600" />
-                </motion.button>
-                <motion.button
-                  onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-                  className={`p-2 border transition-all duration-200 ${
-                    isAutoPlaying 
-                      ? 'bg-blue-600 border-blue-600 text-white' 
-                      : 'bg-white border-slate-200 text-slate-600 hover:bg-blue-50'
-                  }`}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <Play className="w-5 h-5" />
-                </motion.button>
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <Play className="w-5 h-5" />
+                  </motion.button>
+                </div>
               </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        )}
 
         {/* Category Filter */}
         <motion.div 
