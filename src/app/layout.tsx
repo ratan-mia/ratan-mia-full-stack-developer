@@ -13,8 +13,8 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://shorifullislamratan.com"),
   title: {
-    default: "Shorifull Islam Ratan - Full Stack Developer | React.js & Next.js Expert",
-    template: "%s | Shorifull Islam Ratan - Full Stack Developer"
+    default: "Ratan Mia - Full Stack Developer | React.js & Next.js Expert",
+    template: "%s | Ratan Mia - Full Stack Developer"
   },
   description: "Experienced Full Stack Developer with 10+ years expertise in React.js, Next.js, Laravel & WordPress. Building high-performance web applications for global clients. Available for new projects.",
   keywords: [
@@ -50,34 +50,34 @@ export const metadata: Metadata = {
   ],
   authors: [
     {
-      name: "Shorifull Islam Ratan",
+      name: "Ratan Mia",
       url: "https://shorifullislamratan.com"
     }
   ],
-  creator: "Shorifull Islam Ratan",
-  publisher: "Shorifull Islam Ratan",
+  creator: "Ratan Mia",
+  publisher: "Ratan Mia",
   category: "Technology",
   classification: "Web Development",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://shorifullislamratan.com",
-    siteName: "Shorifull Islam Ratan - Full Stack Developer",
-    title: "Shorifull Islam Ratan - Expert Full Stack Developer | React.js & Next.js Specialist",
+    siteName: "Ratan Mia - Full Stack Developer",
+    title: "Ratan Mia - Expert Full Stack Developer | React.js & Next.js Specialist",
     description: "Professional Full Stack Developer with 10+ years experience building high-performance web applications. Specializing in React.js, Next.js, Laravel, and WordPress development for global clients.",
     images: [
       {
         url: "/images/shorifull-islam-ratan-og.jpg",
         width: 1200,
         height: 630,
-        alt: "Shorifull Islam Ratan - Full Stack Developer",
+        alt: "Ratan Mia - Full Stack Developer",
         type: "image/jpeg",
       },
       {
         url: "/images/shorifull-islam-ratan-square.jpg",
         width: 400,
         height: 400,
-        alt: "Shorifull Islam Ratan - Professional Developer",
+        alt: "Ratan Mia - Professional Developer",
         type: "image/jpeg",
       }
     ],
@@ -86,7 +86,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@shorifull",
     creator: "@shorifull",
-    title: "Shorifull Islam Ratan - Full Stack Developer | React.js & Next.js Expert",
+    title: "Ratan Mia - Full Stack Developer | React.js & Next.js Expert",
     description: "Professional Full Stack Developer with 10+ years experience. Specializing in React.js, Next.js, Laravel & WordPress. Building scalable web applications for global clients.",
     images: ["/images/shorifull-islam-ratan-twitter.jpg"],
   },
@@ -146,7 +146,7 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: "Shorifull Islam Ratan",
+  name: "Ratan Mia",
   alternateName: "Ratan Mia",
   description: "Full Stack Developer with 10+ years of experience specializing in React.js, Next.js, Laravel, and WordPress development",
   url: "https://shorifullislamratan.com",
@@ -202,7 +202,7 @@ const jsonLd = {
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  name: "Shorifull Islam Ratan - Web Development Services",
+  name: "Ratan Mia - Web Development Services",
   alternateName: "Ratan Mia Development",
   description: "Professional web development services specializing in React.js, Next.js, Laravel, and WordPress development",
   url: "https://shorifullislamratan.com",
@@ -227,7 +227,7 @@ const organizationJsonLd = {
   ],
   founder: {
     "@type": "Person",
-    name: "Shorifull Islam Ratan"
+    name: "Ratan Mia"
   },
   serviceType: [
     "Web Development",
@@ -354,9 +354,9 @@ export default function RootLayout({
         <meta name="msvalidate.01" content="your-bing-verification-code" />
 
         {/* Open Graph Additional */}
-        <meta property="og:site_name" content="Shorifull Islam Ratan - Full Stack Developer" />
+        <meta property="og:site_name" content="Ratan Mia - Full Stack Developer" />
         <meta property="og:updated_time" content={new Date().toISOString()} />
-        <meta property="article:author" content="Shorifull Islam Ratan" />
+        <meta property="article:author" content="Ratan Mia" />
         <meta property="article:publisher" content="https://shorifullislamratan.com" />
 
         {/* Twitter Additional */}
@@ -366,7 +366,7 @@ export default function RootLayout({
         {/* Business Information */}
         <meta name="contact" content="shorifull@gmail.com" />
         <meta name="reply-to" content="shorifull@gmail.com" />
-        <meta name="owner" content="Shorifull Islam Ratan" />
+        <meta name="owner" content="Ratan Mia" />
         <meta name="directory" content="submission" />
         <meta name="coverage" content="Worldwide" />
         <meta name="distribution" content="Global" />

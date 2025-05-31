@@ -244,7 +244,7 @@ const CompactHero = () => {
               >
                 <span className="block text-white mb-2">Hi, I'm</span>
                 <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  Shorifull Islam Ratan
+                  Ratan Mia
                 </span>
               </motion.h1>
 

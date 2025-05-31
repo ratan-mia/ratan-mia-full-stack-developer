@@ -712,7 +712,7 @@ const GetQuote = ({ compact = false }) => {
           transition={{ duration: 0.8, delay: 0.5 }}
         >
           <p className="text-slate-500 text-sm md:text-base font-light">
-            © 2025 Shorifull Islam Ratan. Crafted with ❤️ using Next.js, Tailwind CSS & Framer Motion
+            © 2025 Ratan Mia. Crafted with ❤️ using Next.js, Tailwind CSS & Framer Motion
           </p>
         </motion.div>
       </div>
