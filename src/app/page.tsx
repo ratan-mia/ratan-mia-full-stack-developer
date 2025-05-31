@@ -1,5 +1,3 @@
-import Footer from '@components/Footer';
-import Header from '@components/Header';
 import About from '@components/home/About';
 import Contact from '@components/home/Contact';
 import Experience from '@components/home/Experience';
@@ -20,7 +18,7 @@ import TrainingCertificates from '@components/home/TrainingCertificates';
 export default function Home() {
   return (
     <div className="font-sans text-gray-800">
-      <Header />
+
       <HeroMain />
 
       {/* <Hero /> */}
@@ -36,7 +34,7 @@ export default function Home() {
       <FAQ />
       <Testimonials />
       <Contact />
-      <Footer />
+
 
     </div>
   );
