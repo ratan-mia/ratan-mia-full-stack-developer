@@ -339,6 +339,16 @@ const Header = () => {
             </motion.button>
             
             <motion.button
+              onClick={() => scrollToSection('quote')}
+              className="flex items-center gap-2 px-3 xl:px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700 rounded-lg transition-all duration-200 text-sm font-medium shadow-lg"
+              whileHover={{ scale: 1.05, y: -1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Mail className="w-4 h-4" />
+              <span className="hidden xl:inline">Get a Quote</span>
+              <span className="xl:hidden">Quote</span>
+            </motion.button>
+            {/* <motion.button
               onClick={() => scrollToSection('contact')}
               className="flex items-center gap-2 px-3 xl:px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700 rounded-lg transition-all duration-200 text-sm font-medium shadow-lg"
               whileHover={{ scale: 1.05, y: -1 }}
@@ -347,7 +357,7 @@ const Header = () => {
               <Mail className="w-4 h-4" />
               <span className="hidden xl:inline">Hire Me</span>
               <span className="xl:hidden">Hire</span>
-            </motion.button>
+            </motion.button> */}
           </div>
 
           {/* Enhanced Mobile Menu Button */}
@@ -450,7 +460,18 @@ const Header = () => {
                     <Download className="w-4 h-4" />
                     Download CV
                   </motion.button>
-                  
+                     <motion.button
+                    onClick={() => scrollToSection('quote')}
+                    className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 font-medium rounded-lg shadow-lg"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: 0.9 }}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <Mail className="w-4 h-4" />
+                    Get a Quote
+                  </motion.button>
                   <motion.button
                     onClick={() => scrollToSection('contact')}
                     className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 font-medium rounded-lg shadow-lg"
