@@ -340,7 +340,7 @@ const Testimonials = () => {
 
             <div className="relative">
               {/* Main Testimonial Display - Fixed Height Container */}
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 md:p-12 border border-blue-200 relative overflow-hidden min-h-[400px] md:min-h-[350px]">
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 md:p-12 border border-blue-200 relative overflow-hidden min-h-[400px] md:min-h-[400px]">
                 {/* Quote Icon */}
                 <Quote className="absolute top-6 right-6 w-12 h-12 text-blue-200" />
                 
