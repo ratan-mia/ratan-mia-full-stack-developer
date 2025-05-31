@@ -10,18 +10,12 @@ import Services from '@components/home/Services';
 import Skills from '@components/home/Skills';
 import Testimonials from '@components/home/Testimonials';
 import Timeline from '@components/home/Timeline';
-
-
 import TrainingCertificates from '@components/home/TrainingCertificates';
-
 
 export default function Home() {
   return (
-    <div className="font-sans text-gray-800">
-
+    <main className="font-sans text-gray-800">
       <HeroMain />
-
-      {/* <Hero /> */}
       <About />
       <Services />
       <Skills />
@@ -34,8 +28,6 @@ export default function Home() {
       <FAQ />
       <Testimonials />
       <Contact />
-
-
-    </div>
+    </main>
   );
 }
