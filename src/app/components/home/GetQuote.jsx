@@ -1,11 +1,20 @@
 // components/GetQuote.jsx
 'use client';
 
-import { motion } from 'framer-motion';
-import { AlertCircle, CheckCircle, Clock, Loader, Send, Shield, Star } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { CheckCircle, ChevronLeft, ChevronRight, Clock, Shield, Star } from 'lucide-react';
 import { useState } from 'react';
 
+// Import step components
+import BudgetTimelineStep from './quote-steps/BudgetTimelineStep';
+import FeaturesStep from './quote-steps/FeaturesStep';
+import PersonalInfoStep from './quote-steps/PersonalInfoStep';
+import ProjectDetailsStep from './quote-steps/ProjectDetailsStep';
+import ProjectTypeStep from './quote-steps/ProjectTypeStep';
+import ReviewSubmitStep from './quote-steps/ReviewSubmitStep';
+
 const GetQuote = ({ compact = false }) => {
+  const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -23,23 +32,40 @@ const GetQuote = ({ compact = false }) => {
   const [submitStatus, setSubmitStatus] = useState(null);
   const [errors, setErrors] = useState({});
 
-  // Animation variants following design guidelines
+  // Form steps configuration
+  const steps = [
+    { id: 1, title: 'Personal Info', subtitle: 'Let\'s start with your details' },
+    { id: 2, title: 'Project Type', subtitle: 'What are you looking to build?' },
+    { id: 3, title: 'Budget & Timeline', subtitle: 'Investment and timeline expectations' },
+    { id: 4, title: 'Features', subtitle: 'What functionality do you need?' },
+    { id: 5, title: 'Project Details', subtitle: 'Tell us more about your vision' },
+    { id: 6, title: 'Review & Submit', subtitle: 'Final review and submission' }
+  ];
+
+  const totalSteps = steps.length;
+
+  // Animation variants
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
     animate: { opacity: 1, y: 0 },
     transition: { duration: 0.8, ease: "easeOut" }
   };
 
-  const slideInLeft = {
-    initial: { opacity: 0, x: -50 },
-    animate: { opacity: 1, x: 0 },
-    transition: { duration: 0.6 }
-  };
-
-  const slideInRight = {
-    initial: { opacity: 0, x: 50 },
-    animate: { opacity: 1, x: 0 },
-    transition: { duration: 0.6 }
+  const slideVariants = {
+    enter: (direction) => ({
+      x: direction > 0 ? 300 : -300,
+      opacity: 0
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1
+    },
+    exit: (direction) => ({
+      zIndex: 0,
+      x: direction < 0 ? 300 : -300,
+      opacity: 0
+    })
   };
 
   const staggerContainer = {
@@ -61,55 +87,8 @@ const GetQuote = ({ compact = false }) => {
     ? "text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-slate-800 via-blue-800 to-indigo-800 bg-clip-text text-transparent"
     : "text-4xl md:text-5xl lg:text-6xl font-bold mb-8 bg-gradient-to-r from-slate-800 via-blue-800 to-indigo-800 bg-clip-text text-transparent";
 
-  const cardPadding = compact ? "p-6 md:p-8" : "p-8 md:p-12";
-  const gridGap = compact ? "gap-4 md:gap-6" : "gap-6 md:gap-8";
-
-  const projectTypes = [
-    { id: 'web-development', name: 'Full Stack Web Development', icon: '💻', description: 'Complete web solutions' },
-    { id: 'ecommerce', name: 'E-commerce Solution', icon: '🛒', description: 'Online store platforms' },
-    { id: 'wordpress', name: 'WordPress Development', icon: '📝', description: 'CMS & custom themes' },
-    { id: 'performance', name: 'Performance Optimization', icon: '⚡', description: 'Speed & efficiency' },
-    { id: 'ai-integration', name: 'AI Integration', icon: '🤖', description: 'Smart automation' },
-    { id: 'devops', name: 'DevOps & Cloud Solutions', icon: '☁️', description: 'Infrastructure & deployment' },
-    { id: 'mobile-app', name: 'Mobile App Development', icon: '📱', description: 'iOS & Android apps' },
-    { id: 'other', name: 'Custom Solution', icon: '🔧', description: 'Tailored development' }
-  ];
-
-  const budgetRanges = [
-    { id: 'under-5k', label: 'Under $5,000', value: 'under-5k', recommended: false },
-    { id: '5k-15k', label: '$5,000 - $15,000', value: '5k-15k', recommended: true },
-    { id: '15k-30k', label: '$15,000 - $30,000', value: '15k-30k', recommended: true },
-    { id: '30k-50k', label: '$30,000 - $50,000', value: '30k-50k', recommended: false },
-    { id: 'over-50k', label: 'Over $50,000', value: 'over-50k', recommended: false },
-    { id: 'discuss', label: 'Let\'s Discuss', value: 'discuss', recommended: false }
-  ];
-
-  const timelineOptions = [
-    { id: 'asap', label: 'ASAP', value: 'asap', description: 'Rush delivery (+25% fee)', urgent: true },
-    { id: '1-2weeks', label: '1-2 Weeks', value: '1-2weeks', description: 'Quick turnaround', urgent: false },
-    { id: '1month', label: '1 Month', value: '1month', description: 'Standard timeline', urgent: false },
-    { id: '2-3months', label: '2-3 Months', value: '2-3months', description: 'Complex projects', urgent: false },
-    { id: '3-6months', label: '3-6 Months', value: '3-6months', description: 'Enterprise solutions', urgent: false },
-    { id: 'flexible', label: 'Flexible', value: 'flexible', description: 'No rush needed', urgent: false }
-  ];
-
-  const commonFeatures = [
-    { name: 'Responsive Design', category: 'essential' },
-    { name: 'SEO Optimization', category: 'essential' },
-    { name: 'Content Management', category: 'standard' },
-    { name: 'E-commerce Integration', category: 'advanced' },
-    { name: 'Payment Processing', category: 'advanced' },
-    { name: 'User Authentication', category: 'standard' },
-    { name: 'API Integration', category: 'advanced' },
-    { name: 'Analytics Dashboard', category: 'standard' },
-    { name: 'Social Media Integration', category: 'standard' },
-    { name: 'Email Marketing', category: 'advanced' },
-    { name: 'Multi-language Support', category: 'advanced' },
-    { name: 'Performance Optimization', category: 'essential' }
-  ];
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
+  // Form handlers
+  const handleInputChange = (name, value) => {
     setFormData(prev => ({
       ...prev,
       [name]: value
@@ -123,34 +102,62 @@ const GetQuote = ({ compact = false }) => {
     }
   };
 
-  const handleFeatureToggle = (feature) => {
-    setFormData(prev => ({
-      ...prev,
-      features: prev.features.includes(feature.name)
-        ? prev.features.filter(f => f !== feature.name)
-        : [...prev.features, feature.name]
-    }));
+  const handleNext = () => {
+    if (validateCurrentStep()) {
+      setCurrentStep(prev => Math.min(prev + 1, totalSteps));
+    }
   };
 
-  const validateForm = () => {
+  const handlePrev = () => {
+    setCurrentStep(prev => Math.max(prev - 1, 1));
+  };
+
+  const handleStepClick = (stepNumber) => {
+    if (stepNumber < currentStep || validateStepsUpTo(stepNumber - 1)) {
+      setCurrentStep(stepNumber);
+    }
+  };
+
+  const validateCurrentStep = () => {
     const newErrors = {};
     
-    if (!formData.name.trim()) newErrors.name = 'Name is required';
-    if (!formData.email.trim()) newErrors.email = 'Email is required';
-    else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Email is invalid';
-    if (!formData.projectType) newErrors.projectType = 'Please select a project type';
-    if (!formData.budget) newErrors.budget = 'Please select a budget range';
-    if (!formData.description.trim()) newErrors.description = 'Project description is required';
+    switch (currentStep) {
+      case 1: // Personal Info
+        if (!formData.name.trim()) newErrors.name = 'Name is required';
+        if (!formData.email.trim()) newErrors.email = 'Email is required';
+        else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Email is invalid';
+        break;
+      case 2: // Project Type
+        if (!formData.projectType) newErrors.projectType = 'Please select a project type';
+        break;
+      case 3: // Budget & Timeline
+        if (!formData.budget) newErrors.budget = 'Please select a budget range';
+        break;
+      case 4: // Features
+        // Features are optional, no validation needed
+        break;
+      case 5: // Project Details
+        if (!formData.description.trim()) newErrors.description = 'Project description is required';
+        break;
+      case 6: // Review & Submit
+        // Final validation happens in the component
+        break;
+    }
     
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    if (!validateForm()) return;
-    
+  const validateStepsUpTo = (stepNumber) => {
+    // Validate all steps up to the given step number
+    for (let i = 1; i <= stepNumber; i++) {
+      setCurrentStep(i);
+      if (!validateCurrentStep()) return false;
+    }
+    return true;
+  };
+
+  const handleSubmit = async () => {
     setIsSubmitting(true);
     setSubmitStatus(null);
     
@@ -167,18 +174,23 @@ const GetQuote = ({ compact = false }) => {
       
       if (response.ok) {
         setSubmitStatus('success');
-        setFormData({
-          name: '',
-          email: '',
-          company: '',
-          phone: '',
-          projectType: '',
-          budget: '',
-          timeline: '',
-          description: '',
-          features: [],
-          priority: 'medium'
-        });
+        // Reset form after successful submission
+        setTimeout(() => {
+          setCurrentStep(1);
+          setFormData({
+            name: '',
+            email: '',
+            company: '',
+            phone: '',
+            projectType: '',
+            budget: '',
+            timeline: '',
+            description: '',
+            features: [],
+            priority: 'medium'
+          });
+          setSubmitStatus(null);
+        }, 5000);
       } else {
         setSubmitStatus('error');
       }
@@ -189,6 +201,40 @@ const GetQuote = ({ compact = false }) => {
       setIsSubmitting(false);
     }
   };
+
+  const renderStepComponent = () => {
+    const stepProps = {
+      formData,
+      handleInputChange,
+      errors,
+      compact
+    };
+
+    switch (currentStep) {
+      case 1:
+        return <PersonalInfoStep {...stepProps} />;
+      case 2:
+        return <ProjectTypeStep {...stepProps} />;
+      case 3:
+        return <BudgetTimelineStep {...stepProps} />;
+      case 4:
+        return <FeaturesStep {...stepProps} />;
+      case 5:
+        return <ProjectDetailsStep {...stepProps} />;
+      case 6:
+        return <ReviewSubmitStep {...stepProps} onSubmit={handleSubmit} isSubmitting={isSubmitting} submitStatus={submitStatus} />;
+      default:
+        return <PersonalInfoStep {...stepProps} />;
+    }
+  };
+
+  const getStepStatus = (stepNumber) => {
+    if (stepNumber < currentStep) return 'completed';
+    if (stepNumber === currentStep) return 'active';
+    return 'upcoming';
+  };
+
+  const progressPercentage = ((currentStep - 1) / (totalSteps - 1)) * 100;
 
   return (
     <section id="quote" className={sectionClasses}>
@@ -262,340 +308,143 @@ const GetQuote = ({ compact = false }) => {
           </motion.p>
         </motion.div>
 
-        {/* Quote Form - Full Width */}
-        <motion.div 
-          variants={slideInRight}
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true }}
-          className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-2xl border border-white/50 overflow-hidden"
+        {/* Progress Indicator */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-12"
         >
-            <div className={cardPadding}>
-              <form onSubmit={handleSubmit} className="space-y-8">
-                {/* Status Message */}
-                {submitStatus && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className={`p-4 rounded-xl border-l-4 ${
-                      submitStatus === 'success'
-                        ? 'bg-green-50 border-green-500 text-green-800'
-                        : 'bg-red-50 border-red-500 text-red-800'
-                    }`}
-                  >
-                    <div className="flex items-center gap-2">
-                      {submitStatus === 'success' ? (
-                        <CheckCircle className="w-5 h-5" />
-                      ) : (
-                        <AlertCircle className="w-5 h-5" />
-                      )}
-                      <div>
-                        {submitStatus === 'success' ? (
-                          <div>
-                            <h3 className="font-bold">Quote Request Sent Successfully! 🎉</h3>
-                            <p className="text-sm mt-1">Thank you! I'll review your project details and get back to you within 24 hours with a detailed quote and timeline.</p>
-                          </div>
-                        ) : (
-                          <div>
-                            <h3 className="font-bold">Oops! Something went wrong 😞</h3>
-                            <p className="text-sm mt-1">Please try again or contact me directly at shorifull@gmail.com</p>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-
-                {/* Personal Information */}
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-semibold text-slate-800 mb-3 uppercase tracking-wider">
-                      Full Name *
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      className={`w-full px-4 py-4 bg-white rounded-xl border-2 ${errors.name ? 'border-red-500' : 'border-slate-200'} focus:border-blue-500 focus:outline-none transition-all duration-200 text-slate-800`}
-                      placeholder="Enter your full name"
-                    />
-                    {errors.name && <p className="text-red-500 text-sm mt-2">{errors.name}</p>}
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-semibold text-slate-800 mb-3 uppercase tracking-wider">
-                      Email Address *
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      className={`w-full px-4 py-4 bg-white rounded-xl border-2 ${errors.email ? 'border-red-500' : 'border-slate-200'} focus:border-blue-500 focus:outline-none transition-all duration-200 text-slate-800`}
-                      placeholder="your.email@company.com"
-                    />
-                    {errors.email && <p className="text-red-500 text-sm mt-2">{errors.email}</p>}
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-semibold text-slate-800 mb-3 uppercase tracking-wider">
-                      Company Name
-                    </label>
-                    <input
-                      type="text"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-4 bg-white rounded-xl border-2 border-slate-200 focus:border-blue-500 focus:outline-none transition-all duration-200 text-slate-800"
-                      placeholder="Your company name (optional)"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-semibold text-slate-800 mb-3 uppercase tracking-wider">
-                      Phone Number
-                    </label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-4 bg-white rounded-xl border-2 border-slate-200 focus:border-blue-500 focus:outline-none transition-all duration-200 text-slate-800"
-                      placeholder="+1 (555) 123-4567"
-                    />
-                  </div>
-                </div>
-
-                {/* Project Type */}
-                <div>
-                  <label className="block text-sm font-semibold text-slate-800 mb-4 uppercase tracking-wider">
-                    Project Type *
-                  </label>
-                  <div className={`grid ${compact ? 'md:grid-cols-2' : 'md:grid-cols-2 lg:grid-cols-4'} gap-4`}>
-                    {projectTypes.map((type) => (
-                      <motion.label
-                        key={type.id}
-                        className={`relative cursor-pointer p-4 rounded-xl border-2 transition-all duration-300 ${
-                          formData.projectType === type.id
-                            ? 'border-blue-500 bg-blue-50 shadow-lg'
-                            : 'border-slate-200 hover:border-slate-300 bg-white hover:shadow-md'
-                        }`}
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        <input
-                          type="radio"
-                          name="projectType"
-                          value={type.id}
-                          checked={formData.projectType === type.id}
-                          onChange={handleInputChange}
-                          className="sr-only"
-                        />
-                        <div className="text-center">
-                          <div className="text-2xl mb-2">{type.icon}</div>
-                          <div className="text-sm font-bold text-slate-800 mb-1">{type.name}</div>
-                          <div className="text-xs text-slate-600 font-light">{type.description}</div>
-                        </div>
-                      </motion.label>
-                    ))}
-                  </div>
-                  {errors.projectType && <p className="text-red-500 text-sm mt-2">{errors.projectType}</p>}
-                </div>
-
-                {/* Budget and Timeline */}
-                <div className="grid md:grid-cols-2 gap-8">
-                  <div>
-                    <label className="block text-sm font-semibold text-slate-800 mb-4 uppercase tracking-wider">
-                      Budget Range *
-                    </label>
-                    <div className="space-y-2">
-                      {budgetRanges.map((budget) => (
-                        <label
-                          key={budget.id}
-                          className={`flex items-center justify-between p-3 cursor-pointer rounded-xl border transition-colors duration-200 ${
-                            formData.budget === budget.value
-                              ? 'border-blue-500 bg-blue-50'
-                              : 'border-slate-200 hover:bg-slate-50'
-                          }`}
-                        >
-                          <div className="flex items-center">
-                            <input
-                              type="radio"
-                              name="budget"
-                              value={budget.value}
-                              checked={formData.budget === budget.value}
-                              onChange={handleInputChange}
-                              className="mr-3 text-blue-600"
-                            />
-                            <span className="text-slate-800 font-medium">{budget.label}</span>
-                          </div>
-                          {budget.recommended && (
-                            <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">
-                              Popular
-                            </span>
-                          )}
-                        </label>
-                      ))}
-                    </div>
-                    {errors.budget && <p className="text-red-500 text-sm mt-2">{errors.budget}</p>}
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-semibold text-slate-800 mb-4 uppercase tracking-wider">
-                      Project Timeline
-                    </label>
-                    <div className="space-y-2">
-                      {timelineOptions.map((timeline) => (
-                        <label
-                          key={timeline.id}
-                          className={`flex items-center justify-between p-3 cursor-pointer rounded-xl border transition-colors duration-200 ${
-                            formData.timeline === timeline.value
-                              ? 'border-green-500 bg-green-50'
-                              : 'border-slate-200 hover:bg-slate-50'
-                          }`}
-                        >
-                          <div className="flex items-center">
-                            <input
-                              type="radio"
-                              name="timeline"
-                              value={timeline.value}
-                              checked={formData.timeline === timeline.value}
-                              onChange={handleInputChange}
-                              className="mr-3 text-green-600"
-                            />
-                            <div>
-                              <span className="text-slate-800 font-medium">{timeline.label}</span>
-                              <div className="text-xs text-slate-600">{timeline.description}</div>
-                            </div>
-                          </div>
-                          {timeline.urgent && (
-                            <span className="bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs font-medium">
-                              +25%
-                            </span>
-                          )}
-                        </label>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Features */}
-                <div>
-                  <label className="block text-sm font-semibold text-slate-800 mb-4 uppercase tracking-wider">
-                    Required Features
-                  </label>
-                  <div className="space-y-4">
-                    {['essential', 'standard', 'advanced'].map((category) => (
-                      <div key={category}>
-                        <h4 className="text-sm font-bold text-slate-700 mb-2 capitalize">{category} Features</h4>
-                        <div className={`grid ${compact ? 'md:grid-cols-2' : 'md:grid-cols-3'} gap-3`}>
-                          {commonFeatures.filter(f => f.category === category).map((feature) => (
-                            <motion.label
-                              key={feature.name}
-                              className={`flex items-center p-3 cursor-pointer rounded-xl border transition-all duration-200 ${
-                                formData.features.includes(feature.name)
-                                  ? 'border-purple-500 bg-purple-50'
-                                  : 'border-slate-200 hover:bg-slate-50'
-                              }`}
-                              whileHover={{ scale: 1.02 }}
-                              whileTap={{ scale: 0.98 }}
-                            >
-                              <input
-                                type="checkbox"
-                                checked={formData.features.includes(feature.name)}
-                                onChange={() => handleFeatureToggle(feature)}
-                                className="mr-3 text-purple-600 rounded"
-                              />
-                              <span className="text-sm text-slate-800 font-medium">{feature.name}</span>
-                            </motion.label>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Project Description */}
-                <div>
-                  <label className="block text-sm font-semibold text-slate-800 mb-3 uppercase tracking-wider">
-                    Project Description *
-                  </label>
-                  <textarea
-                    name="description"
-                    value={formData.description}
-                    onChange={handleInputChange}
-                    rows={6}
-                    className={`w-full px-4 py-4 bg-white rounded-xl border-2 ${errors.description ? 'border-red-500' : 'border-slate-200'} focus:border-blue-500 focus:outline-none transition-colors duration-200 text-slate-800 resize-vertical`}
-                    placeholder="Please describe your project in detail. Include any specific requirements, features, or goals you have in mind..."
-                  />
-                  {errors.description && <p className="text-red-500 text-sm mt-2">{errors.description}</p>}
-                </div>
-
-                {/* Priority Level */}
-                <div>
-                  <label className="block text-sm font-semibold text-slate-800 mb-4 uppercase tracking-wider">
-                    Project Priority
-                  </label>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    {['low', 'medium', 'high', 'urgent'].map((priority) => (
-                      <label
-                        key={priority}
-                        className={`text-center p-3 cursor-pointer rounded-xl border transition-colors duration-200 ${
-                          formData.priority === priority
-                            ? 'border-orange-500 bg-orange-50'
-                            : 'border-slate-200 hover:bg-slate-50'
-                        }`}
-                      >
-                        <input
-                          type="radio"
-                          name="priority"
-                          value={priority}
-                          checked={formData.priority === priority}
-                          onChange={handleInputChange}
-                          className="sr-only"
-                        />
-                        <span className={`font-bold capitalize ${
-                          formData.priority === priority ? 'text-orange-800' : 'text-slate-800'
-                        }`}>
-                          {priority}
-                        </span>
-                      </label>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Submit Button */}
-                <div className="pt-6 border-t border-slate-200">
-                  <motion.button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className={`w-full py-5 px-8 font-bold text-lg rounded-xl transition-all duration-300 ${
-                      isSubmitting
-                        ? 'bg-slate-400 cursor-not-allowed'
-                        : 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2'
-                    } text-white shadow-xl hover:shadow-2xl`}
-                    whileHover={!isSubmitting ? { scale: 1.02, y: -2 } : {}}
-                    whileTap={!isSubmitting ? { scale: 0.98 } : {}}
-                  >
-                    {isSubmitting ? (
-                      <div className="flex items-center justify-center gap-3">
-                        <Loader className="w-5 h-5 animate-spin" />
-                        Sending Your Quote Request...
-                      </div>
-                    ) : (
-                      <div className="flex items-center justify-center gap-3">
-                        Get My Free Quote
-                        <Send className="w-5 h-5" />
-                      </div>
-                    )}
-                  </motion.button>
-                </div>
-              </form>
+          {/* Progress Bar */}
+          <div className="mb-8">
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-sm font-medium text-slate-600">
+                Step {currentStep} of {totalSteps}
+              </span>
+              <span className="text-sm font-medium text-slate-600">
+                {Math.round(progressPercentage)}% Complete
+              </span>
             </div>
-          </motion.div>
+            <div className="w-full bg-slate-200 rounded-full h-2">
+              <motion.div 
+                className="bg-gradient-to-r from-blue-600 to-purple-600 h-2 rounded-full"
+                initial={{ width: 0 }}
+                animate={{ width: `${progressPercentage}%` }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+              />
+            </div>
+          </div>
 
-        {/* Trust Indicators - Show below form for both compact and non-compact */}
+          {/* Step Indicators */}
+          <div className="flex justify-between items-center">
+            {steps.map((step, index) => (
+              <motion.div 
+                key={step.id}
+                className="flex flex-col items-center cursor-pointer"
+                onClick={() => handleStepClick(step.id)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <div className={`w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300 ${
+                  getStepStatus(step.id) === 'completed' 
+                    ? 'bg-green-500 text-white' 
+                    : getStepStatus(step.id) === 'active'
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-slate-200 text-slate-500'
+                }`}>
+                  {getStepStatus(step.id) === 'completed' ? (
+                    <CheckCircle className="w-5 h-5 md:w-6 md:h-6" />
+                  ) : (
+                    step.id
+                  )}
+                </div>
+                <div className="text-center mt-2">
+                  <div className={`text-xs md:text-sm font-medium ${
+                    getStepStatus(step.id) === 'active' ? 'text-blue-600' : 'text-slate-600'
+                  }`}>
+                    {step.title}
+                  </div>
+                  {!compact && (
+                    <div className="text-xs text-slate-500 mt-1 max-w-24 leading-tight">
+                      {step.subtitle}
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Form Container */}
+        <motion.div 
+          className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-2xl border border-white/50 overflow-hidden"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          {/* Step Content */}
+          <div className="p-8 md:p-12">
+            <AnimatePresence mode="wait" custom={currentStep}>
+              <motion.div
+                key={currentStep}
+                custom={currentStep}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{
+                  x: { type: "spring", stiffness: 300, damping: 30 },
+                  opacity: { duration: 0.2 }
+                }}
+                className="min-h-[400px]"
+              >
+                {renderStepComponent()}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Navigation Footer */}
+          {currentStep < 6 && (
+            <div className="flex items-center justify-between p-6 md:p-8 bg-slate-50 border-t border-slate-200">
+              <motion.button
+                onClick={handlePrev}
+                disabled={currentStep === 1}
+                className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-200 ${
+                  currentStep === 1
+                    ? 'bg-slate-200 text-slate-400 cursor-not-allowed'
+                    : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-300'
+                }`}
+                whileHover={currentStep !== 1 ? { scale: 1.02 } : {}}
+                whileTap={currentStep !== 1 ? { scale: 0.98 } : {}}
+              >
+                <ChevronLeft className="w-4 h-4" />
+                Previous
+              </motion.button>
+
+              <div className="flex items-center gap-2">
+                {steps.slice(0, -1).map((_, index) => (
+                  <div 
+                    key={index}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                      index + 1 <= currentStep ? 'bg-blue-600' : 'bg-slate-300'
+                    }`}
+                  />
+                ))}
+              </div>
+
+              <motion.button
+                onClick={handleNext}
+                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-200"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Next
+                <ChevronRight className="w-4 h-4" />
+              </motion.button>
+            </div>
+          )}
+        </motion.div>
+
+        {/* Trust Indicators */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -636,50 +485,6 @@ const GetQuote = ({ compact = false }) => {
             </motion.div>
           ))}
         </motion.div>
-
-        {/* Benefits Section - Always show but adjust layout */}
-        {compact && (
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-12 grid md:grid-cols-3 gap-6"
-          >
-            {[
-              {
-                icon: Clock,
-                title: 'Quick Response',
-                description: 'Get your detailed quote within 24 hours'
-              },
-              {
-                icon: Shield,
-                title: 'Transparent Pricing',
-                description: 'No hidden fees, clear project breakdown'
-              },
-              {
-                icon: Star,
-                title: 'Free Consultation',
-                description: '30-minute strategy call included with every quote'
-              }
-            ].map((benefit, index) => (
-              <motion.div
-                key={benefit.title}
-                className="text-center p-6 bg-white/60 backdrop-blur-sm rounded-2xl border border-white/50 shadow-lg"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-                whileHover={{ scale: 1.05, y: -5 }}
-              >
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <benefit.icon className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-slate-800 mb-2">{benefit.title}</h3>
-                <p className="text-slate-600 font-light">{benefit.description}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        )}
 
         {/* Additional Information for non-compact */}
         {!compact && (
