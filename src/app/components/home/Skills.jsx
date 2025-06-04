@@ -14,11 +14,34 @@ import {
   TrendingUp,
   Zap
 } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const Skills = () => {
   const [activeCategory, setActiveCategory] = useState('frontend');
   const [hoveredSkill, setHoveredSkill] = useState(null);
+  const [windowSize, setWindowSize] = useState({ width: 1024, height: 768 }); // Default size for SSR
+  const [isMounted, setIsMounted] = useState(false);
+
+  // Handle window resize and mount
+  useEffect(() => {
+    setIsMounted(true);
+    
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    };
+
+    // Set initial size
+    handleResize();
+
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const fadeInUp = {
     initial: { opacity: 0, y: 40 },
@@ -102,6 +125,23 @@ const Skills = () => {
   ];
 
   const currentCategory = skillCategories[activeCategory];
+
+  // Don't render positioning until mounted to avoid hydration mismatch
+  if (!isMounted) {
+    return (
+      <section id="skills" className="py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-900 via-slate-950 to-gray-900 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto relative z-10">
+          {/* Loading state */}
+          <div className="text-center">
+            <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border border-blue-400/30 text-blue-400 px-6 py-3 rounded-2xl font-semibold text-sm uppercase tracking-wider mb-6">
+              <div className="w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full animate-pulse" />
+              <span>Loading Skills...</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="skills" className="py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-900 via-slate-950 to-gray-900 relative overflow-hidden">
@@ -204,7 +244,7 @@ const Skills = () => {
           </div>
         </motion.div>
 
-        {/* Compact Skill Category Selector */}
+        {/* Fixed Skill Category Selector */}
         <motion.div 
           className="relative mb-12"
           initial={{ opacity: 0, scale: 0.8 }}
@@ -225,7 +265,8 @@ const Skills = () => {
             {/* Category Buttons */}
             {Object.entries(skillCategories).map(([key, category], index) => {
               const angle = (index * 90) - 45;
-              const radius = window?.innerWidth < 640 ? 100 : 120;
+              // Fixed: Use windowSize state instead of direct window access
+              const radius = windowSize.width < 640 ? 100 : 120;
               const x = Math.cos((angle * Math.PI) / 180) * radius;
               const y = Math.sin((angle * Math.PI) / 180) * radius;
               

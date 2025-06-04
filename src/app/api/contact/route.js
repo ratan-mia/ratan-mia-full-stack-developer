@@ -1,196 +1,368 @@
-import { adminEmailTemplate } from "@/lib/email-templates/admin-template";
-import { clientEmailTemplate } from "@/lib/email-templates/client-template";
-import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { NextResponse } from 'next/server';
+import nodemailer from 'nodemailer';
 
-export async function POST(request) {
+// Import email templates with error handling
+let customerEmailTemplate, adminEmailTemplate;
+
+try {
+  const customerModule = await import('@/lib/email-templates/customer-template');
+  const adminModule = await import('@/lib/email-templates/admin-template');
+  customerEmailTemplate = customerModule.customerEmailTemplate;
+  adminEmailTemplate = adminModule.adminEmailTemplate;
+} catch (error) {
+  console.error('Failed to import email templates:', error);
+  // Fallback templates
+  customerEmailTemplate = (formData) => `
+    <h1>Thank you, ${formData.name}!</h1>
+    <p>We received your message about: ${formData.subject}</p>
+    <p>We'll get back to you at ${formData.email} within 24 hours.</p>
+    <p>Best regards,<br>Ratan Mia</p>
+  `;
+  adminEmailTemplate = (formData) => `
+    <h1>New Contact Form Submission</h1>
+    <p><strong>Name:</strong> ${formData.name}</p>
+    <p><strong>Email:</strong> ${formData.email}</p>
+    <p><strong>Subject:</strong> ${formData.subject}</p>
+    <p><strong>Message:</strong> ${formData.message}</p>
+    ${formData.projectType ? `<p><strong>Project Type:</strong> ${formData.projectType}</p>` : ''}
+    ${formData.budget ? `<p><strong>Budget:</strong> ${formData.budget}</p>` : ''}
+  `;
+}
+
+// Create Gmail transporter with better error handling
+const createTransporter = () => {
   try {
-    const body = await request.json();
-    const { name, email, subject, message, projectType, budget } = body;
-
-    // Validate required fields
-    if (!name || !email || !subject || !message) {
-      return NextResponse.json(
-        { error: "Missing required fields" },
-        { status: 400 }
-      );
-    }
-
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { error: "Invalid email format" },
-        { status: 400 }
-      );
-    }
-
-    // Validate environment variables
-    if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
-      console.error("Missing email configuration environment variables");
-      return NextResponse.json(
-        { error: "Email service configuration error" },
-        { status: 500 }
-      );
-    }
-
-    // Create transporter with correct method name
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      service: 'gmail',
       auth: {
         user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_APP_PASSWORD,
+        pass: process.env.GMAIL_APP_PASSWORD || process.env.GMAIL_PASS, // Fallback to old env var
       },
-      // Add additional security options
-      secure: true,
-      port: 465,
+      tls: {
+        rejectUnauthorized: false
+      }
     });
 
     // Verify transporter configuration
-    try {
-      await transporter.verify();
-      console.log("SMTP connection verified successfully");
-    } catch (verifyError) {
-      console.error("Transporter verification failed:", verifyError);
-      return NextResponse.json(
-        { error: "Email service configuration error" },
-        { status: 500 }
-      );
-    }
+    transporter.verify((error, success) => {
+      if (error) {
+        console.error('Transporter verification failed:', error);
+      } else {
+        console.log('Email transporter is ready');
+      }
+    });
 
-    // Prepare email content with fallback handling
-    let clientEmailHtml;
-    let adminEmailHtml;
+    return transporter;
+  } catch (error) {
+    console.error('Failed to create email transporter:', error);
+    return null;
+  }
+};
 
-    try {
-      clientEmailHtml = clientEmailTemplate({ name, subject });
-    } catch (templateError) {
-      console.error("Client email template error:", templateError);
-      clientEmailHtml = `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-          <h2 style="color: #1e40af;">Thank you for your inquiry!</h2>
-          <p>Dear ${name},</p>
-          <p>Thank you for reaching out regarding: <strong>${subject}</strong></p>
-          <p>I'll get back to you within 24 hours with a detailed response.</p>
-          <br>
-          <p>Best regards,<br><strong>Ratan Mia</strong><br>Full Stack Developer</p>
-        </div>
-      `;
-    }
+// Validate form data with detailed error messages
+const validateFormData = (data) => {
+  const errors = [];
+  
+  // Check if data exists
+  if (!data) {
+    errors.push('No form data received');
+    return errors;
+  }
+  
+  // Validate name
+  if (!data.name || typeof data.name !== 'string') {
+    errors.push('Name is required');
+  } else if (data.name.trim().length < 2) {
+    errors.push('Name must be at least 2 characters long');
+  } else if (data.name.trim().length > 100) {
+    errors.push('Name must be less than 100 characters');
+  }
+  
+  // Validate email
+  if (!data.email || typeof data.email !== 'string') {
+    errors.push('Email is required');
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email.trim())) {
+    errors.push('Please provide a valid email address');
+  }
+  
+  // Validate subject
+  if (!data.subject || typeof data.subject !== 'string') {
+    errors.push('Subject is required');
+  } else if (data.subject.trim().length < 3) {
+    errors.push('Subject must be at least 3 characters long');
+  } else if (data.subject.trim().length > 200) {
+    errors.push('Subject must be less than 200 characters');
+  }
+  
+  // Validate message
+  if (!data.message || typeof data.message !== 'string') {
+    errors.push('Message is required');
+  } else if (data.message.trim().length < 10) {
+    errors.push('Message must be at least 10 characters long');
+  } else if (data.message.trim().length > 2000) {
+    errors.push('Message must be less than 2000 characters');
+  }
+  
+  return errors;
+};
 
-    try {
-      adminEmailHtml = adminEmailTemplate({
-        name,
-        email,
-        subject,
-        message,
-        projectType,
-        budget,
-      });
-    } catch (templateError) {
-      console.error("Admin email template error:", templateError);
-      adminEmailHtml = `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-          <h2 style="color: #dc2626;">New Contact Form Submission</h2>
-          <div style="background: #f3f4f6; padding: 15px; border-radius: 8px; margin: 20px 0;">
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Subject:</strong> ${subject}</p>
-            <p><strong>Project Type:</strong> ${projectType || 'Not specified'}</p>
-            <p><strong>Budget:</strong> ${budget || 'Not specified'}</p>
-          </div>
-          <div style="background: #ffffff; padding: 15px; border-radius: 8px; border-left: 4px solid #3b82f6;">
-            <h3 style="margin-top: 0;">Message:</h3>
-            <p style="white-space: pre-wrap;">${message}</p>
-          </div>
-        </div>
-      `;
-    }
+// Sanitize form data
+const sanitizeFormData = (data) => {
+  return {
+    name: (data.name || '').trim().substring(0, 100),
+    email: (data.email || '').trim().toLowerCase().substring(0, 254),
+    subject: (data.subject || '').trim().substring(0, 200),
+    message: (data.message || '').trim().substring(0, 2000),
+    projectType: (data.projectType || '').trim().substring(0, 100),
+    budget: (data.budget || '').trim().substring(0, 50),
+    timestamp: new Date().toISOString()
+  };
+};
 
-    // Send email to client (confirmation)
-    const clientMailOptions = {
-      from: `"Ratan Mia" <${process.env.GMAIL_USER}>`,
-      to: email,
-      subject: `Thank you for your inquiry - ${subject}`,
-      html: clientEmailHtml,
-      // Add text fallback
-      text: `Dear ${name},\n\nThank you for reaching out regarding: ${subject}\n\nI'll get back to you within 24 hours.\n\nBest regards,\nRatan Mia\nFull Stack Developer`,
+// POST handler for form submission
+export async function POST(request) {
+  // Add CORS headers
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Content-Type': 'application/json',
+  };
+
+  try {
+    console.log('📧 Contact form submission started');
+
+    // Check environment variables first
+    const requiredEnvVars = {
+      GMAIL_USER: process.env.GMAIL_USER,
+      GMAIL_PASS: process.env.GMAIL_APP_PASSWORD || process.env.GMAIL_PASS
     };
 
-    // Send email to admin (notification)
-    const adminMailOptions = {
-      from: `"Portfolio Contact Form" <${process.env.GMAIL_USER}>`,
-      to: process.env.ADMIN_EMAIL || "shorifull@gmail.com",
-      subject: `New Contact Form Submission: ${subject}`,
-      html: adminEmailHtml,
-      // Add text fallback
-      text: `New Contact Form Submission\n\nName: ${name}\nEmail: ${email}\nSubject: ${subject}\nProject Type: ${projectType || 'Not specified'}\nBudget: ${budget || 'Not specified'}\n\nMessage:\n${message}`,
-      // Add reply-to for easy response
-      replyTo: email,
-    };
+    const missingEnvVars = Object.entries(requiredEnvVars)
+      .filter(([key, value]) => !value)
+      .map(([key]) => key);
 
-    // Send both emails with individual error handling
-    const emailResults = await Promise.allSettled([
-      transporter.sendMail(clientMailOptions),
-      transporter.sendMail(adminMailOptions),
-    ]);
-
-    // Check if both emails were sent successfully
-    const clientEmailResult = emailResults[0];
-    const adminEmailResult = emailResults[1];
-
-    if (clientEmailResult.status === 'rejected') {
-      console.error("Failed to send client email:", clientEmailResult.reason);
-    } else {
-      console.log("Client email sent successfully:", clientEmailResult.value.messageId);
-    }
-
-    if (adminEmailResult.status === 'rejected') {
-      console.error("Failed to send admin email:", adminEmailResult.reason);
-    } else {
-      console.log("Admin email sent successfully:", adminEmailResult.value.messageId);
-    }
-
-    // Return appropriate response based on results
-    if (clientEmailResult.status === 'fulfilled' || adminEmailResult.status === 'fulfilled') {
+    if (missingEnvVars.length > 0) {
+      console.error('❌ Missing environment variables:', missingEnvVars);
       return NextResponse.json(
         { 
-          message: "Email sent successfully",
-          details: {
-            clientEmailSent: clientEmailResult.status === 'fulfilled',
-            adminEmailSent: adminEmailResult.status === 'fulfilled',
-          }
+          error: 'Email service not configured', 
+          details: `Missing: ${missingEnvVars.join(', ')}`,
+          code: 'ENV_CONFIG_ERROR'
         },
-        { status: 200 }
+        { status: 503, headers }
+      );
+    }
+
+    // Parse form data with error handling
+    let rawFormData;
+    try {
+      rawFormData = await request.json();
+      console.log('📝 Raw form data received:', { 
+        hasName: !!rawFormData?.name,
+        hasEmail: !!rawFormData?.email,
+        hasSubject: !!rawFormData?.subject,
+        hasMessage: !!rawFormData?.message
+      });
+    } catch (error) {
+      console.error('❌ Failed to parse JSON:', error);
+      return NextResponse.json(
+        { 
+          error: 'Invalid JSON data', 
+          details: error.message,
+          code: 'JSON_PARSE_ERROR'
+        },
+        { status: 400, headers }
+      );
+    }
+    
+    // Validate form data
+    const validationErrors = validateFormData(rawFormData);
+    if (validationErrors.length > 0) {
+      console.error('❌ Validation errors:', validationErrors);
+      return NextResponse.json(
+        { 
+          error: 'Validation failed', 
+          details: validationErrors,
+          code: 'VALIDATION_ERROR'
+        },
+        { status: 400, headers }
+      );
+    }
+
+    // Sanitize form data
+    const formData = sanitizeFormData(rawFormData);
+    console.log('✅ Form data validated and sanitized');
+    
+    // Create transporter
+    const transporter = createTransporter();
+    if (!transporter) {
+      console.error('❌ Failed to create email transporter');
+      return NextResponse.json(
+        { 
+          error: 'Email service initialization failed',
+          code: 'TRANSPORTER_ERROR'
+        },
+        { status: 503, headers }
+      );
+    }
+
+    // Generate email templates with error handling
+    let customerHtml, adminHtml;
+    try {
+      customerHtml = customerEmailTemplate(formData);
+      adminHtml = adminEmailTemplate(formData);
+      console.log('✅ Email templates generated successfully');
+    } catch (error) {
+      console.error('❌ Email template generation failed:', error);
+      return NextResponse.json(
+        { 
+          error: 'Email template generation failed',
+          details: error.message,
+          code: 'TEMPLATE_ERROR'
+        },
+        { status: 500, headers }
+      );
+    }
+    
+    // Prepare customer email
+    const customerMailOptions = {
+      from: {
+        name: 'Ratan Mia - Full Stack Developer',
+        address: process.env.GMAIL_USER
+      },
+      to: formData.email,
+      subject: `Thank you for reaching out, ${formData.name}!`,
+      html: customerHtml,
+      headers: {
+        'X-Mailer': 'Ratan Mia Portfolio Contact Form',
+        'X-Priority': '3'
+      }
+    };
+    
+    // Prepare admin email
+    const adminMailOptions = {
+      from: {
+        name: 'Portfolio Contact Form',
+        address: process.env.GMAIL_USER
+      },
+      to: 'shorifull@gmail.com',
+      subject: `🚨 New Contact: ${formData.name} - ${formData.subject}`,
+      html: adminHtml,
+      replyTo: formData.email,
+      headers: {
+        'X-Mailer': 'Ratan Mia Portfolio Contact Form',
+        'X-Priority': '1'
+      }
+    };
+    
+    console.log('📤 Attempting to send emails...');
+    
+    // Send both emails with individual error handling
+    const emailResults = await Promise.allSettled([
+      transporter.sendMail(customerMailOptions),
+      transporter.sendMail(adminMailOptions)
+    ]);
+
+    const customerResult = emailResults[0];
+    const adminResult = emailResults[1];
+
+    // Check results
+    const success = {
+      customer: customerResult.status === 'fulfilled',
+      admin: adminResult.status === 'fulfilled'
+    };
+
+    console.log('📧 Email send results:', success);
+
+    if (success.customer && success.admin) {
+      console.log('✅ Both emails sent successfully');
+      return NextResponse.json(
+        { 
+          message: 'Emails sent successfully',
+          timestamp: formData.timestamp,
+          code: 'SUCCESS'
+        },
+        { status: 200, headers }
       );
     } else {
-      // Both emails failed
-      console.error("Both emails failed to send");
+      // Partial failure
+      const errors = [];
+      if (!success.customer) {
+        console.error('❌ Customer email failed:', customerResult.reason);
+        errors.push(`Customer email failed: ${customerResult.reason?.message || 'Unknown error'}`);
+      }
+      if (!success.admin) {
+        console.error('❌ Admin email failed:', adminResult.reason);
+        errors.push(`Admin email failed: ${adminResult.reason?.message || 'Unknown error'}`);
+      }
+
       return NextResponse.json(
-        { error: "Failed to send emails. Please try again or contact directly." },
-        { status: 500 }
+        { 
+          error: 'Partial email failure',
+          details: errors,
+          success,
+          code: 'PARTIAL_FAILURE'
+        },
+        { status: 207, headers } // 207 Multi-Status
       );
     }
-
+    
   } catch (error) {
-    console.error("Email sending error:", error);
+    console.error('❌ Unexpected error in contact API:', error);
+    console.error('Stack trace:', error.stack);
     
-    // Provide more specific error messages
-    let errorMessage = "Failed to send email";
-    
-    if (error.code === 'EAUTH') {
-      errorMessage = "Email authentication failed. Please check your credentials.";
-    } else if (error.code === 'ENOTFOUND') {
-      errorMessage = "Email service connection failed. Please try again.";
-    } else if (error.message && error.message.includes('timeout')) {
-      errorMessage = "Email service timeout. Please try again.";
-    } else if (error.message && error.message.includes('Invalid login')) {
-      errorMessage = "Email authentication error. Please check configuration.";
-    }
-
     return NextResponse.json(
-      { error: errorMessage },
+      { 
+        error: 'Internal server error',
+        details: process.env.NODE_ENV === 'development' ? error.message : 'Something went wrong',
+        code: 'INTERNAL_ERROR',
+        timestamp: new Date().toISOString()
+      },
+      { status: 500, headers }
+    );
+  }
+}
+
+// GET handler for health check
+export async function GET() {
+  try {
+    const envStatus = {
+      GMAIL_USER: !!process.env.GMAIL_USER,
+      GMAIL_APP_PASSWORD: !!process.env.GMAIL_APP_PASSWORD,
+      GMAIL_PASS: !!process.env.GMAIL_PASS,
+    };
+
+    const isConfigured = envStatus.GMAIL_USER && (envStatus.GMAIL_APP_PASSWORD || envStatus.GMAIL_PASS);
+
+    return NextResponse.json({
+      status: 'Contact API is running',
+      timestamp: new Date().toISOString(),
+      emailConfigured: isConfigured,
+      environment: envStatus,
+      version: '1.1.0'
+    });
+  } catch (error) {
+    return NextResponse.json(
+      { 
+        error: 'Health check failed',
+        details: error.message,
+        timestamp: new Date().toISOString()
+      },
       { status: 500 }
     );
   }
+}
+
+// OPTIONS handler for CORS preflight
+export async function OPTIONS(request) {
+  return new NextResponse(null, {
+    status: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+      'Access-Control-Max-Age': '86400',
+    },
+  });
 }

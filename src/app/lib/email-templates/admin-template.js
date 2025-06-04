@@ -1,28 +1,14 @@
-export const adminEmailTemplate = ({
-  name,
-  email,
-  subject,
-  message,
-  projectType,
-  budget,
-}) => {
-  const currentDate = new Date().toLocaleString("en-US", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-    timeZoneName: "short",
-  });
-
+export const adminEmailTemplate = (formData) => {
+  const urgencyLevel = formData.budget && formData.budget.includes('$25,000+') ? 'HIGH' : 'NORMAL';
+  const priorityColor = urgencyLevel === 'HIGH' ? '#dc2626' : '#ea580c';
+  
   return `
     <!DOCTYPE html>
     <html lang="en">
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>New Contact Form Submission</title>
+      <title>🚨 New Contact Form Submission - ${formData.name}</title>
       <style>
         * {
           margin: 0;
@@ -31,561 +17,509 @@ export const adminEmailTemplate = ({
         }
         
         body {
-          font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
           line-height: 1.6;
-          color: #334155;
-          background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+          color: #1e293b;
+          background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #374151 100%);
           margin: 0;
-          padding: 20px 0;
+          padding: 20px;
+          width: 100%;
         }
         
         .email-container {
-          max-width: 720px;
+          max-width: 700px;
           margin: 0 auto;
           background: #ffffff;
-          border-radius: 16px;
+          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
           overflow: hidden;
-          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-          border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
-        .header {
-          background: linear-gradient(135deg, #dc2626 0%, #b91c1c 50%, #991b1b 100%);
-          color: #ffffff;
-          padding: 32px;
+        .alert-header {
+          background: linear-gradient(135deg, ${priorityColor} 0%, #f97316 50%, #ea580c 100%);
+          color: white;
+          padding: 30px;
           text-align: center;
           position: relative;
           overflow: hidden;
         }
         
-        .header::before {
+        .alert-header::before {
           content: '';
           position: absolute;
           top: 0;
           left: 0;
           right: 0;
           bottom: 0;
-          background: rgba(255, 255, 255, 0.1);
-          backdrop-filter: blur(10px);
-          z-index: 1;
+          background: 
+            repeating-linear-gradient(
+              45deg,
+              transparent,
+              transparent 10px,
+              rgba(255,255,255,0.1) 10px,
+              rgba(255,255,255,0.1) 20px
+            );
         }
         
-        .header-content {
+        .alert-content {
           position: relative;
           z-index: 2;
         }
         
-        .header h1 {
-          font-size: 28px;
-          font-weight: 700;
-          margin-bottom: 12px;
-          text-transform: capitalize;
-          letter-spacing: -0.025em;
-        }
-        
-        .timestamp-badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
+        .alert-badge {
+          display: inline-block;
           background: rgba(255, 255, 255, 0.2);
-          border: 1px solid rgba(255, 255, 255, 0.3);
           color: #ffffff;
-          padding: 8px 16px;
-          border-radius: 24px;
+          padding: 8px 20px;
+          font-size: 12px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          margin-bottom: 15px;
+          border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .alert-title {
+          font-size: 24px;
+          font-weight: 800;
+          margin-bottom: 10px;
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .alert-subtitle {
           font-size: 14px;
-          font-weight: 500;
-          margin-top: 12px;
-          backdrop-filter: blur(8px);
+          opacity: 0.9;
+          font-weight: 400;
         }
         
-        .content {
-          padding: 40px 32px;
-        }
-        
-        .urgent-alert {
-          background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-          border: 1px solid rgba(245, 158, 11, 0.3);
-          color: #92400e;
-          padding: 20px;
-          border-radius: 12px;
-          margin-bottom: 32px;
-          text-align: center;
-          font-weight: 600;
-          font-size: 16px;
-          position: relative;
-          overflow: hidden;
-        }
-        
-        .urgent-alert::before {
-          content: '';
+        .urgency-indicator {
           position: absolute;
-          left: 0;
-          top: 0;
-          bottom: 0;
-          width: 4px;
-          background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+          top: 20px;
+          right: 20px;
+          background: ${urgencyLevel === 'HIGH' ? '#ffffff' : 'rgba(255,255,255,0.2)'};
+          color: ${urgencyLevel === 'HIGH' ? '#dc2626' : '#ffffff'};
+          padding: 8px 12px;
+          font-size: 11px;
+          font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          border: 2px solid ${urgencyLevel === 'HIGH' ? '#dc2626' : 'rgba(255,255,255,0.3)'};
         }
         
-        .info-section {
-          background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-          border: 1px solid rgba(14, 165, 233, 0.2);
-          border-radius: 12px;
-          padding: 28px;
-          margin-bottom: 24px;
-          position: relative;
-          overflow: hidden;
+        .client-info {
+          background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+          border-left: 4px solid #2563eb;
+          padding: 30px;
+          margin: 0;
         }
         
-        .info-section::before {
-          content: '';
-          position: absolute;
-          left: 0;
-          top: 0;
-          bottom: 0;
-          width: 4px;
-          background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
-        }
-        
-        .info-section h3 {
+        .section-title {
+          color: #1e40af;
           font-size: 20px;
-          font-weight: 600;
-          color: #0c4a6e;
-          margin-bottom: 20px;
+          font-weight: 800;
+          margin-bottom: 25px;
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: 12px;
         }
         
-        .info-grid {
+        .client-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-          gap: 16px;
-          margin-bottom: 16px;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 15px;
+          margin-bottom: 20px;
         }
         
-        .info-card {
-          background: rgba(255, 255, 255, 0.8);
-          backdrop-filter: blur(8px);
-          border: 1px solid rgba(14, 165, 233, 0.1);
-          border-radius: 8px;
-          padding: 16px;
-          transition: all 0.3s ease;
+        .client-item {
+          background: #ffffff;
+          padding: 18px;
+          border: 1px solid #e5e7eb;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         
-        .info-card:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        .info-label {
-          font-size: 12px;
-          font-weight: 600;
-          color: #64748b;
+        .client-label {
+          color: #374151;
+          font-weight: 800;
+          font-size: 11px;
           text-transform: uppercase;
-          letter-spacing: 0.05em;
-          margin-bottom: 6px;
+          letter-spacing: 0.8px;
+          margin-bottom: 8px;
+          display: block;
         }
         
-        .info-value {
-          font-size: 15px;
-          font-weight: 500;
-          color: #1e293b;
+        .client-value {
+          color: #1f2937;
+          font-size: 14px;
+          font-weight: 600;
           word-break: break-word;
         }
         
-        .project-section {
+        .client-email {
+          color: #2563eb;
+          text-decoration: none;
+          font-weight: 700;
+        }
+        
+        .client-email:hover {
+          color: #1d4ed8;
+          text-decoration: underline;
+        }
+        
+        .message-section {
           background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
-          border: 1px solid rgba(107, 114, 128, 0.2);
-          border-radius: 12px;
-          padding: 28px;
-          margin-bottom: 24px;
-          position: relative;
-          overflow: hidden;
+          border-left: 4px solid #10b981;
+          padding: 30px;
+          margin: 0;
         }
         
-        .project-section::before {
-          content: '';
-          position: absolute;
-          left: 0;
-          top: 0;
-          bottom: 0;
-          width: 4px;
-          background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
-        }
-        
-        .project-section h3 {
-          font-size: 20px;
-          font-weight: 600;
-          color: #374151;
-          margin-bottom: 16px;
+        .message-title {
+          color: #065f46;
+          font-size: 18px;
+          font-weight: 800;
+          margin-bottom: 20px;
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: 10px;
         }
         
         .message-content {
-          background: rgba(255, 255, 255, 0.9);
-          border: 1px solid rgba(229, 231, 235, 0.5);
-          border-radius: 8px;
-          padding: 20px;
+          background: #ffffff;
+          padding: 25px;
+          border: 1px solid #d1d5db;
+          font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+          white-space: pre-wrap;
+          word-wrap: break-word;
           color: #374151;
           line-height: 1.7;
-          white-space: pre-wrap;
-          font-size: 15px;
-          font-weight: 300;
-          max-height: 400px;
-          overflow-y: auto;
-        }
-        
-        .priority-section {
-          background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
-          border: 1px solid rgba(248, 113, 113, 0.3);
-          border-radius: 12px;
-          padding: 24px;
-          margin-bottom: 32px;
-          position: relative;
-          overflow: hidden;
-        }
-        
-        .priority-section::before {
-          content: '';
-          position: absolute;
-          left: 0;
-          top: 0;
-          bottom: 0;
-          width: 4px;
-          background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
-        }
-        
-        .priority-section h4 {
-          font-size: 18px;
-          font-weight: 600;
-          color: #dc2626;
-          margin-bottom: 16px;
-          display: flex;
-          align-items: center;
-          gap: 8px;
-        }
-        
-        .checklist {
-          list-style: none;
-          padding: 0;
-        }
-        
-        .checklist li {
-          display: flex;
-          align-items: flex-start;
-          gap: 12px;
-          margin-bottom: 12px;
           font-size: 14px;
-          font-weight: 400;
-          color: #7f1d1d;
-          line-height: 1.5;
+          max-height: 300px;
+          overflow-y: auto;
+          box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
         }
         
-        .checklist li::before {
-          content: '✓';
-          background: #dc2626;
-          color: white;
-          width: 20px;
-          height: 20px;
-          border-radius: 50%;
+        .actions-section {
+          background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+          border-left: 4px solid #f59e0b;
+          padding: 30px;
+          text-align: center;
+        }
+        
+        .actions-title {
+          color: #92400e;
+          font-size: 20px;
+          font-weight: 800;
+          margin-bottom: 15px;
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 12px;
+          gap: 10px;
+        }
+        
+        .actions-subtitle {
+          color: #a16207;
+          font-size: 14px;
+          margin-bottom: 25px;
           font-weight: 600;
-          flex-shrink: 0;
         }
         
-        .action-buttons {
+        .actions-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+          gap: 15px;
+          margin-top: 20px;
+        }
+        
+        .action-button {
+          background: #ffffff;
+          color: #92400e;
+          padding: 15px 20px;
+          text-decoration: none;
+          font-weight: 700;
+          border: 2px solid #f59e0b;
+          text-align: center;
+          font-size: 13px;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
           display: flex;
-          gap: 16px;
-          justify-content: center;
-          margin: 32px 0;
-          flex-wrap: wrap;
-        }
-        
-        .action-btn {
-          display: inline-flex;
           align-items: center;
+          justify-content: center;
           gap: 8px;
-          padding: 16px 32px;
-          text-decoration: none;
-          border-radius: 50px;
-          font-weight: 600;
-          font-size: 15px;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
           transition: all 0.3s ease;
-          min-width: 180px;
-          justify-content: center;
         }
         
-        .btn-primary {
-          background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
-          color: white;
-          box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
-        }
-        
-        .btn-primary:hover {
+        .action-button:hover {
+          background: #f59e0b;
+          color: #ffffff;
           transform: translateY(-2px);
-          box-shadow: 0 8px 25px rgba(30, 64, 175, 0.4);
-          color: white;
-          text-decoration: none;
-        }
-        
-        .btn-secondary {
-          background: linear-gradient(135deg, #059669 0%, #047857 100%);
-          color: white;
-          box-shadow: 0 4px 15px rgba(5, 150, 105, 0.3);
-        }
-        
-        .btn-secondary:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 8px 25px rgba(5, 150, 105, 0.4);
-          color: white;
-          text-decoration: none;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
         
         .stats-section {
-          background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
-          border: 1px solid rgba(156, 163, 175, 0.3);
-          border-radius: 12px;
-          padding: 24px;
+          background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+          padding: 25px 30px;
+          border-left: 4px solid #10b981;
+        }
+        
+        .stats-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+          gap: 15px;
           text-align: center;
-          margin-top: 32px;
         }
         
-        .stats-title {
-          font-size: 16px;
+        .stat-item {
+          background: #ffffff;
+          padding: 15px;
+          border: 1px solid #d1fae5;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .stat-number {
+          font-size: 18px;
+          font-weight: 800;
+          color: #065f46;
+          margin-bottom: 5px;
+        }
+        
+        .stat-label {
+          font-size: 12px;
+          color: #047857;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
           font-weight: 600;
-          color: #374151;
-          margin-bottom: 12px;
         }
         
-        .stats-text {
+        .metadata-section {
+          background: #f8fafc;
+          padding: 20px 30px;
+          border-top: 2px solid #e2e8f0;
+        }
+        
+        .metadata-title {
+          color: #475569;
           font-size: 14px;
-          font-weight: 300;
-          color: #6b7280;
-          line-height: 1.6;
+          font-weight: 700;
+          margin-bottom: 15px;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+        
+        .metadata-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 10px;
+          font-size: 12px;
+        }
+        
+        .metadata-item {
+          display: flex;
+          justify-content: space-between;
+          padding: 8px 0;
+          border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .metadata-label {
+          color: #64748b;
+          font-weight: 600;
+        }
+        
+        .metadata-value {
+          color: #374151;
+          font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+          font-size: 11px;
         }
         
         .footer {
-          background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-          color: #e2e8f0;
-          padding: 32px;
+          background: #374151;
+          color: #9ca3af;
+          padding: 20px 30px;
           text-align: center;
+          font-size: 12px;
         }
         
-        .footer-text {
-          font-size: 14px;
-          font-weight: 300;
-          opacity: 0.8;
-          margin-bottom: 8px;
+        .footer-timestamp {
+          color: #ffffff;
+          font-weight: 600;
+          margin-bottom: 10px;
         }
         
-        .footer-subtitle {
-          font-size: 13px;
-          font-weight: 300;
-          opacity: 0.6;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 640px) {
-          body {
-            padding: 10px 0;
-          }
-          
+        @media (max-width: 600px) {
           .email-container {
-            margin: 0 10px;
-            border-radius: 12px;
+            margin: 10px;
+            width: calc(100% - 20px);
           }
           
-          .header {
-            padding: 24px;
+          .alert-header,
+          .client-info,
+          .message-section,
+          .actions-section,
+          .stats-section,
+          .metadata-section,
+          .footer {
+            padding: 20px 15px;
           }
           
-          .header h1 {
-            font-size: 24px;
+          .alert-title {
+            font-size: 20px;
           }
           
-          .content {
-            padding: 24px;
-          }
-          
-          .info-grid {
+          .client-grid,
+          .actions-grid,
+          .stats-grid,
+          .metadata-grid {
             grid-template-columns: 1fr;
-            gap: 12px;
           }
           
-          .action-buttons {
-            flex-direction: column;
-            align-items: center;
-          }
-          
-          .action-btn {
-            width: 100%;
-            max-width: 280px;
-          }
-          
-          .info-section,
-          .project-section,
-          .priority-section {
-            padding: 20px;
-          }
-        }
-        
-        @media (max-width: 480px) {
-          .checklist li {
-            font-size: 13px;
-          }
-          
-          .message-content {
-            font-size: 14px;
-            padding: 16px;
+          .urgency-indicator {
+            position: static;
+            margin-top: 15px;
           }
         }
       </style>
     </head>
     <body>
       <div class="email-container">
-        <!-- Header Section -->
-        <div class="header">
-          <div class="header-content">
-            <h1>🚨 New Contact Form Submission</h1>
-            <div class="timestamp-badge">
-              <span>📅</span>
-              <span>${currentDate}</span>
+        <!-- Alert Header -->
+        <div class="alert-header">
+          <div class="urgency-indicator">${urgencyLevel} PRIORITY</div>
+          <div class="alert-content">
+            <div class="alert-badge">🚨 NEW INQUIRY</div>
+            <h1 class="alert-title">Contact Form Submission</h1>
+            <p class="alert-subtitle">A potential client has reached out through your portfolio</p>
+          </div>
+        </div>
+        
+        <!-- Client Information -->
+        <div class="client-info">
+          <h2 class="section-title">👤 Client Information</h2>
+          <div class="client-grid">
+            <div class="client-item">
+              <span class="client-label">Full Name</span>
+              <span class="client-value">${formData.name}</span>
+            </div>
+            <div class="client-item">
+              <span class="client-label">Email Address</span>
+              <a href="mailto:${formData.email}" class="client-value client-email">${formData.email}</a>
+            </div>
+            <div class="client-item">
+              <span class="client-label">Subject</span>
+              <span class="client-value">${formData.subject}</span>
+            </div>
+            <div class="client-item">
+              <span class="client-label">Submission Time</span>
+              <span class="client-value">${new Date().toLocaleString('en-US', {
+                weekday: 'short',
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                timeZoneName: 'short'
+              })}</span>
+            </div>
+            ${formData.projectType ? `
+            <div class="client-item">
+              <span class="client-label">Project Type</span>
+              <span class="client-value">${formData.projectType}</span>
+            </div>
+            ` : ''}
+            ${formData.budget ? `
+            <div class="client-item">
+              <span class="client-label">Budget Range</span>
+              <span class="client-value" style="color: ${formData.budget.includes('$25,000+') ? '#dc2626' : '#059669'}; font-weight: 800;">${formData.budget}</span>
+            </div>
+            ` : ''}
+          </div>
+        </div>
+        
+        <!-- Message Content -->
+        <div class="message-section">
+          <h3 class="message-title">💬 Client Message</h3>
+          <div class="message-content">${formData.message}</div>
+        </div>
+        
+        <!-- Quick Actions -->
+        <div class="actions-section">
+          <h3 class="actions-title">⚡ Quick Actions</h3>
+          <p class="actions-subtitle">
+            Respond within 24 hours to maintain your professional response commitment
+          </p>
+          <div class="actions-grid">
+            <a href="mailto:${formData.email}?subject=Re: ${encodeURIComponent(formData.subject)}&body=Dear ${encodeURIComponent(formData.name)},%0D%0A%0D%0AThank you for reaching out about your ${formData.projectType || 'project'}. I've reviewed your message and would love to discuss this further.%0D%0A%0D%0ABest regards,%0D%0ARatan Mia" class="action-button">
+              <span>📧</span> Reply via Email
+            </a>
+            <a href="tel:+8801751010966" class="action-button">
+              <span>📱</span> Call Client
+            </a>
+            <a href="https://wa.me/8801751010966?text=Hi! I received your message about ${encodeURIComponent(formData.subject)}. I'd love to discuss your project further." class="action-button">
+              <span>💬</span> WhatsApp
+            </a>
+            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Client Meeting: ${encodeURIComponent(formData.name)}&details=Discuss ${encodeURIComponent(formData.subject)} project" class="action-button">
+              <span>📅</span> Schedule Meeting
+            </a>
+          </div>
+        </div>
+        
+        <!-- Quick Stats -->
+        <div class="stats-section">
+          <div class="stats-grid">
+            <div class="stat-item">
+              <div class="stat-number">${new Date().getHours() < 18 && new Date().getHours() > 8 ? '⚡' : '🌙'}</div>
+              <div class="stat-label">${new Date().getHours() < 18 && new Date().getHours() > 8 ? 'Business Hours' : 'After Hours'}</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">${urgencyLevel}</div>
+              <div class="stat-label">Priority Level</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">${formData.message.length}</div>
+              <div class="stat-label">Message Length</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">${formData.budget ? '💰' : '❓'}</div>
+              <div class="stat-label">${formData.budget ? 'Budget Provided' : 'Budget TBD'}</div>
             </div>
           </div>
         </div>
         
-        <!-- Main Content -->
-        <div class="content">
-          <!-- Urgent Alert -->
-          <div class="urgent-alert">
-            ⚡ Action Required: New client inquiry received and needs immediate attention!
-          </div>
-          
-          <!-- Client Information -->
-          <div class="info-section">
-            <h3>
-              <span>👤</span>
-              <span>Client Information</span>
-            </h3>
-            <div class="info-grid">
-              <div class="info-card">
-                <div class="info-label">Full Name</div>
-                <div class="info-value">${name}</div>
-              </div>
-              <div class="info-card">
-                <div class="info-label">Email Address</div>
-                <div class="info-value">${email}</div>
-              </div>
-              <div class="info-card">
-                <div class="info-label">Subject</div>
-                <div class="info-value">${subject}</div>
-              </div>
-              <div class="info-card">
-                <div class="info-label">Submission Time</div>
-                <div class="info-value">${currentDate}</div>
-              </div>
+        <!-- Technical Metadata -->
+        <div class="metadata-section">
+          <h4 class="metadata-title">🔍 Technical Details</h4>
+          <div class="metadata-grid">
+            <div class="metadata-item">
+              <span class="metadata-label">Timestamp:</span>
+              <span class="metadata-value">${new Date().toISOString()}</span>
             </div>
-            
-            ${
-              projectType || budget
-                ? `
-            <div class="info-grid">
-              ${
-                projectType
-                  ? `
-              <div class="info-card">
-                <div class="info-label">Project Type</div>
-                <div class="info-value">${projectType}</div>
-              </div>
-              `
-                  : ""
-              }
-              ${
-                budget
-                  ? `
-              <div class="info-card">
-                <div class="info-label">Budget Range</div>
-                <div class="info-value">${budget}</div>
-              </div>
-              `
-                  : ""
-              }
+            <div class="metadata-item">
+              <span class="metadata-label">Message ID:</span>
+              <span class="metadata-value">${Date.now()}-${Math.random().toString(36).substr(2, 9)}</span>
             </div>
-            `
-                : ""
-            }
-          </div>
-          
-          <!-- Project Details -->
-          <div class="project-section">
-            <h3>
-              <span>📋</span>
-              <span>Project Details & Requirements</span>
-            </h3>
-            <div class="message-content">${message}</div>
-          </div>
-          
-          <!-- Priority Checklist -->
-          <div class="priority-section">
-            <h4>
-              <span>⏰</span>
-              <span>Response Action Plan</span>
-            </h4>
-            <ul class="checklist">
-              <li>Respond within 24 hours (as promised to client in confirmation email)</li>
-              <li>Review project requirements and technical feasibility thoroughly</li>
-              <li>Prepare initial questions, timeline estimate, and pricing structure</li>
-              <li>Check portfolio for relevant similar projects and case studies</li>
-              <li>Assess project complexity and evaluate current workload capacity</li>
-              <li>Research client's business/industry for better understanding</li>
-              <li>Prepare project proposal template and next steps outline</li>
-            </ul>
-          </div>
-          
-          <!-- Action Buttons -->
-          <div class="action-buttons">
-            <a href="mailto:${email}?subject=Re: ${encodeURIComponent(
-    subject
-  )}&body=${encodeURIComponent(
-    `Hi ${name},\n\nThank you for your inquiry about "${subject}". I've reviewed your project requirements and I'm excited to discuss this opportunity with you.\n\n[Add your personalized response here]\n\nI'd love to schedule a brief call to discuss your project in more detail. Are you available for a 15-20 minute conversation this week?\n\nBest regards,\nRatan Mia\nFull Stack Developer\n+8801751010966`
-  )}" class="action-btn btn-primary">
-              <span>📧</span>
-              <span>Reply to Client</span>
-            </a>
-            <a href="https://wa.me/?text=${encodeURIComponent(
-              `🚨 NEW CLIENT INQUIRY\n\nFrom: ${name}\nEmail: ${email}\nSubject: ${subject}\n\nProject Type: ${
-                projectType || "Not specified"
-              }\nBudget: ${
-                budget || "Not specified"
-              }\n\nRequires immediate attention! 💼`
-            )}" class="action-btn btn-secondary">
-              <span>📱</span>
-              <span>Share via WhatsApp</span>
-            </a>
-          </div>
-          
-          <!-- Quick Stats -->
-          <div class="stats-section">
-            <div class="stats-title">📊 Submission Details</div>
-            <div class="stats-text">
-              This email was automatically generated from your portfolio contact form.<br>
-              The client has received an automated confirmation email with 24-hour response guarantee.<br>
-              <strong>Priority Level:</strong> High - New business opportunity requiring immediate attention.
+            <div class="metadata-item">
+              <span class="metadata-label">Form Source:</span>
+              <span class="metadata-value">Portfolio Contact Form</span>
+            </div>
+            <div class="metadata-item">
+              <span class="metadata-label">Response Due:</span>
+              <span class="metadata-value">${new Date(Date.now() + 24 * 60 * 60 * 1000).toLocaleString()}</span>
             </div>
           </div>
         </div>
         
         <!-- Footer -->
         <div class="footer">
-          <div class="footer-text">Portfolio Contact Management System</div>
-          <div class="footer-subtitle">
-            shorifullislamratan.com | Full Stack Developer & UI/UX Specialist
+          <div class="footer-timestamp">
+            📅 Received: ${new Date().toLocaleString('en-US', { 
+              weekday: 'long', 
+              year: 'numeric', 
+              month: 'long', 
+              day: 'numeric', 
+              hour: '2-digit', 
+              minute: '2-digit',
+              timeZoneName: 'short'
+            })}
           </div>
+          <p>This is an automated notification from your portfolio contact form system.</p>
+          <p>© 2025 Ratan Mia Portfolio - Contact Management System</p>
         </div>
       </div>
     </body>
