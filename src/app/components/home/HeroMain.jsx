@@ -9,6 +9,7 @@ import {
   Code2,
   Database,
   Download,
+  ExternalLink,
   GitBranch,
   Globe,
   Layers,
@@ -546,6 +547,72 @@ const CompactHero = () => {
                 ))}
               </motion.div>
             </div>
+
+            {/* Statistics Grid */}
+            <motion.div 
+              className="w-full max-w-md grid grid-cols-2 gap-3"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.6, duration: 0.6 }}
+            >
+              {statistics.map((stat, index) => (
+                <motion.div 
+                  key={stat.label}
+                  className="group relative text-center p-4 bg-gradient-to-b from-gray-900 to-black border border-gray-800 group-hover:border-blue-600/50 rounded-xl backdrop-blur-sm hover:shadow-xl transition-all duration-300"
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 1.8 + index * 0.1, duration: 0.5 }}
+                >
+                  <div className="relative z-10">
+                    <div className={`w-8 h-8 bg-gradient-to-r ${stat.color} rounded-lg flex items-center justify-center mx-auto mb-2`}>
+                      <stat.icon className="w-4 h-4 text-white" />
+                    </div>
+                    <div className={`text-xl font-black ${stat.textColor} mb-1`}>
+                      {stat.number}
+                    </div>
+                    <div className="text-white text-xs font-bold">{stat.label}</div>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            {/* Quick Contact */}
+            <motion.div
+              className="w-full max-w-sm"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 2.2, duration: 0.6 }}
+            >
+              <div className="mb-4 text-center">
+                <h4 className="text-xl font-black text-white mb-1">Ready to Start?</h4>
+                <p className="text-blue-200 text-sm">Let's discuss your project</p>
+              </div>
+              
+              <div className="space-y-2">
+                {contactMethods.map((method, index) => (
+                  <motion.a
+                    key={method.label}
+                    href={method.href}
+                    target={method.label === 'WhatsApp' ? '_blank' : undefined}
+                    rel={method.label === 'WhatsApp' ? 'noopener noreferrer' : undefined}
+                    className={`group relative flex items-center gap-3 p-3 bg-gradient-to-r ${method.color} text-white font-bold rounded-lg transition-all duration-300 hover:shadow-lg overflow-hidden`}
+                    whileHover={{ scale: 1.02, y: -1 }}
+                    whileTap={{ scale: 0.98 }}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 2.4 + index * 0.1 }}
+                  >
+                    <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <method.icon className="relative z-10 w-5 h-5" />
+                    <div className="relative z-10 flex-1">
+                      <div className="font-black text-sm">{method.label}</div>
+                    </div>
+                    <ExternalLink className="relative z-10 w-3 h-3 opacity-60" />
+                  </motion.a>
+                ))}
+              </div>
+            </motion.div>
           </motion.div>
         </div>
 
