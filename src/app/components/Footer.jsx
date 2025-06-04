@@ -23,7 +23,6 @@ import {
 } from 'lucide-react';
 import { useState } from 'react';
 import ScrollToTop from './ScrollToTop';
-import SideNavigation from './SideNavigation';
 
 const Footer = () => {
   const [email, setEmail] = useState('');
@@ -518,7 +517,7 @@ const Footer = () => {
         </motion.div>
       </div>
          <ScrollToTop />
-         <SideNavigation/>
+  
     </footer>
   );
 };
