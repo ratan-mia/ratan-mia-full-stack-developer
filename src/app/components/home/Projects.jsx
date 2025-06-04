@@ -1,4 +1,3 @@
-
 'use client';
 import { useState } from 'react';
 
@@ -15,7 +14,7 @@ const Projects = () => {
       fullDescription: "A comprehensive automotive platform that revolutionized the online car shopping experience in Bangladesh. Features include interactive 360° car visualization, advanced filtering systems, dealer locator, and integrated CRM for lead management.",
       tech: ["Next.js", "React.js", "CRM Integration", "Facebook Pixel", "360° Viewer", "Performance Optimization"],
       category: "web-development",
-      link: "cherybd.vercel.app",
+      link: "https://www.cherybd.com",
       status: "Live",
       gradient: "from-blue-600 via-blue-700 to-indigo-800",
       accentColor: "blue",
@@ -23,7 +22,7 @@ const Projects = () => {
       client: "Chery Bangladesh",
       duration: "3 months",
       results: ["97% Speed Improvement", "200% Sales Increase", "50% Bounce Rate Reduction"],
-      image: "/api/placeholder/600/400",
+      devices: ["desktop", "mobile"],
       tags: ["Featured", "E-commerce", "Automotive"]
     },
     {
@@ -34,7 +33,7 @@ const Projects = () => {
       fullDescription: "A sophisticated auto parts marketplace featuring advanced vehicle compatibility matching, real-time inventory management, multi-vendor support, and integrated communication channels for seamless customer service.",
       tech: ["React.js", "PHP", "API Integration", "WhatsApp API", "MySQL", "Payment Gateway"],
       category: "ecommerce",
-      link: "japanparts.com",
+      link: "https://japanparts.com.bd",
       status: "Live",
       gradient: "from-green-600 via-green-700 to-teal-800",
       accentColor: "green",
@@ -42,7 +41,7 @@ const Projects = () => {
       client: "Japan Parts Ltd",
       duration: "4 months",
       results: ["300% Order Increase", "85% Customer Satisfaction", "60% Support Cost Reduction"],
-      image: "/api/placeholder/600/400",
+      devices: ["desktop", "tablet"],
       tags: ["E-commerce", "API Integration", "B2B"]
     },
     {
@@ -53,7 +52,7 @@ const Projects = () => {
       fullDescription: "A premium e-commerce experience for ELF lubricants featuring product configurators, dealer networks, technical specifications database, and comprehensive customer support systems.",
       tech: ["React.js", "Tailwind CSS", "E-commerce", "SEO", "Product Configurator", "CMS"],
       category: "ecommerce",
-      link: "elf-bangladesh.vercel.app",
+      link: "https://elf-bangladesh.vercel.app",
       status: "Live",
       gradient: "from-pink-600 via-rose-700 to-red-800",
       accentColor: "pink",
@@ -61,7 +60,7 @@ const Projects = () => {
       client: "ELF Bangladesh",
       duration: "2 months",
       results: ["150% Conversion Rate", "40% Cart Abandonment Reduction", "95% Page Speed Score"],
-      image: "/api/placeholder/600/400",
+      devices: ["desktop", "mobile"],
       tags: ["Featured", "E-commerce", "Premium"]
     },
     {
@@ -80,7 +79,7 @@ const Projects = () => {
       client: "Healthcare Provider",
       duration: "6 months",
       results: ["24/7 Support Availability", "70% Response Efficiency", "500+ Active Users"],
-      image: "/api/placeholder/600/400",
+      devices: ["desktop", "tablet"],
       tags: ["AI", "Healthcare", "Innovation"]
     },
     {
@@ -91,7 +90,7 @@ const Projects = () => {
       fullDescription: "A comprehensive auto detailing service platform featuring service booking systems, before/after galleries, customer testimonials, and integrated payment processing for seamless service delivery.",
       tech: ["React.js", "Tailwind CSS", "Responsive Design", "Booking System", "Payment Integration"],
       category: "web-development",
-      link: "cwl-detailing-web.vercel.app",
+      link: "https://cwl-detailing-web.vercel.app",
       status: "Live",
       gradient: "from-orange-600 via-red-600 to-red-800",
       accentColor: "orange",
@@ -99,7 +98,7 @@ const Projects = () => {
       client: "CWL Detailing",
       duration: "1.5 months",
       results: ["200% Booking Increase", "90% Mobile Performance", "45% Lead Generation Growth"],
-      image: "/api/placeholder/600/400",
+      devices: ["mobile", "tablet"],
       tags: ["Service Business", "Mobile-First", "Booking"]
     },
     {
@@ -110,7 +109,7 @@ const Projects = () => {
       fullDescription: "A sophisticated automotive export platform connecting international buyers with Japanese car auctions, featuring real-time bidding, logistics management, and comprehensive trade documentation systems.",
       tech: ["Laravel", "Shopify", "Custom App", "Price Calculator", "API Integration", "Real-time Data"],
       category: "custom-development",
-      link: "Custom Development",
+      link: "https://skjapanexport.co.jp/",
       status: "Live",
       gradient: "from-cyan-600 via-blue-600 to-indigo-800",
       accentColor: "cyan",
@@ -118,7 +117,7 @@ const Projects = () => {
       client: "SK Japan Export",
       duration: "5 months",
       results: ["400% Export Volume", "Real-time Price Updates", "15+ Country Expansion"],
-      image: "/api/placeholder/600/400",
+      devices: ["desktop", "mobile"],
       tags: ["Custom Development", "International", "Real-time"]
     }
   ];
@@ -150,6 +149,131 @@ const Projects = () => {
         {status}
       </span>
     );
+  };
+
+  // Device Mockup Components
+  const DesktopMockup = ({ project }) => (
+    <div className="relative w-full h-full flex items-center justify-center">
+      {/* iMac Mockup */}
+      <div className="relative w-full max-w-md mx-auto">
+        {/* Screen */}
+        <div className="relative bg-gray-900 rounded-lg p-1 shadow-2xl">
+          <div className="bg-black rounded-md overflow-hidden">
+            <div className="aspect-[16/10] bg-gray-200 relative overflow-hidden">
+              {project.link.startsWith('http') ? (
+                <iframe
+                  src={project.link}
+                  title={project.title}
+                  className="w-full h-full border-0 scale-75 origin-top-left"
+                  style={{ width: '133.33%', height: '133.33%' }}
+                  loading="lazy"
+                />
+              ) : (
+                <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-300 flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-gray-400 rounded-lg mx-auto mb-3 flex items-center justify-center">
+                      <svg className="w-8 h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                    </div>
+                    <div className="text-sm text-gray-600 font-medium">Custom Development</div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+        
+        {/* Stand */}
+        <div className="relative mx-auto mt-2">
+          <div className="w-20 h-8 bg-gray-300 rounded-b-lg mx-auto"></div>
+          <div className="w-32 h-2 bg-gray-400 rounded-full mx-auto mt-1"></div>
+        </div>
+      </div>
+    </div>
+  );
+
+  const TabletMockup = ({ project }) => (
+    <div className="relative w-full h-full flex items-center justify-center">
+      {/* iPad Mockup */}
+      <div className="relative w-64 h-80 bg-gray-900 rounded-2xl p-3 shadow-2xl">
+        <div className="w-full h-full bg-black rounded-xl overflow-hidden">
+          <div className="w-full h-full bg-gray-200 relative overflow-hidden">
+            {project.link.startsWith('http') ? (
+              <iframe
+                src={project.link}
+                title={project.title}
+                className="w-full h-full border-0 scale-50 origin-top-left"
+                style={{ width: '200%', height: '200%' }}
+                loading="lazy"
+              />
+            ) : (
+              <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-300 flex items-center justify-center">
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-gray-400 rounded-lg mx-auto mb-2 flex items-center justify-center">
+                    <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                  </div>
+                  <div className="text-xs text-gray-600 font-medium">Custom App</div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+        
+        {/* Home Button */}
+        <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-8 h-8 border-2 border-gray-600 rounded-full"></div>
+      </div>
+    </div>
+  );
+
+  const MobileMockup = ({ project }) => (
+    <div className="relative w-full h-full flex items-center justify-center">
+      {/* iPhone Mockup */}
+      <div className="relative w-40 h-80 bg-gray-900 rounded-3xl p-2 shadow-2xl">
+        <div className="w-full h-full bg-black rounded-2xl overflow-hidden relative">
+          {/* Notch */}
+          <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-16 h-4 bg-gray-900 rounded-full z-10"></div>
+          
+          <div className="w-full h-full bg-gray-200 relative overflow-hidden pt-6">
+            {project.link.startsWith('http') ? (
+              <iframe
+                src={project.link}
+                title={project.title}
+                className="w-full h-full border-0 scale-[0.25] origin-top-left"
+                style={{ width: '400%', height: '400%' }}
+                loading="lazy"
+              />
+            ) : (
+              <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-300 flex items-center justify-center">
+                <div className="text-center">
+                  <div className="w-10 h-10 bg-gray-400 rounded-lg mx-auto mb-2 flex items-center justify-center">
+                    <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <div className="text-xs text-gray-600 font-medium">Mobile App</div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderDeviceMockup = (project, deviceType) => {
+    switch (deviceType) {
+      case 'desktop':
+        return <DesktopMockup project={project} />;
+      case 'tablet':
+        return <TabletMockup project={project} />;
+      case 'mobile':
+        return <MobileMockup project={project} />;
+      default:
+        return <DesktopMockup project={project} />;
+    }
   };
 
   return (
@@ -230,22 +354,12 @@ const Projects = () => {
           transform: scale(1.05);
         }
 
-        .bg-gradient-animated {
-          background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-          background-size: 400% 400%;
-          animation: gradient 15s ease infinite;
+        .device-mockup {
+          transition: all 0.3s ease;
         }
 
-        @keyframes gradient {
-          0% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-          100% {
-            background-position: 0% 50%;
-          }
+        .device-mockup:hover {
+          transform: scale(1.05);
         }
       `}</style>
 
@@ -327,22 +441,49 @@ const Projects = () => {
               onMouseLeave={() => setHoveredProject(null)}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              {/* Project Image */}
-              <div className="relative h-80 overflow-hidden">
-                <div className={`w-full h-full bg-gradient-to-br ${project.gradient} flex items-center justify-center relative`}>
-                  <div className="absolute inset-0 bg-black/20"></div>
+              {/* Project Mockup Showcase */}
+              <div className="relative h-96 overflow-hidden">
+                <div className={`w-full h-full bg-gradient-to-br ${project.gradient} flex items-center justify-center relative p-8`}>
+                  <div className="absolute inset-0 bg-black/10"></div>
                   
-                  {/* Project Screenshot Placeholder */}
-                  <div className="relative z-10 w-4/5 h-4/5 bg-white/90 rounded-lg flex items-center justify-center border-4 border-white shadow-2xl">
-                    <div className="text-center p-8">
-                      <div className="w-16 h-16 bg-gradient-to-br from-slate-400 to-slate-600 rounded-lg mx-auto mb-4 flex items-center justify-center">
-                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
+                  {/* Device Mockups */}
+                  <div className="relative z-10 w-full h-full flex items-center justify-center">
+                    {project.devices.includes('desktop') && project.devices.includes('mobile') ? (
+                      // Desktop + Mobile Layout
+                      <div className="flex items-center justify-center gap-8 w-full h-full">
+                        <div className="flex-1 max-w-sm device-mockup">
+                          {renderDeviceMockup(project, 'desktop')}
+                        </div>
+                        <div className="flex-shrink-0 device-mockup">
+                          {renderDeviceMockup(project, 'mobile')}
+                        </div>
                       </div>
-                      <div className="text-sm text-slate-600 font-medium">Project Screenshot</div>
-                      <div className="text-xs text-slate-400">{project.title}</div>
-                    </div>
+                    ) : project.devices.includes('desktop') && project.devices.includes('tablet') ? (
+                      // Desktop + Tablet Layout
+                      <div className="flex items-center justify-center gap-8 w-full h-full">
+                        <div className="flex-1 max-w-sm device-mockup">
+                          {renderDeviceMockup(project, 'desktop')}
+                        </div>
+                        <div className="flex-shrink-0 device-mockup">
+                          {renderDeviceMockup(project, 'tablet')}
+                        </div>
+                      </div>
+                    ) : project.devices.includes('mobile') && project.devices.includes('tablet') ? (
+                      // Mobile + Tablet Layout
+                      <div className="flex items-center justify-center gap-8 w-full h-full">
+                        <div className="flex-shrink-0 device-mockup">
+                          {renderDeviceMockup(project, 'tablet')}
+                        </div>
+                        <div className="flex-shrink-0 device-mockup">
+                          {renderDeviceMockup(project, 'mobile')}
+                        </div>
+                      </div>
+                    ) : (
+                      // Single Device
+                      <div className="device-mockup">
+                        {renderDeviceMockup(project, project.devices[0])}
+                      </div>
+                    )}
                   </div>
 
                   {/* Status Badge */}
@@ -357,9 +498,15 @@ const Projects = () => {
                     </span>
                   </div>
 
-                  {/* Animated Elements */}
-                  <div className="absolute bottom-4 right-4 w-3 h-3 bg-white/60 rounded-full animate-pulse-custom" />
-                  <div className="absolute bottom-4 left-4 w-2 h-2 bg-white/40 rounded-full"></div>
+                  {/* Live Indicator */}
+                  {project.link.startsWith('http') && (
+                    <div className="absolute bottom-4 right-4 z-20">
+                      <div className="flex items-center gap-2 bg-green-500/90 text-white px-3 py-1 rounded-full text-xs font-bold">
+                        <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                        Live Preview
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {/* Hover Overlay */}
@@ -444,15 +591,15 @@ const Projects = () => {
                 {/* Project Links */}
                 <div className="flex items-center justify-between pt-6 border-t border-slate-200">
                   <a 
-                    href={project.link.startsWith('http') ? project.link : project.link.includes('.') ? `https://${project.link}` : '#'} 
-                    target={project.link.includes('.') ? "_blank" : "_self"}
+                    href={project.link.startsWith('http') ? project.link : '#'} 
+                    target={project.link.startsWith('http') ? "_blank" : "_self"}
                     rel="noopener noreferrer"
-                    className={`cta-button inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r ${project.gradient} text-white font-semibold rounded-lg ${!project.link.includes('.') && 'cursor-default opacity-75'}`}
+                    className={`cta-button inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r ${project.gradient} text-white font-semibold rounded-lg ${!project.link.startsWith('http') && 'cursor-default opacity-75'}`}
                   >
                     <span>
-                      {project.link.includes('vercel.app') || project.link.includes('.com') ? 'View Live Site' : 'Custom Development'}
+                      {project.link.startsWith('http') ? 'View Live Site' : 'Custom Development'}
                     </span>
-                    {project.link.includes('.') && (
+                    {project.link.startsWith('http') && (
                       <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4" />
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 4h6m0 0v6m0-6L10 14" />
