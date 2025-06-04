@@ -1,0 +1,3 @@
+GMAIL_USER=shorifull@gmail.com
+GMAIL_APP_PASSWORD=vmlksdtddmiooqvk
+ADMIN_EMAIL=shorifull@gmail.com

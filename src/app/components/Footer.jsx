@@ -22,6 +22,7 @@ import {
   Star
 } from 'lucide-react';
 import { useState } from 'react';
+import ScrollToTop from './ScrollToTop';
 
 const Footer = () => {
   const [email, setEmail] = useState('');
@@ -515,6 +516,7 @@ const Footer = () => {
           </motion.a>
         </motion.div>
       </div>
+         <ScrollToTop />
     </footer>
   );
 };
