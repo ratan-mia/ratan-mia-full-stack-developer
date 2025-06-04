@@ -18,6 +18,7 @@ import {
   User,
   X
 } from 'lucide-react';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 const Header = () => {
@@ -186,7 +187,7 @@ const Header = () => {
             onClick={() => scrollToSection('home')}
           >
             <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-indigo-600 via-purple-600 to-blue-700 rounded-lg flex items-center justify-center text-white font-bold text-sm sm:text-lg shadow-lg">
-              R
+              <Image  src="/images/logo.png" alt="Logo" width={40} height={40} className="w-full h-full object-cover rounded-lg" />
             </div>
             <div className="min-w-0">
               <div className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent truncate">
