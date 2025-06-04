@@ -14,15 +14,17 @@ export default function Home() {
   return (
     <main className="font-sans text-gray-800">
       <HeroMain />
-      <About />
-      <Services />
-      <Skills />
-      <ProcessHowIWork />
-      <TrainingCertificates />
       <Projects />
+      <About />
       <GetQuote />
-      <FAQ />
+      <Services />
       <Testimonials />
+      <Skills />
+      <TrainingCertificates />
+      <ProcessHowIWork />
+
+      <FAQ />
+
       <Contact />
     </main>
   );
