@@ -5,6 +5,8 @@ import {
   ArrowRight,
   BarChart3,
   CheckCircle,
+  ChevronLeft,
+  ChevronRight,
   Clock,
   Code,
   FileText,
@@ -14,7 +16,6 @@ import {
   Play,
   Rocket,
   Search,
-  Settings,
   Shield,
   Star,
   Target,
@@ -43,22 +44,11 @@ const ProcessHowIWork = () => {
     transition: { duration: 0.6, ease: "easeOut" }
   };
 
-  const slideInLeft = {
-    initial: { opacity: 0, x: -50 },
-    animate: { opacity: 1, x: 0 },
-    transition: { duration: 0.6 }
-  };
-
-  const slideInRight = {
-    initial: { opacity: 0, x: 50 },
-    animate: { opacity: 1, x: 0 },
-    transition: { duration: 0.6 }
-  };
-
   const staggerContainer = {
     animate: {
       transition: {
-        staggerChildren: 0.1
+        staggerChildren: 0.1,
+        delayChildren: 0.2
       }
     }
   };
@@ -78,7 +68,7 @@ const ProcessHowIWork = () => {
         "Project scope definition & timeline creation"
       ],
       deliverables: ["Strategic Blueprint", "Technical Roadmap", "Project Charter"],
-      description: "We begin with comprehensive discovery to understand your business goals, target audience, and technical requirements, creating a strategic foundation for success.",
+      description: "Comprehensive discovery to understand your business goals, target audience, and technical requirements.",
       metrics: { accuracy: "99%", satisfaction: "98%" }
     },
     {
@@ -95,7 +85,7 @@ const ProcessHowIWork = () => {
         "SEO & accessibility requirement analysis"
       ],
       deliverables: ["Research Report", "User Personas", "Competitive Analysis"],
-      description: "Comprehensive market and user research provides the insights needed to make informed design and development decisions that drive results.",
+      description: "Comprehensive market and user research provides insights needed for informed design and development decisions.",
       metrics: { insights: "50+", research: "40h" }
     },
     {
@@ -112,7 +102,7 @@ const ProcessHowIWork = () => {
         "Responsive design & accessibility compliance"
       ],
       deliverables: ["Design System", "Interactive Prototype", "Style Guide"],
-      description: "Creating stunning, conversion-focused designs that reflect your brand while providing exceptional user experiences across all devices.",
+      description: "Creating stunning, conversion-focused designs that reflect your brand while providing exceptional user experiences.",
       metrics: { screens: "25+", iterations: "3" }
     },
     {
@@ -129,7 +119,7 @@ const ProcessHowIWork = () => {
         "Performance optimization & security implementation"
       ],
       deliverables: ["Production Code", "API Documentation", "Admin Dashboard"],
-      description: "Transforming designs into high-performance, scalable applications using modern technologies and industry best practices.",
+      description: "Transforming designs into high-performance, scalable applications using modern technologies and best practices.",
       metrics: { uptime: "99.9%", speed: "< 2s" }
     },
     {
@@ -163,7 +153,7 @@ const ProcessHowIWork = () => {
         "Ongoing maintenance & feature updates"
       ],
       deliverables: ["Live Application", "Training Materials", "Support Plan"],
-      description: "Smooth launch with comprehensive support, monitoring, and ongoing partnership to ensure long-term success and growth.",
+      description: "Smooth launch with comprehensive support, monitoring, and ongoing partnership to ensure long-term success.",
       metrics: { support: "24/7", response: "< 2h" }
     }
   ];
@@ -202,9 +192,17 @@ const ProcessHowIWork = () => {
     { metric: "24/7", label: "Support Available", icon: Shield, gradient: "from-purple-500 to-indigo-500" }
   ];
 
+  const nextStep = () => {
+    setActiveStep((prev) => (prev + 1) % processSteps.length);
+  };
+
+  const prevStep = () => {
+    setActiveStep((prev) => (prev - 1 + processSteps.length) % processSteps.length);
+  };
+
   return (
-    <section id="process" className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden">
-      {/* Background Elements */}
+    <section id="process" className="py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden">
+      {/* Enhanced Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div 
           className="absolute top-1/4 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-blue-500/5 rounded-full blur-3xl"
@@ -232,41 +230,32 @@ const ProcessHowIWork = () => {
             ease: "linear"
           }}
         />
-        <motion.div 
-          className="absolute top-1/2 right-1/3 w-32 h-32 md:w-64 md:h-64 bg-green-500/5 rounded-full blur-2xl"
-          animate={{
-            x: [0, 20, 0],
-            y: [0, -20, 0],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        />
       </div>
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        {/* Section Header */}
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Compact Header */}
         <motion.div
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
           viewport={{ once: true }}
-          className="text-center mb-12 md:mb-16"
+          className="text-center mb-12"
         >
           <motion.div
             variants={fadeInUp}
-            className="inline-flex items-center gap-3 bg-indigo-100 text-indigo-800 px-6 py-3 font-medium text-sm tracking-wider uppercase mb-6"
+            className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-md border border-indigo-200/50 text-indigo-800 px-6 py-3 rounded-2xl font-semibold text-sm uppercase tracking-wider mb-6 shadow-lg"
           >
-            <Settings className="w-4 h-4" />
-            My Process
+            <motion.div 
+              className="w-2 h-2 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full"
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            />
+            <span>My Process</span>
           </motion.div>
           
           <motion.h2 
             variants={fadeInUp}
-            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-slate-800"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-6 bg-gradient-to-r from-slate-800 via-blue-800 to-purple-800 bg-clip-text text-transparent"
           >
             How I Work
           </motion.h2>
@@ -275,126 +264,186 @@ const ProcessHowIWork = () => {
             variants={fadeInUp}
             className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed font-light"
           >
-            A systematic 6-step process designed to deliver exceptional results, ensure transparent communication, and exceed your expectations every time
+            A systematic 6-step process designed to deliver exceptional results and exceed expectations every time.
           </motion.p>
+
+          {/* Compact Stats */}
+          <motion.div 
+            variants={fadeInUp}
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 max-w-2xl mx-auto"
+          >
+            {keyMetrics.map((metric, index) => (
+              <motion.div
+                key={metric.label}
+                className="text-center p-3 bg-white/60 backdrop-blur-sm rounded-xl border border-white/50 shadow-lg"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 + index * 0.1 }}
+                whileHover={{ scale: 1.05 }}
+              >
+                <metric.icon className={`w-5 h-5 mx-auto mb-1`} style={{ color: metric.gradient.includes('amber') ? '#f59e0b' : metric.gradient.includes('blue') ? '#3b82f6' : metric.gradient.includes('emerald') ? '#22c55e' : '#a855f7' }} />
+                <div className={`text-xl font-black mb-1`} style={{ color: metric.gradient.includes('amber') ? '#f59e0b' : metric.gradient.includes('blue') ? '#3b82f6' : metric.gradient.includes('emerald') ? '#22c55e' : '#a855f7' }}>{metric.metric}</div>
+                <div className="text-slate-600 text-sm font-medium">{metric.label}</div>
+              </motion.div>
+            ))}
+          </motion.div>
         </motion.div>
 
-        {/* Interactive Timeline */}
+        {/* Compact Interactive Timeline */}
         <motion.div
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
           viewport={{ once: true }}
-          className="mb-12 md:mb-16"
+          className="mb-12"
         >
-          <div className="relative">
-            {/* Background Progress Bar */}
-            <div className="absolute top-1/2 left-0 right-0 h-2 bg-slate-200 rounded-full transform -translate-y-1/2 shadow-inner">
-              <motion.div
-                className="h-full bg-gradient-to-r from-amber-500 via-blue-500 via-purple-500 via-emerald-500 via-red-500 to-indigo-500 rounded-full shadow-lg"
-                initial={{ width: 0 }}
-                animate={{ width: `${progressWidth}%` }}
-                transition={{ duration: 1, ease: "easeOut" }}
-              />
-            </div>
-
-            {/* Timeline Steps */}
-            <div className="relative flex justify-between items-center px-4">
-              {processSteps.map((step, index) => (
-                <motion.div
-                  key={step.id}
-                  className="group relative cursor-pointer flex flex-col items-center"
-                  variants={fadeInUp}
-                  transition={{ delay: index * 0.1 }}
-                  onClick={() => setActiveStep(index)}
-                  onMouseEnter={() => setHoveredStep(index)}
-                  onMouseLeave={() => setHoveredStep(null)}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  {/* Step Icon */}
+          {/* Mobile Timeline (Stepper Style) */}
+          <div className="md:hidden mb-8">
+            <div className="relative">
+              <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-slate-200"></div>
+              <div className="space-y-4">
+                {processSteps.map((step, index) => (
                   <motion.div
-                    className={`relative z-10 w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br ${step.gradient} flex items-center justify-center text-white shadow-xl mb-4 ${
-                      activeStep === index ? 'ring-4 ring-blue-400 shadow-2xl scale-110' : ''
-                    } ${hoveredStep === index ? 'shadow-2xl' : ''} transition-all duration-300`}
-                    whileHover={{ y: -2 }}
-                    transition={{ duration: 0.3 }}
+                    key={step.id}
+                    className={`relative flex items-center gap-4 cursor-pointer ${
+                      activeStep === index ? 'opacity-100' : 'opacity-50'
+                    }`}
+                    onClick={() => setActiveStep(index)}
+                    whileHover={{ scale: 1.02 }}
                   >
-                    <step.icon className="w-6 h-6 md:w-8 md:h-8" />
-                    
-                    {/* Active pulse animation */}
-                    {activeStep === index && (
-                      <motion.div
-                        className="absolute inset-0 bg-white/20 rounded-xl"
-                        animate={{ 
-                          scale: [1, 1.2, 1], 
-                          opacity: [0.5, 0, 0.5] 
-                        }}
-                        transition={{ 
-                          duration: 2, 
-                          repeat: Infinity,
-                          ease: "easeInOut"
-                        }}
-                      />
-                    )}
-                    
-                    {/* Step number */}
-                    <div className="absolute -top-2 -right-2 w-6 h-6 bg-white text-slate-800 rounded-full flex items-center justify-center text-xs font-bold shadow-lg">
-                      {step.id}
+                    <div className={`w-12 h-12 bg-gradient-to-br ${step.gradient} rounded-full flex items-center justify-center text-white shadow-lg z-10 ${
+                      activeStep === index ? 'ring-4 ring-blue-400' : ''
+                    }`}>
+                      <step.icon className="w-5 h-5" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-bold text-slate-800 text-sm">{step.title}</h3>
+                      <p className="text-slate-600 text-xs">{step.duration}</p>
                     </div>
                   </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
 
-                  {/* Step Info */}
-                  <div className="relative z-10 text-center max-w-sm">
-                    <h3 className="text-lg md:text-xl font-bold text-slate-800 mb-2 group-hover:text-blue-600 transition-colors duration-300">
-                      {step.title}
-                    </h3>
-                    <p className="text-slate-600 text-sm leading-relaxed mb-3">
-                      {step.subtitle}
-                    </p>
-                    <motion.div 
-                      className="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium"
-                      whileHover={{ scale: 1.05 }}
+          {/* Desktop Timeline */}
+          <div className="hidden md:block">
+            <div className="relative">
+              {/* Background Progress Bar */}
+              <div className="absolute top-1/2 left-0 right-0 h-1 bg-slate-200 rounded-full transform -translate-y-1/2">
+                <motion.div
+                  className="h-full bg-gradient-to-r from-amber-500 via-blue-500 via-purple-500 via-emerald-500 via-red-500 to-indigo-500 rounded-full"
+                  initial={{ width: 0 }}
+                  animate={{ width: `${progressWidth}%` }}
+                  transition={{ duration: 1, ease: "easeOut" }}
+                />
+              </div>
+
+              {/* Timeline Steps */}
+              <div className="relative flex justify-between items-center px-2">
+                {processSteps.map((step, index) => (
+                  <motion.div
+                    key={step.id}
+                    className="group relative cursor-pointer flex flex-col items-center max-w-32"
+                    variants={fadeInUp}
+                    transition={{ delay: index * 0.1 }}
+                    onClick={() => setActiveStep(index)}
+                    onMouseEnter={() => setHoveredStep(index)}
+                    onMouseLeave={() => setHoveredStep(null)}
+                    whileHover={{ scale: 1.02 }}
+                  >
+                    {/* Step Icon */}
+                    <motion.div
+                      className={`relative z-10 w-12 h-12 lg:w-16 lg:h-16 bg-gradient-to-br ${step.gradient} rounded-full flex items-center justify-center text-white shadow-lg mb-3 ${
+                        activeStep === index ? 'ring-4 ring-blue-400 shadow-2xl scale-110' : ''
+                      } transition-all duration-300`}
+                      whileHover={{ y: -2 }}
                     >
-                      {step.duration}
+                      <step.icon className="w-5 h-5 lg:w-6 lg:h-6" />
+                      
+                      {/* Step number */}
+                      <div className="absolute -top-1 -right-1 w-5 h-5 bg-white text-slate-800 rounded-full flex items-center justify-center text-xs font-bold">
+                        {step.id}
+                      </div>
                     </motion.div>
-                  </div>
-                </motion.div>
-              ))}
+
+                    {/* Step Info */}
+                    <div className="text-center">
+                      <h3 className="text-sm lg:text-base font-bold text-slate-800 mb-1 group-hover:text-blue-600 transition-colors duration-300">
+                        {step.title}
+                      </h3>
+                      <p className="text-slate-600 text-xs mb-2">
+                        {step.subtitle}
+                      </p>
+                      <div className="inline-block px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-lg">
+                        {step.duration}
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
         </motion.div>
 
-        {/* Active Step Details */}
+        {/* Compact Active Step Details */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeStep}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -30 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            className="mb-12 md:mb-16"
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="mb-12"
           >
-            <div className="bg-white/80 backdrop-blur-sm p-8 md:p-12 shadow-xl border border-white/50">
-              <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+            <div className="bg-white/80 backdrop-blur-md p-6 md:p-8 rounded-2xl border border-white/50 shadow-xl">
+              {/* Step Navigation for Mobile */}
+              <div className="flex items-center justify-between mb-6 md:hidden">
+                <motion.button
+                  onClick={prevStep}
+                  className="w-10 h-10 bg-white/60 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/50 shadow-lg"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <ChevronLeft className="w-5 h-5 text-slate-600" />
+                </motion.button>
+                
+                <div className="text-center">
+                  <div className="text-sm text-slate-500">Step {activeStep + 1} of {processSteps.length}</div>
+                  <h3 className="text-lg font-bold text-slate-800">{processSteps[activeStep].title}</h3>
+                </div>
+                
+                <motion.button
+                  onClick={nextStep}
+                  className="w-10 h-10 bg-white/60 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/50 shadow-lg"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <ChevronRight className="w-5 h-5 text-slate-600" />
+                </motion.button>
+              </div>
+
+              <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
                 {/* Left Column */}
                 <div>
-                  <div className="flex items-start gap-6 mb-8">
-                    <div className={`w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br ${processSteps[activeStep].gradient} flex items-center justify-center text-white shadow-xl flex-shrink-0`}>
+                  <div className="flex items-start gap-4 mb-6">
+                    <div className={`w-12 h-12 lg:w-16 lg:h-16 bg-gradient-to-br ${processSteps[activeStep].gradient} rounded-xl flex items-center justify-center text-white shadow-lg flex-shrink-0`}>
                       {(() => {
                         const IconComponent = processSteps[activeStep].icon;
-                        return <IconComponent className="w-8 h-8 md:w-10 md:h-10" />;
+                        return <IconComponent className="w-6 h-6 lg:w-8 lg:h-8" />;
                       })()}
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-2xl md:text-3xl font-bold text-slate-800 mb-3">
-                        {processSteps[activeStep].title}
-                      </h3>
-                      <p className="text-lg md:text-xl text-slate-600 mb-4 font-light">
-                        {processSteps[activeStep].subtitle}
-                      </p>
-                      <div className="flex flex-wrap items-center gap-4">
-                        <span className="px-4 py-2 bg-blue-100 text-blue-800 text-sm font-medium">
+                      <div className="hidden md:block">
+                        <h3 className="text-xl lg:text-2xl font-bold text-slate-800 mb-2">
+                          {processSteps[activeStep].title}
+                        </h3>
+                        <p className="text-lg text-slate-600 mb-3 font-light">
+                          {processSteps[activeStep].subtitle}
+                        </p>
+                      </div>
+                      <div className="flex flex-wrap items-center gap-3">
+                        <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-lg">
                           {processSteps[activeStep].duration}
                         </span>
                         <div className="flex items-center gap-2 text-sm text-slate-500">
@@ -405,56 +454,57 @@ const ProcessHowIWork = () => {
                     </div>
                   </div>
 
-                  <p className="text-lg text-slate-600 leading-relaxed mb-8">
+                  <p className="text-base md:text-lg text-slate-600 leading-relaxed mb-6">
                     {processSteps[activeStep].description}
                   </p>
 
-                  {/* Key Activities */}
-                  <div className="space-y-6">
-                    <h4 className="text-xl font-bold text-slate-800 uppercase tracking-wider flex items-center gap-2">
+                  {/* Compact Key Activities */}
+                  <div>
+                    <h4 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
                       <CheckCircle className="w-5 h-5 text-green-500" />
                       Key Activities
                     </h4>
-                    <div className="space-y-3">
-                      {processSteps[activeStep].activities.map((activity, i) => (
+                    <div className="space-y-2">
+                      {processSteps[activeStep].activities.slice(0, 3).map((activity, i) => (
                         <motion.div
                           key={i}
-                          className="flex items-start gap-4 p-4 bg-white/60 backdrop-blur-sm border border-white/30 hover:bg-white/80 hover:shadow-md transition-all duration-300"
+                          className="flex items-start gap-3 p-3 bg-white/60 backdrop-blur-sm rounded-lg border border-white/30"
                           initial={{ opacity: 0, x: -20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: i * 0.05 }}
-                          whileHover={{ x: 4 }}
                         >
-                          <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" />
-                          <span className="text-slate-600 leading-relaxed">
+                          <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                          <span className="text-slate-600 text-sm leading-relaxed">
                             {activity}
                           </span>
                         </motion.div>
                       ))}
+                      {processSteps[activeStep].activities.length > 3 && (
+                        <div className="text-xs text-slate-500 ml-7">+{processSteps[activeStep].activities.length - 3} more activities</div>
+                      )}
                     </div>
                   </div>
                 </div>
 
                 {/* Right Column */}
-                <div className="space-y-8">
-                  {/* Deliverables */}
+                <div className="space-y-6">
+                  {/* Compact Deliverables */}
                   <div>
-                    <h4 className="text-xl font-bold text-slate-800 uppercase tracking-wider mb-6 flex items-center gap-2">
+                    <h4 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
                       <FileText className="w-5 h-5 text-blue-500" />
                       Deliverables
                     </h4>
-                    <div className="space-y-3">
+                    <div className="space-y-2">
                       {processSteps[activeStep].deliverables.map((deliverable, i) => (
                         <motion.div
                           key={i}
-                          className="flex items-center gap-4 p-4 bg-white/60 backdrop-blur-sm border border-white/30 hover:bg-white/80 hover:shadow-md transition-all duration-300"
-                          whileHover={{ scale: 1.01, x: 2 }}
+                          className="flex items-center gap-3 p-3 bg-white/60 backdrop-blur-sm rounded-lg border border-white/30"
                           initial={{ opacity: 0, x: 20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: i * 0.05 }}
                         >
-                          <FileText className="w-5 h-5 text-blue-500 flex-shrink-0" />
-                          <span className="font-medium text-slate-700 text-lg">
+                          <FileText className="w-4 h-4 text-blue-500 flex-shrink-0" />
+                          <span className="font-medium text-slate-700 text-sm">
                             {deliverable}
                           </span>
                         </motion.div>
@@ -462,19 +512,19 @@ const ProcessHowIWork = () => {
                     </div>
                   </div>
 
-                  {/* Metrics */}
+                  {/* Compact Metrics */}
                   <div>
-                    <h4 className="text-xl font-bold text-slate-800 uppercase tracking-wider mb-6 flex items-center gap-2">
+                    <h4 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
                       <Target className="w-5 h-5 text-purple-500" />
                       Key Metrics
                     </h4>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 gap-3">
                       {Object.entries(processSteps[activeStep].metrics).map(([key, value], i) => (
-                        <div key={i} className="text-center p-6 bg-white/60 backdrop-blur-sm border border-white/30 hover:bg-white/80 hover:shadow-md transition-all duration-300">
-                          <div className={`text-2xl md:text-3xl font-bold bg-gradient-to-r ${processSteps[activeStep].gradient} bg-clip-text text-transparent mb-2`}>
+                        <div key={i} className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-lg border border-white/30">
+                          <div className={`text-xl lg:text-2xl font-black bg-gradient-to-r ${processSteps[activeStep].gradient} bg-clip-text text-transparent mb-1`}>
                             {value}
                           </div>
-                          <div className="text-sm text-slate-600 capitalize font-medium">
+                          <div className="text-xs text-slate-600 capitalize font-medium">
                             {key}
                           </div>
                         </div>
@@ -484,15 +534,15 @@ const ProcessHowIWork = () => {
                 </div>
               </div>
 
-              {/* Navigation Dots */}
-              <div className="flex justify-center gap-3 mt-12 pt-8 border-t border-slate-200">
+              {/* Compact Navigation Dots */}
+              <div className="flex justify-center gap-2 mt-8 pt-6 border-t border-slate-200">
                 {processSteps.map((_, index) => (
                   <motion.button
                     key={index}
                     onClick={() => setActiveStep(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
                       activeStep === index 
-                        ? 'bg-blue-600 shadow-lg scale-125' 
+                        ? 'bg-blue-600 scale-125' 
                         : 'bg-slate-300 hover:bg-slate-400'
                     }`}
                     whileHover={{ scale: activeStep === index ? 1.25 : 1.1 }}
@@ -504,39 +554,39 @@ const ProcessHowIWork = () => {
           </motion.div>
         </AnimatePresence>
 
-        {/* Development Philosophy */}
+        {/* Compact Development Philosophy */}
         <motion.div
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
           viewport={{ once: true }}
-          className="mb-12 md:mb-16"
+          className="mb-12"
         >
-          <motion.div variants={fadeInUp} className="text-center mb-12">
-            <h3 className="text-3xl md:text-4xl font-bold text-slate-800 mb-6">
-              My Development Philosophy
+          <motion.div variants={fadeInUp} className="text-center mb-8">
+            <h3 className="text-2xl md:text-3xl font-black text-slate-800 mb-4">
+              Development Philosophy
             </h3>
-            <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed font-light">
-              Built on proven methodologies and industry best practices that ensure exceptional quality and client success
+            <p className="text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed font-light">
+              Built on proven methodologies and industry best practices that ensure exceptional quality.
             </p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {methodologies.map((method, index) => (
               <motion.div
                 key={method.title}
                 variants={fadeInUp}
                 transition={{ delay: index * 0.1 }}
-                className="text-center bg-white/80 backdrop-blur-sm p-6 md:p-8 shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-300 group"
-                whileHover={{ scale: 1.02, y: -4 }}
+                className="text-center bg-white/80 backdrop-blur-md p-4 md:p-6 rounded-2xl border border-white/50 shadow-lg hover:shadow-xl transition-all duration-300 group"
+                whileHover={{ scale: 1.02, y: -3 }}
               >
                 <motion.div
-                  className={`w-16 h-16 mx-auto mb-6 bg-gradient-to-br ${method.gradient} flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}
+                  className={`w-12 h-12 mx-auto mb-4 bg-gradient-to-br ${method.gradient} rounded-xl flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}
                   whileHover={{ rotate: 5 }}
                 >
-                  <method.icon className="w-8 h-8" />
+                  <method.icon className="w-6 h-6" />
                 </motion.div>
-                <h4 className="text-xl font-bold text-slate-800 mb-4 group-hover:text-blue-600 transition-colors duration-300">
+                <h4 className="text-lg font-bold text-slate-800 mb-3 group-hover:text-blue-600 transition-colors duration-300">
                   {method.title}
                 </h4>
                 <p className="text-slate-600 leading-relaxed text-sm">
@@ -547,38 +597,7 @@ const ProcessHowIWork = () => {
           </div>
         </motion.div>
 
-        {/* Key Metrics */}
-        <motion.div
-          variants={staggerContainer}
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true }}
-          className="mb-12 md:mb-16"
-        >
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {keyMetrics.map((metric, index) => (
-              <motion.div
-                key={metric.label}
-                variants={fadeInUp}
-                transition={{ delay: index * 0.1 }}
-                className="text-center p-6 md:p-8 bg-white/80 backdrop-blur-sm shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-300 group"
-                whileHover={{ scale: 1.02, y: -3 }}
-              >
-                <div className={`w-12 h-12 mx-auto mb-6 bg-gradient-to-br ${metric.gradient} flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                  <metric.icon className="w-6 h-6" />
-                </div>
-                <div className={`text-3xl md:text-4xl font-bold bg-gradient-to-r ${metric.gradient} bg-clip-text text-transparent mb-4 group-hover:scale-105 transition-transform duration-300`}>
-                  {metric.metric}
-                </div>
-                <h4 className="text-lg font-bold text-slate-800 group-hover:text-blue-600 transition-colors duration-300">
-                  {metric.label}
-                </h4>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Call to Action */}
+        {/* Compact Call to Action */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -586,33 +605,51 @@ const ProcessHowIWork = () => {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-8 md:p-12 text-white">
-            <h3 className="text-3xl md:text-4xl font-bold mb-6">
-              Ready to Transform Your Vision?
-            </h3>
-            <p className="text-blue-100 mb-8 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
-              Let's discuss your project and discover how my proven process can deliver exceptional results for your business
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.a
-                href="#contact"
-                className="inline-flex items-center justify-center gap-3 bg-white text-blue-600 px-8 py-4 font-bold text-lg hover:bg-blue-50 transition-colors duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Play className="w-5 h-5" />
-                Start Your Project
-              </motion.a>
-              <motion.a
-                href="#projects"
-                className="inline-flex items-center justify-center gap-3 bg-transparent border-2 border-white text-white px-8 py-4 font-bold text-lg hover:bg-white hover:text-blue-600 transition-all duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <MessageSquare className="w-5 h-5" />
-                View Case Studies
-                <ArrowRight className="w-5 h-5" />
-              </motion.a>
+          <div className="bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-600 rounded-3xl p-8 md:p-12 text-white shadow-2xl relative overflow-hidden">
+            {/* Background Pattern */}
+            <div className="absolute inset-0 opacity-10">
+              <motion.div 
+                className="absolute top-0 left-0 w-64 h-64 bg-white rounded-full blur-3xl"
+                animate={{ x: [0, 50, 0], y: [0, -25, 0] }}
+                transition={{ duration: 10, repeat: Infinity }}
+              />
+              <motion.div 
+                className="absolute bottom-0 right-0 w-64 h-64 bg-purple-200 rounded-full blur-3xl"
+                animate={{ x: [0, -50, 0], y: [0, 25, 0] }}
+                transition={{ duration: 8, repeat: Infinity }}
+              />
+            </div>
+
+            <div className="relative z-10">
+              <h3 className="text-2xl md:text-3xl lg:text-4xl font-black mb-4">
+                Ready to Transform Your Vision?
+              </h3>
+              <p className="text-blue-100 mb-6 max-w-2xl mx-auto text-base md:text-lg leading-relaxed font-light">
+                Let's discuss your project and discover how my proven process can deliver exceptional results.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <motion.a
+                  href="#contact"
+                  className="inline-flex items-center gap-3 bg-white text-blue-600 px-8 py-4 rounded-2xl font-bold text-base md:text-lg shadow-xl hover:shadow-2xl transition-all duration-300"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Play className="w-5 h-5" />
+                  <span>Start Project</span>
+                </motion.a>
+                
+                <motion.a
+                  href="#projects"
+                  className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border-2 border-white/30 text-white px-8 py-4 rounded-2xl font-bold text-base md:text-lg hover:bg-white/20 transition-all duration-300"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <MessageSquare className="w-5 h-5" />
+                  <span>View Cases</span>
+                  <ArrowRight className="w-5 h-5" />
+                </motion.a>
+              </div>
             </div>
           </div>
         </motion.div>

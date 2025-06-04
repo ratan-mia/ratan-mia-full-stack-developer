@@ -53,8 +53,8 @@ const Projects = () => {
       description: "Comprehensive e-commerce platform with intelligent make/model/year specification system.",
       tech: ["React.js", "PHP", "API Integration", "WhatsApp API", "MySQL"],
       category: "ecommerce",
-      link: "https://japanparts.com.bd",
-      mockupImage: null,
+      link: null, // Custom development - no live URL 
+      mockupImage: "/images/projects/japan-parts-mockup.png", 
       status: "Live",
       gradient: "from-green-600 via-green-700 to-teal-800",
       accentColor: "green",
