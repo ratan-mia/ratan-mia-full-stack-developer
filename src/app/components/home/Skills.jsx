@@ -20,6 +20,7 @@ const Skills = () => {
   const [activeCategory, setActiveCategory] = useState('frontend');
   const [hoveredSkill, setHoveredSkill] = useState(null);
 
+  // Animation variants as per design guidelines
   const fadeInUp = {
     initial: { opacity: 0, y: 40 },
     animate: { opacity: 1, y: 0 },
@@ -41,7 +42,8 @@ const Skills = () => {
   const staggerContainer = {
     animate: {
       transition: {
-        staggerChildren: 0.1
+        staggerChildren: 0.1,
+        delayChildren: 0.2 // Added delayChildren for better staggered appearance
       }
     }
   };
@@ -50,7 +52,7 @@ const Skills = () => {
     frontend: {
       title: "Frontend Mastery",
       icon: Code,
-      color: "from-blue-500 to-cyan-500",
+      color: "from-blue-500 to-cyan-500", // Blue palette for frontend
       bgColor: "bg-blue-500/10",
       borderColor: "border-blue-500/30",
       textColor: "text-blue-400",
@@ -66,7 +68,7 @@ const Skills = () => {
     backend: {
       title: "Backend Excellence",
       icon: Server,
-      color: "from-purple-500 to-pink-500",
+      color: "from-purple-500 to-pink-500", // Purple palette for backend
       bgColor: "bg-purple-500/10",
       borderColor: "border-purple-500/30",
       textColor: "text-purple-400",
@@ -82,7 +84,7 @@ const Skills = () => {
     fullstack: {
       title: "Full Stack Mastery",
       icon: Globe,
-      color: "from-green-500 to-teal-500",
+      color: "from-green-500 to-teal-500", // Green palette for fullstack
       bgColor: "bg-green-500/10",
       borderColor: "border-green-500/30",
       textColor: "text-green-400",
@@ -98,7 +100,7 @@ const Skills = () => {
     devops: {
       title: "DevOps & Tools",
       icon: Settings,
-      color: "from-orange-500 to-red-500",
+      color: "from-orange-500 to-red-500", // Orange palette for devops
       bgColor: "bg-orange-500/10",
       borderColor: "border-orange-500/30",
       textColor: "text-orange-400",
@@ -123,7 +125,7 @@ const Skills = () => {
   const currentCategory = skillCategories[activeCategory];
 
   return (
-    <section id="skills" className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-900 via-slate-950 to-gray-900 relative overflow-hidden">
+    <section id="skills" className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-900 via-slate-950 to-gray-900 relative overflow-hidden font-inter">
       {/* Enhanced Background Effects */}
       <div className="absolute inset-0">
         <motion.div 
@@ -151,7 +153,7 @@ const Skills = () => {
           }}
         />
         
-        {/* Orbiting Elements */}
+        {/* Orbiting Elements - Adjusted for better visual appeal and subtle movement */}
         <motion.div 
           className="absolute top-1/2 left-1/2 w-2 h-2 bg-blue-400 rounded-full"
           animate={{
@@ -300,7 +302,7 @@ const Skills = () => {
                         : 'border-transparent hover:border-white/50 hover:scale-105'
                     }`}
                     onClick={() => setActiveCategory(key)}
-                    whileHover={{ scale: activeCategory === key ? 1.1 : 1.05 }}
+                    whileHover={{ scale: activeCategory === key ? 1.1 : 1.05, y: activeCategory === key ? -3 : 0 }} // Adjusted hover for consistency
                     whileTap={{ scale: 0.95 }}
                     initial={{ opacity: 0, scale: 0 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -323,7 +325,7 @@ const Skills = () => {
                     )}
 
                     {/* Glow Effect */}
-                    <div className={`absolute -inset-2 bg-gradient-to-br ${category.color} opacity-20 rounded-full blur-md ${
+                    <div className={`absolute -inset-2 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-20 rounded-full blur-md ${
                       activeCategory === key ? 'opacity-40' : ''
                     } transition-opacity duration-300`}></div>
                     
@@ -393,7 +395,7 @@ const Skills = () => {
             </div>
             
             {/* Current Category Stats */}
-            <div className="inline-flex items-center gap-6 bg-gray-800/50 border border-gray-700 px-6 py-3 rounded-full">
+            <div className="inline-flex items-center gap-6 bg-gray-800/50 border border-gray-700 px-6 py-3 rounded-full backdrop-blur-sm"> {/* Added backdrop-blur-sm */}
               <div className="flex items-center gap-2">
                 <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${currentCategory.color}`}></div>
                 <span className="text-sm text-gray-300">{currentCategory.skills.length} Skills</span>
@@ -522,15 +524,21 @@ const Skills = () => {
                       animate={{ strokeDashoffset: 2 * Math.PI * 45 * (1 - skill.level / 100) }}
                       transition={{ duration: 1, delay: index * 0.1 }}
                     />
-                    {/* Gradient Definition */}
+                    {/* Gradient Definition - Adjusted to use palette colors directly */}
                     <defs>
                       <linearGradient id={`gradient-${index}`} x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor={currentCategory.color.includes('blue') ? '#3b82f6' : 
-                                                      currentCategory.color.includes('purple') ? '#a855f7' :
-                                                      currentCategory.color.includes('green') ? '#10b981' : '#f97316'} />
-                        <stop offset="100%" stopColor={currentCategory.color.includes('blue') ? '#06b6d4' : 
-                                                        currentCategory.color.includes('purple') ? '#ec4899' :
-                                                        currentCategory.color.includes('green') ? '#14b8a6' : '#ef4444'} />
+                        <stop offset="0%" stopColor={
+                          currentCategory.color.includes('blue') ? '#3b82f6' : 
+                          currentCategory.color.includes('purple') ? '#a855f7' :
+                          currentCategory.color.includes('green') ? '#22c55e' : // green-500
+                          currentCategory.color.includes('orange') ? '#f97316' : '#94a3b8' // orange-500 or slate-400 fallback
+                        } />
+                        <stop offset="100%" stopColor={
+                          currentCategory.color.includes('blue') ? '#0ea5e9' : // blue-400
+                          currentCategory.color.includes('purple') ? '#c084fc' : // purple-400
+                          currentCategory.color.includes('green') ? '#16a34a' : // green-600
+                          currentCategory.color.includes('orange') ? '#ea580c' : '#64748b' // orange-600 or slate-500 fallback
+                        } />
                       </linearGradient>
                     </defs>
                   </svg>
@@ -558,7 +566,7 @@ const Skills = () => {
                 {/* Enhanced Hover Instructions */}
                 {hoveredSkill === skill.name && (
                   <motion.div
-                    className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-gray-900 border border-blue-500/50 px-4 py-2 rounded-lg text-xs text-blue-400 whitespace-nowrap z-30"
+                    className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-gray-900 border border-blue-500/50 px-4 py-2 rounded-lg text-xs text-blue-400 whitespace-nowrap z-30 backdrop-blur-sm" // Added backdrop-blur-sm
                     initial={{ opacity: 0, scale: 0.8, y: 10 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.8, y: 10 }}
@@ -613,23 +621,35 @@ const Skills = () => {
             {achievements.map((achievement, index) => (
               <motion.div
                 key={achievement.label}
-                className="group relative"
+                className="group relative flex flex-col items-center" // Added flex for centering content easily
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
-                whileHover={{ scale: 1.05, y: -5 }}
+                whileHover={{ scale: 1.05, y: -5 }} // Adjusted hover effect for consistency
               >
                 {/* Hexagonal Container */}
-                <div className="relative w-32 h-32 mx-auto">
+                <div className="relative w-32 h-32 mx-auto overflow-hidden"
+                  style={{
+                    clipPath: 'polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%)'
+                  }}
+                >
                   {/* Hexagon Background */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-black transform rotate-45 rounded-2xl border border-gray-700 group-hover:border-blue-500/50 transition-all duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-black border border-gray-700 group-hover:border-blue-500/50 transition-all duration-300"
+                    style={{
+                      clipPath: 'polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%)'
+                    }}
+                  ></div>
                   
                   {/* Glow Effect */}
-                  <div className="absolute -inset-2 bg-gradient-to-br from-blue-500/20 to-purple-500/20 transform rotate-45 rounded-2xl blur-md opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 blur-md opacity-0 group-hover:opacity-100 transition-all duration-300"
+                    style={{
+                      clipPath: 'polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%)'
+                    }}
+                  ></div>
                   
                   {/* Content */}
-                  <div className="relative z-10 h-full flex flex-col items-center justify-center">
+                  <div className="relative z-10 h-full flex flex-col items-center justify-center text-center">
                     <achievement.icon className={`w-6 h-6 ${achievement.color} mb-2 group-hover:scale-110 transition-transform duration-300`} />
                     <div className={`text-2xl font-bold ${achievement.color} mb-1 group-hover:scale-105 transition-transform duration-300`}>
                       {achievement.value}
@@ -657,10 +677,18 @@ const Skills = () => {
           transition={{ duration: 0.6 }}
         >
           <div className="relative bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 md:p-12 text-white shadow-2xl overflow-hidden">
-            {/* Background Pattern */}
+            {/* Background Pattern - Enhanced with more subtle, dynamic elements */}
             <div className="absolute inset-0 opacity-10">
-              <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-white to-blue-200 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
-              <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-br from-purple-200 to-pink-200 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+              <motion.div 
+                className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-blue-500/20 to-blue-200/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"
+                animate={{ x: ['-50%', '-40%', '-50%'], y: ['-50%', '-60%', '-50%'] }}
+                transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+              ></motion.div>
+              <motion.div 
+                className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-br from-purple-500/20 to-pink-200/20 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"
+                animate={{ x: ['50%', '40%', '50%'], y: ['50%', '60%', '50%'] }}
+                transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+              ></motion.div>
             </div>
 
             <div className="relative z-10">
