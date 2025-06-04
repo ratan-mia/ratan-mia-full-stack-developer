@@ -2,23 +2,23 @@
 
 import { motion } from 'framer-motion';
 import {
-    Award,
-    BookOpen,
-    Briefcase,
-    Calendar,
-    CheckCircle,
-    Clock,
-    Code,
-    Database,
-    ExternalLink,
-    Globe,
-    GraduationCap,
-    Search,
-    Server,
-    Shield,
-    Star,
-    Target,
-    Trophy
+  Award,
+  BookOpen,
+  Briefcase,
+  Calendar,
+  CheckCircle,
+  Clock,
+  Code,
+  Database,
+  ExternalLink,
+  Globe,
+  GraduationCap,
+  Search,
+  Server,
+  Shield,
+  Star,
+  Target,
+  Trophy
 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -211,7 +211,7 @@ const TrainingCertificates = () => {
   };
 
   return (
-    <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden">
+    <section id="certificates" className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div 

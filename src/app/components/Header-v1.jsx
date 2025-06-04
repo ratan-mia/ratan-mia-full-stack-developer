@@ -2,19 +2,17 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 import {
-  Award,
   Briefcase,
   ChevronDown,
   Clock,
   Code,
   Download,
+  ExternalLink,
   FolderOpen,
   Home,
   Mail,
   Menu,
-  MessageSquare,
   Phone,
-  Settings,
   User,
   X
 } from 'lucide-react';
@@ -34,29 +32,29 @@ const Header = () => {
     { name: 'Skills', id: 'skills', icon: Code }
   ];
 
-  // Dropdown navigation groups - Updated to match actual page sections
+  // Dropdown navigation groups
   const dropdownMenus = [
+    {
+      title: 'Experience',
+      icon: Briefcase,
+      items: [
+        { name: 'Timeline', id: 'timeline', icon: Clock },
+        { name: 'Experience', id: 'experience', icon: Briefcase },
+        { name: 'Certificates', id: 'certificates', icon: ExternalLink }
+      ]
+    },
     {
       title: 'Portfolio',
       icon: FolderOpen,
       items: [
         { name: 'Projects', id: 'projects', icon: FolderOpen },
-        { name: 'Testimonials', id: 'testimonials', icon: MessageSquare },
-        { name: 'Certificates', id: 'certificates', icon: Award }
-      ]
-    },
-    {
-      title: 'More',
-      icon: Settings,
-      items: [
-        { name: 'How I Work', id: 'process', icon: Clock },
-        { name: 'FAQ', id: 'faq', icon: MessageSquare },
-        { name: 'Get Quote', id: 'quote', icon: Mail }
+        { name: 'Testimonials', id: 'testimonials', icon: User },
+        { name: 'FAQ', id: 'faq', icon: Menu }
       ]
     }
   ];
 
-  // All menu items for mobile and section detection - Updated with correct IDs
+  // All menu items for mobile and section detection
   const allMenuItems = [
     ...mainMenuItems,
     ...dropdownMenus.flatMap(dropdown => dropdown.items),
@@ -350,6 +348,16 @@ const Header = () => {
               <span className="hidden xl:inline">Get a Quote</span>
               <span className="xl:hidden">Quote</span>
             </motion.button>
+            {/* <motion.button
+              onClick={() => scrollToSection('contact')}
+              className="flex items-center gap-2 px-3 xl:px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700 rounded-lg transition-all duration-200 text-sm font-medium shadow-lg"
+              whileHover={{ scale: 1.05, y: -1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Mail className="w-4 h-4" />
+              <span className="hidden xl:inline">Hire Me</span>
+              <span className="xl:hidden">Hire</span>
+            </motion.button> */}
           </div>
 
           {/* Enhanced Mobile Menu Button */}
@@ -452,8 +460,7 @@ const Header = () => {
                     <Download className="w-4 h-4" />
                     Download CV
                   </motion.button>
-                  
-                  <motion.button
+                     <motion.button
                     onClick={() => scrollToSection('quote')}
                     className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 font-medium rounded-lg shadow-lg"
                     initial={{ opacity: 0, y: 20 }}
@@ -465,13 +472,12 @@ const Header = () => {
                     <Mail className="w-4 h-4" />
                     Get a Quote
                   </motion.button>
-                  
                   <motion.button
                     onClick={() => scrollToSection('contact')}
-                    className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-green-600 to-teal-600 text-white hover:from-green-700 hover:to-teal-700 transition-all duration-200 font-medium rounded-lg shadow-lg"
+                    className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 font-medium rounded-lg shadow-lg"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 1.0 }}
+                    transition={{ duration: 0.4, delay: 0.9 }}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -485,7 +491,7 @@ const Header = () => {
                   className="mt-8 p-4 bg-gradient-to-br from-slate-50 to-indigo-50 border border-slate-200/50 rounded-xl"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 1.1 }}
+                  transition={{ duration: 0.4, delay: 1.0 }}
                 >
                   <h4 className="text-sm font-bold text-slate-800 mb-3 uppercase tracking-wider">
                     Quick Contact
@@ -513,7 +519,7 @@ const Header = () => {
                   className="mt-6 flex items-center justify-center gap-2 text-sm bg-green-50 border border-green-200 rounded-lg p-3"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ duration: 0.4, delay: 1.2 }}
+                  transition={{ duration: 0.4, delay: 1.1 }}
                 >
                   <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                   <span className="text-green-600 font-medium">Available for Projects</span>

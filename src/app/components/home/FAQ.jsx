@@ -2,19 +2,19 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 import {
-    ArrowRight,
-    Calendar,
-    ChevronDown,
-    Code,
-    DollarSign,
-    HelpCircle,
-    Mail,
-    MessageSquare,
-    Phone,
-    Search,
-    Shield,
-    Star,
-    Zap
+  ArrowRight,
+  Calendar,
+  ChevronDown,
+  Code,
+  DollarSign,
+  HelpCircle,
+  Mail,
+  MessageSquare,
+  Phone,
+  Search,
+  Shield,
+  Star,
+  Zap
 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -196,7 +196,7 @@ const FAQ = () => {
   const featuredFAQs = faqData.filter(item => item.featured);
 
   return (
-    <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden">
+    <section id="faq" className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div 

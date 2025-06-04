@@ -229,7 +229,7 @@ const Testimonials = () => {
   const currentTestimonial = featuredTestimonials[activeTestimonial] || featuredTestimonials[0];
 
   return (
-    <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-white via-slate-50 to-blue-50 relative overflow-hidden">
+    <section id="testimonials" className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-white via-slate-50 to-blue-50 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div 

@@ -207,7 +207,7 @@ const ProcessHowIWork = () => {
   ];
 
   return (
-    <section className="relative py-16 overflow-hidden bg-gray-950">
+    <section id="process" className="relative py-16 overflow-hidden bg-gray-950">
       {/* Carbon Fiber Background Pattern */}
       <div 
         className="absolute inset-0 opacity-10" 

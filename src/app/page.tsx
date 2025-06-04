@@ -22,9 +22,7 @@ export default function Home() {
       <Skills />
       <TrainingCertificates />
       <ProcessHowIWork />
-
       <FAQ />
-
       <Contact />
     </main>
   );
