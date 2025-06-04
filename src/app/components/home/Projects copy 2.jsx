@@ -6,28 +6,8 @@ const Projects = () => {
   const [hoveredProject, setHoveredProject] = useState(null);
 
 const projects = [
-     {
+    {
       id: 1,
-      title: "Elf Bangladesh - Asian Petroleum",
-      subtitle: "Modern Digital Platform for Global Lubricant Brand",
-      description: "Complete digital presence for Elf Bangladesh using Next.js, Tailwind CSS, Zoho CRM, WhatsApp Business API, Strapi CMS, and Facebook Pixel. Full-stack development with user-centric UI/UX design for optimal performance and engagement.",
-      fullDescription: "A comprehensive digital platform for Asian Petroleum Limited featuring dynamic content management through Strapi CMS, automated sales pipeline via Zoho CRM integration, real-time customer communication through WhatsApp Business API, and advanced analytics with Facebook Pixel tracking.",
-      tech: ["Next.js", "Tailwind CSS", "Zoho CRM", "WhatsApp Business API", "Strapi CMS", "Facebook Pixel"],
-      category: "web-development",
-      link: "https://asian-petroleum.com/",
-      status: "Live",
-      gradient: "from-emerald-600 via-teal-700 to-cyan-800",
-      accentColor: "emerald",
-      year: "2024",
-      client: "Asian Petroleum Limited",
-      duration: "3 months",
-      results: ["Increased Conversion Rate", "Automated Sales Pipeline", "Boosted User Engagement"],
-      devices: ["desktop", "mobile", "tablet"],
-      tags: ["Featured", "Full-Stack", "CRM Integration", "UI/UX"]
-    },
-  
-  {
-      id: 2,
       title: "Chery Bangladesh",
       subtitle: "Automotive Excellence Platform",
       description: "Official automotive website featuring an immersive 360° car viewer and achieving 97% speed optimization. Built with Next.js and React.js for optimal performance, SEO excellence, and superior user experience.",
@@ -46,7 +26,7 @@ const projects = [
       tags: ["Featured", "E-commerce", "Automotive"]
     },
     {
-      id: 3,
+      id: 2,
       title: "Car Parts E-commerce",
       subtitle: "Advanced Auto Parts Platform",
       description: "Comprehensive e-commerce platform with intelligent make/model/year specification system. Seamlessly integrated with WhatsApp Business API, Facebook Pixel, and advanced CRM for enhanced customer engagement.",
@@ -65,7 +45,7 @@ const projects = [
       tags: ["E-commerce", "API Integration", "B2B"]
     },
     {
-      id: 4,
+      id: 3,
       title: "ELF Bangladesh",
       subtitle: "Premium Lubricants E-commerce",
       description: "High-converting e-commerce platform showcasing premium lubricant products. Built with React.js and Tailwind CSS, demonstrating scalable online retail solutions with modern design principles.",
@@ -84,7 +64,7 @@ const projects = [
       tags: ["Featured", "E-commerce", "Premium"]
     },
     {
-      id: 5,
+      id: 4,
       title: "OpenAI Counselling Chatbot",
       subtitle: "AI-Powered Mental Health Platform",
       description: "Revolutionary WordPress plugin integrating ChatGPT and OpenAI APIs with advanced Text-to-Speech functionality, specifically designed for mental health counselling and therapeutic support.",
@@ -103,7 +83,7 @@ const projects = [
       tags: ["AI", "Healthcare", "Innovation"]
     },
     {
-      id: 6,
+      id: 5,
       title: "CWL Detailing Web",
       subtitle: "Professional Auto Detailing Services",
       description: "Modern service business website leveraging React.js and Tailwind CSS with intuitive UI/UX, cross-browser compatibility, and mobile-first responsive design for optimal user engagement.",
@@ -122,7 +102,7 @@ const projects = [
       tags: ["Service Business", "Mobile-First", "Booking"]
     },
     {
-      id: 7,
+      id: 6,
       title: "SK Japan Export",
       subtitle: "Automotive Export Platform",
       description: "Custom Shopify application using Laravel to connect with Japanese car auctions. Features advanced Car Price Calculator with real-time market data and custom functionality for international trade.",
@@ -140,7 +120,25 @@ const projects = [
       devices: ["desktop", "mobile"],
       tags: ["Custom Development", "International", "Real-time"]
     },
-   
+    {
+      id: 7,
+      title: "Elf Bangladesh - Asian Petroleum",
+      subtitle: "Modern Digital Platform for Global Lubricant Brand",
+      description: "Complete digital presence for Elf Bangladesh using Next.js, Tailwind CSS, Zoho CRM, WhatsApp Business API, Strapi CMS, and Facebook Pixel. Full-stack development with user-centric UI/UX design for optimal performance and engagement.",
+      fullDescription: "A comprehensive digital platform for Asian Petroleum Limited featuring dynamic content management through Strapi CMS, automated sales pipeline via Zoho CRM integration, real-time customer communication through WhatsApp Business API, and advanced analytics with Facebook Pixel tracking.",
+      tech: ["Next.js", "Tailwind CSS", "Zoho CRM", "WhatsApp Business API", "Strapi CMS", "Facebook Pixel"],
+      category: "web-development",
+      link: "https://asian-petroleum.com/",
+      status: "Live",
+      gradient: "from-emerald-600 via-teal-700 to-cyan-800",
+      accentColor: "emerald",
+      year: "2024",
+      client: "Asian Petroleum Limited",
+      duration: "3 months",
+      results: ["Increased Conversion Rate", "Automated Sales Pipeline", "Boosted User Engagement"],
+      devices: ["desktop", "mobile", "tablet"],
+      tags: ["Featured", "Full-Stack", "CRM Integration", "UI/UX"]
+    }
   ];
 
   const categories = [
