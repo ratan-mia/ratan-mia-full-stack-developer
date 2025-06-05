@@ -246,7 +246,7 @@ const TrainingCertificates = () => {
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Compact Header */}
+        {/* Header with Improved Typography */}
         <motion.div
           variants={staggerContainer}
           initial="initial"
@@ -268,19 +268,19 @@ const TrainingCertificates = () => {
           
           <motion.h2 
             variants={fadeInUp}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-6 bg-gradient-to-r from-slate-800 via-blue-800 to-purple-800 bg-clip-text text-transparent"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-gray-900"
           >
             Learning Journey
           </motion.h2>
           
           <motion.p 
             variants={fadeInUp}
-            className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed font-light"
+            className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
           >
             Continuous growth through formal education, industry certifications, and specialized training programs.
           </motion.p>
 
-          {/* Compact Stats */}
+          {/* Stats with Improved Typography */}
           <motion.div 
             variants={fadeInUp}
             className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 max-w-2xl mx-auto"
@@ -300,14 +300,14 @@ const TrainingCertificates = () => {
                 whileHover={{ scale: 1.05 }}
               >
                 <stat.icon className={`w-5 h-5 ${stat.color} mx-auto mb-1`} />
-                <div className={`text-xl font-black ${stat.color} mb-1`}>{stat.number}</div>
-                <div className="text-slate-600 text-sm font-medium">{stat.label}</div>
+                <div className={`text-xl font-bold ${stat.color} mb-1`}>{stat.number}</div>
+                <div className="text-gray-600 text-sm font-medium">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
         </motion.div>
 
-        {/* Compact Featured Certificates */}
+        {/* Featured Certificates with Improved Typography */}
         <motion.div 
           className="mb-12"
           variants={staggerContainer}
@@ -316,7 +316,7 @@ const TrainingCertificates = () => {
           viewport={{ once: true }}
         >
           <motion.h3 
-            className="text-2xl md:text-3xl font-black text-slate-800 mb-6 text-center"
+            className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 text-center"
             variants={fadeInUp}
           >
             Featured Certifications
@@ -347,19 +347,19 @@ const TrainingCertificates = () => {
                   </div>
                 </div>
                 
-                <h4 className="font-bold text-slate-800 text-base mb-2 group-hover:text-blue-600 transition-colors duration-300 line-clamp-2">
+                <h4 className="font-bold text-gray-900 text-base md:text-lg mb-2 group-hover:text-blue-600 transition-colors duration-300 line-clamp-2">
                   {cert.title}
                 </h4>
-                <p className="text-blue-600 font-semibold text-sm mb-2">{cert.provider}</p>
-                <p className="text-slate-600 text-sm leading-relaxed mb-3 line-clamp-2">
+                <p className="text-blue-600 font-semibold text-sm md:text-base mb-2">{cert.provider}</p>
+                <p className="text-gray-600 text-sm md:text-base leading-relaxed mb-3 line-clamp-2">
                   {cert.description}
                 </p>
                 
                 <div className="flex items-center justify-between">
-                  <span className="text-slate-500 text-xs">{cert.duration}</span>
+                  <span className="text-gray-500 text-sm font-medium">{cert.duration}</span>
                   <div className="flex items-center gap-1">
-                    <Eye className="w-3 h-3 text-slate-400 group-hover:text-blue-500 transition-colors duration-300" />
-                    <span className="text-xs text-slate-500 group-hover:text-blue-600 transition-colors duration-300">
+                    <Eye className="w-3 h-3 text-gray-400 group-hover:text-blue-500 transition-colors duration-300" />
+                    <span className="text-sm text-gray-500 group-hover:text-blue-600 transition-colors duration-300 font-medium">
                       Details
                     </span>
                   </div>
@@ -369,7 +369,7 @@ const TrainingCertificates = () => {
           </div>
         </motion.div>
 
-        {/* Compact Education & Award Section */}
+        {/* Education & Award Section with Improved Typography */}
         <motion.div 
           className="grid lg:grid-cols-2 gap-6 mb-12"
           variants={staggerContainer}
@@ -391,7 +391,7 @@ const TrainingCertificates = () => {
                   <GraduationCap className="w-3 h-3" />
                   Higher Education
                 </div>
-                <h3 className="text-lg md:text-xl font-bold text-slate-800">
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">
                   {education.degree}
                 </h3>
               </div>
@@ -400,25 +400,25 @@ const TrainingCertificates = () => {
             <div className="grid grid-cols-1 gap-3 mb-4">
               <div className="flex items-center gap-3 p-2 bg-blue-50 rounded-lg">
                 <Briefcase className="w-4 h-4 text-blue-500" />
-                <span className="text-sm font-medium text-slate-700">{education.institution}</span>
+                <span className="text-sm md:text-base font-semibold text-gray-800">{education.institution}</span>
               </div>
               <div className="flex items-center gap-3 p-2 bg-green-50 rounded-lg">
                 <Calendar className="w-4 h-4 text-green-500" />
-                <span className="text-sm text-slate-700">{education.period}</span>
+                <span className="text-sm md:text-base text-gray-700 font-medium">{education.period}</span>
               </div>
             </div>
 
-            <p className="text-slate-600 text-sm leading-relaxed mb-4">{education.description}</p>
+            <p className="text-gray-600 text-sm md:text-base leading-relaxed mb-4">{education.description}</p>
             
             <div className="space-y-2">
               {education.achievements.slice(0, 3).map((achievement, index) => (
-                <div key={index} className="flex items-start gap-2 text-sm">
-                  <CheckCircle className="w-3 h-3 text-green-500 mt-0.5 flex-shrink-0" />
-                  <span className="text-slate-700">{achievement}</span>
+                <div key={index} className="flex items-start gap-2 text-sm md:text-base">
+                  <CheckCircle className="w-3 h-3 md:w-4 md:h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                  <span className="text-gray-700 font-medium">{achievement}</span>
                 </div>
               ))}
               {education.achievements.length > 3 && (
-                <div className="text-xs text-slate-500 ml-5">+{education.achievements.length - 3} more outcomes</div>
+                <div className="text-sm text-gray-500 ml-5 font-medium">+{education.achievements.length - 3} more outcomes</div>
               )}
             </div>
           </motion.div>
@@ -439,7 +439,7 @@ const TrainingCertificates = () => {
                       <Trophy className="w-3 h-3" />
                       Academic Award
                     </div>
-                    <h3 className="text-lg md:text-xl font-bold text-slate-800">
+                    <h3 className="text-lg md:text-xl font-bold text-gray-900">
                       {award.title}
                     </h3>
                   </div>
@@ -448,21 +448,21 @@ const TrainingCertificates = () => {
                 <div className="space-y-2 mb-4">
                   <div className="flex items-center gap-3 p-2 bg-orange-50 rounded-lg">
                     <Target className="w-4 h-4 text-orange-500" />
-                    <span className="text-sm font-medium text-slate-700">{award.organization}</span>
+                    <span className="text-sm md:text-base font-semibold text-gray-800">{award.organization}</span>
                   </div>
                   <div className="flex items-center gap-3 p-2 bg-yellow-50 rounded-lg">
                     <Calendar className="w-4 h-4 text-yellow-500" />
-                    <span className="text-sm text-slate-700">{award.date}</span>
+                    <span className="text-sm md:text-base text-gray-700 font-medium">{award.date}</span>
                   </div>
                 </div>
                 
-                <p className="text-slate-700 text-sm leading-relaxed">{award.description}</p>
+                <p className="text-gray-700 text-sm md:text-base leading-relaxed">{award.description}</p>
               </div>
             ))}
           </motion.div>
         </motion.div>
 
-        {/* Compact Filter and Search */}
+        {/* Filter and Search with Improved Typography */}
         <motion.div 
           className="mb-8"
           initial={{ opacity: 0, y: 20 }}
@@ -480,7 +480,7 @@ const TrainingCertificates = () => {
                   className={`flex items-center gap-2 px-3 md:px-4 py-2 text-sm font-semibold rounded-xl transition-all duration-300 ${
                     activeFilter === category.id
                       ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
-                      : 'bg-white/80 backdrop-blur-md text-slate-700 hover:bg-white hover:text-blue-600 border border-white/50'
+                      : 'bg-white/80 backdrop-blur-md text-gray-700 hover:bg-white hover:text-blue-600 border border-white/50'
                   }`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -491,21 +491,21 @@ const TrainingCertificates = () => {
               ))}
             </div>
 
-            {/* Compact Search */}
+            {/* Search */}
             <div className="relative w-full md:w-64">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
               <input
                 type="text"
                 placeholder="Search certificates..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 bg-white/90 backdrop-blur-md border border-white/50 rounded-xl text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-lg text-sm"
+                className="w-full pl-10 pr-4 py-2 bg-white/90 backdrop-blur-md border border-white/50 rounded-xl text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-lg text-sm"
               />
             </div>
           </div>
         </motion.div>
 
-        {/* Compact Certificates Grid */}
+        {/* Certificates Grid with Improved Typography */}
         <motion.div 
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6"
           variants={staggerContainer}
@@ -542,24 +542,24 @@ const TrainingCertificates = () => {
 
                 {/* Certificate Content */}
                 <div className="mb-3">
-                  <h4 className="text-sm md:text-base font-bold text-slate-800 mb-2 group-hover:text-blue-600 transition-colors duration-300 line-clamp-2">
+                  <h4 className="text-base font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300 line-clamp-2">
                     {cert.title}
                   </h4>
                   <div className="flex items-center gap-2 mb-2">
                     <Globe className="w-3 h-3 text-blue-500" />
-                    <p className="text-blue-600 font-semibold text-xs">{cert.provider}</p>
+                    <p className="text-blue-600 font-semibold text-sm">{cert.provider}</p>
                   </div>
                   <div className="flex items-center gap-2 mb-3">
                     <Clock className="w-3 h-3 text-green-500" />
-                    <p className="text-slate-500 text-xs">{cert.duration}</p>
+                    <p className="text-gray-500 text-sm font-medium">{cert.duration}</p>
                   </div>
-                  <p className="text-slate-600 text-xs leading-relaxed line-clamp-2">{cert.description}</p>
+                  <p className="text-gray-600 text-sm leading-relaxed line-clamp-2">{cert.description}</p>
                 </div>
 
-                {/* Compact Skills */}
+                {/* Skills */}
                 <div className="flex flex-wrap gap-1 mb-3">
                   {cert.skills.slice(0, 2).map((skill, skillIndex) => (
-                    <span key={skillIndex} className="px-2 py-1 bg-slate-100 text-slate-700 text-xs font-medium rounded-lg">
+                    <span key={skillIndex} className="px-2 py-1 bg-gray-100 text-gray-700 text-xs font-medium rounded-lg">
                       {skill}
                     </span>
                   ))}
@@ -570,22 +570,22 @@ const TrainingCertificates = () => {
                   )}
                 </div>
 
-                {/* Compact Actions */}
-                <div className="flex items-center justify-between pt-2 border-t border-slate-200">
-                  <div className="flex items-center gap-1 text-xs text-slate-500">
+                {/* Actions */}
+                <div className="flex items-center justify-between pt-2 border-t border-gray-200">
+                  <div className="flex items-center gap-1 text-sm text-gray-500">
                     <CheckCircle className="w-3 h-3 text-green-500" />
-                    Completed
+                    <span className="font-medium">Completed</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <motion.button
-                      className="flex items-center gap-1 text-xs text-blue-600 hover:text-blue-800 font-medium"
+                      className="flex items-center gap-1 text-sm text-blue-600 hover:text-blue-800 font-semibold"
                       whileHover={{ scale: 1.05 }}
                     >
                       <Eye className="w-3 h-3" />
                       View
                     </motion.button>
                     <motion.button
-                      className="flex items-center gap-1 text-xs text-green-600 hover:text-green-800 font-medium"
+                      className="flex items-center gap-1 text-sm text-green-600 hover:text-green-800 font-semibold"
                       whileHover={{ scale: 1.05 }}
                     >
                       <Download className="w-3 h-3" />
@@ -598,7 +598,7 @@ const TrainingCertificates = () => {
           </AnimatePresence>
         </motion.div>
 
-        {/* Compact Call to Action */}
+        {/* Call to Action with Improved Typography */}
         <motion.div
           className="text-center mt-16"
           initial={{ opacity: 0, y: 30 }}
@@ -622,10 +622,10 @@ const TrainingCertificates = () => {
             </div>
 
             <div className="relative z-10">
-              <h3 className="text-2xl md:text-3xl lg:text-4xl font-black mb-4">
+              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
                 Continuous Learning Journey
               </h3>
-              <p className="text-blue-100 mb-6 max-w-2xl mx-auto text-base md:text-lg leading-relaxed font-light">
+              <p className="text-blue-100 mb-6 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
                 Committed to staying current with latest technologies and best practices through ongoing education.
               </p>
               
