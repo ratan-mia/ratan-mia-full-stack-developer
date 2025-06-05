@@ -17,26 +17,28 @@ import {
   Shield,
   Star,
   Users,
+  X,
   Zap
 } from 'lucide-react';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 const FAQ = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [openItems, setOpenItems] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [showSearch, setShowSearch] = useState(false);
 
   const fadeInUp = {
-    initial: { opacity: 0, y: 40 },
+    initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6, ease: "easeOut" }
+    transition: { duration: 0.4, ease: "easeOut" }
   };
 
   const staggerContainer = {
     animate: {
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
+        staggerChildren: 0.08,
+        delayChildren: 0.1
       }
     }
   };
@@ -182,27 +184,42 @@ const FAQ = () => {
     );
   };
 
-  const filteredFAQs = faqData.filter(item => {
-    const matchesCategory = activeCategory === 'all' || item.category === activeCategory;
-    const matchesSearch = searchTerm === '' || 
-      item.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.answer.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
-    return matchesCategory && matchesSearch;
-  });
+  const toggleAllOpen = () => {
+    if (openItems.length === filteredFAQs.length) {
+      setOpenItems([]);
+    } else {
+      setOpenItems(filteredFAQs.map(item => item.id));
+    }
+  };
+
+  const filteredFAQs = useMemo(() => {
+    return faqData.filter(item => {
+      const matchesCategory = activeCategory === 'all' || item.category === activeCategory;
+      const matchesSearch = searchTerm === '' || 
+        item.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.answer.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
+      return matchesCategory && matchesSearch;
+    });
+  }, [activeCategory, searchTerm]);
 
   const featuredFAQs = faqData.filter(item => item.featured);
 
+  const clearSearch = () => {
+    setSearchTerm('');
+    setShowSearch(false);
+  };
+
   return (
-    <section id="faq" className="py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden">
-      {/* Enhanced Background Elements */}
+    <section id="faq" className="py-12 md:py-16 lg:py-20 px-3 sm:px-4 lg:px-6 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden">
+      {/* Optimized Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div 
-          className="absolute top-1/4 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-blue-500/5 rounded-full blur-3xl"
+          className="absolute top-1/4 right-1/4 w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 bg-blue-500/4 rounded-full blur-3xl"
           animate={{
-            x: [0, -50, 0],
-            y: [0, 25, 0],
-            scale: [1, 1.1, 1],
+            x: [0, -30, 0],
+            y: [0, 15, 0],
+            scale: [1, 1.05, 1],
           }}
           transition={{
             duration: 15,
@@ -211,11 +228,11 @@ const FAQ = () => {
           }}
         />
         <motion.div 
-          className="absolute bottom-1/4 left-1/4 w-48 h-48 md:w-80 md:h-80 bg-purple-500/5 rounded-full blur-3xl"
+          className="absolute bottom-1/4 left-1/4 w-32 h-32 md:w-48 md:h-48 lg:w-64 lg:h-64 bg-purple-500/4 rounded-full blur-3xl"
           animate={{
-            x: [0, 40, 0],
-            y: [0, -30, 0],
-            scale: [1, 1.2, 1],
+            x: [0, 25, 0],
+            y: [0, -20, 0],
+            scale: [1, 1.08, 1],
           }}
           transition={{
             duration: 20,
@@ -225,21 +242,21 @@ const FAQ = () => {
         />
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-6xl mx-auto relative z-10">
         {/* Compact Header */}
         <motion.div
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-8 md:mb-10"
         >
           <motion.div
             variants={fadeInUp}
-            className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-md border border-green-200/50 text-green-800 px-6 py-3 rounded-2xl font-semibold text-sm uppercase tracking-wider mb-6 shadow-lg"
+            className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-md border border-green-200/50 text-green-800 px-4 py-2 rounded-xl font-semibold text-xs sm:text-sm uppercase tracking-wider mb-4 md:mb-6 shadow-lg"
           >
             <motion.div 
-              className="w-2 h-2 bg-gradient-to-r from-green-600 to-emerald-600 rounded-full"
+              className="w-1.5 h-1.5 bg-gradient-to-r from-green-600 to-emerald-600 rounded-full"
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
             />
@@ -248,14 +265,14 @@ const FAQ = () => {
           
           <motion.h2 
             variants={fadeInUp}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-6 bg-gradient-to-r from-slate-800 via-blue-800 to-purple-800 bg-clip-text text-transparent"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black mb-4 md:mb-6 bg-gradient-to-r from-slate-800 via-blue-800 to-purple-800 bg-clip-text text-transparent"
           >
             Got Questions?
           </motion.h2>
           
           <motion.p 
             variants={fadeInUp}
-            className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed font-light"
+            className="text-base md:text-lg lg:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed font-light px-2"
           >
             Everything you need to know about working with me, my process, pricing, and services.
           </motion.p>
@@ -263,25 +280,25 @@ const FAQ = () => {
           {/* Compact Stats */}
           <motion.div 
             variants={fadeInUp}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 max-w-2xl mx-auto"
+            className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mt-6 md:mt-8 max-w-2xl mx-auto"
           >
             {[
               { number: '14', label: 'FAQs', icon: HelpCircle, color: 'text-blue-500' },
-              { number: '< 2h', label: 'Response Time', icon: Clock, color: 'text-green-500' },
+              { number: '< 2h', label: 'Response', icon: Clock, color: 'text-green-500' },
               { number: '100%', label: 'Transparent', icon: CheckCircle, color: 'text-purple-500' },
               { number: '24/7', label: 'Available', icon: Users, color: 'text-orange-500' }
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}
-                className="text-center p-3 bg-white/60 backdrop-blur-sm rounded-xl border border-white/50 shadow-lg"
-                initial={{ opacity: 0, y: 20 }}
+                className="text-center p-2.5 md:p-3 bg-white/60 backdrop-blur-sm rounded-lg md:rounded-xl border border-white/50 shadow-lg"
+                initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 + index * 0.1 }}
+                transition={{ delay: 0.3 + index * 0.08 }}
                 whileHover={{ scale: 1.05 }}
               >
-                <stat.icon className={`w-5 h-5 ${stat.color} mx-auto mb-1`} />
-                <div className={`text-xl font-black ${stat.color} mb-1`}>{stat.number}</div>
-                <div className="text-slate-600 text-sm font-medium">{stat.label}</div>
+                <stat.icon className={`w-4 h-4 md:w-5 md:h-5 ${stat.color} mx-auto mb-1`} />
+                <div className={`text-lg md:text-xl font-black ${stat.color} mb-0.5`}>{stat.number}</div>
+                <div className="text-slate-600 text-xs md:text-sm font-medium">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
@@ -289,112 +306,110 @@ const FAQ = () => {
 
         {/* Compact Quick Contact */}
         <motion.div 
-          className="mb-8 text-center"
-          initial={{ opacity: 0, y: 20 }}
+          className="mb-6 md:mb-8 text-center"
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.4 }}
         >
-          <div className="bg-white/80 backdrop-blur-md p-4 rounded-2xl border border-white/50 shadow-lg inline-block">
-            <p className="text-slate-600 mb-3 text-sm">
+          <div className="bg-white/80 backdrop-blur-md p-3 md:p-4 rounded-xl md:rounded-2xl border border-white/50 shadow-lg inline-block">
+            <p className="text-slate-600 mb-2 md:mb-3 text-xs md:text-sm">
               Have a specific question? I'm here to help!
             </p>
             <div className="flex flex-col sm:flex-row gap-2 justify-center">
               <motion.a
                 href="#contact"
-                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold text-sm rounded-xl shadow-lg transition-all duration-200"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold text-xs md:text-sm rounded-lg md:rounded-xl shadow-lg transition-all duration-200"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <MessageSquare className="w-4 h-4" />
+                <MessageSquare className="w-3 h-3 md:w-4 md:h-4" />
                 Send Message
               </motion.a>
               <motion.a
                 href="tel:+8801751010966"
-                className="inline-flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-sm border border-white/50 text-slate-700 hover:text-blue-600 font-semibold text-sm rounded-xl transition-all duration-200"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-2 bg-white/60 backdrop-blur-sm border border-white/50 text-slate-700 hover:text-blue-600 font-semibold text-xs md:text-sm rounded-lg md:rounded-xl transition-all duration-200"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <Phone className="w-4 h-4" />
+                <Phone className="w-3 h-3 md:w-4 md:h-4" />
                 Call Now
               </motion.a>
             </div>
           </div>
         </motion.div>
 
-        {/* Compact Featured FAQs */}
+        {/* Enhanced Featured FAQs */}
         <motion.div 
-          className="mb-10"
+          className="mb-8 md:mb-10"
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
           viewport={{ once: true }}
         >
           <motion.h3 
-            className="text-2xl md:text-3xl font-black text-slate-800 mb-6 text-center"
+            className="text-xl md:text-2xl lg:text-3xl font-black text-slate-800 mb-4 md:mb-6 text-center"
             variants={fadeInUp}
           >
             Most Popular Questions
           </motion.h3>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
             {featuredFAQs.map((item, index) => (
               <motion.div
                 key={item.id}
-                className="bg-white/80 backdrop-blur-md p-4 rounded-2xl border border-white/50 shadow-lg hover:shadow-xl transition-all duration-300 group"
+                className="bg-white/80 backdrop-blur-md p-3 md:p-4 rounded-xl md:rounded-2xl border border-white/50 shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer"
                 variants={fadeInUp}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ scale: 1.02, y: -3 }}
+                transition={{ delay: index * 0.08 }}
+                whileHover={{ scale: 1.02, y: -2 }}
+                onClick={() => {
+                  setActiveCategory('all');
+                  setOpenItems([item.id]);
+                  document.getElementById(`faq-${item.id}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }}
               >
-                <div className="flex items-start gap-2 mb-3">
-                  <Star className="w-4 h-4 text-yellow-500 mt-1 flex-shrink-0" />
-                  <h4 className="font-bold text-slate-800 text-sm leading-tight line-clamp-2">{item.question}</h4>
+                <div className="flex items-start gap-2 mb-2 md:mb-3">
+                  <Star className="w-3 h-3 md:w-4 md:h-4 text-yellow-500 mt-0.5 flex-shrink-0" />
+                  <h4 className="font-bold text-slate-800 text-xs md:text-sm leading-tight line-clamp-2">{item.question}</h4>
                 </div>
-                <p className="text-slate-600 text-xs leading-relaxed mb-3 line-clamp-3">
+                <p className="text-slate-600 text-xs leading-relaxed mb-2 md:mb-3 line-clamp-3">
                   {item.answer}
                 </p>
-                <button
-                  onClick={() => {
-                    setActiveCategory('all');
-                    setOpenItems([item.id]);
-                    document.getElementById(`faq-${item.id}`)?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 font-medium text-xs group-hover:gap-2 transition-all duration-200"
-                >
+                <div className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 font-medium text-xs group-hover:gap-1.5 transition-all duration-200">
                   Read Full Answer
                   <ArrowRight className="w-3 h-3" />
-                </button>
+                </div>
               </motion.div>
             ))}
           </div>
         </motion.div>
 
-        {/* Compact Filter and Search */}
+        {/* Enhanced Filter and Search */}
         <motion.div 
-          className="mb-8"
-          initial={{ opacity: 0, y: 20 }}
+          className="mb-6 md:mb-8"
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.4 }}
         >
-          <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
+          <div className="flex flex-col gap-4">
             {/* Category Filters */}
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1.5 md:gap-2 justify-center">
               {categories.map((category) => (
                 <motion.button
                   key={category.id}
                   onClick={() => setActiveCategory(category.id)}
-                  className={`flex items-center gap-2 px-3 py-2 text-sm font-semibold rounded-xl transition-all duration-300 ${
+                  className={`flex items-center gap-1.5 md:gap-2 px-2.5 md:px-3 py-1.5 md:py-2 text-xs md:text-sm font-semibold rounded-lg md:rounded-xl transition-all duration-300 ${
                     activeCategory === category.id
                       ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
                       : 'bg-white/80 backdrop-blur-md text-slate-700 hover:bg-white hover:text-blue-600 border border-white/50'
                   }`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  <category.icon className="w-4 h-4" />
+                  <category.icon className="w-3 h-3 md:w-4 md:h-4" />
                   <span className="hidden sm:inline">{category.name}</span>
-                  <span className={`px-1.5 py-0.5 rounded-full text-xs font-bold ${
+                  <span className={`px-1 py-0.5 rounded-full text-xs font-bold ${
                     activeCategory === category.id 
                       ? 'bg-white/20 text-white' 
                       : 'bg-slate-200 text-slate-600'
@@ -405,23 +420,60 @@ const FAQ = () => {
               ))}
             </div>
 
-            {/* Compact Search */}
-            <div className="relative w-full md:w-64">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400" />
-              <input
-                type="text"
-                placeholder="Search questions..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 bg-white/90 backdrop-blur-md border border-white/50 rounded-xl text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-lg text-sm"
-              />
+            {/* Search and Controls */}
+            <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between">
+              {/* Search Bar */}
+              <div className="flex gap-2 flex-1 max-w-md mx-auto sm:mx-0">
+                <div className="relative flex-1">
+                  <Search className="absolute left-2.5 md:left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 md:w-4 md:h-4 text-slate-400" />
+                  <input
+                    type="text"
+                    placeholder="Search questions..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onFocus={() => setShowSearch(true)}
+                    className="w-full pl-8 md:pl-10 pr-8 md:pr-10 py-2 bg-white/90 backdrop-blur-md border border-white/50 rounded-lg md:rounded-xl text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-lg text-xs md:text-sm"
+                  />
+                  {searchTerm && (
+                    <button
+                      onClick={clearSearch}
+                      className="absolute right-2.5 md:right-3 top-1/2 transform -translate-y-1/2 w-3 h-3 md:w-4 md:h-4 text-slate-400 hover:text-slate-600"
+                    >
+                      <X className="w-full h-full" />
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              {/* Quick Controls */}
+              <div className="flex gap-2 justify-center sm:justify-end">
+                <motion.button
+                  onClick={toggleAllOpen}
+                  className="px-3 md:px-4 py-2 bg-white/80 backdrop-blur-md border border-white/50 text-slate-700 hover:text-blue-600 font-semibold text-xs md:text-sm rounded-lg md:rounded-xl transition-all duration-200"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  {openItems.length === filteredFAQs.length ? 'Collapse All' : 'Expand All'}
+                </motion.button>
+              </div>
             </div>
+
+            {/* Search Results Info */}
+            {searchTerm && (
+              <motion.div 
+                className="text-center text-sm text-slate-600 bg-white/60 backdrop-blur-sm px-3 py-2 rounded-lg"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
+                Found {filteredFAQs.length} result{filteredFAQs.length !== 1 ? 's' : ''} for "{searchTerm}"
+              </motion.div>
+            )}
           </div>
         </motion.div>
 
-        {/* Compact FAQ List - Two Column Layout */}
+        {/* Optimized FAQ List - Masonry-style Layout */}
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4"
+          className="columns-1 md:columns-2 gap-3 md:gap-4 space-y-3 md:space-y-4"
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
@@ -437,27 +489,27 @@ const FAQ = () => {
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
-                  className="bg-white/80 backdrop-blur-md rounded-2xl border border-white/50 shadow-lg hover:shadow-xl transition-all duration-300 h-fit"
-                  transition={{ delay: index * 0.03 }}
+                  className="bg-white/80 backdrop-blur-md rounded-xl md:rounded-2xl border border-white/50 shadow-lg hover:shadow-xl transition-all duration-300 break-inside-avoid mb-3 md:mb-4"
+                  transition={{ delay: index * 0.02 }}
                 >
                   <button
                     onClick={() => toggleItem(item.id)}
-                    className="w-full p-4 md:p-6 text-left flex items-center justify-between hover:bg-white/50 rounded-2xl transition-colors duration-200"
+                    className="w-full p-3 md:p-4 lg:p-5 text-left flex items-start justify-between hover:bg-white/50 rounded-xl md:rounded-2xl transition-colors duration-200"
                   >
-                    <div className="flex items-start gap-3 flex-1">
+                    <div className="flex items-start gap-2 md:gap-3 flex-1">
                       {item.featured && (
-                        <Star className="w-4 h-4 text-yellow-500 mt-1 flex-shrink-0" />
+                        <Star className="w-3 h-3 md:w-4 md:h-4 text-yellow-500 mt-0.5 flex-shrink-0" />
                       )}
-                      <h3 className="text-base md:text-lg font-bold text-slate-800 leading-tight pr-4">
+                      <h3 className="text-sm md:text-base lg:text-lg font-bold text-slate-800 leading-tight pr-2">
                         {item.question}
                       </h3>
                     </div>
                     <motion.div
                       animate={{ rotate: openItems.includes(item.id) ? 180 : 0 }}
-                      transition={{ duration: 0.3 }}
+                      transition={{ duration: 0.2 }}
                       className="flex-shrink-0"
                     >
-                      <ChevronDown className="w-5 h-5 text-slate-500" />
+                      <ChevronDown className="w-4 h-4 md:w-5 md:h-5 text-slate-500" />
                     </motion.div>
                   </button>
 
@@ -467,27 +519,27 @@ const FAQ = () => {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        transition={{ duration: 0.2, ease: "easeInOut" }}
                         className="overflow-hidden"
                       >
-                        <div className="px-4 md:px-6 pb-4 md:pb-6">
-                          <div className="border-t border-slate-200 pt-4">
-                            <p className="text-slate-600 leading-relaxed mb-4 text-sm md:text-base">
+                        <div className="px-3 md:px-4 lg:px-5 pb-3 md:pb-4 lg:pb-5">
+                          <div className="border-t border-slate-200 pt-3 md:pt-4">
+                            <p className="text-slate-600 leading-relaxed mb-3 md:mb-4 text-xs md:text-sm lg:text-base">
                               {item.answer}
                             </p>
                             
-                            {/* Compact Tags */}
-                            <div className="flex flex-wrap gap-1.5">
+                            {/* Enhanced Tags */}
+                            <div className="flex flex-wrap gap-1 md:gap-1.5">
                               {item.tags.slice(0, 3).map((tag, tagIndex) => (
                                 <span 
                                   key={tagIndex}
-                                  className="px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded-lg font-medium"
+                                  className="px-1.5 md:px-2 py-0.5 md:py-1 bg-slate-100 text-slate-600 text-xs rounded-md md:rounded-lg font-medium hover:bg-slate-200 transition-colors"
                                 >
                                   {tag}
                                 </span>
                               ))}
                               {item.tags.length > 3 && (
-                                <span className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-lg font-medium">
+                                <span className="px-1.5 md:px-2 py-0.5 md:py-1 bg-gray-100 text-gray-600 text-xs rounded-md md:rounded-lg font-medium">
                                   +{item.tags.length - 3}
                                 </span>
                               )}
@@ -501,14 +553,22 @@ const FAQ = () => {
               ))
             ) : (
               <motion.div 
-                className="text-center py-12"
+                className="text-center py-8 md:py-12 col-span-full"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 0.4 }}
               >
-                <HelpCircle className="w-16 h-16 text-slate-300 mx-auto mb-4" />
-                <h3 className="text-xl font-bold text-slate-600 mb-2">No questions found</h3>
-                <p className="text-slate-500">Try adjusting your search or category filter.</p>
+                <HelpCircle className="w-12 h-12 md:w-16 md:h-16 text-slate-300 mx-auto mb-3 md:mb-4" />
+                <h3 className="text-lg md:text-xl font-bold text-slate-600 mb-2">No questions found</h3>
+                <p className="text-slate-500 text-sm md:text-base">Try adjusting your search or category filter.</p>
+                {searchTerm && (
+                  <button
+                    onClick={clearSearch}
+                    className="mt-3 md:mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors"
+                  >
+                    Clear Search
+                  </button>
+                )}
               </motion.div>
             )}
           </AnimatePresence>
@@ -516,75 +576,55 @@ const FAQ = () => {
 
         {/* Compact Bottom CTA */}
         <motion.div 
-          className="text-center mt-16"
-          initial={{ opacity: 0, y: 30 }}
+          className="text-center mt-12 md:mt-16"
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
         >
-          <div className="bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-600 rounded-3xl p-8 md:p-12 text-white shadow-2xl relative overflow-hidden">
+          <div className="bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-600 rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-10 text-white shadow-2xl relative overflow-hidden">
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-10">
               <motion.div 
-                className="absolute top-0 left-0 w-64 h-64 bg-white rounded-full blur-3xl"
-                animate={{ x: [0, 50, 0], y: [0, -25, 0] }}
+                className="absolute top-0 left-0 w-32 h-32 md:w-48 md:h-48 lg:w-64 lg:h-64 bg-white rounded-full blur-3xl"
+                animate={{ x: [0, 30, 0], y: [0, -15, 0] }}
                 transition={{ duration: 10, repeat: Infinity }}
               />
               <motion.div 
-                className="absolute bottom-0 right-0 w-64 h-64 bg-purple-200 rounded-full blur-3xl"
-                animate={{ x: [0, -50, 0], y: [0, 25, 0] }}
+                className="absolute bottom-0 right-0 w-32 h-32 md:w-48 md:h-48 lg:w-64 lg:h-64 bg-purple-200 rounded-full blur-3xl"
+                animate={{ x: [0, -30, 0], y: [0, 15, 0] }}
                 transition={{ duration: 8, repeat: Infinity }}
               />
             </div>
 
             <div className="relative z-10">
-              <h3 className="text-2xl md:text-3xl lg:text-4xl font-black mb-4">
+              <h3 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-black mb-3 md:mb-4">
                 Still Have Questions?
               </h3>
-              <p className="text-blue-100 mb-6 max-w-2xl mx-auto text-base md:text-lg leading-relaxed font-light">
+              <p className="text-blue-100 mb-6 max-w-2xl mx-auto text-sm md:text-base lg:text-lg leading-relaxed font-light">
                 I'm here to help! Get in touch and I'll answer any questions you have about your project.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
                 <motion.a
                   href="#contact"
-                  className="inline-flex items-center gap-3 bg-white text-blue-600 px-8 py-4 rounded-2xl font-bold text-base md:text-lg shadow-xl hover:shadow-2xl transition-all duration-300"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex items-center justify-center gap-2 md:gap-3 bg-white text-blue-600 px-6 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl font-bold text-sm md:text-base lg:text-lg shadow-xl hover:shadow-2xl transition-all duration-300"
+                  whileHover={{ scale: 1.03, y: -2 }}
+                  whileTap={{ scale: 0.97 }}
                 >
-                  <Mail className="w-5 h-5" />
+                  <Mail className="w-4 h-4 md:w-5 md:h-5" />
                   <span>Send Message</span>
                 </motion.a>
                 
                 <motion.a
                   href="https://calendly.com/your-link"
-                  className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border-2 border-white/30 text-white px-8 py-4 rounded-2xl font-bold text-base md:text-lg hover:bg-white/20 transition-all duration-300"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex items-center justify-center gap-2 md:gap-3 bg-white/10 backdrop-blur-md border-2 border-white/30 text-white px-6 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl font-bold text-sm md:text-base lg:text-lg hover:bg-white/20 transition-all duration-300"
+                  whileHover={{ scale: 1.03, y: -2 }}
+                  whileTap={{ scale: 0.97 }}
                 >
-                  <Calendar className="w-5 h-5" />
+                  <Calendar className="w-4 h-4 md:w-5 md:h-5" />
                   <span>Schedule Call</span>
                 </motion.a>
-              </div>
-
-              {/* Compact Bottom Stats */}
-              <div className="grid grid-cols-3 gap-6 mt-8 pt-6 border-t border-white/20">
-                {[
-                  { number: '< 2h', label: 'Response' },
-                  { number: '100%', label: 'Helpful' },
-                  { number: '24/7', label: 'Available' }
-                ].map((stat, index) => (
-                  <motion.div 
-                    key={stat.label}
-                    className="text-center"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1 + index * 0.1 }}
-                  >
-                    <div className="text-2xl md:text-3xl font-black text-yellow-400 mb-1">{stat.number}</div>
-                    <div className="text-blue-200 font-medium text-sm">{stat.label}</div>
-                  </motion.div>
-                ))}
               </div>
             </div>
           </div>
