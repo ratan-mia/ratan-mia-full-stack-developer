@@ -304,7 +304,7 @@ const Contact = () => {
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Compact & Responsive Header */}
+        {/* Header with Improved Typography */}
         <motion.div
           variants={staggerContainer}
           initial="initial"
@@ -314,7 +314,7 @@ const Contact = () => {
         >
           <motion.div
             variants={fadeInUp}
-            className="inline-flex items-center gap-2 md:gap-3 bg-gradient-to-r from-blue-600/20 via-blue-500/10 to-blue-900/20 backdrop-blur-sm border border-blue-500/20 text-blue-300 px-3 md:px-4 py-1.5 md:py-2 text-xs md:text-sm font-medium tracking-wider uppercase mb-4 md:mb-6 rounded-full"
+            className="inline-flex items-center gap-2 md:gap-3 bg-gradient-to-r from-blue-600/20 via-blue-500/10 to-blue-900/20 backdrop-blur-sm border border-blue-500/20 text-blue-300 px-3 md:px-4 py-1.5 md:py-2 text-xs md:text-sm font-semibold tracking-wider uppercase mb-4 md:mb-6 rounded-full"
           >
             <Sparkles className="w-3 h-3 md:w-4 md:h-4" />
             <span>Get In Touch</span>
@@ -322,20 +322,20 @@ const Contact = () => {
           
           <motion.h2 
             variants={fadeInUp}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 md:mb-4 bg-gradient-to-r from-white via-blue-100 to-indigo-200 bg-clip-text text-transparent leading-tight"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-white via-blue-100 to-indigo-200 bg-clip-text text-transparent leading-tight"
           >
             Let's Work Together
           </motion.h2>
           
           <motion.p 
             variants={fadeInUp}
-            className="text-sm md:text-base lg:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed px-4"
+            className="text-base md:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed px-4"
           >
             Ready to transform your ideas into powerful web solutions? Let's discuss your next project and create something amazing.
           </motion.p>
         </motion.div>
 
-        {/* Enhanced Quick Stats */}
+        {/* Quick Stats with Improved Typography */}
         <motion.div 
           className="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-3 lg:gap-4 mb-8 md:mb-12"
           initial={{ opacity: 0, y: 20 }}
@@ -357,10 +357,10 @@ const Contact = () => {
               <div className="absolute -inset-1 bg-gradient-to-r from-blue-600/0 via-blue-500/10 to-purple-600/0 group-hover:from-blue-600/20 group-hover:via-blue-500/30 group-hover:to-purple-600/20 rounded-xl blur-sm transition-all duration-500"></div>
               
               <stat.icon className={`relative z-10 w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 ${stat.color} mx-auto mb-1 md:mb-2 group-hover:scale-110 transition-transform duration-300`} />
-              <div className="relative z-10 text-base md:text-lg lg:text-xl font-bold text-white mb-1 group-hover:text-blue-300 transition-colors duration-300">
+              <div className="relative z-10 text-lg md:text-xl lg:text-2xl font-bold text-white mb-1 group-hover:text-blue-300 transition-colors duration-300">
                 {stat.label}
               </div>
-              <div className="relative z-10 text-xs md:text-sm text-slate-400 group-hover:text-slate-300 transition-colors duration-300">
+              <div className="relative z-10 text-sm md:text-base text-slate-400 group-hover:text-slate-300 transition-colors duration-300 font-medium">
                 {stat.description}
               </div>
             </motion.div>
@@ -368,7 +368,7 @@ const Contact = () => {
         </motion.div>
 
         <div className="grid lg:grid-cols-12 gap-6 md:gap-8 items-start">
-          {/* Enhanced Contact Information */}
+          {/* Contact Information with Improved Typography */}
           <motion.div 
             variants={slideInLeft}
             initial="initial"
@@ -404,10 +404,10 @@ const Contact = () => {
                         <item.icon className={`w-4 h-4 md:w-5 md:h-5 ${item.color}`} />
                       </div>
                       <div>
-                        <div className="font-semibold text-white text-sm md:text-base group-hover:text-blue-200 transition-colors duration-200">
+                        <div className="font-semibold text-white text-base md:text-lg group-hover:text-blue-200 transition-colors duration-200">
                           {item.label}
                         </div>
-                        <div className="text-blue-200 text-xs md:text-sm opacity-90">{item.value}</div>
+                        <div className="text-blue-200 text-sm md:text-base opacity-90 font-medium">{item.value}</div>
                       </div>
                     </motion.a>
                   ))}
@@ -415,7 +415,7 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Enhanced Social Links */}
+            {/* Social Links with Improved Typography */}
             <motion.div 
               className="relative bg-white/[0.02] backdrop-blur-md p-4 md:p-6 border border-slate-800/50 rounded-2xl"
               initial={{ opacity: 0, y: 20 }}
@@ -454,7 +454,7 @@ const Contact = () => {
               </div>
             </motion.div>
 
-            {/* Enhanced Quick Response Promise */}
+            {/* Quick Response Promise with Improved Typography */}
             <motion.div 
               className="relative bg-gradient-to-r from-green-500/10 via-green-400/5 to-blue-500/10 backdrop-blur-md p-4 md:p-5 border border-green-400/20 rounded-2xl"
               initial={{ opacity: 0, y: 20 }}
@@ -467,16 +467,16 @@ const Contact = () => {
                   <div className="w-6 h-6 md:w-8 md:h-8 bg-gradient-to-r from-green-500 to-green-600 rounded-lg flex items-center justify-center">
                     <CheckCircle className="w-3 h-3 md:w-4 md:h-4 text-white" />
                   </div>
-                  <h4 className="text-sm md:text-base font-bold text-white">Quick Response Guarantee</h4>
+                  <h4 className="text-base md:text-lg font-bold text-white">Quick Response Guarantee</h4>
                 </div>
-                <p className="text-green-100 text-xs md:text-sm leading-relaxed opacity-90">
+                <p className="text-green-100 text-sm md:text-base leading-relaxed opacity-90">
                   I typically respond to all inquiries within 24 hours. For urgent projects, feel free to call or WhatsApp me directly.
                 </p>
               </div>
             </motion.div>
           </motion.div>
 
-          {/* Enhanced Contact Form */}
+          {/* Contact Form with Improved Typography */}
           <motion.div 
             variants={slideInRight}
             initial="initial"
@@ -493,12 +493,12 @@ const Contact = () => {
                   <div className="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
                     <Target className="w-4 h-4 md:w-5 md:h-5 text-white" />
                   </div>
-                  <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-white">Send Me a Message</h3>
+                  <h3 className="text-xl md:text-2xl font-bold text-white">Send Me a Message</h3>
                 </div>
-                <p className="text-slate-400 text-xs md:text-sm">Fill out the form below and I'll get back to you soon</p>
+                <p className="text-slate-400 text-sm md:text-base">Fill out the form below and I'll get back to you soon</p>
               </div>
 
-              {/* Enhanced Status Message */}
+              {/* Status Message with Improved Typography */}
               <AnimatePresence mode="wait">
                 {status.type !== 'idle' && (
                   <motion.div
@@ -521,7 +521,7 @@ const Contact = () => {
                         : 'bg-blue-600/20'
                     }`}></div>
                     
-                    <div className="relative z-10 flex items-center gap-2 md:gap-3 text-xs md:text-sm">
+                    <div className="relative z-10 flex items-center gap-2 md:gap-3 text-sm md:text-base">
                       {status.type === 'loading' && <Loader className="w-4 h-4 animate-spin" />}
                       {status.type === 'success' && <CheckCircle className="w-4 h-4" />}
                       {status.type === 'error' && <AlertCircle className="w-4 h-4" />}
@@ -531,11 +531,11 @@ const Contact = () => {
                 )}
               </AnimatePresence>
 
-              {/* Enhanced Form Fields */}
+              {/* Form Fields with Improved Typography */}
               <div className="space-y-3 md:space-y-4">
                 <div className="grid sm:grid-cols-2 gap-3 md:gap-4">
                   <div className="group">
-                    <label className="block text-xs md:text-sm font-medium mb-1.5 md:mb-2 text-blue-100">
+                    <label className="block text-sm md:text-base font-semibold mb-1.5 md:mb-2 text-blue-100">
                       Full Name *
                     </label>
                     <div className="relative">
@@ -564,7 +564,7 @@ const Contact = () => {
                   </div>
                   
                   <div className="group">
-                    <label className="block text-xs md:text-sm font-medium mb-1.5 md:mb-2 text-blue-100">
+                    <label className="block text-sm md:text-base font-semibold mb-1.5 md:mb-2 text-blue-100">
                       Email Address *
                     </label>
                     <div className="relative">
@@ -594,7 +594,7 @@ const Contact = () => {
                 </div>
 
                 <div className="group">
-                  <label className="block text-xs md:text-sm font-medium mb-1.5 md:mb-2 text-blue-100">
+                  <label className="block text-sm md:text-base font-semibold mb-1.5 md:mb-2 text-blue-100">
                     Subject *
                   </label>
                   <div className="relative">
@@ -624,7 +624,7 @@ const Contact = () => {
 
                 <div className="grid sm:grid-cols-2 gap-3 md:gap-4">
                   <div className="group">
-                    <label className="block text-xs md:text-sm font-medium mb-1.5 md:mb-2 text-blue-100">
+                    <label className="block text-sm md:text-base font-semibold mb-1.5 md:mb-2 text-blue-100">
                       Project Type
                     </label>
                     <div className="relative">
@@ -657,7 +657,7 @@ const Contact = () => {
                   </div>
                   
                   <div className="group">
-                    <label className="block text-xs md:text-sm font-medium mb-1.5 md:mb-2 text-blue-100">
+                    <label className="block text-sm md:text-base font-semibold mb-1.5 md:mb-2 text-blue-100">
                       Budget Range
                     </label>
                     <div className="relative">
@@ -691,7 +691,7 @@ const Contact = () => {
                 </div>
                 
                 <div className="group">
-                  <label className="block text-xs md:text-sm font-medium mb-1.5 md:mb-2 text-blue-100">
+                  <label className="block text-sm md:text-base font-semibold mb-1.5 md:mb-2 text-blue-100">
                     Project Details (10 characters at least) *
                   </label>
                   <div className="relative">
@@ -722,7 +722,7 @@ const Contact = () => {
                 <motion.button
                   onClick={handleSubmit}
                   disabled={status.type === 'loading'}
-                  className="relative w-full bg-gradient-to-r from-blue-600 via-blue-500 to-purple-600 text-white font-bold py-3 md:py-4 px-6 hover:from-blue-700 hover:via-blue-600 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2 md:gap-3 group overflow-hidden rounded-xl text-sm md:text-base"
+                  className="relative w-full bg-gradient-to-r from-blue-600 via-blue-500 to-purple-600 text-white font-bold py-3 md:py-4 px-6 hover:from-blue-700 hover:via-blue-600 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2 md:gap-3 group overflow-hidden rounded-xl text-base md:text-lg"
                   whileHover={{ scale: status.type !== 'loading' ? 1.02 : 1 }}
                   whileTap={{ scale: status.type !== 'loading' ? 0.98 : 1 }}
                 >
@@ -748,7 +748,7 @@ const Contact = () => {
           </motion.div>
         </div>
 
-        {/* Enhanced Footer */}
+        {/* Footer with Improved Typography */}
         <motion.div 
           className="text-center mt-8 md:mt-12 pt-4 md:pt-6 border-t border-slate-800/50"
           initial={{ opacity: 0 }}
@@ -756,7 +756,7 @@ const Contact = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          <p className="text-slate-400 text-xs md:text-sm flex items-center justify-center gap-1 md:gap-2 flex-wrap">
+          <p className="text-slate-400 text-sm md:text-base flex items-center justify-center gap-1 md:gap-2 flex-wrap font-medium">
             © 2025 Ratan Mia. Crafted with 
             <Heart className="w-3 h-3 md:w-4 md:h-4 text-red-400 animate-pulse" />
             using Next.js, Tailwind CSS & Framer Motion
