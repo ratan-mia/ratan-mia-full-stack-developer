@@ -1,15 +1,13 @@
 'use client';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Calendar, ChevronDown, Code2, ExternalLink, Eye, Globe, Plus, Smartphone, Tablet, TrendingUp } from 'lucide-react';
+import { Calendar, Clock, Code2, ExternalLink, Eye, Smartphone, Tablet, TrendingUp, User } from 'lucide-react';
 import { useState } from 'react';
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const [hoveredProject, setHoveredProject] = useState(null);
-  const [visibleProjects, setVisibleProjects] = useState(6); // Show 6 projects initially
-  const [isLoading, setIsLoading] = useState(false);
 
-  const allProjects = [
+  const projects = [
     {
       id: 1,
       title: "Elf Bangladesh - Asian Petroleum",
@@ -18,7 +16,7 @@ const Projects = () => {
       tech: ["Next.js", "Tailwind CSS", "Zoho CRM", "WhatsApp API", "Strapi CMS", "Facebook Pixel"],
       category: "web-development",
       link: "https://asian-petroleum.com/",
-      mockupImage: null,
+      mockupImage: null, // Use live URL instead of image
       status: "Live",
       gradient: "from-emerald-600 via-teal-700 to-cyan-800",
       accentColor: "emerald",
@@ -55,7 +53,7 @@ const Projects = () => {
       description: "Comprehensive e-commerce platform with intelligent make/model/year specification system.",
       tech: ["React.js", "PHP", "API Integration", "WhatsApp API", "MySQL"],
       category: "ecommerce",
-      link: null,
+      link: null, // Custom development - no live URL 
       mockupImage: "/images/projects/japan-parts-mockup.png", 
       status: "Live",
       gradient: "from-green-600 via-green-700 to-teal-800",
@@ -93,8 +91,8 @@ const Projects = () => {
       description: "Revolutionary WordPress plugin integrating ChatGPT and OpenAI APIs with advanced Text-to-Speech functionality.",
       tech: ["WordPress", "OpenAI API", "Text-to-Speech", "ChatGPT", "PHP"],
       category: "ai-integration",
-      link: null,
-      mockupImage: "https://images.unsplash.com/photo-1587560699334-cc4ff634909a?w=800&h=600&fit=crop",
+      link: null, // Custom development - no live URL
+      mockupImage: "https://images.unsplash.com/photo-1587560699334-cc4ff634909a?w=800&h=600&fit=crop", // Example image
       status: "Development",
       gradient: "from-purple-600 via-indigo-700 to-blue-800",
       accentColor: "purple",
@@ -161,113 +159,20 @@ const Projects = () => {
       results: ["Real-time Analytics", "Custom Reports", "Data Insights"],
       devices: ["desktop"],
       tags: ["Analytics", "Dashboard", "Enterprise"]
-    },
-    // Additional projects for load more functionality
-    {
-      id: 9,
-      title: "FinTech Mobile App",
-      subtitle: "Next-Generation Banking Solution",
-      description: "Revolutionary mobile banking app with AI-powered financial insights and seamless UX design.",
-      tech: ["React Native", "Node.js", "AI Integration", "Blockchain", "Stripe"],
-      category: "custom-development",
-      link: null,
-      mockupImage: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=600&fit=crop",
-      status: "Development",
-      gradient: "from-violet-600 via-purple-700 to-indigo-800",
-      accentColor: "violet",
-      year: "2024",
-      client: "FinTech Startup",
-      duration: "10 months",
-      results: ["AI-Powered Insights", "Secure Transactions", "Mobile-First Design"],
-      devices: ["mobile"],
-      tags: ["FinTech", "AI", "Mobile App"]
-    },
-    {
-      id: 10,
-      title: "Real Estate Portal",
-      subtitle: "Complete Property Management System",
-      description: "Comprehensive real estate platform with virtual tours, property management, and advanced search capabilities.",
-      tech: ["Next.js", "Three.js", "PostgreSQL", "AWS", "Stripe"],
-      category: "web-development",
-      link: "https://realestate-demo.vercel.app",
-      mockupImage: null,
-      status: "Live",
-      gradient: "from-amber-600 via-orange-700 to-red-800",
-      accentColor: "amber",
-      year: "2024",
-      client: "Property Solutions Ltd",
-      duration: "6 months",
-      results: ["Virtual Tours", "Property Analytics", "Lead Generation"],
-      devices: ["desktop", "tablet"],
-      tags: ["Real Estate", "3D Tours", "Analytics"]
-    },
-    {
-      id: 11,
-      title: "Healthcare Management System",
-      subtitle: "Digital Health Platform",
-      description: "Complete healthcare management solution with patient records, appointment scheduling, and telemedicine features.",
-      tech: ["React.js", "Express.js", "MongoDB", "Socket.io", "WebRTC"],
-      category: "custom-development",
-      link: null,
-      mockupImage: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&h=600&fit=crop",
-      status: "Live",
-      gradient: "from-teal-600 via-green-700 to-emerald-800",
-      accentColor: "teal",
-      year: "2023",
-      client: "MedCare Solutions",
-      duration: "12 months",
-      results: ["Patient Management", "Telemedicine", "Digital Records"],
-      devices: ["desktop", "tablet"],
-      tags: ["Healthcare", "Telemedicine", "Management"]
-    },
-    {
-      id: 12,
-      title: "E-Learning Platform",
-      subtitle: "Interactive Education Portal",
-      description: "Modern e-learning platform with interactive courses, progress tracking, and AI-powered personalized learning paths.",
-      tech: ["Vue.js", "Laravel", "MySQL", "WebRTC", "AI Integration"],
-      category: "web-development",
-      link: "https://edulearn-platform.com",
-      mockupImage: null,
-      status: "Live",
-      gradient: "from-indigo-600 via-blue-700 to-cyan-800",
-      accentColor: "indigo",
-      year: "2023",
-      client: "EduTech Innovation",
-      duration: "8 months",
-      results: ["Interactive Learning", "Progress Tracking", "AI Personalization"],
-      devices: ["desktop", "mobile"],
-      tags: ["Education", "Interactive", "AI-Powered"]
     }
   ];
 
   const categories = [
-    { id: 'all', label: 'All Projects', count: allProjects.length },
-    { id: 'web-development', label: 'Web Dev', count: allProjects.filter(p => p.category === 'web-development').length },
-    { id: 'ecommerce', label: 'E-commerce', count: allProjects.filter(p => p.category === 'ecommerce').length },
-    { id: 'ai-integration', label: 'AI Integration', count: allProjects.filter(p => p.category === 'ai-integration').length },
-    { id: 'custom-development', label: 'Custom Dev', count: allProjects.filter(p => p.category === 'custom-development').length }
+    { id: 'all', label: 'All Projects', count: projects.length },
+    { id: 'web-development', label: 'Web Dev', count: projects.filter(p => p.category === 'web-development').length },
+    { id: 'ecommerce', label: 'E-commerce', count: projects.filter(p => p.category === 'ecommerce').length },
+    { id: 'ai-integration', label: 'AI Integration', count: projects.filter(p => p.category === 'ai-integration').length },
+    { id: 'custom-development', label: 'Custom Dev', count: projects.filter(p => p.category === 'custom-development').length }
   ];
 
   const filteredProjects = activeFilter === 'all' 
-    ? allProjects 
-    : allProjects.filter(project => project.category === activeFilter);
-
-  const visibleFilteredProjects = filteredProjects.slice(0, visibleProjects);
-  const hasMoreProjects = visibleProjects < filteredProjects.length;
-
-  const handleLoadMore = () => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setVisibleProjects(prev => Math.min(prev + 6, filteredProjects.length));
-      setIsLoading(false);
-    }, 500); // Simulate loading delay
-  };
-
-  const handleFilterChange = (newFilter) => {
-    setActiveFilter(newFilter);
-    setVisibleProjects(6); // Reset to initial count when filter changes
-  };
+    ? projects 
+    : projects.filter(project => project.category === activeFilter);
 
   const getStatusBadge = (status) => {
     const statusConfig = {
@@ -286,54 +191,12 @@ const Projects = () => {
     );
   };
 
-  // Enhanced Device Mockup Components with URL overlay
-  const MockupOverlay = ({ project }) => (
-    <motion.div
-      className="absolute inset-0 bg-black/60 backdrop-blur-sm flex flex-col items-center justify-center text-white z-20"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: hoveredProject === project.id ? 1 : 0 }}
-      transition={{ duration: 0.2 }}
-    >
-      <div className="text-center p-4">
-        {project.link ? (
-          <>
-            <Globe className="w-8 h-8 mx-auto mb-3 text-green-400" />
-            <div className="text-lg font-bold mb-2">Live Website</div>
-            <div className="text-sm bg-white/20 px-3 py-1.5 rounded-full mb-4 font-mono break-all">
-              {project.link.replace('https://', '').replace('http://', '')}
-            </div>
-            <motion.button
-              className="inline-flex items-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg shadow-lg"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => window.open(project.link, '_blank')}
-            >
-              <ExternalLink className="w-4 h-4" />
-              Visit Site
-            </motion.button>
-          </>
-        ) : (
-          <>
-            <Code2 className="w-8 h-8 mx-auto mb-3 text-blue-400" />
-            <div className="text-lg font-bold mb-2">Custom Project</div>
-            <div className="text-sm text-gray-300 mb-4">
-              Tailored solution for {project.client}
-            </div>
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg">
-              <Code2 className="w-4 h-4" />
-              Custom Development
-            </div>
-          </>
-        )}
-      </div>
-    </motion.div>
-  );
-
+  // Enhanced Device Mockup Components
   const DesktopMockup = ({ project }) => (
     <div className="relative w-full h-full flex items-center justify-center">
       <div className="relative w-full max-w-xs mx-auto">
         <div className="relative bg-gray-900 rounded-lg p-1 shadow-2xl">
-          <div className="bg-black rounded-md overflow-hidden relative">
+          <div className="bg-black rounded-md overflow-hidden">
             <div className="aspect-[16/10] bg-gray-200 relative overflow-hidden">
               {project.link ? (
                 <iframe
@@ -359,7 +222,6 @@ const Projects = () => {
                 </div>
               )}
             </div>
-            <MockupOverlay project={project} />
           </div>
         </div>
         <div className="relative mx-auto mt-1">
@@ -373,7 +235,7 @@ const Projects = () => {
   const TabletMockup = ({ project }) => (
     <div className="relative w-full h-full flex items-center justify-center">
       <div className="relative w-48 h-64 bg-gray-900 rounded-2xl p-2 shadow-2xl">
-        <div className="w-full h-full bg-black rounded-xl overflow-hidden relative">
+        <div className="w-full h-full bg-black rounded-xl overflow-hidden">
           <div className="w-full h-full bg-gray-200 relative overflow-hidden">
             {project.link ? (
               <iframe
@@ -399,7 +261,6 @@ const Projects = () => {
               </div>
             )}
           </div>
-          <MockupOverlay project={project} />
         </div>
         <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-6 h-6 border-2 border-gray-600 rounded-full"></div>
       </div>
@@ -436,7 +297,6 @@ const Projects = () => {
               </div>
             )}
           </div>
-          <MockupOverlay project={project} />
         </div>
       </div>
     </div>
@@ -573,7 +433,7 @@ const Projects = () => {
           {categories.map((category) => (
             <motion.button
               key={category.id}
-              onClick={() => handleFilterChange(category.id)}
+              onClick={() => setActiveFilter(category.id)}
               className={`inline-flex items-center gap-2 px-4 py-2 rounded-full font-semibold text-sm transition-all duration-300 ${
                 activeFilter === category.id
                   ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
@@ -594,13 +454,13 @@ const Projects = () => {
           ))}
         </motion.div>
 
-        {/* Projects Grid */}
+        {/* Compact Projects Grid */}
         <motion.div 
           className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8 mb-16"
           layout
         >
           <AnimatePresence mode="popLayout">
-            {visibleFilteredProjects.map((project, index) => (
+            {filteredProjects.map((project, index) => (
               <motion.div 
                 key={project.id}
                 className="bg-white/80 backdrop-blur-md rounded-2xl shadow-xl border border-white/50 overflow-hidden group"
@@ -613,8 +473,8 @@ const Projects = () => {
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
                 transition={{ delay: index * 0.1 }}
               >
-                {/* Enhanced Mockup Showcase */}
-                <div className="relative h-48 md:h-56 overflow-hidden cursor-pointer">
+                {/* Compact Mockup Showcase */}
+                <div className="relative h-48 md:h-56 overflow-hidden">
                   <div className={`w-full h-full bg-gradient-to-br ${project.gradient} flex items-center justify-center relative p-4`}>
                     <div className="absolute inset-0 bg-black/10"></div>
                     
@@ -636,20 +496,20 @@ const Projects = () => {
                       )}
                     </div>
 
-                    {/* Enhanced Status Badge */}
-                    <div className="absolute top-3 right-3 z-30">
+                    {/* Compact Badges */}
+                    <div className="absolute top-3 right-3 z-20">
                       {getStatusBadge(project.status)}
                     </div>
 
-                    <div className="absolute top-3 left-3 z-30">
+                    <div className="absolute top-3 left-3 z-20">
                       <span className="bg-white/90 backdrop-blur-sm text-slate-800 px-2 py-1 rounded-full text-xs font-bold">
                         {project.year}
                       </span>
                     </div>
 
-                    {/* Enhanced URL/Custom Indicator */}
-                    <div className="absolute bottom-3 right-3 z-30">
-                      {project.link ? (
+                    {/* Live Indicator */}
+                    {project.link && (
+                      <div className="absolute bottom-3 right-3 z-20">
                         <div className="flex items-center gap-1.5 bg-green-500/90 text-white px-2 py-1 rounded-full text-xs font-bold">
                           <motion.div 
                             className="w-1.5 h-1.5 bg-white rounded-full"
@@ -658,53 +518,38 @@ const Projects = () => {
                           />
                           Live
                         </div>
-                      ) : (
-                        <div className="flex items-center gap-1.5 bg-blue-500/90 text-white px-2 py-1 rounded-full text-xs font-bold">
-                          <Code2 className="w-3 h-3" />
-                          Custom
-                        </div>
-                      )}
-                    </div>
+                      </div>
+                    )}
 
-                    {/* Hover Info Overlay */}
+                    {/* Hover Overlay */}
                     <motion.div
-                      className="absolute bottom-3 left-3 z-30"
+                      className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-4"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: hoveredProject === project.id ? 1 : 0 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <div className="text-white text-xs bg-black/50 px-2 py-1 rounded-full">
-                        Click to explore
+                      <div className="text-white">
+                        <div className="flex items-center gap-1.5 mb-1">
+                          <User className="w-3 h-3" />
+                          <span className="text-xs font-medium">{project.client}</span>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <Clock className="w-3 h-3" />
+                          <span className="text-xs">{project.duration}</span>
+                        </div>
                       </div>
                     </motion.div>
                   </div>
                 </div>
 
-                {/* Enhanced Content */}
+                {/* Compact Content */}
                 <div className="p-6">
-                  {/* Header with URL */}
+                  {/* Header */}
                   <div className="mb-4">
                     <h3 className="text-xl md:text-2xl font-bold text-slate-800 mb-2 group-hover:bg-gradient-to-r group-hover:from-slate-800 group-hover:to-blue-600 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
                       {project.title}
                     </h3>
                     <p className="text-blue-600 font-semibold text-sm mb-3">{project.subtitle}</p>
-                    
-                    {/* Enhanced URL Display */}
-                    {project.link ? (
-                      <div className="flex items-center gap-2 mb-3 p-2 bg-green-50 rounded-lg border border-green-200">
-                        <Globe className="w-4 h-4 text-green-600" />
-                        <span className="text-green-800 font-mono text-xs truncate">
-                          {project.link.replace('https://', '').replace('http://', '')}
-                        </span>
-                      </div>
-                    ) : (
-                      <div className="flex items-center gap-2 mb-3 p-2 bg-blue-50 rounded-lg border border-blue-200">
-                        <Code2 className="w-4 h-4 text-blue-600" />
-                        <span className="text-blue-800 text-xs font-semibold">
-                          Custom Project for {project.client}
-                        </span>
-                      </div>
-                    )}
                     
                     {/* Compact Tags */}
                     <div className="flex flex-wrap gap-1.5 mb-3">
@@ -759,7 +604,7 @@ const Projects = () => {
                     </div>
                   </div>
 
-                  {/* Enhanced Actions */}
+                  {/* Compact Actions */}
                   <div className="flex items-center justify-between pt-4 border-t border-slate-200">
                     {project.link ? (
                       <motion.a 
@@ -771,13 +616,13 @@ const Projects = () => {
                         whileTap={{ scale: 0.95 }}
                       >
                         <Eye className="w-4 h-4" />
-                        <span>Visit Live Site</span>
+                        <span>View Live</span>
                         <ExternalLink className="w-3 h-3" />
                       </motion.a>
                     ) : (
-                      <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg text-sm shadow-lg">
+                      <div className="inline-flex items-center gap-2 px-4 py-2 bg-gray-200 text-gray-600 font-semibold rounded-lg text-sm">
                         <Code2 className="w-4 h-4" />
-                        <span>Custom Project</span>
+                        <span>Custom Dev</span>
                       </div>
                     )}
 
@@ -793,44 +638,6 @@ const Projects = () => {
             ))}
           </AnimatePresence>
         </motion.div>
-
-        {/* Load More Button */}
-        {hasMoreProjects && (
-          <motion.div 
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            <motion.button
-              onClick={handleLoadMore}
-              disabled={isLoading}
-              className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold text-lg rounded-xl shadow-xl hover:shadow-2xl disabled:opacity-70"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {isLoading ? (
-                <>
-                  <motion.div
-                    className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                  />
-                  <span>Loading...</span>
-                </>
-              ) : (
-                <>
-                  <Plus className="w-5 h-5" />
-                  <span>Load More Projects</span>
-                  <ChevronDown className="w-5 h-5" />
-                </>
-              )}
-            </motion.button>
-            
-            <p className="text-slate-600 mt-3 text-sm">
-              Showing {visibleFilteredProjects.length} of {filteredProjects.length} projects
-            </p>
-          </motion.div>
-        )}
 
         {/* Compact Call to Action */}
         <motion.div 
