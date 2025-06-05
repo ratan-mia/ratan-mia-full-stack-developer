@@ -490,31 +490,6 @@ const Footer = () => {
             </div>
           </div>
         </motion.div>
-
-        {/* Call to Action Banner */}
-        <motion.div 
-          className="bg-gradient-to-r from-blue-600 to-purple-600 p-6 md:p-8 text-center text-white mb-8"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
-          <h3 className="text-xl md:text-2xl font-bold mb-3">
-            Ready to Start Your Next Project?
-          </h3>
-          <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-            Let's collaborate and bring your vision to life with cutting-edge technology and exceptional design.
-          </p>
-          <motion.a
-            href="#contact"
-            className="inline-flex items-center gap-2 bg-white text-blue-600 px-6 py-3 font-bold hover:bg-blue-50 transition-colors duration-200"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Mail className="w-4 h-4" />
-            Get In Touch
-          </motion.a>
-        </motion.div>
       </div>
          <ScrollToTop />
   
