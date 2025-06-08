@@ -4,18 +4,18 @@ import { ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 // Import slide components
-import ContactSlide from '@/components/hero/ContactSlide';
-import HeroSlide from '@/components/hero/HeroSlide';
-import ServicesSlide from '@/components/hero/ServicesSlide';
-import SkillsSlide from '@/components/hero/SkillsSlide';
+import HeroSlide from './HeroSlide';
+import SkillsSlide from './SkillsSlide';
+import ServicesSlide from './ServicesSlide';
+import ContactSlide from './ContactSlide';
 
 // Import shared utilities
-import {
-  CursorTrail,
-  FloatingShapes,
-  MatrixRain,
-  slideVariants
-} from '@/utils/shared/heroSlider';
+import { 
+  MatrixRain, 
+  FloatingShapes, 
+  CursorTrail, 
+  slideVariants 
+} from './shared/utils';
 
 // Scroll Progress Component
 const ScrollProgress = ({ progress }) => (
