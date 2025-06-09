@@ -33,185 +33,153 @@ const SkillsSlide = () => {
   ];
 
   const achievements = [
-    { icon: Target, number: 150, label: 'Projects', color: 'from-yellow-600 to-orange-600', suffix: '+' },
-    { icon: Award, number: 8, label: 'Years', color: 'from-purple-600 to-pink-600', suffix: '+' },
-    { icon: Users, number: 25, label: 'Countries', color: 'from-blue-600 to-cyan-600', suffix: '+' },
-    { icon: Star, number: 98, label: 'Success Rate', color: 'from-green-600 to-emerald-600', suffix: '%' }
+    { icon: Target, number: 150, label: 'Projects', suffix: '+' },
+    { icon: Award, number: 8, label: 'Experience', suffix: 'y' },
+    { icon: Users, number: 25, label: 'Countries', suffix: '+' },
+    { icon: Star, number: 98, label: 'Success', suffix: '%' }
+  ];
+
+  const additionalSkills = [
+    'Node.js', 'Vue.js', 'Python', 'PostgreSQL', 'Redis', 'AWS', 
+    'Tailwind', 'TypeScript', 'GraphQL', 'REST APIs'
   ];
 
   return (
-    <section className="py-16 md:py-20 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center">
+    <section className="h-screen flex items-center px-4 sm:px-6 lg:px-8 py-8">
       <div className="max-w-6xl mx-auto w-full">
-        {/* Header Section - Following design guidelines */}
         <motion.div
-          className="text-center mb-8 md:mb-12"
+          className="space-y-6"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          {/* Badge - Labels & Small Text */}
-          <motion.div
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-xl border border-purple-400/30 px-4 py-2 rounded-full text-sm md:text-base font-semibold text-purple-300 mb-4"
-            whileHover={{ scale: 1.05 }}
-          >
+          {/* Compact Header */}
+          <div className="text-center space-y-2">
             <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-            >
-              <Cpu className="w-4 h-4" />
-            </motion.div>
-            <span className="tracking-wider uppercase">Technical Mastery</span>
-          </motion.div>
-
-          {/* Main Section Title */}
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight mb-3">
-            Skills That{' '}
-            <span className="bg-gradient-to-r from-purple-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
-              Dominate
-            </span>
-          </h2>
-          
-          {/* Body Text - Primary */}
-          <p className="text-base md:text-lg text-gray-200 max-w-3xl mx-auto leading-relaxed">
-            Mastering cutting-edge technologies to build the impossible
-          </p>
-        </motion.div>
-
-        {/* Skills Grid - Card Design Standards */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4 mb-8 md:mb-12">
-          {coreSkills.map((skill, index) => (
-            <motion.div
-              key={skill.name}
-              className="group relative bg-white/[0.08] backdrop-blur-xl border border-white/20 rounded-xl p-4 md:p-5 hover:bg-white/[0.15] hover:border-cyan-400/50 transition-all duration-500 cursor-pointer overflow-hidden"
-              initial={{ opacity: 0, y: 30, rotateX: -15 }}
-              animate={{ opacity: 1, y: 0, rotateX: 0 }}
-              transition={{ delay: 0.4 + index * 0.1, duration: 0.8 }}
-              whileHover={{ 
-                y: -5, 
-                scale: 1.03,
-                boxShadow: '0 20px 40px rgba(6, 182, 212, 0.3)'
-              }}
-              onHoverStart={() => setHoveredSkill(skill)}
-              onHoverEnd={() => setHoveredSkill(null)}
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-xl border border-purple-400/30 px-3 py-1.5 rounded-full text-sm font-semibold text-purple-300"
+              whileHover={{ scale: 1.05 }}
             >
               <motion.div
-                className={`absolute inset-0 bg-gradient-to-br ${skill.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
-              />
-              
-              <div className="relative z-10 text-center">
-                <motion.div 
-                  className={`w-12 h-12 md:w-14 md:h-14 mx-auto mb-3 bg-gradient-to-r ${skill.color} rounded-xl flex items-center justify-center shadow-2xl`}
-                  animate={{
-                    rotateY: hoveredSkill?.name === skill.name ? 360 : 0,
-                    scale: hoveredSkill?.name === skill.name ? 1.1 : 1
-                  }}
-                  transition={{ duration: 1 }}
-                >
-                  <skill.icon className="w-6 h-6 md:w-7 md:h-7 text-white" />
-                </motion.div>
-                
-                {/* Card/Component Title */}
-                <h3 className="text-lg md:text-xl font-bold text-white mb-2">{skill.name}</h3>
-                
-                {/* Progress Bar */}
-                <div className="w-full bg-gray-700/50 rounded-full h-2 md:h-3 mb-2 overflow-hidden">
-                  <motion.div 
-                    className={`h-2 md:h-3 bg-gradient-to-r ${skill.color} rounded-full relative overflow-hidden`}
-                    initial={{ width: 0 }}
-                    animate={{ width: `${skill.proficiency}%` }}
-                    transition={{ delay: 0.8 + index * 0.1, duration: 1.5 }}
-                  >
-                    <motion.div
-                      className="absolute inset-0 bg-white/30"
-                      animate={{ x: [-100, 200] }}
-                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                    />
-                  </motion.div>
-                </div>
-                
-                {/* Proficiency Display */}
-                <span className="text-base md:text-lg font-bold text-white">{skill.proficiency}%</span>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Achievements Section */}
-        <motion.div
-          className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8 md:mb-12"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2 }}
-        >
-          {achievements.map((achievement, index) => (
-            <motion.div
-              key={achievement.label}
-              className="text-center bg-white/[0.08] backdrop-blur-xl border border-white/20 rounded-xl p-4 md:p-5 hover:bg-white/[0.15] transition-all duration-300 relative overflow-hidden group"
-              whileHover={{ scale: 1.05, y: -3 }}
-            >
-              <motion.div
-                className={`absolute inset-0 bg-gradient-to-br ${achievement.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
-              />
-              
-              <motion.div 
-                className={`w-12 h-12 md:w-14 md:h-14 bg-gradient-to-r ${achievement.color} rounded-xl flex items-center justify-center mx-auto mb-3 shadow-2xl relative`}
-                animate={{ 
-                  boxShadow: [
-                    '0 8px 25px rgba(0,0,0,0.3)',
-                    '0 12px 35px rgba(6,182,212,0.4)',
-                    '0 8px 25px rgba(0,0,0,0.3)'
-                  ]
-                }}
-                transition={{ duration: 3, repeat: Infinity }}
+                animate={{ rotate: 360 }}
+                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
               >
-                <achievement.icon className="w-6 h-6 md:w-7 md:h-7 text-white" />
+                <Cpu className="w-3 h-3" />
               </motion.div>
-              
-              {/* Achievement Number - Section Headings */}
-              <motion.div 
-                className="text-xl md:text-2xl font-bold text-white mb-1"
-                animate={{ scale: [1, 1.05, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                <LiveCounter end={achievement.number} duration={3} />
-                {achievement.suffix}
-              </motion.div>
-              
-              {/* Achievement Label - Card/Component Titles */}
-              <div className="text-sm md:text-base font-semibold text-cyan-300">{achievement.label}</div>
+              <span className="tracking-wider uppercase">Technical Mastery</span>
             </motion.div>
-          ))}
-        </motion.div>
 
-        {/* Additional Skills Section */}
-        <motion.div
-          className="text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.6 }}
-        >
-          {/* Section Heading */}
-          <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-            Additional Expertise
-          </h3>
-          
-          <div className="flex flex-wrap justify-center gap-2 md:gap-3">
-            {[
-              'Node.js', 'Vue.js', 'Python', 'PostgreSQL', 'Redis', 'AWS', 
-              'Tailwind CSS', 'TypeScript', 'GraphQL', 'REST APIs'
-            ].map((tech, index) => (
-              <motion.span
-                key={tech}
-                className="inline-block bg-white/[0.08] backdrop-blur-xl border border-white/20 px-3 py-2 rounded-full text-sm md:text-base font-medium text-gray-300 hover:text-white hover:border-cyan-400/50 transition-all duration-300"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.8 + index * 0.1 }}
-                whileHover={{ scale: 1.05, y: -2 }}
-              >
-                {tech}
-              </motion.span>
-            ))}
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-tight">
+              Skills That{' '}
+              <span className="bg-gradient-to-r from-purple-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                Dominate
+              </span>
+            </h2>
+            
+            <p className="text-sm md:text-base text-gray-200 max-w-2xl mx-auto">
+              Mastering cutting-edge technologies to build the impossible
+            </p>
           </div>
+
+          {/* Main Content Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {/* Core Skills - Takes 2 columns */}
+            <div className="lg:col-span-2">
+              <h3 className="text-xl font-bold text-white mb-4">Core Technologies</h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                {coreSkills.map((skill, index) => (
+                  <motion.div
+                    key={skill.name}
+                    className="group relative bg-white/[0.08] backdrop-blur-xl border border-white/20 rounded-lg p-3 hover:bg-white/[0.15] hover:border-cyan-400/50 transition-all duration-300 cursor-pointer"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 + index * 0.1 }}
+                    whileHover={{ y: -2, scale: 1.02 }}
+                    onHoverStart={() => setHoveredSkill(skill)}
+                    onHoverEnd={() => setHoveredSkill(null)}
+                  >
+                    <div className="text-center">
+                      <motion.div 
+                        className={`w-10 h-10 mx-auto mb-2 bg-gradient-to-r ${skill.color} rounded-lg flex items-center justify-center`}
+                        animate={{
+                          rotateY: hoveredSkill?.name === skill.name ? 180 : 0,
+                        }}
+                        transition={{ duration: 0.6 }}
+                      >
+                        <skill.icon className="w-5 h-5 text-white" />
+                      </motion.div>
+                      
+                      <h4 className="text-sm font-bold text-white mb-1">{skill.name}</h4>
+                      
+                      {/* Progress Bar */}
+                      <div className="w-full bg-gray-700/50 rounded-full h-1.5 mb-1">
+                        <motion.div 
+                          className={`h-1.5 bg-gradient-to-r ${skill.color} rounded-full`}
+                          initial={{ width: 0 }}
+                          animate={{ width: `${skill.proficiency}%` }}
+                          transition={{ delay: 0.5 + index * 0.1, duration: 1 }}
+                        />
+                      </div>
+                      
+                      <span className="text-xs font-bold text-white">{skill.proficiency}%</span>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Achievements - Takes 1 column */}
+            <div>
+              <h3 className="text-xl font-bold text-white mb-4">Achievements</h3>
+              <div className="space-y-3">
+                {achievements.map((achievement, index) => (
+                  <motion.div
+                    key={achievement.label}
+                    className="flex items-center gap-3 bg-white/[0.08] backdrop-blur-xl border border-white/20 rounded-lg p-3"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 1.0 + index * 0.1 }}
+                  >
+                    <div className="w-10 h-10 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center shrink-0">
+                      <achievement.icon className="w-5 h-5 text-white" />
+                    </div>
+                    
+                    <div className="flex-1">
+                      <div className="text-lg font-bold text-white">
+                        <LiveCounter end={achievement.number} duration={2} />
+                        {achievement.suffix}
+                      </div>
+                      <div className="text-sm text-cyan-300">{achievement.label}</div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Additional Skills - Compact Tags */}
+          <motion.div
+            className="text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.6 }}
+          >
+            <h3 className="text-xl font-bold text-white mb-3">Additional Expertise</h3>
+            
+            <div className="flex flex-wrap justify-center gap-2">
+              {additionalSkills.map((tech, index) => (
+                <motion.span
+                  key={tech}
+                  className="inline-block bg-white/[0.08] backdrop-blur-xl border border-white/20 px-3 py-1.5 rounded-full text-sm text-gray-300 hover:text-white hover:border-cyan-400/50 transition-all duration-300"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 1.8 + index * 0.05 }}
+                  whileHover={{ scale: 1.05, y: -1 }}
+                >
+                  {tech}
+                </motion.span>
+              ))}
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
