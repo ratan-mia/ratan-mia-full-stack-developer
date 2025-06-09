@@ -4,10 +4,10 @@ import {
   ArrowRight,
   Briefcase,
   Globe,
-  Shield,
   Smartphone,
-  Users,
-  Zap
+  Shield,
+  Zap,
+  Users
 } from 'lucide-react';
 
 const ServicesSlide = () => {
@@ -74,18 +74,18 @@ const ServicesSlide = () => {
   ];
 
   return (
-    <section className="py-16 md:py-20 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center">
-      <div className="max-w-6xl mx-auto w-full">
+    <div className="py-16 md:py-20 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center">
+      <div className="max-w-7xl mx-auto w-full">
         {/* Header Section - Following design guidelines */}
         <motion.div
-          className="text-center mb-8 md:mb-12"
+          className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
           {/* Badge - Labels & Small Text */}
           <motion.div
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500/20 to-green-500/20 backdrop-blur-xl border border-emerald-400/30 px-4 py-2 rounded-full text-sm md:text-base font-semibold text-emerald-300 mb-4"
+            className="inline-flex items-center gap-3 bg-gradient-to-r from-emerald-500/20 to-green-500/20 backdrop-blur-xl border border-emerald-400/30 px-6 py-3 rounded-full text-sm md:text-base font-semibold text-emerald-300 mb-6"
             whileHover={{ scale: 1.05 }}
           >
             <Briefcase className="w-4 h-4" />
@@ -93,7 +93,7 @@ const ServicesSlide = () => {
           </motion.div>
 
           {/* Main Section Title */}
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight mb-3">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight mb-4">
             Services That{' '}
             <span className="bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
               Transform
@@ -107,70 +107,70 @@ const ServicesSlide = () => {
         </motion.div>
 
         {/* Services Grid - Card Design Standards */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 mb-8 md:mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
-              className="group relative bg-white/[0.08] backdrop-blur-xl border border-white/20 rounded-2xl p-6 hover:bg-white/[0.15] hover:border-cyan-400/50 transition-all duration-500 overflow-hidden cursor-pointer"
+              className="group relative bg-white/[0.08] backdrop-blur-xl border border-white/20 rounded-3xl p-8 hover:bg-white/[0.15] hover:border-cyan-400/50 transition-all duration-500 overflow-hidden cursor-pointer"
               initial={{ opacity: 0, y: 30, rotateX: -10 }}
               animate={{ opacity: 1, y: 0, rotateX: 0 }}
-              transition={{ delay: 0.3 + index * 0.1, duration: 0.8 }}
+              transition={{ delay: 0.3 + index * 0.2, duration: 0.8 }}
               whileHover={{ 
-                y: -5, 
-                scale: 1.01,
-                boxShadow: '0 20px 40px rgba(6, 182, 212, 0.2)'
+                y: -10, 
+                scale: 1.02,
+                boxShadow: '0 25px 50px rgba(6, 182, 212, 0.2)'
               }}
             >
               <motion.div
                 className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
               />
 
-              <div className="relative z-10 flex items-start gap-4">
+              <div className="relative z-10 flex items-start gap-6">
                 <motion.div 
-                  className={`w-16 h-16 bg-gradient-to-r ${service.color} rounded-xl flex items-center justify-center shrink-0 shadow-2xl`}
+                  className={`w-20 h-20 bg-gradient-to-r ${service.color} rounded-2xl flex items-center justify-center shrink-0 shadow-2xl`}
                   whileHover={{ 
                     scale: 1.1, 
                     rotateY: 15,
-                    boxShadow: '0 15px 30px rgba(6, 182, 212, 0.4)'
+                    boxShadow: '0 20px 40px rgba(6, 182, 212, 0.4)'
                   }}
                 >
-                  <service.icon className="w-8 h-8 text-white" />
+                  <service.icon className="w-10 h-10 text-white" />
                 </motion.div>
                 
                 <div className="flex-1">
                   {/* Card/Component Title */}
-                  <h3 className="text-lg md:text-xl font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors duration-300">
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-3 group-hover:text-cyan-300 transition-colors duration-300">
                     {service.title}
                   </h3>
                   
-                  {/* Body Text - Secondary */}
-                  <p className="text-sm md:text-base text-gray-200 mb-4 leading-relaxed">{service.desc}</p>
+                  {/* Body Text - Primary */}
+                  <p className="text-sm md:text-base text-gray-200 mb-6 leading-relaxed">{service.desc}</p>
                   
                   {/* Features List */}
-                  <div className="space-y-2 mb-4">
+                  <div className="space-y-3 mb-6">
                     {service.features.map((feature, featureIndex) => (
                       <motion.div 
                         key={featureIndex} 
-                        className="flex items-center gap-2"
+                        className="flex items-center gap-3"
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.8 + featureIndex * 0.1 }}
+                        transition={{ delay: 1 + featureIndex * 0.1 }}
                       >
                         <motion.div 
-                          className="w-1.5 h-1.5 bg-cyan-400 rounded-full"
+                          className="w-2 h-2 bg-cyan-400 rounded-full"
                           animate={{ scale: [1, 1.3, 1] }}
                           transition={{ duration: 2, repeat: Infinity, delay: featureIndex * 0.2 }}
                         />
-                        {/* Caption & Meta Info */}
-                        <span className="text-xs md:text-sm text-gray-300">{feature}</span>
+                        {/* Body Text - Secondary */}
+                        <span className="text-sm md:text-base text-gray-300">{feature}</span>
                       </motion.div>
                     ))}
                   </div>
 
                   {/* Meta Information */}
                   <div className="flex items-center justify-between text-xs md:text-sm text-gray-400">
-                    <div className="flex items-center gap-1">
-                      <Users className="w-3 h-3 text-cyan-400" />
+                    <div className="flex items-center gap-2">
+                      <Users className="w-4 h-4 text-cyan-400" />
                       <span>{service.clients}+ clients</span>
                     </div>
                     <div className="text-emerald-400 font-medium">
@@ -181,11 +181,11 @@ const ServicesSlide = () => {
               </div>
               
               <motion.div 
-                className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300"
-                animate={{ x: [0, 3, 0] }}
+                className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300"
+                animate={{ x: [0, 5, 0] }}
                 transition={{ duration: 2, repeat: Infinity }}
               >
-                <ArrowRight className="w-6 h-6 text-cyan-400" />
+                <ArrowRight className="w-8 h-8 text-cyan-400" />
               </motion.div>
             </motion.div>
           ))}
@@ -193,64 +193,44 @@ const ServicesSlide = () => {
 
         {/* Process Section */}
         <motion.div
-          className="mb-8 md:mb-12"
+          className="mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.0 }}
+          transition={{ delay: 1.2 }}
         >
           {/* Section Heading */}
-          <h3 className="text-2xl md:text-3xl font-bold text-white text-center mb-6">
+          <h3 className="text-xl md:text-2xl font-bold text-white text-center mb-8">
             Our Proven Process
           </h3>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {processSteps.map((step, index) => (
               <motion.div
                 key={step.step}
                 className="text-center relative"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.2 + index * 0.1 }}
+                transition={{ delay: 1.4 + index * 0.2 }}
               >
                 <motion.div
-                  className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center mx-auto mb-3 text-lg md:text-xl font-bold text-white shadow-2xl"
-                  whileHover={{ scale: 1.1, rotateY: 10 }}
+                  className="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl md:text-2xl font-bold text-white shadow-2xl"
+                  whileHover={{ scale: 1.1, rotateY: 15 }}
                 >
                   {step.step}
                 </motion.div>
                 
                 {/* Subsection Title */}
-                <h4 className="text-lg md:text-xl font-bold text-white mb-2">{step.title}</h4>
+                <h4 className="text-base md:text-lg font-bold text-white mb-2">{step.title}</h4>
                 {/* Caption & Meta Info */}
-                <p className="text-xs md:text-sm font-medium text-gray-300">{step.description}</p>
+                <p className="text-xs md:text-sm text-gray-300">{step.description}</p>
                 
                 {/* Connection Line (except for last item) */}
                 {index < processSteps.length - 1 && (
-                  <div className="hidden lg:block absolute top-6 left-full w-full h-0.5 bg-gradient-to-r from-cyan-400 to-transparent -translate-x-6" />
+                  <div className="hidden lg:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-cyan-400 to-transparent -translate-x-8" />
                 )}
               </motion.div>
             ))}
           </div>
-        </motion.div>
-
-        {/* Stats Row */}
-        <motion.div
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-3xl mx-auto mb-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.6 }}
-        >
-          {[
-            { number: '99%', label: 'Client Satisfaction' },
-            { number: '24/7', label: 'Support Available' },
-            { number: '2hrs', label: 'Response Time' },
-            { number: '30+', label: 'Technologies' }
-          ].map((stat, index) => (
-            <div key={stat.label} className="text-center bg-white/[0.05] backdrop-blur-xl border border-white/10 rounded-xl p-3 md:p-4">
-              <div className="text-xl md:text-2xl font-bold text-white mb-1">{stat.number}</div>
-              <div className="text-xs md:text-sm font-medium text-gray-300">{stat.label}</div>
-            </div>
-          ))}
         </motion.div>
 
         {/* CTA Section */}
@@ -262,8 +242,8 @@ const ServicesSlide = () => {
         >
           <motion.a
             href="#contact"
-            className="group inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-bold text-base md:text-lg px-8 py-4 rounded-xl hover:from-emerald-400 hover:to-green-500 transition-all duration-300 shadow-2xl relative overflow-hidden"
-            whileHover={{ scale: 1.05, y: -2 }}
+            className="group inline-flex items-center gap-3 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-bold text-base md:text-lg px-10 py-5 rounded-2xl hover:from-emerald-400 hover:to-green-500 transition-all duration-300 shadow-2xl relative overflow-hidden"
+            whileHover={{ scale: 1.05, y: -3 }}
             whileTap={{ scale: 0.95 }}
           >
             <motion.div
@@ -272,11 +252,31 @@ const ServicesSlide = () => {
               transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
             />
             <span className="relative z-10">Explore All Solutions</span>
-            <ArrowRight className="relative z-10 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+            <ArrowRight className="relative z-10 w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
           </motion.a>
         </motion.div>
+
+        {/* Stats Row */}
+        <motion.div
+          className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 2 }}
+        >
+          {[
+            { number: '99%', label: 'Client Satisfaction' },
+            { number: '24/7', label: 'Support Available' },
+            { number: '2hrs', label: 'Response Time' },
+            { number: '30+', label: 'Technologies' }
+          ].map((stat, index) => (
+            <div key={stat.label} className="text-center">
+              <div className="text-xl md:text-2xl font-bold text-white mb-1">{stat.number}</div>
+              <div className="text-xs md:text-sm font-medium text-gray-300">{stat.label}</div>
+            </div>
+          ))}
+        </motion.div>
       </div>
-    </section>
+    </div>
   );
 };
 
