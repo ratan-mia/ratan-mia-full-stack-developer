@@ -1,28 +1,28 @@
 'use client';
 
 import { AnimatePresence, motion, useInView } from 'framer-motion';
-import { 
-  Calendar, 
-  ChevronDown, 
-  Code2, 
-  ExternalLink, 
-  Eye, 
-  Globe, 
-  Plus, 
-  TrendingUp,
-  Search,
-  Filter,
+import {
   ArrowRight,
   Award,
-  Zap,
-  Target,
-  Users2,
-  Clock,
-  Star,
+  Calendar,
+  ChevronDown,
   ChevronRight,
-  X
+  Clock,
+  Code2,
+  ExternalLink,
+  Eye,
+  Filter,
+  Globe,
+  Plus,
+  Search,
+  Star,
+  Target,
+  TrendingUp,
+  Users2,
+  X,
+  Zap
 } from 'lucide-react';
-import { useState, useMemo, useCallback, useRef, useEffect } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 
 // Constants
 const PROJECTS_PER_PAGE = 6;
@@ -576,9 +576,9 @@ const SearchAndFilter = ({ searchTerm, onSearchChange, activeFilter, onFilterCha
         <span className="font-medium">{totalResults} projects found</span>
       </div>
 
-      {/* Filter Categories (Mobile Dropdown) */}
+      {/* Filter Categories (Mobile Dropdown) - FIXED */}
       <AnimatePresence>
-        {(isFilterOpen || window.innerWidth >= 640) && (
+        {isFilterOpen && (
           <motion.div
             className="sm:hidden flex flex-wrap gap-2"
             initial={{ opacity: 0, height: 0 }}
