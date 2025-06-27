@@ -606,22 +606,43 @@ const HeroMain = () => {
             </motion.div>
           </div>
 
-          {/* Scroll Indicator */}
+          {/* Simple Mouse Scroll Indicator */}
           <motion.div
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+            className="absolute bottom-12 left-1/2 transform -translate-x-1/2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 2.5 }}
           >
             <motion.a
               href="#projects"
-              className="flex flex-col items-center gap-2 text-white/70 hover:text-white transition-colors duration-300 focus:outline-none focus:text-white"
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              aria-label="Scroll down to see my projects"
+              className="flex flex-col items-center gap-3 text-white/70 hover:text-white transition-colors duration-300 focus:outline-none focus:text-white group"
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              aria-label="Scroll down to explore my projects"
+              whileHover={{ scale: 1.1 }}
             >
-              <span className="text-sm font-medium">Scroll to explore</span>
-              <ArrowDown className="w-5 h-5" />
+              <span className="text-sm font-medium group-hover:text-white transition-colors duration-300">
+                Scroll to explore
+              </span>
+              
+              {/* Simple Mouse Icon */}
+              <motion.div
+                className="w-6 h-10 border-2 border-white/40 group-hover:border-white/70 rounded-full flex justify-center transition-colors duration-300"
+                whileHover={{ borderColor: "rgba(255, 255, 255, 0.8)" }}
+              >
+                <motion.div
+                  className="w-0.5 h-2 bg-white/50 group-hover:bg-white/80 rounded-full mt-2 transition-colors duration-300"
+                  animate={{ 
+                    y: [0, 12, 0], 
+                    opacity: [1, 0.3, 1] 
+                  }}
+                  transition={{ 
+                    duration: 1.5, 
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+              </motion.div>
             </motion.a>
           </motion.div>
         </motion.div>

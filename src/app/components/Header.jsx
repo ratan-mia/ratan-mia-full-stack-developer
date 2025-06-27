@@ -35,21 +35,22 @@ const Header = () => {
   const headerY = useTransform(scrollYProgress, [0, 0.1], [0, -5]);
   const headerOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0.98]);
 
-  // Enhanced navigation structure
+  // Enhanced navigation structure - organized by user journey
   const mainMenuItems = [
     { name: 'Home', id: 'home', icon: Home, color: 'text-blue-500' },
     { name: 'About', id: 'about', icon: User, color: 'text-green-500' },
-    { name: 'Services', id: 'services', icon: Briefcase, color: 'text-purple-500' },
-    { name: 'Skills', id: 'skills', icon: Code, color: 'text-orange-500' }
+    { name: 'Skills', id: 'skills', icon: Code, color: 'text-purple-500' },
+    { name: 'Services', id: 'services', icon: Briefcase, color: 'text-orange-500' },
+    { name: 'Projects', id: 'projects', icon: FolderOpen, color: 'text-cyan-500' }
   ];
 
   const dropdownMenus = [
     {
       title: 'Portfolio',
-      icon: FolderOpen,
-      color: 'text-cyan-500',
+      icon: Star,
+      color: 'text-yellow-500',
       items: [
-        { name: 'Projects', id: 'projects', icon: FolderOpen, description: 'Featured work & case studies' },
+        { name: 'My Work', id: 'projects', icon: FolderOpen, description: 'Featured projects & case studies' },
         { name: 'Testimonials', id: 'testimonials', icon: MessageSquare, description: 'Client reviews & feedback' },
         { name: 'Certificates', id: 'certificates', icon: Award, description: 'Professional credentials' }
       ]
@@ -178,7 +179,7 @@ const Header = () => {
     <>
       <motion.header 
         ref={headerRef}
-        className={`fixed top-0 left-0 right-0 px-4 sm:px-6 lg:px-8 xl:px-12 py-3 sm:py-4 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 px-4 sm:px-6 lg:px-8 xl:px-16 2xl:px-20 py-3 sm:py-4 z-50 transition-all duration-500 ${
           scrolled 
             ? 'bg-white/95 backdrop-blur-xl shadow-2xl border-b border-slate-200/50' 
             : 'bg-white/90 backdrop-blur-lg'
@@ -206,7 +207,7 @@ const Header = () => {
           transition={{ type: "spring", damping: 30, stiffness: 200 }}
         />
 
-        <nav className="flex justify-between items-center max-w-7xl mx-auto relative z-10">
+        <nav className="flex justify-between items-center max-w-screen-2xl mx-auto relative z-10">
           {/* Enhanced Logo */}
           <motion.div 
             className="flex items-center gap-3 cursor-pointer group min-w-0"

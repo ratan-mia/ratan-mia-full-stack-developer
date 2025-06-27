@@ -10,6 +10,7 @@ import {
   Clock,
   Code,
   ExternalLink,
+  FolderOpen,
   Github,
   Globe,
   Heart,
@@ -74,13 +75,14 @@ const Footer = () => {
 
   const currentYear = new Date().getFullYear();
 
-  // Enhanced data structures
+  // Enhanced data structures - organized by user journey
   const quickLinks = [
     { name: 'About Me', href: '#about', icon: Users, color: 'text-green-400', description: 'Learn my story' },
-    { name: 'Skills', href: '#skills', icon: Code, color: 'text-blue-400', description: 'Technical expertise' },
-    { name: 'Projects', href: '#projects', icon: Briefcase, color: 'text-purple-400', description: 'Featured work' },
-    { name: 'Process', href: '#process', icon: Clock, color: 'text-orange-400', description: 'How I work' },
-    { name: 'Contact', href: '#contact', icon: Mail, color: 'text-red-400', description: 'Get in touch' }
+    { name: 'Skills', href: '#skills', icon: Code, color: 'text-purple-400', description: 'Technical expertise' },
+    { name: 'Services', href: '#services', icon: Briefcase, color: 'text-orange-400', description: 'What I offer' },
+    { name: 'Projects', href: '#projects', icon: FolderOpen, color: 'text-cyan-400', description: 'Featured work' },
+    { name: 'How I Work', href: '#process', icon: Clock, color: 'text-blue-400', description: 'My process' },
+    { name: 'Get Quote', href: '#quote', icon: Mail, color: 'text-red-400', description: 'Start a project' }
   ];
 
   const services = [
@@ -601,7 +603,7 @@ const Footer = () => {
 
                   {/* Status Messages */}
                   {subscribeStatus === 'success' && (
-                    <motion.p 
+                    <motion.div 
                       className="text-green-400 text-xs mt-3 flex items-center gap-2"
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -609,10 +611,10 @@ const Footer = () => {
                     >
                       <CheckCircle className="w-3 h-3" />
                       Welcome aboard! Check your email for confirmation.
-                    </motion.p>
+                    </motion.div>
                   )}
                   {subscribeStatus === 'error' && (
-                    <motion.p 
+                    <motion.div 
                       className="text-red-400 text-xs mt-3 flex items-center gap-2"
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -620,7 +622,7 @@ const Footer = () => {
                     >
                       <AlertCircle className="w-3 h-3" />
                       Please enter a valid email address.
-                    </motion.p>
+                    </motion.div>
                   )}
                 </div>
 
@@ -669,7 +671,7 @@ const Footer = () => {
           >
             <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
               <div className="text-slate-400 text-sm text-center lg:text-left">
-                <motion.p 
+                <motion.div 
                   className="flex items-center justify-center lg:justify-start gap-2 mb-2"
                   whileHover={{ scale: 1.02 }}
                 >
@@ -680,7 +682,7 @@ const Footer = () => {
                   >
                     <Heart className="w-4 h-4 text-red-400" />
                   </motion.div>
-                </motion.p>
+                </motion.div>
                 <p className="flex items-center justify-center lg:justify-start gap-2 text-xs">
                   Crafted with passion using <span className="text-blue-400">Next.js</span>, 
                   <span className="text-purple-400">Tailwind CSS</span> & 

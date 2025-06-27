@@ -16,22 +16,22 @@ export default function Home() {
       {/* Hero Section */}
       <HeroMain />
 
-      {/* Main Content Sections */}
+      {/* Main Content Sections - Organized for optimal user journey */}
       <div className="relative">
         {/* Background Elements */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-50/50 to-transparent dark:via-blue-900/20 pointer-events-none" />
 
-        {/* Content Sections */}
-        <Projects />
-        <About />
-        <Skills />
-        <Services />
-        <ProcessHowIWork />
-        <TrainingCertificates />
-        <Testimonials />
-        <GetQuote />
-        <FAQ />
-        <Contact />
+        {/* Content Sections in logical order */}
+        <About />          {/* 1. Who I am */}
+        <Skills />         {/* 2. What I can do */}
+        <Services />       {/* 3. What I offer */}
+        <Projects />       {/* 4. My work examples */}
+        <ProcessHowIWork />     {/* 5. How I work */}
+        <Testimonials />   {/* 6. Social proof */}
+        <TrainingCertificates /> {/* 7. My credentials */}
+        <GetQuote />       {/* 8. Primary CTA */}
+        <FAQ />            {/* 9. Common questions */}
+        <Contact />        {/* 10. Final contact */}
       </div>
     </main>
   );
