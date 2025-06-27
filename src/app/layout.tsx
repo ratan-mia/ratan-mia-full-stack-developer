@@ -156,17 +156,30 @@ export default function RootLayout({
         />
       </head>
 
-      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased bg-white text-gray-900 selection:bg-blue-500 selection:text-white`}>
+      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased bg-slate-950 text-white selection:bg-cyan-500 selection:text-white`}>
+        {/* Top Brand Stripe */}
+        <div className="brand-stripe-top fixed top-0 left-0 right-0 z-50" />
+        
         {/* Header */}
         <Header />
 
         {/* Main Content */}
-        <main className="min-h-screen">
-          {children}
+        <main className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 relative">
+          {/* Background Effects */}
+          <div className="glow-effect absolute inset-0 pointer-events-none" />
+          <div className="grid-pattern absolute inset-0 pointer-events-none" />
+          
+          {/* Content */}
+          <div className="relative z-10">
+            {children}
+          </div>
         </main>
 
         {/* Footer */}
         <Footer />
+
+        {/* Bottom Brand Stripe */}
+        <div className="brand-stripe-bottom" />
 
         {/* Analytics & Tracking Scripts */}
         {process.env.NODE_ENV === 'production' && (

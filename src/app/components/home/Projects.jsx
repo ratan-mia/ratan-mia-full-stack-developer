@@ -6,14 +6,16 @@ import {
   Calendar,
   Code2,
   ExternalLink,
+  Github,
   Globe,
   Star,
+  Terminal,
   TrendingUp,
   Zap
 } from 'lucide-react';
 import { useRef, useState } from 'react';
 
-// Simplified Project Data - Only Featured Projects for Homepage
+// Updated Project Data with new design system
 const FEATURED_PROJECTS = [
   {
     id: 1,
@@ -25,7 +27,8 @@ const FEATURED_PROJECTS = [
     year: "2024",
     client: "Asian Petroleum Limited",
     status: "Live",
-    gradient: "from-emerald-600 to-teal-700",
+    gradient: "from-emerald-500 to-teal-500",
+    color: "text-emerald-400",
     results: {
       conversion: "85%",
       performance: "97%",
@@ -42,7 +45,8 @@ const FEATURED_PROJECTS = [
     year: "2023",
     client: "Chery Bangladesh",
     status: "Live",
-    gradient: "from-blue-600 to-indigo-700",
+    gradient: "from-blue-500 to-indigo-500",
+    color: "text-blue-400",
     results: {
       conversion: "200%",
       performance: "97%",
@@ -59,7 +63,8 @@ const FEATURED_PROJECTS = [
     year: "2024",
     client: "ELF Bangladesh",
     status: "Live",
-    gradient: "from-pink-600 to-rose-700",
+    gradient: "from-pink-500 to-rose-500",
+    color: "text-pink-400",
     results: {
       conversion: "150%",
       performance: "95%",
@@ -76,7 +81,8 @@ const FEATURED_PROJECTS = [
     year: "2024",
     client: "Healthcare Provider",
     status: "Development",
-    gradient: "from-purple-600 to-indigo-700",
+    gradient: "from-purple-500 to-indigo-500",
+    color: "text-purple-400",
     results: {
       conversion: "70%",
       performance: "92%",
@@ -86,13 +92,13 @@ const FEATURED_PROJECTS = [
 ];
 
 const PROJECT_STATS = [
-  { number: '50+', label: 'Projects', icon: Code2 },
-  { number: '97%', label: 'Performance', icon: Zap },
-  { number: '200%', label: 'ROI Increase', icon: TrendingUp },
-  { number: '98%', label: 'Satisfaction', icon: Star }
+  { number: '50+', label: 'Projects', icon: Code2, color: 'text-cyan-400' },
+  { number: '97%', label: 'Performance', icon: Zap, color: 'text-blue-400' },
+  { number: '200%', label: 'ROI Increase', icon: TrendingUp, color: 'text-purple-400' },
+  { number: '98%', label: 'Satisfaction', icon: Star, color: 'text-orange-400' }
 ];
 
-// Project Card Component
+// Updated Project Card Component
 const ProjectCard = ({ project, index, inView }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -104,20 +110,20 @@ const ProjectCard = ({ project, index, inView }) => {
 
   return (
     <motion.div
-      className="bg-white/80 backdrop-blur-sm rounded-2xl border border-white/50 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
-      initial={{ opacity: 0, y: 20 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-      transition={{ delay: index * 0.1, duration: 0.5 }}
-      whileHover={{ y: -5, scale: 1.02 }}
+      className="project-card group h-full flex flex-col"
+      initial={{ opacity: 0, y: 30 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      transition={{ delay: index * 0.1, duration: 0.6 }}
+      whileHover={{ scale: 1.02, y: -5 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Project Image/Preview */}
-      <div className="relative h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center overflow-hidden">
+      <div className="relative h-48 bg-gradient-to-br from-slate-800 to-slate-700 flex items-center justify-center overflow-hidden rounded-t-2xl">
         <div className={`w-full h-full bg-gradient-to-br ${project.gradient} opacity-20`} />
         <div className="absolute inset-0 flex items-center justify-center">
           <motion.div
-            className={`w-20 h-20 bg-gradient-to-br ${project.gradient} rounded-xl flex items-center justify-center text-white shadow-lg`}
+            className={`w-20 h-20 bg-gradient-to-r ${project.gradient} rounded-xl flex items-center justify-center text-white shadow-lg`}
             animate={isHovered ? { scale: 1.1, rotate: 5 } : { scale: 1, rotate: 0 }}
             transition={{ duration: 0.3 }}
           >
@@ -125,16 +131,19 @@ const ProjectCard = ({ project, index, inView }) => {
           </motion.div>
         </div>
 
+        {/* Grid Pattern Overlay */}
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.05\'%3E%3Ccircle cx=\'7\' cy=\'7\' r=\'1\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40" />
+
         {/* Status Badge */}
         <div className="absolute top-3 right-3">
-          <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold ${
+          <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
             project.status === 'Live' 
-              ? 'bg-green-100 text-green-800 border border-green-200' 
-              : 'bg-yellow-100 text-yellow-800 border border-yellow-200'
+              ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30' 
+              : 'bg-orange-500/20 text-orange-300 border border-orange-500/30'
           }`}>
             <motion.div
               className={`w-1.5 h-1.5 rounded-full ${
-                project.status === 'Live' ? 'bg-green-500' : 'bg-yellow-500'
+                project.status === 'Live' ? 'bg-emerald-400' : 'bg-orange-400'
               }`}
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
@@ -145,7 +154,7 @@ const ProjectCard = ({ project, index, inView }) => {
 
         {/* Year Badge */}
         <div className="absolute top-3 left-3">
-          <span className="bg-white/90 backdrop-blur-sm text-slate-800 px-3 py-1 rounded-full text-xs font-bold">
+          <span className="bg-slate-800/80 backdrop-blur-sm text-cyan-400 px-3 py-1 rounded-full text-xs font-bold border border-slate-700">
             {project.year}
           </span>
         </div>
@@ -153,36 +162,36 @@ const ProjectCard = ({ project, index, inView }) => {
         {/* Hover Overlay */}
         {isHovered && project.link && (
           <motion.div
-            className="absolute inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center"
+            className="absolute inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
             <motion.button
               onClick={handleClick}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-white text-gray-900 font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+              className="btn-primary group"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <ExternalLink className="w-4 h-4" />
-              Visit Live Site
+              <span>Visit Live Site</span>
             </motion.button>
           </motion.div>
         )}
       </div>
 
       {/* Project Details */}
-      <div className="p-6">
+      <div className="p-6 flex-1 flex flex-col">
         <div className="mb-4">
-          <h3 className="text-xl font-bold text-slate-800 mb-2 group-hover:text-blue-600 transition-colors duration-300">
+          <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300 uppercase tracking-wide">
             {project.title}
           </h3>
-          <p className="text-blue-600 font-semibold text-sm mb-3">{project.subtitle}</p>
-          <p className="text-gray-600 text-sm leading-relaxed mb-3">{project.description}</p>
+          <p className={`${project.color} font-semibold text-sm mb-3 uppercase tracking-wider`}>{project.subtitle}</p>
+          <p className="text-slate-300 text-sm leading-relaxed mb-3">{project.description}</p>
           
           {/* Client Info */}
-          <div className="text-xs text-gray-500 mb-4">
-            Client: <span className="font-medium text-gray-700">{project.client}</span>
+          <div className="text-xs text-slate-400 mb-4 font-medium">
+            Client: <span className="text-slate-300">{project.client}</span>
           </div>
         </div>
 
@@ -192,7 +201,7 @@ const ProjectCard = ({ project, index, inView }) => {
             {project.tech.slice(0, 4).map((tech, i) => (
               <span 
                 key={i}
-                className="px-2 py-1 bg-blue-100 text-blue-800 rounded-lg text-xs font-medium border border-blue-200"
+                className="tech-badge"
               >
                 {tech}
               </span>
@@ -201,29 +210,30 @@ const ProjectCard = ({ project, index, inView }) => {
         </div>
 
         {/* Results Metrics */}
-        <div className="mb-4 p-3 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-blue-100">
-          <div className="grid grid-cols-3 gap-2 text-center">
+        <div className="mb-6 p-4 bg-slate-800 border border-slate-700 rounded-xl flex-1">
+          <h4 className="text-sm font-bold text-white mb-3 uppercase tracking-wider">Project Results</h4>
+          <div className="grid grid-cols-3 gap-3 text-center">
             <div>
-              <div className="text-sm font-bold text-blue-600">{project.results.conversion}</div>
-              <div className="text-xs text-gray-600">Growth</div>
+              <div className={`text-sm font-black ${project.color} uppercase tracking-tight`}>{project.results.conversion}</div>
+              <div className="text-xs text-slate-400 uppercase tracking-wider">Growth</div>
             </div>
             <div>
-              <div className="text-sm font-bold text-green-600">{project.results.performance}</div>
-              <div className="text-xs text-gray-600">Score</div>
+              <div className="text-sm font-black text-emerald-400 uppercase tracking-tight">{project.results.performance}</div>
+              <div className="text-xs text-slate-400 uppercase tracking-wider">Score</div>
             </div>
             <div>
-              <div className="text-sm font-bold text-purple-600">{project.results.satisfaction}</div>
-              <div className="text-xs text-gray-600">Rating</div>
+              <div className="text-sm font-black text-purple-400 uppercase tracking-tight">{project.results.satisfaction}</div>
+              <div className="text-xs text-slate-400 uppercase tracking-wider">Rating</div>
             </div>
           </div>
         </div>
 
         {/* Action Button */}
-        <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+        <div className="flex items-center justify-between pt-4 border-t border-slate-700">
           {project.link ? (
             <motion.button
               onClick={handleClick}
-              className={`inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r ${project.gradient} text-white font-semibold rounded-lg text-sm shadow-lg hover:shadow-xl transition-all duration-300`}
+              className={`inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r ${project.gradient} text-white font-semibold rounded-xl text-sm uppercase tracking-wide transition-all duration-300 hover:scale-105`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -231,12 +241,12 @@ const ProjectCard = ({ project, index, inView }) => {
               View Live
             </motion.button>
           ) : (
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg text-sm">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold rounded-xl text-sm uppercase tracking-wide">
               <Code2 className="w-4 h-4" />
               Custom Project
             </div>
           )}
-          <span className="text-xs text-gray-500">Case Study →</span>
+          <span className="text-xs text-slate-400 uppercase tracking-wider hover:text-cyan-400 transition-colors cursor-pointer">Case Study →</span>
         </div>
       </div>
     </motion.div>
@@ -259,47 +269,59 @@ const Projects = () => {
     <section 
       ref={sectionRef}
       id="projects" 
-      className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden"
+      className="py-16 lg:py-24 px-6 lg:px-8 xl:px-16 2xl:px-20 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 relative overflow-hidden"
       aria-label="Portfolio projects section"
     >
-      {/* Subtle Background Effects */}
+      {/* Developer Brand Stripe */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500" />
+
+      {/* Background Effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <motion.div
-          className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"
+          className="absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-full blur-3xl"
           animate={{ x: [0, -30, 0], y: [0, 20, 0], scale: [1, 1.1, 1] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl"
+          className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full blur-3xl"
           animate={{ x: [0, 30, 0], y: [0, -20, 0], scale: [1.1, 1, 1.1] }}
-          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
         />
       </div>
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        {/* Header */}
+      {/* Grid Pattern */}
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.03\'%3E%3Ccircle cx=\'7\' cy=\'7\' r=\'1\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40" />
+
+      {/* Code Brackets Decoration */}
+      <motion.div
+        className="absolute top-20 right-10 text-6xl font-mono text-cyan-500/20 pointer-events-none hidden lg:block"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 1.5, duration: 1 }}
+      >
+        &lt;Projects/&gt;
+      </motion.div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Section Header */}
         <motion.div
-          className="text-center mb-16"
+          className="max-w-3xl mx-auto text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
         >
+          {/* Section Badge */}
           <motion.div
-            className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg mb-6 border border-white/50"
+            className="section-badge mx-auto mb-6"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
             transition={{ delay: 0.2 }}
           >
-            <motion.div 
-              className="w-2 h-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            />
-            <span className="text-blue-800 font-semibold text-sm uppercase tracking-wider">Portfolio</span>
+            Portfolio Showcase
           </motion.div>
           
           <motion.h2 
-            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-slate-800 via-blue-800 to-purple-800 bg-clip-text text-transparent"
+            className="text-3xl lg:text-4xl font-black text-white mb-6 uppercase tracking-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ delay: 0.4 }}
@@ -308,19 +330,27 @@ const Projects = () => {
           </motion.h2>
           
           <motion.p 
-            className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed"
+            className="text-lg text-slate-300 leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ delay: 0.6 }}
           >
             Innovative solutions that drive business growth through cutting-edge technology and exceptional user experiences.
           </motion.p>
+
+          {/* Decorative Line */}
+          <motion.div
+            className="h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent w-20 mx-auto mt-6"
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={isInView ? { opacity: 1, scaleX: 1 } : { opacity: 0, scaleX: 0 }}
+            transition={{ delay: 0.8, duration: 0.8 }}
+          />
         </motion.div>
 
         {/* Project Stats */}
         <motion.div 
           ref={statsRef}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto mb-20"
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-20"
           initial={{ opacity: 0, y: 30 }}
           animate={statsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
@@ -328,15 +358,20 @@ const Projects = () => {
           {PROJECT_STATS.map((stat, index) => (
             <motion.div
               key={stat.label}
-              className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-xl border border-white/50 hover:bg-white/80 transition-all duration-300"
+              className="text-center p-6 bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 rounded-2xl hover:border-cyan-500/50 transition-all duration-300 group"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={statsInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
               transition={{ delay: index * 0.1 }}
-              whileHover={{ scale: 1.05, y: -2 }}
+              whileHover={{ scale: 1.05, y: -5 }}
             >
-              <stat.icon className="w-6 h-6 mx-auto mb-2 text-blue-600" />
-              <div className="text-2xl md:text-3xl font-bold text-blue-600 mb-1">{stat.number}</div>
-              <div className="text-sm text-slate-600 font-medium">{stat.label}</div>
+              {/* Glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
+              
+              <div className="relative z-10">
+                <stat.icon className={`w-6 h-6 mx-auto mb-3 ${stat.color} group-hover:scale-110 transition-transform duration-300`} />
+                <div className="text-3xl font-black text-white mb-2 uppercase tracking-tight">{stat.number}</div>
+                <div className="text-sm text-slate-400 uppercase tracking-wider font-medium">{stat.label}</div>
+              </div>
             </motion.div>
           ))}
         </motion.div>
@@ -368,14 +403,15 @@ const Projects = () => {
         >
           <motion.a
             href="/portfolio"
-            className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+            className="btn-primary group mb-4"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
           >
+            <Github className="w-5 h-5" />
             <span>View All Projects</span>
-            <ArrowRight className="w-5 h-5" />
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </motion.a>
-          <p className="text-sm text-gray-600 mt-3">
+          <p className="text-sm text-slate-400 uppercase tracking-wider font-medium">
             See 50+ more projects in my complete portfolio
           </p>
         </motion.div>
@@ -383,59 +419,82 @@ const Projects = () => {
         {/* Call to Action */}
         <motion.div 
           ref={ctaRef}
-          className="text-center"
+          className="relative p-8 lg:p-12 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 border border-slate-700 rounded-2xl overflow-hidden"
           initial={{ opacity: 0, y: 30 }}
           animate={ctaInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 text-white p-8 md:p-12 rounded-2xl relative overflow-hidden">
-            {/* Background Effects */}
-            <div className="absolute inset-0 opacity-10" aria-hidden="true">
-              <motion.div 
-                className="absolute top-0 left-0 w-64 h-64 bg-gradient-to-br from-blue-400 to-purple-400 rounded-full blur-3xl"
-                animate={{ x: [0, 30, 0], y: [0, -15, 0] }}
-                transition={{ duration: 8, repeat: Infinity }}
-              />
-              <motion.div 
-                className="absolute bottom-0 right-0 w-48 h-48 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full blur-3xl"
-                animate={{ x: [0, -20, 0], y: [0, 15, 0] }}
-                transition={{ duration: 10, repeat: Infinity }}
-              />
-            </div>
+          {/* Background Glow */}
+          <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-blue-500/5 to-purple-500/5" />
+          
+          {/* Animated Background Effects */}
+          <div className="absolute inset-0 opacity-10" aria-hidden="true">
+            <motion.div 
+              className="absolute top-0 left-0 w-64 h-64 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full blur-3xl"
+              animate={{ x: [0, 30, 0], y: [0, -15, 0] }}
+              transition={{ duration: 8, repeat: Infinity }}
+            />
+            <motion.div 
+              className="absolute bottom-0 right-0 w-48 h-48 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full blur-3xl"
+              animate={{ x: [0, -20, 0], y: [0, 15, 0] }}
+              transition={{ duration: 10, repeat: Infinity }}
+            />
+          </div>
+          
+          <div className="relative z-10 text-center">
+            <Terminal className="w-12 h-12 text-cyan-400 mx-auto mb-6" />
             
-            <div className="relative z-10">
-              <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                Ready to Start Your Project?
-              </h3>
-              <p className="text-blue-200 mb-8 max-w-2xl mx-auto leading-relaxed">
-                Let's create something amazing together. From concept to launch, I'll bring your vision to life.
-              </p>
+            <motion.h3 
+              className="text-3xl lg:text-4xl font-black text-white mb-4 uppercase tracking-tight"
+              initial={{ opacity: 0, y: 20 }}
+              animate={ctaInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ delay: 0.2 }}
+            >
+              Ready to Start Your Project?
+            </motion.h3>
+            
+            <motion.p 
+              className="text-lg text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              animate={ctaInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ delay: 0.4 }}
+            >
+              Let's create something amazing together. From concept to launch, I'll bring your vision to life.
+            </p>
+            
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={ctaInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ delay: 0.6 }}
+            >
+              <motion.a
+                href="#contact"
+                className="btn-primary group"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Terminal className="w-5 h-5" />
+                <span>Start Your Project</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </motion.a>
               
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <motion.a
-                  href="#contact"
-                  className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <span>Start Your Project</span>
-                  <ArrowRight className="w-5 h-5" />
-                </motion.a>
-                
-                <motion.a
-                  href="#services"
-                  className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/30 text-white px-8 py-4 font-semibold rounded-xl hover:bg-white/20 transition-all duration-300"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Calendar className="w-5 h-5" />
-                  Book Consultation
-                </motion.a>
-              </div>
-            </div>
+              <motion.a
+                href="#services"
+                className="btn-secondary group"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Calendar className="w-5 h-5" />
+                <span>Book Consultation</span>
+              </motion.a>
+            </motion.div>
           </div>
         </motion.div>
       </div>
+
+      {/* Developer Brand Stripe Bottom */}
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-500" />
     </section>
   );
 };

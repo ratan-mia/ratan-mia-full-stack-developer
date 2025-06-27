@@ -5,21 +5,23 @@ import {
   ArrowRight,
   Brain,
   CheckCircle,
-  Code,
+  Code2,
   ExternalLink,
   Globe,
   Mail,
+  Server,
   ShoppingCart,
   Star,
+  Terminal,
   Zap
 } from 'lucide-react';
 import { useRef } from 'react';
 
-// Simplified Service Data - Only Essential Services
+// Updated Service Data with new design system
 const CORE_SERVICES = [
   {
     id: 1,
-    icon: Code,
+    icon: Code2,
     title: "Full Stack Development",
     description: "Complete web applications with React.js, Next.js, and Laravel. From concept to deployment.",
     features: [
@@ -30,7 +32,8 @@ const CORE_SERVICES = [
     ],
     basePrice: "$2,500",
     timeline: "4-12 weeks",
-    gradient: "from-blue-600 to-indigo-600",
+    gradient: "from-cyan-500 to-blue-500",
+    color: "text-cyan-400",
     featured: true
   },
   {
@@ -46,7 +49,8 @@ const CORE_SERVICES = [
     ],
     basePrice: "$4,000",
     timeline: "6-16 weeks",
-    gradient: "from-purple-600 to-pink-600",
+    gradient: "from-purple-500 to-pink-500",
+    color: "text-purple-400",
     featured: true
   },
   {
@@ -62,7 +66,8 @@ const CORE_SERVICES = [
     ],
     basePrice: "$1,500",
     timeline: "2-8 weeks",
-    gradient: "from-green-600 to-teal-600",
+    gradient: "from-emerald-500 to-teal-500",
+    color: "text-emerald-400",
     featured: false
   },
   {
@@ -78,7 +83,8 @@ const CORE_SERVICES = [
     ],
     basePrice: "$800",
     timeline: "1-3 weeks",
-    gradient: "from-indigo-600 to-purple-600",
+    gradient: "from-orange-500 to-red-500",
+    color: "text-orange-400",
     featured: false
   },
   {
@@ -94,95 +100,147 @@ const CORE_SERVICES = [
     ],
     basePrice: "$2,000",
     timeline: "3-8 weeks",
-    gradient: "from-teal-600 to-cyan-600",
+    gradient: "from-indigo-500 to-purple-500",
+    color: "text-indigo-400",
     featured: true
+  },
+  {
+    id: 6,
+    icon: Server,
+    title: "DevOps & Deployment",
+    description: "Cloud infrastructure setup and CI/CD pipeline implementation.",
+    features: [
+      "AWS/Digital Ocean Setup",
+      "Docker Containerization",
+      "CI/CD Pipeline Setup",
+      "Monitoring & Security"
+    ],
+    basePrice: "$1,200",
+    timeline: "2-6 weeks",
+    gradient: "from-teal-500 to-cyan-500",
+    color: "text-teal-400",
+    featured: false
   }
 ];
 
 const SERVICE_STATS = [
-  { number: '150+', label: 'Projects Delivered' },
-  { number: '98%', label: 'Success Rate' },
-  { number: '24/7', label: 'Support' },
-  { number: '5', label: 'Core Services' }
+  { number: '150+', label: 'Projects Delivered', color: 'text-cyan-400' },
+  { number: '98%', label: 'Success Rate', color: 'text-blue-400' },
+  { number: '24/7', label: 'Support', color: 'text-purple-400' },
+  { number: '6', label: 'Core Services', color: 'text-orange-400' }
 ];
 
-// Service Card Component
+// Updated Service Card Component
 const ServiceCard = ({ service, index, inView }) => {
   return (
     <motion.div
-      className="bg-white/80 backdrop-blur-sm rounded-2xl border border-white/50 shadow-lg hover:shadow-xl transition-all duration-300 p-6 h-full flex flex-col group"
-      initial={{ opacity: 0, y: 20 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-      transition={{ delay: index * 0.1, duration: 0.5 }}
-      whileHover={{ y: -5, scale: 1.02 }}
+      className="card-primary group h-full flex flex-col"
+      initial={{ opacity: 0, y: 30 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      transition={{ delay: index * 0.1, duration: 0.6 }}
+      whileHover={{ scale: 1.02, y: -5 }}
     >
-      {/* Header */}
-      <div className="flex items-start gap-4 mb-4">
-        <div className={`w-12 h-12 bg-gradient-to-br ${service.gradient} rounded-xl flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-          <service.icon className="w-6 h-6" />
-        </div>
-        <div className="flex-1">
-          <div className="flex items-center gap-2 mb-2">
-            <h3 className="text-xl font-bold text-slate-800 group-hover:text-blue-600 transition-colors duration-300">
-              {service.title}
-            </h3>
-            {service.featured && (
-              <motion.span
-                className="inline-flex items-center gap-1 bg-gradient-to-r from-yellow-400 to-orange-400 text-white px-2 py-1 rounded-full text-xs font-bold"
-                animate={{ scale: [1, 1.05, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                <Star className="w-3 h-3" />
-                Featured
-              </motion.span>
-            )}
+      <div className="relative z-10 h-full flex flex-col">
+        {/* Header */}
+        <div className="flex items-start gap-4 mb-6">
+          <div className={`w-12 h-12 bg-gradient-to-r ${service.gradient} rounded-xl flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+            <service.icon className="w-6 h-6" />
           </div>
-          <p className="text-gray-600 leading-relaxed">{service.description}</p>
-        </div>
-      </div>
-
-      {/* Quick Info */}
-      <div className="grid grid-cols-2 gap-3 mb-4">
-        <div className="text-center p-3 bg-gray-50 rounded-lg">
-          <div className={`text-lg font-bold bg-gradient-to-r ${service.gradient} bg-clip-text text-transparent`}>
-            {service.basePrice}
+          <div className="flex-1">
+            <div className="flex items-center gap-2 mb-2">
+              <h3 className="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors duration-300 uppercase tracking-wide">
+                {service.title}
+              </h3>
+              {service.featured && (
+                <motion.span
+                  className="inline-flex items-center gap-1 bg-gradient-to-r from-orange-500 to-red-500 text-white px-2 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  <Star className="w-3 h-3" />
+                  Featured
+                </motion.span>
+              )}
+            </div>
+            <p className="text-slate-300 leading-relaxed">{service.description}</p>
           </div>
-          <div className="text-xs text-gray-600">Starting Price</div>
         </div>
-        <div className="text-center p-3 bg-gray-50 rounded-lg">
-          <div className="text-lg font-bold text-gray-800">{service.timeline}</div>
-          <div className="text-xs text-gray-600">Timeline</div>
+
+        {/* Quick Info */}
+        <div className="grid grid-cols-2 gap-4 mb-6">
+          <div className="text-center p-4 bg-slate-800 border border-slate-700 rounded-xl">
+            <div className={`text-lg font-black bg-gradient-to-r ${service.gradient} bg-clip-text text-transparent uppercase tracking-tight`}>
+              {service.basePrice}
+            </div>
+            <div className="text-xs text-slate-400 uppercase tracking-wider font-medium">Starting Price</div>
+          </div>
+          <div className="text-center p-4 bg-slate-800 border border-slate-700 rounded-xl">
+            <div className="text-lg font-black text-white uppercase tracking-tight">{service.timeline}</div>
+            <div className="text-xs text-slate-400 uppercase tracking-wider font-medium">Timeline</div>
+          </div>
         </div>
-      </div>
 
-      {/* Features */}
-      <div className="flex-1 mb-6">
-        <h4 className="text-sm font-bold text-gray-800 mb-3 flex items-center gap-2">
-          <CheckCircle className="w-4 h-4 text-green-500" />
-          Key Features
-        </h4>
-        <ul className="space-y-2">
-          {service.features.map((feature, i) => (
-            <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
-              <div className={`w-1.5 h-1.5 bg-gradient-to-r ${service.gradient} rounded-full mt-2 flex-shrink-0`} />
-              <span>{feature}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
+        {/* Features */}
+        <div className="flex-1 mb-6">
+          <h4 className="text-sm font-bold text-white mb-4 flex items-center gap-2 uppercase tracking-wider">
+            <CheckCircle className="w-4 h-4 text-cyan-400" />
+            Key Features
+          </h4>
+          <ul className="space-y-3">
+            {service.features.map((feature, i) => (
+              <li key={i} className="flex items-start gap-3 text-sm text-slate-300">
+                <div className={`w-2 h-2 bg-gradient-to-r ${service.gradient} rounded-full mt-2 flex-shrink-0`} />
+                <span className="leading-relaxed">{feature}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-      {/* CTA Button */}
-      <motion.button
-        className={`w-full py-3 px-4 bg-gradient-to-r ${service.gradient} text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2`}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        onClick={() => {
-          document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-        }}
-      >
-        Get Started
-        <ArrowRight className="w-4 h-4" />
-      </motion.button>
+        {/* CTA Button */}
+        <motion.button
+          className={`btn-primary w-full group`}
+          whileHover={{ scale: 1.02, y: -2 }}
+          whileTap={{ scale: 0.98 }}
+          onClick={() => {
+            document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+          }}
+        >
+          <span>Get Started</span>
+          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+        </motion.button>
+      </div>
+    </motion.div>
+  );
+};
+
+// Featured Service Preview Component
+const FeaturedServicePreview = ({ service, index, inView }) => {
+  return (
+    <motion.div
+      className="card-primary group text-center"
+      initial={{ opacity: 0, y: 30 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      transition={{ delay: 1.2 + index * 0.1 }}
+      whileHover={{ scale: 1.02, y: -5 }}
+    >
+      <div className="relative z-10">
+        <div className={`w-16 h-16 bg-gradient-to-r ${service.gradient} rounded-xl flex items-center justify-center text-white mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+          <service.icon className="w-8 h-8" />
+        </div>
+        <h4 className="text-lg font-bold text-white mb-3 uppercase tracking-wide">{service.title}</h4>
+        <p className="text-slate-300 text-sm mb-4 leading-relaxed">{service.description}</p>
+        <div className={`text-2xl font-black bg-gradient-to-r ${service.gradient} bg-clip-text text-transparent mb-2 uppercase tracking-tight`}>
+          {service.basePrice}
+        </div>
+        <div className="text-xs text-slate-400 mb-6 uppercase tracking-wider">Starting price</div>
+        <motion.button
+          className={`w-full py-3 px-4 bg-gradient-to-r ${service.gradient} text-white font-semibold rounded-xl text-sm uppercase tracking-wide transition-all duration-300 hover:shadow-lg`}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          Learn More
+        </motion.button>
+      </div>
     </motion.div>
   );
 };
@@ -205,13 +263,16 @@ const Services = () => {
     <section 
       ref={sectionRef}
       id="services" 
-      className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden"
+      className="py-16 lg:py-24 px-6 lg:px-8 xl:px-16 2xl:px-20 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 relative overflow-hidden"
       aria-label="Professional web development services"
     >
-      {/* Subtle Background Effects */}
+      {/* Developer Brand Stripe */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500" />
+
+      {/* Background Effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <motion.div 
-          className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"
+          className="absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-full blur-3xl"
           animate={{
             x: [0, -30, 0],
             y: [0, 20, 0],
@@ -220,11 +281,11 @@ const Services = () => {
           transition={{
             duration: 20,
             repeat: Infinity,
-            ease: "linear"
+            ease: "easeInOut"
           }}
         />
         <motion.div 
-          className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl"
+          className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full blur-3xl"
           animate={{
             x: [0, 25, 0],
             y: [0, -20, 0],
@@ -233,35 +294,44 @@ const Services = () => {
           transition={{
             duration: 25,
             repeat: Infinity,
-            ease: "linear"
+            ease: "easeInOut"
           }}
         />
       </div>
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        {/* Header */}
+      {/* Grid Pattern */}
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.03\'%3E%3Ccircle cx=\'7\' cy=\'7\' r=\'1\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40" />
+
+      {/* Code Brackets Decoration */}
+      <motion.div
+        className="absolute top-20 left-10 text-6xl font-mono text-cyan-500/20 pointer-events-none hidden lg:block"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 1.5, duration: 1 }}
+      >
+        &lt;Services/&gt;
+      </motion.div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Section Header */}
         <motion.div
-          className="text-center mb-16"
+          className="max-w-3xl mx-auto text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
         >
+          {/* Section Badge */}
           <motion.div
-            className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-purple-200/50 text-purple-800 px-6 py-3 rounded-2xl font-semibold text-sm uppercase tracking-wider mb-6 shadow-lg"
+            className="section-badge mx-auto mb-6"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
             transition={{ delay: 0.2 }}
           >
-            <motion.div 
-              className="w-2 h-2 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full"
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            />
-            <span>Services</span>
+            Services Portfolio
           </motion.div>
           
           <motion.h2 
-            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-slate-800 via-blue-800 to-purple-800 bg-clip-text text-transparent"
+            className="text-3xl lg:text-4xl font-black text-white mb-6 uppercase tracking-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ delay: 0.4 }}
@@ -270,19 +340,27 @@ const Services = () => {
           </motion.h2>
           
           <motion.p 
-            className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed"
+            className="text-lg text-slate-300 leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ delay: 0.6 }}
           >
             From concept to deployment, delivering exceptional digital solutions that drive business growth and exceed expectations.
           </motion.p>
+
+          {/* Decorative Line */}
+          <motion.div
+            className="h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent w-20 mx-auto mt-6"
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={isInView ? { opacity: 1, scaleX: 1 } : { opacity: 0, scaleX: 0 }}
+            transition={{ delay: 0.8, duration: 0.8 }}
+          />
         </motion.div>
 
         {/* Service Stats */}
         <motion.div 
           ref={statsRef}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto mb-20"
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-20"
           initial={{ opacity: 0, y: 30 }}
           animate={statsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
@@ -290,61 +368,51 @@ const Services = () => {
           {SERVICE_STATS.map((stat, index) => (
             <motion.div
               key={stat.label}
-              className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-xl border border-white/50 hover:bg-white/80 transition-all duration-300"
+              className="text-center p-6 bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 rounded-2xl hover:border-cyan-500/50 transition-all duration-300 group"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={statsInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
               transition={{ delay: index * 0.1 }}
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.05, y: -5 }}
             >
-              <div className="text-2xl md:text-3xl font-bold text-blue-600 mb-1">{stat.number}</div>
-              <div className="text-sm text-slate-600 font-medium">{stat.label}</div>
+              {/* Glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
+              
+              <div className="relative z-10">
+                <div className={`text-3xl font-black text-white mb-2 uppercase tracking-tight group-hover:${stat.color} transition-colors duration-300`}>{stat.number}</div>
+                <div className="text-sm text-slate-400 uppercase tracking-wider font-medium">{stat.label}</div>
+              </div>
             </motion.div>
           ))}
         </motion.div>
 
         {/* Featured Services Preview */}
         <motion.div 
-          className="mb-12"
+          className="mb-20"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ delay: 0.8 }}
         >
-          <motion.h3 
-            className="text-2xl md:text-3xl font-bold text-slate-800 mb-8 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 1.0 }}
-          >
-            ⭐ Most Popular Services
-          </motion.h3>
+          <div className="text-center mb-12">
+            <motion.h3 
+              className="text-2xl lg:text-3xl font-black text-white mb-4 uppercase tracking-tight flex items-center justify-center gap-3"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ delay: 1.0 }}
+            >
+              <Star className="w-8 h-8 text-orange-400" />
+              Most Popular Services
+            </motion.h3>
+            <div className="h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent w-32 mx-auto" />
+          </div>
           
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
+          <div className="grid md:grid-cols-3 gap-8">
             {featuredServices.map((service, index) => (
-              <motion.div
+              <FeaturedServicePreview
                 key={service.id}
-                className="bg-white/80 backdrop-blur-sm p-6 rounded-xl border border-white/50 shadow-lg hover:shadow-xl transition-all duration-300 text-center"
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ delay: 1.2 + index * 0.1 }}
-                whileHover={{ scale: 1.02, y: -3 }}
-              >
-                <div className={`w-16 h-16 bg-gradient-to-br ${service.gradient} rounded-xl flex items-center justify-center text-white mx-auto mb-4 shadow-lg`}>
-                  <service.icon className="w-8 h-8" />
-                </div>
-                <h4 className="text-lg font-bold text-slate-800 mb-2">{service.title}</h4>
-                <p className="text-slate-600 text-sm mb-4 leading-relaxed">{service.description}</p>
-                <div className={`text-2xl font-bold bg-gradient-to-r ${service.gradient} bg-clip-text text-transparent mb-2`}>
-                  {service.basePrice}
-                </div>
-                <div className="text-xs text-gray-500 mb-4">Starting price</div>
-                <motion.button
-                  className={`w-full py-2 px-4 bg-gradient-to-r ${service.gradient} text-white font-semibold rounded-lg text-sm`}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  Learn More
-                </motion.button>
-              </motion.div>
+                service={service}
+                index={index}
+                inView={isInView}
+              />
             ))}
           </div>
         </motion.div>
@@ -357,9 +425,12 @@ const Services = () => {
           animate={servicesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
         >
-          <h3 className="text-2xl md:text-3xl font-bold text-slate-800 mb-12 text-center">
-            Complete Service Portfolio
-          </h3>
+          <div className="text-center mb-12">
+            <h3 className="text-3xl font-black text-white mb-4 uppercase tracking-tight">
+              Complete Service Portfolio
+            </h3>
+            <div className="h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent w-32 mx-auto" />
+          </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {CORE_SERVICES.map((service, index) => (
@@ -376,59 +447,81 @@ const Services = () => {
         {/* Call to Action */}
         <motion.div 
           ref={ctaRef}
-          className="text-center"
+          className="relative p-8 lg:p-12 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 border border-slate-700 rounded-2xl overflow-hidden"
           initial={{ opacity: 0, y: 30 }}
           animate={ctaInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 p-8 md:p-12 rounded-2xl text-white shadow-2xl relative overflow-hidden">
-            {/* Background Effect */}
-            <div className="absolute inset-0 opacity-10" aria-hidden="true">
-              <motion.div 
-                className="absolute top-0 left-0 w-64 h-64 bg-white rounded-full blur-3xl"
-                animate={{ x: [0, 30, 0], y: [0, -15, 0] }}
-                transition={{ duration: 8, repeat: Infinity }}
-              />
-              <motion.div 
-                className="absolute bottom-0 right-0 w-48 h-48 bg-purple-200 rounded-full blur-3xl"
-                animate={{ x: [0, -20, 0], y: [0, 15, 0] }}
-                transition={{ duration: 10, repeat: Infinity }}
-              />
-            </div>
+          {/* Background Glow */}
+          <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-blue-500/5 to-purple-500/5" />
+          
+          {/* Animated Background Effects */}
+          <div className="absolute inset-0 opacity-10" aria-hidden="true">
+            <motion.div 
+              className="absolute top-0 left-0 w-64 h-64 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full blur-3xl"
+              animate={{ x: [0, 30, 0], y: [0, -15, 0] }}
+              transition={{ duration: 8, repeat: Infinity }}
+            />
+            <motion.div 
+              className="absolute bottom-0 right-0 w-48 h-48 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full blur-3xl"
+              animate={{ x: [0, -20, 0], y: [0, 15, 0] }}
+              transition={{ duration: 10, repeat: Infinity }}
+            />
+          </div>
 
-            <div className="relative z-10">
-              <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                Ready to Start Your Project?
-              </h3>
-              <p className="text-blue-100 mb-8 max-w-2xl mx-auto leading-relaxed">
-                Let's discuss your project requirements and create a custom solution that drives your business forward.
-              </p>
+          <div className="relative z-10 text-center">
+            <Terminal className="w-12 h-12 text-cyan-400 mx-auto mb-6" />
+            
+            <motion.h3 
+              className="text-3xl lg:text-4xl font-black text-white mb-4 uppercase tracking-tight"
+              initial={{ opacity: 0, y: 20 }}
+              animate={ctaInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ delay: 0.2 }}
+            >
+              Ready to Start Your Project?
+            </motion.h3>
+            
+            <motion.p 
+              className="text-lg text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              animate={ctaInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ delay: 0.4 }}
+            >
+              Let's discuss your project requirements and create a custom solution that drives your business forward.
+            </motion.p>
+            
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={ctaInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ delay: 0.6 }}
+            >
+              <motion.a
+                href="#contact"
+                className="btn-primary group"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Mail className="w-5 h-5" />
+                <span>Get Free Quote</span>
+              </motion.a>
               
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <motion.a
-                  href="#contact"
-                  className="inline-flex items-center justify-center gap-2 bg-white text-blue-600 px-8 py-4 font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Mail className="w-5 h-5" />
-                  Get Free Quote
-                </motion.a>
-                
-                <motion.a
-                  href="/services"
-                  className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/30 text-white px-8 py-4 font-semibold rounded-xl hover:bg-white/20 transition-all duration-300"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  View All Services
-                  <ExternalLink className="w-5 h-5" />
-                </motion.a>
-              </div>
-            </div>
+              <motion.a
+                href="/services"
+                className="btn-secondary group"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span>View All Services</span>
+                <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </motion.a>
+            </motion.div>
           </div>
         </motion.div>
       </div>
+
+      {/* Developer Brand Stripe Bottom */}
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-500" />
     </section>
   );
 };
