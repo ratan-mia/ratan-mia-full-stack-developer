@@ -1,9 +1,24 @@
-// components/GetQuote.jsx
 'use client';
 
-import { AnimatePresence, motion } from 'framer-motion';
-import { CheckCircle, ChevronLeft, ChevronRight, Clock, Shield, Star } from 'lucide-react';
-import { useState } from 'react';
+import { AnimatePresence, motion, useInView } from 'framer-motion';
+import { 
+  CheckCircle, 
+  ChevronLeft, 
+  ChevronRight, 
+  Clock, 
+  Shield, 
+  Star,
+  Award,
+  Users,
+  Target,
+  Sparkles,
+  TrendingUp,
+  MessageCircle,
+  ArrowRight,
+  Mail,
+  Phone
+} from 'lucide-react';
+import { useState, useRef, useCallback, useMemo } from 'react';
 
 // Import step components
 import BudgetTimelineStep from './quote-steps/BudgetTimelineStep';
@@ -32,21 +47,31 @@ const GetQuote = ({ compact = false }) => {
   const [submitStatus, setSubmitStatus] = useState(null);
   const [errors, setErrors] = useState({});
 
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, threshold: 0.1 });
+
   // Form steps configuration
   const steps = [
-    { id: 1, title: 'Personal Info', subtitle: 'Let\'s start with your details' },
-    { id: 2, title: 'Project Type', subtitle: 'What are you looking to build?' },
-    { id: 3, title: 'Budget & Timeline', subtitle: 'Investment and timeline expectations' },
-    { id: 4, title: 'Features', subtitle: 'What functionality do you need?' },
-    { id: 5, title: 'Project Details', subtitle: 'Tell us more about your vision' },
-    { id: 6, title: 'Review & Submit', subtitle: 'Final review and submission' }
+    { id: 1, title: 'Personal Info', subtitle: 'Let\'s start with your details', icon: Users, color: 'blue' },
+    { id: 2, title: 'Project Type', subtitle: 'What are you looking to build?', icon: Target, color: 'purple' },
+    { id: 3, title: 'Budget & Timeline', subtitle: 'Investment and timeline expectations', icon: TrendingUp, color: 'green' },
+    { id: 4, title: 'Features', subtitle: 'What functionality do you need?', icon: Sparkles, color: 'yellow' },
+    { id: 5, title: 'Project Details', subtitle: 'Tell us more about your vision', icon: MessageCircle, color: 'indigo' },
+    { id: 6, title: 'Review & Submit', subtitle: 'Final review and submission', icon: CheckCircle, color: 'emerald' }
   ];
 
   const totalSteps = steps.length;
 
+  const STATS = useMemo(() => [
+    { number: '24h', label: 'Response Time', icon: Clock, color: 'text-blue-500', description: 'Quick turnaround guaranteed' },
+    { number: '100%', label: 'Success Rate', icon: Award, color: 'text-green-500', description: 'Project completion rate' },
+    { number: '50+', label: 'Happy Clients', icon: Users, color: 'text-purple-500', description: 'Satisfied customers worldwide' },
+    { number: '0$', label: 'Quote Cost', icon: Star, color: 'text-yellow-500', description: 'Free detailed estimates' }
+  ], []);
+
   // Animation variants
   const fadeInUp = {
-    initial: { opacity: 0, y: 30 },
+    initial: { opacity: 0, y: 40 },
     animate: { opacity: 1, y: 0 },
     transition: { duration: 0.6, ease: "easeOut" }
   };
@@ -71,20 +96,21 @@ const GetQuote = ({ compact = false }) => {
   const staggerContainer = {
     animate: {
       transition: {
-        staggerChildren: 0.08
+        staggerChildren: 0.1,
+        delayChildren: 0.2
       }
     }
   };
 
-  // Dynamic classes based on compact prop - Following Guidelines
+  // Dynamic classes based on compact prop
   const sectionClasses = compact
     ? "py-12 md:py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden"
     : "py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden";
 
-  const containerClasses = compact ? "max-w-4xl mx-auto relative z-10" : "max-w-6xl mx-auto relative z-10";
+  const containerClasses = compact ? "max-w-5xl mx-auto relative z-10" : "max-w-7xl mx-auto relative z-10";
 
   // Form handlers
-  const handleInputChange = (name, value) => {
+  const handleInputChange = useCallback((name, value) => {
     setFormData(prev => ({
       ...prev,
       [name]: value
@@ -96,25 +122,9 @@ const GetQuote = ({ compact = false }) => {
         [name]: null
       }));
     }
-  };
+  }, [errors]);
 
-  const handleNext = () => {
-    if (validateCurrentStep()) {
-      setCurrentStep(prev => Math.min(prev + 1, totalSteps));
-    }
-  };
-
-  const handlePrev = () => {
-    setCurrentStep(prev => Math.max(prev - 1, 1));
-  };
-
-  const handleStepClick = (stepNumber) => {
-    if (stepNumber < currentStep || validateStepsUpTo(stepNumber - 1)) {
-      setCurrentStep(stepNumber);
-    }
-  };
-
-  const validateCurrentStep = () => {
+  const validateCurrentStep = useCallback(() => {
     const newErrors = {};
     
     switch (currentStep) {
@@ -142,18 +152,27 @@ const GetQuote = ({ compact = false }) => {
     
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
-  };
+  }, [currentStep, formData]);
 
-  const validateStepsUpTo = (stepNumber) => {
-    // Validate all steps up to the given step number
-    for (let i = 1; i <= stepNumber; i++) {
-      setCurrentStep(i);
-      if (!validateCurrentStep()) return false;
+  const handleNext = useCallback(() => {
+    if (validateCurrentStep()) {
+      setCurrentStep(prev => Math.min(prev + 1, totalSteps));
     }
-    return true;
-  };
+  }, [validateCurrentStep, totalSteps]);
 
-  const handleSubmit = async () => {
+  const handlePrev = useCallback(() => {
+    setCurrentStep(prev => Math.max(prev - 1, 1));
+  }, []);
+
+  const handleStepClick = useCallback((stepNumber) => {
+    if (stepNumber < currentStep) {
+      setCurrentStep(stepNumber);
+    } else if (stepNumber === currentStep + 1) {
+      handleNext();
+    }
+  }, [currentStep, handleNext]);
+
+  const handleSubmit = useCallback(async () => {
     setIsSubmitting(true);
     setSubmitStatus(null);
     
@@ -186,7 +205,7 @@ const GetQuote = ({ compact = false }) => {
             priority: 'medium'
           });
           setSubmitStatus(null);
-        }, 5000);
+        }, 8000);
       } else {
         setSubmitStatus('error');
       }
@@ -196,9 +215,9 @@ const GetQuote = ({ compact = false }) => {
     } finally {
       setIsSubmitting(false);
     }
-  };
+  }, [formData]);
 
-  const renderStepComponent = () => {
+  const renderStepComponent = useCallback(() => {
     const stepProps = {
       formData,
       handleInputChange,
@@ -222,25 +241,40 @@ const GetQuote = ({ compact = false }) => {
       default:
         return <PersonalInfoStep {...stepProps} />;
     }
-  };
+  }, [currentStep, formData, handleInputChange, errors, compact, handleSubmit, isSubmitting, submitStatus]);
 
-  const getStepStatus = (stepNumber) => {
+  const getStepStatus = useCallback((stepNumber) => {
     if (stepNumber < currentStep) return 'completed';
     if (stepNumber === currentStep) return 'active';
     return 'upcoming';
-  };
+  }, [currentStep]);
 
   const progressPercentage = ((currentStep - 1) / (totalSteps - 1)) * 100;
 
+  const getStepColorClasses = (step, status) => {
+    const colors = {
+      blue: { bg: 'bg-blue-600', ring: 'ring-blue-500', text: 'text-blue-600' },
+      purple: { bg: 'bg-purple-600', ring: 'ring-purple-500', text: 'text-purple-600' },
+      green: { bg: 'bg-green-600', ring: 'ring-green-500', text: 'text-green-600' },
+      yellow: { bg: 'bg-yellow-500', ring: 'ring-yellow-400', text: 'text-yellow-600' },
+      indigo: { bg: 'bg-indigo-600', ring: 'ring-indigo-500', text: 'text-indigo-600' },
+      emerald: { bg: 'bg-emerald-600', ring: 'ring-emerald-500', text: 'text-emerald-600' }
+    };
+
+    if (status === 'completed') return 'bg-green-500 text-white ring-green-400';
+    if (status === 'active') return `${colors[step.color]?.bg || 'bg-blue-600'} text-white ${colors[step.color]?.ring || 'ring-blue-500'}`;
+    return 'bg-gray-200 text-gray-500 ring-gray-300';
+  };
+
   return (
-    <section id="quote" className={sectionClasses}>
+    <section ref={sectionRef} id="quote" className={sectionClasses}>
       {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
         <motion.div 
-          className="absolute top-1/4 left-1/4 w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 lg:w-96 lg:h-96 bg-blue-500/8 rounded-full blur-3xl"
+          className="absolute top-1/4 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-blue-500/5 rounded-full blur-3xl"
           animate={{
-            x: [0, 50, 0],
-            y: [0, -25, 0],
+            x: [0, -50, 0],
+            y: [0, 25, 0],
             scale: [1, 1.1, 1],
           }}
           transition={{
@@ -250,10 +284,10 @@ const GetQuote = ({ compact = false }) => {
           }}
         />
         <motion.div 
-          className="absolute bottom-1/4 right-1/4 w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 lg:w-96 lg:h-96 bg-purple-500/8 rounded-full blur-3xl"
+          className="absolute bottom-1/4 left-1/4 w-48 h-48 md:w-80 md:h-80 bg-purple-500/5 rounded-full blur-3xl"
           animate={{
-            x: [0, -40, 0],
-            y: [0, 30, 0],
+            x: [0, 50, 0],
+            y: [0, -25, 0],
             scale: [1, 1.2, 1],
           }}
           transition={{
@@ -265,121 +299,150 @@ const GetQuote = ({ compact = false }) => {
       </div>
 
       <div className={containerClasses}>
-        {/* Header Section - Following Typography Guidelines */}
+        {/* Header Section */}
         <motion.div
           variants={staggerContainer}
           initial="initial"
-          whileInView="animate"
-          viewport={{ once: true }}
+          animate={isInView ? "animate" : "initial"}
           className="text-center mb-12"
         >
           <motion.div
             variants={fadeInUp}
-            className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full shadow-xl mb-6 border border-white/50"
+            className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-md border border-blue-200/50 text-blue-800 px-6 py-3 rounded-2xl font-semibold text-sm uppercase tracking-wider mb-6 shadow-lg"
           >
             <motion.div 
-              className="w-2.5 h-2.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"
+              className="w-2 h-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
             />
-            {/* Labels & Small Text - Following Guidelines */}
-            <span className="text-blue-800 font-semibold text-sm uppercase tracking-wider">Get Quote</span>
+            <span>Get Your Quote</span>
           </motion.div>
 
-          {/* Main Section Title - Following Guidelines */}
           <motion.h2 
             variants={fadeInUp}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-gray-900"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-slate-800 via-blue-800 to-purple-800 bg-clip-text text-transparent"
           >
-            Start Your Project Today
+            Start Your Dream Project
           </motion.h2>
 
-          {/* Body Text - Primary - Following Guidelines */}
           <motion.p
             variants={fadeInUp}
-            className="text-base md:text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed"
+            className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed mb-8"
           >
-            Ready to transform your vision into reality? Get a detailed quote tailored to your specific needs. 
-            Let's discuss your project and create something extraordinary together.
+            Ready to transform your vision into a stunning digital reality? Get a detailed, personalized quote tailored to your specific needs and timeline.
           </motion.p>
-        </motion.div>
 
-        {/* Progress Indicator */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-10"
-        >
-          {/* Progress Bar */}
-          <div className="mb-8">
-            <div className="flex items-center justify-between mb-4">
-              {/* Meta Information - Following Guidelines */}
-              <span className="text-sm font-medium text-gray-500">
-                Step {currentStep} of {totalSteps}
-              </span>
-              <span className="text-sm font-medium text-gray-500">
-                {Math.round(progressPercentage)}% Complete
-              </span>
-            </div>
-            <div className="w-full bg-gray-200 rounded-full h-2">
-              <motion.div 
-                className="bg-gradient-to-r from-blue-600 to-purple-600 h-2 rounded-full"
-                initial={{ width: 0 }}
-                animate={{ width: `${progressPercentage}%` }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-              />
-            </div>
-          </div>
-
-          {/* Step Indicators */}
-          <div className="flex justify-between items-center gap-2">
-            {steps.map((step, index) => (
-              <motion.div 
-                key={step.id}
-                className="flex flex-col items-center cursor-pointer flex-1"
-                onClick={() => handleStepClick(step.id)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+          {/* Stats Grid */}
+          <motion.div 
+            variants={fadeInUp}
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto"
+          >
+            {STATS.map((stat, index) => (
+              <motion.div
+                key={stat.label}
+                className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-xl border border-white/50 shadow-lg hover:shadow-xl transition-all duration-300 group"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ delay: 0.4 + index * 0.1 }}
+                whileHover={{ scale: 1.05, y: -2 }}
               >
-                <div className={`w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 ${
-                  getStepStatus(step.id) === 'completed' 
-                    ? 'bg-green-500 text-white' 
-                    : getStepStatus(step.id) === 'active'
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-200 text-gray-500'
-                }`}>
-                  {getStepStatus(step.id) === 'completed' ? (
-                    <CheckCircle className="w-5 h-5 md:w-6 md:h-6" />
-                  ) : (
-                    step.id
-                  )}
+                <div className={`w-8 h-8 mx-auto mb-2 ${stat.color} group-hover:scale-110 transition-transform`}>
+                  <stat.icon className="w-full h-full" />
                 </div>
-                <div className="text-center mt-2">
-                  {/* Labels - Following Guidelines */}
-                  <div className={`text-sm font-semibold ${
-                    getStepStatus(step.id) === 'active' ? 'text-blue-600' : 'text-gray-700'
-                  }`}>
-                    <span className="hidden sm:inline">{step.title}</span>
-                    <span className="sm:hidden">{step.title.split(' ')[0]}</span>
-                  </div>
-                  {!compact && (
-                    /* Captions & Meta Info - Following Guidelines */
-                    <div className="hidden md:block text-xs font-medium text-gray-500 mt-1 max-w-20 lg:max-w-24 leading-tight">
-                      {step.subtitle}
-                    </div>
-                  )}
+                <div className="text-xl md:text-2xl font-bold text-slate-800 mb-1">{stat.number}</div>
+                <div className="text-sm font-medium text-slate-600 mb-1">{stat.label}</div>
+                <div className="text-xs text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity">
+                  {stat.description}
                 </div>
               </motion.div>
             ))}
+          </motion.div>
+        </motion.div>
+
+        {/* Progress Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mb-12"
+        >
+          {/* Progress Header */}
+          <div className="flex items-center justify-between mb-6">
+            <div className="text-sm font-semibold text-slate-600">
+              Step {currentStep} of {totalSteps}
+            </div>
+            <div className="text-sm font-semibold text-slate-600">
+              {Math.round(progressPercentage)}% Complete
+            </div>
+          </div>
+
+          {/* Progress Bar */}
+          <div className="w-full bg-gray-200 rounded-full h-3 mb-8 shadow-inner">
+            <motion.div 
+              className="bg-gradient-to-r from-blue-600 to-purple-600 h-3 rounded-full shadow-lg"
+              initial={{ width: 0 }}
+              animate={{ width: `${progressPercentage}%` }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            />
+          </div>
+
+          {/* Step Indicators */}
+          <div className="flex justify-between items-start gap-2">
+            {steps.map((step, index) => {
+              const status = getStepStatus(step.id);
+              return (
+                <motion.div 
+                  key={step.id}
+                  className="flex flex-col items-center cursor-pointer flex-1 group"
+                  onClick={() => handleStepClick(step.id)}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  transition={{ delay: 0.5 + index * 0.1 }}
+                >
+                  <div className={`relative w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center font-bold text-sm transition-all duration-300 shadow-lg group-hover:shadow-xl ${getStepColorClasses(step, status)}`}>
+                    {status === 'completed' ? (
+                      <CheckCircle className="w-6 h-6 md:w-7 md:h-7" />
+                    ) : (
+                      <step.icon className="w-5 h-5 md:w-6 md:h-6" />
+                    )}
+                    
+                    {status === 'active' && (
+                      <motion.div
+                        className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl opacity-30"
+                        animate={{ scale: [1, 1.1, 1] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                      />
+                    )}
+                  </div>
+                  
+                  <div className="text-center mt-3">
+                    <div className={`text-sm font-semibold transition-colors duration-300 ${
+                      status === 'active' ? 'text-blue-600' : 'text-slate-700'
+                    }`}>
+                      <span className="hidden sm:inline">{step.title}</span>
+                      <span className="sm:hidden">{step.title.split(' ')[0]}</span>
+                    </div>
+                    {!compact && (
+                      <div className="hidden md:block text-xs text-slate-500 mt-1 max-w-20 lg:max-w-24 leading-tight">
+                        {step.subtitle}
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </motion.div>
 
         {/* Form Container */}
         <motion.div 
-          className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-2xl border border-white/50 overflow-hidden"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          className="bg-white/80 backdrop-blur-md rounded-2xl shadow-2xl border border-white/50 overflow-hidden"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          whileHover={{ boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.15)" }}
         >
           {/* Step Content */}
           <div className="p-6 md:p-8 lg:p-10">
@@ -393,9 +456,9 @@ const GetQuote = ({ compact = false }) => {
                 exit="exit"
                 transition={{
                   x: { type: "spring", stiffness: 300, damping: 30 },
-                  opacity: { duration: 0.2 }
+                  opacity: { duration: 0.3 }
                 }}
-                className="min-h-[400px]"
+                className="min-h-[500px]"
               >
                 {renderStepComponent()}
               </motion.div>
@@ -404,16 +467,16 @@ const GetQuote = ({ compact = false }) => {
 
           {/* Navigation Footer */}
           {currentStep < 6 && (
-            <div className="flex items-center justify-between p-6 md:p-8 bg-gray-50 border-t border-gray-200">
+            <div className="flex items-center justify-between p-6 md:p-8 bg-gradient-to-r from-gray-50 to-blue-50 border-t border-gray-200/50">
               <motion.button
                 onClick={handlePrev}
                 disabled={currentStep === 1}
-                className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-base transition-all duration-200 ${
+                className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-base transition-all duration-300 ${
                   currentStep === 1
                     ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-300'
+                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-300 shadow-md hover:shadow-lg'
                 }`}
-                whileHover={currentStep !== 1 ? { scale: 1.02 } : {}}
+                whileHover={currentStep !== 1 ? { scale: 1.02, x: -2 } : {}}
                 whileTap={currentStep !== 1 ? { scale: 0.98 } : {}}
               >
                 <ChevronLeft className="w-4 h-4" />
@@ -425,8 +488,8 @@ const GetQuote = ({ compact = false }) => {
                 {steps.slice(0, -1).map((_, index) => (
                   <div 
                     key={index}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                      index + 1 <= currentStep ? 'bg-blue-600' : 'bg-gray-300'
+                    className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                      index + 1 <= currentStep ? 'bg-blue-600 scale-110' : 'bg-gray-300'
                     }`}
                   />
                 ))}
@@ -434,11 +497,11 @@ const GetQuote = ({ compact = false }) => {
 
               <motion.button
                 onClick={handleNext}
-                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-bold text-base hover:from-blue-700 hover:to-purple-700 transition-all duration-200"
-                whileHover={{ scale: 1.02 }}
+                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-bold text-base shadow-lg hover:shadow-xl transition-all duration-300"
+                whileHover={{ scale: 1.02, x: 2 }}
                 whileTap={{ scale: 0.98 }}
               >
-                Next
+                <span>Next Step</span>
                 <ChevronRight className="w-4 h-4" />
               </motion.button>
             </div>
@@ -448,43 +511,47 @@ const GetQuote = ({ compact = false }) => {
         {/* Trust Indicators */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
           className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
         >
           {[
             {
               icon: Clock,
               title: 'Quick Response',
-              description: 'Get your detailed quote within 24 hours'
+              description: 'Get your detailed quote within 24 hours',
+              gradient: 'from-blue-500 to-cyan-500'
             },
             {
               icon: Shield,
               title: 'Transparent Pricing',
-              description: 'No hidden fees, clear project breakdown'
+              description: 'No hidden fees, clear project breakdown',
+              gradient: 'from-green-500 to-emerald-500'
             },
             {
               icon: Star,
               title: 'Free Consultation',
-              description: '30-minute strategy call included with every quote'
+              description: '30-minute strategy call included with every quote',
+              gradient: 'from-yellow-500 to-orange-500'
             }
           ].map((benefit, index) => (
             <motion.div
               key={benefit.title}
-              className="text-center p-6 bg-white/60 backdrop-blur-sm rounded-2xl border border-white/50 shadow-lg"
+              className="text-center p-6 bg-white/60 backdrop-blur-sm rounded-2xl border border-white/50 shadow-lg hover:shadow-xl transition-all duration-300 group"
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ delay: 0.7 + index * 0.1, duration: 0.5 }}
               whileHover={{ scale: 1.05, y: -5 }}
             >
-              <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center mx-auto mb-4">
+              <div className={`w-12 h-12 bg-gradient-to-r ${benefit.gradient} rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300`}>
                 <benefit.icon className="w-6 h-6 text-white" />
               </div>
-              {/* Card Titles - Following Guidelines */}
-              <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2">{benefit.title}</h3>
-              {/* Body Text - Secondary - Following Guidelines */}
-              <p className="text-sm md:text-base text-gray-600 leading-relaxed">{benefit.description}</p>
+              <h3 className="text-lg md:text-xl font-bold text-slate-800 mb-2 group-hover:text-blue-600 transition-colors duration-300">
+                {benefit.title}
+              </h3>
+              <p className="text-sm md:text-base text-slate-600 leading-relaxed">
+                {benefit.description}
+              </p>
             </motion.div>
           ))}
         </motion.div>
@@ -493,36 +560,135 @@ const GetQuote = ({ compact = false }) => {
         {!compact && (
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-16 text-center"
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            className="mt-16"
           >
-            <div className="bg-gradient-to-r from-green-500/20 to-blue-500/20 backdrop-blur-sm rounded-2xl p-8 border border-green-400/30">
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-4">
-                <CheckCircle className="w-8 h-8 text-green-400" />
-                {/* Section Headings - Following Guidelines */}
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-900">Quick Response Guarantee</h3>
+            <div className="bg-gradient-to-br from-green-50 to-blue-50 backdrop-blur-sm rounded-2xl p-8 border border-green-200/50 shadow-xl">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
+                <motion.div
+                  animate={{ rotate: [0, 10, -10, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <CheckCircle className="w-10 h-10 text-green-500" />
+                </motion.div>
+                <h3 className="text-2xl md:text-3xl font-bold text-slate-800 text-center sm:text-left">
+                  Quick Response Guarantee
+                </h3>
               </div>
-              {/* Body Text - Primary - Following Guidelines */}
-              <p className="text-base md:text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">
+              <p className="text-base md:text-lg text-slate-700 leading-relaxed max-w-4xl mx-auto text-center">
                 I typically respond to all quote requests within 24 hours with a detailed proposal, 
-                project timeline, and next steps. For urgent projects, feel free to call or WhatsApp me directly 
-                at <span className="font-semibold text-blue-600">+8801751010966</span>.
+                project timeline, and next steps. For urgent projects, feel free to reach out directly:
               </p>
+              
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6">
+                <motion.a
+                  href="tel:+8801751010966"
+                  className="inline-flex items-center gap-2 bg-green-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-green-700 transition-colors duration-300 shadow-lg hover:shadow-xl"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Phone className="w-4 h-4" />
+                  +8801751010966
+                </motion.a>
+                <motion.a
+                  href="mailto:shorifull@gmail.com"
+                  className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 transition-colors duration-300 shadow-lg hover:shadow-xl"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Mail className="w-4 h-4" />
+                  shorifull@gmail.com
+                </motion.a>
+              </div>
             </div>
           </motion.div>
         )}
+
+        {/* Call to Action */}
+        <motion.div 
+          className="text-center mt-16"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.6, delay: 0.9 }}
+        >
+          <div className="bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-600 p-8 md:p-12 rounded-3xl text-white shadow-2xl relative overflow-hidden">
+            <div className="absolute inset-0 opacity-10" aria-hidden="true">
+              <motion.div 
+                className="absolute top-0 left-0 w-64 h-64 bg-white rounded-full blur-3xl"
+                animate={{ x: [0, 50, 0], y: [0, -25, 0] }}
+                transition={{ duration: 12, repeat: Infinity }}
+              />
+              <motion.div 
+                className="absolute bottom-0 right-0 w-64 h-64 bg-purple-200 rounded-full blur-3xl"
+                animate={{ x: [0, -50, 0], y: [0, 25, 0] }}
+                transition={{ duration: 10, repeat: Infinity }}
+              />
+            </div>
+
+            <div className="relative z-10">
+              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
+                Ready to Bring Your Vision to Life?
+              </h3>
+              <p className="text-blue-100 mb-8 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">
+                Join 50+ satisfied clients who chose me to transform their ideas into successful digital solutions. Let's create something extraordinary together.
+              </p>
+              
+              <motion.button
+                onClick={() => {
+                  document.getElementById('quote').scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                  });
+                  if (currentStep === 1) {
+                    const nameField = document.querySelector('input[name="name"]');
+                    if (nameField) nameField.focus();
+                  }
+                }}
+                className="inline-flex items-center gap-2 bg-white text-blue-600 px-8 py-4 font-bold text-lg rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <ArrowRight className="w-5 h-5" />
+                <span>Start Your Quote Now</span>
+                <Sparkles className="w-5 h-5" />
+              </motion.button>
+
+              <div className="grid grid-cols-3 gap-6 pt-8 mt-8 border-t border-white/20">
+                {[
+                  { number: '150+', label: 'Projects Delivered', icon: Award },
+                  { number: '98%', label: 'Client Satisfaction', icon: Star },
+                  { number: '24h', label: 'Response Time', icon: Clock }
+                ].map((stat, index) => (
+                  <motion.div 
+                    key={stat.label}
+                    className="text-center"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                    transition={{ delay: 1.1 + index * 0.1 }}
+                  >
+                    <stat.icon className="w-6 h-6 mx-auto mb-2 text-yellow-300" />
+                    <div className="text-2xl md:text-3xl font-bold text-yellow-400 mb-1">
+                      {stat.number}
+                    </div>
+                    <div className="text-blue-200 font-medium text-sm">
+                      {stat.label}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </motion.div>
 
         {/* Footer */}
         <motion.div 
           className="text-center mt-12 pt-8 border-t border-gray-200"
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.5 }}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.8, delay: 1.2 }}
         >
-          {/* Captions & Meta Info - Following Guidelines */}
-          <p className="text-xs md:text-sm font-medium text-gray-500">
+          <p className="text-xs md:text-sm text-slate-500">
             © 2025 Ratan Mia. Crafted with ❤️ using Next.js, Tailwind CSS & Framer Motion
           </p>
         </motion.div>
