@@ -1,11 +1,10 @@
 'use client';
 
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
   ArrowDown,
   ArrowRight,
   Award,
-  Code2,
   Download,
   Github,
   Globe,
@@ -16,6 +15,7 @@ import {
   Users
 } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 // Simplified Constants
 const ROLES = [
@@ -82,7 +82,7 @@ const TypewriterText = ({ words, className = "" }) => {
 // Availability Status Badge
 const AvailabilityStatus = () => {
   const [isAvailable, setIsAvailable] = useState(true);
-
+  
   useEffect(() => {
     const checkAvailability = () => {
       const now = new Date();
@@ -216,7 +216,17 @@ const CodeBracketsDecoration = () => (
 // Main Hero Component
 const HeroMain = () => {
   const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true, threshold: 0.1 });
+  const { ref: inViewRef, inView: isInView } = useInView({ 
+    threshold: 0.1, 
+    triggerOnce: true,
+    fallbackInView: true
+  });
+
+  // Combine refs
+  const setRefs = useCallback((node) => {
+    containerRef.current = node;
+    inViewRef(node);
+  }, [inViewRef]);
 
   const handleDownloadCV = useCallback(() => {
     window.gtag?.('event', 'cv_download', {
@@ -252,7 +262,7 @@ const HeroMain = () => {
       />
 
       <section
-        ref={containerRef}
+        ref={setRefs}
         className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800"
         id="home"
         aria-label="Hero section - Ratan Mia, Full Stack Developer"
@@ -413,7 +423,7 @@ const HeroMain = () => {
             <motion.div
               className="mt-12 h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent max-w-md mx-auto lg:mx-0"
               initial={{ opacity: 0, scaleX: 0 }}
-              animate={inView ? { opacity: 1, scaleX: 1 } : { opacity: 0, scaleX: 0 }}
+              animate={isInView ? { opacity: 1, scaleX: 1 } : { opacity: 0, scaleX: 0 }}
               transition={{ delay: 1.8, duration: 1 }}
             />
           </div>

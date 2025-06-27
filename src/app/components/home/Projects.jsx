@@ -460,7 +460,7 @@ const Projects = () => {
               transition={{ delay: 0.4 }}
             >
               Let's create something amazing together. From concept to launch, I'll bring your vision to life.
-            </p>
+            </motion.p>
             
             <motion.div 
               className="flex flex-col sm:flex-row gap-4 justify-center"
