@@ -21,10 +21,10 @@ import { useRef } from 'react';
 
 // Updated Constants with new design system
 const CORE_STATS = [
-  { icon: Award, number: '150+', label: 'PROJECTS DELIVERED', color: 'text-cyan-500' }, // Adjusted color for light bg
-  { icon: Calendar, number: '8+', label: 'YEARS EXPERIENCE', color: 'text-blue-500' }, // Adjusted color for light bg
-  { icon: Globe, number: '25+', label: 'COUNTRIES SERVED', color: 'text-violet-600' }, // Adjusted color for light bg
-  { icon: Star, number: '98%', label: 'CLIENT SATISFACTION', color: 'text-orange-500' } // Adjusted color for light bg
+  { icon: Award, number: '150+', label: 'PROJECTS DELIVERED', color: 'text-cyan-400' }, // Adjusted color for light bg
+  { icon: Calendar, number: '8+', label: 'YEARS EXPERIENCE', color: 'text-blue-400' }, // Adjusted color for light bg
+  { icon: Globe, number: '25+', label: 'COUNTRIES SERVED', color: 'text-violet-400' }, // Adjusted color for light bg
+  { icon: Star, number: '98%', label: 'CLIENT SATISFACTION', color: 'text-orange-400' } // Adjusted color for light bg
 ];
 
 const ACHIEVEMENTS = [
@@ -33,21 +33,21 @@ const ACHIEVEMENTS = [
     metric: '200%',
     title: 'AVERAGE SALES GROWTH',
     description: 'Client revenue increase through optimized solutions',
-    color: 'text-cyan-500' // Adjusted color
+    color: 'text-cyan-400' // Maintained for dark card bg
   },
   {
     icon: Zap,
     metric: '97%',
     title: 'PERFORMANCE SCORE',
     description: 'Average PageSpeed Insights score across projects',
-    color: 'text-blue-500' // Adjusted color
+    color: 'text-blue-400' // Maintained for dark card bg
   },
   {
     icon: Users,
     metric: '98%',
     title: 'CLIENT SATISFACTION',
     description: 'Happy clients with ongoing partnerships',
-    color: 'text-violet-600' // Adjusted color
+    color: 'text-violet-400' // Maintained for dark card bg
   }
 ];
 
@@ -84,7 +84,7 @@ const AchievementCircleItem = ({ achievement, index, total, inView }) => {
 
   return (
     <motion.div
-      className="absolute flex flex-col items-center justify-center p-4 bg-white border border-gray-200 rounded-xl shadow-lg text-center group transition-all duration-300" // Light background for cards
+      className="absolute flex flex-col items-center justify-center p-4 bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 rounded-xl shadow-lg text-center group transition-all duration-300" // Dark background for cards
       style={{
         left: `calc(50% + ${offsetX}px)`,
         top: `calc(50% + ${offsetY}px)`,
@@ -98,12 +98,12 @@ const AchievementCircleItem = ({ achievement, index, total, inView }) => {
       whileHover={{ scale: 1.05 }}
     >
       {/* Glow effect - only on individual hover */}
-      <div className="absolute inset-0 bg-gradient-to-r from-cyan-100/50 to-blue-100/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div> {/* Adjusted glow */}
+      <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div> {/* Darker glow */}
       
       <div className="relative z-10">
         <achievement.icon className={`w-8 h-8 mx-auto mb-3 ${achievement.color} group-hover:scale-110 transition-transform duration-300`} />
-        <div className="text-xl font-black text-slate-900 mb-1 uppercase tracking-tight">{achievement.metric}</div> {/* Dark text */}
-        <p className="text-xs text-slate-700 leading-tight uppercase tracking-wider">{achievement.title}</p> {/* Dark text */}
+        <div className="text-xl font-black text-white mb-1 uppercase tracking-tight">{achievement.metric}</div> {/* White text */}
+        <p className="text-xs text-slate-400 leading-tight uppercase tracking-wider">{achievement.title}</p> {/* Slate-400 text */}
       </div>
     </motion.div>
   );
@@ -113,32 +113,32 @@ const AchievementCircleItem = ({ achievement, index, total, inView }) => {
 const ExperienceCard = ({ experience, index, inView }) => {
   return (
     <motion.div
-      className="group relative p-6 bg-white border border-gray-200 rounded-2xl transition-all duration-300 overflow-hidden shadow-md" // Light background for cards
+      className="group relative p-6 bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 rounded-2xl transition-all duration-300 overflow-hidden shadow-lg" // Dark background for cards
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       transition={{ delay: index * 0.2 }}
       whileHover={{ scale: 1.02, y: -5 }}
     >
       {/* Glow effect - only on individual card hover */}
-      <div className="absolute inset-0 bg-gradient-to-r from-cyan-100/50 to-blue-100/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div> {/* Adjusted glow */}
+      <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div> {/* Darker glow */}
       
       <div className="relative z-10">
         <div className="flex items-start justify-between mb-6">
           <div>
-            <h4 className="text-lg font-black text-slate-900 mb-2 uppercase tracking-tight">{experience.role}</h4> {/* Dark text */}
-            <h5 className="text-cyan-500 font-bold mb-2 uppercase tracking-wider text-sm">{experience.company}</h5> {/* Accent color */}
-            <span className="text-sm text-slate-700 font-medium uppercase tracking-wider">{experience.period}</span> {/* Dark text */}
+            <h4 className="text-lg font-black text-white mb-2 uppercase tracking-tight">{experience.role}</h4> {/* White text */}
+            <h5 className="text-cyan-400 font-bold mb-2 uppercase tracking-wider text-sm">{experience.company}</h5> {/* Accent color */}
+            <span className="text-sm text-slate-400 font-medium uppercase tracking-wider">{experience.period}</span> {/* Slate-400 text */}
           </div>
-          <Terminal className="w-6 h-6 text-cyan-500 group-hover:rotate-12 transition-transform duration-300" /> {/* Accent color */}
+          <Terminal className="w-6 h-6 text-cyan-400 group-hover:rotate-12 transition-transform duration-300" /> {/* Accent color */}
         </div>
         
-        <p className="text-slate-700 mb-6 leading-relaxed">{experience.description}</p> {/* Dark text */}
+        <p className="text-slate-300 mb-6 leading-relaxed">{experience.description}</p> {/* Slate-300 text */}
         
         <div className="flex flex-wrap gap-2">
           {experience.technologies.map((tech, i) => (
             <span 
               key={tech}
-              className="px-3 py-1 bg-cyan-500/10 border border-cyan-500/50 text-cyan-600 text-sm font-medium rounded-full" // Adjusted for light background
+              className="px-3 py-1 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-medium rounded-full" // Adjusted for dark background
             >
               {tech}
             </span>
@@ -169,51 +169,51 @@ const About = () => {
       <section 
         ref={sectionRef}
         id="about" 
-        className="py-16 lg:py-24 bg-white relative overflow-hidden" // Changed to white background
+        className="py-16 lg:py-24 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 relative overflow-hidden" // Changed to dark background gradient for the whole section
         aria-label="About Ratan Mia section"
       >
-        {/* New Background Design - Layered geometric patterns */}
+        {/* New Background Design - Layered geometric patterns for dark background */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-          {/* Geometric mesh overlay - very subtle on white */}
-          <div className="absolute inset-0 opacity-10">
+          {/* Geometric mesh overlay - subtle on dark */}
+          <div className="absolute inset-0 opacity-30">
             <svg className="w-full h-full" viewBox="0 0 1000 1000" preserveAspectRatio="none">
               <defs>
-                <pattern id="triangles-light" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-                  <polygon points="0,0 50,25 0,50" fill="rgba(6, 182, 212, 0.01)" /> {/* Very low opacity */}
-                  <polygon points="50,0 100,25 50,50" fill="rgba(59, 130, 246, 0.01)" /> {/* Very low opacity */}
-                  <polygon points="25,50 75,75 25,100" fill="rgba(124, 58, 237, 0.01)" /> {/* Very low opacity */}
+                <pattern id="triangles" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                  <polygon points="0,0 50,25 0,50" fill="rgba(6, 182, 212, 0.05)" /> 
+                  <polygon points="50,0 100,25 50,50" fill="rgba(59, 130, 246, 0.05)" /> 
+                  <polygon points="25,50 75,75 25,100" fill="rgba(124, 58, 237, 0.05)" /> 
                 </pattern>
               </defs>
-              <rect width="100%" height="100%" fill="url(#triangles-light)" />
+              <rect width="100%" height="100%" fill="url(#triangles)" />
             </svg>
           </div>
           
-          {/* Floating glow effects - lighter and more subtle */}
-          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-cyan-100/30 to-blue-100/30 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-gradient-to-r from-blue-100/30 to-violet-100/30 rounded-full blur-3xl"></div>
-          <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-r from-violet-100/20 to-orange-100/20 rounded-full blur-3xl"></div>
+          {/* Floating glow effects - original dark vibrant */}
+          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-cyan-500/8 to-blue-500/8 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-gradient-to-r from-blue-500/8 to-violet-600/8 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-r from-violet-600/5 to-orange-500/5 rounded-full blur-3xl"></div>
           
-          {/* Diagonal lines pattern - lighter and more subtle */}
-          <div className="absolute inset-0 opacity-10">
+          {/* Diagonal lines pattern - original dark subtle */}
+          <div className="absolute inset-0 opacity-20">
             <svg className="w-full h-full" viewBox="0 0 1000 1000" preserveAspectRatio="none">
               <defs>
-                <pattern id="diagonals-light" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-                  <line x1="0" y1="0" x2="40" y2="40" stroke="rgba(0, 0, 0, 0.05)" strokeWidth="1" /> {/* Subtle dark lines */}
-                  <line x1="0" y1="40" x2="40" y2="0" stroke="rgba(0, 0, 0, 0.05)" strokeWidth="1" /> {/* Subtle dark lines */}
+                <pattern id="diagonals" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                  <line x1="0" y1="0" x2="40" y2="40" stroke="rgba(6, 182, 212, 0.1)" strokeWidth="1" /> 
+                  <line x1="0" y1="40" x2="40" y2="0" stroke="rgba(59, 130, 246, 0.1)" strokeWidth="1" /> 
                 </pattern>
               </defs>
-              <rect width="100%" height="100%" fill="url(#diagonals-light)" />
+              <rect width="100%" height="100%" fill="url(#diagonals)" />
             </svg>
           </div>
           
-          {/* Tech-inspired circuit pattern - lighter color */}
+          {/* Tech-inspired circuit pattern - original dark vibrant */}
           <div className="absolute top-10 right-10 w-32 h-32 opacity-10">
             <svg viewBox="0 0 100 100" className="w-full h-full">
-              <path d="M10,10 L90,10 L90,50 L50,50 L50,90 L10,90 Z" stroke="rgb(156, 163, 175)" strokeWidth="2" fill="none" /> {/* gray-400 equivalent */}
-              <circle cx="20" cy="20" r="3" fill="rgb(156, 163, 175)" />
-              <circle cx="80" cy="20" r="3" fill="rgb(96, 165, 250)" /> {/* blue-300 equivalent */}
-              <circle cx="50" cy="50" r="3" fill="rgb(167, 139, 250)" /> {/* violet-300 equivalent */}
-              <circle cx="20" cy="80" r="3" fill="rgb(251, 191, 36)" /> {/* amber-300 equivalent */}
+              <path d="M10,10 L90,10 L90,50 L50,50 L50,90 L10,90 Z" stroke="cyan" strokeWidth="2" fill="none" /> 
+              <circle cx="20" cy="20" r="3" fill="cyan" />
+              <circle cx="80" cy="20" r="3" fill="blue" />
+              <circle cx="50" cy="50" r="3" fill="purple" />
+              <circle cx="20" cy="80" r="3" fill="orange" />
             </svg>
           </div>
         </div>
@@ -230,20 +230,20 @@ const About = () => {
               {/* Section Badge */}
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-cyan-500/10 border border-cyan-500/20 rounded-full mb-6">
                 <div className="w-2 h-2 bg-cyan-500 rounded-full"></div>
-                <span className="text-xs font-bold text-cyan-600 uppercase tracking-wider">ABOUT DEVELOPER</span> {/* Darker accent text */}
+                <span className="text-xs font-bold text-cyan-400 uppercase tracking-wider">ABOUT DEVELOPER</span> {/* Accent text */}
               </div>
 
-              <h2 className="text-3xl lg:text-4xl font-black text-slate-900 mb-6 uppercase tracking-tight"> {/* Dark text */}
+              <h2 className="text-3xl lg:text-4xl font-black text-white mb-6 uppercase tracking-tight"> {/* White text */}
                 CRAFTING DIGITAL EXCELLENCE
               </h2>
 
-              <p className="text-lg text-slate-700 leading-relaxed mb-8"> {/* Dark text */}
+              <p className="text-lg text-slate-300 leading-relaxed mb-8"> {/* Slate-300 text */}
                 Transforming ideas into powerful web solutions with 8+ years of experience in 
                 full-stack development, specializing in React.js, Next.js, and Laravel.
               </p>
 
               {/* Code Bracket Element */}
-              <div className="text-blue-500/50 font-mono text-2xl mb-8">&lt;/&gt;</div> {/* Subtle blue */}
+              <div className="text-cyan-500/20 font-mono text-2xl mb-8">&lt;/&gt;</div> {/* Subtle cyan */}
             </motion.div>
 
             {/* Stats Section */}
@@ -257,19 +257,19 @@ const About = () => {
               {CORE_STATS.map((stat, index) => (
                 <motion.div
                   key={stat.label}
-                  className="text-center p-6 bg-white border border-gray-200 rounded-2xl hover:border-cyan-500/50 transition-all duration-300 hover:scale-[1.02] group shadow-sm" // Light background for cards
+                  className="text-center p-6 bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 rounded-2xl hover:border-cyan-500/50 transition-all duration-300 hover:scale-[1.02] group shadow-lg" // Dark background for cards
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={statsInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
                   transition={{ delay: index * 0.1 }}
                   whileHover={{ scale: 1.05, y: -5 }}
                 >
                   {/* Glow effect only on individual card hover */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-100/50 to-blue-100/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
                   
                   <div className="relative z-10">
                     <stat.icon className={`w-8 h-8 mx-auto mb-4 ${stat.color} group-hover:scale-110 transition-transform duration-300`} />
-                    <div className="text-3xl font-black text-slate-900 mb-2">{stat.number}</div> {/* Dark text */}
-                    <div className="text-sm text-slate-700 uppercase tracking-wider font-bold">{stat.label}</div> {/* Dark text */}
+                    <div className="text-3xl font-black text-white mb-2">{stat.number}</div> {/* White text */}
+                    <div className="text-sm text-slate-400 uppercase tracking-wider font-bold">{stat.label}</div> {/* Slate-400 text */}
                   </div>
                 </motion.div>
               ))}
@@ -285,51 +285,51 @@ const About = () => {
                 animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
                 transition={{ delay: 0.4 }}
               >
-                <div className="group relative p-8 bg-white border border-gray-200 rounded-2xl hover:border-cyan-500/50 transition-all duration-300 hover:scale-[1.02] overflow-hidden shadow-md"> {/* Light background for cards */}
+                <div className="group relative p-8 bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 rounded-2xl hover:border-cyan-500/50 transition-all duration-300 hover:scale-[1.02] overflow-hidden shadow-lg"> {/* Dark background for cards */}
                   {/* Glow effect only on card hover */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-100/50 to-blue-100/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   
                   <div className="relative z-10">
-                    <h3 className="text-2xl font-black text-slate-900 mb-6 flex items-center gap-3 uppercase tracking-tight"> {/* Dark text */}
-                      <Code2 className="w-6 h-6 text-cyan-500" /> {/* Accent color */}
+                    <h3 className="text-2xl font-black text-white mb-6 flex items-center gap-3 uppercase tracking-tight"> {/* White text */}
+                      <Code2 className="w-6 h-6 text-cyan-400" /> {/* Accent color */}
                       MY STORY
                     </h3>
                     
-                    <div className="space-y-4 text-slate-700 leading-relaxed"> {/* Dark text */}
+                    <div className="space-y-4 text-slate-300 leading-relaxed"> {/* Slate-300 text */}
                       <p>
-                        As a <strong className="text-blue-700">SENIOR FULL STACK DEVELOPER</strong> with 8+ years of experience, 
+                        As a <strong className="text-white">SENIOR FULL STACK DEVELOPER</strong> with 8+ years of experience, 
                         I specialize in creating high-performance web applications that drive business growth.
                       </p>
                       <p>
-                        My expertise spans modern technologies like <strong className="text-cyan-600">React.js</strong>, 
-                        <strong className="text-blue-600"> Next.js</strong>, and <strong className="text-violet-600"> Laravel</strong>, 
+                        My expertise spans modern technologies like <strong className="text-cyan-300">React.js</strong>, 
+                        <strong className="text-blue-300"> Next.js</strong>, and <strong className="text-violet-300"> Laravel</strong>, 
                         helping businesses transform their digital presence.
                       </p>
                       <p>
                         I believe in writing clean, maintainable code that not only solves problems but creates 
-                        <strong className="text-orange-600"> lasting value</strong> for businesses and their users.
+                        <strong className="text-orange-300"> lasting value</strong> for businesses and their users.
                       </p>
                     </div>
                     
                     {/* Contact Info */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8 pt-6 border-t border-gray-200"> {/* Light border */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8 pt-6 border-t border-slate-700"> {/* Dark border */}
                       <div className="flex items-center gap-3">
-                        <MapPin className="w-4 h-4 text-cyan-500" /> {/* Accent color */}
-                        <span className="text-sm text-slate-700 font-medium uppercase tracking-wider">DHAKA, BANGLADESH</span> {/* Dark text */}
+                        <MapPin className="w-4 h-4 text-cyan-400" /> {/* Accent color */}
+                        <span className="text-sm text-slate-300 font-medium uppercase tracking-wider">DHAKA, BANGLADESH</span> {/* Slate-300 text */}
                       </div>
                       <div className="flex items-center gap-3">
-                        <Coffee className="w-4 h-4 text-orange-500" /> {/* Accent color */}
-                        <span className="text-sm text-slate-700 font-medium uppercase tracking-wider">8+ YEARS EXPERIENCE</span> {/* Dark text */}
+                        <Coffee className="w-4 h-4 text-orange-400" /> {/* Accent color */}
+                        <span className="text-sm text-slate-300 font-medium uppercase tracking-wider">8+ YEARS EXPERIENCE</span> {/* Slate-300 text */}
                       </div>
                       <div className="flex items-center gap-3">
-                        <Mail className="w-4 h-4 text-emerald-500" /> {/* Accent color */}
-                        <a href="mailto:ratanmiadev@gmail.com" className="text-sm text-cyan-600 hover:text-cyan-700 transition-colors font-medium uppercase tracking-wider"> {/* Darker accent link */}
+                        <Mail className="w-4 h-4 text-emerald-400" /> {/* Accent color */}
+                        <a href="mailto:ratanmiadev@gmail.com" className="text-sm text-cyan-300 hover:text-cyan-200 transition-colors font-medium uppercase tracking-wider"> {/* Darker accent link */}
                           RATANMIADEV@GMAIL.COM
                         </a>
                       </div>
                       <div className="flex items-center gap-3">
-                        <Download className="w-4 h-4 text-violet-600" /> {/* Accent color */}
-                        <a href="/resume.pdf" className="text-sm text-violet-600 hover:text-violet-700 transition-colors font-medium uppercase tracking-wider"> {/* Darker accent link */}
+                        <Download className="w-4 h-4 text-violet-400" /> {/* Accent color */}
+                        <a href="/resume.pdf" className="text-sm text-violet-300 hover:text-violet-200 transition-colors font-medium uppercase tracking-wider"> {/* Darker accent link */}
                           DOWNLOAD CV
                         </a>
                       </div>
@@ -341,7 +341,7 @@ const About = () => {
               {/* Right Column - Developer Photo & Achievements */}
               <div className="flex flex-col items-center justify-center p-8 relative" ref={achievementsPhotoRef}>
                 <motion.div
-                  className="relative w-72 h-72 lg:w-80 lg:h-80 rounded-2xl border-4 border-cyan-500/50 flex items-center justify-center overflow-hidden shadow-2xl bg-gray-100" // Light background
+                  className="relative w-72 h-72 lg:w-80 lg:h-80 rounded-2xl border-4 border-cyan-500/50 flex items-center justify-center overflow-hidden shadow-2xl bg-slate-900" // Dark background
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={achievementsPhotoInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
                   transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
@@ -351,7 +351,7 @@ const About = () => {
                     RM
                   </div>
                   {/* Overlay for subtle effect */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-black/0 rounded-xl" /> {/* Lighter overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20 rounded-xl" /> {/* Darker overlay */}
                 </motion.div>
 
                 {/* Achievements displayed around the photo */}
@@ -376,7 +376,7 @@ const About = () => {
               transition={{ duration: 0.6 }}
             >
               <div className="text-center mb-12">
-                <h3 className="text-2xl lg:text-3xl font-black text-slate-900 mb-4 uppercase tracking-tight"> {/* Dark text */}
+                <h3 className="text-2xl lg:text-3xl font-black text-white mb-4 uppercase tracking-tight"> {/* White text */}
                   PROFESSIONAL EXPERIENCE
                 </h3>
                 <div className="h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent w-full max-w-md mx-auto"></div>
@@ -404,16 +404,16 @@ const About = () => {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ delay: 0.8 }}
             >
-              <div className="relative p-8 lg:p-12 bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-xl"> {/* Light background */}
+              <div className="relative p-8 lg:p-12 bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 rounded-2xl overflow-hidden shadow-xl"> {/* Dark background for CTA */}
                 {/* Background Glow */}
-                <div className="absolute inset-0 bg-gradient-to-r from-cyan-100/50 to-blue-100/50"></div> {/* Adjusted glow */}
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-500/5"></div> {/* Darker glow */}
                 
                 <div className="relative z-10">
-                  <h3 className="text-3xl lg:text-4xl font-black text-slate-900 mb-6 uppercase tracking-tight"> {/* Dark text */}
+                  <h3 className="text-3xl lg:text-4xl font-black text-white mb-6 uppercase tracking-tight"> {/* White text */}
                     READY TO START YOUR PROJECT?
                   </h3>
                   
-                  <p className="text-lg text-slate-700 mb-8 max-w-2xl mx-auto leading-relaxed"> {/* Dark text */}
+                  <p className="text-lg text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed"> {/* Slate-300 text */}
                     Let's transform your ideas into powerful web solutions that drive growth and success.
                   </p>
                   
@@ -423,7 +423,7 @@ const About = () => {
                       <ArrowRight className="w-5 h-5" />
                     </button>
                     
-                    <button className="inline-flex items-center gap-3 px-8 py-4 bg-white border-2 border-cyan-500 text-cyan-500 font-semibold rounded-xl hover:bg-cyan-50 hover:text-cyan-600 transition-all duration-300 hover:scale-105 uppercase tracking-wide"> {/* Adjusted for light background */}
+                    <button className="inline-flex items-center gap-3 px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-cyan-500/50 text-cyan-400 font-semibold rounded-xl hover:bg-cyan-500/10 transition-all duration-300 hover:scale-105 uppercase tracking-wide"> {/* Adjusted for dark background */}
                       <Code2 className="w-5 h-5" />
                       <span>VIEW MY WORK</span>
                     </button>
