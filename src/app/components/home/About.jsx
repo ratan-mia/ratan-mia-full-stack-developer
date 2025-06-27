@@ -185,7 +185,7 @@ const About = () => {
   return (
     <>
       {/* Developer Header Stripe */}
-      <div className="h-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500"></div>
+      
       
       <section 
         ref={sectionRef}
