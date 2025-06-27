@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { ExternalLink, Github, Search } from 'lucide-react';
+import ProjectImage from './ProjectImage';
 
 const ProjectFilters = () => {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -138,31 +139,48 @@ const ProjectFilters = () => {
               className="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group border border-slate-200 dark:border-slate-700"
             >
               {/* Project Image */}
-              <div className="relative h-48 bg-gradient-to-br from-blue-500 to-purple-600 overflow-hidden">
+              <div className="relative h-48 overflow-hidden">
+                <ProjectImage 
+                  project={project} 
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                
+                {/* Featured Badge */}
                 {project.featured && (
-                  <div className="absolute top-4 left-4 px-3 py-1 bg-yellow-400 text-yellow-900 rounded-full text-xs font-bold">
+                  <div className="absolute top-4 left-4 px-3 py-1 bg-yellow-400 text-yellow-900 rounded-full text-xs font-bold z-20">
                     Featured
                   </div>
                 )}
-                <div className="absolute inset-0 bg-black/20 flex items-center justify-center group-hover:bg-black/40 transition-colors">
-                  <div className="text-white text-center">
-                    <div className="text-4xl mb-2">
-                      {project.category === 'Web Development' ? '🌐' :
-                       project.category === 'E-commerce' ? '🛒' :
-                       project.category === 'AI Integration' ? '🤖' : '🚀'}
-                    </div>
-                    <div className="text-sm opacity-90">{project.category}</div>
-                  </div>
-                </div>
                 
+                {/* Status Badge */}
+                <div className="absolute top-4 right-4 z-20">
+                  {project.links.live ? (
+                    <span className="px-2 py-1 bg-green-500 text-white rounded-full text-xs font-bold flex items-center gap-1">
+                      <div className="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></div>
+                      Live
+                    </span>
+                  ) : (
+                    <span className="px-2 py-1 bg-yellow-500 text-yellow-900 rounded-full text-xs font-bold">
+                      In Development
+                    </span>
+                  )}
+                </div>
+
+                {/* Year Badge */}
+                <div className="absolute bottom-4 left-4 z-20">
+                  <span className="bg-white/90 backdrop-blur-sm text-slate-800 px-2 py-1 rounded-full text-xs font-bold">
+                    {project.year}
+                  </span>
+                </div>
                 {/* Hover overlay with action buttons */}
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3 z-10">
                   {project.links.live && (
                     <a
                       href={project.links.live}
                       className="p-3 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors"
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
                     >
                       <ExternalLink className="w-5 h-5 text-white" />
                     </a>
@@ -172,6 +190,7 @@ const ProjectFilters = () => {
                     className="p-3 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
                   >
                     <Github className="w-5 h-5 text-white" />
                   </a>
@@ -189,7 +208,7 @@ const ProjectFilters = () => {
                   )}
                 </div>
 
-                <h3 className="text-xl font-bold mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                <h3 className="text-xl font-bold mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2">
                   {project.title}
                 </h3>
 

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { ExternalLink, Github, Play } from 'lucide-react';
+import ProjectImage from './ProjectImage';
 
 const ProjectShowcase = () => {
   const [activeProject, setActiveProject] = useState(0);
@@ -101,31 +102,17 @@ const ProjectShowcase = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
           {/* Project Visual */}
           <div className="relative">
-            <div className="aspect-video bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl shadow-2xl overflow-hidden">
-              {/* Project Image or Fallback */}
-              {currentProject.image ? (
-                <img
-                  src={currentProject.image}
-                  alt={`${currentProject.title} project screenshot`}
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.target.style.display = 'none';
-                    e.target.nextSibling.style.display = 'flex';
-                  }}
-                />
-              ) : null}
+            <div className="aspect-video bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl shadow-2xl overflow-hidden relative">
+              {/* Project Image */}
+              <ProjectImage 
+                project={currentProject} 
+                className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+              />
               
-              {/* Fallback display */}
-              <div className={`absolute inset-0 bg-black/20 flex items-center justify-center ${currentProject.image ? 'hidden' : 'flex'}`}>
-                <div className="text-white text-center">
-                  <div className="text-6xl mb-4">
-                    {currentProject.category === 'web-development' ? '🌐' :
-                     currentProject.category === 'ecommerce' ? '🛒' : 
-                     currentProject.category === 'ai-integration' ? '🤖' : '🚀'}
-                  </div>
-                  <div className="text-lg font-medium">{currentProject.title}</div>
-                </div>
-              </div>
+              {/* Overlay for images */}
+              {currentProject.image && (
+                <div className="absolute inset-0 bg-black/10 hover:bg-black/20 transition-colors" />
+              )}
 
               {/* Project Status Badge */}
               <div className="absolute top-4 right-4 z-10">
