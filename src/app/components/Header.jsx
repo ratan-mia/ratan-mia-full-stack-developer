@@ -37,32 +37,31 @@ const Header = () => {
 
   // Enhanced navigation structure - organized by user journey
   const mainMenuItems = [
-    { name: 'Home', id: 'home', icon: Home, color: 'text-blue-500' },
-    { name: 'About', id: 'about', icon: User, color: 'text-green-500' },
-    { name: 'Skills', id: 'skills', icon: Code, color: 'text-purple-500' },
-    { name: 'Services', id: 'services', icon: Briefcase, color: 'text-orange-500' },
-    { name: 'Projects', id: 'projects', icon: FolderOpen, color: 'text-cyan-500' }
+    { name: 'Home', id: 'home', icon: Home, color: 'text-blue-500', href: '/' },
+    { name: 'About', id: 'about', icon: User, color: 'text-green-500', href: '/about' },
+    { name: 'Services', id: 'services', icon: Briefcase, color: 'text-orange-500', href: '/services' },
+    { name: 'Portfolio', id: 'portfolio', icon: FolderOpen, color: 'text-cyan-500', href: '/portfolio' }
   ];
 
   const dropdownMenus = [
-    {
-      title: 'Portfolio',
-      icon: Star,
-      color: 'text-yellow-500',
-      items: [
-        { name: 'My Work', id: 'projects', icon: FolderOpen, description: 'Featured projects & case studies' },
-        { name: 'Testimonials', id: 'testimonials', icon: MessageSquare, description: 'Client reviews & feedback' },
-        { name: 'Certificates', id: 'certificates', icon: Award, description: 'Professional credentials' }
-      ]
-    },
     {
       title: 'More',
       icon: Settings,
       color: 'text-pink-500',
       items: [
-        { name: 'How I Work', id: 'process', icon: Clock, description: 'My development process' },
-        { name: 'FAQ', id: 'faq', icon: MessageSquare, description: 'Common questions' },
-        { name: 'Get Quote', id: 'quote', icon: Mail, description: 'Project estimation' }
+        { name: 'Case Studies', id: 'case-studies', icon: Award, description: 'In-depth project analysis', href: '/case-studies' },
+        { name: 'Blog', id: 'blog', icon: MessageSquare, description: 'Tech insights & articles', href: '/blog' },
+        { name: 'Resources', id: 'resources', icon: Download, description: 'Free tools & templates', href: '/resources' },
+        { name: 'Resume', id: 'resume', icon: User, description: 'Download my CV', href: '/resume' }
+      ]
+    },
+    {
+      title: 'Quick Actions',
+      icon: Zap,
+      color: 'text-purple-500',
+      items: [
+        { name: 'Get Quote', id: 'quote', icon: Mail, description: 'Project estimation', href: '/quote' },
+        { name: 'Contact', id: 'contact', icon: Phone, description: 'Get in touch', href: '#contact' }
       ]
     }
   ];
@@ -143,15 +142,34 @@ const Header = () => {
     return () => { document.body.style.overflow = 'unset'; };
   }, [isMenuOpen]);
 
-  const scrollToSection = useCallback((sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const headerHeight = 80;
-      const elementPosition = element.offsetTop - headerHeight;
-      window.scrollTo({ 
-        top: sectionId === 'home' ? 0 : elementPosition, 
-        behavior: 'smooth' 
-      });
+  const handleNavigation = useCallback((item) => {
+    if (item.href && item.href.startsWith('/')) {
+      // Navigate to different page
+      window.location.href = item.href;
+    } else if (item.href && item.href.startsWith('#')) {
+      // Scroll to section on current page
+      const element = document.getElementById(item.href.slice(1));
+      if (element) {
+        const headerHeight = 80;
+        const elementPosition = element.offsetTop - headerHeight;
+        window.scrollTo({ 
+          top: elementPosition, 
+          behavior: 'smooth' 
+        });
+      }
+    } else if (item.id === 'home') {
+      window.location.href = '/';
+    } else {
+      // Legacy scroll behavior for backwards compatibility
+      const element = document.getElementById(item.id);
+      if (element) {
+        const headerHeight = 80;
+        const elementPosition = element.offsetTop - headerHeight;
+        window.scrollTo({ 
+          top: item.id === 'home' ? 0 : elementPosition, 
+          behavior: 'smooth' 
+        });
+      }
     }
     setIsMenuOpen(false);
     setActiveDropdown(null);
@@ -213,7 +231,7 @@ const Header = () => {
             className="flex items-center gap-3 cursor-pointer group min-w-0"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => scrollToSection('home')}
+            onClick={() => handleNavigation({ id: 'home', href: '/' })}
           >
             <motion.div 
               className="relative w-10 h-10 sm:w-12 sm:h-12"
@@ -265,7 +283,7 @@ const Header = () => {
             {mainMenuItems.map((item, index) => (
               <motion.button
                 key={item.id}
-                onClick={() => scrollToSection(item.id)}
+                onClick={() => handleNavigation(item)}
                 className={`relative flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium transition-all duration-300 group ${
                   isItemActive(item.id)
                     ? 'text-white bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg' 
@@ -354,7 +372,7 @@ const Header = () => {
                       {dropdown.items.map((item, itemIndex) => (
                         <motion.button
                           key={item.id}
-                          onClick={() => scrollToSection(item.id)}
+                          onClick={() => handleNavigation(item)}
                           className={`relative w-full flex items-start gap-4 px-5 py-4 text-left transition-all duration-300 group ${
                             isItemActive(item.id)
                               ? 'text-white bg-gradient-to-r from-blue-600 to-purple-600'
@@ -389,7 +407,7 @@ const Header = () => {
 
             {/* Contact Button */}
             <motion.button
-              onClick={() => scrollToSection('contact')}
+              onClick={() => handleNavigation({ id: 'contact', href: '#contact' })}
               className={`relative flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium transition-all duration-300 group ${
                 isItemActive('contact')
                   ? 'text-white bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg' 
@@ -437,7 +455,7 @@ const Header = () => {
             </motion.button>
             
             <motion.button
-              onClick={() => scrollToSection('quote')}
+              onClick={() => handleNavigation({ id: 'quote', href: '/quote' })}
               className="relative flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 rounded-xl transition-all duration-300 text-sm font-semibold shadow-lg hover:shadow-xl group overflow-hidden"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
@@ -559,7 +577,7 @@ const Header = () => {
                   {allMenuItems.map((item, index) => (
                     <motion.button
                       key={item.id}
-                      onClick={() => scrollToSection(item.id)}
+                      onClick={() => handleNavigation(item)}
                       className={`w-full flex items-center gap-4 px-4 py-4 text-left transition-all duration-300 group rounded-xl relative overflow-hidden ${
                         isItemActive(item.id)
                           ? 'text-white bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg' 
@@ -608,7 +626,7 @@ const Header = () => {
                   </motion.button>
                   
                   <motion.button
-                    onClick={() => scrollToSection('quote')}
+                    onClick={() => handleNavigation({ id: 'quote', href: '/quote' })}
                     className="w-full flex items-center justify-center gap-3 px-5 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-semibold rounded-xl shadow-lg hover:shadow-xl group"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -621,7 +639,7 @@ const Header = () => {
                   </motion.button>
                   
                   <motion.button
-                    onClick={() => scrollToSection('contact')}
+                    onClick={() => handleNavigation({ id: 'contact', href: '#contact' })}
                     className="w-full flex items-center justify-center gap-3 px-5 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white hover:from-emerald-700 hover:to-teal-700 transition-all duration-300 font-semibold rounded-xl shadow-lg hover:shadow-xl group"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
