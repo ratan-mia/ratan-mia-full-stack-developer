@@ -5,6 +5,8 @@ import {
   ArrowRight,
   Brain,
   CheckCircle,
+  ChevronLeft,
+  ChevronRight,
   Code2,
   ExternalLink,
   Globe,
@@ -13,9 +15,9 @@ import {
   ShoppingCart,
   Star,
   Terminal,
-  Zap
+  Zap,
 } from 'lucide-react';
-import { useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 // Updated Service Data with new design system
 const CORE_SERVICES = [
@@ -130,17 +132,21 @@ const SERVICE_STATS = [
   { number: '6', label: 'Core Services', color: 'text-orange-400' }
 ];
 
-// Updated Service Card Component
-const ServiceCard = ({ service, index, inView }) => {
+// Service Card Component
+const ServiceCard = ({ service, index, inView, itemWidth }) => {
   return (
     <motion.div
-      className="card-primary group h-full flex flex-col"
+      className="relative flex flex-col p-6 bg-slate-900 border border-slate-700 rounded-2xl overflow-hidden group flex-shrink-0"
+      style={{ width: `${itemWidth}px` }} // Use dynamic width passed from parent
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-      transition={{ delay: index * 0.1, duration: 0.6 }}
+      transition={{ delay: index * 0.05, duration: 0.6 }} // Slightly reduced delay for more items
       whileHover={{ scale: 1.02, y: -5 }}
     >
-      <div className="relative z-10 h-full flex flex-col">
+      {/* Background Glow on Hover */}
+      <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
+
+      <div className="relative z-10 flex flex-col h-full">
         {/* Header */}
         <div className="flex items-start gap-4 mb-6">
           <div className={`w-12 h-12 bg-gradient-to-r ${service.gradient} rounded-xl flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}>
@@ -162,7 +168,7 @@ const ServiceCard = ({ service, index, inView }) => {
                 </motion.span>
               )}
             </div>
-            <p className="text-slate-300 leading-relaxed">{service.description}</p>
+            <p className="text-slate-300 leading-relaxed text-sm">{service.description}</p>
           </div>
         </div>
 
@@ -198,72 +204,93 @@ const ServiceCard = ({ service, index, inView }) => {
 
         {/* CTA Button */}
         <motion.button
-          className={`btn-primary w-full group`}
-          whileHover={{ scale: 1.02, y: -2 }}
-          whileTap={{ scale: 0.98 }}
+          className={`inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r ${service.gradient} text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 uppercase tracking-wide w-full`}
+          whileHover={{ scale: 1.05, y: -2 }}
+          whileTap={{ scale: 0.95 }}
           onClick={() => {
             document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
           }}
         >
           <span>Get Started</span>
-          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
         </motion.button>
       </div>
     </motion.div>
   );
 };
 
-// Featured Service Preview Component
-const FeaturedServicePreview = ({ service, index, inView }) => {
-  return (
-    <motion.div
-      className="card-primary group text-center"
-      initial={{ opacity: 0, y: 30 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-      transition={{ delay: 1.2 + index * 0.1 }}
-      whileHover={{ scale: 1.02, y: -5 }}
-    >
-      <div className="relative z-10">
-        <div className={`w-16 h-16 bg-gradient-to-r ${service.gradient} rounded-xl flex items-center justify-center text-white mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-          <service.icon className="w-8 h-8" />
-        </div>
-        <h4 className="text-lg font-bold text-white mb-3 uppercase tracking-wide">{service.title}</h4>
-        <p className="text-slate-300 text-sm mb-4 leading-relaxed">{service.description}</p>
-        <div className={`text-2xl font-black bg-gradient-to-r ${service.gradient} bg-clip-text text-transparent mb-2 uppercase tracking-tight`}>
-          {service.basePrice}
-        </div>
-        <div className="text-xs text-slate-400 mb-6 uppercase tracking-wider">Starting price</div>
-        <motion.button
-          className={`w-full py-3 px-4 bg-gradient-to-r ${service.gradient} text-white font-semibold rounded-xl text-sm uppercase tracking-wide transition-all duration-300 hover:shadow-lg`}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-        >
-          Learn More
-        </motion.button>
-      </div>
-    </motion.div>
-  );
-};
 
 // Main Services Component
 const Services = () => {
   const sectionRef = useRef(null);
   const statsRef = useRef(null);
-  const servicesRef = useRef(null);
+  const servicesCarouselWrapperRef = useRef(null); // Ref for the div with overflow-hidden
+  const servicesCarouselInnerRef = useRef(null); // Ref for the flex container inside
   const ctaRef = useRef(null);
 
   const isInView = useInView(sectionRef, { once: true, threshold: 0.1 });
   const statsInView = useInView(statsRef, { once: true, threshold: 0.1 });
-  const servicesInView = useInView(servicesRef, { once: true, threshold: 0.1 });
+  // servicesInView will be used for the whole carousel section
   const ctaInView = useInView(ctaRef, { once: true, threshold: 0.1 });
 
-  const featuredServices = CORE_SERVICES.filter(service => service.featured);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [itemsPerView, setItemsPerView] = useState(1);
+  const [itemFullWidth, setItemFullWidth] = useState(0); // Width of one card + its right margin/gap
+
+  const calculateItemWidth = useCallback(() => {
+    if (servicesCarouselInnerRef.current) {
+      const firstCard = servicesCarouselInnerRef.current.children[0];
+      if (firstCard) {
+        const style = window.getComputedStyle(firstCard);
+        const margin = parseFloat(style.marginRight || style.marginLeft || style.gap) || 0; // Check for gap or margin
+        const cardRect = firstCard.getBoundingClientRect();
+        const gap = 24; // Assuming gap-6
+        setItemFullWidth(cardRect.width + gap);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      let newItemsPerView;
+      if (window.innerWidth >= 1280) { // xl and 2xl breakpoint
+        newItemsPerView = 3; // Set to 3 for xl and larger screens
+      } else if (window.innerWidth >= 1024) { // lg breakpoint
+        newItemsPerView = 3;
+      } else if (window.innerWidth >= 768) { // md breakpoint
+        newItemsPerView = 2;
+      } else {
+        newItemsPerView = 1;
+      }
+      setItemsPerView(newItemsPerView);
+      setTimeout(calculateItemWidth, 100); 
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Set initial value
+    return () => window.removeEventListener('resize', handleResize);
+  }, [calculateItemWidth]);
+
+  useEffect(() => {
+    calculateItemWidth();
+  }, [currentIndex, calculateItemWidth]);
+
+
+  const totalSlides = Math.ceil(CORE_SERVICES.length / itemsPerView);
+
+  const goToNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % totalSlides);
+  };
+
+  const goToPrev = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + totalSlides) % totalSlides);
+  };
 
   return (
     <section 
       ref={sectionRef}
       id="services" 
-      className="py-16 lg:py-24 px-6 lg:px-8 xl:px-16 2xl:px-20 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 relative overflow-hidden"
+      className="py-16 lg:py-24 px-6 lg:px-8 xl:px-16 2xl:px-20 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 relative overflow-hidden"
       aria-label="Professional web development services"
     >
       {/* Developer Brand Stripe */}
@@ -322,12 +349,13 @@ const Services = () => {
         >
           {/* Section Badge */}
           <motion.div
-            className="section-badge mx-auto mb-6"
+            className="inline-flex items-center gap-2 px-3 py-1 bg-cyan-500/10 border border-cyan-500/20 rounded-full mx-auto mb-6"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
             transition={{ delay: 0.2 }}
           >
-            Services Portfolio
+            <div className="w-2 h-2 bg-cyan-500 rounded-full"></div>
+            <span className="text-xs font-bold text-cyan-400 uppercase tracking-wider">Services Portfolio</span>
           </motion.div>
           
           <motion.h2 
@@ -368,7 +396,7 @@ const Services = () => {
           {SERVICE_STATS.map((stat, index) => (
             <motion.div
               key={stat.label}
-              className="text-center p-6 bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 rounded-2xl hover:border-cyan-500/50 transition-all duration-300 group"
+              className="text-center p-6 bg-slate-900 border border-slate-700 rounded-2xl hover:border-cyan-500/50 transition-all duration-300 group"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={statsInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
               transition={{ delay: index * 0.1 }}
@@ -385,69 +413,89 @@ const Services = () => {
           ))}
         </motion.div>
 
-        {/* Featured Services Preview */}
+        {/* All Services Carousel */}
         <motion.div 
-          className="mb-20"
+          className="mb-16 relative"
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ delay: 0.8 }}
-        >
-          <div className="text-center mb-12">
-            <motion.h3 
-              className="text-2xl lg:text-3xl font-black text-white mb-4 uppercase tracking-tight flex items-center justify-center gap-3"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ delay: 1.0 }}
-            >
-              <Star className="w-8 h-8 text-orange-400" />
-              Most Popular Services
-            </motion.h3>
-            <div className="h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent w-32 mx-auto" />
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {featuredServices.map((service, index) => (
-              <FeaturedServicePreview
-                key={service.id}
-                service={service}
-                index={index}
-                inView={isInView}
-              />
-            ))}
-          </div>
-        </motion.div>
-
-        {/* All Services Grid */}
-        <motion.div 
-          ref={servicesRef}
-          className="mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={servicesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }} // Use isInView for the whole carousel section
           transition={{ duration: 0.6 }}
         >
           <div className="text-center mb-12">
             <h3 className="text-3xl font-black text-white mb-4 uppercase tracking-tight">
-              Complete Service Portfolio
+              Our Service Offerings
             </h3>
             <div className="h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent w-32 mx-auto" />
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {CORE_SERVICES.map((service, index) => (
-              <ServiceCard
-                key={service.id}
-                service={service}
-                index={index}
-                inView={servicesInView}
-              />
-            ))}
+          <div className="relative overflow-hidden px-10 md:px-0" ref={servicesCarouselWrapperRef}>
+            <motion.div 
+              className="flex gap-6 pb-4" // Tailwind gap-6 sets 24px gap
+              ref={servicesCarouselInnerRef}
+              animate={{
+                x: -currentIndex * itemFullWidth // Use calculated itemFullWidth for translation
+              }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+            >
+              {CORE_SERVICES.map((service, index) => (
+                <ServiceCard
+                  key={service.id}
+                  service={service}
+                  index={index}
+                  inView={isInView} // Pass isInView to cards
+                  itemWidth={
+                    // Calculate width dynamically based on itemsPerView and container width
+                    // Subtract total gap space from container width, then divide by itemsPerView
+                    itemsPerView === 1 ? (servicesCarouselWrapperRef.current ? servicesCarouselWrapperRef.current.offsetWidth - (2 * 10) : 300) : 
+                    (servicesCarouselWrapperRef.current ? (servicesCarouselWrapperRef.current.offsetWidth - (24 * (itemsPerView - 1))) / itemsPerView : 300)
+                  }
+                />
+              ))}
+            </motion.div>
+
+            {/* Carousel Navigation Buttons */}
+            {totalSlides > 1 && (
+              <>
+                <motion.button
+                  onClick={goToPrev}
+                  className="absolute left-0 top-1/2 transform -translate-y-1/2 w-12 h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-cyan-400 hover:border-cyan-500 transition-all duration-300 shadow-lg z-20"
+                  aria-label="Previous service"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </motion.button>
+                <motion.button
+                  onClick={goToNext}
+                  className="absolute right-0 top-1/2 transform -translate-y-1/2 w-12 h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-cyan-400 hover:border-cyan-500 transition-all duration-300 shadow-lg z-20"
+                  aria-label="Next service"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </motion.button>
+              </>
+            )}
+
+            {/* Carousel Dots/Indicators */}
+            <div className="flex justify-center gap-2 mt-8">
+              {Array.from({ length: totalSlides }).map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentIndex(idx)}
+                  className={`w-3 h-3 rounded-full transition-colors duration-300 ${
+                    currentIndex === idx ? 'bg-cyan-500' : 'bg-slate-700 hover:bg-slate-600'
+                  }`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </motion.div>
 
         {/* Call to Action */}
         <motion.div 
           ref={ctaRef}
-          className="relative p-8 lg:p-12 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 border border-slate-700 rounded-2xl overflow-hidden"
+          className="relative p-8 lg:p-12 bg-slate-900 border border-slate-700 rounded-2xl overflow-hidden"
           initial={{ opacity: 0, y: 30 }}
           animate={ctaInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
@@ -498,7 +546,7 @@ const Services = () => {
             >
               <motion.a
                 href="#contact"
-                className="btn-primary group"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 uppercase tracking-wide group"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -507,8 +555,8 @@ const Services = () => {
               </motion.a>
               
               <motion.a
-                href="/services"
-                className="btn-secondary group"
+                href="#services"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-cyan-500/50 text-cyan-400 font-semibold rounded-xl hover:bg-cyan-500/10 transition-all duration-300 hover:scale-105 uppercase tracking-wide group"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >

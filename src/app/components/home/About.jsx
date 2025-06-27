@@ -27,15 +27,6 @@ const CORE_STATS = [
   { icon: Star, number: '98%', label: 'Client Satisfaction', color: 'text-orange-400' }
 ];
 
-const KEY_SKILLS = [
-  { name: 'React.js', level: 95, color: 'from-cyan-500 to-blue-500' },
-  { name: 'Next.js', level: 92, color: 'from-blue-500 to-purple-500' },
-  { name: 'Laravel', level: 90, color: 'from-purple-500 to-pink-500' },
-  { name: 'PHP', level: 90, color: 'from-pink-500 to-red-500' },
-  { name: 'JavaScript', level: 88, color: 'from-orange-500 to-amber-500' },
-  { name: 'WordPress', level: 95, color: 'from-emerald-500 to-teal-500' }
-];
-
 const ACHIEVEMENTS = [
   {
     icon: TrendingUp,
@@ -84,59 +75,41 @@ const WORK_EXPERIENCE = [
   }
 ];
 
-// Updated Skill Bar Component
-const SkillBar = ({ skill, index, inView }) => {
+
+// Updated Achievement Card Component for placement around the photo
+const AchievementCircleItem = ({ achievement, index, total, inView }) => {
+  // Calculate position on the circle
+  const angle = (360 / total) * index;
+  const radius = 100; // Adjust as needed for spacing from center image
+  const offsetX = radius * Math.cos((angle - 90) * (Math.PI / 180));
+  const offsetY = radius * Math.sin((angle - 90) * (Math.PI / 180));
+
   return (
     <motion.div
-      className="mb-6"
-      initial={{ opacity: 0, x: -30 }}
-      animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
-      transition={{ delay: index * 0.1 }}
+      className="absolute flex flex-col items-center justify-center p-3 bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 rounded-full shadow-lg text-center cursor-pointer group hover:border-cyan-500/50 transition-all duration-300"
+      style={{
+        left: `calc(50% + ${offsetX}px)`,
+        top: `calc(50% + ${offsetY}px)`,
+        transform: 'translate(-50%, -50%)',
+        width: '120px', // Smaller size for circle items
+        height: '120px',
+      }}
+      initial={{ opacity: 0, scale: 0 }}
+      animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
+      transition={{ delay: index * 0.15 + 0.5, duration: 0.5 }} // Staggered and delayed
+      whileHover={{ scale: 1.1, rotate: 5 }}
     >
-      <div className="flex justify-between items-center mb-3">
-        <span className="text-sm font-semibold text-white uppercase tracking-wider">{skill.name}</span>
-        <span className="text-sm font-bold text-cyan-400">{skill.level}%</span>
+      <div className="relative z-10">
+        <achievement.icon className={`w-7 h-7 mx-auto mb-2 ${achievement.color} group-hover:scale-110 transition-transform duration-300`} />
+        <div className="text-xl font-bold text-white mb-1 uppercase tracking-tight">{achievement.metric}</div>
+        <p className="text-xs text-slate-400 leading-tight">{achievement.title}</p>
       </div>
-      <div className="h-3 bg-slate-800 rounded-full overflow-hidden border border-slate-700">
-        <motion.div
-          className={`h-full bg-gradient-to-r ${skill.color} rounded-full relative overflow-hidden`}
-          initial={{ width: 0 }}
-          animate={inView ? { width: `${skill.level}%` } : { width: 0 }}
-          transition={{ duration: 1.2, delay: index * 0.1, ease: "easeOut" }}
-        >
-          {/* Animated shine effect */}
-          <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-            animate={{ x: ['-100%', '100%'] }}
-            transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
-          />
-        </motion.div>
-      </div>
+      {/* Glow effect */}
+      <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
     </motion.div>
   );
 };
 
-// Updated Achievement Card Component
-const AchievementCard = ({ achievement, index, inView }) => {
-  return (
-    <motion.div
-      className="card-primary group"
-      initial={{ opacity: 0, y: 30 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-      transition={{ delay: index * 0.1 }}
-      whileHover={{ scale: 1.02, y: -5 }}
-    >
-      <div className="relative z-10">
-        <div className="w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-          <achievement.icon className="w-6 h-6 text-white" />
-        </div>
-        <div className="text-3xl font-black text-white mb-3 uppercase tracking-tight">{achievement.metric}</div>
-        <h4 className="text-lg font-bold text-white mb-3 uppercase tracking-wide">{achievement.title}</h4>
-        <p className="text-sm text-slate-300 leading-relaxed">{achievement.description}</p>
-      </div>
-    </motion.div>
-  );
-};
 
 // Updated Experience Card Component
 const ExperienceCard = ({ experience, index, inView }) => {
@@ -164,7 +137,7 @@ const ExperienceCard = ({ experience, index, inView }) => {
           {experience.technologies.map((tech, i) => (
             <span 
               key={tech}
-              className="tech-badge"
+              className="px-3 py-1 bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-medium rounded-full"
             >
               {tech}
             </span>
@@ -179,14 +152,12 @@ const ExperienceCard = ({ experience, index, inView }) => {
 const About = () => {
   const sectionRef = useRef(null);
   const statsRef = useRef(null);
-  const skillsRef = useRef(null);
-  const achievementsRef = useRef(null);
+  const achievementsPhotoRef = useRef(null); // Ref for the new photo + achievements section
   const experienceRef = useRef(null);
 
   const isInView = useInView(sectionRef, { once: true, threshold: 0.1 });
   const statsInView = useInView(statsRef, { once: true, threshold: 0.1 });
-  const skillsInView = useInView(skillsRef, { once: true, threshold: 0.1 });
-  const achievementsInView = useInView(achievementsRef, { once: true, threshold: 0.1 });
+  const achievementsPhotoInView = useInView(achievementsPhotoRef, { once: true, threshold: 0.1 });
   const experienceInView = useInView(experienceRef, { once: true, threshold: 0.1 });
 
   return (
@@ -252,12 +223,13 @@ const About = () => {
         >
           {/* Section Badge */}
           <motion.div
-            className="section-badge mx-auto mb-6"
+            className="inline-flex items-center gap-2 px-3 py-1 bg-cyan-500/10 border border-cyan-500/20 rounded-full mx-auto mb-6"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
             transition={{ delay: 0.2 }}
           >
-            About Developer
+            <div className="w-2 h-2 bg-cyan-500 rounded-full"></div>
+            <span className="text-xs font-bold text-cyan-400 uppercase tracking-wider">About Developer</span>
           </motion.div>
 
           <motion.h2 
@@ -320,7 +292,7 @@ const About = () => {
         {/* Main Content Grid */}
         <div className="grid lg:grid-cols-2 gap-16 mb-20">
           
-          {/* Left Column - Story & Skills */}
+          {/* Left Column - Story */}
           <div className="space-y-12">
             
             {/* My Story */}
@@ -377,61 +349,37 @@ const About = () => {
                 </div>
               </div>
             </motion.div>
-
-            {/* Core Skills */}
-            <motion.div
-              ref={skillsRef}
-              className="card-primary"
-              initial={{ opacity: 0, x: -30 }}
-              animate={skillsInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
-              transition={{ delay: 0.2 }}
-            >
-              <div className="relative z-10">
-                <h3 className="text-2xl font-bold text-white mb-8 flex items-center gap-3 uppercase tracking-wide">
-                  <Zap className="w-6 h-6 text-orange-400" />
-                  Core Skills
-                </h3>
-                
-                <div className="space-y-6">
-                  {KEY_SKILLS.map((skill, index) => (
-                    <SkillBar
-                      key={skill.name}
-                      skill={skill}
-                      index={index}
-                      inView={skillsInView}
-                    />
-                  ))}
-                </div>
-              </div>
-            </motion.div>
           </div>
 
-          {/* Right Column - Achievements */}
-          <div className="space-y-12">
-            
-            {/* Key Achievements */}
+          {/* Right Column - Developer Photo & Achievements */}
+          <div className="flex flex-col items-center justify-center p-8 relative" ref={achievementsPhotoRef}>
             <motion.div
-              ref={achievementsRef}
-              initial={{ opacity: 0, x: 30 }}
-              animate={achievementsInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
-              transition={{ delay: 0.4 }}
+              className="relative w-72 h-72 lg:w-80 lg:h-80 rounded-full border-4 border-cyan-500/50 flex items-center justify-center overflow-hidden shadow-2xl"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={achievementsPhotoInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+              transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
             >
-              <h3 className="text-2xl font-bold text-white mb-8 flex items-center gap-3 uppercase tracking-wide">
-                <Award className="w-6 h-6 text-orange-400" />
-                Key Achievements
-              </h3>
-              
-              <div className="grid gap-6">
-                {ACHIEVEMENTS.map((achievement, index) => (
-                  <AchievementCard
-                    key={index}
-                    achievement={achievement}
-                    index={index}
-                    inView={achievementsInView}
-                  />
-                ))}
-              </div>
+              {/* Photo */}
+              <img
+                src="https://placehold.co/300x300/020617/06b6d4?text=Developer+Photo" // Placeholder for developer photo
+                alt="Developer Profile"
+                className="w-full h-full object-cover rounded-full"
+                onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/300x300/020617/06b6d4?text=Placeholder"; }} // Fallback
+              />
+              {/* Overlay for subtle effect */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20 rounded-full" />
             </motion.div>
+
+            {/* Key Achievements displayed around the photo */}
+            {ACHIEVEMENTS.map((achievement, index) => (
+              <AchievementCircleItem
+                key={index}
+                achievement={achievement}
+                index={index}
+                total={ACHIEVEMENTS.length}
+                inView={achievementsPhotoInView}
+              />
+            ))}
           </div>
         </div>
 
@@ -499,7 +447,7 @@ const About = () => {
             >
               <motion.a
                 href="#contact"
-                className="btn-primary group"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 uppercase tracking-wide group"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -509,7 +457,7 @@ const About = () => {
               
               <motion.a
                 href="#projects"
-                className="btn-secondary group"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-cyan-500/50 text-cyan-400 font-semibold rounded-xl hover:bg-cyan-500/10 transition-all duration-300 hover:scale-105 uppercase tracking-wide group"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >

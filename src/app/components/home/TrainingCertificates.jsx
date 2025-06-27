@@ -1,222 +1,260 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { 
-  GraduationCap, 
-  Award, 
-  Calendar, 
-  MapPin, 
-  Star, 
-  Code,
-  Server,
-  Database,
-  Globe,
-  Shield,
-  Layers,
-  Trophy,
+import {
+  Award,
+  BookOpen,
+  Calendar,
   CheckCircle,
+  Code,
+  Database,
+  Download,
   ExternalLink,
-  Download
+  Globe,
+  GraduationCap,
+  Layers,
+  MapPin,
+  Server,
+  Shield,
+  Star,
+  Target,
+  Trophy,
+  Zap
 } from 'lucide-react';
 import { useRef } from 'react';
 
-// Education Data
+// Enhanced Education Data
 const EDUCATION = {
-  degree: "Bachelor of Arts (English)",
-  institution: "University of Dhaka",
+  degree: "BACHELOR OF ARTS (ENGLISH)",
+  institution: "UNIVERSITY OF DHAKA",
   period: "2011 – 2017",
-  location: "Dhaka, Bangladesh",
+  location: "DHAKA, BANGLADESH",
   gpa: "3.8/4.0",
-  description: "Enhanced communication and critical thinking skills essential for technical documentation and client interaction.",
+  description: "Enhanced communication and critical thinking skills essential for technical documentation and client interaction in software development.",
   highlights: [
     "Technical Writing & Documentation",
-    "Research & Problem-solving",
-    "Client Communication Skills",
-    "Cross-functional Collaboration"
+    "Research & Problem-solving Skills",
+    "Client Communication Excellence",
+    "Cross-functional Team Collaboration"
   ]
 };
 
-// Awards Data
+// Enhanced Awards Data
 const AWARDS = [
   {
-    title: "Junior Scholarship",
-    organization: "Dhaka Education Board",
-    date: "September 2008",
-    achievement: "Top 5% Academic Performance",
-    description: "Recognized for academic excellence and commitment to continuous learning."
+    title: "JUNIOR SCHOLARSHIP",
+    organization: "DHAKA EDUCATION BOARD",
+    date: "SEPTEMBER 2008",
+    achievement: "TOP 5% ACADEMIC PERFORMANCE",
+    description: "Recognized for academic excellence and commitment to continuous learning and professional development."
   }
 ];
 
-// Simplified Certificates Data
+// Enhanced Certificates Data with solid/gradient colors
 const CERTIFICATES = [
   {
     id: 1,
-    title: "Complete React.js Development",
-    provider: "Udemy",
+    title: "COMPLETE REACT.JS DEVELOPMENT",
+    provider: "UDEMY",
     instructor: "Jonas Schmedtmann",
-    category: "Frontend",
+    category: "FRONTEND",
     icon: Code,
-    color: "bg-blue-500",
+    gradient: "from-cyan-500 to-blue-500",
+    solidColor: "bg-cyan-500",
     skills: ["React.js", "Redux", "Hooks", "JSX"],
-    duration: "40 hours",
+    duration: "40 HOURS",
     date: "2023",
     rating: 4.8,
     featured: true
   },
   {
     id: 2,
-    title: "Node.js & Express.js Professional",
+    title: "NODE.JS & EXPRESS.JS PROFESSIONAL",
     provider: "IBM",
     instructor: "IBM Skills Network",
-    category: "Backend",
+    category: "BACKEND",
     icon: Server,
-    color: "bg-green-500",
+    gradient: "from-blue-500 to-violet-600",
+    solidColor: "bg-blue-500",
     skills: ["Node.js", "Express.js", "REST APIs", "MongoDB"],
-    duration: "24 hours",
+    duration: "24 HOURS",
     date: "2023",
     rating: 4.7,
     featured: true
   },
   {
     id: 3,
-    title: "Next.js Full-Stack Development",
-    provider: "Vercel",
+    title: "NEXT.JS FULL-STACK DEVELOPMENT",
+    provider: "VERCEL",
     instructor: "Lee Robinson",
-    category: "Full Stack",
+    category: "FULL STACK",
     icon: Layers,
-    color: "bg-purple-500",
+    gradient: "from-violet-600 to-cyan-500",
+    solidColor: "bg-violet-600",
     skills: ["Next.js", "SSR", "API Routes", "Deployment"],
-    duration: "32 hours",
+    duration: "32 HOURS",
     date: "2023",
     rating: 4.9,
     featured: true
   },
   {
     id: 4,
-    title: "AWS Cloud Computing Fundamentals",
-    provider: "Amazon Web Services",
+    title: "AWS CLOUD COMPUTING FUNDAMENTALS",
+    provider: "AMAZON WEB SERVICES",
     instructor: "AWS Training",
-    category: "Cloud",
+    category: "CLOUD",
     icon: Globe,
-    color: "bg-orange-500",
+    gradient: "from-orange-500 to-cyan-500",
+    solidColor: "bg-orange-500",
     skills: ["AWS", "EC2", "S3", "Lambda"],
-    duration: "15 hours",
+    duration: "15 HOURS",
     date: "2022",
     rating: 4.8,
     featured: true
   },
   {
     id: 5,
-    title: "PHP & MySQL Development",
-    provider: "Udemy",
+    title: "PHP & MYSQL DEVELOPMENT",
+    provider: "UDEMY",
     instructor: "Edwin Diaz",
-    category: "Backend",
+    category: "BACKEND",
     icon: Database,
-    color: "bg-teal-500",
+    gradient: "from-blue-500 to-cyan-500",
+    solidColor: "bg-blue-600",
     skills: ["PHP", "MySQL", "CRUD", "Security"],
-    duration: "42 hours",
+    duration: "42 HOURS",
     date: "2022",
     rating: 4.5,
     featured: false
   },
   {
     id: 6,
-    title: "Docker Containerization",
-    provider: "Udemy",
+    title: "DOCKER CONTAINERIZATION",
+    provider: "UDEMY",
     instructor: "Stephen Grider",
-    category: "DevOps",
+    category: "DEVOPS",
     icon: Shield,
-    color: "bg-cyan-500",
+    gradient: "from-cyan-500 to-blue-500",
+    solidColor: "bg-cyan-600",
     skills: ["Docker", "Containers", "Docker Compose"],
-    duration: "18 hours",
+    duration: "18 HOURS",
     date: "2023",
     rating: 4.6,
     featured: false
   }
 ];
 
-// Stats
+// Enhanced Stats
 const STATS = [
-  { number: '8+', label: 'Certifications' },
-  { number: '180+', label: 'Study Hours' },
-  { number: '4.7', label: 'Avg Rating' },
-  { number: '6+', label: 'Years Learning' }
+  { number: '8+', label: 'CERTIFICATIONS', icon: Award },
+  { number: '180+', label: 'STUDY HOURS', icon: BookOpen },
+  { number: '4.7', label: 'AVG RATING', icon: Star },
+  { number: '6+', label: 'YEARS LEARNING', icon: Target }
 ];
 
-// Certificate Card Component
-const CertificateCard = ({ certificate, index }) => {
+// Animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.6,
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6 }
+  }
+};
+
+// Enhanced Certificate Card Component with solid/gradient colors
+const CertificateCard = ({ certificate, index, useGradient = true }) => {
   const cardRef = useRef(null);
   const isInView = useInView(cardRef, { once: true, threshold: 0.1 });
 
   return (
     <motion.div
       ref={cardRef}
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-      transition={{ delay: index * 0.1, duration: 0.6 }}
-      className={`bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border border-gray-100 ${
-        certificate.featured ? 'ring-2 ring-blue-200' : ''
-      }`}
+      className="group relative p-6 bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 rounded-2xl hover:border-cyan-500/50 transition-all duration-300 hover:scale-[1.02] overflow-hidden h-full flex flex-col"
+      variants={itemVariants}
     >
-      {/* Featured Badge */}
-      {certificate.featured && (
-        <div className="inline-flex items-center gap-1 bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-semibold mb-4">
-          <Star className="w-3 h-3 fill-current" />
-          Featured
-        </div>
-      )}
+      {/* Glow effect */}
+      <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      
+      <div className="relative z-10 flex flex-col h-full">
+        {/* Featured Badge */}
+        {certificate.featured && (
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-cyan-500/10 border border-cyan-500/20 rounded-full text-xs font-bold text-cyan-400 uppercase tracking-wider mb-4 self-start">
+            <Star className="w-3 h-3 fill-current" />
+            FEATURED
+          </div>
+        )}
 
-      {/* Header */}
-      <div className="flex items-start gap-4 mb-4">
-        <div className={`w-12 h-12 ${certificate.color} rounded-lg flex items-center justify-center text-white shadow-lg`}>
-          <certificate.icon className="w-6 h-6" />
+        {/* Header with Icon */}
+        <div className="flex items-start gap-4 mb-6">
+          <div className={`w-16 h-16 ${useGradient ? `bg-gradient-to-r ${certificate.gradient}` : certificate.solidColor} rounded-xl flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+            <certificate.icon className="w-8 h-8" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <h3 className="text-lg font-black text-white mb-2 uppercase tracking-tight line-clamp-2">
+              {certificate.title}
+            </h3>
+            <p className="text-cyan-400 font-bold text-sm mb-1 uppercase tracking-wide">{certificate.provider}</p>
+            <p className="text-slate-300 text-sm">BY {certificate.instructor.toUpperCase()}</p>
+          </div>
         </div>
-        <div className="flex-1">
-          <h3 className="text-lg font-bold text-gray-900 mb-1 line-clamp-2">
-            {certificate.title}
-          </h3>
-          <p className="text-blue-600 font-semibold text-sm">{certificate.provider}</p>
-          <p className="text-gray-600 text-sm">by {certificate.instructor}</p>
-        </div>
-      </div>
 
-      {/* Category & Rating */}
-      <div className="flex items-center justify-between mb-4">
-        <span className="px-3 py-1 bg-gray-100 text-gray-700 text-sm font-medium rounded-lg">
-          {certificate.category}
-        </span>
-        <div className="flex items-center gap-1">
-          <Star className="w-4 h-4 text-yellow-400 fill-current" />
-          <span className="text-sm font-medium text-gray-600">{certificate.rating}</span>
+        {/* Category & Rating */}
+        <div className="flex items-center justify-between mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-slate-800/50 border border-slate-700 rounded-full">
+            <div className="w-2 h-2 bg-cyan-500 rounded-full"></div>
+            <span className="text-xs font-bold text-cyan-400 uppercase tracking-wider">{certificate.category}</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <Star className="w-4 h-4 text-cyan-500 fill-current" />
+            <span className="text-sm font-bold text-white">{certificate.rating}</span>
+          </div>
         </div>
-      </div>
 
-      {/* Skills */}
-      <div className="mb-4">
-        <h4 className="text-sm font-semibold text-gray-900 mb-2">Key Skills</h4>
-        <div className="flex flex-wrap gap-2">
-          {certificate.skills.map((skill, i) => (
-            <span 
-              key={i}
-              className="px-2 py-1 bg-blue-50 text-blue-700 text-xs font-medium rounded border border-blue-100"
-            >
-              {skill}
-            </span>
-          ))}
+        {/* Skills */}
+        <div className="mb-6 flex-grow">
+          <h4 className="text-sm font-bold text-white mb-3 uppercase tracking-wider">KEY SKILLS:</h4>
+          <div className="flex flex-wrap gap-2">
+            {certificate.skills.map((skill, i) => (
+              <span 
+                key={i}
+                className="px-3 py-1 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-medium rounded-full"
+              >
+                {skill}
+              </span>
+            ))}
+          </div>
         </div>
-      </div>
 
-      {/* Details */}
-      <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-        <div className="text-sm text-gray-500">
-          <Calendar className="w-4 h-4 inline mr-1" />
-          {certificate.duration} • {certificate.date}
+        {/* Duration & Date */}
+        <div className="bg-slate-800/50 backdrop-blur-sm p-4 rounded-xl border border-slate-700 mb-6">
+          <div className="flex items-center justify-between text-sm">
+            <div className="flex items-center gap-2 text-slate-300">
+              <Calendar className="w-4 h-4" />
+              <span className="font-medium">{certificate.duration}</span>
+            </div>
+            <div className="text-slate-400 font-medium">{certificate.date}</div>
+          </div>
         </div>
-        <div className="flex gap-2">
-          <button className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">
+
+        {/* Actions */}
+        <div className="flex gap-3 mt-auto">
+          <button className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105 text-sm uppercase tracking-wide">
             <ExternalLink className="w-4 h-4" />
+            VIEW
           </button>
-          <button className="p-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors">
+          <button className="w-12 h-12 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-cyan-400 hover:border-cyan-500 transition-all duration-300">
             <Download className="w-4 h-4" />
           </button>
         </div>
@@ -225,217 +263,304 @@ const CertificateCard = ({ certificate, index }) => {
   );
 };
 
-// Main Component
-const TrainingCertificates = () => {
-  const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, threshold: 0.1 });
-
-  const featuredCertificates = CERTIFICATES.filter(cert => cert.featured);
-  const allCertificates = CERTIFICATES;
-
+// Enhanced Education/Award Card Component
+const InfoCard = ({ data, type, icon: Icon, gradient, solidColor, useGradient = true }) => {
   return (
-    <section 
-      ref={sectionRef}
-      id="education" 
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-white"
-    >
-      <div className="max-w-7xl mx-auto">
+    <div className="group relative p-8 bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 rounded-2xl hover:border-cyan-500/50 transition-all duration-300 hover:scale-[1.02] overflow-hidden h-full">
+      {/* Glow effect */}
+      <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      
+      <div className="relative z-10">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
-            <GraduationCap className="w-4 h-4" />
-            Education & Certifications
+        <div className="flex items-center gap-4 mb-6">
+          <div className={`w-16 h-16 ${useGradient ? `bg-gradient-to-r ${gradient}` : solidColor} rounded-xl flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+            <Icon className="w-8 h-8" />
           </div>
-          
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Continuous Learning Journey
-          </h2>
-          
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Committed to staying current with latest technologies through formal education and specialized training programs.
-          </p>
-        </motion.div>
+          <div>
+            <h3 className="text-xl font-black text-white mb-1 uppercase tracking-tight">
+              {type === 'education' ? data.degree : data.title}
+            </h3>
+            <p className="text-cyan-400 font-bold uppercase tracking-wide">
+              {type === 'education' ? data.institution : data.organization}
+            </p>
+          </div>
+        </div>
 
-        {/* Stats */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16"
-        >
-          {STATS.map((stat, index) => (
-            <div key={stat.label} className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">
-                {stat.number}
-              </div>
-              <div className="text-gray-600 font-medium">
-                {stat.label}
-              </div>
+        {/* Details Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <div className="flex items-center gap-2 text-sm text-slate-300">
+            <Calendar className="w-4 h-4 text-cyan-400" />
+            <span className="font-medium">{data.period || data.date}</span>
+          </div>
+          {type === 'education' && data.location && (
+            <div className="flex items-center gap-2 text-sm text-slate-300">
+              <MapPin className="w-4 h-4 text-cyan-400" />
+              <span className="font-medium">{data.location}</span>
             </div>
-          ))}
-        </motion.div>
-
-        {/* Education & Awards */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="grid lg:grid-cols-2 gap-8 mb-16"
-        >
-          {/* Education */}
-          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-2xl border border-blue-100">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center text-white">
-                <GraduationCap className="w-6 h-6" />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-gray-900">{EDUCATION.degree}</h3>
-                <p className="text-blue-600 font-semibold">{EDUCATION.institution}</p>
-              </div>
+          )}
+          {type === 'education' && data.gpa && (
+            <div className="flex items-center gap-2 text-sm text-slate-300">
+              <Star className="w-4 h-4 text-cyan-400" />
+              <span className="font-medium">GPA: {data.gpa}</span>
             </div>
-
-            <div className="grid grid-cols-2 gap-4 mb-6">
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <Calendar className="w-4 h-4" />
-                {EDUCATION.period}
-              </div>
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <MapPin className="w-4 h-4" />
-                {EDUCATION.location}
-              </div>
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <Star className="w-4 h-4" />
-                GPA: {EDUCATION.gpa}
-              </div>
+          )}
+          {type === 'award' && data.achievement && (
+            <div className="flex items-center gap-2 text-sm text-slate-300">
+              <Award className="w-4 h-4 text-cyan-400" />
+              <span className="font-medium">{data.achievement}</span>
             </div>
+          )}
+        </div>
 
-            <p className="text-gray-700 leading-relaxed mb-6">{EDUCATION.description}</p>
-            
-            <div className="space-y-2">
-              <h4 className="font-semibold text-gray-900">Key Outcomes:</h4>
-              {EDUCATION.highlights.map((highlight, index) => (
-                <div key={index} className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
-                  <span className="text-sm text-gray-700">{highlight}</span>
+        {/* Description */}
+        <p className="text-slate-300 leading-relaxed mb-6">{data.description}</p>
+        
+        {/* Highlights */}
+        {type === 'education' && data.highlights && (
+          <div className="bg-slate-800/50 backdrop-blur-sm p-6 rounded-xl border border-slate-700">
+            <h4 className="text-sm font-bold text-white mb-4 uppercase tracking-wider">KEY OUTCOMES:</h4>
+            <div className="space-y-3">
+              {data.highlights.map((highlight, index) => (
+                <div key={index} className="flex items-start gap-3">
+                  <CheckCircle className="w-4 h-4 text-cyan-500 flex-shrink-0 mt-0.5" />
+                  <span className="text-sm text-slate-300">{highlight}</span>
                 </div>
               ))}
             </div>
           </div>
-
-          {/* Awards */}
-          <div className="bg-gradient-to-br from-yellow-50 to-orange-50 p-8 rounded-2xl border border-yellow-100">
-            {AWARDS.map((award, index) => (
-              <div key={index}>
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 bg-yellow-500 rounded-xl flex items-center justify-center text-white">
-                    <Trophy className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-900">{award.title}</h3>
-                    <p className="text-yellow-600 font-semibold">{award.organization}</p>
-                  </div>
-                </div>
-                
-                <div className="grid grid-cols-1 gap-4 mb-6">
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <Calendar className="w-4 h-4" />
-                    {award.date}
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <Award className="w-4 h-4" />
-                    {award.achievement}
-                  </div>
-                </div>
-                
-                <p className="text-gray-700 leading-relaxed">{award.description}</p>
-              </div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Featured Certifications */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="mb-16"
-        >
-          <h3 className="text-2xl md:text-3xl font-bold text-gray-900 text-center mb-12">
-            Featured Certifications
-          </h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {featuredCertificates.map((certificate, index) => (
-              <CertificateCard 
-                key={certificate.id} 
-                certificate={certificate} 
-                index={index}
-              />
-            ))}
-          </div>
-        </motion.div>
-
-        {/* All Certifications */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-        >
-          <h3 className="text-2xl md:text-3xl font-bold text-gray-900 text-center mb-12">
-            All Certifications
-          </h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {allCertificates.map((certificate, index) => (
-              <CertificateCard 
-                key={certificate.id} 
-                certificate={certificate} 
-                index={index}
-              />
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Call to Action */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, delay: 1.0 }}
-          className="text-center mt-16"
-        >
-          <div className="bg-gray-50 p-8 md:p-12 rounded-2xl">
-            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-              Continuous Learning, Better Solutions
-            </h3>
-            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-              My commitment to continuous learning ensures I stay current with the latest technologies and best practices.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="#contact"
-                className="inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-blue-700 transition-colors"
-              >
-                Let's Work Together
-              </a>
-              
-              <a
-                href="#projects"
-                className="inline-flex items-center justify-center gap-2 border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-xl font-semibold hover:border-gray-400 transition-colors"
-              >
-                <ExternalLink className="w-5 h-5" />
-                View Projects
-              </a>
-            </div>
-          </div>
-        </motion.div>
+        )}
       </div>
-    </section>
+    </div>
+  );
+};
+
+// Main Component
+const TrainingCertificates = () => {
+  const sectionRef = useRef(null);
+  const statsRef = useRef(null);
+  const educationRef = useRef(null);
+  const featuredRef = useRef(null);
+  const allCertsRef = useRef(null);
+  const ctaRef = useRef(null);
+
+  const isInView = useInView(sectionRef, { once: true, threshold: 0.1 });
+  const statsInView = useInView(statsRef, { once: true, threshold: 0.1 });
+  const educationInView = useInView(educationRef, { once: true, threshold: 0.1 });
+  const featuredInView = useInView(featuredRef, { once: true, threshold: 0.1 });
+  const allCertsInView = useInView(allCertsRef, { once: true, threshold: 0.1 });
+  const ctaInView = useInView(ctaRef, { once: true, threshold: 0.1 });
+
+  const featuredCertificates = CERTIFICATES.filter(cert => cert.featured);
+
+  return (
+    <>
+      {/* Developer Header Stripe */}
+      <div className="h-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500"></div>
+      
+      <section 
+        ref={sectionRef}
+        id="education" 
+        className="py-16 lg:py-24 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 relative overflow-hidden"
+        aria-label="Education and certifications"
+      >
+        {/* Background Effects */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-gradient-to-r from-blue-500/10 to-violet-600/10 rounded-full blur-3xl"></div>
+          
+          {/* Geometric Background Pattern */}
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.03\'%3E%3Ccircle cx=\'7\' cy=\'7\' r=\'1\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40"></div>
+        </div>
+
+        <div className="container mx-auto px-6 lg:px-8 xl:px-16 2xl:px-20">
+          <div className="max-w-7xl mx-auto relative z-10">
+            {/* Header */}
+            <motion.div
+              className="max-w-3xl mx-auto text-center mb-16"
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ duration: 0.6 }}
+            >
+              {/* Section Badge */}
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-cyan-500/10 border border-cyan-500/20 rounded-full mb-6">
+                <div className="w-2 h-2 bg-cyan-500 rounded-full"></div>
+                <span className="text-xs font-bold text-cyan-400 uppercase tracking-wider">EDUCATION & CERTIFICATIONS</span>
+              </div>
+              
+              <h2 className="text-3xl lg:text-4xl font-black text-white mb-6 uppercase tracking-tight">
+                CONTINUOUS LEARNING JOURNEY
+              </h2>
+              
+              <p className="text-lg text-slate-300 leading-relaxed mb-8">
+                Committed to staying current with latest technologies through formal education and specialized training programs to deliver cutting-edge solutions.
+              </p>
+
+              {/* Code Bracket Element */}
+              <div className="text-cyan-500 font-mono text-2xl mb-8">&lt;/&gt;</div>
+            </motion.div>
+
+            {/* Enhanced Stats */}
+            <motion.div 
+              ref={statsRef}
+              className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-20"
+              variants={containerVariants}
+              initial="hidden"
+              animate={statsInView ? "visible" : "hidden"}
+            >
+              {STATS.map((stat, index) => (
+                <motion.div
+                  key={stat.label}
+                  className="text-center p-6 bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 rounded-2xl hover:border-cyan-500/50 transition-all duration-300 hover:scale-[1.02]"
+                  variants={itemVariants}
+                >
+                  <stat.icon className="w-8 h-8 mx-auto mb-4 text-cyan-400" />
+                  <div className="text-3xl font-black text-white mb-2">{stat.number}</div>
+                  <div className="text-sm text-slate-400 uppercase tracking-wider">{stat.label}</div>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            {/* Education & Awards */}
+            <motion.div 
+              ref={educationRef}
+              className="grid lg:grid-cols-2 gap-8 mb-20"
+              variants={containerVariants}
+              initial="hidden"
+              animate={educationInView ? "visible" : "hidden"}
+            >
+              <InfoCard 
+                data={EDUCATION} 
+                type="education" 
+                icon={GraduationCap}
+                gradient="from-blue-500 to-cyan-500"
+                solidColor="bg-blue-500"
+                useGradient={true}
+              />
+              
+              {AWARDS.map((award, index) => (
+                <InfoCard 
+                  key={index}
+                  data={award} 
+                  type="award" 
+                  icon={Trophy}
+                  gradient="from-orange-500 to-cyan-500"
+                  solidColor="bg-orange-500"
+                  useGradient={true}
+                />
+              ))}
+            </motion.div>
+
+            {/* Decorative Line */}
+            <div className="h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent w-full mb-20"></div>
+
+            {/* Featured Certifications */}
+            <motion.div
+              ref={featuredRef}
+              initial={{ opacity: 0, y: 30 }}
+              animate={featuredInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ duration: 0.6 }}
+              className="mb-20"
+            >
+              <div className="text-center mb-12">
+                <h3 className="text-2xl lg:text-3xl font-black text-white mb-4 uppercase tracking-tight">
+                  FEATURED CERTIFICATIONS
+                </h3>
+                <p className="text-slate-300 max-w-2xl mx-auto">
+                  Highlighting the most impactful and recent certifications that drive my development expertise.
+                </p>
+              </div>
+              
+              <motion.div 
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+                variants={containerVariants}
+                initial="hidden"
+                animate={featuredInView ? "visible" : "hidden"}
+              >
+                {featuredCertificates.map((certificate, index) => (
+                  <CertificateCard 
+                    key={certificate.id} 
+                    certificate={certificate} 
+                    index={index}
+                    useGradient={true}
+                  />
+                ))}
+              </motion.div>
+            </motion.div>
+
+            {/* All Certifications */}
+            <motion.div
+              ref={allCertsRef}
+              initial={{ opacity: 0, y: 30 }}
+              animate={allCertsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="text-center mb-12">
+                <h3 className="text-2xl lg:text-3xl font-black text-white mb-4 uppercase tracking-tight">
+                  ALL CERTIFICATIONS
+                </h3>
+                <p className="text-slate-300 max-w-2xl mx-auto">
+                  Complete collection of professional development certifications and specialized training programs.
+                </p>
+              </div>
+              
+              <motion.div 
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                variants={containerVariants}
+                initial="hidden"
+                animate={allCertsInView ? "visible" : "hidden"}
+              >
+                {CERTIFICATES.map((certificate, index) => (
+                  <CertificateCard 
+                    key={certificate.id} 
+                    certificate={certificate} 
+                    index={index}
+                    useGradient={index % 2 === 0} // Alternate between gradient and solid colors
+                  />
+                ))}
+              </motion.div>
+            </motion.div>
+
+            {/* Enhanced Call to Action */}
+            <motion.div 
+              ref={ctaRef}
+              className="text-center mt-20"
+              initial={{ opacity: 0, y: 30 }}
+              animate={ctaInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="relative p-8 lg:p-12 bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 rounded-2xl overflow-hidden">
+                {/* Background Glow */}
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-500/5"></div>
+
+                <div className="relative z-10">
+                  <h3 className="text-3xl lg:text-4xl font-black text-white mb-6 uppercase tracking-tight">
+                    CONTINUOUS LEARNING, BETTER SOLUTIONS
+                  </h3>
+                  <p className="text-lg text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+                    My commitment to continuous learning ensures I stay current with the latest technologies and best practices to deliver exceptional results.
+                  </p>
+                  
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 uppercase tracking-wide">
+                      <span>LET'S WORK TOGETHER</span>
+                      <Zap className="w-5 h-5" />
+                    </button>
+                    
+                    <button className="inline-flex items-center gap-3 px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-cyan-500/50 text-cyan-400 font-semibold rounded-xl hover:bg-cyan-500/10 transition-all duration-300 hover:scale-105 uppercase tracking-wide">
+                      <ExternalLink className="w-5 h-5" />
+                      VIEW PROJECTS
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Developer Footer Stripe */}
+      <div className="h-1 bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-500"></div>
+    </>
   );
 };
 

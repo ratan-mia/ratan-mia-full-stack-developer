@@ -3,22 +3,22 @@
 import { motion, useInView } from 'framer-motion';
 import {
   ArrowRight,
+  Code,
   Lightbulb,
   Palette,
-  Code,
   Rocket
 } from 'lucide-react';
 import { useRef } from 'react';
 
-// Simplified Process Steps - Only 4 Core Steps
+// Process Steps - Updated with design system colors
 const PROCESS_STEPS = [
   {
     id: 1,
-    title: "Discovery",
-    subtitle: "Understanding Your Vision",
+    title: "DISCOVERY",
+    subtitle: "UNDERSTANDING YOUR VISION",
     icon: Lightbulb,
-    gradient: "from-amber-500 to-orange-500",
-    duration: "1-2 Days",
+    gradient: "from-cyan-500 to-blue-500",
+    duration: "1-2 DAYS",
     description: "Deep-dive consultation to understand your business goals, target audience, and technical requirements.",
     activities: [
       "Requirements gathering & consultation",
@@ -29,11 +29,11 @@ const PROCESS_STEPS = [
   },
   {
     id: 2,
-    title: "Design",
-    subtitle: "Visual Excellence",
+    title: "DESIGN",
+    subtitle: "VISUAL EXCELLENCE",
     icon: Palette,
-    gradient: "from-purple-500 to-pink-500",
-    duration: "3-5 Days",
+    gradient: "from-blue-500 to-violet-600",
+    duration: "3-5 DAYS",
     description: "Creating stunning, user-focused designs that reflect your brand and drive conversions.",
     activities: [
       "Wireframing & prototyping",
@@ -44,11 +44,11 @@ const PROCESS_STEPS = [
   },
   {
     id: 3,
-    title: "Development",
-    subtitle: "Bringing Ideas to Life",
+    title: "DEVELOPMENT",
+    subtitle: "BRINGING IDEAS TO LIFE",
     icon: Code,
-    gradient: "from-emerald-500 to-green-500",
-    duration: "1-4 Weeks",
+    gradient: "from-violet-600 to-cyan-500",
+    duration: "1-4 WEEKS",
     description: "Clean, scalable code development using modern technologies and best practices.",
     activities: [
       "Frontend & backend development",
@@ -59,11 +59,11 @@ const PROCESS_STEPS = [
   },
   {
     id: 4,
-    title: "Launch",
-    subtitle: "Going Live & Beyond",
+    title: "LAUNCH",
+    subtitle: "GOING LIVE & BEYOND",
     icon: Rocket,
-    gradient: "from-indigo-500 to-blue-500",
-    duration: "Ongoing",
+    gradient: "from-cyan-500 to-orange-500",
+    duration: "ONGOING",
     description: "Smooth deployment with ongoing support, monitoring, and maintenance for long-term success.",
     activities: [
       "Production deployment",
@@ -75,62 +75,84 @@ const PROCESS_STEPS = [
 ];
 
 const PROCESS_STATS = [
-  { number: '4', label: 'Step Process' },
-  { number: '98%', label: 'Success Rate' },
-  { number: '150+', label: 'Projects' },
-  { number: '24/7', label: 'Support' }
+  { number: '4', label: 'STEP PROCESS' },
+  { number: '98%', label: 'SUCCESS RATE' },
+  { number: '150+', label: 'PROJECTS' },
+  { number: '24/7', label: 'SUPPORT' }
 ];
+
+// Container and item variants following design system
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.6,
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6 }
+  }
+};
 
 // Process Step Component
 const ProcessStep = ({ step, index, inView }) => {
   return (
     <motion.div
-      className="text-center group"
-      initial={{ opacity: 0, y: 30 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-      transition={{ delay: index * 0.2, duration: 0.6 }}
+      className="group relative p-8 bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 rounded-2xl hover:border-cyan-500/50 transition-all duration-300 hover:scale-[1.02] overflow-hidden"
+      variants={itemVariants}
     >
-      {/* Step Icon */}
-      <motion.div
-        className={`w-20 h-20 mx-auto mb-6 bg-gradient-to-br ${step.gradient} rounded-2xl flex items-center justify-center text-white shadow-lg relative group-hover:scale-110 transition-transform duration-300`}
-        whileHover={{ rotate: 5 }}
-      >
-        <step.icon className="w-10 h-10" />
-        
-        {/* Step Number */}
-        <div className="absolute -top-2 -right-2 w-8 h-8 bg-white text-gray-800 rounded-full flex items-center justify-center text-sm font-bold shadow-lg">
-          {step.id}
+      {/* Glow effect */}
+      <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      
+      <div className="relative z-10">
+        {/* Step Icon */}
+        <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${step.gradient} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 relative`}>
+          <step.icon className="w-8 h-8 text-white" />
+          
+          {/* Step Number */}
+          <div className="absolute -top-2 -right-2 w-8 h-8 bg-cyan-500 text-black rounded-full flex items-center justify-center text-sm font-black">
+            {step.id}
+          </div>
         </div>
-      </motion.div>
 
-      {/* Step Content */}
-      <div className="mb-6">
-        <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">
-          {step.title}
-        </h3>
-        <p className="text-blue-600 font-semibold text-sm mb-3">{step.subtitle}</p>
-        <div className="inline-flex items-center gap-1 px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-medium mb-4">
-          <span>⏱️ {step.duration}</span>
+        {/* Step Content */}
+        <div className="mb-6">
+          <h3 className="text-xl font-black text-white mb-2 uppercase tracking-tight">
+            {step.title}
+          </h3>
+          <p className="text-cyan-400 font-bold text-sm mb-3 uppercase tracking-wide">{step.subtitle}</p>
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-cyan-500/10 border border-cyan-500/20 rounded-full mb-4">
+            <div className="w-2 h-2 bg-cyan-500 rounded-full"></div>
+            <span className="text-xs font-bold text-cyan-400 uppercase tracking-wider">{step.duration}</span>
+          </div>
+          <p className="text-slate-300 leading-relaxed mb-4">{step.description}</p>
         </div>
-        <p className="text-gray-600 leading-relaxed mb-4">{step.description}</p>
+
+        {/* Key Activities */}
+        <div className="bg-slate-800/50 backdrop-blur-sm p-6 rounded-xl border border-slate-700">
+          <h4 className="text-sm font-bold text-white mb-3 uppercase tracking-wider">KEY ACTIVITIES:</h4>
+          <ul className="space-y-2">
+            {step.activities.map((activity, i) => (
+              <li key={i} className="flex items-start gap-3 text-sm text-slate-300">
+                <div className={`w-1.5 h-1.5 bg-gradient-to-r ${step.gradient} rounded-full mt-2 flex-shrink-0`} />
+                <span>{activity}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
 
-      {/* Key Activities */}
-      <div className="bg-white/60 backdrop-blur-sm p-4 rounded-xl border border-white/50">
-        <h4 className="text-sm font-bold text-gray-800 mb-3">Key Activities:</h4>
-        <ul className="space-y-2 text-left">
-          {step.activities.map((activity, i) => (
-            <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
-              <div className={`w-1.5 h-1.5 bg-gradient-to-r ${step.gradient} rounded-full mt-2 flex-shrink-0`} />
-              <span>{activity}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {/* Connection Line (except for last step) */}
+      {/* Connection Line */}
       {index < PROCESS_STEPS.length - 1 && (
-        <div className="hidden lg:block absolute top-10 left-full w-20 h-0.5 bg-gradient-to-r from-gray-300 to-gray-200 transform translate-x-4" />
+        <div className="hidden lg:block absolute top-12 left-full w-8 h-px bg-gradient-to-r from-cyan-500 to-transparent transform translate-x-4" />
       )}
     </motion.div>
   );
@@ -147,181 +169,134 @@ const ProcessHowIWork = () => {
   const ctaInView = useInView(ctaRef, { once: true, threshold: 0.1 });
 
   return (
-    <section 
-      ref={sectionRef}
-      id="process" 
-      className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden"
-      aria-label="Development process"
-    >
-      {/* Subtle Background Effects */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-        <motion.div 
-          className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"
-          animate={{
-            x: [0, -30, 0],
-            y: [0, 20, 0],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        />
-        <motion.div 
-          className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl"
-          animate={{
-            x: [0, 25, 0],
-            y: [0, -20, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        />
-      </div>
-
-      <div className="max-w-6xl mx-auto relative z-10">
-        {/* Header */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
-        >
-          <motion.div
-            className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-indigo-200/50 text-indigo-800 px-6 py-3 rounded-2xl font-semibold text-sm uppercase tracking-wider mb-6 shadow-lg"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-            transition={{ delay: 0.2 }}
-          >
-            <motion.div 
-              className="w-2 h-2 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full"
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            />
-            <span>My Process</span>
-          </motion.div>
+    <>
+      {/* Developer Header Stripe */}
+      <div className="h-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500"></div>
+      
+      <section 
+        ref={sectionRef}
+        id="process" 
+        className="py-16 lg:py-24 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 relative overflow-hidden"
+        aria-label="Development process"
+      >
+        {/* Background Effects */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-gradient-to-r from-blue-500/10 to-violet-600/10 rounded-full blur-3xl"></div>
           
-          <motion.h2 
-            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 bg-clip-text text-transparent"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 0.4 }}
-          >
-            How I Work With You
-          </motion.h2>
-          
-          <motion.p 
-            className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 0.6 }}
-          >
-            A streamlined 4-step process designed to deliver exceptional results. 
-            Transparent, collaborative, and results-driven.
-          </motion.p>
-        </motion.div>
+          {/* Geometric Background Pattern */}
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.03\'%3E%3Ccircle cx=\'7\' cy=\'7\' r=\'1\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40"></div>
+        </div>
 
-        {/* Process Stats */}
-        <motion.div 
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto mb-20"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-        >
-          {PROCESS_STATS.map((stat, index) => (
+        <div className="container mx-auto px-6 lg:px-8 xl:px-16 2xl:px-20">
+          <div className="max-w-7xl mx-auto relative z-10">
+            {/* Header */}
             <motion.div
-              key={stat.label}
-              className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-xl border border-white/50 hover:bg-white/80 transition-all duration-300"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-              transition={{ delay: 1.0 + index * 0.1 }}
-              whileHover={{ scale: 1.05 }}
+              className="max-w-3xl mx-auto text-center mb-16"
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ duration: 0.6 }}
             >
-              <div className="text-2xl md:text-3xl font-bold text-blue-600 mb-1">{stat.number}</div>
-              <div className="text-sm text-gray-600 font-medium">{stat.label}</div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Process Steps */}
-        <motion.div 
-          ref={stepsRef}
-          className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 mb-20 relative"
-          initial={{ opacity: 0, y: 30 }}
-          animate={stepsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
-        >
-          {PROCESS_STEPS.map((step, index) => (
-            <ProcessStep
-              key={step.id}
-              step={step}
-              index={index}
-              inView={stepsInView}
-            />
-          ))}
-        </motion.div>
-
-        {/* Call to Action */}
-        <motion.div 
-          ref={ctaRef}
-          className="text-center"
-          initial={{ opacity: 0, y: 30 }}
-          animate={ctaInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 rounded-2xl p-8 md:p-12 text-white shadow-2xl relative overflow-hidden">
-            {/* Background Effects */}
-            <div className="absolute inset-0 opacity-10" aria-hidden="true">
-              <motion.div 
-                className="absolute top-0 left-0 w-64 h-64 bg-white rounded-full blur-3xl"
-                animate={{ x: [0, 30, 0], y: [0, -15, 0] }}
-                transition={{ duration: 8, repeat: Infinity }}
-              />
-              <motion.div 
-                className="absolute bottom-0 right-0 w-48 h-48 bg-purple-200 rounded-full blur-3xl"
-                animate={{ x: [0, -20, 0], y: [0, 15, 0] }}
-                transition={{ duration: 10, repeat: Infinity }}
-              />
-            </div>
-
-            <div className="relative z-10">
-              <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                Ready to Start Your Project?
-              </h3>
-              <p className="text-blue-100 mb-8 max-w-2xl mx-auto leading-relaxed">
-                Let's transform your vision into reality with my proven process. 
-                Free consultation and project estimate available.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <motion.a
-                  href="#contact"
-                  className="inline-flex items-center justify-center gap-2 bg-white text-blue-600 px-8 py-4 font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <span>Start Project</span>
-                  <ArrowRight className="w-5 h-5" />
-                </motion.a>
-                
-                <motion.a
-                  href="#projects"
-                  className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/30 text-white px-8 py-4 font-semibold rounded-xl hover:bg-white/20 transition-all duration-300"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  View Examples
-                </motion.a>
+              {/* Section Badge */}
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-cyan-500/10 border border-cyan-500/20 rounded-full mb-6">
+                <div className="w-2 h-2 bg-cyan-500 rounded-full"></div>
+                <span className="text-xs font-bold text-cyan-400 uppercase tracking-wider">MY PROCESS</span>
               </div>
-            </div>
+              
+              <h2 className="text-3xl lg:text-4xl font-black text-white mb-6 uppercase tracking-tight">
+                HOW I WORK WITH YOU
+              </h2>
+              
+              <p className="text-lg text-slate-300 leading-relaxed mb-8">
+                A streamlined 4-step process designed to deliver exceptional results. 
+                Transparent, collaborative, and results-driven.
+              </p>
+
+              {/* Code Bracket Element */}
+              <div className="text-cyan-500 font-mono text-2xl mb-8">&lt;/&gt;</div>
+            </motion.div>
+
+            {/* Process Stats */}
+            <motion.div 
+              className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-20"
+              variants={containerVariants}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+            >
+              {PROCESS_STATS.map((stat, index) => (
+                <motion.div
+                  key={stat.label}
+                  className="text-center p-6 bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 rounded-2xl"
+                  variants={itemVariants}
+                >
+                  <div className="text-3xl font-black text-white mb-2">{stat.number}</div>
+                  <div className="text-sm text-slate-400 uppercase tracking-wider">{stat.label}</div>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            {/* Process Steps */}
+            <motion.div 
+              ref={stepsRef}
+              className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20 relative"
+              variants={containerVariants}
+              initial="hidden"
+              animate={stepsInView ? "visible" : "hidden"}
+            >
+              {PROCESS_STEPS.map((step, index) => (
+                <ProcessStep
+                  key={step.id}
+                  step={step}
+                  index={index}
+                  inView={stepsInView}
+                />
+              ))}
+            </motion.div>
+
+            {/* Decorative Line */}
+            <div className="h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent w-full mb-20"></div>
+
+            {/* Call to Action */}
+            <motion.div 
+              ref={ctaRef}
+              className="text-center"
+              initial={{ opacity: 0, y: 30 }}
+              animate={ctaInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="relative p-8 lg:p-12 bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700 rounded-2xl overflow-hidden">
+                {/* Background Glow */}
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-500/5"></div>
+
+                <div className="relative z-10">
+                  <h3 className="text-3xl lg:text-4xl font-black text-white mb-6 uppercase tracking-tight">
+                    READY TO START YOUR PROJECT?
+                  </h3>
+                  <p className="text-lg text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+                    Let's transform your vision into reality with my proven process. 
+                    Free consultation and project estimate available.
+                  </p>
+                  
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 uppercase tracking-wide">
+                      <span>START PROJECT</span>
+                      <ArrowRight className="w-5 h-5" />
+                    </button>
+                    
+                    <button className="inline-flex items-center gap-3 px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-cyan-500/50 text-cyan-400 font-semibold rounded-xl hover:bg-cyan-500/10 transition-all duration-300 hover:scale-105 uppercase tracking-wide">
+                      VIEW EXAMPLES
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </div>
-        </motion.div>
-      </div>
-    </section>
+        </div>
+      </section>
+
+      {/* Developer Footer Stripe */}
+      <div className="h-1 bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-500"></div>
+    </>
   );
 };
 
