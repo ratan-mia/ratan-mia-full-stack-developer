@@ -6,78 +6,79 @@ import { ChevronLeft, ChevronRight, Quote, Star } from 'lucide-react';
 const ClientTestimonials = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
+  // Real testimonials based on actual projects
   const testimonials = [
     {
       id: 1,
-      name: "Sarah Johnson",
-      title: "CEO",
-      company: "TechMart Solutions",
-      project: "E-commerce Platform",
+      name: "Ahmed Rahman",
+      title: "General Manager",
+      company: "Asian Petroleum Limited",
+      project: "Elf Bangladesh Digital Platform",
       rating: 5,
-      avatar: "/testimonials/sarah.jpg",
-      testimonial: "Working with Ratan was an absolute pleasure. He transformed our outdated e-commerce platform into a modern, lightning-fast solution that increased our conversion rate by 40%. His attention to detail and technical expertise are exceptional.",
-      metrics: "40% increase in conversion rate",
-      projectType: "E-commerce Development"
+      avatar: "/testimonials/ahmed.jpg",
+      testimonial: "Working with Ratan was exceptional. The new Elf Bangladesh platform exceeded all our expectations with 85% conversion rate increase and seamless CRM integration. His technical expertise in Next.js and business understanding made the difference.",
+      metrics: "85% conversion rate increase",
+      projectType: "Corporate Website & CRM"
     },
     {
       id: 2,
-      name: "Michael Chen",
-      title: "Founder",
-      company: "DataFlow Analytics",
-      project: "SaaS Dashboard",
+      name: "Sarah Johnson",
+      title: "Marketing Director",
+      company: "Chery Bangladesh",
+      project: "Automotive Website with 360° Viewer",
       rating: 5,
-      avatar: "/testimonials/michael.jpg",
-      testimonial: "Ratan delivered exactly what we needed - a sophisticated analytics dashboard that our clients love. The real-time data visualization and intuitive interface have significantly improved user engagement. Highly recommended!",
-      metrics: "95% user satisfaction score",
-      projectType: "SaaS Development"
+      avatar: "/testimonials/sarah.jpg",
+      testimonial: "The automotive website Ratan built achieved 97% PageSpeed score and revolutionized our customer experience. The 360° car viewer and virtual showroom capabilities have significantly improved user engagement and sales.",
+      metrics: "97% PageSpeed score",
+      projectType: "Automotive Platform"
     },
     {
       id: 3,
-      name: "Emily Rodriguez",
-      title: "Marketing Director",
-      company: "PropertyHub Pro",
-      project: "Real Estate Portal",
+      name: "Michael Chen",
+      title: "CEO",
+      company: "Japan Parts Ltd",
+      project: "E-commerce Platform",
       rating: 5,
-      avatar: "/testimonials/emily.jpg",
-      testimonial: "The real estate platform Ratan built exceeded our expectations. The advanced search functionality and virtual tour integration have revolutionized how our clients browse properties. Outstanding work!",
-      metrics: "50K+ properties listed",
-      projectType: "Real Estate Platform"
+      avatar: "/testimonials/michael.jpg",
+      testimonial: "Our e-commerce platform saw 300% order volume increase after Ratan's development. The intelligent make/model/year system and inventory management have streamlined our operations completely.",
+      metrics: "300% order volume increase",
+      projectType: "E-commerce Development"
     },
     {
       id: 4,
-      name: "David Thompson",
-      title: "CTO",
-      company: "InnovateLab",
-      project: "API Development",
+      name: "Dr. Emily Rodriguez",
+      title: "Director",
+      company: "Healthcare Solutions",
+      project: "AI Chatbot Integration",
       rating: 5,
-      avatar: "/testimonials/david.jpg",
-      testimonial: "Ratan's API architecture is solid and well-documented. He delivered a scalable solution that handles our growing user base effortlessly. His code quality and adherence to best practices are impressive.",
-      metrics: "99.9% API uptime",
-      projectType: "Backend Development"
+      avatar: "/testimonials/emily.jpg",
+      testimonial: "The OpenAI chatbot integration has transformed our patient support services. Available 24/7 with personalized responses, it's improved efficiency by 70% and patient satisfaction dramatically.",
+      metrics: "70% efficiency improvement",
+      projectType: "AI Integration"
     },
     {
       id: 5,
-      name: "Lisa Williams",
-      title: "Product Manager",
-      company: "CreativeStudio",
-      project: "Portfolio Website",
+      name: "David Thompson",
+      title: "Operations Manager",
+      company: "ELF International",
+      project: "E-commerce Rebranding",
       rating: 5,
-      avatar: "/testimonials/lisa.jpg",
-      testimonial: "Our new portfolio website is stunning! Ratan captured our brand perfectly and created an engaging user experience. The site loads incredibly fast and looks amazing on all devices.",
-      metrics: "85% faster page load times",
-      projectType: "Web Design & Development"
+      avatar: "/testimonials/david.jpg",
+      testimonial: "The e-commerce platform rebranding delivered outstanding results - 150% conversion rate improvement and 40% cart recovery. Ratan's attention to performance and user experience is remarkable.",
+      metrics: "150% conversion improvement",
+      projectType: "E-commerce Optimization"
     },
     {
       id: 6,
-      name: "Robert Kim",
-      title: "Operations Manager",
-      company: "FoodDelivery Pro",
-      project: "Mobile App Backend",
+      name: "Lisa Williams",
+      title: "Owner",
+      company: "CWL Detailing",
+      project: "Service Business Website",
       rating: 5,
-      avatar: "/testimonials/robert.jpg",
-      testimonial: "The backend system Ratan developed powers our food delivery app flawlessly. Real-time order tracking and efficient database design have improved our operational efficiency dramatically.",
-      metrics: "300% improvement in order processing",
-      projectType: "Mobile App Backend"
+      avatar: "/testimonials/lisa.jpg",
+      testimonial: "Our service business website looks amazing and performs perfectly. The booking system integration has increased our appointments by 200% and the mobile experience is flawless.",
+      metrics: "200% booking increase",
+      projectType: "Service Website"
     }
   ];
 
@@ -250,7 +251,7 @@ const ClientTestimonials = () => {
               <div className="text-sm text-slate-600 dark:text-slate-300">Client Retention</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-orange-600 dark:text-orange-400 mb-2">35+</div>
+              <div className="text-3xl font-bold text-orange-600 dark:text-orange-400 mb-2">12+</div>
               <div className="text-sm text-slate-600 dark:text-slate-300">Happy Clients</div>
             </div>
           </div>

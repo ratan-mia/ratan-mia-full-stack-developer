@@ -1,14 +1,14 @@
 const ProjectStats = () => {
   const stats = [
     {
-      number: "50+",
+      number: "15+",
       label: "Projects Completed",
       description: "Successfully delivered projects across various industries",
       icon: "🚀",
       color: "from-blue-500 to-cyan-500"
     },
     {
-      number: "35+",
+      number: "12+",
       label: "Happy Clients",
       description: "Satisfied clients from startups to enterprise companies",
       icon: "😊",
@@ -36,52 +36,52 @@ const ProjectStats = () => {
       color: "from-indigo-500 to-purple-500"
     },
     {
-      number: "95%",
-      label: "Client Retention",
-      description: "Clients who come back for additional projects",
-      icon: "🔄",
+      number: "97%",
+      label: "Performance Score",
+      description: "Average PageSpeed Insights score across all projects",
+      icon: "⚡",
       color: "from-teal-500 to-green-500"
     }
   ];
 
   const achievements = [
     {
-      title: "Top Rated Developer",
-      platform: "Upwork",
-      description: "Maintained 5-star rating with 100% job success score",
-      year: "2023",
-      icon: "⭐"
-    },
-    {
-      title: "Featured Project",
-      platform: "Awwwards",
-      description: "E-commerce platform recognized for outstanding design",
+      title: "Best Performance Award",
+      platform: "Client Recognition",
+      description: "Achieved 97% PageSpeed score for Chery Bangladesh automotive website",
       year: "2023",
       icon: "🏆"
     },
     {
-      title: "Community Contributor",
-      platform: "GitHub",
-      description: "Active contributor to open source projects",
-      year: "2022-2024",
-      icon: "🌟"
+      title: "E-commerce Excellence",
+      platform: "Industry Recognition",
+      description: "ELF International e-commerce platform achieved 150% conversion rate increase",
+      year: "2024",
+      icon: "⭐"
     },
     {
-      title: "Speaker",
-      platform: "Tech Conference",
-      description: "Spoke about modern web development practices",
-      year: "2023",
+      title: "AI Innovation",
+      platform: "Tech Community",
+      description: "Revolutionary AI chatbot integration with OpenAI APIs for healthcare",
+      year: "2024",
+      icon: "🤖"
+    },
+    {
+      title: "CRM Integration Expert",
+      platform: "Technical Excellence",
+      description: "Seamless Zoho CRM integration for Asian Petroleum business automation",
+      year: "2024",
       icon: "🎤"
     }
   ];
 
   const technologies = [
-    { name: "React", projects: 35, percentage: 70 },
-    { name: "Laravel", projects: 28, percentage: 56 },
-    { name: "Next.js", projects: 25, percentage: 50 },
-    { name: "MySQL", projects: 30, percentage: 60 },
-    { name: "Tailwind CSS", projects: 32, percentage: 64 },
-    { name: "Node.js", projects: 20, percentage: 40 }
+    { name: "Next.js", projects: 8, percentage: 53 },
+    { name: "React.js", projects: 12, percentage: 80 },
+    { name: "Laravel", projects: 6, percentage: 40 },
+    { name: "Tailwind CSS", projects: 10, percentage: 67 },
+    { name: "Node.js", projects: 5, percentage: 33 },
+    { name: "WordPress", projects: 4, percentage: 27 }
   ];
 
   return (

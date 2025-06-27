@@ -7,108 +7,175 @@ export const metadata = {
   keywords: 'web development services, React development, Laravel development, e-commerce, custom web applications',
 };
 
-const services = [
+// Real service data from home page
+const SERVICE_DATA = [
   {
     id: 1,
-    title: "Custom Web Application Development",
-    description: "Build scalable, modern web applications tailored to your business needs using cutting-edge technologies.",
-    icon: "🌐",
+    icon: '💻',
+    title: "Full Stack Development",
+    shortDescription: "End-to-end web applications with modern architecture",
+    description: "Complete web application development using cutting-edge technologies like React.js, Next.js, Node.js, and PHP Laravel. From concept to deployment with scalable architecture.",
     features: [
-      "Custom React/Next.js applications",
-      "Laravel backend development",
-      "Database design and optimization",
-      "API development and integration",
-      "Responsive design implementation"
+      "Responsive Design & Mobile-First Development",
+      "RESTful API Development & Integration", 
+      "Database Architecture & Optimization",
+      "Performance Optimization & Core Web Vitals",
+      "SEO Implementation & Technical SEO",
+      "Progressive Web Apps (PWA)",
+      "Real-time Features with WebSockets",
+      "Authentication & Security Implementation"
     ],
-    technologies: ["React", "Next.js", "Laravel", "MySQL", "PostgreSQL"],
-    startingPrice: "$2,500",
-    timeline: "2-8 weeks",
-    slug: "custom-web-development"
+    technologies: ["React", "Next.js", "Node.js", "Laravel", "TypeScript", "Tailwind"],
+    basePrice: "$2,500",
+    timeline: "4-12 weeks",
+    category: "development",
+    featured: true,
+    gradient: "from-blue-600 to-indigo-600",
+    testimonial: {
+      text: "Exceptional full-stack development that exceeded our expectations.",
+      author: "Sarah Johnson",
+      company: "TechCorp"
+    }
   },
   {
     id: 2,
+    icon: '🛒',
     title: "E-commerce Solutions",
-    description: "Complete e-commerce platforms with payment integration, inventory management, and admin panels.",
-    icon: "🛒",
+    shortDescription: "High-converting online stores with advanced features",
+    description: "Complete e-commerce solutions with secure payments, inventory management, analytics dashboard, and conversion optimization for maximum sales performance.",
     features: [
-      "Shopping cart and checkout system",
-      "Payment gateway integration",
-      "Inventory management",
-      "Order tracking and management",
-      "Admin dashboard"
+      "Custom E-commerce Development",
+      "Shopify & WooCommerce Integration",
+      "Payment Gateway Integration (Stripe, PayPal)",
+      "Inventory Management System",
+      "Order Processing & Fulfillment",
+      "Analytics & Sales Reporting",
+      "Multi-currency & Multi-language",
+      "Advanced SEO & Marketing Tools"
     ],
-    technologies: ["Next.js", "Stripe", "Laravel", "MySQL", "AWS"],
-    startingPrice: "$3,500",
-    timeline: "3-10 weeks",
-    slug: "ecommerce-solutions"
+    technologies: ["Shopify", "WooCommerce", "Stripe", "React", "PHP", "MySQL"],
+    basePrice: "$4,000",
+    timeline: "6-16 weeks",
+    category: "ecommerce",
+    featured: true,
+    gradient: "from-purple-600 to-pink-600",
+    testimonial: {
+      text: "Our sales increased by 300% after the new e-commerce platform launch.",
+      author: "Michael Chen",
+      company: "Fashion Hub"
+    }
   },
   {
     id: 3,
-    title: "SaaS Application Development",
-    description: "Software-as-a-Service applications with subscription management, user dashboards, and analytics.",
-    icon: "💼",
+    icon: '🌐',
+    title: "WordPress Development",
+    shortDescription: "Custom WordPress solutions and optimization",
+    description: "Professional WordPress development including custom themes, plugins, performance optimization, and complete CMS implementations for businesses of all sizes.",
     features: [
-      "Multi-tenant architecture",
-      "Subscription and billing system",
-      "User authentication and roles",
-      "Analytics and reporting",
-      "API development"
+      "Custom Theme Development",
+      "Plugin Development & Customization",
+      "Performance Optimization",
+      "Security Hardening & Updates",
+      "Migration & Multi-site Setup",
+      "Gutenberg Blocks Development",
+      "WooCommerce Integration",
+      "SEO & Analytics Setup"
     ],
-    technologies: ["React", "Node.js", "Laravel", "PostgreSQL", "Docker"],
-    startingPrice: "$5,000",
-    timeline: "4-12 weeks",
-    slug: "saas-development"
+    technologies: ["WordPress", "PHP", "MySQL", "JavaScript", "Gutenberg", "WooCommerce"],
+    basePrice: "$1,500",
+    timeline: "2-8 weeks",
+    category: "cms",
+    featured: false,
+    gradient: "from-green-600 to-teal-600",
+    testimonial: {
+      text: "Perfect WordPress solution that boosted our online presence significantly.",
+      author: "Lisa Rodriguez",
+      company: "Local Business"
+    }
   },
   {
     id: 4,
-    title: "API Development & Integration",
-    description: "RESTful APIs, GraphQL endpoints, and third-party service integrations for your applications.",
-    icon: "🔗",
+    icon: '⚙️',
+    title: "DevOps & Cloud Services",
+    shortDescription: "Infrastructure automation and cloud deployment",
+    description: "Complete IT infrastructure setup, cloud deployment, containerization, automated CI/CD pipelines, and ongoing server management for optimal performance.",
     features: [
-      "RESTful API development",
-      "GraphQL implementation",
-      "Third-party integrations",
-      "API documentation",
-      "Performance optimization"
+      "AWS/Digital Ocean Setup & Management",
+      "Docker Containerization",
+      "CI/CD Pipeline Implementation",
+      "Server Monitoring & Alerts",
+      "Database Administration",
+      "Security & SSL Configuration",
+      "Load Balancing & Scaling",
+      "Backup & Disaster Recovery"
     ],
-    technologies: ["Laravel", "Node.js", "Express", "GraphQL", "Postman"],
-    startingPrice: "$1,500",
+    technologies: ["AWS", "Docker", "Jenkins", "Linux", "Kubernetes", "Terraform"],
+    basePrice: "$1,200",
     timeline: "1-4 weeks",
-    slug: "api-development"
+    category: "devops",
+    featured: false,
+    gradient: "from-orange-600 to-red-600",
+    testimonial: {
+      text: "Excellent DevOps setup that improved our deployment efficiency dramatically.",
+      author: "David Park",
+      company: "StartupTech"
+    }
   },
   {
     id: 5,
-    title: "Website Performance Optimization",
-    description: "Speed up your existing website with performance audits, code optimization, and infrastructure improvements.",
-    icon: "⚡",
+    icon: '⚡',
+    title: "Performance Optimization",
+    shortDescription: "Speed optimization for existing websites",
+    description: "Comprehensive performance optimization for existing websites using advanced techniques, modern best practices, and cutting-edge tools to achieve perfect Core Web Vitals scores.",
     features: [
-      "Performance audit and analysis",
-      "Code optimization",
-      "Image and asset optimization",
-      "Database query optimization",
-      "Caching implementation"
+      "Core Web Vitals Optimization",
+      "Database Query Optimization",
+      "Image Compression & WebP Conversion",
+      "Code Splitting & Lazy Loading",
+      "CDN Implementation & Configuration",
+      "Bundle Size Reduction",
+      "Caching Strategy Implementation",
+      "Performance Monitoring Setup"
     ],
-    technologies: ["Lighthouse", "WebPageTest", "CDN", "Redis", "Optimization Tools"],
-    startingPrice: "$1,000",
+    technologies: ["Lighthouse", "GTmetrix", "Redis", "CloudFlare", "WebP", "Critical CSS"],
+    basePrice: "$800",
     timeline: "1-3 weeks",
-    slug: "performance-optimization"
+    category: "optimization",
+    featured: false,
+    gradient: "from-indigo-600 to-purple-600",
+    testimonial: {
+      text: "Incredible performance boost - our site now loads in under 1 second!",
+      author: "Emma Thompson",
+      company: "E-commerce Plus"
+    }
   },
   {
     id: 6,
-    title: "Legacy System Modernization",
-    description: "Upgrade your outdated systems to modern technologies while preserving your data and business logic.",
-    icon: "🔄",
+    icon: '🤖',
+    title: "AI Integration",
+    shortDescription: "Cutting-edge AI solutions and automation",
+    description: "Advanced AI integration including chatbots, natural language processing, machine learning implementation, and intelligent automation for modern applications.",
     features: [
-      "Legacy code assessment",
-      "Migration planning",
-      "Data migration",
-      "Modern framework implementation",
-      "Testing and validation"
+      "OpenAI GPT Integration",
+      "Custom Chatbot Development",
+      "Voice Recognition & Text-to-Speech",
+      "Natural Language Processing",
+      "Automated Content Generation",
+      "Machine Learning Implementation",
+      "Intelligent Data Analysis",
+      "AI-powered Recommendations"
     ],
-    technologies: ["React", "Laravel", "Database Migration", "Docker", "CI/CD"],
-    startingPrice: "$3,000",
+    technologies: ["OpenAI", "Python", "TensorFlow", "Node.js", "Machine Learning", "NLP"],
+    basePrice: "$2,000",
     timeline: "3-8 weeks",
-    slug: "legacy-modernization"
+    category: "ai",
+    featured: true,
+    gradient: "from-teal-600 to-cyan-600",
+    testimonial: {
+      text: "The AI chatbot revolutionized our customer service completely.",
+      author: "James Wilson",
+      company: "Support Solutions"
+    }
   }
 ];
 
@@ -164,7 +231,7 @@ export default function ServicesPage() {
       <section className="px-4 pb-20">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service) => (
+            {SERVICE_DATA.map((service) => (
               <div
                 key={service.id}
                 className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-200 dark:border-slate-700 group"
@@ -179,22 +246,22 @@ export default function ServicesPage() {
 
                 {/* Description */}
                 <p className="text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
-                  {service.description}
+                  {service.shortDescription}
                 </p>
 
                 {/* Features */}
                 <div className="mb-6">
-                  <h4 className="font-semibold mb-3 text-sm uppercase tracking-wide">What's Included:</h4>
+                  <h4 className="font-semibold mb-3 text-sm uppercase tracking-wide">Key Features:</h4>
                   <ul className="space-y-2">
-                    {service.features.slice(0, 3).map((feature, index) => (
+                    {service.features.slice(0, 4).map((feature, index) => (
                       <li key={index} className="flex items-center text-sm">
                         <span className="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
                         <span className="text-slate-600 dark:text-slate-300">{feature}</span>
                       </li>
                     ))}
-                    {service.features.length > 3 && (
+                    {service.features.length > 4 && (
                       <li className="text-sm text-blue-600 dark:text-blue-400">
-                        +{service.features.length - 3} more features
+                        +{service.features.length - 4} more features
                       </li>
                     )}
                   </ul>
@@ -224,7 +291,7 @@ export default function ServicesPage() {
                 <div className="flex justify-between items-center mb-6 p-4 bg-slate-50 dark:bg-slate-700 rounded-lg">
                   <div>
                     <div className="text-sm text-slate-500 dark:text-slate-400">Starting from</div>
-                    <div className="text-xl font-bold text-green-600 dark:text-green-400">{service.startingPrice}</div>
+                    <div className="text-xl font-bold text-green-600 dark:text-green-400">{service.basePrice}</div>
                   </div>
                   <div className="text-right">
                     <div className="text-sm text-slate-500 dark:text-slate-400">Timeline</div>
@@ -232,13 +299,25 @@ export default function ServicesPage() {
                   </div>
                 </div>
 
+                {/* Testimonial */}
+                {service.testimonial && (
+                  <div className="mb-6 p-4 bg-slate-100 dark:bg-slate-700 rounded-lg">
+                    <p className="text-sm italic text-slate-600 dark:text-slate-300 mb-2">
+                      "{service.testimonial.text}"
+                    </p>
+                    <div className="text-xs text-slate-500 dark:text-slate-400">
+                      - {service.testimonial.author}, {service.testimonial.company}
+                    </div>
+                  </div>
+                )}
+
                 {/* CTA Buttons */}
                 <div className="space-y-3">
                   <button className="w-full px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium">
-                    Learn More
+                    Get Started
                   </button>
                   <button className="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors font-medium text-sm">
-                    Get Quote
+                    Learn More
                   </button>
                 </div>
               </div>

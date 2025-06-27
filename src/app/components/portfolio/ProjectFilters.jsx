@@ -7,92 +7,79 @@ const ProjectFilters = () => {
   const [activeFilter, setActiveFilter] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
 
-  const categories = ['All', 'E-commerce', 'SaaS', 'Real Estate', 'Portfolio', 'Blog', 'API'];
-
-  const projects = [
+  // Real project data from home page
+  const PROJECT_DATA = [
     {
       id: 1,
-      title: "TechMart E-commerce Platform",
-      description: "Complete e-commerce solution with payment integration, inventory management, and analytics dashboard.",
-      category: "E-commerce",
-      tech: ["Next.js", "Laravel", "MySQL", "Stripe"],
-      image: "/projects/techmart.jpg",
-      links: { live: "#", github: "#" },
-      featured: true
+      title: "Elf Bangladesh - Asian Petroleum",
+      description: "Complete digital presence for Elf Bangladesh using Next.js, Tailwind CSS, Zoho CRM, WhatsApp Business API, Strapi CMS, and Facebook Pixel. Built with performance and conversion optimization in mind.",
+      category: "Web Development",
+      tech: ["Next.js", "Tailwind CSS", "Zoho CRM", "WhatsApp API", "Strapi CMS", "Facebook Pixel"],
+      image: "/images/projects/elf-apl-mockup.jpg",
+      links: { live: "https://asian-petroleum.com/", github: "#" },
+      featured: true,
+      year: "2024"
     },
     {
       id: 2,
-      title: "DataFlow Analytics SaaS",
-      description: "Real-time analytics platform for businesses with customizable dashboards and reporting.",
-      category: "SaaS",
-      tech: ["React", "Node.js", "PostgreSQL", "Chart.js"],
-      image: "/projects/dataflow.jpg",
-      links: { live: "#", github: "#" },
-      featured: true
+      title: "Chery Bangladesh",
+      description: "Official automotive website featuring an immersive 360° car viewer and achieving 97% PageSpeed optimization. Revolutionary customer experience with virtual showroom capabilities.",
+      category: "Web Development",
+      tech: ["Next.js", "React.js", "CRM Integration", "Facebook Pixel", "360° Viewer"],
+      image: "/images/projects/cherybd-mockup.png",
+      links: { live: "https://www.cherybd.com", github: "#" },
+      featured: true,
+      year: "2023"
     },
     {
       id: 3,
-      title: "PropertyHub Real Estate Portal",
-      description: "Comprehensive property listing platform with virtual tours and agent management.",
-      category: "Real Estate",
-      tech: ["Next.js", "Laravel", "MySQL", "MapBox"],
-      image: "/projects/propertyhub.jpg",
-      links: { live: "#", github: "#" },
-      featured: true
+      title: "Car Parts E-commerce",
+      description: "Comprehensive e-commerce platform with intelligent make/model/year specification system. Advanced inventory management and real-time pricing integration.",
+      category: "E-commerce",
+      tech: ["React.js", "PHP", "API Integration", "WhatsApp API", "MySQL"],
+      image: "/images/projects/japan-parts-mockup.png",
+      links: { live: "https://japanparts.com.bd", github: "#" },
+      featured: false,
+      year: "2023"
     },
     {
       id: 4,
-      title: "Creative Agency Portfolio",
-      description: "Modern portfolio website for a creative agency with stunning animations and interactions.",
-      category: "Portfolio",
-      tech: ["Next.js", "Framer Motion", "Tailwind CSS"],
-      image: "/projects/creative-agency.jpg",
-      links: { live: "#", github: "#" },
-      featured: false
+      title: "ELF International",
+      description: "High-converting e-commerce platform showcasing premium lubricant products with modern design principles. Advanced product configurator and real-time inventory management.",
+      category: "E-commerce",
+      tech: ["React.js", "Tailwind CSS", "E-commerce", "SEO", "Product Configurator"],
+      image: "/images/projects/elf-international-mockup.png",
+      links: { live: "https://elf-bangladesh.vercel.app", github: "#" },
+      featured: true,
+      year: "2024"
     },
     {
       id: 5,
-      title: "TechBlog CMS",
-      description: "Custom content management system for tech blogs with SEO optimization and social sharing.",
-      category: "Blog",
-      tech: ["Laravel", "React", "MySQL", "Redis"],
-      image: "/projects/techblog.jpg",
-      links: { live: "#", github: "#" },
-      featured: false
+      title: "OpenAI Counselling Chatbot",
+      description: "Revolutionary WordPress plugin integrating ChatGPT and OpenAI APIs with advanced Text-to-Speech functionality. 24/7 mental health support with personalized responses.",
+      category: "AI Integration",
+      tech: ["WordPress", "OpenAI API", "Text-to-Speech", "ChatGPT", "PHP"],
+      image: "https://images.unsplash.com/photo-1587560699334-cc4ff634909a?w=800&h=600&fit=crop",
+      links: { live: null, github: "#" },
+      featured: true,
+      year: "2024"
     },
     {
       id: 6,
-      title: "Restaurant API & Mobile App",
-      description: "RESTful API and mobile app for restaurant ordering system with real-time updates.",
-      category: "API",
-      tech: ["Laravel", "React Native", "PostgreSQL", "Socket.io"],
-      image: "/projects/restaurant-api.jpg",
-      links: { live: "#", github: "#" },
-      featured: false
-    },
-    {
-      id: 7,
-      title: "FashionStore E-commerce",
-      description: "Fashion e-commerce platform with AR try-on feature and social commerce integration.",
-      category: "E-commerce",
-      tech: ["Next.js", "Laravel", "MySQL", "AR.js"],
-      image: "/projects/fashionstore.jpg",
-      links: { live: "#", github: "#" },
-      featured: false
-    },
-    {
-      id: 8,
-      title: "ProjectManager SaaS",
-      description: "Team collaboration and project management platform with time tracking and reporting.",
-      category: "SaaS",
-      tech: ["React", "Express.js", "MongoDB", "Socket.io"],
-      image: "/projects/projectmanager.jpg",
-      links: { live: "#", github: "#" },
-      featured: false
+      title: "CWL Detailing Web",
+      description: "Modern service business website leveraging React.js and Tailwind CSS with intuitive UI/UX. Integrated booking system and customer management portal.",
+      category: "Web Development",
+      tech: ["React.js", "Tailwind CSS", "Responsive Design", "Booking System"],
+      image: null,
+      links: { live: "https://cwl-detailing-web.vercel.app", github: "#" },
+      featured: false,
+      year: "2023"
     }
   ];
 
-  const filteredProjects = projects.filter(project => {
+  const categories = ['All', 'Web Development', 'E-commerce', 'AI Integration'];
+
+  const filteredProjects = PROJECT_DATA.filter(project => {
     const matchesCategory = activeFilter === 'All' || project.category === activeFilter;
     const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -107,7 +94,7 @@ const ProjectFilters = () => {
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">All Projects</h2>
           <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-            Explore my complete portfolio of web applications, from e-commerce platforms to SaaS solutions.
+            Explore my complete portfolio of web applications, from e-commerce platforms to AI solutions.
           </p>
         </div>
 
@@ -160,11 +147,9 @@ const ProjectFilters = () => {
                 <div className="absolute inset-0 bg-black/20 flex items-center justify-center group-hover:bg-black/40 transition-colors">
                   <div className="text-white text-center">
                     <div className="text-4xl mb-2">
-                      {project.category === 'E-commerce' ? '🛒' :
-                       project.category === 'SaaS' ? '📊' :
-                       project.category === 'Real Estate' ? '🏠' :
-                       project.category === 'Portfolio' ? '🎨' :
-                       project.category === 'Blog' ? '📝' : '🔗'}
+                      {project.category === 'Web Development' ? '🌐' :
+                       project.category === 'E-commerce' ? '🛒' :
+                       project.category === 'AI Integration' ? '🤖' : '🚀'}
                     </div>
                     <div className="text-sm opacity-90">{project.category}</div>
                   </div>
@@ -172,14 +157,16 @@ const ProjectFilters = () => {
                 
                 {/* Hover overlay with action buttons */}
                 <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
-                  <a
-                    href={project.links.live}
-                    className="p-3 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <ExternalLink className="w-5 h-5 text-white" />
-                  </a>
+                  {project.links.live && (
+                    <a
+                      href={project.links.live}
+                      className="p-3 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <ExternalLink className="w-5 h-5 text-white" />
+                    </a>
+                  )}
                   <a
                     href={project.links.github}
                     className="p-3 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors"
@@ -206,7 +193,7 @@ const ProjectFilters = () => {
                   {project.title}
                 </h3>
 
-                <p className="text-slate-600 dark:text-slate-300 mb-4 text-sm leading-relaxed">
+                <p className="text-slate-600 dark:text-slate-300 mb-4 text-sm leading-relaxed line-clamp-3">
                   {project.description}
                 </p>
 
@@ -229,21 +216,27 @@ const ProjectFilters = () => {
 
                 {/* Action Buttons */}
                 <div className="flex gap-3">
-                  <a
-                    href={project.links.live}
-                    className="flex-1 text-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    View Live
-                  </a>
+                  {project.links.live ? (
+                    <a
+                      href={project.links.live}
+                      className="flex-1 text-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      View Live
+                    </a>
+                  ) : (
+                    <div className="flex-1 text-center px-4 py-2 bg-gray-600 text-white rounded-lg text-sm font-medium">
+                      In Development
+                    </div>
+                  )}
                   <a
                     href={project.links.github}
                     className="flex-1 text-center px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors text-sm font-medium"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Source
+                    Case Study
                   </a>
                 </div>
               </div>
