@@ -21,10 +21,10 @@ import { useRef } from 'react';
 
 // Updated Constants with new design system
 const CORE_STATS = [
-  { icon: Award, number: '150+', label: 'PROJECTS DELIVERED', color: 'text-cyan-400' }, // Adjusted color for light bg
-  { icon: Calendar, number: '8+', label: 'YEARS EXPERIENCE', color: 'text-blue-400' }, // Adjusted color for light bg
-  { icon: Globe, number: '25+', label: 'COUNTRIES SERVED', color: 'text-violet-400' }, // Adjusted color for light bg
-  { icon: Star, number: '98%', label: 'CLIENT SATISFACTION', color: 'text-orange-400' } // Adjusted color for light bg
+  { icon: Award, number: '150+', label: 'PROJECTS DELIVERED', color: 'text-cyan-400' }, 
+  { icon: Calendar, number: '8+', label: 'YEARS EXPERIENCE', color: 'text-blue-400' }, 
+  { icon: Globe, number: '25+', label: 'COUNTRIES SERVED', color: 'text-violet-400' }, 
+  { icon: Star, number: '98%', label: 'CLIENT SATISFACTION', color: 'text-orange-400' } 
 ];
 
 const ACHIEVEMENTS = [
@@ -169,51 +169,87 @@ const About = () => {
       <section 
         ref={sectionRef}
         id="about" 
-        className="py-16 lg:py-24 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 relative overflow-hidden" // Changed to dark background gradient for the whole section
+        className="py-16 lg:py-24 bg-white relative overflow-hidden" // Main section white background
         aria-label="About Ratan Mia section"
       >
-        {/* New Background Design - Layered geometric patterns for dark background */}
+        {/* New Background Design - Layered geometric patterns for white background */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-          {/* Geometric mesh overlay - subtle on dark */}
-          <div className="absolute inset-0 opacity-30">
+          {/* Geometric mesh overlay - very subtle on white */}
+          <div className="absolute inset-0 opacity-10">
             <svg className="w-full h-full" viewBox="0 0 1000 1000" preserveAspectRatio="none">
               <defs>
-                <pattern id="triangles" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-                  <polygon points="0,0 50,25 0,50" fill="rgba(6, 182, 212, 0.05)" /> 
-                  <polygon points="50,0 100,25 50,50" fill="rgba(59, 130, 246, 0.05)" /> 
-                  <polygon points="25,50 75,75 25,100" fill="rgba(124, 58, 237, 0.05)" /> 
+                <pattern id="triangles-light" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                  <polygon points="0,0 50,25 0,50" fill="rgba(6, 182, 212, 0.01)" /> {/* Very low opacity */}
+                  <polygon points="50,0 100,25 50,50" fill="rgba(59, 130, 246, 0.01)" /> {/* Very low opacity */}
+                  <polygon points="25,50 75,75 25,100" fill="rgba(124, 58, 237, 0.01)" /> {/* Very low opacity */}
                 </pattern>
               </defs>
-              <rect width="100%" height="100%" fill="url(#triangles)" />
+              <rect width="100%" height="100%" fill="url(#triangles-light)" />
             </svg>
           </div>
           
-          {/* Floating glow effects - original dark vibrant */}
-          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-cyan-500/8 to-blue-500/8 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-gradient-to-r from-blue-500/8 to-violet-600/8 rounded-full blur-3xl"></div>
-          <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-r from-violet-600/5 to-orange-500/5 rounded-full blur-3xl"></div>
+          {/* Floating glow effects - lighter and more subtle */}
+          <motion.div 
+            className="absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-cyan-100/30 to-blue-100/30 rounded-full blur-3xl"
+            animate={{
+              x: [0, 30, 0],
+              y: [0, -20, 0],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{
+              duration: 15,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div 
+            className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-gradient-to-r from-blue-100/30 to-violet-100/30 rounded-full blur-3xl"
+            animate={{
+              x: [0, -20, 0],
+              y: [0, 30, 0],
+              scale: [1.1, 1, 1.1],
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div 
+            className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-r from-violet-100/20 to-orange-100/20 rounded-full blur-3xl"
+            animate={{
+              x: [0, 25, 0],
+              y: [0, -25, 0],
+              scale: [1, 1.05, 1],
+            }}
+            transition={{
+              duration: 18,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
           
-          {/* Diagonal lines pattern - original dark subtle */}
-          <div className="absolute inset-0 opacity-20">
+          {/* Diagonal lines pattern - lighter and more subtle */}
+          <div className="absolute inset-0 opacity-10">
             <svg className="w-full h-full" viewBox="0 0 1000 1000" preserveAspectRatio="none">
               <defs>
-                <pattern id="diagonals" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-                  <line x1="0" y1="0" x2="40" y2="40" stroke="rgba(6, 182, 212, 0.1)" strokeWidth="1" /> 
-                  <line x1="0" y1="40" x2="40" y2="0" stroke="rgba(59, 130, 246, 0.1)" strokeWidth="1" /> 
+                <pattern id="diagonals-light" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                  <line x1="0" y1="0" x2="40" y2="40" stroke="rgba(0, 0, 0, 0.05)" strokeWidth="1" /> {/* Subtle dark lines */}
+                  <line x1="0" y1="40" x2="40" y2="0" stroke="rgba(0, 0, 0, 0.05)" strokeWidth="1" /> {/* Subtle dark lines */}
                 </pattern>
               </defs>
-              <rect width="100%" height="100%" fill="url(#diagonals)" />
+              <rect width="100%" height="100%" fill="url(#diagonals-light)" />
             </svg>
           </div>
           
-          {/* Tech-inspired circuit pattern - original dark vibrant */}
+          {/* Tech-inspired circuit pattern - lighter color */}
           <div className="absolute top-10 right-10 w-32 h-32 opacity-10">
             <svg viewBox="0 0 100 100" className="w-full h-full">
-              <path d="M10,10 L90,10 L90,50 L50,50 L50,90 L10,90 Z" stroke="cyan" strokeWidth="2" fill="none" /> 
-              <circle cx="20" cy="20" r="3" fill="cyan" />
-              <circle cx="80" cy="20" r="3" fill="blue" />
-              <circle cx="50" cy="50" r="3" fill="purple" />
-              <circle cx="20" cy="80" r="3" fill="orange" />
+              <path d="M10,10 L90,10 L90,50 L50,50 L50,90 L10,90 Z" stroke="rgb(156, 163, 175)" strokeWidth="2" fill="none" /> {/* gray-400 equivalent */}
+              <circle cx="20" cy="20" r="3" fill="rgb(156, 163, 175)" />
+              <circle cx="80" cy="20" r="3" fill="rgb(96, 165, 250)" /> {/* blue-300 equivalent */}
+              <circle cx="50" cy="50" r="3" fill="rgb(167, 139, 250)" /> {/* violet-300 equivalent */}
+              <circle cx="20" cy="80" r="3" fill="rgb(251, 191, 36)" /> {/* amber-300 equivalent */}
             </svg>
           </div>
         </div>
@@ -230,20 +266,20 @@ const About = () => {
               {/* Section Badge */}
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-cyan-500/10 border border-cyan-500/20 rounded-full mb-6">
                 <div className="w-2 h-2 bg-cyan-500 rounded-full"></div>
-                <span className="text-xs font-bold text-cyan-400 uppercase tracking-wider">ABOUT DEVELOPER</span> {/* Accent text */}
+                <span className="text-xs font-bold text-cyan-600 uppercase tracking-wider">ABOUT DEVELOPER</span> {/* Darker accent text */}
               </div>
 
-              <h2 className="text-3xl lg:text-4xl font-black text-white mb-6 uppercase tracking-tight"> {/* White text */}
+              <h2 className="text-3xl lg:text-4xl font-black text-slate-900 mb-6 uppercase tracking-tight"> {/* Dark text */}
                 CRAFTING DIGITAL EXCELLENCE
               </h2>
 
-              <p className="text-lg text-slate-300 leading-relaxed mb-8"> {/* Slate-300 text */}
+              <p className="text-lg text-slate-700 leading-relaxed mb-8"> {/* Dark text */}
                 Transforming ideas into powerful web solutions with 8+ years of experience in 
                 full-stack development, specializing in React.js, Next.js, and Laravel.
               </p>
 
               {/* Code Bracket Element */}
-              <div className="text-cyan-500/20 font-mono text-2xl mb-8">&lt;/&gt;</div> {/* Subtle cyan */}
+              <div className="text-blue-500/50 font-mono text-2xl mb-8">&lt;/&gt;</div> {/* Subtle blue */}
             </motion.div>
 
             {/* Stats Section */}
@@ -376,7 +412,7 @@ const About = () => {
               transition={{ duration: 0.6 }}
             >
               <div className="text-center mb-12">
-                <h3 className="text-2xl lg:text-3xl font-black text-white mb-4 uppercase tracking-tight"> {/* White text */}
+                <h3 className="text-2xl lg:text-3xl font-black text-slate-900 mb-4 uppercase tracking-tight"> {/* Dark text */}
                   PROFESSIONAL EXPERIENCE
                 </h3>
                 <div className="h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent w-full max-w-md mx-auto"></div>
