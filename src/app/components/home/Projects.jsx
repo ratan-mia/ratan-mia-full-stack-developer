@@ -4,6 +4,8 @@ import { motion, useInView } from 'framer-motion';
 import {
   ArrowRight,
   Calendar,
+  ChevronLeft,
+  ChevronRight,
   Code2,
   ExternalLink,
   Globe,
@@ -12,8 +14,10 @@ import {
   Zap
 } from 'lucide-react';
 import { useRef, useState } from 'react';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 
-// Simplified Project Data - Only Featured Projects for Homepage
+// Enhanced Project Data
 const FEATURED_PROJECTS = [
   {
     id: 1,
@@ -29,7 +33,8 @@ const FEATURED_PROJECTS = [
       conversion: "85%",
       performance: "97%",
       satisfaction: "98%"
-    }
+    },
+    color: "from-cyan-400 to-cyan-500"
   },
   {
     id: 2,
@@ -45,7 +50,8 @@ const FEATURED_PROJECTS = [
       conversion: "200%",
       performance: "97%",
       satisfaction: "96%"
-    }
+    },
+    color: "from-green-400 to-green-500"
   },
   {
     id: 3,
@@ -61,7 +67,8 @@ const FEATURED_PROJECTS = [
       conversion: "150%",
       performance: "95%",
       satisfaction: "94%"
-    }
+    },
+    color: "from-purple-400 to-purple-500"
   },
   {
     id: 4,
@@ -77,7 +84,42 @@ const FEATURED_PROJECTS = [
       conversion: "70%",
       performance: "92%",
       satisfaction: "89%"
-    }
+    },
+    color: "from-orange-400 to-orange-500"
+  },
+  {
+    id: 5,
+    title: "Real Estate Platform",
+    subtitle: "Modern Property Management System",
+    description: "Comprehensive real estate platform with virtual tours and advanced search capabilities.",
+    tech: ["React.js", "Node.js", "MongoDB", "Google Maps"],
+    link: "https://example.com",
+    year: "2023",
+    client: "Property Solutions Ltd",
+    status: "Live",
+    results: {
+      conversion: "120%",
+      performance: "94%",
+      satisfaction: "92%"
+    },
+    color: "from-blue-400 to-blue-500"
+  },
+  {
+    id: 6,
+    title: "Healthcare Dashboard",
+    subtitle: "Patient Management System",
+    description: "Advanced healthcare dashboard with real-time patient monitoring and analytics.",
+    tech: ["Vue.js", "Laravel", "MySQL", "Chart.js"],
+    link: "https://example.com",
+    year: "2023",
+    client: "Healthcare Inc",
+    status: "Live",
+    results: {
+      conversion: "90%",
+      performance: "96%",
+      satisfaction: "95%"
+    },
+    color: "from-red-400 to-red-500"
   }
 ];
 
@@ -88,8 +130,51 @@ const PROJECT_STATS = [
   { number: '98%', label: 'Satisfaction', icon: Star }
 ];
 
-// Project Card Component
-const ProjectCard = ({ project, index, inView }) => {
+// Responsive Carousel Configuration
+const responsive = {
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 3,
+    slidesToSlide: 1,
+    partialVisibilityGutter: 40
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 768 },
+    items: 2,
+    slidesToSlide: 1,
+    partialVisibilityGutter: 30
+  },
+  mobile: {
+    breakpoint: { max: 768, min: 0 },
+    items: 1,
+    slidesToSlide: 1,
+    partialVisibilityGutter: 20
+  }
+};
+
+// Custom Arrow Components
+const CustomLeftArrow = ({ onClick }) => (
+  <button
+    onClick={onClick}
+    className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-gradient-to-b from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 border border-gray-700 hover:border-cyan-400 rounded-lg flex items-center justify-center text-cyan-400 hover:text-white hover:shadow-lg hover:shadow-cyan-400/25 transition-all duration-300 hover:scale-110 z-10"
+    aria-label="Previous projects"
+  >
+    <ChevronLeft className="w-5 h-5" />
+  </button>
+);
+
+const CustomRightArrow = ({ onClick }) => (
+  <button
+    onClick={onClick}
+    className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-gradient-to-b from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 border border-gray-700 hover:border-cyan-400 rounded-lg flex items-center justify-center text-cyan-400 hover:text-white hover:shadow-lg hover:shadow-cyan-400/25 transition-all duration-300 hover:scale-110 z-10"
+    aria-label="Next projects"
+  >
+    <ChevronRight className="w-5 h-5" />
+  </button>
+);
+
+// Enhanced Project Card Component
+const ProjectCard = ({ project, index }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleClick = () => {
@@ -100,139 +185,141 @@ const ProjectCard = ({ project, index, inView }) => {
 
   return (
     <motion.div
-      className="bg-gradient-to-b from-gray-800 to-gray-900 p-8 rounded-lg border border-gray-700 shadow-xl hover:shadow-2xl hover:shadow-cyan-400/10 hover:border-cyan-400 transition-all duration-300 overflow-hidden group"
+      className="mx-3 h-full"
       initial={{ opacity: 0, y: 20 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1, duration: 0.5 }}
-      whileHover={{ y: -5, scale: 1.02 }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Project Image/Preview */}
-      <div className="relative h-48 bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center overflow-hidden rounded-lg mb-6">
-        <div className="w-full h-full bg-gradient-to-br from-cyan-400/20 to-cyan-500/20" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <motion.div
-            className="w-20 h-20 bg-gradient-to-br from-cyan-400 to-cyan-500 rounded-xl flex items-center justify-center text-white shadow-lg"
-            animate={isHovered ? { scale: 1.1, rotate: 5 } : { scale: 1, rotate: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            {project.link ? <Globe className="w-10 h-10" /> : <Code2 className="w-10 h-10" />}
-          </motion.div>
-        </div>
-
-        {/* Status Badge */}
-        <div className="absolute top-3 right-3">
-          <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold ${
-            project.status === 'Live' 
-              ? 'bg-green-900/50 text-green-400 border border-green-700' 
-              : 'bg-yellow-900/50 text-yellow-400 border border-yellow-700'
-          }`}>
+      <div
+        className="bg-gradient-to-b from-gray-800 to-gray-900 p-8 rounded-lg border border-gray-700 shadow-xl hover:shadow-2xl hover:shadow-cyan-400/10 hover:border-cyan-400 transition-all duration-300 overflow-hidden group h-full flex flex-col cursor-pointer"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onClick={project.link ? handleClick : undefined}
+      >
+        {/* Project Image/Preview */}
+        <div className="relative h-48 bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center overflow-hidden rounded-lg mb-6">
+          <div className={`w-full h-full bg-gradient-to-br ${project.color}/20`} />
+          <div className="absolute inset-0 flex items-center justify-center">
             <motion.div
-              className={`w-1.5 h-1.5 rounded-full ${
-                project.status === 'Live' ? 'bg-green-400' : 'bg-yellow-400'
-              }`}
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            />
-            {project.status}
-          </span>
-        </div>
-
-        {/* Year Badge */}
-        <div className="absolute top-3 left-3">
-          <span className="bg-gray-800/90 backdrop-blur-sm text-cyan-400 px-3 py-1 rounded-full text-xs font-bold border border-gray-700">
-            {project.year}
-          </span>
-        </div>
-
-        {/* Hover Overlay */}
-        {isHovered && project.link && (
-          <motion.div
-            className="absolute inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <motion.button
-              onClick={handleClick}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-400 to-cyan-500 text-gray-900 font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              className={`w-20 h-20 bg-gradient-to-br ${project.color} rounded-xl flex items-center justify-center text-white shadow-lg`}
+              animate={isHovered ? { scale: 1.1, rotate: 5 } : { scale: 1, rotate: 0 }}
+              transition={{ duration: 0.3 }}
             >
-              <ExternalLink className="w-4 h-4" />
-              Visit Live Site
-            </motion.button>
-          </motion.div>
-        )}
-      </div>
-
-      {/* Project Details */}
-      <div>
-        <div className="mb-6">
-          <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300">
-            {project.title}
-          </h3>
-          <p className="text-cyan-400 font-semibold text-sm mb-3">{project.subtitle}</p>
-          <p className="text-gray-300 text-sm leading-relaxed mb-4">{project.description}</p>
-          
-          {/* Client Info */}
-          <div className="text-xs text-gray-400 mb-4">
-            Client: <span className="font-medium text-gray-300">{project.client}</span>
+              {project.link ? <Globe className="w-10 h-10" /> : <Code2 className="w-10 h-10" />}
+            </motion.div>
           </div>
-        </div>
 
-        {/* Technologies */}
-        <div className="mb-6">
-          <div className="flex flex-wrap gap-2">
-            {project.tech.slice(0, 4).map((tech, i) => (
-              <span 
-                key={i}
-                className="px-3 py-1 bg-cyan-900/30 text-cyan-300 rounded-lg text-xs font-medium border border-cyan-700/30"
+          {/* Status Badge */}
+          <div className="absolute top-3 right-3">
+            <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold ${
+              project.status === 'Live' 
+                ? 'bg-green-900/50 text-green-400 border border-green-700' 
+                : 'bg-yellow-900/50 text-yellow-400 border border-yellow-700'
+            }`}>
+              <motion.div
+                className={`w-1.5 h-1.5 rounded-full ${
+                  project.status === 'Live' ? 'bg-green-400' : 'bg-yellow-400'
+                }`}
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+              {project.status}
+            </span>
+          </div>
+
+          {/* Year Badge */}
+          <div className="absolute top-3 left-3">
+            <span className="bg-gray-800/90 backdrop-blur-sm text-cyan-400 px-3 py-1 rounded-full text-xs font-bold border border-gray-700">
+              {project.year}
+            </span>
+          </div>
+
+          {/* Hover Overlay */}
+          {isHovered && project.link && (
+            <motion.div
+              className="absolute inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <motion.div
+                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-400 to-cyan-500 text-gray-900 font-semibold rounded-lg shadow-lg"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                {tech}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Results Metrics */}
-        <div className="mb-6 p-4 bg-gradient-to-r from-gray-700/50 to-gray-800/50 rounded-lg border border-gray-600">
-          <div className="grid grid-cols-3 gap-3 text-center">
-            <div>
-              <div className="text-sm font-bold text-cyan-400">{project.results.conversion}</div>
-              <div className="text-xs text-gray-400">Growth</div>
-            </div>
-            <div>
-              <div className="text-sm font-bold text-green-400">{project.results.performance}</div>
-              <div className="text-xs text-gray-400">Score</div>
-            </div>
-            <div>
-              <div className="text-sm font-bold text-purple-400">{project.results.satisfaction}</div>
-              <div className="text-xs text-gray-400">Rating</div>
-            </div>
-          </div>
-        </div>
-
-        {/* Action Button */}
-        <div className="flex items-center justify-between pt-4 border-t border-gray-700">
-          {project.link ? (
-            <motion.button
-              onClick={handleClick}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-400 to-cyan-500 hover:from-cyan-500 hover:to-cyan-600 text-gray-900 font-semibold rounded-lg text-sm shadow-lg hover:shadow-cyan-400/25 transition-all duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Globe className="w-4 h-4" />
-              View Live
-            </motion.button>
-          ) : (
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-gray-700 to-gray-800 text-cyan-400 font-semibold rounded-lg text-sm border border-gray-600">
-              <Code2 className="w-4 h-4" />
-              Custom Project
-            </div>
+                <ExternalLink className="w-4 h-4" />
+                Visit Live Site
+              </motion.div>
+            </motion.div>
           )}
-          <span className="text-xs text-gray-400">Case Study →</span>
+        </div>
+
+        {/* Project Details */}
+        <div className="flex-1 flex flex-col">
+          <div className="mb-6 flex-1">
+            <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300">
+              {project.title}
+            </h3>
+            <p className="text-cyan-400 font-semibold text-sm mb-3">{project.subtitle}</p>
+            <p className="text-gray-300 text-sm leading-relaxed mb-4">{project.description}</p>
+            
+            {/* Client Info */}
+            <div className="text-xs text-gray-400 mb-4">
+              Client: <span className="font-medium text-gray-300">{project.client}</span>
+            </div>
+          </div>
+
+          {/* Technologies */}
+          <div className="mb-6">
+            <div className="flex flex-wrap gap-2">
+              {project.tech.slice(0, 4).map((tech, i) => (
+                <span 
+                  key={i}
+                  className="px-3 py-1 bg-cyan-900/30 text-cyan-300 rounded-lg text-xs font-medium border border-cyan-700/30"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Results Metrics */}
+          <div className="mb-6 p-4 bg-gradient-to-r from-gray-700/50 to-gray-800/50 rounded-lg border border-gray-600">
+            <div className="grid grid-cols-3 gap-3 text-center">
+              <div>
+                <div className="text-sm font-bold text-cyan-400">{project.results.conversion}</div>
+                <div className="text-xs text-gray-400">Growth</div>
+              </div>
+              <div>
+                <div className="text-sm font-bold text-green-400">{project.results.performance}</div>
+                <div className="text-xs text-gray-400">Score</div>
+              </div>
+              <div>
+                <div className="text-sm font-bold text-purple-400">{project.results.satisfaction}</div>
+                <div className="text-xs text-gray-400">Rating</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Action Button */}
+          <div className="flex items-center justify-between pt-4 border-t border-gray-700 mt-auto">
+            {project.link ? (
+              <motion.div
+                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-400 to-cyan-500 hover:from-cyan-500 hover:to-cyan-600 text-gray-900 font-semibold rounded-lg text-sm shadow-lg hover:shadow-cyan-400/25 transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Globe className="w-4 h-4" />
+                View Live
+              </motion.div>
+            ) : (
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-gray-700 to-gray-800 text-cyan-400 font-semibold rounded-lg text-sm border border-gray-600">
+                <Code2 className="w-4 h-4" />
+                Custom Project
+              </div>
+            )}
+            <span className="text-xs text-gray-400">Case Study →</span>
+          </div>
         </div>
       </div>
     </motion.div>
@@ -308,7 +395,7 @@ const Projects = () => {
         {/* Project Stats */}
         <motion.div 
           ref={statsRef}
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto mb-20"
+          className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto mb-20"
           initial={{ opacity: 0, y: 30 }}
           animate={statsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
@@ -329,22 +416,42 @@ const Projects = () => {
           ))}
         </motion.div>
 
-        {/* Featured Projects Grid */}
+        {/* Projects Carousel */}
         <motion.div 
           ref={projectsRef}
-          className="grid md:grid-cols-2 gap-8 mb-16"
+          className="mb-16 relative"
           initial={{ opacity: 0, y: 30 }}
           animate={projectsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
         >
-          {FEATURED_PROJECTS.map((project, index) => (
-            <ProjectCard
-              key={project.id}
-              project={project}
-              index={index}
-              inView={projectsInView}
-            />
-          ))}
+          <Carousel
+            responsive={responsive}
+            infinite={true}
+            autoPlay={false}
+            autoPlaySpeed={4000}
+            keyBoardControl={true}
+            customTransition="transform 300ms ease-in-out"
+            transitionDuration={300}
+            containerClass="carousel-container"
+            removeArrowOnDeviceType={[]}
+            customLeftArrow={<CustomLeftArrow />}
+            customRightArrow={<CustomRightArrow />}
+            itemClass="carousel-item"
+            className="pb-4"
+            swipeable={true}
+            draggable={true}
+            showDots={false}
+            ssr={true}
+            deviceType="desktop"
+          >
+            {FEATURED_PROJECTS.map((project, index) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                index={index}
+              />
+            ))}
+          </Carousel>
         </motion.div>
 
         {/* View All Projects Link */}
@@ -424,6 +531,48 @@ const Projects = () => {
           </div>
         </motion.div>
       </div>
+
+      {/* Custom Carousel Styles */}
+      <style jsx global>{`
+        .carousel-container {
+          padding: 0 !important;
+        }
+        
+        .carousel-item {
+          display: flex !important;
+          justify-content: center !important;
+        }
+        
+        .react-multi-carousel-list {
+          overflow: visible !important;
+        }
+        
+        .react-multi-carousel-track {
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+        }
+        
+        .react-multi-carousel-item {
+          transform: none !important;
+        }
+        
+        @media (max-width: 768px) {
+          .carousel-container .react-multi-carousel-item {
+            margin: 0 8px !important;
+          }
+        }
+        
+        @media (min-width: 769px) {
+          .carousel-container .react-multi-carousel-item {
+            margin: 0 12px !important;
+          }
+        }
+        
+        /* Hide default arrows since we're using custom ones */
+        .react-multi-carousel-arrow {
+          display: none !important;
+        }
+      `}</style>
     </section>
   );
 };
