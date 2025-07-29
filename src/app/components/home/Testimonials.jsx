@@ -107,23 +107,23 @@ const TestimonialCard = ({ testimonial, index }) => {
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       transition={{ delay: index * 0.1, duration: 0.6 }}
-      className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-8 h-full flex flex-col"
+      className="bg-gradient-to-b from-gray-800 to-gray-900 rounded-lg border border-gray-700 shadow-xl hover:shadow-2xl hover:shadow-cyan-400/10 hover:border-cyan-400 transition-all duration-300 p-8 h-full flex flex-col"
     >
       {/* Quote Icon */}
-      <Quote className="w-8 h-8 text-blue-100 mb-6" />
+      <Quote className="w-8 h-8 text-cyan-400 mb-6" />
       
       {/* Rating */}
       <div className="flex gap-1 mb-6">
         {Array.from({ length: 5 }, (_, i) => (
           <Star 
             key={i} 
-            className={`w-5 h-5 ${i < testimonial.rating ? 'text-yellow-400 fill-current' : 'text-gray-200'}`} 
+            className={`w-5 h-5 ${i < testimonial.rating ? 'text-cyan-400 fill-current' : 'text-gray-600'}`} 
           />
         ))}
       </div>
 
       {/* Testimonial Text */}
-      <blockquote className="text-gray-700 text-lg leading-relaxed mb-8 flex-grow">
+      <blockquote className="text-gray-300 text-lg leading-relaxed mb-8 flex-grow">
         "{testimonial.testimonial}"
       </blockquote>
 
@@ -132,7 +132,7 @@ const TestimonialCard = ({ testimonial, index }) => {
         {testimonial.results.map((result, i) => (
           <span 
             key={i}
-            className="px-3 py-1 bg-blue-50 text-blue-700 text-sm font-medium rounded-full border border-blue-100"
+            className="px-3 py-1 bg-cyan-900/30 text-cyan-300 text-sm font-medium rounded-full border border-cyan-700/30"
           >
             {result}
           </span>
@@ -140,34 +140,34 @@ const TestimonialCard = ({ testimonial, index }) => {
       </div>
 
       {/* Client Info */}
-      <div className="border-t border-gray-100 pt-6">
+      <div className="border-t border-gray-700 pt-6">
         <div className="flex items-start justify-between">
           <div className="flex-1">
-            <h4 className="text-lg font-bold text-gray-900 mb-1">
+            <h4 className="text-lg font-bold text-white mb-1">
               {testimonial.name}
             </h4>
-            <p className="text-blue-600 font-medium text-sm mb-1">
+            <p className="text-cyan-400 font-medium text-sm mb-1">
               {testimonial.position}
             </p>
-            <p className="text-gray-600 text-sm flex items-center gap-2 mb-2">
+            <p className="text-gray-300 text-sm flex items-center gap-2 mb-2">
               <Building2 className="w-4 h-4" />
               {testimonial.company}
             </p>
-            <p className="text-gray-500 text-sm flex items-center gap-2">
+            <p className="text-gray-400 text-sm flex items-center gap-2">
               <MapPin className="w-4 h-4" />
               {testimonial.location}
             </p>
           </div>
           
           {/* Avatar */}
-          <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center text-white text-xl font-bold ml-4">
+          <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-cyan-500 rounded-xl flex items-center justify-center text-gray-900 text-xl font-bold ml-4">
             {testimonial.name.charAt(0)}
           </div>
         </div>
         
         {/* Project */}
-        <div className="mt-4 p-3 bg-gray-50 rounded-lg">
-          <p className="text-sm font-medium text-gray-700">
+        <div className="mt-4 p-3 bg-gray-700/50 rounded-lg border border-gray-600">
+          <p className="text-sm font-medium text-gray-300">
             Project: {testimonial.project}
           </p>
         </div>
@@ -197,11 +197,11 @@ const FeaturedCarousel = () => {
   if (!currentTestimonial) return null;
 
   return (
-    <div className="bg-gradient-to-br from-blue-600 to-purple-700 rounded-2xl p-8 md:p-12 text-white mb-16">
+    <div className="bg-gradient-to-br from-cyan-400 to-cyan-500 rounded-2xl p-8 md:p-12 text-white mb-16">
       <div className="max-w-4xl mx-auto text-center">
         {/* Featured Badge */}
         <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium mb-8">
-          <Star className="w-4 h-4 text-yellow-300 fill-current" />
+          <Star className="w-4 h-4 text-white fill-current" />
           Featured Success Story
         </div>
 
@@ -215,7 +215,7 @@ const FeaturedCarousel = () => {
           {/* Rating */}
           <div className="flex justify-center gap-1 mb-6">
             {Array.from({ length: 5 }, (_, i) => (
-              <Star key={i} className="w-6 h-6 text-yellow-300 fill-current" />
+              <Star key={i} className="w-6 h-6 text-white fill-current" />
             ))}
           </div>
 
@@ -227,8 +227,8 @@ const FeaturedCarousel = () => {
           {/* Client */}
           <div className="mb-8">
             <h4 className="text-xl font-bold mb-1">{currentTestimonial.name}</h4>
-            <p className="text-blue-200 mb-1">{currentTestimonial.position}</p>
-            <p className="text-blue-100">{currentTestimonial.company}</p>
+            <p className="text-cyan-100 mb-1">{currentTestimonial.position}</p>
+            <p className="text-cyan-50">{currentTestimonial.company}</p>
           </div>
 
           {/* Results */}
@@ -286,9 +286,16 @@ const Testimonials = () => {
     <section 
       ref={sectionRef}
       id="testimonials" 
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50"
+      className="py-24 bg-black relative overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto">
+      {/* Background Decoration */}
+      <div className="absolute top-40 right-10 w-96 h-96 bg-cyan-400 opacity-5 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 left-10 w-80 h-80 bg-cyan-400 opacity-5 rounded-full blur-3xl" />
+      
+      {/* Enhanced glow for premium feel */}
+      <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-60" />
+
+      <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -296,18 +303,36 @@ const Testimonials = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
-            <CheckCircle className="w-4 h-4" />
+          {/* Eyebrow Text */}
+          <motion.span
+            className="text-cyan-400 font-semibold tracking-wider uppercase mb-2 inline-block"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+            transition={{ delay: 0.2 }}
+          >
             Client Success Stories
-          </div>
+          </motion.span>
           
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Trusted by Industry Leaders
-          </h2>
+          <motion.h2 
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ delay: 0.4 }}
+          >
+            Trusted by <span className="text-cyan-400">Industry Leaders</span>
+          </motion.h2>
+
+          {/* Accent Line */}
+          <div className="w-24 h-1 bg-cyan-400 mx-auto mb-6" />
           
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <motion.p 
+            className="text-gray-300 max-w-3xl mx-auto text-lg leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ delay: 0.6 }}
+          >
             Real stories from satisfied clients who trusted me to transform their digital presence and drive business growth.
-          </p>
+          </motion.p>
         </motion.div>
 
         {/* Stats */}
@@ -315,17 +340,24 @@ const Testimonials = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16"
+          className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto mb-20"
         >
           {STATS.map((stat, index) => (
-            <div key={stat.label} className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">
+            <motion.div 
+              key={stat.label} 
+              className="text-center p-6 bg-gradient-to-b from-gray-800 to-gray-900 rounded-xl border border-gray-700 hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-400/10 transition-all duration-300"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+              transition={{ delay: 0.4 + index * 0.1 }}
+              whileHover={{ scale: 1.05, y: -2 }}
+            >
+              <div className="text-3xl md:text-4xl font-bold text-cyan-400 mb-2">
                 {stat.number}
               </div>
-              <div className="text-gray-600 font-medium">
+              <div className="text-gray-300 font-medium">
                 {stat.label}
               </div>
-            </div>
+            </motion.div>
           ))}
         </motion.div>
 
@@ -338,7 +370,7 @@ const Testimonials = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <h3 className="text-2xl md:text-3xl font-bold text-gray-900 text-center mb-12">
+          <h3 className="text-3xl md:text-4xl font-bold text-white text-center mb-12">
             What My Clients Say
           </h3>
           
@@ -360,29 +392,49 @@ const Testimonials = () => {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="text-center mt-16"
         >
-          <div className="bg-white p-8 md:p-12 rounded-2xl shadow-lg border border-gray-100">
-            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-              Ready to Join These Success Stories?
-            </h3>
-            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-              Let's create your next success story together. I'm excited to help transform your vision into reality.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="#contact"
-                className="inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-blue-700 transition-colors"
-              >
-                Start Your Project
-              </a>
+          <div className="bg-gradient-to-r from-cyan-400 to-cyan-500 p-12 rounded-2xl shadow-2xl relative overflow-hidden">
+            {/* Background Effects */}
+            <div className="absolute inset-0 opacity-10" aria-hidden="true">
+              <motion.div 
+                className="absolute top-0 left-0 w-64 h-64 bg-white rounded-full blur-3xl"
+                animate={{ x: [0, 30, 0], y: [0, -15, 0] }}
+                transition={{ duration: 8, repeat: Infinity }}
+              />
+              <motion.div 
+                className="absolute bottom-0 right-0 w-48 h-48 bg-gray-200 rounded-full blur-3xl"
+                animate={{ x: [0, -20, 0], y: [0, 15, 0] }}
+                transition={{ duration: 10, repeat: Infinity }}
+              />
+            </div>
+
+            <div className="relative z-10">
+              <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                Ready to Join These Success Stories?
+              </h3>
+              <p className="text-cyan-100 mb-8 max-w-2xl mx-auto text-lg leading-relaxed">
+                Let's create your next success story together. I'm excited to help transform your vision into reality.
+              </p>
               
-              <a
-                href="#projects"
-                className="inline-flex items-center justify-center gap-2 border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-xl font-semibold hover:border-gray-400 transition-colors"
-              >
-                <ExternalLink className="w-5 h-5" />
-                View Portfolio
-              </a>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <motion.a
+                  href="#contact"
+                  className="bg-white hover:bg-gray-100 text-cyan-600 font-semibold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 inline-flex items-center justify-center gap-2"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Start Your Project
+                </motion.a>
+                
+                <motion.a
+                  href="#projects"
+                  className="bg-white/10 backdrop-blur-sm border border-white/30 hover:bg-white/20 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 inline-flex items-center justify-center gap-2"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <ExternalLink className="w-5 h-5" />
+                  View Portfolio
+                </motion.a>
+              </div>
             </div>
           </div>
         </motion.div>

@@ -121,9 +121,16 @@ const GetQuote = () => {
     <section 
       ref={sectionRef}
       id="quote" 
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-indigo-50"
+      className="py-24 bg-black relative overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto">
+      {/* Background Decoration */}
+      <div className="absolute top-40 right-10 w-96 h-96 bg-cyan-400 opacity-5 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 left-10 w-80 h-80 bg-cyan-400 opacity-5 rounded-full blur-3xl" />
+      
+      {/* Enhanced glow for premium feel */}
+      <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-60" />
+
+      <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -131,18 +138,36 @@ const GetQuote = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
-            <Send className="w-4 h-4" />
+          {/* Eyebrow Text */}
+          <motion.span
+            className="text-cyan-400 font-semibold tracking-wider uppercase mb-2 inline-block"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+            transition={{ delay: 0.2 }}
+          >
             Get Your Quote
-          </div>
+          </motion.span>
           
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Start Your Dream Project
-          </h2>
+          <motion.h2 
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ delay: 0.4 }}
+          >
+            Start Your <span className="text-cyan-400">Dream Project</span>
+          </motion.h2>
+
+          {/* Accent Line */}
+          <div className="w-24 h-1 bg-cyan-400 mx-auto mb-6" />
           
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <motion.p 
+            className="text-gray-300 max-w-3xl mx-auto text-lg leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ delay: 0.6 }}
+          >
             Ready to transform your vision into reality? Get a detailed, personalized quote tailored to your needs.
-          </p>
+          </motion.p>
         </motion.div>
 
         {/* Stats */}
@@ -150,18 +175,25 @@ const GetQuote = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16"
+          className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto mb-20"
         >
           {STATS.map((stat, index) => (
-            <div key={stat.label} className="text-center p-6 bg-white rounded-xl shadow-lg">
-              <stat.icon className="w-8 h-8 text-blue-600 mx-auto mb-4" />
-              <div className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+            <motion.div 
+              key={stat.label} 
+              className="text-center p-6 bg-gradient-to-b from-gray-800 to-gray-900 rounded-xl border border-gray-700 hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-400/10 transition-all duration-300"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+              transition={{ delay: 0.4 + index * 0.1 }}
+              whileHover={{ scale: 1.05, y: -2 }}
+            >
+              <stat.icon className="w-8 h-8 text-cyan-400 mx-auto mb-4" />
+              <div className="text-3xl md:text-4xl font-bold text-cyan-400 mb-2">
                 {stat.number}
               </div>
-              <div className="text-gray-600 font-medium">
+              <div className="text-gray-300 font-medium">
                 {stat.label}
               </div>
-            </div>
+            </motion.div>
           ))}
         </motion.div>
 
@@ -170,27 +202,27 @@ const GetQuote = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="bg-white rounded-2xl shadow-xl p-8 md:p-12"
+          className="bg-gradient-to-b from-gray-800 to-gray-900 rounded-2xl border border-gray-700 shadow-xl hover:shadow-2xl hover:shadow-cyan-400/10 transition-all duration-300 p-8 md:p-12"
         >
           {submitStatus === 'success' && (
-            <div className="mb-8 p-6 bg-green-50 border border-green-200 rounded-xl">
+            <div className="mb-8 p-6 bg-green-900/50 border border-green-700 rounded-xl">
               <div className="flex items-center gap-3">
-                <CheckCircle className="w-6 h-6 text-green-600" />
+                <CheckCircle className="w-6 h-6 text-green-400" />
                 <div>
-                  <h3 className="text-lg font-semibold text-green-800">Quote Request Sent!</h3>
-                  <p className="text-green-700">I'll get back to you within 24 hours with a detailed proposal.</p>
+                  <h3 className="text-lg font-semibold text-green-300">Quote Request Sent!</h3>
+                  <p className="text-green-200">I'll get back to you within 24 hours with a detailed proposal.</p>
                 </div>
               </div>
             </div>
           )}
 
           {submitStatus === 'error' && (
-            <div className="mb-8 p-6 bg-red-50 border border-red-200 rounded-xl">
+            <div className="mb-8 p-6 bg-red-900/50 border border-red-700 rounded-xl">
               <div className="flex items-center gap-3">
-                <MessageCircle className="w-6 h-6 text-red-600" />
+                <MessageCircle className="w-6 h-6 text-red-400" />
                 <div>
-                  <h3 className="text-lg font-semibold text-red-800">Oops! Something went wrong</h3>
-                  <p className="text-red-700">Please try again or contact me directly.</p>
+                  <h3 className="text-lg font-semibold text-red-300">Oops! Something went wrong</h3>
+                  <p className="text-red-200">Please try again or contact me directly.</p>
                 </div>
               </div>
             </div>
@@ -199,11 +231,11 @@ const GetQuote = () => {
           <form onSubmit={handleSubmit} className="space-y-8">
             {/* Personal Information */}
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Let's Get Started</h3>
+              <h3 className="text-2xl font-bold text-white mb-6">Let's Get Started</h3>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label htmlFor="name" className="block text-sm font-semibold text-gray-300 mb-2">
                     Full Name *
                   </label>
                   <input
@@ -213,13 +245,13 @@ const GetQuote = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 text-white placeholder-gray-400"
                     placeholder="Enter your full name"
                   />
                 </div>
                 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label htmlFor="email" className="block text-sm font-semibold text-gray-300 mb-2">
                     Email Address *
                   </label>
                   <input
@@ -229,13 +261,13 @@ const GetQuote = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 text-white placeholder-gray-400"
                     placeholder="your@email.com"
                   />
                 </div>
                 
                 <div>
-                  <label htmlFor="company" className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label htmlFor="company" className="block text-sm font-semibold text-gray-300 mb-2">
                     Company Name
                   </label>
                   <input
@@ -244,13 +276,13 @@ const GetQuote = () => {
                     name="company"
                     value={formData.company}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 text-white placeholder-gray-400"
                     placeholder="Your company (optional)"
                   />
                 </div>
                 
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label htmlFor="phone" className="block text-sm font-semibold text-gray-300 mb-2">
                     Phone Number
                   </label>
                   <input
@@ -259,7 +291,7 @@ const GetQuote = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 text-white placeholder-gray-400"
                     placeholder="+1 (555) 123-4567"
                   />
                 </div>
@@ -268,11 +300,11 @@ const GetQuote = () => {
 
             {/* Project Details */}
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Project Details</h3>
+              <h3 className="text-2xl font-bold text-white mb-6">Project Details</h3>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                 <div>
-                  <label htmlFor="projectType" className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label htmlFor="projectType" className="block text-sm font-semibold text-gray-300 mb-2">
                     Project Type *
                   </label>
                   <select
@@ -281,7 +313,7 @@ const GetQuote = () => {
                     value={formData.projectType}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 text-white"
                   >
                     <option value="">Select project type</option>
                     {PROJECT_TYPES.map((type) => (
@@ -291,7 +323,7 @@ const GetQuote = () => {
                 </div>
                 
                 <div>
-                  <label htmlFor="budget" className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label htmlFor="budget" className="block text-sm font-semibold text-gray-300 mb-2">
                     Budget Range *
                   </label>
                   <select
@@ -300,7 +332,7 @@ const GetQuote = () => {
                     value={formData.budget}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 text-white"
                   >
                     <option value="">Select budget range</option>
                     {BUDGET_RANGES.map((range) => (
@@ -310,7 +342,7 @@ const GetQuote = () => {
                 </div>
                 
                 <div>
-                  <label htmlFor="timeline" className="block text-sm font-semibold text-gray-700 mb-2">
+                  <label htmlFor="timeline" className="block text-sm font-semibold text-gray-300 mb-2">
                     Timeline *
                   </label>
                   <select
@@ -319,7 +351,7 @@ const GetQuote = () => {
                     value={formData.timeline}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 text-white"
                   >
                     <option value="">Select timeline</option>
                     {TIMELINE_OPTIONS.map((option) => (
@@ -330,7 +362,7 @@ const GetQuote = () => {
               </div>
               
               <div>
-                <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
+                <label htmlFor="message" className="block text-sm font-semibold text-gray-300 mb-2">
                   Project Description *
                 </label>
                 <textarea
@@ -340,7 +372,7 @@ const GetQuote = () => {
                   onChange={handleInputChange}
                   required
                   rows={6}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 text-white placeholder-gray-400"
                   placeholder="Tell me about your project goals, features needed, target audience, and any specific requirements..."
                 ></textarea>
               </div>
@@ -348,16 +380,18 @@ const GetQuote = () => {
 
             {/* Submit Button */}
             <div className="text-center">
-              <button
+              <motion.button
                 type="submit"
                 disabled={isSubmitting}
-                className={`inline-flex items-center gap-3 px-8 py-4 bg-blue-600 text-white font-semibold text-lg rounded-xl shadow-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 transition-all duration-300 ${
+                className={`inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-cyan-400 to-cyan-500 hover:from-cyan-500 hover:to-cyan-600 text-gray-900 font-semibold text-lg rounded-xl shadow-lg hover:shadow-cyan-400/25 transition-all duration-300 ${
                   isSubmitting ? 'opacity-75 cursor-not-allowed' : 'hover:shadow-xl'
                 }`}
+                whileHover={{ scale: isSubmitting ? 1 : 1.05, y: isSubmitting ? 0 : -2 }}
+                whileTap={{ scale: 0.95 }}
               >
                 {isSubmitting ? (
                   <>
-                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    <div className="w-5 h-5 border-2 border-gray-900 border-t-transparent rounded-full animate-spin"></div>
                     Sending Quote Request...
                   </>
                 ) : (
@@ -366,9 +400,9 @@ const GetQuote = () => {
                     Get My Free Quote
                   </>
                 )}
-              </button>
+              </motion.button>
               
-              <p className="text-sm text-gray-500 mt-4">
+              <p className="text-sm text-gray-400 mt-4">
                 Free consultation included • No obligation • 24-hour response
               </p>
             </div>
@@ -382,22 +416,22 @@ const GetQuote = () => {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16"
         >
-          <div className="text-center p-6 bg-white rounded-xl shadow-lg">
-            <Clock className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Quick Response</h3>
-            <p className="text-gray-600">Get your detailed quote within 24 hours with project breakdown and timeline.</p>
+          <div className="text-center p-6 bg-gradient-to-b from-gray-800 to-gray-900 rounded-xl border border-gray-700 hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-400/10 transition-all duration-300">
+            <Clock className="w-12 h-12 text-cyan-400 mx-auto mb-4" />
+            <h3 className="text-xl font-bold text-white mb-2">Quick Response</h3>
+            <p className="text-gray-300">Get your detailed quote within 24 hours with project breakdown and timeline.</p>
           </div>
           
-          <div className="text-center p-6 bg-white rounded-xl shadow-lg">
-            <DollarSign className="w-12 h-12 text-green-600 mx-auto mb-4" />
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Transparent Pricing</h3>
-            <p className="text-gray-600">No hidden fees, clear project costs, and flexible payment options available.</p>
+          <div className="text-center p-6 bg-gradient-to-b from-gray-800 to-gray-900 rounded-xl border border-gray-700 hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-400/10 transition-all duration-300">
+            <DollarSign className="w-12 h-12 text-green-400 mx-auto mb-4" />
+            <h3 className="text-xl font-bold text-white mb-2">Transparent Pricing</h3>
+            <p className="text-gray-300">No hidden fees, clear project costs, and flexible payment options available.</p>
           </div>
           
-          <div className="text-center p-6 bg-white rounded-xl shadow-lg">
-            <MessageCircle className="w-12 h-12 text-purple-600 mx-auto mb-4" />
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Free Consultation</h3>
-            <p className="text-gray-600">30-minute strategy call included to discuss your project in detail.</p>
+          <div className="text-center p-6 bg-gradient-to-b from-gray-800 to-gray-900 rounded-xl border border-gray-700 hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-400/10 transition-all duration-300">
+            <MessageCircle className="w-12 h-12 text-purple-400 mx-auto mb-4" />
+            <h3 className="text-xl font-bold text-white mb-2">Free Consultation</h3>
+            <p className="text-gray-300">30-minute strategy call included to discuss your project in detail.</p>
           </div>
         </motion.div>
 
@@ -406,31 +440,51 @@ const GetQuote = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 md:p-12 text-white text-center"
+          className="mt-16 bg-gradient-to-r from-cyan-400 to-cyan-500 rounded-2xl p-8 md:p-12 text-white text-center shadow-2xl relative overflow-hidden"
         >
-          <h3 className="text-2xl md:text-3xl font-bold mb-4">
-            Need to Discuss Your Project Right Away?
-          </h3>
-          <p className="text-blue-100 mb-8 max-w-2xl mx-auto text-lg">
-            For urgent projects or detailed discussions, feel free to reach out directly. I'm here to help!
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="tel:+8801751010966"
-              className="inline-flex items-center gap-2 bg-white text-blue-600 px-6 py-3 rounded-xl font-semibold hover:bg-gray-100 transition-colors"
-            >
-              <Phone className="w-5 h-5" />
-              +880 175 101 0966
-            </a>
+          {/* Background Effects */}
+          <div className="absolute inset-0 opacity-10" aria-hidden="true">
+            <motion.div 
+              className="absolute top-0 left-0 w-64 h-64 bg-white rounded-full blur-3xl"
+              animate={{ x: [0, 30, 0], y: [0, -15, 0] }}
+              transition={{ duration: 8, repeat: Infinity }}
+            />
+            <motion.div 
+              className="absolute bottom-0 right-0 w-48 h-48 bg-gray-200 rounded-full blur-3xl"
+              animate={{ x: [0, -20, 0], y: [0, 15, 0] }}
+              transition={{ duration: 10, repeat: Infinity }}
+            />
+          </div>
+
+          <div className="relative z-10">
+            <h3 className="text-3xl md:text-4xl font-bold mb-4">
+              Need to Discuss Your Project Right Away?
+            </h3>
+            <p className="text-cyan-100 mb-8 max-w-2xl mx-auto text-lg leading-relaxed">
+              For urgent projects or detailed discussions, feel free to reach out directly. I'm here to help!
+            </p>
             
-            <a
-              href="mailto:shorifull@gmail.com"
-              className="inline-flex items-center gap-2 bg-white/20 border-2 border-white text-white px-6 py-3 rounded-xl font-semibold hover:bg-white/30 transition-colors"
-            >
-              <Mail className="w-5 h-5" />
-              shorifull@gmail.com
-            </a>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <motion.a
+                href="tel:+8801751010966"
+                className="inline-flex items-center gap-2 bg-white hover:bg-gray-100 text-cyan-600 px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Phone className="w-5 h-5" />
+                +880 175 101 0966
+              </motion.a>
+              
+              <motion.a
+                href="mailto:shorifull@gmail.com"
+                className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/30 hover:bg-white/20 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Mail className="w-5 h-5" />
+                shorifull@gmail.com
+              </motion.a>
+            </div>
           </div>
         </motion.div>
       </div>

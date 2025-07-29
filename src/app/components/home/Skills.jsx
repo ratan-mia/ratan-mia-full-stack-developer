@@ -36,8 +36,8 @@ const SKILL_CATEGORIES = {
   frontend: {
     title: "Frontend Development",
     icon: Code,
-    color: "from-blue-500 to-cyan-500",
-    textColor: "text-blue-400",
+    color: "from-cyan-400 to-cyan-500",
+    textColor: "text-cyan-500",
     description: "Creating beautiful, responsive user interfaces",
     skills: [
       { 
@@ -105,8 +105,8 @@ const SKILL_CATEGORIES = {
   backend: {
     title: "Backend Development",
     icon: Server,
-    color: "from-purple-500 to-pink-500",
-    textColor: "text-purple-400",
+    color: "from-cyan-400 to-cyan-500",
+    textColor: "text-cyan-500",
     description: "Building robust server-side applications",
     skills: [
       { 
@@ -174,8 +174,8 @@ const SKILL_CATEGORIES = {
   fullstack: {
     title: "Full Stack & CMS",
     icon: Globe,
-    color: "from-green-500 to-teal-500",
-    textColor: "text-green-400",
+    color: "from-cyan-400 to-cyan-500",
+    textColor: "text-cyan-500",
     description: "End-to-end application development",
     skills: [
       { 
@@ -243,8 +243,8 @@ const SKILL_CATEGORIES = {
   devops: {
     title: "DevOps & Tools",
     icon: Settings,
-    color: "from-orange-500 to-red-500",
-    textColor: "text-orange-400",
+    color: "from-cyan-400 to-cyan-500",
+    textColor: "text-cyan-500",
     description: "Infrastructure and deployment automation",
     skills: [
       { 
@@ -312,10 +312,10 @@ const SKILL_CATEGORIES = {
 };
 
 const ACHIEVEMENTS = [
-  { icon: Trophy, value: "8+", label: "Years", color: "text-yellow-400", description: "Professional experience" },
-  { icon: Code, value: "25+", label: "Technologies", color: "text-blue-400", description: "Mastered skills" },
-  { icon: Briefcase, value: "150+", label: "Projects", color: "text-green-400", description: "Completed successfully" },
-  { icon: Star, value: "98%", label: "Success Rate", color: "text-purple-400", description: "Client satisfaction" }
+  { icon: Trophy, value: "8+", label: "Years", color: "text-cyan-500", description: "Professional experience" },
+  { icon: Code, value: "25+", label: "Technologies", color: "text-cyan-500", description: "Mastered skills" },
+  { icon: Briefcase, value: "150+", label: "Projects", color: "text-cyan-500", description: "Completed successfully" },
+  { icon: Star, value: "98%", label: "Success Rate", color: "text-cyan-500", description: "Client satisfaction" }
 ];
 
 // Skill Card Component
@@ -327,10 +327,10 @@ const SkillCard = ({ skill, category, index, searchTerm, inView, isExpanded, onT
   const isHighlighted = searchTerm && skill.name.toLowerCase().includes(searchTerm.toLowerCase());
 
   const getSkillLevel = () => {
-    if (skill.level >= 90) return { label: "Expert", color: "text-emerald-400", icon: Trophy };
-    if (skill.level >= 80) return { label: "Advanced", color: "text-blue-400", icon: Star };
-    if (skill.level >= 70) return { label: "Proficient", color: "text-yellow-400", icon: Target };
-    return { label: "Intermediate", color: "text-orange-400", icon: Book };
+    if (skill.level >= 90) return { label: "Expert", color: "text-cyan-600", icon: Trophy };
+    if (skill.level >= 80) return { label: "Advanced", color: "text-cyan-500", icon: Star };
+    if (skill.level >= 70) return { label: "Proficient", color: "text-cyan-400", icon: Target };
+    return { label: "Intermediate", color: "text-gray-500", icon: Book };
   };
 
   const skillLevel = getSkillLevel();
@@ -338,8 +338,8 @@ const SkillCard = ({ skill, category, index, searchTerm, inView, isExpanded, onT
   return (
     <motion.div
       ref={cardRef}
-      className={`group relative bg-white/10 backdrop-blur-md rounded-xl border transition-all duration-300 overflow-hidden ${
-        isHighlighted ? 'border-yellow-400/60 bg-yellow-400/5' : 'border-white/20 hover:border-blue-500/50'
+      className={`group relative bg-white rounded-xl border transition-all duration-300 overflow-hidden shadow-xl hover:shadow-2xl ${
+        isHighlighted ? 'border-cyan-400 bg-cyan-50' : 'border-gray-200 hover:border-cyan-300'
       } ${isExpanded ? 'row-span-2' : ''}`}
       initial={{ opacity: 0, y: 20, scale: 0.95 }}
       animate={skillInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.95 }}
@@ -363,22 +363,22 @@ const SkillCard = ({ skill, category, index, searchTerm, inView, isExpanded, onT
         </motion.div>
       )}
 
-      <div className={`p-5 ${isExpanded ? 'h-full' : ''}`}>
+      <div className={`p-6 ${isExpanded ? 'h-full' : ''}`}>
         {/* Header */}
         <div className="flex items-start justify-between mb-4">
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-2">
-              <h4 className="text-lg font-bold text-white group-hover:text-blue-400 transition-colors duration-300">
+              <h4 className="text-xl font-bold text-gray-900 group-hover:text-cyan-600 transition-colors duration-300">
                 {skill.name}
               </h4>
               <skillLevel.icon className={`w-4 h-4 ${skillLevel.color}`} />
             </div>
-            <p className="text-sm text-gray-400">{skill.description}</p>
+            <p className="text-sm text-gray-600">{skill.description}</p>
           </div>
           
           <button
             onClick={() => onToggleExpand(skill.name)}
-            className="p-1 rounded-lg hover:bg-white/10 transition-colors text-gray-400 hover:text-white"
+            className="p-1 rounded-lg hover:bg-gray-100 transition-colors text-gray-500 hover:text-gray-700"
             aria-label={`${isExpanded ? 'Collapse' : 'Expand'} ${skill.name} details`}
           >
             {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
@@ -389,9 +389,9 @@ const SkillCard = ({ skill, category, index, searchTerm, inView, isExpanded, onT
         <div className="relative mb-4">
           <div className="flex items-center justify-between mb-2">
             <span className={`text-sm font-medium ${skillLevel.color}`}>{skillLevel.label}</span>
-            <span className="text-white font-bold text-sm">{skill.level}%</span>
+            <span className="text-gray-900 font-bold text-sm">{skill.level}%</span>
           </div>
-          <div className="w-full h-2 bg-gray-700 rounded-full overflow-hidden">
+          <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
             <motion.div
               className={`h-full bg-gradient-to-r ${category.color} rounded-full relative`}
               initial={{ width: 0 }}
@@ -399,7 +399,7 @@ const SkillCard = ({ skill, category, index, searchTerm, inView, isExpanded, onT
               transition={{ duration: 1, delay: index * 0.1, ease: "easeOut" }}
             >
               <motion.div
-                className="absolute inset-0 bg-white/20 rounded-full"
+                className="absolute inset-0 bg-white/30 rounded-full"
                 animate={isHovered ? { x: ['0%', '100%', '0%'] } : {}}
                 transition={{ duration: 1.5, repeat: isHovered ? Infinity : 0 }}
               />
@@ -409,19 +409,19 @@ const SkillCard = ({ skill, category, index, searchTerm, inView, isExpanded, onT
 
         {/* Basic Stats */}
         <div className="grid grid-cols-2 gap-3 mb-4">
-          <div className="text-center p-2 bg-white/5 rounded-lg">
+          <div className="text-center p-3 bg-gray-50 rounded-lg border border-gray-200">
             <div className="flex items-center justify-center gap-1 mb-1">
-              <Calendar className="w-3 h-3 text-blue-400" />
-              <span className="text-white font-bold text-sm">{skill.years}y</span>
+              <Calendar className="w-3 h-3 text-cyan-500" />
+              <span className="text-gray-900 font-bold text-sm">{skill.years}y</span>
             </div>
-            <span className="text-xs text-gray-400">Experience</span>
+            <span className="text-xs text-gray-600">Experience</span>
           </div>
-          <div className="text-center p-2 bg-white/5 rounded-lg">
+          <div className="text-center p-3 bg-gray-50 rounded-lg border border-gray-200">
             <div className="flex items-center justify-center gap-1 mb-1">
-              <Briefcase className="w-3 h-3 text-green-400" />
-              <span className="text-white font-bold text-sm">{skill.projects}</span>
+              <Briefcase className="w-3 h-3 text-cyan-500" />
+              <span className="text-gray-900 font-bold text-sm">{skill.projects}</span>
             </div>
-            <span className="text-xs text-gray-400">Projects</span>
+            <span className="text-xs text-gray-600">Projects</span>
           </div>
         </div>
 
@@ -437,8 +437,8 @@ const SkillCard = ({ skill, category, index, searchTerm, inView, isExpanded, onT
             >
               {/* Specialty */}
               <div>
-                <h5 className="text-sm font-semibold text-white mb-2 flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-purple-400" />
+                <h5 className="text-sm font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-cyan-500" />
                   Specialty
                 </h5>
                 <p className={`text-sm ${category.textColor} font-medium`}>{skill.specialty}</p>
@@ -447,15 +447,15 @@ const SkillCard = ({ skill, category, index, searchTerm, inView, isExpanded, onT
               {/* Certifications */}
               {skill.certifications.length > 0 && (
                 <div>
-                  <h5 className="text-sm font-semibold text-white mb-2 flex items-center gap-2">
-                    <Award className="w-4 h-4 text-yellow-400" />
+                  <h5 className="text-sm font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                    <Award className="w-4 h-4 text-cyan-500" />
                     Certifications
                   </h5>
                   <div className="space-y-1">
                     {skill.certifications.map((cert, i) => (
                       <div key={i} className="flex items-center gap-2">
-                        <CheckCircle2 className="w-3 h-3 text-green-400" />
-                        <span className="text-sm text-gray-300">{cert}</span>
+                        <CheckCircle2 className="w-3 h-3 text-green-500" />
+                        <span className="text-sm text-gray-600">{cert}</span>
                       </div>
                     ))}
                   </div>
@@ -465,14 +465,14 @@ const SkillCard = ({ skill, category, index, searchTerm, inView, isExpanded, onT
               {/* Action Buttons */}
               <div className="flex gap-2 pt-2">
                 <button
-                  className="flex-1 inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors"
+                  className="flex-1 inline-flex items-center justify-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-2 rounded-lg text-sm font-medium transition-colors"
                   onClick={() => console.log('View projects for:', skill.name)}
                 >
                   <Eye className="w-3 h-3" />
                   View Projects
                 </button>
                 <button
-                  className="flex-1 inline-flex items-center justify-center gap-2 bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 px-3 py-2 rounded-lg text-sm font-medium transition-colors"
+                  className="flex-1 inline-flex items-center justify-center gap-2 bg-cyan-100 hover:bg-cyan-200 text-cyan-700 px-3 py-2 rounded-lg text-sm font-medium transition-colors"
                   onClick={() => console.log('Learn more about:', skill.name)}
                 >
                   <ExternalLink className="w-3 h-3" />
@@ -498,19 +498,19 @@ const SearchAndFilter = ({ searchTerm, onSearchChange, showTrendingOnly, onToggl
     >
       {/* Search */}
       <div className="relative flex-1 max-w-md">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-4 h-4" />
         <input
           type="text"
           placeholder="Search skills..."
           value={searchTerm}
           onChange={(e) => onSearchChange(e.target.value)}
-          className="w-full pl-10 pr-10 py-3 bg-white/10 backdrop-blur-sm border border-white/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder-gray-400"
+          className="w-full pl-10 pr-10 py-3 bg-white border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent text-gray-900 placeholder-gray-500"
           aria-label="Search skills"
         />
         {searchTerm && (
           <button
             onClick={() => onSearchChange('')}
-            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white"
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
             aria-label="Clear search"
           >
             <X className="w-4 h-4" />
@@ -525,7 +525,7 @@ const SearchAndFilter = ({ searchTerm, onSearchChange, showTrendingOnly, onToggl
           className={`inline-flex items-center gap-2 px-4 py-3 rounded-xl font-medium text-sm transition-all duration-300 ${
             showTrendingOnly
               ? 'bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg'
-              : 'bg-white/10 backdrop-blur-sm text-gray-300 border border-white/20 hover:bg-white/20'
+              : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
           }`}
           aria-label={`${showTrendingOnly ? 'Show all' : 'Show trending'} skills`}
         >
@@ -533,7 +533,7 @@ const SearchAndFilter = ({ searchTerm, onSearchChange, showTrendingOnly, onToggl
           <span>Trending</span>
         </button>
 
-        <div className="hidden sm:flex items-center px-3 py-3 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 text-sm text-gray-300">
+        <div className="hidden sm:flex items-center px-3 py-3 bg-white rounded-xl border border-gray-300 text-sm text-gray-600">
           <span>{filteredCount} of {totalSkills} skills</span>
         </div>
       </div>
@@ -557,35 +557,35 @@ const CategoryStats = ({ category, isActive }) => {
           transition={{ duration: 0.3 }}
           className="mb-6"
         >
-          <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10">
+          <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-lg">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="text-center">
                 <div className="flex items-center justify-center gap-1 mb-1">
-                  <BarChart3 className="w-4 h-4 text-blue-400" />
-                  <span className="text-xl font-bold text-white">{avgLevel}%</span>
+                  <BarChart3 className="w-4 h-4 text-cyan-500" />
+                  <span className="text-2xl font-bold text-gray-900">{avgLevel}%</span>
                 </div>
-                <span className="text-xs text-gray-400">Avg Level</span>
+                <span className="text-xs text-gray-600">Avg Level</span>
               </div>
               <div className="text-center">
                 <div className="flex items-center justify-center gap-1 mb-1">
-                  <Trophy className="w-4 h-4 text-yellow-400" />
-                  <span className="text-xl font-bold text-white">{expertSkills}</span>
+                  <Trophy className="w-4 h-4 text-cyan-500" />
+                  <span className="text-2xl font-bold text-gray-900">{expertSkills}</span>
                 </div>
-                <span className="text-xs text-gray-400">Expert Level</span>
+                <span className="text-xs text-gray-600">Expert Level</span>
               </div>
               <div className="text-center">
                 <div className="flex items-center justify-center gap-1 mb-1">
-                  <Flame className="w-4 h-4 text-orange-400" />
-                  <span className="text-xl font-bold text-white">{trendingSkills}</span>
+                  <Flame className="w-4 h-4 text-orange-500" />
+                  <span className="text-2xl font-bold text-gray-900">{trendingSkills}</span>
                 </div>
-                <span className="text-xs text-gray-400">Trending</span>
+                <span className="text-xs text-gray-600">Trending</span>
               </div>
               <div className="text-center">
                 <div className="flex items-center justify-center gap-1 mb-1">
-                  <Briefcase className="w-4 h-4 text-green-400" />
-                  <span className="text-xl font-bold text-white">{category.skills.length}</span>
+                  <Briefcase className="w-4 h-4 text-cyan-500" />
+                  <span className="text-2xl font-bold text-gray-900">{category.skills.length}</span>
                 </div>
-                <span className="text-xs text-gray-400">Total Skills</span>
+                <span className="text-xs text-gray-600">Total Skills</span>
               </div>
             </div>
           </div>
@@ -670,67 +670,42 @@ const Skills = () => {
     <section 
       ref={sectionRef}
       id="skills" 
-      className="py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-900 via-slate-950 to-gray-900 relative overflow-hidden"
+      className="py-24 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden"
       aria-label="Technical skills and expertise"
     >
-      {/* Background Effects */}
-      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-        <motion.div 
-          className="absolute top-1/4 right-1/3 w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 bg-blue-500/8 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.1, 1],
-            rotate: [0, 180, 360],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        />
-        <motion.div 
-          className="absolute bottom-1/4 left-1/3 w-32 h-32 md:w-48 md:h-48 lg:w-64 lg:h-64 bg-purple-500/8 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            rotate: [360, 180, 0],
-          }}
-          transition={{
-            duration: 30,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        />
-      </div>
+      {/* Background Decoration */}
+      <div className="absolute top-40 right-10 w-96 h-96 bg-cyan-400 opacity-10 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 left-10 w-80 h-80 bg-cyan-400 opacity-10 rounded-full blur-3xl" />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <motion.div
           variants={staggerContainer}
           initial="initial"
           animate={isInView ? "animate" : "initial"}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
-          <motion.div
+          {/* Eyebrow Text */}
+          <motion.span
             variants={fadeInUp}
-            className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-blue-400/30 text-blue-400 px-4 py-2 rounded-xl font-semibold text-xs sm:text-sm uppercase tracking-wider mb-6"
+            className="text-cyan-500 font-semibold tracking-wider uppercase mb-2 inline-block bg-cyan-50 px-4 py-2 rounded-xl"
           >
-            <motion.div 
-              className="w-1.5 h-1.5 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            />
-            <span>Technical Expertise</span>
-          </motion.div>
+            Technical Expertise
+          </motion.span>
           
           <motion.h2 
             variants={fadeInUp}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900"
           >
-            Interactive Skills Portfolio
+            Interactive <span className="text-cyan-500">Skills Portfolio</span>
           </motion.h2>
+
+          {/* Accent Line */}
+          <div className="w-24 h-1 bg-cyan-400 mx-auto mb-6" />
           
           <motion.p 
             variants={fadeInUp}
-            className="text-base md:text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8"
+            className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed mb-8"
           >
             Explore my comprehensive technical expertise across different domains. Search, filter, and dive deep into each skill to see certifications, project experience, and specializations.
           </motion.p>
@@ -738,22 +713,22 @@ const Skills = () => {
           {/* Achievement Stats */}
           <motion.div 
             variants={fadeInUp}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto"
+            className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto"
           >
             {ACHIEVEMENTS.map((achievement, index) => (
               <motion.div
                 key={achievement.label}
-                className="text-center p-4 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 group"
+                className="text-center p-6 bg-white rounded-xl border border-gray-200 shadow-xl hover:shadow-2xl hover:border-cyan-300 transition-all duration-300 group"
                 initial={{ opacity: 0, y: 15 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ scale: 1.05, y: -2 }}
               >
-                <div className={`w-8 h-8 mx-auto mb-2 ${achievement.color} group-hover:scale-110 transition-transform`}>
+                <div className={`w-8 h-8 mx-auto mb-3 ${achievement.color} group-hover:scale-110 transition-transform`}>
                   <achievement.icon className="w-full h-full" />
                 </div>
-                <div className="text-xl md:text-2xl font-bold text-white mb-1">{achievement.value}</div>
-                <div className="text-sm font-medium text-gray-400 mb-1">{achievement.label}</div>
+                <div className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">{achievement.value}</div>
+                <div className="text-sm font-medium text-gray-600 mb-1">{achievement.label}</div>
                 <div className="text-xs text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">
                   {achievement.description}
                 </div>
@@ -769,7 +744,7 @@ const Skills = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
           transition={{ duration: 0.4, delay: 0.5 }}
         >
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-cyan-400/30 text-cyan-400 px-4 py-2 rounded-lg font-medium text-sm">
+          <div className="inline-flex items-center gap-2 bg-white border border-cyan-200 text-cyan-600 px-4 py-2 rounded-lg font-medium text-sm">
             <MousePointer className="w-4 h-4" />
             <span>Click categories • Search skills • Expand for details</span>
           </div>
@@ -789,7 +764,7 @@ const Skills = () => {
                 className={`group relative inline-flex items-center gap-3 px-6 py-4 font-bold text-base transition-all duration-300 rounded-2xl ${
                   activeCategory === key 
                     ? `bg-gradient-to-r ${category.color} text-white shadow-lg scale-105` 
-                    : 'bg-white/10 backdrop-blur-md text-gray-300 border border-white/20 hover:bg-white/20 hover:text-white hover:scale-102'
+                    : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 hover:border-cyan-300 hover:scale-102'
                 }`}
                 onClick={() => handleCategoryChange(key)}
                 whileHover={{ scale: activeCategory === key ? 1.05 : 1.02 }}
@@ -817,7 +792,7 @@ const Skills = () => {
                 <span className={`relative z-10 px-2 py-1 rounded-full text-xs font-bold ${
                   activeCategory === key 
                     ? 'bg-white/20 text-white' 
-                    : 'bg-gray-800 text-gray-400'
+                    : 'bg-gray-100 text-gray-600'
                 }`}>
                   {category.skills.length}
                 </span>
@@ -843,7 +818,7 @@ const Skills = () => {
         <AnimatePresence mode="wait">
           <motion.div 
             key={`${activeCategory}-${searchTerm}-${showTrendingOnly}`}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -868,17 +843,17 @@ const Skills = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
               >
-                <div className="w-16 h-16 mx-auto mb-4 bg-gray-800 rounded-full flex items-center justify-center">
-                  <Search className="w-6 h-6 text-gray-400" />
+                <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
+                  <Search className="w-6 h-6 text-gray-500" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-400 mb-2">No skills found</h3>
+                <h3 className="text-xl font-semibold text-gray-600 mb-2">No skills found</h3>
                 <p className="text-gray-500 mb-4">Try adjusting your search or filter criteria</p>
                 <button
                   onClick={() => {
                     setSearchTerm('');
                     setShowTrendingOnly(false);
                   }}
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-cyan-500 text-white rounded-lg hover:bg-cyan-600 transition-colors"
                 >
                   <X className="w-4 h-4" />
                   Clear filters
@@ -895,25 +870,25 @@ const Skills = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.5, delay: 0.7 }}
         >
-          <div className="bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-600 rounded-3xl p-8 text-white shadow-2xl relative overflow-hidden">
+          <div className="bg-gradient-to-r from-cyan-400 to-cyan-500 rounded-2xl p-12 text-white shadow-2xl relative overflow-hidden">
             <div className="absolute inset-0 opacity-10" aria-hidden="true">
               <motion.div 
-                className="absolute top-0 left-0 w-48 h-48 bg-white rounded-full blur-3xl"
+                className="absolute top-0 left-0 w-64 h-64 bg-white rounded-full blur-3xl"
                 animate={{ x: [0, 30, 0], y: [0, -15, 0] }}
                 transition={{ duration: 12, repeat: Infinity }}
               />
               <motion.div 
-                className="absolute bottom-0 right-0 w-48 h-48 bg-purple-200 rounded-full blur-3xl"
+                className="absolute bottom-0 right-0 w-48 h-48 bg-gray-200 rounded-full blur-3xl"
                 animate={{ x: [0, -30, 0], y: [0, 15, 0] }}
                 transition={{ duration: 10, repeat: Infinity }}
               />
             </div>
 
             <div className="relative z-10">
-              <h3 className="text-2xl md:text-3xl font-bold mb-4">
+              <h3 className="text-3xl md:text-4xl font-bold mb-4">
                 Ready to Leverage These Skills?
               </h3>
-              <p className="text-blue-100 mb-8 max-w-2xl mx-auto text-base leading-relaxed">
+              <p className="text-cyan-100 mb-8 max-w-2xl mx-auto text-lg leading-relaxed">
                 Let's combine these technical expertise to create innovative solutions for your business. 
                 From concept to deployment, I'll bring your vision to life.
               </p>
@@ -921,9 +896,9 @@ const Skills = () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <motion.a
                   href="#contact"
-                  className="inline-flex items-center justify-center gap-2 bg-white text-blue-600 px-8 py-4 rounded-2xl font-bold text-base shadow-xl hover:shadow-2xl transition-all duration-300"
-                  whileHover={{ scale: 1.03, y: -2 }}
-                  whileTap={{ scale: 0.97 }}
+                  className="bg-white hover:bg-gray-100 text-cyan-600 font-semibold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 inline-flex items-center justify-center gap-2"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
                   aria-label="Start a project with me"
                 >
                   <Zap className="w-5 h-5" />
@@ -932,9 +907,9 @@ const Skills = () => {
 
                 <motion.a
                   href="#projects"
-                  className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-md border-2 border-white/30 text-white px-8 py-4 rounded-2xl font-bold text-base hover:bg-white/20 transition-all duration-300"
-                  whileHover={{ scale: 1.03, y: -2 }}
-                  whileTap={{ scale: 0.97 }}
+                  className="bg-white/10 backdrop-blur-sm border border-white/30 hover:bg-white/20 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 inline-flex items-center justify-center gap-2"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
                   aria-label="View my project portfolio"
                 >
                   <Eye className="w-5 h-5" />
@@ -947,7 +922,7 @@ const Skills = () => {
                 {Object.entries(SKILL_CATEGORIES).map(([key, category]) => (
                   <div key={key} className="text-center">
                     <div className="text-2xl font-bold mb-1">{category.skills.length}</div>
-                    <div className="text-blue-200 text-sm">{category.title}</div>
+                    <div className="text-cyan-100 text-sm">{category.title}</div>
                   </div>
                 ))}
               </div>

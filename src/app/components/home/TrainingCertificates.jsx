@@ -56,7 +56,6 @@ const CERTIFICATES = [
     instructor: "Jonas Schmedtmann",
     category: "Frontend",
     icon: Code,
-    color: "bg-blue-500",
     skills: ["React.js", "Redux", "Hooks", "JSX"],
     duration: "40 hours",
     date: "2023",
@@ -70,7 +69,6 @@ const CERTIFICATES = [
     instructor: "IBM Skills Network",
     category: "Backend",
     icon: Server,
-    color: "bg-green-500",
     skills: ["Node.js", "Express.js", "REST APIs", "MongoDB"],
     duration: "24 hours",
     date: "2023",
@@ -84,7 +82,6 @@ const CERTIFICATES = [
     instructor: "Lee Robinson",
     category: "Full Stack",
     icon: Layers,
-    color: "bg-purple-500",
     skills: ["Next.js", "SSR", "API Routes", "Deployment"],
     duration: "32 hours",
     date: "2023",
@@ -98,7 +95,6 @@ const CERTIFICATES = [
     instructor: "AWS Training",
     category: "Cloud",
     icon: Globe,
-    color: "bg-orange-500",
     skills: ["AWS", "EC2", "S3", "Lambda"],
     duration: "15 hours",
     date: "2022",
@@ -112,7 +108,6 @@ const CERTIFICATES = [
     instructor: "Edwin Diaz",
     category: "Backend",
     icon: Database,
-    color: "bg-teal-500",
     skills: ["PHP", "MySQL", "CRUD", "Security"],
     duration: "42 hours",
     date: "2022",
@@ -126,7 +121,6 @@ const CERTIFICATES = [
     instructor: "Stephen Grider",
     category: "DevOps",
     icon: Shield,
-    color: "bg-cyan-500",
     skills: ["Docker", "Containers", "Docker Compose"],
     duration: "18 hours",
     date: "2023",
@@ -154,13 +148,13 @@ const CertificateCard = ({ certificate, index }) => {
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       transition={{ delay: index * 0.1, duration: 0.6 }}
-      className={`bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border border-gray-100 ${
-        certificate.featured ? 'ring-2 ring-blue-200' : ''
+      className={`bg-white rounded-xl border border-gray-200 shadow-xl hover:shadow-2xl hover:border-cyan-300 transition-all duration-300 p-6 ${
+        certificate.featured ? 'ring-2 ring-cyan-200' : ''
       }`}
     >
       {/* Featured Badge */}
       {certificate.featured && (
-        <div className="inline-flex items-center gap-1 bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-semibold mb-4">
+        <div className="inline-flex items-center gap-1 bg-cyan-100 text-cyan-700 px-2 py-1 rounded-full text-xs font-semibold mb-4">
           <Star className="w-3 h-3 fill-current" />
           Featured
         </div>
@@ -168,14 +162,14 @@ const CertificateCard = ({ certificate, index }) => {
 
       {/* Header */}
       <div className="flex items-start gap-4 mb-4">
-        <div className={`w-12 h-12 ${certificate.color} rounded-lg flex items-center justify-center text-white shadow-lg`}>
+        <div className="w-12 h-12 bg-gradient-to-r from-cyan-400 to-cyan-500 rounded-lg flex items-center justify-center text-white shadow-lg">
           <certificate.icon className="w-6 h-6" />
         </div>
         <div className="flex-1">
           <h3 className="text-lg font-bold text-gray-900 mb-1 line-clamp-2">
             {certificate.title}
           </h3>
-          <p className="text-blue-600 font-semibold text-sm">{certificate.provider}</p>
+          <p className="text-cyan-500 font-semibold text-sm">{certificate.provider}</p>
           <p className="text-gray-600 text-sm">by {certificate.instructor}</p>
         </div>
       </div>
@@ -186,7 +180,7 @@ const CertificateCard = ({ certificate, index }) => {
           {certificate.category}
         </span>
         <div className="flex items-center gap-1">
-          <Star className="w-4 h-4 text-yellow-400 fill-current" />
+          <Star className="w-4 h-4 text-cyan-500 fill-current" />
           <span className="text-sm font-medium text-gray-600">{certificate.rating}</span>
         </div>
       </div>
@@ -198,7 +192,7 @@ const CertificateCard = ({ certificate, index }) => {
           {certificate.skills.map((skill, i) => (
             <span 
               key={i}
-              className="px-2 py-1 bg-blue-50 text-blue-700 text-xs font-medium rounded border border-blue-100"
+              className="px-2 py-1 bg-cyan-50 text-cyan-600 text-xs font-medium rounded border border-cyan-200"
             >
               {skill}
             </span>
@@ -207,16 +201,16 @@ const CertificateCard = ({ certificate, index }) => {
       </div>
 
       {/* Details */}
-      <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+      <div className="flex items-center justify-between pt-4 border-t border-gray-200">
         <div className="text-sm text-gray-500">
           <Calendar className="w-4 h-4 inline mr-1" />
           {certificate.duration} • {certificate.date}
         </div>
         <div className="flex gap-2">
-          <button className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">
+          <button className="p-2 text-cyan-500 hover:bg-cyan-50 rounded-lg transition-colors">
             <ExternalLink className="w-4 h-4" />
           </button>
-          <button className="p-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors">
+          <button className="p-2 text-green-500 hover:bg-green-50 rounded-lg transition-colors">
             <Download className="w-4 h-4" />
           </button>
         </div>
@@ -237,9 +231,13 @@ const TrainingCertificates = () => {
     <section 
       ref={sectionRef}
       id="education" 
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-white"
+      className="py-24 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto">
+      {/* Background Decoration */}
+      <div className="absolute top-40 right-10 w-96 h-96 bg-cyan-400 opacity-10 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 left-10 w-80 h-80 bg-cyan-400 opacity-10 rounded-full blur-3xl" />
+
+      <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -247,18 +245,36 @@ const TrainingCertificates = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
-            <GraduationCap className="w-4 h-4" />
+          {/* Eyebrow Text */}
+          <motion.span
+            className="text-cyan-500 font-semibold tracking-wider uppercase mb-2 inline-block bg-cyan-50 px-4 py-2 rounded-xl"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+            transition={{ delay: 0.2 }}
+          >
             Education & Certifications
-          </div>
+          </motion.span>
           
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Continuous Learning Journey
-          </h2>
+          <motion.h2 
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ delay: 0.4 }}
+          >
+            Continuous <span className="text-cyan-500">Learning Journey</span>
+          </motion.h2>
+
+          {/* Accent Line */}
+          <div className="w-24 h-1 bg-cyan-400 mx-auto mb-6" />
           
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <motion.p 
+            className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ delay: 0.6 }}
+          >
             Committed to staying current with latest technologies through formal education and specialized training programs.
-          </p>
+          </motion.p>
         </motion.div>
 
         {/* Stats */}
@@ -266,17 +282,24 @@ const TrainingCertificates = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16"
+          className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto mb-20"
         >
           {STATS.map((stat, index) => (
-            <div key={stat.label} className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">
+            <motion.div 
+              key={stat.label} 
+              className="text-center p-6 bg-white rounded-xl border border-gray-200 shadow-xl hover:shadow-2xl hover:border-cyan-300 transition-all duration-300"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+              transition={{ delay: 0.4 + index * 0.1 }}
+              whileHover={{ scale: 1.05, y: -2 }}
+            >
+              <div className="text-3xl md:text-4xl font-bold text-cyan-500 mb-2">
                 {stat.number}
               </div>
               <div className="text-gray-600 font-medium">
                 {stat.label}
               </div>
-            </div>
+            </motion.div>
           ))}
         </motion.div>
 
@@ -288,14 +311,14 @@ const TrainingCertificates = () => {
           className="grid lg:grid-cols-2 gap-8 mb-16"
         >
           {/* Education */}
-          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-2xl border border-blue-100">
+          <div className="bg-white p-8 rounded-2xl border border-gray-200 shadow-xl">
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center text-white">
+              <div className="w-12 h-12 bg-gradient-to-r from-cyan-400 to-cyan-500 rounded-xl flex items-center justify-center text-white">
                 <GraduationCap className="w-6 h-6" />
               </div>
               <div>
                 <h3 className="text-xl font-bold text-gray-900">{EDUCATION.degree}</h3>
-                <p className="text-blue-600 font-semibold">{EDUCATION.institution}</p>
+                <p className="text-cyan-500 font-semibold">{EDUCATION.institution}</p>
               </div>
             </div>
 
@@ -314,30 +337,30 @@ const TrainingCertificates = () => {
               </div>
             </div>
 
-            <p className="text-gray-700 leading-relaxed mb-6">{EDUCATION.description}</p>
+            <p className="text-gray-600 leading-relaxed mb-6">{EDUCATION.description}</p>
             
             <div className="space-y-2">
               <h4 className="font-semibold text-gray-900">Key Outcomes:</h4>
               {EDUCATION.highlights.map((highlight, index) => (
                 <div key={index} className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-green-500" />
-                  <span className="text-sm text-gray-700">{highlight}</span>
+                  <span className="text-sm text-gray-600">{highlight}</span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Awards */}
-          <div className="bg-gradient-to-br from-yellow-50 to-orange-50 p-8 rounded-2xl border border-yellow-100">
+          <div className="bg-white p-8 rounded-2xl border border-gray-200 shadow-xl">
             {AWARDS.map((award, index) => (
               <div key={index}>
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 bg-yellow-500 rounded-xl flex items-center justify-center text-white">
+                  <div className="w-12 h-12 bg-gradient-to-r from-cyan-400 to-cyan-500 rounded-xl flex items-center justify-center text-white">
                     <Trophy className="w-6 h-6" />
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-gray-900">{award.title}</h3>
-                    <p className="text-yellow-600 font-semibold">{award.organization}</p>
+                    <p className="text-cyan-500 font-semibold">{award.organization}</p>
                   </div>
                 </div>
                 
@@ -352,7 +375,7 @@ const TrainingCertificates = () => {
                   </div>
                 </div>
                 
-                <p className="text-gray-700 leading-relaxed">{award.description}</p>
+                <p className="text-gray-600 leading-relaxed">{award.description}</p>
               </div>
             ))}
           </div>
@@ -365,7 +388,7 @@ const TrainingCertificates = () => {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="mb-16"
         >
-          <h3 className="text-2xl md:text-3xl font-bold text-gray-900 text-center mb-12">
+          <h3 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">
             Featured Certifications
           </h3>
           
@@ -386,7 +409,7 @@ const TrainingCertificates = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6, delay: 0.8 }}
         >
-          <h3 className="text-2xl md:text-3xl font-bold text-gray-900 text-center mb-12">
+          <h3 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">
             All Certifications
           </h3>
           
@@ -408,29 +431,49 @@ const TrainingCertificates = () => {
           transition={{ duration: 0.6, delay: 1.0 }}
           className="text-center mt-16"
         >
-          <div className="bg-gray-50 p-8 md:p-12 rounded-2xl">
-            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-              Continuous Learning, Better Solutions
-            </h3>
-            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-              My commitment to continuous learning ensures I stay current with the latest technologies and best practices.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="#contact"
-                className="inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-blue-700 transition-colors"
-              >
-                Let's Work Together
-              </a>
+          <div className="bg-gradient-to-r from-cyan-400 to-cyan-500 p-12 rounded-2xl shadow-2xl relative overflow-hidden">
+            {/* Background Effects */}
+            <div className="absolute inset-0 opacity-10" aria-hidden="true">
+              <motion.div 
+                className="absolute top-0 left-0 w-64 h-64 bg-white rounded-full blur-3xl"
+                animate={{ x: [0, 30, 0], y: [0, -15, 0] }}
+                transition={{ duration: 8, repeat: Infinity }}
+              />
+              <motion.div 
+                className="absolute bottom-0 right-0 w-48 h-48 bg-gray-200 rounded-full blur-3xl"
+                animate={{ x: [0, -20, 0], y: [0, 15, 0] }}
+                transition={{ duration: 10, repeat: Infinity }}
+              />
+            </div>
+
+            <div className="relative z-10">
+              <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                Continuous Learning, Better Solutions
+              </h3>
+              <p className="text-cyan-100 mb-8 max-w-2xl mx-auto text-lg leading-relaxed">
+                My commitment to continuous learning ensures I stay current with the latest technologies and best practices.
+              </p>
               
-              <a
-                href="#projects"
-                className="inline-flex items-center justify-center gap-2 border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-xl font-semibold hover:border-gray-400 transition-colors"
-              >
-                <ExternalLink className="w-5 h-5" />
-                View Projects
-              </a>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <motion.a
+                  href="#contact"
+                  className="bg-white hover:bg-gray-100 text-cyan-600 font-semibold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 inline-flex items-center justify-center gap-2"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Let's Work Together
+                </motion.a>
+                
+                <motion.a
+                  href="#projects"
+                  className="bg-white/10 backdrop-blur-sm border border-white/30 hover:bg-white/20 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 inline-flex items-center justify-center gap-2"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <ExternalLink className="w-5 h-5" />
+                  View Projects
+                </motion.a>
+              </div>
             </div>
           </div>
         </motion.div>
