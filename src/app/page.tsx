@@ -20,33 +20,35 @@ export default function Home() {
       <div className="relative">
         {/* 1. About - Light Theme */}
         <About />
-        
+
         {/* 2. Services - Dark Theme */}
         <Services />
-        
+
         {/* 3. Skills - Light Theme */}
         <Skills />
-        
+
         {/* 4. Projects - Dark Theme */}
         <Projects />
-        
+
         {/* 5. Process How I Work - Light Theme */}
         <ProcessHowIWork />
-        
+
         {/* 6. Testimonials - Dark Theme */}
         <Testimonials />
-        
+
         {/* 7. Training Certificates - Light Theme */}
         <TrainingCertificates />
-        
+
         {/* 8. Get Quote CTA - Dark Theme */}
         <GetQuote />
-        
-        {/* 9. FAQ - Light Theme */}
-        <FAQ />
-        
+
+
+
+
         {/* 10. Contact - Dark Theme */}
         <Contact />
+        {/* 9. FAQ - Light Theme */}
+        <FAQ />
       </div>
     </>
   );
