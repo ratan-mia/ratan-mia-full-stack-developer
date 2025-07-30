@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { Code2, Globe, Smartphone, ArrowRight, Zap, Shield, Rocket } from 'lucide-react';
+import { ArrowRight, Code2, Globe, Rocket, Shield, Smartphone, Zap } from 'lucide-react';
 import { useRef } from 'react';
 
 const Services = () => {
