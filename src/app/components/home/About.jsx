@@ -105,12 +105,12 @@ const ServiceSkillBar = ({ service, index, inView }) => (
       transition={{ delay: index * 0.15 + 0.5, ease: "easeOut" }}
     >
       <div className="flex justify-between items-center mb-2 font-semibold">
-        <span className="text-gray-300">{service.name}</span>
-        <span className="text-accent-lime">{service.level}%</span>
+        <span className="text-black/80">{service.name}</span>
+        <span className="text-black">{service.level}%</span>
       </div>
-      <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
+      <div className="h-2 bg-black/10 rounded-full overflow-hidden">
         <motion.div
-          className="h-full bg-accent-lime rounded-full"
+          className="h-full bg-black rounded-full"
           initial={{ width: 0 }}
           animate={inView ? { width: `${service.level}%` } : {}}
           transition={{ duration: 1.2, delay: index * 0.15 + 0.5, ease: "easeOut" }}
@@ -150,17 +150,31 @@ export default function About() {
             <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent"></div>
           </div>
           {/* Right Column: Content */}
-          <div className="bg-gray-900 flex flex-col justify-center p-12 lg:p-16">
-            <motion.h2 className="text-4xl lg:text-5xl font-bold text-white mb-4" initial={{ opacity: 0, y: 20 }} animate={servicesInView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.2, duration: 0.5 }}>
-              Meet <span className="text-accent-lime">Ratan</span>
+          <div className="bg-accent-lime flex flex-col justify-center p-12 lg:p-16">
+            <motion.h2 className="text-4xl lg:text-5xl font-bold text-black mb-4" initial={{ opacity: 0, y: 20 }} animate={servicesInView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.2, duration: 0.5 }}>
+              Meet <span className="text-black">Ratan</span>
             </motion.h2>
-            <motion.p className="text-lg text-gray-300 leading-relaxed mb-8" initial={{ opacity: 0, y: 20 }} animate={servicesInView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.35, duration: 0.5 }}>
+            <motion.p className="text-lg text-black/80 leading-relaxed mb-8" initial={{ opacity: 0, y: 20 }} animate={servicesInView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.35, duration: 0.5 }}>
               A full-stack developer crafting high-performance web applications that drive business growth.
             </motion.p>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
-              <div className="flex items-center gap-3"><MapPin className="w-5 h-5 text-accent-lime" /><div><p className="text-sm text-gray-400">Location</p><p className="text-white font-medium">Dhaka, BD 🇧🇩</p></div></div>
-              <div className="flex items-center gap-3"><Mail className="w-5 h-5 text-accent-lime" /><div><p className="text-sm text-gray-400">Email</p><a href="mailto:ratanmiadev@gmail.com" className="text-accent-lime hover:text-accent-orange transition-colors text-sm font-medium">ratanmiadev@gmail.com</a></div></div>
+              <div className="flex items-center gap-3">
+                <MapPin className="w-5 h-5 text-black" />
+                <div>
+                  <p className="text-sm text-black/60">Location</p>
+                  <p className="text-black font-medium">Dhaka, BD 🇧🇩</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <Mail className="w-5 h-5 text-black" />
+                <div>
+                  <p className="text-sm text-black/60">Email</p>
+                  <a href="mailto:ratanmiadev@gmail.com" className="text-black hover:text-black/70 transition-colors text-sm font-medium">
+                    ratanmiadev@gmail.com
+                  </a>
+                </div>
+              </div>
             </div>
 
             <div className="space-y-6">{DEVELOPMENT_SERVICES.map((service, index) => (<ServiceSkillBar key={service.name} service={service} index={index} inView={servicesInView} />))}</div>
