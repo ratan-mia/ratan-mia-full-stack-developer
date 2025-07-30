@@ -3,22 +3,17 @@
 import { motion, useInView } from 'framer-motion';
 import {
   ArrowRight,
-  Award,
-  Calendar,
   Download,
-  Globe,
   Mail,
   MapPin,
-  Users
 } from 'lucide-react';
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 
 // --- DATA CONSTANTS ---
 const CORE_STATS = [
-  { icon: Award, number: '150+', label: 'Projects Done' },
-  { icon: Calendar, number: '8+', label: 'Years of Code' },
-  { icon: Globe, number: '25+', label: 'Countries Served' },
-  { icon: Users, number: '98%', label: 'Client Satisfaction' }
+  { number: '8+', label: 'Years of Experience', description: 'We are a creative agency brands building insightful strategy, creating unique designs helping' },
+  { number: '150+', label: 'Successful Projects', description: 'We are a creative agency brands building insightful strategy, creating unique designs helping' },
+  { number: '98%', label: 'Client Satisfaction', description: 'We are a creative agency brands building insightful strategy, creating unique designs helping' }
 ];
 
 const EXPERIENCE = [
@@ -51,50 +46,47 @@ const DEVELOPMENT_SERVICES = [
 
 // --- REUSABLE ANIMATED COMPONENTS ---
 
-const SectionHeader = ({ children, inView }) => (
+const SectionHeader = ({ children, inView, textColor = 'text-white' }) => (
   <motion.div
     className="text-center mb-16"
     initial={{ opacity: 0, y: 30 }}
     animate={inView ? { opacity: 1, y: 0 } : {}}
     transition={{ duration: 0.6 }}
   >
-    {children}
+    {React.Children.map(children, child => 
+        React.cloneElement(child, { className: `${child.props.className} ${textColor}` })
+    )}
   </motion.div>
 );
 
-const StatCard = ({ stat, index, inView }) => (
-  <motion.div
-    className="text-center p-6 bg-gray-800 border border-gray-700 rounded-2xl
-               hover:-translate-y-2 hover:border-accent-lime transition-all duration-300 group"
-    initial={{ opacity: 0, scale: 0.8 }}
-    animate={inView ? { opacity: 1, scale: 1 } : {}}
-    transition={{ delay: index * 0.1 }}
-    whileHover={{ scale: 1.05 }}
-  >
-    <div className="text-accent-lime mb-3"><stat.icon className="w-8 h-8 mx-auto" /></div>
-    <div className="text-4xl font-bold text-white mb-1">{stat.number}</div>
-    <div className="text-sm text-gray-400">{stat.label}</div>
-  </motion.div>
-);
-
-const ExperienceCard = ({ experience, index, inView }) => (
+const StatColumn = ({ stat, index, inView }) => (
     <motion.div
-        className="bg-gray-800 border border-gray-700 rounded-2xl p-6 h-full flex flex-col
-                   hover:-translate-y-1 hover:border-accent-orange transition-all duration-300"
+        className="text-center px-8"
         initial={{ opacity: 0, y: 30 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ delay: index * 0.15, duration: 0.5 }}
+        transition={{ delay: 0.2 + index * 0.15, duration: 0.5 }}
     >
-        <h4 className="text-xl font-bold text-white mb-1">{experience.role}</h4>
-        <h5 className="text-accent-orange font-semibold mb-2">{experience.company}</h5>
-        <span className="text-sm text-gray-400 mb-4 block">{experience.period}</span>
-        <div className="flex flex-wrap gap-2 mt-auto">
-            {experience.tech.map((tech) => (
-                <span key={tech} className="px-3 py-1 bg-gray-900 text-accent-lime text-xs font-medium rounded-lg">
-                    {tech}
-                </span>
-            ))}
+        <h3 className="text-6xl font-bold text-black mb-4">{stat.number}</h3>
+        <h4 className="text-xl font-bold text-black mb-4">{stat.label}</h4>
+        <p className="text-gray-600 leading-relaxed">{stat.description}</p>
+    </motion.div>
+);
+
+const ExperienceRow = ({ experience, index, inView }) => (
+    <motion.div
+        className="grid grid-cols-12 items-center gap-4 py-8 border-b border-gray-200"
+        initial={{ opacity: 0, y: 20 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ delay: 0.2 + index * 0.1, duration: 0.5 }}
+    >
+        <div className="col-span-2 text-gray-500 font-medium">{experience.period.split(' - ')[0]}</div>
+        <div className="col-span-10 md:col-span-6">
+            <h3 className="text-3xl font-bold text-black mb-1">{experience.role}</h3>
+            <div className="flex flex-wrap gap-x-4 text-sm text-gray-500">
+                {experience.tech.map(t => <span key={t}>{t}</span>)}
+            </div>
         </div>
+        <div className="hidden md:block col-span-4 text-gray-500 text-right font-medium">{experience.company}</div>
     </motion.div>
 );
 
@@ -135,22 +127,22 @@ export default function About() {
 
   return (
     <section ref={sectionRef} id="about" className="bg-black">
-      {/* --- Services & Info Section (Full Width) --- */}
-      <div className="w-full bg-gray-900 py-32 lg:py-40">
+      {/* --- Meet Ratan Section (Full Width) --- */}
+      <div className="w-full bg-gray-900">
         <motion.div 
             ref={servicesRef} 
-            className="max-w-6xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-px bg-gray-800 rounded-2xl overflow-hidden border border-gray-700" 
+            className="grid lg:grid-cols-2 min-h-[700px]" 
             initial={{ opacity: 0, y: 50 }} 
             animate={servicesInView ? { opacity: 1, y: 0 } : {}} 
             transition={{ duration: 0.8, ease: 'easeOut' }}
         >
           {/* Left Column: Image */}
-          <div className="relative h-[600px] lg:h-auto">
+          <div className="relative h-[600px] lg:h-full">
             <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=1200&fit=crop&crop=faces" alt="Ratan Mia" className="w-full h-full object-cover object-center" loading="lazy" />
             <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent"></div>
           </div>
           {/* Right Column: Content */}
-          <div className="bg-accent-lime flex flex-col justify-center p-12 lg:p-16">
+          <div className="bg-accent-lime flex flex-col justify-center p-12 lg:p-24">
             <motion.h2 className="text-4xl lg:text-5xl font-bold text-black mb-4" initial={{ opacity: 0, y: 20 }} animate={servicesInView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.2, duration: 0.5 }}>
               Meet <span className="text-black">Ratan</span>
             </motion.h2>
@@ -159,22 +151,8 @@ export default function About() {
             </motion.p>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
-              <div className="flex items-center gap-3">
-                <MapPin className="w-5 h-5 text-black" />
-                <div>
-                  <p className="text-sm text-black/60">Location</p>
-                  <p className="text-black font-medium">Dhaka, BD 🇧🇩</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-black" />
-                <div>
-                  <p className="text-sm text-black/60">Email</p>
-                  <a href="mailto:ratanmiadev@gmail.com" className="text-black hover:text-black/70 transition-colors text-sm font-medium">
-                    ratanmiadev@gmail.com
-                  </a>
-                </div>
-              </div>
+              <div className="flex items-center gap-3"><MapPin className="w-5 h-5 text-black" /><div><p className="text-sm text-black/60">Location</p><p className="text-black font-medium">Dhaka, BD 🇧🇩</p></div></div>
+              <div className="flex items-center gap-3"><Mail className="w-5 h-5 text-black" /><div><p className="text-sm text-black/60">Email</p><a href="mailto:ratanmiadev@gmail.com" className="text-black hover:text-black/70 transition-colors text-sm font-medium">ratanmiadev@gmail.com</a></div></div>
             </div>
 
             <div className="space-y-6">{DEVELOPMENT_SERVICES.map((service, index) => (<ServiceSkillBar key={service.name} service={service} index={index} inView={servicesInView} />))}</div>
@@ -182,28 +160,35 @@ export default function About() {
         </motion.div>
       </div>
 
-      {/* --- Rest of the content in a constrained container --- */}
-      <div className="max-w-6xl mx-auto px-6 lg:px-8 space-y-28 py-28">
-        {/* --- Stats Section --- */}
-        <motion.div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {CORE_STATS.map((stat, index) => (<StatCard key={stat.label} stat={stat} index={index} inView={statsInView} />))}
-        </motion.div>
-
-        {/* --- Experience Section --- */}
-        <motion.div ref={experienceRef}>
-            <SectionHeader inView={experienceInView}>
-                <h3 className="text-3xl lg:text-4xl font-bold text-white mb-2">Professional Journey</h3>
-                <p className="text-gray-400">Companies that shaped my expertise.</p>
-            </SectionHeader>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {EXPERIENCE.map((experience, index) => (
-                    <ExperienceCard key={experience.company} experience={experience} index={index} inView={experienceInView} />
+      {/* --- Stats Section --- */}
+      <div ref={statsRef} className="py-32 lg:py-40 bg-white">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+            <div className="grid md:grid-cols-3 gap-8 divide-x divide-gray-200">
+                {CORE_STATS.map((stat, index) => (
+                    <StatColumn key={stat.label} stat={stat} index={index} inView={statsInView} />
                 ))}
             </div>
-        </motion.div>
+        </div>
+      </div>
 
-        {/* --- CTA Section --- */}
-        <motion.div ref={ctaRef} className="bg-gray-800 p-10 lg:p-16 rounded-2xl text-center relative overflow-hidden border border-gray-700" initial={{ opacity: 0, y: 50 }} animate={ctaInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, ease: "easeOut" }}>
+      {/* --- Experience Section --- */}
+      <div ref={experienceRef} className="py-32 lg:py-40 bg-white">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+            <SectionHeader inView={experienceInView} textColor="text-black">
+                <h3 className="text-4xl lg:text-5xl font-bold mb-2">Professional Journey</h3>
+                <p className="text-lg text-gray-500">Companies that shaped my expertise.</p>
+            </SectionHeader>
+            <div className="border-t border-gray-200">
+                {EXPERIENCE.map((experience, index) => (
+                    <ExperienceRow key={experience.company} experience={experience} index={index} inView={experienceInView} />
+                ))}
+            </div>
+        </div>
+      </div>
+
+      {/* --- CTA Section --- */}
+      <div className="bg-black py-28">
+        <motion.div ref={ctaRef} className="max-w-6xl mx-auto px-6 lg:px-8 bg-gray-800 p-10 lg:p-16 rounded-2xl text-center relative overflow-hidden border border-gray-700" initial={{ opacity: 0, y: 50 }} animate={ctaInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, ease: "easeOut" }}>
           <div className="relative z-10">
             <h3 className="text-3xl lg:text-5xl font-bold text-white mb-4">Ready to Collaborate?</h3>
             <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">Let's connect and build something amazing together.</p>
