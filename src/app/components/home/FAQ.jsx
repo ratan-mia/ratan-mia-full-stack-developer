@@ -4,70 +4,50 @@ import { AnimatePresence, motion, useInView } from 'framer-motion';
 import {
   ChevronDown,
   HelpCircle,
-  Mail,
-  Phone,
-  MessageSquare,
-  Calendar,
-  CheckCircle
+  MessageCircle,
+  Clock,
+  CheckCircle,
+  ArrowRight,
+  Plus,
+  Minus
 } from 'lucide-react';
 import { useState, useRef } from 'react';
 
 const FAQ = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, threshold: 0.1 });
   const [openItems, setOpenItems] = useState([1]); // First item open by default
-  
-  const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, threshold: 0.1 });
 
   const faqData = [
     {
       id: 1,
-      question: "How long does it typically take to complete a project?",
-      answer: "Project timelines vary based on complexity and scope. Simple websites typically take 1-2 weeks, while complex web applications can take 4-8 weeks. During our initial consultation, I'll provide a detailed timeline based on your specific requirements."
+      question: "How long does a project take?",
+      answer: "Simple websites: 1-2 weeks. Complex applications: 4-8 weeks. I'll provide exact timeline during consultation."
     },
     {
       id: 2,
-      question: "What is your typical project cost range?",
-      answer: "Project costs vary based on complexity and features. Simple websites start from $1,000-$3,000, while complex web applications range from $5,000-$25,000+. I provide detailed, transparent quotes after understanding your specific needs."
+      question: "What are your rates?",
+      answer: "Websites start from $1,000. Complex apps $5,000+. Every project gets a custom quote based on requirements."
     },
     {
       id: 3,
-      question: "What technologies do you specialize in?",
-      answer: "I specialize in modern web technologies including React.js, Next.js, JavaScript/TypeScript for frontend; PHP, Laravel, Node.js for backend; and WordPress, Shopify for CMS/e-commerce solutions. I also work with MySQL and MongoDB databases."
+      question: "What technologies do you use?",
+      answer: "React.js, Next.js, Laravel, WordPress, Node.js, MySQL. I choose the best tech stack for your needs."
     },
     {
       id: 4,
-      question: "Do you work with international clients?",
-      answer: "Yes! I work with clients worldwide from my base in Dhaka, Bangladesh. I'm experienced in collaborating across different time zones and use modern communication tools to ensure smooth collaboration regardless of location."
+      question: "Do you work internationally?",
+      answer: "Yes! I work with clients worldwide. Time zones are never an issue with proper communication."
     },
     {
       id: 5,
-      question: "Do you provide ongoing maintenance and support?",
-      answer: "Absolutely! I offer comprehensive maintenance packages including security updates, performance monitoring, content updates, and technical support. Basic support is included for the first month after project launch."
+      question: "Do you provide ongoing support?",
+      answer: "Absolutely! Maintenance packages available. First month support included with every project."
     },
     {
       id: 6,
-      question: "How do you handle project payments?",
-      answer: "I typically work with 50% upfront and 50% upon completion for smaller projects. Larger projects are divided into milestones with payments tied to deliverable completion. All projects include a detailed contract outlining scope, timeline, and terms."
-    },
-    {
-      id: 7,
-      question: "Can you integrate third-party services and APIs?",
-      answer: "Yes! I have extensive experience integrating various third-party services including payment gateways, CRM systems, email marketing tools, social media APIs, Google services, and custom APIs."
-    },
-    {
-      id: 8,
-      question: "What makes you different from other developers?",
-      answer: "I combine 10+ years of experience with a client-first approach, focusing on understanding your business goals rather than just technical requirements. My proven process ensures transparent communication, on-time delivery, and results that drive business growth."
-    },
-    {
-      id: 9,
-      question: "Do you offer website redesigns?",
-      answer: "Yes! I can redesign existing websites to improve performance, user experience, and modern design standards. This includes migrating to new platforms, improving mobile responsiveness, and enhancing overall functionality."
-    },
-    {
-      id: 10,
-      question: "How do we communicate during the project?",
-      answer: "I use a combination of email, WhatsApp, video calls, and project management tools to keep you updated. You'll receive regular progress reports and have direct access to me throughout the project development process."
+      question: "How do payments work?",
+      answer: "50% upfront, 50% completion for small projects. Larger projects split into milestone payments."
     }
   ];
 
@@ -80,160 +60,323 @@ const FAQ = () => {
   };
 
   return (
-    <section 
-      ref={sectionRef}
-      id="faq" 
-      className="py-24 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden"
-    >
-      {/* Background Decoration */}
-      <div className="absolute top-40 right-10 w-96 h-96 bg-cyan-400 opacity-10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-20 left-10 w-80 h-80 bg-cyan-400 opacity-10 rounded-full blur-3xl"></div>
-      
-      <div className="container mx-auto px-4 relative z-10">
+    <section ref={ref} className="section-padding bg-black relative overflow-hidden" id="faq">
+      {/* Background Graphics */}
+      <div className="absolute inset-0 overflow-hidden opacity-20">
+        {/* Question Mark Pattern */}
+        <div className="absolute top-20 left-16 text-6xl text-accent/10 font-bold">?</div>
+        <div className="absolute top-40 right-20 text-8xl text-accent-secondary/10 font-bold">?</div>
+        <div className="absolute bottom-32 left-1/4 text-5xl text-accent/10 font-bold">?</div>
         
-        {/* Header */}
+        {/* Floating Elements */}
         <motion.div
+          className="absolute top-32 right-32 w-32 h-32 bg-accent/10 rounded-full blur-xl"
+          animate={{ 
+            y: [0, -30, 0],
+            scale: [1, 1.1, 1]
+          }}
+          transition={{ 
+            duration: 8, 
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <motion.div
+          className="absolute bottom-40 left-20 w-24 h-24 bg-accent-secondary/10 rounded-design blur-2xl"
+          animate={{ 
+            rotate: [0, 180, 360],
+            opacity: [0.3, 0.7, 0.3]
+          }}
+          transition={{ 
+            duration: 10, 
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+      </div>
+
+      {/* Geometric Patterns */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-40 left-1/4 w-16 h-16 border-2 border-accent/20 rounded-design rotate-45"></div>
+        <div className="absolute bottom-40 right-1/4 w-12 h-12 bg-accent-secondary/20 rounded-design"></div>
+      </div>
+
+      <div className="container-design relative z-10">
+        
+        {/* Section Header */}
+        <motion.div
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.8, delay: 0.1 }}
         >
-          <span className="text-cyan-500 font-semibold tracking-wider uppercase mb-2 inline-block bg-cyan-500 px-4 py-2 rounded-full text-white">
-            Frequently Asked Questions
-          </span>
+          <motion.h2
+            className="section-header text-primary-text mb-4"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            Common Questions
+          </motion.h2>
           
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900">
-            Everything You Need to <span className="text-cyan-500">Know</span>
-          </h2>
-          
-          <div className="w-24 h-1 bg-cyan-400 mx-auto mb-6"></div>
-          
-          <p className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed">
-            Get answers to common questions about my services, process, and pricing. Can't find what you're looking for? Just ask!
-          </p>
+          <motion.div
+            className="accent-line mb-8"
+            initial={{ width: 0 }}
+            animate={isInView ? { width: 64 } : { width: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          />
+
+          <motion.p
+            className="body-text text-neutral max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            Quick answers to help you get started
+          </motion.p>
         </motion.div>
 
-        {/* FAQ List */}
-        <motion.div 
+        {/* FAQ Grid Layout */}
+        <div className="grid lg:grid-cols-3 gap-12 mb-16">
+          
+          {/* FAQ List */}
+          <motion.div 
+            className="lg:col-span-2"
+            initial={{ opacity: 0, x: -30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+          >
+            <div className="space-y-4">
+              {faqData.map((item, index) => (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  transition={{ delay: 0.6 + index * 0.1, duration: 0.5 }}
+                  className="group"
+                >
+                  <div className="card-design overflow-hidden">
+                    <button
+                      onClick={() => toggleItem(item.id)}
+                      className="w-full text-left flex items-center justify-between p-6 hover:bg-card-dark transition-colors"
+                    >
+                      <h3 className="text-lg font-bold text-primary-text pr-4 group-hover:text-accent transition-colors">
+                        {item.question}
+                      </h3>
+                      
+                      <motion.div
+                        animate={{ rotate: openItems.includes(item.id) ? 180 : 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="flex-shrink-0"
+                      >
+                        {openItems.includes(item.id) ? (
+                          <Minus className="w-6 h-6 text-accent" />
+                        ) : (
+                          <Plus className="w-6 h-6 text-accent" />
+                        )}
+                      </motion.div>
+                    </button>
+
+                    <AnimatePresence>
+                      {openItems.includes(item.id) && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="px-6 pb-6 border-t border-design">
+                            <motion.p
+                              initial={{ y: -10, opacity: 0 }}
+                              animate={{ y: 0, opacity: 1 }}
+                              transition={{ delay: 0.1 }}
+                              className="text-neutral leading-relaxed pt-4"
+                            >
+                              {item.answer}
+                            </motion.p>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Sidebar */}
+          <motion.div
+            className="lg:col-span-1"
+            initial={{ opacity: 0, x: 30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
+          >
+            <div className="space-y-8">
+              
+              {/* Quick Stats */}
+              <div className="card-design text-center">
+                <div className="mb-6">
+                  <HelpCircle className="w-16 h-16 text-accent mx-auto mb-4" />
+                  <h3 className="text-xl font-bold text-primary-text mb-2">Need More Help?</h3>
+                  <p className="text-neutral text-sm">I'm here to answer your questions</p>
+                </div>
+                
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-neutral">Response Time:</span>
+                    <span className="text-accent font-medium">24 hours</span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-neutral">Consultation:</span>
+                    <span className="text-accent font-medium">Free</span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-neutral">Support:</span>
+                    <span className="text-accent font-medium">Included</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Contact Options */}
+              <div className="space-y-4">
+                <motion.a
+                  href="#contact"
+                  className="block w-full bg-accent text-black px-6 py-4 rounded-design font-semibold text-center hover:bg-accent/90 transition-colors group"
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <div className="flex items-center justify-center gap-2">
+                    <MessageCircle className="w-5 h-5" />
+                    <span>Ask a Question</span>
+                    <motion.div
+                      whileHover={{ x: 5 }}
+                      transition={{ type: "spring", stiffness: 400 }}
+                    >
+                      <ArrowRight className="w-5 h-5" />
+                    </motion.div>
+                  </div>
+                </motion.a>
+
+                <motion.a
+                  href="#quote"
+                  className="block w-full bg-card border border-accent text-accent px-6 py-4 rounded-design font-semibold text-center hover:bg-accent/10 transition-colors"
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Get Free Quote
+                </motion.a>
+              </div>
+
+              {/* Process Steps */}
+              <div className="card-design">
+                <h4 className="font-bold text-primary-text mb-4">Quick Process</h4>
+                <div className="space-y-3">
+                  {[
+                    { step: '1', text: 'Ask your question', icon: '💬' },
+                    { step: '2', text: 'Get detailed answer', icon: '📝' },
+                    { step: '3', text: 'Schedule consultation', icon: '📅' }
+                  ].map((item, index) => (
+                    <div key={item.step} className="flex items-center gap-3">
+                      <div className="w-8 h-8 bg-accent-secondary rounded-design flex items-center justify-center text-black text-sm font-bold">
+                        {item.step}
+                      </div>
+                      <div className="flex-1">
+                        <span className="text-primary-text text-sm">{item.text}</span>
+                        <span className="ml-2">{item.icon}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Bottom Features */}
+        <motion.div
+          className="grid md:grid-cols-3 gap-8 mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="space-y-4 mb-16"
+          transition={{ duration: 0.8, delay: 1.2 }}
         >
-          {faqData.map((item, index) => (
+          {[
+            { icon: Clock, title: 'Quick Response', desc: '24-hour answer guarantee' },
+            { icon: MessageCircle, title: 'Free Consultation', desc: '30-min strategy call' },
+            { icon: CheckCircle, title: 'No Obligation', desc: 'Ask anything, anytime' }
+          ].map((feature, index) => (
             <motion.div
-              key={item.id}
+              key={feature.title}
+              className="text-center group"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ delay: 0.3 + index * 0.05, duration: 0.5 }}
-              className="group transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+              transition={{ delay: 1.3 + index * 0.1 }}
             >
-              <div className="bg-white p-8 rounded-lg border border-gray-200 shadow-xl hover:shadow-2xl hover:border-cyan-300 transition-all duration-300">
-                <button
-                  onClick={() => toggleItem(item.id)}
-                  className="w-full text-left flex items-center justify-between transition-colors duration-200"
-                >
-                  <h3 className="text-xl font-bold text-gray-900 pr-4">
-                    {item.question}
-                  </h3>
-                  <motion.div
-                    animate={{ rotate: openItems.includes(item.id) ? 180 : 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="flex-shrink-0"
-                  >
-                    <ChevronDown className="w-5 h-5 text-cyan-500 group-hover:scale-110 transition-transform duration-300" />
-                  </motion.div>
-                </button>
-
-                <AnimatePresence>
-                  {openItems.includes(item.id) && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="overflow-hidden mt-4"
-                    >
-                      <div className="border-t border-gray-200 pt-4">
-                        <p className="text-gray-600 leading-relaxed text-base">
-                          {item.answer}
-                        </p>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+              <motion.div
+                className="w-16 h-16 bg-accent rounded-design-lg flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform"
+                whileHover={{ rotate: 15 }}
+              >
+                <feature.icon className="w-8 h-8 text-black" />
+              </motion.div>
+              <h4 className="text-lg font-bold text-primary-text mb-2">{feature.title}</h4>
+              <p className="body-text-small text-neutral">{feature.desc}</p>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Contact CTA */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="bg-gradient-to-r from-cyan-400 to-cyan-500 rounded-lg p-8 md:p-12 text-white text-center shadow-xl"
-        >
-          <h3 className="text-3xl md:text-4xl font-bold mb-4">
-            Still Have Questions?
-          </h3>
-          <p className="text-cyan-100 mb-8 max-w-2xl mx-auto text-lg leading-relaxed">
-            I'm here to help! Contact me directly for personalized answers to your specific questions.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="#contact"
-              className="inline-flex items-center justify-center gap-2 bg-white text-cyan-500 hover:text-cyan-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-50 transition-all duration-300 hover:scale-110"
-            >
-              <Mail className="w-5 h-5" />
-              Send a Message
-            </a>
-            
-            <a
-              href="tel:+8801751010966"
-              className="inline-flex items-center justify-center gap-2 bg-white hover:bg-cyan-500 text-cyan-500 hover:text-cyan-600 font-bold py-3 px-6 rounded-lg border border-gray-300 hover:border-cyan-400 transition-all duration-300"
-            >
-              <Phone className="w-5 h-5" />
-              Call Now
-            </a>
-          </div>
-        </motion.div>
-
-        {/* Trust Indicators */}
+        {/* Final CTA */}
         <motion.div
+          className="text-center"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16"
+          transition={{ duration: 0.8, delay: 1.6 }}
         >
-          <div className="group transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-            <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-xl text-center">
-              <div className="w-12 h-12 bg-gradient-to-r from-cyan-400 to-cyan-500 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                <CheckCircle className="w-6 h-6 text-white" />
-              </div>
-              <h4 className="text-xl font-bold text-gray-900 mb-2">Quick Response</h4>
-              <p className="text-gray-600 text-base leading-relaxed">I typically respond to all inquiries within 24 hours, often much sooner.</p>
+          <div className="relative bg-gradient-to-r from-accent/20 via-accent-secondary/20 to-accent/20 p-12 rounded-design-lg border border-accent/30 overflow-hidden">
+            {/* Background Elements */}
+            <div className="absolute inset-0">
+              <div className="absolute top-4 right-4 w-20 h-20 border-2 border-accent/20 rounded-design rotate-45"></div>
+              <div className="absolute bottom-4 left-4 w-16 h-16 bg-accent-secondary/10 rounded-full"></div>
+              <motion.div
+                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-accent/5 rounded-full blur-2xl"
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 4, repeat: Infinity }}
+              />
             </div>
-          </div>
-          
-          <div className="group transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-            <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-xl text-center">
-              <div className="w-12 h-12 bg-gradient-to-r from-cyan-400 to-cyan-500 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                <MessageSquare className="w-6 h-6 text-white" />
+
+            <div className="relative z-10">
+              <h3 className="text-2xl md:text-3xl font-bold text-primary-text mb-4">
+                Still Have Questions?
+              </h3>
+              <p className="body-text text-neutral mb-8 max-w-2xl mx-auto">
+                I'm here to help! Get personalized answers to your specific questions.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <motion.a
+                  href="#contact"
+                  className="btn-primary group"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <span>Contact Me</span>
+                  <motion.div
+                    whileHover={{ x: 5 }}
+                    transition={{ type: "spring", stiffness: 400 }}
+                  >
+                    <MessageCircle className="w-5 h-5" />
+                  </motion.div>
+                </motion.a>
+                
+                <motion.a
+                  href="#quote"
+                  className="btn-secondary group"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <span>Get Quote</span>
+                  <ArrowRight className="w-5 h-5" />
+                </motion.a>
               </div>
-              <h4 className="text-xl font-bold text-gray-900 mb-2">Free Consultation</h4>
-              <p className="text-gray-600 text-base leading-relaxed">30-minute strategy call included to discuss your project in detail.</p>
-            </div>
-          </div>
-          
-          <div className="group transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-            <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-xl text-center">
-              <div className="w-12 h-12 bg-gradient-to-r from-cyan-400 to-cyan-500 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                <Calendar className="w-6 h-6 text-white" />
-              </div>
-              <h4 className="text-xl font-bold text-gray-900 mb-2">Flexible Scheduling</h4>
-              <p className="text-gray-600 text-base leading-relaxed">I work across time zones to accommodate your schedule and needs.</p>
             </div>
           </div>
         </motion.div>
