@@ -5,7 +5,6 @@ import { ArrowRight, ExternalLink } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 // --- DATA CONSTANTS ---
-// Added year and client to match the new design
 const PROJECTS_DATA = [
   {
     id: 1,
@@ -79,20 +78,20 @@ const ProjectRow = ({ project, setHoveredImage }) => (
     rel="noopener noreferrer"
     onMouseEnter={() => setHoveredImage(project.image)}
     onMouseLeave={() => setHoveredImage(null)}
-    className="group grid grid-cols-12 items-center gap-4 py-8 border-b border-gray-800 transition-colors hover:bg-gray-800/50"
+    className="group grid grid-cols-12 items-center gap-4 py-8 border-b border-gray-800 transition-colors duration-300 hover:bg-gray-800/30"
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5 }}
   >
-    <div className="col-span-2 text-gray-400 group-hover:text-white transition-colors text-sm">{project.year}</div>
+    <div className="col-span-2 text-gray-400 group-hover:text-accent-orange transition-colors text-sm font-medium">{project.year}</div>
     <div className="col-span-10 md:col-span-5">
-      <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">{project.title}</h3>
-      <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-gray-400">
+      <h3 className="text-2xl md:text-3xl font-bold text-gray-200 group-hover:text-accent-lime transition-colors mb-2">{project.title}</h3>
+      <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-gray-400 group-hover:text-gray-200 transition-colors">
         {project.technologies.map(tech => <span key={tech}>{tech}</span>)}
       </div>
     </div>
-    <div className="hidden md:block col-span-4 text-gray-500 group-hover:text-white transition-colors text-right">{project.client}</div>
-    <div className="col-span-1 text-white opacity-0 group-hover:opacity-100 transition-opacity">
+    <div className="hidden md:block col-span-4 text-gray-500 group-hover:text-gray-300 transition-colors text-right">{project.client}</div>
+    <div className="col-span-1 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
         <ExternalLink className="w-6 h-6" />
     </div>
   </motion.a>
@@ -122,13 +121,13 @@ const Projects = () => {
     : PROJECTS_DATA.filter(project => project.category === filter);
 
   return (
-    <section ref={ref} className="py-32 lg:py-40 bg-black relative" id="projects">
+    <section ref={ref} className="py-32 lg:py-40 bg-gray-900 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(204,255,0,0.08),rgba(255,255,255,0))] relative" id="projects">
         
       {/* Floating Image on Hover */}
       <AnimatePresence>
         {hoveredImage && (
           <motion.div
-            className="hidden lg:block fixed top-0 left-0 w-80 h-96 rounded-lg overflow-hidden shadow-2xl z-50 pointer-events-none"
+            className="hidden lg:block fixed top-0 left-0 w-80 h-96 rounded-lg overflow-hidden shadow-2xl z-50 pointer-events-none border-4 border-gray-700"
             style={{
               x: mousePosition.x + 20,
               y: mousePosition.y - 180, // Adjust vertical position
@@ -149,7 +148,7 @@ const Projects = () => {
             <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
                 Selected <span className="text-accent-lime">Projects</span>
             </h2>
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
                 A collection of my work, from corporate websites to complex web applications.
             </p>
         </SectionHeader>
@@ -167,7 +166,7 @@ const Projects = () => {
               onClick={() => setFilter(category)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 filter === category
-                  ? 'bg-accent-lime text-black'
+                  ? 'bg-accent-lime text-black shadow-lime-glow'
                   : 'bg-gray-800 border border-gray-700 text-gray-300 hover:bg-gray-700 hover:text-white'
               }`}
             >
@@ -177,7 +176,7 @@ const Projects = () => {
         </motion.div>
 
         {/* Projects List */}
-        <div>
+        <div className="border-t border-gray-800">
           {filteredProjects.map((project) => (
             <ProjectRow 
               key={project.id} 
@@ -194,7 +193,7 @@ const Projects = () => {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.5 }}
         >
-            <a href="#contact" className="bg-accent-lime text-black font-semibold px-8 py-4 rounded-xl hover:bg-lime-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-lime-400/30 transition-all duration-300 inline-flex items-center justify-center gap-2">
+            <a href="#contact" className="bg-accent-lime text-black font-semibold px-8 py-4 rounded-xl hover:bg-lime-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-lime-glow transition-all duration-300 inline-flex items-center justify-center gap-2">
                 <span>Start a Project</span>
                 <ArrowRight className="w-5 h-5" />
             </a>
