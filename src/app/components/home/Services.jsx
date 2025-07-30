@@ -23,11 +23,14 @@ const ServiceCard = ({ icon: Icon, title, description, index, inView }) => {
       variants={cardVariants}
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
-      className="relative p-8 rounded-2xl bg-accent-lime text-black h-full flex flex-col group overflow-hidden"
+      whileHover={{ y: -8, scale: 1.03 }}
+      className="relative p-8 rounded-2xl bg-accent-lime text-black h-full flex flex-col group overflow-hidden transition-all duration-300"
     >
       <div className="relative z-10 flex flex-col h-full">
         <motion.div 
           className="mb-8 w-16 h-16 rounded-xl flex items-center justify-center bg-black/10"
+          whileHover={{ scale: 1.1, rotate: 15 }}
+          transition={{ type: 'spring', stiffness: 300 }}
         >
           <Icon className="w-8 h-8 text-black" />
         </motion.div>
