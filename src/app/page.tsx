@@ -13,42 +13,40 @@ import TrainingCertificates from '@/components/home/TrainingCertificates';
 export default function Home() {
   return (
     <>
-      {/* Hero Section - Dark Theme */}
+      {/* Hero Section - Full screen with graphics */}
       <HeroMain />
 
-      {/* Main Content Sections - Alternating Dark/Light Theme */}
+      {/* All Sections with Enhanced Graphics */}
       <div className="relative">
-        {/* 1. About - Light Theme */}
+        {/* 1. About - Enhanced with graphics */}
         <About />
 
-        {/* 2. Services - Dark Theme */}
+        {/* 2. Services - 3 core offerings with icons */}
         <Services />
 
-        {/* 3. Skills - Light Theme */}
+        {/* 3. Skills - Visual skill representation */}
         <Skills />
 
-        {/* 4. Projects - Dark Theme */}
+        {/* 4. Projects - Selected projects with varied layouts */}
         <Projects />
 
-        {/* 5. Process How I Work - Light Theme */}
+        {/* 5. Process How I Work - Step by step visual process */}
         <ProcessHowIWork />
 
-        {/* 6. Testimonials - Dark Theme */}
+        {/* 6. Testimonials - Client feedback with avatars */}
         <Testimonials />
 
-        {/* 7. Training Certificates - Light Theme */}
+        {/* 7. Training Certificates - Achievement showcase */}
         <TrainingCertificates />
 
-        {/* 8. Get Quote CTA - Dark Theme */}
+        {/* 8. Get Quote CTA - Strong visual call to action */}
         <GetQuote />
 
-
-
-
-        {/* 10. Contact - Dark Theme */}
-        <Contact />
-        {/* 9. FAQ - Light Theme */}
+        {/* 9. FAQ - Common questions with accordion */}
         <FAQ />
+
+        {/* 10. Contact - Bright accent background */}
+        <Contact />
       </div>
     </>
   );

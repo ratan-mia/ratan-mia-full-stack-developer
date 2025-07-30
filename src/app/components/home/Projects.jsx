@@ -1,578 +1,207 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import {
-  ArrowRight,
-  Calendar,
-  ChevronLeft,
-  ChevronRight,
-  Code2,
-  ExternalLink,
-  Globe,
-  Star,
-  TrendingUp,
-  Zap
-} from 'lucide-react';
-import { useRef, useState } from 'react';
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
+import { ExternalLink, Github } from 'lucide-react';
+import { useRef } from 'react';
 
-// Enhanced Project Data
-const FEATURED_PROJECTS = [
-  {
-    id: 1,
-    title: "Elf Bangladesh",
-    subtitle: "Modern Digital Platform for Global Lubricant Brand",
-    description: "Complete e-commerce platform with 85% conversion increase using Next.js and modern technologies.",
-    tech: ["Next.js", "Tailwind CSS", "Zoho CRM", "Strapi CMS"],
-    link: "https://asian-petroleum.com/",
-    year: "2024",
-    client: "Asian Petroleum Limited",
-    status: "Live",
-    results: {
-      conversion: "85%",
-      performance: "97%",
-      satisfaction: "98%"
-    },
-    color: "from-cyan-400 to-cyan-500"
-  },
-  {
-    id: 2,
-    title: "Chery Bangladesh",
-    subtitle: "Automotive Excellence Platform",
-    description: "Official automotive website with 360° car viewer achieving 97% PageSpeed optimization.",
-    tech: ["Next.js", "React.js", "360° Viewer", "CRM Integration"],
-    link: "https://www.cherybd.com",
-    year: "2023",
-    client: "Chery Bangladesh",
-    status: "Live",
-    results: {
-      conversion: "200%",
-      performance: "97%",
-      satisfaction: "96%"
-    },
-    color: "from-green-400 to-green-500"
-  },
-  {
-    id: 3,
-    title: "ELF International",
-    subtitle: "Premium E-commerce Platform",
-    description: "High-converting e-commerce platform with advanced product configurator and inventory management.",
-    tech: ["React.js", "Tailwind CSS", "E-commerce", "SEO"],
-    link: "https://elf-bangladesh.vercel.app",
-    year: "2024",
-    client: "ELF Bangladesh",
-    status: "Live",
-    results: {
-      conversion: "150%",
-      performance: "95%",
-      satisfaction: "94%"
-    },
-    color: "from-purple-400 to-purple-500"
-  },
-  {
-    id: 4,
-    title: "OpenAI Counselling Bot",
-    subtitle: "AI-Powered Mental Health Platform",
-    description: "Revolutionary AI chatbot using OpenAI APIs with Text-to-Speech for 24/7 mental health support.",
-    tech: ["WordPress", "OpenAI API", "Text-to-Speech", "PHP"],
-    link: null,
-    year: "2024",
-    client: "Healthcare Provider",
-    status: "Development",
-    results: {
-      conversion: "70%",
-      performance: "92%",
-      satisfaction: "89%"
-    },
-    color: "from-orange-400 to-orange-500"
-  },
-  {
-    id: 5,
-    title: "Real Estate Platform",
-    subtitle: "Modern Property Management System",
-    description: "Comprehensive real estate platform with virtual tours and advanced search capabilities.",
-    tech: ["React.js", "Node.js", "MongoDB", "Google Maps"],
-    link: "https://example.com",
-    year: "2023",
-    client: "Property Solutions Ltd",
-    status: "Live",
-    results: {
-      conversion: "120%",
-      performance: "94%",
-      satisfaction: "92%"
-    },
-    color: "from-blue-400 to-blue-500"
-  },
-  {
-    id: 6,
-    title: "Healthcare Dashboard",
-    subtitle: "Patient Management System",
-    description: "Advanced healthcare dashboard with real-time patient monitoring and analytics.",
-    tech: ["Vue.js", "Laravel", "MySQL", "Chart.js"],
-    link: "https://example.com",
-    year: "2023",
-    client: "Healthcare Inc",
-    status: "Live",
-    results: {
-      conversion: "90%",
-      performance: "96%",
-      satisfaction: "95%"
-    },
-    color: "from-red-400 to-red-500"
-  }
-];
-
-const PROJECT_STATS = [
-  { number: '50+', label: 'Projects', icon: Code2 },
-  { number: '97%', label: 'Performance', icon: Zap },
-  { number: '200%', label: 'ROI Increase', icon: TrendingUp },
-  { number: '98%', label: 'Satisfaction', icon: Star }
-];
-
-// Responsive Carousel Configuration
-const responsive = {
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 3,
-    slidesToSlide: 1,
-    partialVisibilityGutter: 40
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 768 },
-    items: 2,
-    slidesToSlide: 1,
-    partialVisibilityGutter: 30
-  },
-  mobile: {
-    breakpoint: { max: 768, min: 0 },
-    items: 1,
-    slidesToSlide: 1,
-    partialVisibilityGutter: 20
-  }
-};
-
-// Custom Arrow Components
-const CustomLeftArrow = ({ onClick }) => (
-  <button
-    onClick={onClick}
-    className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-gradient-to-b from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 border border-gray-700 hover:border-cyan-400 rounded-lg flex items-center justify-center text-cyan-400 hover:text-white hover:shadow-lg hover:shadow-cyan-400/25 transition-all duration-300 hover:scale-110 z-10"
-    aria-label="Previous projects"
-  >
-    <ChevronLeft className="w-5 h-5" />
-  </button>
-);
-
-const CustomRightArrow = ({ onClick }) => (
-  <button
-    onClick={onClick}
-    className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-gradient-to-b from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 border border-gray-700 hover:border-cyan-400 rounded-lg flex items-center justify-center text-cyan-400 hover:text-white hover:shadow-lg hover:shadow-cyan-400/25 transition-all duration-300 hover:scale-110 z-10"
-    aria-label="Next projects"
-  >
-    <ChevronRight className="w-5 h-5" />
-  </button>
-);
-
-// Enhanced Project Card Component
-const ProjectCard = ({ project, index }) => {
-  const [isHovered, setIsHovered] = useState(false);
-
-  const handleClick = () => {
-    if (project.link) {
-      window.open(project.link, '_blank', 'noopener,noreferrer');
-    }
-  };
-
-  return (
-    <motion.div
-      className="mx-3 h-full"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1, duration: 0.5 }}
-    >
-      <div
-        className="bg-gradient-to-b from-gray-800 to-gray-900 p-8 rounded-lg border border-gray-700 shadow-xl hover:shadow-2xl hover:shadow-cyan-400/10 hover:border-cyan-400 transition-all duration-300 overflow-hidden group h-full flex flex-col cursor-pointer"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        onClick={project.link ? handleClick : undefined}
-      >
-        {/* Project Image/Preview */}
-        <div className="relative h-48 bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center overflow-hidden rounded-lg mb-6">
-          <div className={`w-full h-full bg-gradient-to-br ${project.color}/20`} />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <motion.div
-              className={`w-20 h-20 bg-gradient-to-br ${project.color} rounded-xl flex items-center justify-center text-white shadow-lg`}
-              animate={isHovered ? { scale: 1.1, rotate: 5 } : { scale: 1, rotate: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              {project.link ? <Globe className="w-10 h-10" /> : <Code2 className="w-10 h-10" />}
-            </motion.div>
-          </div>
-
-          {/* Status Badge */}
-          <div className="absolute top-3 right-3">
-            <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold ${
-              project.status === 'Live' 
-                ? 'bg-green-900/50 text-green-400 border border-green-700' 
-                : 'bg-yellow-900/50 text-yellow-400 border border-yellow-700'
-            }`}>
-              <motion.div
-                className={`w-1.5 h-1.5 rounded-full ${
-                  project.status === 'Live' ? 'bg-green-400' : 'bg-yellow-400'
-                }`}
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              />
-              {project.status}
-            </span>
-          </div>
-
-          {/* Year Badge */}
-          <div className="absolute top-3 left-3">
-            <span className="bg-gray-800/90 backdrop-blur-sm text-cyan-400 px-3 py-1 rounded-full text-xs font-bold border border-gray-700">
-              {project.year}
-            </span>
-          </div>
-
-          {/* Hover Overlay */}
-          {isHovered && project.link && (
-            <motion.div
-              className="absolute inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <motion.div
-                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-400 to-cyan-500 text-gray-900 font-semibold rounded-lg shadow-lg"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <ExternalLink className="w-4 h-4" />
-                Visit Live Site
-              </motion.div>
-            </motion.div>
-          )}
-        </div>
-
-        {/* Project Details */}
-        <div className="flex-1 flex flex-col">
-          <div className="mb-6 flex-1">
-            <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300">
-              {project.title}
-            </h3>
-            <p className="text-cyan-400 font-semibold text-sm mb-3">{project.subtitle}</p>
-            <p className="text-gray-300 text-sm leading-relaxed mb-4">{project.description}</p>
-            
-            {/* Client Info */}
-            <div className="text-xs text-gray-400 mb-4">
-              Client: <span className="font-medium text-gray-300">{project.client}</span>
-            </div>
-          </div>
-
-          {/* Technologies */}
-          <div className="mb-6">
-            <div className="flex flex-wrap gap-2">
-              {project.tech.slice(0, 4).map((tech, i) => (
-                <span 
-                  key={i}
-                  className="px-3 py-1 bg-cyan-900/30 text-cyan-300 rounded-lg text-xs font-medium border border-cyan-700/30"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Results Metrics */}
-          <div className="mb-6 p-4 bg-gradient-to-r from-gray-700/50 to-gray-800/50 rounded-lg border border-gray-600">
-            <div className="grid grid-cols-3 gap-3 text-center">
-              <div>
-                <div className="text-sm font-bold text-cyan-400">{project.results.conversion}</div>
-                <div className="text-xs text-gray-400">Growth</div>
-              </div>
-              <div>
-                <div className="text-sm font-bold text-green-400">{project.results.performance}</div>
-                <div className="text-xs text-gray-400">Score</div>
-              </div>
-              <div>
-                <div className="text-sm font-bold text-purple-400">{project.results.satisfaction}</div>
-                <div className="text-xs text-gray-400">Rating</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Action Button */}
-          <div className="flex items-center justify-between pt-4 border-t border-gray-700 mt-auto">
-            {project.link ? (
-              <motion.div
-                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-400 to-cyan-500 hover:from-cyan-500 hover:to-cyan-600 text-gray-900 font-semibold rounded-lg text-sm shadow-lg hover:shadow-cyan-400/25 transition-all duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Globe className="w-4 h-4" />
-                View Live
-              </motion.div>
-            ) : (
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-gray-700 to-gray-800 text-cyan-400 font-semibold rounded-lg text-sm border border-gray-600">
-                <Code2 className="w-4 h-4" />
-                Custom Project
-              </div>
-            )}
-            <span className="text-xs text-gray-400">Case Study →</span>
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
-
-// Main Projects Component
 const Projects = () => {
-  const sectionRef = useRef(null);
-  const statsRef = useRef(null);
-  const projectsRef = useRef(null);
-  const ctaRef = useRef(null);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, threshold: 0.1 });
 
-  const isInView = useInView(sectionRef, { once: true, threshold: 0.1 });
-  const statsInView = useInView(statsRef, { once: true, threshold: 0.1 });
-  const projectsInView = useInView(projectsRef, { once: true, threshold: 0.1 });
-  const ctaInView = useInView(ctaRef, { once: true, threshold: 0.1 });
+  const projects = [
+    {
+      id: 1,
+      title: 'E-Commerce Platform',
+      category: 'Full Stack',
+      description: 'Modern e-commerce solution with React.js frontend and Laravel backend, featuring payment integration and admin dashboard.',
+      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop&crop=center&q=80',
+      technologies: ['React.js', 'Laravel', 'MySQL', 'Stripe'],
+      liveUrl: '#',
+      githubUrl: '#',
+      featured: true
+    },
+    {
+      id: 2,
+      title: 'Task Management App',
+      category: 'Frontend',
+      description: 'Collaborative task management application built with Next.js and modern UI components.',
+      image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop&crop=center&q=80',
+      technologies: ['Next.js', 'TypeScript', 'Tailwind'],
+      liveUrl: '#',
+      githubUrl: '#',
+      featured: false
+    },
+    {
+      id: 3,
+      title: 'Restaurant Website',
+      category: 'WordPress',
+      description: 'Custom WordPress theme with online ordering system and reservation management.',
+      image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop&crop=center&q=80',
+      technologies: ['WordPress', 'PHP', 'Custom Theme'],
+      liveUrl: '#',
+      githubUrl: '#',
+      featured: false
+    },
+    {
+      id: 4,
+      title: 'Portfolio Dashboard',
+      category: 'Backend',
+      description: 'Laravel-based API and admin dashboard for managing portfolio content and analytics.',
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop&crop=center&q=80',
+      technologies: ['Laravel', 'Vue.js', 'REST API'],
+      liveUrl: '#',
+      githubUrl: '#',
+      featured: true
+    }
+  ];
 
   return (
-    <section 
-      ref={sectionRef}
-      id="projects" 
-      className="py-24 bg-black relative overflow-hidden"
-      aria-label="Portfolio projects section"
-    >
-      {/* Background Decoration */}
-      <div className="absolute top-40 right-10 w-96 h-96 bg-cyan-400 opacity-5 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 left-10 w-80 h-80 bg-cyan-400 opacity-5 rounded-full blur-3xl" />
-      
-      {/* Enhanced glow for premium feel */}
-      <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-60" />
-
-      <div className="container mx-auto px-4 relative z-10">
-        {/* Header */}
+    <section ref={ref} className="section-padding bg-black" id="projects">
+      <div className="container-design">
+        
+        {/* Section Header */}
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
         >
-          {/* Eyebrow Text */}
-          <motion.span
-            className="text-cyan-400 font-semibold tracking-wider uppercase mb-2 inline-block"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-            transition={{ delay: 0.2 }}
+          <motion.h2
+            className="section-header text-primary-text mb-4"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Portfolio
-          </motion.span>
-          
-          <motion.h2 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 0.4 }}
-          >
-            Featured <span className="text-cyan-400">Projects</span>
+            Selected Projects
           </motion.h2>
-
-          {/* Accent Line */}
-          <div className="w-24 h-1 bg-cyan-400 mx-auto mb-6" />
           
-          <motion.p 
-            className="text-gray-300 max-w-3xl mx-auto text-lg leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 0.6 }}
+          <motion.div
+            className="accent-line"
+            initial={{ width: 0 }}
+            animate={isInView ? { width: 64 } : { width: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          />
+          
+          <motion.p
+            className="body-text text-neutral max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Innovative solutions that drive business growth through cutting-edge technology and exceptional user experiences.
+            Recent work showcasing modern web development
           </motion.p>
         </motion.div>
 
-        {/* Project Stats */}
-        <motion.div 
-          ref={statsRef}
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto mb-20"
-          initial={{ opacity: 0, y: 30 }}
-          animate={statsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
-        >
-          {PROJECT_STATS.map((stat, index) => (
+        {/* Projects Grid - Varied Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {projects.map((project, index) => (
             <motion.div
-              key={stat.label}
-              className="text-center p-6 bg-gradient-to-b from-gray-800 to-gray-900 rounded-xl border border-gray-700 hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-400/10 transition-all duration-300"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={statsInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ scale: 1.05, y: -2 }}
+              key={project.id}
+              className={`card-design card-project overflow-hidden group ${
+                project.featured ? 'md:col-span-2' : ''
+              }`}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
+              whileHover={{ y: -8 }}
             >
-              <stat.icon className="w-8 h-8 mx-auto mb-3 text-cyan-400" />
-              <div className="text-3xl md:text-4xl font-bold text-cyan-400 mb-2">{stat.number}</div>
-              <div className="text-sm text-gray-300 font-medium">{stat.label}</div>
+              <div className={`${project.featured ? 'md:flex md:gap-8' : ''}`}>
+                
+                {/* Project Image */}
+                <div className={`image-overlay relative overflow-hidden ${
+                  project.featured ? 'md:w-1/2' : ''
+                }`}>
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-48 md:h-64 object-cover group-hover:scale-105 smooth-transition"
+                  />
+                  
+                  {/* Featured Badge */}
+                  {project.featured && (
+                    <div className="absolute top-4 left-4 px-3 py-1 bg-accent-secondary text-black caption-text font-medium rounded-design">
+                      Featured
+                    </div>
+                  )}
+                  
+                  {/* Overlay with Links */}
+                  <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 smooth-transition flex items-center justify-center gap-4">
+                    <motion.a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-12 h-12 bg-accent rounded-design flex items-center justify-center text-black hover-elevate smooth-transition"
+                      whileHover={{ rotate: 5 }}
+                      aria-label="View live project"
+                    >
+                      <ExternalLink size={20} />
+                    </motion.a>
+                    
+                    <motion.a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-12 h-12 bg-white rounded-design flex items-center justify-center text-black hover-elevate smooth-transition"
+                      whileHover={{ rotate: -5 }}
+                      aria-label="View source code"
+                    >
+                      <Github size={20} />
+                    </motion.a>
+                  </div>
+                </div>
+
+                {/* Project Content */}
+                <div className={`p-8 ${project.featured ? 'md:w-1/2' : ''}`}>
+                  
+                  {/* Category */}
+                  <div className="text-accent caption-text font-medium mb-2">
+                    {project.category}
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-xl font-bold text-primary-text mb-4">
+                    {project.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="body-text-small text-neutral mb-6 leading-relaxed">
+                    {project.description}
+                  </p>
+
+                  {/* Technologies */}
+                  <div className="flex flex-wrap gap-2">
+                    {project.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-3 py-1 bg-card-dark text-accent-secondary caption-text font-medium rounded-design"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
-        {/* Projects Carousel */}
-        <motion.div 
-          ref={projectsRef}
-          className="mb-16 relative"
+        {/* CTA Section */}
+        <motion.div
+          className="text-center mt-16"
           initial={{ opacity: 0, y: 30 }}
-          animate={projectsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
-        >
-          <Carousel
-            responsive={responsive}
-            infinite={true}
-            autoPlay={false}
-            autoPlaySpeed={4000}
-            keyBoardControl={true}
-            customTransition="transform 300ms ease-in-out"
-            transitionDuration={300}
-            containerClass="carousel-container"
-            removeArrowOnDeviceType={[]}
-            customLeftArrow={<CustomLeftArrow />}
-            customRightArrow={<CustomRightArrow />}
-            itemClass="carousel-item"
-            className="pb-4"
-            swipeable={true}
-            draggable={true}
-            showDots={false}
-            ssr={true}
-            deviceType="desktop"
-          >
-            {FEATURED_PROJECTS.map((project, index) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                index={index}
-              />
-            ))}
-          </Carousel>
-        </motion.div>
-
-        {/* View All Projects Link */}
-        <motion.div 
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          animate={projectsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ delay: 0.8 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
         >
           <motion.a
             href="/portfolio"
-            className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-cyan-400 to-cyan-500 hover:from-cyan-500 hover:to-cyan-600 text-gray-900 font-semibold rounded-xl shadow-lg hover:shadow-cyan-400/25 transition-all duration-300"
+            className="btn-secondary"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
           >
-            <span>View All Projects</span>
-            <ArrowRight className="w-5 h-5" />
+            View All Projects
           </motion.a>
-          <p className="text-sm text-gray-400 mt-3">
-            See 50+ more projects in my complete portfolio
-          </p>
-        </motion.div>
-
-        {/* Call to Action */}
-        <motion.div 
-          ref={ctaRef}
-          className="text-center"
-          initial={{ opacity: 0, y: 30 }}
-          animate={ctaInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="bg-gradient-to-r from-cyan-400 to-cyan-500 p-12 rounded-2xl text-white shadow-2xl relative overflow-hidden">
-            {/* Background Effects */}
-            <div className="absolute inset-0 opacity-10" aria-hidden="true">
-              <motion.div 
-                className="absolute top-0 left-0 w-64 h-64 bg-white rounded-full blur-3xl"
-                animate={{ x: [0, 30, 0], y: [0, -15, 0] }}
-                transition={{ duration: 8, repeat: Infinity }}
-              />
-              <motion.div 
-                className="absolute bottom-0 right-0 w-48 h-48 bg-gray-200 rounded-full blur-3xl"
-                animate={{ x: [0, -20, 0], y: [0, 15, 0] }}
-                transition={{ duration: 10, repeat: Infinity }}
-              />
-            </div>
-            
-            <div className="relative z-10">
-              <h3 className="text-3xl md:text-4xl font-bold mb-4">
-                Ready to Start Your Project?
-              </h3>
-              <p className="text-cyan-100 mb-8 max-w-2xl mx-auto text-lg leading-relaxed">
-                Let's create something amazing together. From concept to launch, I'll bring your vision to life.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <motion.a
-                  href="#contact"
-                  className="bg-white hover:bg-gray-100 text-cyan-600 font-semibold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 inline-flex items-center justify-center gap-2"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <span>Start Your Project</span>
-                  <ArrowRight className="w-5 h-5" />
-                </motion.a>
-                
-                <motion.a
-                  href="#services"
-                  className="bg-white/10 backdrop-blur-sm border border-white/30 hover:bg-white/20 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 inline-flex items-center justify-center gap-2"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Calendar className="w-5 h-5" />
-                  Book Consultation
-                </motion.a>
-              </div>
-            </div>
-          </div>
         </motion.div>
       </div>
-
-      {/* Custom Carousel Styles */}
-      <style jsx global>{`
-        .carousel-container {
-          padding: 0 !important;
-        }
-        
-        .carousel-item {
-          display: flex !important;
-          justify-content: center !important;
-        }
-        
-        .react-multi-carousel-list {
-          overflow: visible !important;
-        }
-        
-        .react-multi-carousel-track {
-          margin-left: 0 !important;
-          margin-right: 0 !important;
-        }
-        
-        .react-multi-carousel-item {
-          transform: none !important;
-        }
-        
-        @media (max-width: 768px) {
-          .carousel-container .react-multi-carousel-item {
-            margin: 0 8px !important;
-          }
-        }
-        
-        @media (min-width: 769px) {
-          .carousel-container .react-multi-carousel-item {
-            margin: 0 12px !important;
-          }
-        }
-        
-        /* Hide default arrows since we're using custom ones */
-        .react-multi-carousel-arrow {
-          display: none !important;
-        }
-      `}</style>
     </section>
   );
 };
