@@ -4,453 +4,468 @@ import { motion, useInView } from 'framer-motion';
 import {
   ArrowRight,
   Award,
-  Calendar,
-  Code2,
-  Coffee,
   Download,
-  Globe,
   Mail,
   MapPin,
-  Star,
-  TrendingUp,
-  Users,
-  Zap
+  Target,
+  Users
 } from 'lucide-react';
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 
-// Simplified Constants
+// --- DATA CONSTANTS ---
 const CORE_STATS = [
-  { icon: Award, number: '150+', label: 'Projects Delivered' },
-  { icon: Calendar, number: '8+', label: 'Years Experience' },
-  { icon: Globe, number: '25+', label: 'Countries Served' },
-  { icon: Star, number: '98%', label: 'Client Satisfaction' }
-];
-
-const KEY_SKILLS = [
-  { name: 'React.js', level: 95 },
-  { name: 'Next.js', level: 92 },
-  { name: 'Laravel', level: 90 },
-  { name: 'PHP', level: 90 },
-  { name: 'JavaScript', level: 88 },
-  { name: 'WordPress', level: 95 }
-];
-
-const ACHIEVEMENTS = [
-  {
-    icon: TrendingUp,
-    metric: '200%',
-    title: 'Average Sales Growth',
-    description: 'Client revenue increase through optimized e-commerce solutions'
+  { 
+    number: '8+', 
+    label: 'Years of Experience', 
+    description: 'Building robust, scalable applications with modern technologies and best practices across multiple industries.',
+    icon: Award 
   },
-  {
-    icon: Zap,
-    metric: '97%',
-    title: 'Performance Score',
-    description: 'Average PageSpeed Insights score across all projects'
+  { 
+    number: '150+', 
+    label: 'Successful Projects', 
+    description: 'Delivered end-to-end solutions from concept to deployment, helping businesses grow and succeed digitally.',
+    icon: Target 
   },
-  {
-    icon: Users,
-    metric: '98%',
-    title: 'Client Satisfaction',
-    description: 'Happy clients with ongoing partnerships'
+  { 
+    number: '98%', 
+    label: 'Client Satisfaction', 
+    description: 'Maintained exceptional relationships through clear communication, timely delivery, and ongoing support.',
+    icon: Users 
   }
 ];
 
-const WORK_EXPERIENCE = [
+const EXPERIENCE = [
   {
     company: 'Kawasaki Bangladesh',
     role: 'Senior Full Stack Developer',
     period: '2020 - Present',
-    description: 'Leading enterprise development initiatives for automotive industry leader',
-    technologies: ['React.js', 'Laravel', 'MySQL', 'Docker', 'AWS']
+    tech: ['React', 'Laravel', 'AWS', 'MySQL'],
+    description: 'Leading development of enterprise-level applications and managing cloud infrastructure.'
   },
   {
     company: 'Continental Motors',
     role: 'IT Manager & Lead Developer',
     period: '2018 - 2020',
-    description: 'Managed IT infrastructure and led digital transformation initiatives',
-    technologies: ['PHP', 'WordPress', 'MySQL', 'Linux']
+    tech: ['PHP', 'WordPress', 'MySQL', 'Linux'],
+    description: 'Managed IT operations while developing custom business solutions and team leadership.'
   },
   {
     company: 'Chery Bangladesh',
     role: 'Lead Web Developer',
     period: '2016 - 2018',
-    description: 'Spearheaded website development and e-commerce optimization',
-    technologies: ['HTML5', 'CSS3', 'JavaScript', 'PHP']
+    tech: ['HTML5', 'CSS3', 'JavaScript', 'PHP'],
+    description: 'Developed responsive websites and e-commerce platforms for automotive industry.'
   }
 ];
 
-// Skill Bar Component
-const SkillBar = ({ skill, index, inView }) => {
-  return (
-    <motion.div
-      className="mb-4"
-      initial={{ opacity: 0, x: -20 }}
-      animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-      transition={{ delay: index * 0.1 }}
-    >
-      <div className="flex justify-between items-center mb-2">
-        <span className="text-sm font-medium text-gray-300">{skill.name}</span>
-        <span className="text-sm font-bold text-white">{skill.level}%</span>
-      </div>
-      <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
-        <motion.div
-          className="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
-          initial={{ width: 0 }}
-          animate={inView ? { width: `${skill.level}%` } : { width: 0 }}
-          transition={{ duration: 1, delay: index * 0.1, ease: "easeOut" }}
-        />
-      </div>
-    </motion.div>
-  );
+const DEVELOPMENT_SERVICES = [
+  { name: 'Front-End Development (React/Next.js)', level: 95, color: 'bg-black' },
+  { name: 'Back-End Development (Laravel/PHP)', level: 90, color: 'bg-black' },
+  { name: 'E-commerce & CMS (Shopify/WordPress)', level: 92, color: 'bg-black' },
+  { name: 'API & Database Architecture', level: 88, color: 'bg-black' },
+];
+
+// --- ANIMATION VARIANTS ---
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
 };
 
-// Achievement Card Component
-const AchievementCard = ({ achievement, index, inView }) => {
-  return (
-    <motion.div
-      className="text-center p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:bg-white/15 transition-all duration-300"
-      initial={{ opacity: 0, y: 20 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-      transition={{ delay: index * 0.1 }}
-      whileHover={{ scale: 1.02, y: -2 }}
-    >
-      <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl flex items-center justify-center mx-auto mb-4">
-        <achievement.icon className="w-6 h-6 text-white" />
-      </div>
-      <div className="text-3xl font-bold text-white mb-2">{achievement.metric}</div>
-      <h4 className="text-lg font-semibold text-white mb-2">{achievement.title}</h4>
-      <p className="text-sm text-gray-400">{achievement.description}</p>
-    </motion.div>
-  );
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.23, 1, 0.32, 1],
+    },
+  },
 };
 
-// Experience Card Component
-const ExperienceCard = ({ experience, index, inView }) => {
-  return (
+// --- REUSABLE ANIMATED COMPONENTS ---
+
+const SectionHeader = ({ children, inView, textColor = 'text-white' }) => (
+  <motion.div
+    className="text-center mb-16 lg:mb-20"
+    initial={{ opacity: 0, y: 40 }}
+    animate={inView ? { opacity: 1, y: 0 } : {}}
+    transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+  >
+    {React.Children.map(children, child => 
+        React.cloneElement(child, { className: `${child.props.className} ${textColor}` })
+    )}
+  </motion.div>
+);
+
+const StatColumn = ({ stat, index, inView }) => (
+  <motion.div
+    className="text-center px-6 lg:px-8 group"
+    initial={{ opacity: 0, y: 40, scale: 0.9 }}
+    animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+    transition={{ 
+      delay: 0.2 + index * 0.15, 
+      duration: 0.7,
+      ease: [0.23, 1, 0.32, 1]
+    }}
+    whileHover={{ y: -8 }}
+  >
     <motion.div
-      className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 hover:bg-white/15 transition-all duration-300"
-      initial={{ opacity: 0, y: 20 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-      transition={{ delay: index * 0.2 }}
-      whileHover={{ scale: 1.01, y: -2 }}
+      className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-accent-lime flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+      whileHover={{ rotate: 5 }}
     >
-      <div className="flex items-start justify-between mb-4">
-        <div>
-          <h4 className="text-lg font-bold text-white mb-1">{experience.role}</h4>
-          <h5 className="text-blue-400 font-semibold mb-2">{experience.company}</h5>
-          <span className="text-sm text-gray-400">{experience.period}</span>
-        </div>
+      <stat.icon className="w-8 h-8 text-black" />
+    </motion.div>
+    <motion.h3 
+      className="text-5xl lg:text-6xl font-extrabold text-black mb-4"
+      whileHover={{ scale: 1.05 }}
+    >
+      {stat.number}
+    </motion.h3>
+    <h4 className="text-xl lg:text-2xl font-bold text-black mb-6">{stat.label}</h4>
+    <p className="text-gray-600 leading-relaxed text-base lg:text-lg">{stat.description}</p>
+  </motion.div>
+);
+
+const ExperienceRow = ({ experience, index, inView }) => (
+  <motion.div
+    className="grid grid-cols-12 items-center gap-4 lg:gap-6 py-8 lg:py-12 border-b border-gray-200 group hover:bg-gray-50/50 transition-colors duration-300 rounded-lg px-4 lg:px-6"
+    initial={{ opacity: 0, x: -30 }}
+    animate={inView ? { opacity: 1, x: 0 } : {}}
+    transition={{ 
+      delay: 0.2 + index * 0.15, 
+      duration: 0.6,
+      ease: [0.23, 1, 0.32, 1]
+    }}
+    whileHover={{ x: 8 }}
+  >
+    <div className="col-span-3 lg:col-span-2">
+      <div className="text-accent-lime font-bold text-lg group-hover:scale-105 transition-transform">
+        {experience.period.split(' - ')[0]}
       </div>
-      
-      <p className="text-gray-300 mb-4 leading-relaxed">{experience.description}</p>
-      
+      <div className="text-gray-500 text-sm">
+        {experience.period.split(' - ')[1]}
+      </div>
+    </div>
+    <div className="col-span-9 lg:col-span-6">
+      <h3 className="text-2xl lg:text-3xl font-bold text-black mb-2 group-hover:text-accent-lime transition-colors">
+        {experience.role}
+      </h3>
+      <p className="text-gray-600 mb-3 text-sm lg:text-base">{experience.description}</p>
       <div className="flex flex-wrap gap-2">
-        {experience.technologies.map((tech, i) => (
+        {experience.tech.map(tech => (
           <span 
             key={tech}
-            className="px-3 py-1 bg-blue-900/50 text-blue-300 text-xs rounded-full border border-blue-400/30"
+            className="px-3 py-1 text-xs lg:text-sm bg-gray-100 text-gray-700 rounded-full font-medium hover:bg-accent-lime hover:text-black transition-colors cursor-default"
           >
             {tech}
           </span>
         ))}
       </div>
-    </motion.div>
-  );
-};
+    </div>
+    <div className="hidden lg:block col-span-4 text-right">
+      <div className="text-black font-bold text-lg group-hover:text-accent-lime transition-colors">
+        {experience.company}
+      </div>
+      <div className="text-gray-500 text-sm">Company</div>
+    </div>
+  </motion.div>
+);
 
-// Main About Component
-const About = () => {
+const ServiceSkillBar = ({ service, index, inView }) => (
+  <motion.div
+    className="mb-8 group"
+    initial={{ opacity: 0, x: -30 }}
+    animate={inView ? { opacity: 1, x: 0 } : {}}
+    transition={{ 
+      delay: 0.5 + index * 0.1, 
+      duration: 0.6,
+      ease: [0.23, 1, 0.32, 1]
+    }}
+    whileHover={{ x: 4 }}
+  >
+    <div className="flex justify-between items-center mb-4">
+      <span className="font-bold text-black text-base lg:text-lg uppercase tracking-wider group-hover:text-black/80 transition-colors">
+        {service.name}
+      </span>
+      <motion.span 
+        className="font-bold text-black text-lg"
+        whileHover={{ scale: 1.1 }}
+      >
+        {service.level}%
+      </motion.span>
+    </div>
+    <div className="h-2 bg-black/20 rounded-full overflow-hidden">
+      <motion.div
+        className="h-full bg-black rounded-full relative overflow-hidden"
+        initial={{ width: 0 }}
+        animate={inView ? { width: `${service.level}%` } : {}}
+        transition={{ 
+          duration: 1.5, 
+          delay: 0.6 + index * 0.15, 
+          ease: "easeOut" 
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse" />
+      </motion.div>
+    </div>
+  </motion.div>
+);
+
+// --- MAIN ABOUT COMPONENT ---
+
+export default function About() {
   const sectionRef = useRef(null);
   const statsRef = useRef(null);
-  const skillsRef = useRef(null);
-  const achievementsRef = useRef(null);
+  const servicesRef = useRef(null);
   const experienceRef = useRef(null);
+  const ctaRef = useRef(null);
 
-  const isInView = useInView(sectionRef, { once: true, threshold: 0.1 });
-  const statsInView = useInView(statsRef, { once: true, threshold: 0.1 });
-  const skillsInView = useInView(skillsRef, { once: true, threshold: 0.1 });
-  const achievementsInView = useInView(achievementsRef, { once: true, threshold: 0.1 });
-  const experienceInView = useInView(experienceRef, { once: true, threshold: 0.1 });
+  const statsInView = useInView(statsRef, { once: true, amount: 0.2 });
+  const servicesInView = useInView(servicesRef, { once: true, amount: 0.2 });
+  const experienceInView = useInView(experienceRef, { once: true, amount: 0.1 });
+  const ctaInView = useInView(ctaRef, { once: true, amount: 0.5 });
 
   return (
-    <section 
-      ref={sectionRef}
-      id="about" 
-      className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-900 via-gray-900 to-slate-900 relative overflow-hidden"
-      aria-label="About Ratan Mia section"
-    >
-      {/* Subtle Background Effects */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-        <motion.div 
-          className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.1, 1],
-            rotate: [0, 180, 360],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        />
-        <motion.div 
-          className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            rotate: [360, 180, 0],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        />
-      </div>
-
-      <div className="max-w-6xl mx-auto relative z-10">
-        {/* Header */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
-        >
+    <section ref={sectionRef} id="about" className="bg-black">
+      
+      {/* --- Main About Section (Full Width Like Skills) --- */}
+      <div className="relative" id="about-main">
+        {/* Image that bleeds outside the main section - only top */}
+        <div className="absolute right-0 top-0 w-1/2 z-10 -mt-20 hidden lg:block">
           <motion.div
-            className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-blue-400/30 text-blue-400 px-4 py-2 rounded-xl font-semibold text-sm uppercase tracking-wider mb-6"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-            transition={{ delay: 0.2 }}
+            className="h-[60vh] rounded-l-3xl overflow-hidden shadow-2xl"
+            initial={{ opacity: 0, y: 60, scale: 1.1 }}
+            animate={servicesInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+            transition={{ duration: 1.2, ease: [0.23, 1, 0.32, 1] }}
           >
-            <motion.div 
-              className="w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
+            <img 
+              src="/images/about-image.jpg" 
+              alt="Ratan Mia - Full Stack Developer"
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+              loading="lazy"
             />
-            <span>About Me</span>
+            <div className="absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-accent-lime/10" />
           </motion.div>
-
-          <motion.h2 
-            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 0.4 }}
-          >
-            Crafting Digital Excellence
-          </motion.h2>
-
-          <motion.p
-            className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 0.6 }}
-          >
-            Transforming ideas into powerful web solutions with 8+ years of experience in 
-            full-stack development, specializing in React.js, Next.js, and Laravel.
-          </motion.p>
-        </motion.div>
-
-        {/* Stats Section */}
-        <motion.div 
-          ref={statsRef}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-20"
-          initial={{ opacity: 0, y: 30 }}
-          animate={statsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
-        >
-          {CORE_STATS.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              className="text-center p-6 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:bg-white/15 transition-all duration-300"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={statsInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ scale: 1.05, y: -5 }}
-            >
-              <stat.icon className="w-8 h-8 mx-auto mb-3 text-blue-400" />
-              <div className="text-2xl md:text-3xl font-bold text-white mb-2">{stat.number}</div>
-              <div className="text-sm text-gray-400 font-medium">{stat.label}</div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Main Content Grid */}
-        <div className="grid lg:grid-cols-2 gap-12 mb-20">
-          
-          {/* Left Column - Story & Skills */}
-          <div className="space-y-12">
-            
-            {/* My Story */}
-            <motion.div
-              className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20"
-              initial={{ opacity: 0, x: -30 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
-              transition={{ delay: 0.8 }}
-            >
-              <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                <Code2 className="w-6 h-6 text-blue-400" />
-                My Story
-              </h3>
-              
-              <div className="space-y-4 text-gray-300 leading-relaxed">
-                <p>
-                  As a <strong className="text-white">Senior Full Stack Developer</strong> with 8+ years of experience, 
-                  I specialize in creating high-performance web applications that drive business growth.
-                </p>
-                <p>
-                  My expertise spans modern technologies like <strong className="text-blue-300">React.js</strong>, 
-                  <strong className="text-green-300"> Next.js</strong>, and <strong className="text-purple-300"> Laravel</strong>, 
-                  helping businesses transform their digital presence.
-                </p>
-              </div>
-              
-              {/* Contact Info */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6 pt-6 border-t border-white/20">
-                <div className="flex items-center gap-3">
-                  <MapPin className="w-4 h-4 text-blue-400" />
-                  <span className="text-sm text-gray-300">Dhaka, Bangladesh</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Coffee className="w-4 h-4 text-orange-400" />
-                  <span className="text-sm text-gray-300">8+ Years Experience</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Mail className="w-4 h-4 text-green-400" />
-                  <a href="mailto:ratanmiadev@gmail.com" className="text-sm text-blue-300 hover:text-blue-200 transition-colors">
-                    ratanmiadev@gmail.com
-                  </a>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Download className="w-4 h-4 text-purple-400" />
-                  <a href="/resume.pdf" className="text-sm text-purple-300 hover:text-purple-200 transition-colors">
-                    Download CV
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Core Skills */}
-            <motion.div
-              ref={skillsRef}
-              className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20"
-              initial={{ opacity: 0, x: -30 }}
-              animate={skillsInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
-              transition={{ delay: 0.2 }}
-            >
-              <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                <Zap className="w-6 h-6 text-yellow-400" />
-                Core Skills
-              </h3>
-              
-              <div className="space-y-4">
-                {KEY_SKILLS.map((skill, index) => (
-                  <SkillBar
-                    key={skill.name}
-                    skill={skill}
-                    index={index}
-                    inView={skillsInView}
-                  />
-                ))}
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Right Column - Achievements */}
-          <div className="space-y-12">
-            
-            {/* Key Achievements */}
-            <motion.div
-              ref={achievementsRef}
-              initial={{ opacity: 0, x: 30 }}
-              animate={achievementsInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
-              transition={{ delay: 0.4 }}
-            >
-              <h3 className="text-2xl font-bold text-white mb-8 flex items-center gap-3">
-                <Award className="w-6 h-6 text-yellow-400" />
-                Key Achievements
-              </h3>
-              
-              <div className="grid gap-6">
-                {ACHIEVEMENTS.map((achievement, index) => (
-                  <AchievementCard
-                    key={index}
-                    achievement={achievement}
-                    index={index}
-                    inView={achievementsInView}
-                  />
-                ))}
-              </div>
-            </motion.div>
-          </div>
         </div>
 
-        {/* Work Experience */}
-        <motion.div
-          ref={experienceRef}
-          className="mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={experienceInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
-        >
-          <h3 className="text-2xl md:text-3xl font-bold text-white mb-12 text-center">
-            Professional Experience
-          </h3>
-          
-          <div className="grid md:grid-cols-3 gap-6">
-            {WORK_EXPERIENCE.map((experience, index) => (
-              <ExperienceCard
-                key={experience.company}
-                experience={experience}
-                index={index}
-                inView={experienceInView}
+        {/* Main lime section */}
+        <section ref={servicesRef} className="bg-accent-lime relative min-h-[70vh] overflow-visible">
+          <motion.div 
+            className="grid lg:grid-cols-2 min-h-[70vh]"
+            variants={containerVariants}
+            initial="hidden"
+            animate={servicesInView ? "visible" : "hidden"}
+          >
+            {/* Left Column: Content on lime background */}
+            <motion.div 
+              className="text-black flex flex-col justify-center px-8 py-16 lg:px-16 xl:px-20 lg:py-20 relative"
+              variants={itemVariants}
+            >
+              <motion.div
+                className="inline-flex items-center gap-4 mb-8"
+                variants={itemVariants}
+              >
+                <div className="w-12 h-1 bg-black" />
+                <span className="text-black/70 font-semibold text-sm uppercase tracking-wider">About Me</span>
+              </motion.div>
+
+              <motion.h2 
+                className="text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight leading-[1.1] mb-8"
+                variants={itemVariants}
+              >
+                Passionate About Creating
+                <br />
+                <span className="text-black/80">Quality Development</span>
+              </motion.h2>
+              
+              <motion.div
+                className="mb-12 space-y-8"
+                variants={itemVariants}
+              >
+                <div>
+                  <h3 className="text-xl lg:text-2xl font-bold text-black mb-4">
+                    IBM Certified Developer
+                  </h3>
+                  <p className="text-lg text-black/80 leading-relaxed max-w-lg">
+                    Specializing in full-stack development with over 8 years of experience building scalable applications using modern technologies and industry best practices.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="text-xl lg:text-2xl font-bold text-black mb-4">
+                    Why Choose My Services
+                  </h4>
+                  <p className="text-lg text-black/80 leading-relaxed max-w-lg">
+                    I focus on delivering robust, maintainable solutions that scale with your business. From e-commerce platforms to enterprise applications, I bring technical expertise and strategic thinking to every project.
+                  </p>
+                </div>
+              </motion.div>
+
+              <motion.div 
+                className="space-y-6 mb-16"
+                variants={itemVariants}
+              >
+                {DEVELOPMENT_SERVICES.map((service, index) => (
+                  <ServiceSkillBar
+                    key={service.name}
+                    service={service}
+                    index={index}
+                    inView={servicesInView}
+                  />
+                ))}
+              </motion.div>
+
+              {/* Contact Info */}
+              <motion.div 
+                className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+                variants={itemVariants}
+              >
+                <motion.div 
+                  className="flex items-center gap-4 p-4 rounded-xl bg-black/10 hover:bg-black/20 transition-colors group"
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <div className="w-12 h-12 rounded-lg bg-black flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <MapPin className="w-6 h-6 text-accent-lime" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-black/60 font-medium uppercase tracking-wide">Location</p>
+                    <p className="text-black font-bold text-lg">Dhaka, Bangladesh 🇧🇩</p>
+                  </div>
+                </motion.div>
+                
+                <motion.div 
+                  className="flex items-center gap-4 p-4 rounded-xl bg-black/10 hover:bg-black/20 transition-colors group"
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <div className="w-12 h-12 rounded-lg bg-black flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Mail className="w-6 h-6 text-accent-lime" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-black/60 font-medium uppercase tracking-wide">Email</p>
+                    <a 
+                      href="mailto:ratanmiadev@gmail.com" 
+                      className="text-black hover:text-black/70 transition-colors font-bold text-lg"
+                    >
+                      ratanmiadev@gmail.com
+                    </a>
+                  </div>
+                </motion.div>
+              </motion.div>
+
+
+            </motion.div>
+
+            {/* Right Column: Space for bleeding image */}
+            <div className="relative lg:hidden">
+              {/* Mobile image */}
+              <div className="h-64 w-full rounded-2xl overflow-hidden mx-8 my-8">
+                <img 
+                  src="/images/about-image.jpg" 
+                  alt="Ratan Mia - Full Stack Developer"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </motion.div>
+        </section>
+      </div>
+
+      {/* --- Stats Section --- */}
+      <div ref={statsRef} className="py-24 lg:py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+          <motion.div 
+            className="grid md:grid-cols-3 gap-12 lg:gap-16 divide-y md:divide-y-0 md:divide-x divide-gray-200"
+            variants={containerVariants}
+            initial="hidden"
+            animate={statsInView ? "visible" : "hidden"}
+          >
+            {CORE_STATS.map((stat, index) => (
+              <StatColumn key={stat.label} stat={stat} index={index} inView={statsInView} />
+            ))}
+          </motion.div>
+        </div>
+      </div>
+
+      {/* --- Experience Section --- */}
+      <div ref={experienceRef} className="py-24 lg:py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+          <SectionHeader inView={experienceInView} textColor="text-black">
+            <h3 className="text-4xl lg:text-5xl xl:text-6xl font-extrabold mb-4">Professional Journey</h3>
+            <p className="text-xl text-gray-500">Companies and roles that shaped my expertise in full-stack development.</p>
+          </SectionHeader>
+          <motion.div 
+            className="border-t border-gray-200 mt-16"
+            variants={containerVariants}
+            initial="hidden"
+            animate={experienceInView ? "visible" : "hidden"}
+          >
+            {EXPERIENCE.map((experience, index) => (
+              <ExperienceRow 
+                key={experience.company} 
+                experience={experience} 
+                index={index} 
+                inView={experienceInView} 
               />
             ))}
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
+      </div>
 
-        {/* CTA Section */}
-        <motion.div
-          className="text-center bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 p-8 md:p-12 rounded-2xl relative overflow-hidden"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ delay: 1.0 }}
+      {/* --- CTA Section --- */}
+      <div className="bg-black py-24 lg:py-32">
+        <motion.div 
+          ref={ctaRef} 
+          className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8"
+          initial={{ opacity: 0, y: 60 }}
+          animate={ctaInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
         >
-          {/* Background Effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent" />
-          
-          <div className="relative z-10">
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-              Ready to Start Your Project?
-            </h3>
-            <p className="text-blue-100 mb-8 max-w-2xl mx-auto leading-relaxed">
-              Let's transform your ideas into powerful web solutions that drive growth and success.
-            </p>
+          <div className="bg-gray-800 p-12 lg:p-16 rounded-3xl text-center relative overflow-hidden border border-gray-700 hover:border-gray-600 transition-colors group">
+            {/* Background Pattern */}
+            <div className="absolute inset-0 bg-gradient-to-br from-accent-lime/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.a
-                href="#contact"
-                className="inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
+            <div className="relative z-10">
+              <motion.h3 
+                className="text-3xl lg:text-5xl xl:text-6xl font-extrabold text-white mb-6"
+                whileHover={{ scale: 1.02 }}
               >
-                <span>Get In Touch</span>
-                <ArrowRight className="w-5 h-5" />
-              </motion.a>
-              
-              <motion.a
-                href="#projects"
-                className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-semibold border border-white/30 hover:bg-white/20 transition-all duration-300"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                View My Work
-              </motion.a>
+                Ready to Collaborate?
+              </motion.h3>
+              <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
+                Let's discuss your project and build something exceptional together.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                <motion.a 
+                  href="#contact" 
+                  className="bg-accent-lime text-black font-bold px-10 py-4 rounded-xl hover:bg-lime-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-lime-400/30 transition-all duration-300 inline-flex items-center justify-center gap-3 text-lg"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <span>Start a Project</span>
+                  <ArrowRight className="w-5 h-5" />
+                </motion.a>
+                <motion.a 
+                  href="/resume.pdf" 
+                  className="border-2 border-gray-500 text-white font-bold px-10 py-4 rounded-xl hover:bg-gray-700 hover:border-gray-400 hover:-translate-y-1 transition-all duration-300 inline-flex items-center justify-center gap-3 text-lg"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Download className="w-5 h-5" />
+                  <span>Download Resume</span>
+                </motion.a>
+              </div>
             </div>
           </div>
         </motion.div>
       </div>
     </section>
   );
-};
-
-export default About;
+}

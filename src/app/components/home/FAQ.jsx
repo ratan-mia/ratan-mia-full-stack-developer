@@ -2,228 +2,370 @@
 
 import { AnimatePresence, motion, useInView } from 'framer-motion';
 import {
-  ChevronDown,
-  HelpCircle,
-  Mail,
-  Phone,
-  MessageSquare,
+  ArrowRight,
   Calendar,
-  CheckCircle
+  Clock,
+  Code2,
+  CreditCard,
+  DollarSign,
+  Globe,
+  Mail,
+  Minus,
+  Plus,
+  Shield
 } from 'lucide-react';
-import { useState, useRef } from 'react';
+import { useRef, useState } from 'react';
 
+// --- FAQ Item Component with Individual Animation ---
+const AccordionItem = ({ item, index, expanded, onToggle }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const isOpen = index === expanded;
+  const accentColor = index % 2 === 0 ? 'text-accent-lime' : 'text-accent-orange';
+  const bgColor = index % 2 === 0 ? 'bg-accent-lime' : 'bg-accent-orange';
+
+  return (
+    <motion.div 
+      ref={ref}
+      className="border-b border-gray-200 group hover:bg-gray-50/50 transition-colors duration-300"
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      transition={{ 
+        duration: 0.6, 
+        delay: index * 0.1,
+        ease: [0.23, 1, 0.32, 1]
+      }}
+    >
+      <motion.header
+        onClick={() => onToggle(isOpen ? null : index)}
+        className="flex justify-between items-center cursor-pointer py-6 lg:py-8 group-hover:py-8 transition-all duration-300"
+        whileHover={{ x: 4 }}
+      >
+        <div className="flex items-center gap-4 lg:gap-6">
+          {/* Question Icon */}
+          <motion.div 
+            className={`w-12 h-12 rounded-xl ${isOpen ? bgColor : 'bg-gray-200'} flex items-center justify-center transition-all duration-300`}
+            whileHover={{ scale: 1.1, rotate: 5 }}
+          >
+            <item.icon className={`w-6 h-6 ${isOpen ? 'text-white' : 'text-gray-600'}`} />
+          </motion.div>
+          
+          {/* Question */}
+          <div>
+            <span className="text-gray-400 font-mono text-sm block mb-1">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <h3 className={`text-xl lg:text-2xl font-bold transition-colors duration-300 ${
+              isOpen ? accentColor : 'text-black group-hover:text-gray-700'
+            }`}>
+              {item.question}
+            </h3>
+          </div>
+        </div>
+        
+        {/* Toggle Button */}
+        <motion.div 
+          className={`w-10 h-10 rounded-lg ${isOpen ? bgColor : 'bg-gray-100'} flex items-center justify-center transition-all duration-300`}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          <motion.div
+            animate={{ rotate: isOpen ? 180 : 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            {isOpen ? (
+              <Minus className={`w-5 h-5 ${isOpen ? 'text-white' : 'text-gray-600'}`} />
+            ) : (
+              <Plus className={`w-5 h-5 ${isOpen ? 'text-white' : 'text-gray-600'}`} />
+            )}
+          </motion.div>
+        </motion.div>
+      </motion.header>
+
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.section
+            key="content"
+            initial="collapsed"
+            animate="open"
+            exit="collapsed"
+            variants={{
+              open: { opacity: 1, height: 'auto' },
+              collapsed: { opacity: 0, height: 0 },
+            }}
+            transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+            className="overflow-hidden"
+          >
+            <div className="pb-8 lg:pb-12 pl-16">
+              <p className="text-gray-600 text-lg lg:text-xl leading-relaxed mb-4">
+                {item.answer}
+              </p>
+              {item.details && (
+                <div className="mt-6">
+                  <h4 className="font-bold text-black mb-3">Additional Details:</h4>
+                  <ul className="space-y-2">
+                    {item.details.map((detail, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <div className="w-2 h-2 rounded-full bg-accent-lime mt-2 flex-shrink-0" />
+                        <span className="text-gray-600">{detail}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </motion.section>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+};
+
+// --- Contact Card Component ---
+const ContactCard = ({ card, index }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+  return (
+    <motion.div 
+      ref={ref}
+      className="bg-gray-50 hover:bg-white border border-gray-200 hover:border-accent-lime/30 p-8 lg:p-10 rounded-2xl relative group transition-all duration-300 hover:shadow-lg"
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      transition={{ 
+        duration: 0.8, 
+        delay: index * 0.2,
+        ease: [0.23, 1, 0.32, 1]
+      }}
+      whileHover={{ y: -4, scale: 1.02 }}
+    >
+      {/* Background Icon */}
+      <motion.div 
+        className="absolute top-8 right-8 opacity-20 group-hover:opacity-30 transition-opacity"
+        whileHover={{ scale: 1.1, rotate: 5 }}
+      >
+        <card.icon className="w-12 h-12 text-gray-400" />
+      </motion.div>
+      
+      {/* Content */}
+      <div className="relative z-10">
+        <motion.div 
+          className="w-16 h-16 bg-accent-lime/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-accent-lime/20 transition-colors"
+          whileHover={{ scale: 1.1, rotate: 2 }}
+        >
+          <card.icon className="w-8 h-8 text-accent-lime" />
+        </motion.div>
+        
+        <h3 className="text-2xl lg:text-3xl font-bold mb-4 text-black group-hover:text-gray-800 transition-colors">
+          {card.title}
+        </h3>
+        
+        <p className="text-gray-600 mb-8 leading-relaxed text-lg">
+          {card.description}
+        </p>
+        
+        <motion.a 
+          href={card.link} 
+          className="group/link font-bold inline-flex items-center gap-3 text-lg text-black hover:text-accent-lime transition-colors"
+          whileHover={{ x: 4 }}
+        >
+          <span>{card.cta}</span>
+          <motion.div
+            whileHover={{ x: 4 }}
+            transition={{ type: "spring", stiffness: 400 }}
+          >
+            <ArrowRight className="w-5 h-5" />
+          </motion.div>
+        </motion.a>
+      </div>
+    </motion.div>
+  );
+};
+
+// --- MAIN FAQ COMPONENT ---
 const FAQ = () => {
-  const [openItems, setOpenItems] = useState([1]); // First item open by default
-  
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, threshold: 0.1 });
+  const headerRef = useRef(null);
+  
+  const sectionInView = useInView(sectionRef, { once: true, threshold: 0.1 });
+  const headerInView = useInView(headerRef, { once: true, margin: "-100px" });
+  
+  const [expanded, setExpanded] = useState(0);
 
   const faqData = [
-    {
-      id: 1,
-      question: "How long does it typically take to complete a project?",
-      answer: "Project timelines vary based on complexity and scope. Simple websites typically take 1-2 weeks, while complex web applications can take 4-8 weeks. During our initial consultation, I'll provide a detailed timeline based on your specific requirements."
+    { 
+      id: 1, 
+      icon: Clock,
+      question: "How long does a typical project take?", 
+      answer: "Project timelines vary based on complexity and requirements. I provide detailed timelines during our initial consultation to set clear expectations.",
+      details: [
+        "Simple websites: 2-3 weeks",
+        "E-commerce platforms: 4-6 weeks", 
+        "Complex web applications: 6-12 weeks",
+        "Mobile apps: 8-16 weeks"
+      ]
     },
-    {
-      id: 2,
-      question: "What is your typical project cost range?",
-      answer: "Project costs vary based on complexity and features. Simple websites start from $1,000-$3,000, while complex web applications range from $5,000-$25,000+. I provide detailed, transparent quotes after understanding your specific needs."
+    { 
+      id: 2, 
+      icon: DollarSign,
+      question: "What are your development rates?", 
+      answer: "I offer competitive rates based on project scope and complexity. Every project receives a custom quote tailored to your specific requirements and budget.",
+      details: [
+        "Landing pages: Starting from $1,500",
+        "Business websites: $3,000 - $8,000",
+        "E-commerce platforms: $5,000 - $15,000",
+        "Custom web applications: $10,000+"
+      ]
     },
-    {
-      id: 3,
-      question: "What technologies do you specialize in?",
-      answer: "I specialize in modern web technologies including React.js, Next.js, JavaScript/TypeScript for frontend; PHP, Laravel, Node.js for backend; and WordPress, Shopify for CMS/e-commerce solutions. I also work with MySQL and MongoDB databases."
+    { 
+      id: 3, 
+      icon: Code2,
+      question: "What technologies and frameworks do you use?", 
+      answer: "I specialize in modern, industry-standard technologies that ensure scalability, performance, and maintainability for your projects.",
+      details: [
+        "Frontend: React.js, Next.js, TypeScript, Tailwind CSS",
+        "Backend: Laravel, Node.js, Express.js, PHP",
+        "Mobile: React Native, Progressive Web Apps",
+        "Database: MySQL, PostgreSQL, MongoDB",
+        "Cloud: AWS, Vercel, DigitalOcean"
+      ]
     },
-    {
-      id: 4,
-      question: "Do you work with international clients?",
-      answer: "Yes! I work with clients worldwide from my base in Dhaka, Bangladesh. I'm experienced in collaborating across different time zones and use modern communication tools to ensure smooth collaboration regardless of location."
+    { 
+      id: 4, 
+      icon: Globe,
+      question: "Do you work with international clients?", 
+      answer: "Absolutely! I collaborate with clients worldwide and have experience working across different time zones with clear communication protocols.",
+      details: [
+        "Flexible working hours to accommodate time zones",
+        "Regular progress updates via Slack/Email",
+        "Weekly video calls for project alignment",
+        "English as primary communication language"
+      ]
     },
-    {
-      id: 5,
-      question: "Do you provide ongoing maintenance and support?",
-      answer: "Absolutely! I offer comprehensive maintenance packages including security updates, performance monitoring, content updates, and technical support. Basic support is included for the first month after project launch."
+    { 
+      id: 5, 
+      icon: Shield,
+      question: "What kind of ongoing support do you provide?", 
+      answer: "I offer comprehensive maintenance and support packages to ensure your application runs smoothly and stays up-to-date with the latest security standards.",
+      details: [
+        "First month of support included with every project",
+        "Monthly maintenance packages available",
+        "Security updates and bug fixes",
+        "Performance monitoring and optimization",
+        "Content updates and feature additions"
+      ]
     },
-    {
-      id: 6,
-      question: "How do you handle project payments?",
-      answer: "I typically work with 50% upfront and 50% upon completion for smaller projects. Larger projects are divided into milestones with payments tied to deliverable completion. All projects include a detailed contract outlining scope, timeline, and terms."
-    },
-    {
-      id: 7,
-      question: "Can you integrate third-party services and APIs?",
-      answer: "Yes! I have extensive experience integrating various third-party services including payment gateways, CRM systems, email marketing tools, social media APIs, Google services, and custom APIs."
-    },
-    {
-      id: 8,
-      question: "What makes you different from other developers?",
-      answer: "I combine 10+ years of experience with a client-first approach, focusing on understanding your business goals rather than just technical requirements. My proven process ensures transparent communication, on-time delivery, and results that drive business growth."
-    },
-    {
-      id: 9,
-      question: "Do you offer website redesigns?",
-      answer: "Yes! I can redesign existing websites to improve performance, user experience, and modern design standards. This includes migrating to new platforms, improving mobile responsiveness, and enhancing overall functionality."
-    },
-    {
-      id: 10,
-      question: "How do we communicate during the project?",
-      answer: "I use a combination of email, WhatsApp, video calls, and project management tools to keep you updated. You'll receive regular progress reports and have direct access to me throughout the project development process."
+    { 
+      id: 6, 
+      icon: CreditCard,
+      question: "How does the payment process work?", 
+      answer: "I use a transparent, milestone-based payment structure that protects both parties and ensures project momentum throughout development.",
+      details: [
+        "Small projects: 50% upfront, 50% on completion",
+        "Large projects: Split into 3-4 milestone payments",
+        "Payment methods: Bank transfer, PayPal, Stripe",
+        "Invoices provided for all transactions"
+      ]
     }
   ];
 
-  const toggleItem = (itemId) => {
-    setOpenItems(prev => 
-      prev.includes(itemId) 
-        ? prev.filter(id => id !== itemId)
-        : [...prev, itemId]
-    );
-  };
+  const contactCards = [
+    {
+      icon: Calendar,
+      title: "Schedule a Consultation",
+      description: "Book a free 30-minute consultation to discuss your project requirements and get a detailed proposal.",
+      cta: "BOOK FREE CONSULTATION",
+      link: "#contact"
+    },
+    {
+      icon: Mail,
+      title: "Send Direct Message",
+      description: "Prefer email? Send me a detailed message about your project and I'll respond within 24 hours.",
+      cta: "ratanmiadev@gmail.com",
+      link: "mailto:ratanmiadev@gmail.com"
+    }
+  ];
 
   return (
-    <section 
-      ref={sectionRef}
-      id="faq" 
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-white"
-    >
-      <div className="max-w-4xl mx-auto">
+    <section ref={sectionRef} className="py-20 lg:py-24 bg-white text-black" id="faq">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
         
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
+        {/* Section Header */}
+        <motion.div 
+          ref={headerRef}
           className="text-center mb-16"
+          initial={{ opacity: 0, y: 50 }}
+          animate={headerInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
         >
-          <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
-            <HelpCircle className="w-4 h-4" />
-            Frequently Asked Questions
-          </div>
+          <motion.div
+            className="inline-flex items-center gap-4 mb-6"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={headerInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <div className="w-12 h-1 bg-accent-lime" />
+            <span className="text-gray-400 font-semibold text-sm uppercase tracking-wider">Frequently Asked Questions</span>
+          </motion.div>
           
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Everything You Need to Know
-          </h2>
+          <motion.h2 
+            className="text-4xl lg:text-5xl xl:text-6xl font-extrabold mb-6 tracking-tight leading-tight"
+            initial={{ opacity: 0, y: 30 }}
+            animate={headerInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            Common Questions About
+            <br />
+            <span className="text-accent-lime">My Services</span>
+          </motion.h2>
           
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Get answers to common questions about my services, process, and pricing. Can't find what you're looking for? Just ask!
-          </p>
+          <motion.p 
+            className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={headerInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            Find answers to the most common questions about my development process, pricing, and services.
+          </motion.p>
         </motion.div>
 
-        {/* FAQ List */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="space-y-4 mb-16"
-        >
+        {/* FAQ Accordion */}
+        <div className="border-t border-gray-200 mb-20">
           {faqData.map((item, index) => (
-            <motion.div
-              key={item.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ delay: 0.3 + index * 0.05, duration: 0.5 }}
-              className="bg-gray-50 border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300"
-            >
-              <button
-                onClick={() => toggleItem(item.id)}
-                className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-100 transition-colors duration-200"
-              >
-                <h3 className="text-lg font-semibold text-gray-900 pr-4">
-                  {item.question}
-                </h3>
-                <motion.div
-                  animate={{ rotate: openItems.includes(item.id) ? 180 : 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="flex-shrink-0"
-                >
-                  <ChevronDown className="w-5 h-5 text-gray-500" />
-                </motion.div>
-              </button>
-
-              <AnimatePresence>
-                {openItems.includes(item.id) && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="overflow-hidden"
-                  >
-                    <div className="px-6 pb-6">
-                      <div className="border-t border-gray-200 pt-4">
-                        <p className="text-gray-700 leading-relaxed">
-                          {item.answer}
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
+            <AccordionItem 
+              key={item.id} 
+              item={item} 
+              index={index} 
+              expanded={expanded} 
+              onToggle={setExpanded} 
+            />
           ))}
-        </motion.div>
+        </div>
 
-        {/* Contact CTA */}
+        {/* Contact Cards Section */}
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 md:p-12 text-white text-center"
+          className="mt-20 pt-12 border-t border-gray-200"
+          initial={{ opacity: 0, y: 40 }}
+          animate={sectionInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+          transition={{ duration: 0.8, delay: 1.2 }}
         >
-          <h3 className="text-2xl md:text-3xl font-bold mb-4">
-            Still Have Questions?
-          </h3>
-          <p className="text-blue-100 mb-8 max-w-2xl mx-auto text-lg">
-            I'm here to help! Contact me directly for personalized answers to your specific questions.
-          </p>
+          <motion.div className="text-center mb-12">
+            <h3 className="text-3xl lg:text-4xl font-bold text-black mb-4">
+              Still Have Questions?
+            </h3>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Don't hesitate to reach out. I'm here to help clarify any doubts and discuss your project in detail.
+            </p>
+          </motion.div>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="#contact"
-              className="inline-flex items-center justify-center gap-2 bg-white text-blue-600 px-8 py-3 rounded-xl font-semibold hover:bg-gray-100 transition-colors"
-            >
-              <Mail className="w-5 h-5" />
-              Send a Message
-            </a>
-            
-            <a
-              href="tel:+8801751010966"
-              className="inline-flex items-center justify-center gap-2 bg-white/20 border-2 border-white text-white px-8 py-3 rounded-xl font-semibold hover:bg-white/30 transition-colors"
-            >
-              <Phone className="w-5 h-5" />
-              Call Now
-            </a>
-          </div>
-        </motion.div>
-
-        {/* Trust Indicators */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16"
-        >
-          <div className="text-center">
-            <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-              <CheckCircle className="w-6 h-6 text-blue-600" />
-            </div>
-            <h4 className="text-lg font-semibold text-gray-900 mb-2">Quick Response</h4>
-            <p className="text-gray-600">I typically respond to all inquiries within 24 hours, often much sooner.</p>
-          </div>
-          
-          <div className="text-center">
-            <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-              <MessageSquare className="w-6 h-6 text-green-600" />
-            </div>
-            <h4 className="text-lg font-semibold text-gray-900 mb-2">Free Consultation</h4>
-            <p className="text-gray-600">30-minute strategy call included to discuss your project in detail.</p>
-          </div>
-          
-          <div className="text-center">
-            <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-              <Calendar className="w-6 h-6 text-purple-600" />
-            </div>
-            <h4 className="text-lg font-semibold text-gray-900 mb-2">Flexible Scheduling</h4>
-            <p className="text-gray-600">I work across time zones to accommodate your schedule and needs.</p>
+          <div className="grid md:grid-cols-2 gap-8">
+            {contactCards.map((card, index) => (
+              <ContactCard 
+                key={card.title}
+                card={card}
+                index={index}
+              />
+            ))}
           </div>
         </motion.div>
       </div>

@@ -1,431 +1,263 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import {
-  ArrowRight,
-  Brain,
-  CheckCircle,
-  Code,
-  ExternalLink,
-  Globe,
-  Mail,
-  ShoppingCart,
-  Star,
-  Zap
-} from 'lucide-react';
+import { ArrowRight, Code2, Database, Globe, Layers, ShoppingCart, Smartphone, Star, TrendingUp, Zap } from 'lucide-react';
 import { useRef } from 'react';
 
-// Simplified Service Data - Only Essential Services
-const CORE_SERVICES = [
-  {
-    id: 1,
-    icon: Code,
-    title: "Full Stack Development",
-    description: "Complete web applications with React.js, Next.js, and Laravel. From concept to deployment.",
-    features: [
-      "Responsive Design & Mobile-First",
-      "RESTful API Development",
-      "Database Architecture",
-      "Performance Optimization"
-    ],
-    basePrice: "$2,500",
-    timeline: "4-12 weeks",
-    gradient: "from-blue-600 to-indigo-600",
-    featured: true
-  },
-  {
-    id: 2,
-    icon: ShoppingCart,
-    title: "E-commerce Solutions",
-    description: "High-converting online stores with secure payments and inventory management.",
-    features: [
-      "Custom E-commerce Development",
-      "Payment Gateway Integration",
-      "Inventory Management",
-      "Analytics & Reporting"
-    ],
-    basePrice: "$4,000",
-    timeline: "6-16 weeks",
-    gradient: "from-purple-600 to-pink-600",
-    featured: true
-  },
-  {
-    id: 3,
-    icon: Globe,
-    title: "WordPress Development",
-    description: "Custom WordPress solutions with themes, plugins, and performance optimization.",
-    features: [
-      "Custom Theme Development",
-      "Plugin Development",
-      "Performance Optimization",
-      "Security Implementation"
-    ],
-    basePrice: "$1,500",
-    timeline: "2-8 weeks",
-    gradient: "from-green-600 to-teal-600",
-    featured: false
-  },
-  {
-    id: 4,
-    icon: Zap,
-    title: "Performance Optimization",
-    description: "Speed optimization for existing websites achieving perfect Core Web Vitals scores.",
-    features: [
-      "Core Web Vitals Optimization",
-      "Database Query Optimization",
-      "Image Compression & WebP",
-      "CDN Implementation"
-    ],
-    basePrice: "$800",
-    timeline: "1-3 weeks",
-    gradient: "from-indigo-600 to-purple-600",
-    featured: false
-  },
-  {
-    id: 5,
-    icon: Brain,
-    title: "AI Integration",
-    description: "Advanced AI solutions including chatbots and intelligent automation.",
-    features: [
-      "OpenAI GPT Integration",
-      "Custom Chatbot Development",
-      "Natural Language Processing",
-      "Machine Learning Implementation"
-    ],
-    basePrice: "$2,000",
-    timeline: "3-8 weeks",
-    gradient: "from-teal-600 to-cyan-600",
-    featured: true
-  }
-];
+// --- Enhanced Service Card Component ---
+const ServiceCard = ({ icon: Icon, title, description, features, index, inView, isPopular = false }) => {
+  const cardVariants = {
+    hidden: { opacity: 0, y: 60, rotateX: 10 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      rotateX: 0,
+      transition: { 
+        duration: 0.8, 
+        delay: 0.2 + index * 0.15,
+        ease: "easeOut"
+      }
+    }
+  };
 
-const SERVICE_STATS = [
-  { number: '150+', label: 'Projects Delivered' },
-  { number: '98%', label: 'Success Rate' },
-  { number: '24/7', label: 'Support' },
-  { number: '5', label: 'Core Services' }
-];
-
-// Service Card Component
-const ServiceCard = ({ service, index, inView }) => {
   return (
     <motion.div
-      className="bg-white/80 backdrop-blur-sm rounded-2xl border border-white/50 shadow-lg hover:shadow-xl transition-all duration-300 p-6 h-full flex flex-col group"
-      initial={{ opacity: 0, y: 20 }}
-      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-      transition={{ delay: index * 0.1, duration: 0.5 }}
-      whileHover={{ y: -5, scale: 1.02 }}
+      variants={cardVariants}
+      initial="hidden"
+      animate={inView ? "visible" : "hidden"}
+      whileHover={{ y: -12, scale: 1.02 }}
+      className="relative p-8 rounded-3xl bg-accent-lime text-black h-full flex flex-col group overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-lime-400/30"
     >
-      {/* Header */}
-      <div className="flex items-start gap-4 mb-4">
-        <div className={`w-12 h-12 bg-gradient-to-br ${service.gradient} rounded-xl flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-          <service.icon className="w-6 h-6" />
+      {/* Popular Badge */}
+      {isPopular && (
+        <div className="absolute -top-2 -right-2 bg-black text-accent-lime px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider rotate-12 shadow-lg">
+          <Star className="w-3 h-3 inline mr-1" />
+          Popular
         </div>
-        <div className="flex-1">
-          <div className="flex items-center gap-2 mb-2">
-            <h3 className="text-xl font-bold text-slate-800 group-hover:text-blue-600 transition-colors duration-300">
-              {service.title}
-            </h3>
-            {service.featured && (
-              <motion.span
-                className="inline-flex items-center gap-1 bg-gradient-to-r from-yellow-400 to-orange-400 text-white px-2 py-1 rounded-full text-xs font-bold"
-                animate={{ scale: [1, 1.05, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
+      )}
+
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-4 right-4 w-32 h-32 rounded-full bg-gradient-to-br from-black to-transparent blur-2xl"></div>
+        <div className="absolute bottom-4 left-4 w-24 h-24 rounded-full bg-gradient-to-tr from-black to-transparent blur-xl"></div>
+      </div>
+
+      <div className="relative z-10 flex flex-col h-full">
+        {/* Icon with enhanced styling */}
+        <motion.div 
+          className="mb-8 w-18 h-18 rounded-2xl flex items-center justify-center bg-black/15 group-hover:scale-110 transition-all duration-300"
+          whileHover={{ rotate: [0, -10, 10, 0] }}
+          transition={{ type: 'spring', stiffness: 400 }}
+        >
+          <Icon className="w-9 h-9 text-black" />
+        </motion.div>
+        
+        {/* Title with better typography */}
+        <h3 className="text-2xl lg:text-3xl font-extrabold text-black mb-4 leading-tight">
+          {title}
+        </h3>
+        
+        {/* Description */}
+        <p className="text-black/80 mb-6 text-lg leading-relaxed flex-grow">
+          {description}
+        </p>
+
+        {/* Features List */}
+        <div className="mb-8">
+          <ul className="space-y-2">
+            {features.map((feature, idx) => (
+              <motion.li 
+                key={idx}
+                className="flex items-center gap-3 text-sm text-black/70"
+                initial={{ opacity: 0, x: -20 }}
+                animate={inView ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: 0.5 + index * 0.1 + idx * 0.1 }}
               >
-                <Star className="w-3 h-3" />
-                Featured
-              </motion.span>
-            )}
-          </div>
-          <p className="text-gray-600 leading-relaxed">{service.description}</p>
+                <div className="w-1.5 h-1.5 rounded-full bg-black/40"></div>
+                {feature}
+              </motion.li>
+            ))}
+          </ul>
         </div>
+        
+        {/* Enhanced CTA */}
+        <motion.a 
+          href="#contact" 
+          className="flex items-center justify-between p-4 rounded-2xl bg-black/10 hover:bg-black/20 text-black mt-auto font-semibold transition-all duration-300 group-hover:translate-x-1"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          <span className="uppercase tracking-wider text-sm">Get Started</span>
+          <motion.div
+            whileHover={{ x: 5 }}
+            transition={{ type: "spring", stiffness: 400 }}
+          >
+            <ArrowRight className="w-5 h-5" />
+          </motion.div>
+        </motion.a>
       </div>
-
-      {/* Quick Info */}
-      <div className="grid grid-cols-2 gap-3 mb-4">
-        <div className="text-center p-3 bg-gray-50 rounded-lg">
-          <div className={`text-lg font-bold bg-gradient-to-r ${service.gradient} bg-clip-text text-transparent`}>
-            {service.basePrice}
-          </div>
-          <div className="text-xs text-gray-600">Starting Price</div>
-        </div>
-        <div className="text-center p-3 bg-gray-50 rounded-lg">
-          <div className="text-lg font-bold text-gray-800">{service.timeline}</div>
-          <div className="text-xs text-gray-600">Timeline</div>
-        </div>
-      </div>
-
-      {/* Features */}
-      <div className="flex-1 mb-6">
-        <h4 className="text-sm font-bold text-gray-800 mb-3 flex items-center gap-2">
-          <CheckCircle className="w-4 h-4 text-green-500" />
-          Key Features
-        </h4>
-        <ul className="space-y-2">
-          {service.features.map((feature, i) => (
-            <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
-              <div className={`w-1.5 h-1.5 bg-gradient-to-r ${service.gradient} rounded-full mt-2 flex-shrink-0`} />
-              <span>{feature}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {/* CTA Button */}
-      <motion.button
-        className={`w-full py-3 px-4 bg-gradient-to-r ${service.gradient} text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2`}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        onClick={() => {
-          document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-        }}
-      >
-        Get Started
-        <ArrowRight className="w-4 h-4" />
-      </motion.button>
     </motion.div>
   );
 };
 
-// Main Services Component
+// --- MAIN SERVICES COMPONENT ---
 const Services = () => {
-  const sectionRef = useRef(null);
-  const statsRef = useRef(null);
-  const servicesRef = useRef(null);
-  const ctaRef = useRef(null);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, threshold: 0.1 });
 
-  const isInView = useInView(sectionRef, { once: true, threshold: 0.1 });
-  const statsInView = useInView(statsRef, { once: true, threshold: 0.1 });
-  const servicesInView = useInView(servicesRef, { once: true, threshold: 0.1 });
-  const ctaInView = useInView(ctaRef, { once: true, threshold: 0.1 });
+  const services = [
+    {
+      icon: Code2,
+      title: 'Frontend Development',
+      description: 'Stunning, responsive user interfaces built with modern React, Next.js, and cutting-edge CSS frameworks.',
+      features: ['React & Next.js', 'Responsive Design', 'Performance Optimization', 'Modern UI/UX'],
+      isPopular: false
+    },
+    {
+      icon: Database,
+      title: 'Backend Development', 
+      description: 'Scalable server-side solutions with robust APIs, secure authentication, and optimized database architecture.',
+      features: ['Laravel & PHP', 'RESTful APIs', 'Database Design', 'Security Implementation'],
+      isPopular: true
+    },
+    {
+      icon: Smartphone,
+      title: 'Full Stack Solutions',
+      description: 'Complete web applications from concept to deployment, handling both frontend and backend development.',
+      features: ['End-to-End Development', 'Cloud Deployment', 'DevOps Integration', 'Maintenance & Support'],
+      isPopular: false
+    },
+    {
+      icon: Layers,
+      title: 'WordPress Development',
+      description: 'Custom WordPress solutions including themes, plugins, and high-performance websites for any business need.',
+      features: ['Custom Themes', 'Plugin Development', 'Site Optimization', 'E-commerce Integration'],
+      isPopular: false
+    },
+    {
+      icon: ShoppingCart,
+      title: 'E-commerce Solutions',
+      description: 'High-converting online stores with secure payment processing, inventory management, and analytics.',
+      features: ['Shopify & WooCommerce', 'Payment Integration', 'Inventory Management', 'Analytics & Reporting'],
+      isPopular: false
+    },
+    {
+      icon: Globe,
+      title: 'Web Optimization',
+      description: 'Performance enhancement, SEO optimization, and technical improvements to boost your online presence.',
+      features: ['SEO Optimization', 'Speed Enhancement', 'Technical Audits', 'Analytics Setup'],
+      isPopular: false
+    }
+  ];
 
-  const featuredServices = CORE_SERVICES.filter(service => service.featured);
+  const stats = [
+    { icon: TrendingUp, number: '150+', label: 'Projects Completed' },
+    { icon: Star, number: '98%', label: 'Client Satisfaction' },
+    { icon: Zap, number: '8+', label: 'Years Experience' }
+  ];
 
   return (
-    <section 
-      ref={sectionRef}
-      id="services" 
-      className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden"
-      aria-label="Professional web development services"
-    >
-      {/* Subtle Background Effects */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-        <motion.div 
-          className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"
-          animate={{
-            x: [0, -30, 0],
-            y: [0, 20, 0],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        />
-        <motion.div 
-          className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl"
-          animate={{
-            x: [0, 25, 0],
-            y: [0, -20, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        />
+    <section ref={ref} className="py-32 lg:py-40 bg-gradient-to-br from-black via-gray-900 to-black relative overflow-hidden" id="services">
+      {/* Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-20 left-20 w-96 h-96 bg-accent-lime/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-20 w-80 h-80 bg-accent-lime/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-accent-lime/5 to-transparent rounded-full blur-3xl"></div>
       </div>
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        {/* Header */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+        
+        {/* Section Header */}
         <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
+          className="text-center mb-20"
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.1 }}
         >
-          <motion.div
-            className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-purple-200/50 text-purple-800 px-6 py-3 rounded-2xl font-semibold text-sm uppercase tracking-wider mb-6 shadow-lg"
+          <motion.div 
+            className="inline-flex items-center gap-3 mb-6"
             initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ delay: 0.2 }}
           >
-            <motion.div 
-              className="w-2 h-2 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full"
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            />
-            <span>Services</span>
+            <div className="w-12 h-1 bg-accent-lime"></div>
+            <span className="text-accent-lime font-semibold uppercase tracking-wider text-sm">Services</span>
+            <div className="w-12 h-1 bg-accent-lime"></div>
           </motion.div>
+
+          <h2 className="text-4xl lg:text-6xl xl:text-7xl font-extrabold text-white mb-8 leading-tight">
+            What I Can Do for
+            <span className="block text-accent-lime">My Clients</span>
+          </h2>
           
-          <motion.h2 
-            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-slate-800 via-blue-800 to-purple-800 bg-clip-text text-transparent"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 0.4 }}
-          >
-            Professional Web Solutions
-          </motion.h2>
-          
-          <motion.p 
-            className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 0.6 }}
-          >
-            From concept to deployment, delivering exceptional digital solutions that drive business growth and exceed expectations.
-          </motion.p>
+          <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+            From custom front-end designs to complex back-end systems, I provide comprehensive development services that transform your vision into powerful digital solutions.
+          </p>
         </motion.div>
 
-        {/* Service Stats */}
-        <motion.div 
-          ref={statsRef}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto mb-20"
+        {/* Stats Section */}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20"
           initial={{ opacity: 0, y: 30 }}
-          animate={statsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.4 }}
         >
-          {SERVICE_STATS.map((stat, index) => (
+          {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
-              className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-xl border border-white/50 hover:bg-white/80 transition-all duration-300"
+              className="text-center group"
               initial={{ opacity: 0, scale: 0.8 }}
-              animate={statsInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ scale: 1.05 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ delay: 0.5 + index * 0.1 }}
             >
-              <div className="text-2xl md:text-3xl font-bold text-blue-600 mb-1">{stat.number}</div>
-              <div className="text-sm text-slate-600 font-medium">{stat.label}</div>
+              <div className="w-16 h-16 bg-accent-lime/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                <stat.icon className="w-8 h-8 text-accent-lime" />
+              </div>
+              <div className="text-4xl lg:text-5xl font-extrabold text-white mb-2">{stat.number}</div>
+              <div className="text-gray-400 font-medium">{stat.label}</div>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Featured Services Preview */}
-        <motion.div 
-          className="mb-12"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ delay: 0.8 }}
-        >
-          <motion.h3 
-            className="text-2xl md:text-3xl font-bold text-slate-800 mb-8 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 1.0 }}
-          >
-            ⭐ Most Popular Services
-          </motion.h3>
-          
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
-            {featuredServices.map((service, index) => (
-              <motion.div
-                key={service.id}
-                className="bg-white/80 backdrop-blur-sm p-6 rounded-xl border border-white/50 shadow-lg hover:shadow-xl transition-all duration-300 text-center"
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ delay: 1.2 + index * 0.1 }}
-                whileHover={{ scale: 1.02, y: -3 }}
-              >
-                <div className={`w-16 h-16 bg-gradient-to-br ${service.gradient} rounded-xl flex items-center justify-center text-white mx-auto mb-4 shadow-lg`}>
-                  <service.icon className="w-8 h-8" />
-                </div>
-                <h4 className="text-lg font-bold text-slate-800 mb-2">{service.title}</h4>
-                <p className="text-slate-600 text-sm mb-4 leading-relaxed">{service.description}</p>
-                <div className={`text-2xl font-bold bg-gradient-to-r ${service.gradient} bg-clip-text text-transparent mb-2`}>
-                  {service.basePrice}
-                </div>
-                <div className="text-xs text-gray-500 mb-4">Starting price</div>
-                <motion.button
-                  className={`w-full py-2 px-4 bg-gradient-to-r ${service.gradient} text-white font-semibold rounded-lg text-sm`}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  Learn More
-                </motion.button>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+        {/* Services Grid */}
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
+          {services.map((service, index) => (
+            <ServiceCard
+              key={service.title}
+              icon={service.icon}
+              title={service.title}
+              description={service.description}
+              features={service.features}
+              index={index}
+              inView={isInView}
+              isPopular={service.isPopular}
+            />
+          ))}
+        </div>
 
-        {/* All Services Grid */}
-        <motion.div 
-          ref={servicesRef}
-          className="mb-16"
+        {/* Bottom CTA */}
+        <motion.div
+          className="text-center mt-20"
           initial={{ opacity: 0, y: 30 }}
-          animate={servicesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 1.5 }}
         >
-          <h3 className="text-2xl md:text-3xl font-bold text-slate-800 mb-12 text-center">
-            Complete Service Portfolio
-          </h3>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {CORE_SERVICES.map((service, index) => (
-              <ServiceCard
-                key={service.id}
-                service={service}
-                index={index}
-                inView={servicesInView}
-              />
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Call to Action */}
-        <motion.div 
-          ref={ctaRef}
-          className="text-center"
-          initial={{ opacity: 0, y: 30 }}
-          animate={ctaInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 p-8 md:p-12 rounded-2xl text-white shadow-2xl relative overflow-hidden">
-            {/* Background Effect */}
-            <div className="absolute inset-0 opacity-10" aria-hidden="true">
-              <motion.div 
-                className="absolute top-0 left-0 w-64 h-64 bg-white rounded-full blur-3xl"
-                animate={{ x: [0, 30, 0], y: [0, -15, 0] }}
-                transition={{ duration: 8, repeat: Infinity }}
-              />
-              <motion.div 
-                className="absolute bottom-0 right-0 w-48 h-48 bg-purple-200 rounded-full blur-3xl"
-                animate={{ x: [0, -20, 0], y: [0, 15, 0] }}
-                transition={{ duration: 10, repeat: Infinity }}
-              />
-            </div>
-
-            <div className="relative z-10">
-              <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                Ready to Start Your Project?
-              </h3>
-              <p className="text-blue-100 mb-8 max-w-2xl mx-auto leading-relaxed">
-                Let's discuss your project requirements and create a custom solution that drives your business forward.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <motion.a
-                  href="#contact"
-                  className="inline-flex items-center justify-center gap-2 bg-white text-blue-600 px-8 py-4 font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Mail className="w-5 h-5" />
-                  Get Free Quote
-                </motion.a>
-                
-                <motion.a
-                  href="/services"
-                  className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm border border-white/30 text-white px-8 py-4 font-semibold rounded-xl hover:bg-white/20 transition-all duration-300"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  View All Services
-                  <ExternalLink className="w-5 h-5" />
-                </motion.a>
-              </div>
-            </div>
+          <div className="bg-gradient-to-r from-accent-lime/20 via-accent-lime/10 to-accent-lime/20 p-12 rounded-3xl border border-accent-lime/20 backdrop-blur-xl">
+            <h3 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+              Ready to Start Your Project?
+            </h3>
+            <p className="text-gray-300 mb-8 max-w-2xl mx-auto text-lg">
+              Let's discuss your requirements and create something amazing together.
+            </p>
+            <motion.a
+              href="#contact"
+              className="inline-flex items-center gap-3 bg-accent-lime text-black font-bold px-8 py-4 rounded-2xl hover:bg-accent-lime/90 transition-all duration-300 text-lg uppercase tracking-wider"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span>Get Started Today</span>
+              <ArrowRight className="w-5 h-5" />
+            </motion.a>
           </div>
         </motion.div>
       </div>
