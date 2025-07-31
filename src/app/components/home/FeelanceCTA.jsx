@@ -47,34 +47,39 @@ const FeelanceCTA = () => {
   ];
 
   return (
-    <section 
-      ref={ref}
-      className="bg-accent-lime text-black"
-    >
-      <motion.div 
-        className="max-w-7xl mx-auto"
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-      >
-        <div className="grid lg:grid-cols-2 items-center min-h-[70vh] lg:min-h-screen">
-          {/* Left Column: Image */}
-          <motion.div 
-            className="h-[400px] lg:h-full w-full"
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-          >
-            <img 
-                src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1374&auto=format&fit=crop"
-                alt="Freelancer working with a client"
-                className="w-full h-full object-cover"
-            />
-          </motion.div>
+    <div ref={ref} className="relative" id="FeelanceCTA">
+      {/* Image that bleeds outside the main section */}
+      <div className="absolute left-0 top-0 w-full lg:w-1/2 z-10 lg:-mt-20">
+        <motion.div
+          className="h-[50vh] lg:h-[90vh]"
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+        >
+          <img 
+            src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1374&auto=format&fit=crop"
+            alt="Freelancer working with a client"
+            className="w-full h-full object-cover"
+          />
+        </motion.div>
+      </div>
 
-          {/* Right Column: Content */}
+      {/* Main lime section */}
+      <section className="bg-accent-lime relative min-h-[70vh] flex items-center">
+        <div 
+          className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 min-h-[70vh]"
+        >
+          {/* Left Column: Space for bleeding image */}
+          <div className="relative hidden lg:block">
+            {/* Empty space */}
+          </div>
+
+          {/* Right Column: Content on lime background */}
           <motion.div 
-            className="p-12 lg:p-24"
+            className="text-black flex flex-col justify-center px-6 py-16 lg:px-16 xl:px-20 lg:py-20"
             variants={containerVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
           >
             <motion.h2 
               className="text-5xl lg:text-7xl font-extrabold tracking-tighter mb-6"
@@ -118,8 +123,8 @@ const FeelanceCTA = () => {
             </motion.div>
           </motion.div>
         </div>
-      </motion.div>
-    </section>
+      </section>
+    </div>
   );
 };
 
