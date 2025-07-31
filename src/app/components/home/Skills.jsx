@@ -61,73 +61,88 @@ const Skills = () => {
   };
 
   return (
-    <section ref={ref} className="bg-black" id="skills">
-      <motion.div 
-        className="grid lg:grid-cols-2 min-h-screen"
-        initial={{ opacity: 0, y: 50 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
-      >
-        {/* Left Column: Image */}
-        <div className="h-full min-h-[600px] lg:min-h-screen">
+    <div className="relative" id="skills">
+      {/* Image that bleeds outside the main section - only top */}
+      <div className="absolute left-0 top-0 w-1/2 z-10 -mt-20">
+        <motion.div
+          className="h-[90vh]"
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+        >
           <img 
             src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=1470&auto=format&fit=crop"
             alt="Team collaborating on a project"
             className="w-full h-full object-cover"
           />
-        </div>
+        </motion.div>
+      </div>
 
-        {/* Right Column: Content */}
+      {/* Main lime section */}
+      <section ref={ref} className="bg-accent-lime relative min-h-[70vh] overflow-visible">
         <motion.div 
-          className="bg-accent-lime text-black flex flex-col justify-center px-12 py-16 lg:px-16 xl:px-20 lg:py-20 relative"
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          className="grid lg:grid-cols-2 min-h-[70vh]"
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
         >
-          <motion.h2 
-            className="text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight leading-[1.1] mb-8"
-            variants={itemVariants}
-          >
-            Skills & Technical Expertise
-          </motion.h2>
-          
-          <motion.p 
-            className="text-lg lg:text-xl text-black/80 leading-relaxed mb-12 max-w-lg"
-            variants={itemVariants}
-          >
-            We are a creative agency working with brands building insightful strategy, creating unique designs and crafting value
-          </motion.p>
-
-          <div className="space-y-5 mb-16">
-            {allSkills.map((skill, index) => (
-              <SkillBar
-                key={skill.name}
-                skill={skill}
-                index={index}
-                inView={isInView}
-              />
-            ))}
+          {/* Left Column: Space for bleeding image */}
+          <div className="relative">
+            {/* Empty space - image is positioned absolutely outside */}
           </div>
 
-          {/* Up Arrow - Bottom Right */}
+          {/* Right Column: Content on lime background */}
           <motion.div 
-            className="absolute bottom-8 right-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 1.5, duration: 0.5 }}
+            className="text-black flex flex-col justify-center px-12 py-16 lg:px-16 xl:px-20 lg:py-20 relative"
+            variants={containerVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
           >
-            <motion.button
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="w-12 h-12 bg-black rounded-full flex items-center justify-center hover:bg-black/80 transition-colors"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
+            <motion.h2 
+              className="text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight leading-[1.1] mb-8"
+              variants={itemVariants}
             >
-              <ArrowUp className="w-6 h-6 text-accent-lime" />
-            </motion.button>
+              Skills & Technical Expertise
+            </motion.h2>
+            
+            <motion.p 
+              className="text-lg lg:text-xl text-black/80 leading-relaxed mb-12 max-w-lg"
+              variants={itemVariants}
+            >
+              We are a creative agency working with brands building insightful strategy, creating unique designs and crafting value
+            </motion.p>
+
+            <div className="space-y-5 mb-16">
+              {allSkills.map((skill, index) => (
+                <SkillBar
+                  key={skill.name}
+                  skill={skill}
+                  index={index}
+                  inView={isInView}
+                />
+              ))}
+            </div>
+
+            {/* Up Arrow - Bottom Right */}
+            <motion.div 
+              className="absolute bottom-8 right-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 1.5, duration: 0.5 }}
+            >
+              <motion.button
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                className="w-12 h-12 bg-black rounded-full flex items-center justify-center hover:bg-black/80 transition-colors"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <ArrowUp className="w-6 h-6 text-accent-lime" />
+              </motion.button>
+            </motion.div>
           </motion.div>
         </motion.div>
-      </motion.div>
-    </section>
+      </section>
+    </div>
   );
 };
 

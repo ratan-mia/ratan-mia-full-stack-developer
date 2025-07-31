@@ -9,10 +9,11 @@ const Header = () => {
   const [scrolled, setScrolled] = useState(false);
 
   const navigationItems = [
-    { name: 'Home', href: '#home' },
-    { name: 'Services', href: '#services' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Contact', href: '#contact' }
+    { name: 'HOME', href: '#home' },
+    { name: 'ABOUT', href: '#about' },
+    { name: 'SERVICES', href: '#services' },
+    { name: 'PORTFOLIO', href: '#projects' },
+    { name: 'CONTACT', href: '#contact' }
   ];
 
   // Scroll detection
@@ -20,7 +21,6 @@ const Header = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -35,24 +35,20 @@ const Header = () => {
     if (href.startsWith('#')) {
       const element = document.getElementById(href.slice(1));
       if (element) {
-        const headerHeight = 80;
-        const elementPosition = element.offsetTop - headerHeight;
+        const headerHeight = 80; // Approximate height of the fixed header
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - headerHeight;
+
         window.scrollTo({ 
-          top: href === '#home' ? 0 : elementPosition, 
+          top: href === '#home' ? 0 : offsetPosition, 
           behavior: 'smooth' 
         });
       }
     }
     setIsMenuOpen(false);
   };
-
+  
   const handleDownloadCV = () => {
-    // Analytics tracking
-    window.gtag?.('event', 'cv_download', {
-      event_category: 'engagement',
-      event_label: 'header_download'
-    });
-
     const link = document.createElement('a');
     link.href = '/resume.pdf';
     link.download = 'Ratan_Mia_CV.pdf';
@@ -64,92 +60,69 @@ const Header = () => {
   return (
     <>
       <motion.header 
-        className={`fixed top-0 left-0 right-0 z-50 smooth-transition ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled 
-            ? 'bg-black/95 backdrop-blur-xl border-b border-design' 
-            : 'bg-black/90 backdrop-blur-lg'
+            ? 'bg-black/70 backdrop-blur-lg border-b border-gray-800 shadow-lg' 
+            : 'bg-transparent'
         }`}
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <div className="container-design">
-          <nav className="flex justify-between items-center py-4">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <nav className="flex justify-between items-center h-20">
             
             {/* Logo */}
             <motion.button 
-              className="flex items-center gap-3 group"
+              className="text-2xl lg:text-3xl font-extrabold text-white tracking-tight"
               onClick={() => handleNavigation('#home')}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <div className="w-10 h-10 bg-accent rounded-design flex items-center justify-center group-hover:rotate-12 smooth-transition">
-                <span className="text-lg font-black text-black">R</span>
-              </div>
-              
-              <div>
-                <div className="text-xl font-bold text-primary-text group-hover:text-accent smooth-transition">
-                  Ratan Mia
-                </div>
-                <div className="caption-text text-neutral -mt-1">
-                  Full Stack Developer
-                </div>
-              </div>
+              Ratan<span className="text-accent-lime">.</span>
             </motion.button>
             
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-8">
-              {navigationItems.map((item, index) => (
+            {/* Desktop Navigation - Centered */}
+            <div className="hidden lg:flex items-center gap-10">
+              {navigationItems.map((item) => (
                 <motion.button
                   key={item.name}
                   onClick={() => handleNavigation(item.href)}
-                  className="text-primary-text hover:text-accent smooth-transition font-medium"
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ y: -2 }}
+                  className="text-gray-300 hover:text-accent-lime transition-colors font-medium text-sm tracking-wider relative group"
                 >
                   {item.name}
+                  <span className="absolute bottom-[-4px] left-0 w-0 h-0.5 bg-accent-lime group-hover:w-full transition-all duration-300"></span>
                 </motion.button>
               ))}
             </div>
 
-            {/* Desktop CTA */}
-            <div className="hidden md:flex items-center gap-4">
+            {/* Desktop Right Side */}
+            <div className="hidden lg:flex items-center gap-6">
               <motion.button
                 onClick={handleDownloadCV}
-                className="btn-secondary"
-                whileHover={{ scale: 1.05, y: -2 }}
+                className="flex items-center gap-2 text-gray-300 hover:text-accent-lime transition-colors font-medium text-sm"
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.5 }}
               >
                 <Download className="w-4 h-4" />
-                <span>CV</span>
+                <span>Download CV</span>
               </motion.button>
               
               <motion.button
                 onClick={() => handleNavigation('#contact')}
-                className="btn-primary"
-                whileHover={{ scale: 1.05, y: -2 }}
+                className="bg-accent-lime text-black px-6 py-3 font-bold text-sm tracking-wider rounded-xl hover:bg-lime-300 hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-lime-400/20"
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.6 }}
               >
-                Hire Me
+                WORK WITH ME
               </motion.button>
             </div>
 
             {/* Mobile Menu Button */}
             <motion.button
-              className="md:hidden p-2 text-primary-text hover:text-accent smooth-transition"
+              className="lg:hidden p-2 text-white hover:text-accent-lime transition-colors"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               whileTap={{ scale: 0.95 }}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.4 }}
             >
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </motion.button>
@@ -160,108 +133,46 @@ const Header = () => {
       {/* Mobile Menu */}
       <AnimatePresence>
         {isMenuOpen && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              className="fixed inset-0 bg-black/90 backdrop-blur-lg z-40 md:hidden"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              onClick={() => setIsMenuOpen(false)}
-            />
-
-            {/* Mobile Menu */}
-            <motion.div
-              className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-black border-l border-design z-50 md:hidden"
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+          <motion.div
+            className="fixed inset-0 bg-black/95 backdrop-blur-xl z-40 lg:hidden flex flex-col items-center justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <motion.div 
+              className="flex flex-col items-center gap-10"
+              initial={{ y: 50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
             >
-              {/* Mobile Header */}
-              <div className="p-6 border-b border-design">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-accent rounded-design flex items-center justify-center">
-                      <span className="text-lg font-black text-black">R</span>
-                    </div>
-                    <div>
-                      <div className="text-lg font-bold text-primary-text">Ratan Mia</div>
-                      <div className="caption-text text-neutral">Full Stack Developer</div>
-                    </div>
-                  </div>
-                  <button
-                    onClick={() => setIsMenuOpen(false)}
-                    className="p-2 text-neutral hover:text-primary-text smooth-transition"
-                  >
-                    <X className="w-5 h-5" />
-                  </button>
-                </div>
-              </div>
-
-              {/* Mobile Navigation */}
-              <div className="p-6">
-                <div className="space-y-4 mb-8">
-                  {navigationItems.map((item, index) => (
-                    <motion.button
-                      key={item.name}
-                      onClick={() => handleNavigation(item.href)}
-                      className="w-full text-left py-3 text-primary-text hover:text-accent smooth-transition font-medium"
-                      initial={{ opacity: 0, x: 30 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.4, delay: index * 0.1 }}
-                      whileHover={{ x: 10 }}
-                    >
-                      {item.name}
-                    </motion.button>
-                  ))}
-                </div>
-
-                {/* Mobile CTA Buttons */}
-                <div className="space-y-4">
-                  <motion.button
-                    onClick={handleDownloadCV}
-                    className="w-full btn-secondary justify-center"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 0.6 }}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <Download className="w-4 h-4" />
-                    Download CV
-                  </motion.button>
-                  
-                  <motion.button
-                    onClick={() => handleNavigation('#contact')}
-                    className="w-full btn-primary justify-center"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 0.7 }}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    Hire Me Now
-                  </motion.button>
-                </div>
-
-                {/* Contact Info */}
-                <motion.div 
-                  className="mt-8 p-4 bg-card border border-design rounded-design-lg"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.8 }}
+              {navigationItems.map((item) => (
+                <button
+                  key={item.name}
+                  onClick={() => handleNavigation(item.href)}
+                  className="text-3xl font-bold text-gray-300 hover:text-accent-lime transition-colors"
                 >
-                  <div className="caption-text font-medium text-accent mb-2">Quick Contact</div>
-                  <div className="caption-text text-neutral">
-                    <div>ratanmiadev@gmail.com</div>
-                    <div>Available for projects</div>
-                  </div>
-                </motion.div>
+                  {item.name}
+                </button>
+              ))}
+              
+              <div className="mt-8 flex flex-col gap-6 w-full px-8">
+                <button
+                  onClick={handleDownloadCV}
+                  className="w-full flex items-center justify-center gap-2 py-4 px-4 border-2 border-gray-700 text-white hover:bg-gray-800 transition-colors font-medium rounded-xl"
+                >
+                  <Download className="w-5 h-5" />
+                  Download CV
+                </button>
+                <button
+                  onClick={() => handleNavigation('#contact')}
+                  className="w-full bg-accent-lime text-black py-4 px-4 font-bold tracking-wider hover:bg-lime-300 transition-colors rounded-xl"
+                >
+                  WORK WITH ME
+                </button>
               </div>
             </motion.div>
-          </>
+          </motion.div>
         )}
       </AnimatePresence>
     </>

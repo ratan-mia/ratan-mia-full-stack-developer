@@ -2,6 +2,7 @@
 
 import About from '@/components/home/About';
 import Contact from '@/components/home/Contact';
+import EmpoweringBusiness from '@/components/home/EmpoweringBusiness';
 import FAQ from '@/components/home/FAQ';
 import GetQuote from '@/components/home/GetQuote';
 import HeroMain from '@/components/home/HeroMain';
@@ -33,15 +34,22 @@ export default function Home() {
 
       {/* Projects */}
       <Projects />
+      <EmpoweringBusiness />
 
       {/* Process How I Work */}
       <ProcessHowIWork />
 
+
+
       {/* Training Certificates */}
       <TrainingCertificates />
 
+
+
       {/* Testimonials */}
       <Testimonials />
+
+
 
       {/* Get Quote */}
       <GetQuote />

@@ -45,24 +45,53 @@ const Testimonials = () => {
 
   // Auto-advance testimonials
   useEffect(() => {
-    const interval = setInterval(handleNext, 7000); // Increased interval time
+    const interval = setInterval(handleNext, 7000);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <section ref={ref} className="bg-black" id="testimonials">
-      <motion.div 
-        initial={{ opacity: 0, y: 50 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
-      >
-        <div className="grid lg:grid-cols-2 min-h-[700px]">
-          
-          {/* Left Column: Testimonial Slider */}
-          <div className="bg-accent-lime text-black flex flex-col p-12 lg:p-24 justify-center">
-            <h2 className="text-4xl lg:text-5xl font-bold mb-10">Testimonials</h2>
+    <div className="relative" id="testimonials">
+      {/* Image that bleeds outside the main section - only top */}
+      <div className="absolute right-0 top-0 w-1/2 z-10 -mt-20">
+        <motion.div
+          className="h-[60vh]"
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+        >
+          <img 
+            src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1000&auto=format&fit=crop" 
+            alt="Professional team collaborating in an office"
+            className="w-full h-full object-cover"
+          />
+        </motion.div>
+      </div>
+
+      {/* Main lime section */}
+      <section ref={ref} className="bg-accent-lime relative min-h-[70vh] overflow-visible">
+        <motion.div 
+          className="grid lg:grid-cols-2 min-h-[70vh]"
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+        >
+          {/* Left Column: Testimonial Content on lime background */}
+          <motion.div 
+            className="text-black flex flex-col justify-center px-12 py-16 lg:px-16 xl:px-20 lg:py-20 relative"
+            initial={{ opacity: 0, x: -30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <motion.h2 
+              className="text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight leading-[1.1] mb-12"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.3, duration: 0.6 }}
+            >
+              What Our Clients Say About Our Work
+            </motion.h2>
             
-            <div className="relative flex-grow flex flex-col justify-center">
+            <div className="relative flex-grow flex flex-col justify-center mb-12">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentIndex}
@@ -70,22 +99,27 @@ const Testimonials = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.5, ease: 'easeInOut' }}
-                  className="flex flex-col justify-center flex-grow"
+                  className="flex flex-col justify-center"
                 >
-                  <div className="text-6xl font-serif mb-6 opacity-50">"</div>
-                  <blockquote className="text-xl md:text-2xl font-medium mb-8 leading-snug flex-grow">
+                  <div className="text-6xl font-serif mb-6 opacity-50 text-black">"</div>
+                  <blockquote className="text-lg lg:text-xl font-medium mb-8 leading-relaxed text-black/90 max-w-lg">
                     {TESTIMONIALS_DATA[currentIndex].quote}
                   </blockquote>
                   <div>
-                    <h4 className="font-bold text-xl">{TESTIMONIALS_DATA[currentIndex].name}</h4>
-                    <p className="text-black/70">{TESTIMONIALS_DATA[currentIndex].position}</p>
+                    <h4 className="font-bold text-lg lg:text-xl text-black">{TESTIMONIALS_DATA[currentIndex].name}</h4>
+                    <p className="text-black/70 text-base">{TESTIMONIALS_DATA[currentIndex].position}</p>
                   </div>
                 </motion.div>
               </AnimatePresence>
             </div>
 
             {/* Navigation */}
-            <div className="mt-12 flex items-center justify-between">
+            <motion.div 
+              className="flex items-center justify-between"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.8, duration: 0.6 }}
+            >
               <div className="flex gap-2">
                 {TESTIMONIALS_DATA.map((_, index) => (
                   <button
@@ -106,30 +140,28 @@ const Testimonials = () => {
                   className="w-12 h-12 bg-black/10 hover:bg-black/20 rounded-full flex items-center justify-center transition-colors"
                   aria-label="Previous testimonial"
                 >
-                  <ChevronLeft className="w-6 h-6" />
+                  <ChevronLeft className="w-6 h-6 text-black" />
                 </button>
                 <button
                   onClick={handleNext}
                   className="w-12 h-12 bg-black/10 hover:bg-black/20 rounded-full flex items-center justify-center transition-colors"
                   aria-label="Next testimonial"
                 >
-                  <ChevronRight className="w-6 h-6" />
+                  <ChevronRight className="w-6 h-6 text-black" />
                 </button>
               </div>
-            </div>
-          </div>
+            </motion.div>
 
-          {/* Right Column: Image */}
-          <div className="hidden lg:block bg-gray-800">
-            <img 
-              src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1000&auto=format&fit=crop" 
-              alt="Professional team collaborating in an office" 
-              className="w-full h-full object-cover object-center"
-            />
+
+          </motion.div>
+
+          {/* Right Column: Space for bleeding image */}
+          <div className="relative">
+            {/* Empty space - image is positioned absolutely outside */}
           </div>
-        </div>
-      </motion.div>
-    </section>
+        </motion.div>
+      </section>
+    </div>
   );
 };
 

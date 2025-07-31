@@ -3,6 +3,7 @@
 import { motion, useInView } from 'framer-motion';
 import {
   ArrowRight,
+  ArrowUp,
   Download,
   Mail,
   MapPin,
@@ -92,20 +93,21 @@ const ExperienceRow = ({ experience, index, inView }) => (
 
 const ServiceSkillBar = ({ service, index, inView }) => (
     <motion.div
-      initial={{ opacity: 0, x: 20 }}
+      className="mb-6"
+      initial={{ opacity: 0, x: -20 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
-      transition={{ delay: index * 0.15 + 0.5, ease: "easeOut" }}
+      transition={{ delay: 0.5 + index * 0.1, duration: 0.5 }}
     >
-      <div className="flex justify-between items-center mb-2 font-semibold">
-        <span className="text-black/80">{service.name}</span>
-        <span className="text-black">{service.level}%</span>
+      <div className="flex justify-between items-center mb-3">
+        <span className="font-bold text-black text-base uppercase tracking-wider">{service.name}</span>
+        <span className="font-bold text-black text-base">{service.level}%</span>
       </div>
-      <div className="h-2 bg-black/10 rounded-full overflow-hidden">
+      <div className="h-0.5 bg-black/40 overflow-hidden">
         <motion.div
-          className="h-full bg-black rounded-full"
+          className="h-full bg-black"
           initial={{ width: 0 }}
           animate={inView ? { width: `${service.level}%` } : {}}
-          transition={{ duration: 1.2, delay: index * 0.15 + 0.5, ease: "easeOut" }}
+          transition={{ duration: 1.2, delay: 0.6 + index * 0.1, ease: "easeOut" }}
         />
       </div>
     </motion.div>
@@ -127,37 +129,130 @@ export default function About() {
 
   return (
     <section ref={sectionRef} id="about" className="bg-black">
-      {/* --- Meet Ratan Section (Full Width) --- */}
-      <div className="w-full bg-gray-900">
-        <motion.div 
-            ref={servicesRef} 
-            className="grid lg:grid-cols-2 min-h-[700px]" 
-            initial={{ opacity: 0, y: 50 }} 
-            animate={servicesInView ? { opacity: 1, y: 0 } : {}} 
+      
+      {/* --- Main About Section (Full Width Like Skills) --- */}
+      <div className="relative" id="about-main">
+        {/* Image that bleeds outside the main section - only top */}
+        <div className="absolute right-0 top-0 w-1/2 z-10 -mt-20">
+          <motion.div
+            className="h-[60vh]"
+            initial={{ opacity: 0, y: 50 }}
+            animate={servicesInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-        >
-          {/* Left Column: Image */}
-          <div className="relative h-[600px] lg:h-full">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=1200&fit=crop&crop=faces" alt="Ratan Mia" className="w-full h-full object-cover object-center" loading="lazy" />
-            <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent"></div>
-          </div>
-          {/* Right Column: Content */}
-          <div className="bg-accent-lime flex flex-col justify-center p-12 lg:p-24">
-            <motion.h2 className="text-4xl lg:text-5xl font-bold text-black mb-4" initial={{ opacity: 0, y: 20 }} animate={servicesInView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.2, duration: 0.5 }}>
-              Meet <span className="text-black">Ratan</span>
-            </motion.h2>
-            <motion.p className="text-lg text-black/80 leading-relaxed mb-8" initial={{ opacity: 0, y: 20 }} animate={servicesInView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.35, duration: 0.5 }}>
-              A full-stack developer crafting high-performance web applications that drive business growth.
-            </motion.p>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
-              <div className="flex items-center gap-3"><MapPin className="w-5 h-5 text-black" /><div><p className="text-sm text-black/60">Location</p><p className="text-black font-medium">Dhaka, BD 🇧🇩</p></div></div>
-              <div className="flex items-center gap-3"><Mail className="w-5 h-5 text-black" /><div><p className="text-sm text-black/60">Email</p><a href="mailto:ratanmiadev@gmail.com" className="text-black hover:text-black/70 transition-colors text-sm font-medium">ratanmiadev@gmail.com</a></div></div>
-            </div>
+          >
+            <img 
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=1200&fit=crop&crop=faces" 
+              alt="Ratan Mia - Full Stack Developer"
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
+        </div>
 
-            <div className="space-y-6">{DEVELOPMENT_SERVICES.map((service, index) => (<ServiceSkillBar key={service.name} service={service} index={index} inView={servicesInView} />))}</div>
-          </div>
-        </motion.div>
+        {/* Main lime section */}
+        <section ref={servicesRef} className="bg-accent-lime relative min-h-[70vh] overflow-visible">
+          <motion.div 
+            className="grid lg:grid-cols-2 min-h-[70vh]"
+            initial={{ opacity: 0, y: 50 }}
+            animate={servicesInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+          >
+            {/* Left Column: Content on lime background */}
+            <motion.div 
+              className="text-black flex flex-col justify-center px-12 py-16 lg:px-16 xl:px-20 lg:py-20 relative"
+              initial={{ opacity: 0, x: -30 }}
+              animate={servicesInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <motion.h2 
+                className="text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight leading-[1.1] mb-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={servicesInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.3, duration: 0.6 }}
+              >
+                Passionate About Creating Quality Development
+              </motion.h2>
+              
+              <motion.div
+                className="mb-12"
+                initial={{ opacity: 0, y: 20 }}
+                animate={servicesInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.4, duration: 0.6 }}
+              >
+                <h3 className="text-lg lg:text-xl font-bold text-black mb-4">
+                  We Love What We Do
+                </h3>
+                <p className="text-lg text-black/80 leading-relaxed max-w-lg mb-8">
+                  We are a creative agency working with brands building insightful strategy, creating unique designs and crafting value
+                </p>
+
+                <h4 className="text-lg lg:text-xl font-bold text-black mb-4">
+                  Why Work With Us
+                </h4>
+                <p className="text-lg text-black/80 leading-relaxed max-w-lg">
+                  If you ask our clients what it's like working with us, they'll talk about how much we care about their success. For us, real relationships fuel real success. We love building brands
+                </p>
+              </motion.div>
+
+              <div className="space-y-5 mb-16">
+                {DEVELOPMENT_SERVICES.map((service, index) => (
+                  <ServiceSkillBar
+                    key={service.name}
+                    service={service}
+                    index={index}
+                    inView={servicesInView}
+                  />
+                ))}
+              </div>
+
+              {/* Contact Info */}
+              <motion.div 
+                className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={servicesInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.8, duration: 0.6 }}
+              >
+                <div className="flex items-center gap-3">
+                  <MapPin className="w-5 h-5 text-black" />
+                  <div>
+                    <p className="text-sm text-black/60">Location</p>
+                    <p className="text-black font-medium">Dhaka, BD 🇧🇩</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Mail className="w-5 h-5 text-black" />
+                  <div>
+                    <p className="text-sm text-black/60">Email</p>
+                    <a href="mailto:ratanmiadev@gmail.com" className="text-black hover:text-black/70 transition-colors text-sm font-medium">
+                      ratanmiadev@gmail.com
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Up Arrow - Bottom Right */}
+              <motion.div 
+                className="absolute bottom-8 right-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={servicesInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 1.2, duration: 0.5 }}
+              >
+                <motion.button
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  className="w-12 h-12 bg-black rounded-full flex items-center justify-center hover:bg-black/80 transition-colors"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <ArrowUp className="w-6 h-6 text-accent-lime" />
+                </motion.button>
+              </motion.div>
+            </motion.div>
+
+            {/* Right Column: Space for bleeding image */}
+            <div className="relative">
+              {/* Empty space - image is positioned absolutely outside */}
+            </div>
+          </motion.div>
+        </section>
       </div>
 
       {/* --- Stats Section --- */}
