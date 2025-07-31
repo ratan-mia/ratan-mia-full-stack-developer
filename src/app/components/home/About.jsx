@@ -246,7 +246,7 @@ export default function About() {
             transition={{ duration: 1.2, ease: [0.23, 1, 0.32, 1] }}
           >
             <img 
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=1200&fit=crop&crop=faces" 
+              src="/images/about-image.jpg" 
               alt="Ratan Mia - Full Stack Developer"
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
               loading="lazy"
@@ -367,7 +367,7 @@ export default function About() {
               {/* Mobile image */}
               <div className="h-64 w-full rounded-2xl overflow-hidden mx-8 my-8">
                 <img 
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop&crop=faces" 
+                  src="/images/about-image.jpg" 
                   alt="Ratan Mia - Full Stack Developer"
                   className="w-full h-full object-cover"
                   loading="lazy"

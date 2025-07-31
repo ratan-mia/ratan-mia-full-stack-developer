@@ -145,7 +145,7 @@ const HeroMain = () => {
           transition={{ duration: 1.4, ease: [0.23, 1, 0.32, 1] }}
         >
           <img 
-            src="https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?w=800&h=1200&fit=crop&crop=faces" 
+            src="/images/hero-image.png" 
             alt="Ratan Mia - Full Stack Developer"
             className="w-full h-full object-cover"
             loading="lazy"

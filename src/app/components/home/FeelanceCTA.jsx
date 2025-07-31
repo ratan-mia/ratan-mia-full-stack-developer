@@ -80,7 +80,7 @@ const FeelanceCTA = () => {
           transition={{ duration: 1.2, ease: [0.23, 1, 0.32, 1] }}
         >
           <img 
-            src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1374&auto=format&fit=crop"
+            src="/images/freelancer-working.jpg"
             alt="Freelancer working with a client"
             className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
             loading="lazy"
