@@ -5,6 +5,7 @@ import Contact from '@/components/home/Contact';
 import FAQ from '@/components/home/FAQ';
 import GetQuote from '@/components/home/GetQuote';
 import HeroMain from '@/components/home/HeroMain';
+import PricingPlan from '@/components/home/PricingPlan';
 import ProcessHowIWork from '@/components/home/ProcessHowIWork';
 import Projects from '@/components/home/Projects';
 import Services from '@/components/home/Services';
@@ -23,6 +24,9 @@ export default function Home() {
 
       {/* About */}
       <About />
+
+      {/* Pricing Plan */}
+      <PricingPlan />
 
       {/* Skills */}
       <Skills />
