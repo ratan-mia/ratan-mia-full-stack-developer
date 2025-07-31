@@ -2,7 +2,10 @@
 
 import { motion, useInView } from 'framer-motion';
 import {
-  ArrowRight, Code2, Database, Download, Github, Linkedin, Mail, ShoppingBag,
+  ArrowRight,
+  Award, CheckCircle,
+  Code2, Database, Download, Github, Linkedin, Mail, ShoppingBag,
+  Sparkles, Star
 } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
@@ -279,12 +282,29 @@ const HeroMain = () => {
               </motion.div>
             </motion.div>
 
-            {/* Right: Hero Image FULLY to corner - NO border radius or margins */}
+            {/* Right: DRAMATICALLY ENHANCED IMAGE DESIGN - IMPROVED HEIGHT */}
             <div className="col-span-1 lg:col-span-5 flex items-center justify-end h-full relative">
-              {/* Desktop full-width image/no rounding */}
-              <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-full h-full z-0">
+              
+              {/* Desktop Enhanced Image - Better proportioned height */}
+              <div className="hidden lg:block relative w-full h-4/5 z-0">
+                
+                {/* Background Enhancement Layer */}
                 <motion.div
-                  className="absolute inset-0 w-full h-full overflow-hidden"
+                  className="absolute -right-20 top-1/4 w-80 h-80 bg-black/5 rounded-full blur-3xl"
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={isInView ? { scale: 1, opacity: 1 } : {}}
+                  transition={{ duration: 2, delay: 0.8 }}
+                />
+                
+                <motion.div
+                  className="absolute -right-32 bottom-1/3 w-60 h-60 bg-black/3 rounded-full blur-2xl"
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={isInView ? { scale: 1, opacity: 1 } : {}}
+                  transition={{ duration: 2.5, delay: 1.2 }}
+                />
+
+                <motion.div
+                  className="relative w-full h-full overflow-hidden rounded-2xl shadow-xl shadow-black/20"
                   initial={{ opacity: 0, scale: 1.1, x: 120 }}
                   animate={isInView ? { opacity: 1, scale: 1, x: 0 } : {}}
                   transition={{ duration: 1.2, ease: [0.23, 1, 0.32, 1] }}
@@ -292,34 +312,193 @@ const HeroMain = () => {
                   <img
                     src="/images/hero-image.png"
                     alt="Ratan Mia - Full Stack Developer"
-                    className="w-full h-full object-cover object-center"
+                    className="w-full h-full object-cover object-center rounded-2xl"
                     loading="lazy"
-                    style={{
-                      minHeight: '100%',
-                      maxHeight: '100%',
-                      minWidth: '100%',
-                      borderRadius: 0,
-                    }}
                   />
-                  {/* Optional overlays */}
-                  <div className="absolute inset-0 bg-gradient-to-l from-white/0 via-accent-lime/10 to-accent-lime/50" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-accent-lime/20 via-transparent to-transparent" />
+                  
+                  {/* Enhanced gradient overlays for better integration */}
+                  <div className="absolute inset-0 bg-gradient-to-l from-white/0 via-accent-lime/8 to-accent-lime/40" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-accent-lime/25 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-transparent via-black/5 to-black/15" />
+                  
+                  {/* Professional Status Indicator */}
+                  <motion.div
+                    className="absolute top-8 left-8 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-3 shadow-lg shadow-black/20"
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.8, delay: 1.5 }}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                      <div>
+                        <div className="text-sm font-bold text-black">Available</div>
+                        <div className="text-xs text-black/60">For Projects</div>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* IBM Certification Badge */}
+                  <motion.div
+                    className="absolute top-8 right-8 bg-black/80 backdrop-blur-md rounded-xl px-4 py-3 border border-white/20"
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                    transition={{ duration: 0.8, delay: 1.8, type: "spring", bounce: 0.3 }}
+                  >
+                    <div className="flex items-center gap-2">
+                      <Award size={18} className="text-accent-lime" />
+                      <div>
+                        <div className="text-sm font-bold text-white">IBM</div>
+                        <div className="text-xs text-white/70">Certified</div>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* Floating Tech Stack Icons */}
+                  <motion.div
+                    className="absolute left-12 top-1/3 text-white/60"
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={isInView ? { 
+                      opacity: [0.6, 1, 0.6], 
+                      x: 0,
+                      y: [-5, 5, -5]
+                    } : {}}
+                    transition={{ 
+                      duration: 4, 
+                      delay: 2, 
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    <Code2 size={32} />
+                  </motion.div>
+
+                  <motion.div
+                    className="absolute right-16 bottom-1/3 text-white/60"
+                    initial={{ opacity: 0, x: 30 }}
+                    animate={isInView ? { 
+                      opacity: [0.6, 1, 0.6], 
+                      x: 0,
+                      y: [5, -5, 5]
+                    } : {}}
+                    transition={{ 
+                      duration: 4, 
+                      delay: 2.5, 
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    <Database size={28} />
+                  </motion.div>
+
+                  <motion.div
+                    className="absolute left-16 bottom-1/4 text-white/60"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={isInView ? { 
+                      opacity: [0.6, 1, 0.6], 
+                      y: 0,
+                      rotate: [0, 360]
+                    } : {}}
+                    transition={{ 
+                      duration: 8, 
+                      delay: 3, 
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    <Sparkles size={24} />
+                  </motion.div>
+
+                  {/* Experience Counter */}
+                  <motion.div
+                    className="absolute bottom-8 left-8 bg-accent-lime/90 backdrop-blur-sm rounded-xl px-6 py-4 shadow-xl shadow-black/20"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.8, delay: 2.2 }}
+                  >
+                    <div className="text-center">
+                      <div className="text-2xl font-black text-black">8+</div>
+                      <div className="text-sm font-medium text-black/70">Years Experience</div>
+                    </div>
+                  </motion.div>
+
+                  {/* Signature Monogram */}
+                  <motion.div
+                    className="absolute bottom-8 right-8 w-16 h-16 bg-black/80 backdrop-blur-md rounded-full flex items-center justify-center border-2 border-accent-lime/60 shadow-lg shadow-black/30"
+                    initial={{ opacity: 0, scale: 0, rotate: -90 }}
+                    animate={isInView ? { opacity: 1, scale: 1, rotate: 0 } : {}}
+                    transition={{ duration: 1, delay: 2.5, type: "spring", bounce: 0.4 }}
+                  >
+                    <div className="text-accent-lime text-xl font-black">RM</div>
+                  </motion.div>
+
+                  {/* Success Projects Indicator */}
+                  <motion.div
+                    className="absolute left-1/2 bottom-12 -translate-x-1/2 bg-white/85 backdrop-blur-sm rounded-full px-6 py-2 shadow-lg"
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                    transition={{ duration: 0.6, delay: 2.8 }}
+                  >
+                    <div className="flex items-center gap-2 text-sm">
+                      <CheckCircle size={16} className="text-green-600" />
+                      <span className="font-semibold text-black">150+ Projects Delivered</span>
+                    </div>
+                  </motion.div>
                 </motion.div>
               </div>
-              {/* Mobile image, full width/sharp edge */}
-              <div className="lg:hidden w-full h-64 mt-6 overflow-hidden">
+
+              {/* Enhanced Mobile image with better proportions */}
+              <div className="lg:hidden w-full h-80 mt-6 overflow-hidden relative rounded-2xl shadow-lg shadow-black/20">
                 <img
                   src="https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?w=400&h=300&fit=crop&crop=faces"
                   alt="Ratan Mia - Full Stack Developer"
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-cover object-top rounded-2xl"
                   loading="lazy"
-                  style={{ borderRadius: 0 }}
                 />
+                
+                {/* Enhanced mobile overlays */}
                 <div className="absolute inset-0 bg-gradient-to-t from-accent-lime/70 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/20"></div>
+                
+                {/* Mobile Professional Badge */}
+                <motion.div
+                  className="absolute top-4 right-4 bg-black/70 backdrop-blur-md rounded-lg px-3 py-2"
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ duration: 0.6, delay: 1 }}
+                >
+                  <div className="flex items-center gap-2">
+                    <Star size={16} className="text-accent-lime" />
+                    <span className="text-white text-xs font-medium">IBM Certified</span>
+                  </div>
+                </motion.div>
+
+                {/* Mobile Stats */}
+                <motion.div
+                  className="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur-md rounded-lg p-3"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 1.2 }}
+                >
+                  <div className="flex justify-between text-white text-center">
+                    <div>
+                      <div className="text-lg font-bold text-accent-lime">8+</div>
+                      <div className="text-xs">Years</div>
+                    </div>
+                    <div>
+                      <div className="text-lg font-bold text-accent-lime">150+</div>
+                      <div className="text-xs">Projects</div>
+                    </div>
+                    <div>
+                      <div className="text-lg font-bold text-accent-lime">Full Stack</div>
+                      <div className="text-xs">Developer</div>
+                    </div>
+                  </div>
+                </motion.div>
               </div>
             </div>
           </div>
         </div>
+        
         {/* Scroll Down Indicator */}
         <motion.a
           href="#about"
