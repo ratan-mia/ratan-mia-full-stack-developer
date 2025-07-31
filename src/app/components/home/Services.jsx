@@ -1,19 +1,21 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { ArrowRight, Code2, Database, Globe, Layers, ShoppingCart, Smartphone } from 'lucide-react';
+import { ArrowRight, Code2, Database, Globe, Layers, ShoppingCart, Smartphone, Star, TrendingUp, Zap } from 'lucide-react';
 import { useRef } from 'react';
 
-// --- Reusable Service Card Component ---
-const ServiceCard = ({ icon: Icon, title, description, index, inView }) => {
+// --- Enhanced Service Card Component ---
+const ServiceCard = ({ icon: Icon, title, description, features, index, inView, isPopular = false }) => {
   const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 60, rotateX: 10 },
     visible: { 
       opacity: 1, 
       y: 0,
+      rotateX: 0,
       transition: { 
-        duration: 0.5, 
-        delay: 0.2 + index * 0.1 
+        duration: 0.8, 
+        delay: 0.2 + index * 0.15,
+        ease: "easeOut"
       }
     }
   };
@@ -23,30 +25,80 @@ const ServiceCard = ({ icon: Icon, title, description, index, inView }) => {
       variants={cardVariants}
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
-      whileHover={{ y: -8, scale: 1.03 }}
-      className="relative p-8 rounded-2xl bg-accent-lime text-black h-full flex flex-col group overflow-hidden transition-all duration-300"
+      whileHover={{ y: -12, scale: 1.02 }}
+      className="relative p-8 rounded-3xl bg-accent-lime text-black h-full flex flex-col group overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-lime-400/30"
     >
+      {/* Popular Badge */}
+      {isPopular && (
+        <div className="absolute -top-2 -right-2 bg-black text-accent-lime px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider rotate-12 shadow-lg">
+          <Star className="w-3 h-3 inline mr-1" />
+          Popular
+        </div>
+      )}
+
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-4 right-4 w-32 h-32 rounded-full bg-gradient-to-br from-black to-transparent blur-2xl"></div>
+        <div className="absolute bottom-4 left-4 w-24 h-24 rounded-full bg-gradient-to-tr from-black to-transparent blur-xl"></div>
+      </div>
+
       <div className="relative z-10 flex flex-col h-full">
+        {/* Icon with enhanced styling */}
         <motion.div 
-          className="mb-8 w-16 h-16 rounded-xl flex items-center justify-center bg-black/10"
-          whileHover={{ scale: 1.1, rotate: 15 }}
-          transition={{ type: 'spring', stiffness: 300 }}
+          className="mb-8 w-18 h-18 rounded-2xl flex items-center justify-center bg-black/15 group-hover:scale-110 transition-all duration-300"
+          whileHover={{ rotate: [0, -10, 10, 0] }}
+          transition={{ type: 'spring', stiffness: 400 }}
         >
-          <Icon className="w-8 h-8 text-black" />
+          <Icon className="w-9 h-9 text-black" />
         </motion.div>
         
-        <h3 className="text-2xl font-bold text-black mb-4">{title}</h3>
-        <p className="text-black/70 mb-10 flex-grow">{description}</p>
+        {/* Title with better typography */}
+        <h3 className="text-2xl lg:text-3xl font-extrabold text-black mb-4 leading-tight">
+          {title}
+        </h3>
         
-        <a href="#" className="flex items-center gap-2 font-semibold text-black mt-auto">
-          <span>VIEW DETAILS</span>
-          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-        </a>
+        {/* Description */}
+        <p className="text-black/80 mb-6 text-lg leading-relaxed flex-grow">
+          {description}
+        </p>
+
+        {/* Features List */}
+        <div className="mb-8">
+          <ul className="space-y-2">
+            {features.map((feature, idx) => (
+              <motion.li 
+                key={idx}
+                className="flex items-center gap-3 text-sm text-black/70"
+                initial={{ opacity: 0, x: -20 }}
+                animate={inView ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: 0.5 + index * 0.1 + idx * 0.1 }}
+              >
+                <div className="w-1.5 h-1.5 rounded-full bg-black/40"></div>
+                {feature}
+              </motion.li>
+            ))}
+          </ul>
+        </div>
+        
+        {/* Enhanced CTA */}
+        <motion.a 
+          href="#contact" 
+          className="flex items-center justify-between p-4 rounded-2xl bg-black/10 hover:bg-black/20 text-black mt-auto font-semibold transition-all duration-300 group-hover:translate-x-1"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          <span className="uppercase tracking-wider text-sm">Get Started</span>
+          <motion.div
+            whileHover={{ x: 5 }}
+            transition={{ type: "spring", stiffness: 400 }}
+          >
+            <ArrowRight className="w-5 h-5" />
+          </motion.div>
+        </motion.a>
       </div>
     </motion.div>
   );
 };
-
 
 // --- MAIN SERVICES COMPONENT ---
 const Services = () => {
@@ -57,67 +109,157 @@ const Services = () => {
     {
       icon: Code2,
       title: 'Frontend Development',
-      description: 'Modern React & Next.js applications with stunning interfaces and seamless user experiences.',
+      description: 'Stunning, responsive user interfaces built with modern React, Next.js, and cutting-edge CSS frameworks.',
+      features: ['React & Next.js', 'Responsive Design', 'Performance Optimization', 'Modern UI/UX'],
+      isPopular: false
     },
     {
       icon: Database,
-      title: 'Backend Development',
-      description: 'Robust Laravel APIs and server-side solutions that scale with your business needs.',
+      title: 'Backend Development', 
+      description: 'Scalable server-side solutions with robust APIs, secure authentication, and optimized database architecture.',
+      features: ['Laravel & PHP', 'RESTful APIs', 'Database Design', 'Security Implementation'],
+      isPopular: true
     },
     {
       icon: Smartphone,
       title: 'Full Stack Solutions',
-      description: 'Complete web applications from database architecture to final deployment.',
+      description: 'Complete web applications from concept to deployment, handling both frontend and backend development.',
+      features: ['End-to-End Development', 'Cloud Deployment', 'DevOps Integration', 'Maintenance & Support'],
+      isPopular: false
     },
     {
       icon: Layers,
       title: 'WordPress Development',
-      description: 'Custom themes, plugins, and high-performance websites using the world\'s most popular CMS.',
+      description: 'Custom WordPress solutions including themes, plugins, and high-performance websites for any business need.',
+      features: ['Custom Themes', 'Plugin Development', 'Site Optimization', 'E-commerce Integration'],
+      isPopular: false
     },
     {
       icon: ShoppingCart,
-      title: 'Shopify E-commerce',
-      description: 'Building and customizing beautiful, high-converting online stores on the Shopify platform.',
+      title: 'E-commerce Solutions',
+      description: 'High-converting online stores with secure payment processing, inventory management, and analytics.',
+      features: ['Shopify & WooCommerce', 'Payment Integration', 'Inventory Management', 'Analytics & Reporting'],
+      isPopular: false
     },
     {
       icon: Globe,
-      title: 'Laravel Ecosystem',
-      description: 'Expertise in the full Laravel ecosystem, including Livewire, Inertia, and Nova for rapid application development.',
+      title: 'Web Optimization',
+      description: 'Performance enhancement, SEO optimization, and technical improvements to boost your online presence.',
+      features: ['SEO Optimization', 'Speed Enhancement', 'Technical Audits', 'Analytics Setup'],
+      isPopular: false
     }
   ];
 
+  const stats = [
+    { icon: TrendingUp, number: '150+', label: 'Projects Completed' },
+    { icon: Star, number: '98%', label: 'Client Satisfaction' },
+    { icon: Zap, number: '8+', label: 'Years Experience' }
+  ];
+
   return (
-    <section ref={ref} className="py-32 lg:py-40 bg-gray-900 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(204,255,0,0.05),rgba(255,255,255,0))] text-white" id="services">
-      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+    <section ref={ref} className="py-32 lg:py-40 bg-gradient-to-br from-black via-gray-900 to-black relative overflow-hidden" id="services">
+      {/* Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-20 left-20 w-96 h-96 bg-accent-lime/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-20 w-80 h-80 bg-accent-lime/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-accent-lime/5 to-transparent rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <motion.div
           className="text-center mb-20"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.1 }}
         >
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-            What I Can Do for My Clients
+          <motion.div 
+            className="inline-flex items-center gap-3 mb-6"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ delay: 0.2 }}
+          >
+            <div className="w-12 h-1 bg-accent-lime"></div>
+            <span className="text-accent-lime font-semibold uppercase tracking-wider text-sm">Services</span>
+            <div className="w-12 h-1 bg-accent-lime"></div>
+          </motion.div>
+
+          <h2 className="text-4xl lg:text-6xl xl:text-7xl font-extrabold text-white mb-8 leading-tight">
+            What I Can Do for
+            <span className="block text-accent-lime">My Clients</span>
           </h2>
-          <p className="text-lg text-gray-400 max-w-3xl mx-auto">
-            From custom front-end designs to complex back-end systems, I provide a comprehensive suite of development services to bring your vision to life.
+          
+          <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+            From custom front-end designs to complex back-end systems, I provide comprehensive development services that transform your vision into powerful digital solutions.
           </p>
         </motion.div>
 
+        {/* Stats Section */}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          {stats.map((stat, index) => (
+            <motion.div
+              key={stat.label}
+              className="text-center group"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ delay: 0.5 + index * 0.1 }}
+            >
+              <div className="w-16 h-16 bg-accent-lime/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                <stat.icon className="w-8 h-8 text-accent-lime" />
+              </div>
+              <div className="text-4xl lg:text-5xl font-extrabold text-white mb-2">{stat.number}</div>
+              <div className="text-gray-400 font-medium">{stat.label}</div>
+            </motion.div>
+          ))}
+        </motion.div>
+
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <ServiceCard
               key={service.title}
               icon={service.icon}
               title={service.title}
               description={service.description}
+              features={service.features}
               index={index}
               inView={isInView}
+              isPopular={service.isPopular}
             />
           ))}
         </div>
+
+        {/* Bottom CTA */}
+        <motion.div
+          className="text-center mt-20"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 1.5 }}
+        >
+          <div className="bg-gradient-to-r from-accent-lime/20 via-accent-lime/10 to-accent-lime/20 p-12 rounded-3xl border border-accent-lime/20 backdrop-blur-xl">
+            <h3 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+              Ready to Start Your Project?
+            </h3>
+            <p className="text-gray-300 mb-8 max-w-2xl mx-auto text-lg">
+              Let's discuss your requirements and create something amazing together.
+            </p>
+            <motion.a
+              href="#contact"
+              className="inline-flex items-center gap-3 bg-accent-lime text-black font-bold px-8 py-4 rounded-2xl hover:bg-accent-lime/90 transition-all duration-300 text-lg uppercase tracking-wider"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span>Get Started Today</span>
+              <ArrowRight className="w-5 h-5" />
+            </motion.a>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
