@@ -230,35 +230,53 @@ const ProcessHowIWork = () => {
   ];
 
   return (
-    <section ref={ref} className="bg-black text-white relative overflow-hidden" id="process">
+    <section ref={ref} className="bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white relative overflow-hidden" id="process">
       
       {/* Enhanced Background Elements */}
       <div className="absolute inset-0">
-        {/* Subtle grid pattern */}
-        <div className="absolute inset-0 opacity-[0.02]" 
+        {/* Enhanced grid pattern */}
+        <div className="absolute inset-0 opacity-[0.03]" 
              style={{
-               backgroundImage: `radial-gradient(circle at 1px 1px, rgba(204, 255, 0, 0.3) 1px, transparent 0)`,
-               backgroundSize: '50px 50px'
+               backgroundImage: `radial-gradient(circle at 1px 1px, rgba(204, 255, 0, 0.4) 1px, transparent 0)`,
+               backgroundSize: '60px 60px'
              }} 
         />
         
-        {/* Floating gradient orbs */}
+        {/* Subtle noise texture overlay */}
+        <div className="absolute inset-0 opacity-[0.015]"
+             style={{
+               backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+             }}
+        />
+        
+        {/* Enhanced gradient orbs */}
         <motion.div
-          className="absolute top-1/4 right-1/4 w-96 h-96 bg-accent-lime/5 rounded-full blur-3xl"
+          className="absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-br from-accent-lime/8 to-accent-orange/5 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
+            opacity: [0.4, 0.6, 0.4],
           }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
         
         <motion.div
-          className="absolute bottom-1/3 left-1/4 w-80 h-80 bg-accent-orange/3 rounded-full blur-3xl"
+          className="absolute bottom-1/3 left-1/4 w-80 h-80 bg-gradient-to-tr from-accent-orange/6 to-accent-lime/4 rounded-full blur-3xl"
           animate={{
             scale: [1.2, 1, 1.2],
-            opacity: [0.2, 0.4, 0.2],
+            opacity: [0.3, 0.5, 0.3],
           }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+        />
+
+        {/* Additional depth layers */}
+        <motion.div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] 
+                     bg-gradient-to-r from-transparent via-gray-800/20 to-transparent rounded-full blur-3xl"
+          animate={{
+            rotate: [0, 360],
+            opacity: [0.1, 0.3, 0.1],
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
         />
       </div>
 
@@ -367,8 +385,9 @@ const ProcessHowIWork = () => {
           />
           
           {/* Enhanced gradient overlays */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-black/40" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 via-black/30 to-gray-900/60" />
+          <div className="absolute inset-0 bg-gradient-to-t from-gray-900/70 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-br from-transparent via-accent-lime/5 to-accent-orange/5" />
           
           {/* Enhanced Floating Tech Icons */}
           <div className="absolute inset-0 hidden lg:block">
@@ -409,9 +428,10 @@ const ProcessHowIWork = () => {
             </motion.div>
           </div>
 
-          {/* Stats overlay */}
+          {/* Enhanced Stats overlay */}
           <motion.div
-            className="absolute bottom-8 left-8 bg-black/80 backdrop-blur-xl rounded-2xl p-6 border border-white/10"
+            className="absolute bottom-8 left-8 bg-gradient-to-br from-black/90 via-gray-900/90 to-black/90 
+                      backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-2xl"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 1.4, duration: 0.8 }}
