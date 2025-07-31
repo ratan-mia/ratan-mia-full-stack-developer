@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { ArrowUp, Github, Heart, Linkedin, Mail } from 'lucide-react';
+import { ArrowUp, Clock, Github, Heart, Linkedin, Mail, MapPin, Send } from 'lucide-react';
 import { useRef } from 'react';
 
 const Footer = () => {
@@ -13,18 +13,38 @@ const Footer = () => {
     {
       name: 'LinkedIn',
       href: 'https://linkedin.com/in/shorifull',
-      icon: Linkedin
+      icon: Linkedin,
+      label: 'Professional Network'
     },
     {
       name: 'GitHub',
       href: 'https://github.com/shorifull',
-      icon: Github
+      icon: Github,
+      label: 'Source Code'
     },
     {
       name: 'Email',
       href: 'mailto:ratanmiadev@gmail.com',
-      icon: Mail
+      icon: Mail,
+      label: 'Direct Contact'
     }
+  ];
+
+  const services = [
+    'Frontend Development',
+    'Backend Development', 
+    'Full Stack Solutions',
+    'WordPress Development',
+    'E-commerce Solutions',
+    'Custom Web Applications'
+  ];
+
+  const quickLinks = [
+    { name: 'About', href: '#about' },
+    { name: 'Services', href: '#services' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'Process', href: '#process' },
+    { name: 'Contact', href: '#contact' }
   ];
 
   const scrollToTop = () => {
@@ -34,50 +54,192 @@ const Footer = () => {
   return (
     <footer 
       ref={footerRef}
-      className="section-padding-sm bg-black border-t border-design"
+      className="bg-black relative overflow-hidden"
     >
-      <div className="container-design">
+      {/* Subtle Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" 
+             style={{
+               backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ccff00' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+             }}
+        />
+      </div>
+
+      {/* Main Footer Content */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 relative z-10">
         
-        {/* Main Footer Content */}
+        {/* Top Section */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
+          className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16"
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+          transition={{ duration: 0.8 }}
         >
           
-          {/* Brand Section */}
-          <div>
+          {/* Brand & Description - 4 Columns */}
+          <div className="lg:col-span-4 space-y-8">
+            {/* Logo */}
             <motion.div 
-              className="flex items-center gap-3 mb-6"
+              className="flex items-center gap-4"
               initial={{ opacity: 0, x: -20 }}
               animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
             >
-              <div className="w-10 h-10 bg-accent rounded-design flex items-center justify-center">
-                <span className="text-lg font-black text-black">R</span>
+              <div className="w-12 h-12 bg-accent-lime rounded-xl flex items-center justify-center">
+                <span className="text-xl font-black text-black">R</span>
               </div>
               <div>
-                <div className="text-xl font-bold text-primary-text">Ratan Mia</div>
-                <div className="caption-text text-neutral">Full Stack Developer</div>
+                <div className="text-2xl font-black text-white">Ratan Mia</div>
+                <div className="text-accent-lime font-semibold">Full Stack Developer</div>
               </div>
             </motion.div>
             
+            {/* Description */}
             <motion.p
-              className="body-text-small text-neutral leading-relaxed mb-6"
+              className="text-gray-400 leading-relaxed max-w-sm"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Crafting modern web solutions with 8+ years of expertise in React.js, Next.js, Laravel, and WordPress development.
+              Crafting exceptional digital experiences with modern technologies. 
+              Let's build something amazing together.
             </motion.p>
+
+            {/* Contact Info */}
+            <motion.div
+              className="space-y-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              <div className="flex items-center gap-3 text-gray-400">
+                <Mail className="w-5 h-5 text-accent-lime" />
+                <a 
+                  href="mailto:ratanmiadev@gmail.com"
+                  className="hover:text-accent-lime transition-colors duration-300"
+                >
+                  ratanmiadev@gmail.com
+                </a>
+              </div>
+              
+              <div className="flex items-center gap-3 text-gray-400">
+                <MapPin className="w-5 h-5 text-accent-orange" />
+                <span>Dhaka, Bangladesh</span>
+              </div>
+              
+              <div className="flex items-center gap-3 text-gray-400">
+                <Clock className="w-5 h-5 text-accent-lime" />
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-accent-lime rounded-full animate-pulse" />
+                  <span>Available for projects</span>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Quick Links - 2 Columns */}
+          <div className="lg:col-span-2 space-y-6">
+            <motion.h4
+              className="text-xl font-bold text-white"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              Quick Links
+            </motion.h4>
+            
+            <motion.div 
+              className="space-y-3"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+            >
+              {quickLinks.map((link, index) => (
+                <motion.a
+                  key={link.name}
+                  href={link.href}
+                  className="block text-gray-400 hover:text-accent-lime transition-colors duration-300 font-medium"
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
+                  transition={{ delay: 0.6 + index * 0.1 }}
+                  whileHover={{ x: 4 }}
+                >
+                  {link.name}
+                </motion.a>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Services - 3 Columns */}
+          <div className="lg:col-span-3 space-y-6">
+            <motion.h4
+              className="text-xl font-bold text-white"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
+              Services
+            </motion.h4>
+            
+            <motion.div 
+              className="space-y-3"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
+            >
+              {services.map((service, index) => (
+                <motion.div
+                  key={service}
+                  className="text-gray-400 font-medium"
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
+                  transition={{ delay: 0.8 + index * 0.1 }}
+                >
+                  {service}
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Newsletter/CTA - 3 Columns */}
+          <div className="lg:col-span-3 space-y-6">
+            <motion.h4
+              className="text-xl font-bold text-white"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+            >
+              Let's Connect
+            </motion.h4>
+            
+            <motion.p
+              className="text-gray-400 text-sm leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.8, delay: 0.9 }}
+            >
+              Ready to start your next project? Let's discuss how we can bring your ideas to life.
+            </motion.p>
+
+            <motion.a
+              href="#contact"
+              className="inline-flex items-center gap-3 bg-accent-lime text-black font-bold px-6 py-3 rounded-xl hover:bg-lime-300 hover:-translate-y-1 transition-all duration-300"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.8, delay: 1.0 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Send className="w-4 h-4" />
+              <span>Get In Touch</span>
+            </motion.a>
 
             {/* Social Links */}
             <motion.div
-              className="flex items-center gap-4"
+              className="flex items-center gap-4 pt-4"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+              transition={{ duration: 0.8, delay: 1.1 }}
             >
               {socialLinks.map((social, index) => (
                 <motion.a
@@ -85,107 +247,69 @@ const Footer = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 bg-card hover:bg-accent border border-design hover:border-accent rounded-design flex items-center justify-center text-neutral hover:text-black smooth-transition"
+                  className="w-10 h-10 bg-gray-800 border border-gray-700 rounded-xl flex items-center justify-center text-gray-400 hover:text-accent-lime hover:border-accent-lime/50 transition-all duration-300"
                   initial={{ opacity: 0, scale: 0 }}
                   animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
-                  transition={{ delay: 0.4 + index * 0.1 }}
+                  transition={{ delay: 1.2 + index * 0.1 }}
                   whileHover={{ scale: 1.1, y: -2 }}
-                  aria-label={`Visit my ${social.name} profile`}
+                  title={social.label}
                 >
                   <social.icon size={18} />
                 </motion.a>
               ))}
             </motion.div>
           </div>
-
-          {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <h4 className="text-lg font-bold text-primary-text mb-6">Get In Touch</h4>
-            <div className="space-y-4 text-neutral">
-              <div>
-                <div className="font-medium text-primary-text mb-1">Email</div>
-                <a 
-                  href="mailto:ratanmiadev@gmail.com"
-                  className="hover:text-accent smooth-transition"
-                >
-                  ratanmiadev@gmail.com
-                </a>
-              </div>
-              <div>
-                <div className="font-medium text-primary-text mb-1">Location</div>
-                <div>Dhaka, Bangladesh</div>
-              </div>
-              <div>
-                <div className="font-medium text-primary-text mb-1">Availability</div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-accent rounded-full"></div>
-                  <span>Available for projects</span>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Services */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-          >
-            <h4 className="text-lg font-bold text-primary-text mb-6">Services</h4>
-            <div className="space-y-2 text-neutral">
-              <div>Frontend Development</div>
-              <div>Backend Development</div>
-              <div>Full Stack Solutions</div>
-              <div>WordPress Development</div>
-              <div>E-commerce Solutions</div>
-            </div>
-          </motion.div>
         </motion.div>
 
-        {/* Footer Bottom */}
+        {/* Bottom Bar */}
         <motion.div 
-          className="border-t border-design pt-8"
+          className="border-t border-gray-800 pt-8"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
+          transition={{ duration: 0.8, delay: 1.3 }}
         >
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="text-neutral text-center md:text-left">
-              <div className="flex items-center justify-center md:justify-start gap-2 mb-2 flex-wrap">
-                <span className="caption-text">© {currentYear} Ratan Mia. Made with</span>
-                <Heart className="w-4 h-4 text-red-400 animate-pulse" />
-                <span className="caption-text">in Bangladesh</span>
-              </div>
-              <p className="caption-text text-neutral-dark">
-                Built with Next.js, Tailwind CSS & Framer Motion
-              </p>
+          <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
+            {/* Copyright */}
+            <div className="flex items-center gap-2 text-gray-400 text-sm">
+              <span>© {currentYear} Ratan Mia. Made with</span>
+              <motion.div
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                <Heart className="w-4 h-4 text-red-400" />
+              </motion.div>
+              <span>in Bangladesh</span>
             </div>
             
+            {/* Tech Stack */}
+            <div className="text-gray-500 text-sm">
+              Built with Next.js, Tailwind CSS & Framer Motion
+            </div>
+            
+            {/* Links & Back to Top */}
             <div className="flex items-center gap-6">
               <a 
                 href="/privacy" 
-                className="text-neutral hover:text-accent smooth-transition caption-text"
+                className="text-gray-400 hover:text-accent-lime transition-colors duration-300 text-sm"
               >
                 Privacy
               </a>
               <a 
                 href="/terms" 
-                className="text-neutral hover:text-accent smooth-transition caption-text"
+                className="text-gray-400 hover:text-accent-lime transition-colors duration-300 text-sm"
               >
                 Terms
               </a>
-              <button
+              <motion.button
                 onClick={scrollToTop}
-                className="flex items-center gap-2 text-neutral hover:text-accent smooth-transition group"
+                className="flex items-center gap-2 bg-gray-800 border border-gray-700 text-gray-400 hover:text-accent-lime hover:border-accent-lime/50 px-4 py-2 rounded-xl transition-all duration-300 group"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
                 aria-label="Scroll to top"
               >
-                <span className="caption-text">Back to top</span>
-                <ArrowUp className="w-4 h-4 group-hover:-translate-y-1 smooth-transition" />
-              </button>
+                <span className="text-sm font-medium">Top</span>
+                <ArrowUp className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />
+              </motion.button>
             </div>
           </div>
         </motion.div>
