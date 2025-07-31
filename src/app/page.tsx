@@ -15,6 +15,7 @@ import Services from '@/components/home/Services';
 import Skills from '@/components/home/Skills';
 import Testimonials from '@/components/home/Testimonials';
 import TrainingCertificates from '@/components/home/TrainingCertificates';
+import VideoIntro from '@/components/home/VideoIntro';
 
 export default function Home() {
   return (
@@ -40,9 +41,10 @@ export default function Home() {
       {/* Projects */}
       <Projects />
       <EmpoweringBusiness />
-
+      <VideoIntro />
       {/* Process How I Work */}
       <ProcessHowIWork />
+
 
 
 
