@@ -40,7 +40,7 @@ const CONTACT_INFO = [
   {
     icon: Phone,
     title: 'Phone',
-    value: '+880 1234 567890',
+    value: '+8801751010966',
     href: 'tel:+8801234567890',
   },
   {
