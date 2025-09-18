@@ -15,7 +15,7 @@ const PROJECTS_DATA = [
     image: '/images/projects/matchlyzer.png',
     technologies: ['JavaScript', 'Chrome API', 'Machine Learning'],
     description: 'A Google Chrome Extension to Match Job and Profile using AI-powered analysis.',
-    liveUrl: '#',
+    liveUrl: 'https://www.matchlyzer.com/',
     icon: Chrome,
   },
   {
@@ -39,7 +39,7 @@ const PROJECTS_DATA = [
     image: '/images/projects/cherybd-mockup.png',
     technologies: ['React.js', 'Laravel', '360° View', 'MySQL'],
     description: 'Complete automotive e-commerce platform with 360° car viewing and financing options.',
-    liveUrl: '#',
+    liveUrl: 'https://chery-bd.myshopify.com/',
     icon: ShoppingCart,
   },
   {
@@ -51,7 +51,7 @@ const PROJECTS_DATA = [
     image: '/images/projects/elf-international-mockup.png',
     technologies: ['Next.js', 'TypeScript', 'Tailwind', 'Strapi'],
     description: 'Corporate website for international energy company with multi-language support.',
-    liveUrl: '#',
+    liveUrl: 'https://elf-bangladesh.vercel.app/',
     icon: Globe,
   },
   {
@@ -63,7 +63,7 @@ const PROJECTS_DATA = [
     image: '/images/projects/japan-parts-mockup.png',
     technologies: ['WordPress', 'WooCommerce', 'PHP', 'MySQL'],
     description: 'Auto parts marketplace with advanced inventory management and B2B features.',
-    liveUrl: '#',
+    liveUrl: 'https://japanparts.com.bd/',
     icon: ShoppingCart,
   },
   {
@@ -75,7 +75,7 @@ const PROJECTS_DATA = [
     image: '/images/projects/elf-apl-mockup.jpg',
     technologies: ['Laravel', 'Vue.js', 'MySQL', 'Redis'],
     description: 'Internal management system for tracking sales performance and inventory.',
-    liveUrl: '#',
+    liveUrl: 'https://asian-petroleum.com/',
     icon: Globe,
   },
   {
@@ -87,7 +87,7 @@ const PROJECTS_DATA = [
     image: '/images/projects/motojp-shopify-headless.png',
     technologies: ['Shopify', 'React.js', 'Headless Commerce', 'GraphQL'],
     description: 'Modern headless e-commerce solution for motorcycle parts with advanced filtering and search.',
-    liveUrl: '#',
+    liveUrl: 'https://motojp.vercel.app/',
     icon: ShoppingCart,
   },
   {
@@ -99,7 +99,7 @@ const PROJECTS_DATA = [
     image: '/images/projects/cherybd-nextjs.png',
     technologies: ['Next.js', 'TypeScript', 'Prisma', 'PostgreSQL'],
     description: 'Enhanced version of Chery Bangladesh platform built with Next.js for better performance.',
-    liveUrl: '#',
+    liveUrl: 'https://cherybd.com',
     icon: ShoppingCart,
   },
   {
@@ -111,7 +111,7 @@ const PROJECTS_DATA = [
     image: '/images/projects/japan-parts-headless.png',
     technologies: ['React.js', 'Node.js', 'Headless CMS', 'API'],
     description: 'Headless commerce solution for Japan Auto Parts with improved performance and SEO.',
-    liveUrl: '#',
+    liveUrl: 'https://japanpartsbd.vercel.app/',
     icon: ShoppingCart,
   },
 ];
