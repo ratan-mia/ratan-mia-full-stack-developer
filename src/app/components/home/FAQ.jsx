@@ -281,8 +281,8 @@ const FAQ = () => {
       icon: Mail,
       title: "Send Direct Message",
       description: "Prefer email? Send me a detailed message about your project and I'll respond within 24 hours.",
-      cta: "ratanmiadev@gmail.com",
-      link: "mailto:ratanmiadev@gmail.com"
+      cta: "shorifull@gmail.com",
+      link: "mailto:shorifull@gmail.com"
     }
   ];
 

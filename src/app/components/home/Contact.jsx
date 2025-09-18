@@ -34,8 +34,8 @@ const CONTACT_INFO = [
   {
     icon: Mail,
     title: 'Email',
-    value: 'ratanmiadev@gmail.com',
-    href: 'mailto:ratanmiadev@gmail.com',
+    value: 'shorifull@gmail.com',
+    href: 'mailto:shorifull@gmail.com',
   },
   {
     icon: Phone,

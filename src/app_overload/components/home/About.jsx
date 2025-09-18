@@ -498,7 +498,7 @@ const About = () => {
     title: 'Senior Full Stack Developer',
     location: 'Dhaka, Bangladesh',
     experience: '8+ Years',
-    email: 'ratanmiadev@gmail.com',
+    email: 'shorifull@gmail.com',
     specialties: ['React.js Expert', 'Next.js Specialist', 'Laravel Pro', 'WordPress Expert', 'Team Leader']
   }), []);
 

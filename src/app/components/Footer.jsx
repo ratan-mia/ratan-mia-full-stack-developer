@@ -68,7 +68,7 @@ const Footer = () => {
     },
     {
       name: 'Email',
-      href: 'mailto:ratanmiadev@gmail.com',
+      href: 'mailto:shorifull@gmail.com',
       icon: Mail,
       label: 'Email'
     }
@@ -155,10 +155,10 @@ const Footer = () => {
                     <Mail className="w-5 h-5 text-accent-lime" />
                   </div>
                   <a 
-                    href="mailto:ratanmiadev@gmail.com"
+                    href="mailto:shorifull@gmail.com"
                     className="hover:text-accent-lime transition-colors duration-300 font-medium"
                   >
-                    ratanmiadev@gmail.com
+                    shorifull@gmail.com
                   </a>
                 </div>
                 

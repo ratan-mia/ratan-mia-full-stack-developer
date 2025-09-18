@@ -62,7 +62,7 @@ const HeroMain = () => {
   const socialLinks = [
     { icon: Github, href: 'https://github.com/shorifull', label: 'GitHub' },
     { icon: Linkedin, href: 'https://linkedin.com/in/shorifull', label: 'LinkedIn' },
-    { icon: Mail, href: 'mailto:ratanmiadev@gmail.com', label: 'Email' },
+    { icon: Mail, href: 'mailto:shorifull@gmail.com', label: 'Email' },
   ];
 
   const visualElements = [

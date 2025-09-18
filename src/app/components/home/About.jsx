@@ -267,10 +267,10 @@ const ContactInfo = ({ isInView }) => (
       <div className="min-w-0 flex-1">
         <p className="text-xs sm:text-sm text-black/60 font-medium uppercase tracking-wide">Email</p>
         <a 
-          href="mailto:ratanmiadev@gmail.com" 
+          href="mailto:shorifull@gmail.com" 
           className="text-black hover:text-black/70 transition-colors font-bold text-base sm:text-lg truncate block"
         >
-          ratanmiadev@gmail.com
+          shorifull@gmail.com
         </a>
       </div>
     </motion.div>
