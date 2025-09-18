@@ -10,7 +10,7 @@ const VideoIntro = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Replace with your actual YouTube video ID
-  const YOUTUBE_VIDEO_ID = 'dQw4w9WgXcQ'; 
+  const YOUTUBE_VIDEO_ID = 'eIGiaRxOqGk'; 
 
   const containerVariants = {
     hidden: { opacity: 0 },
