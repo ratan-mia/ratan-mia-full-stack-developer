@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
 import { ExternalLink, Github, Search } from 'lucide-react';
+import { useState } from 'react';
 import ProjectImage from './ProjectImage';
 
 const ProjectFilters = () => {
@@ -89,12 +89,15 @@ const ProjectFilters = () => {
   });
 
   return (
-    <section className="py-20 px-4 bg-slate-50 dark:bg-slate-900">
+    <section className="py-20 px-4 md:px-6 lg:px-8 bg-gray-50">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">All Projects</h2>
-          <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+          <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-bold mb-6">
+            📁 ALL PROJECTS
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Complete Portfolio</h2>
+          <p className="body-text text-gray-600 max-w-2xl mx-auto">
             Explore my complete portfolio of web applications, from e-commerce platforms to AI solutions.
           </p>
         </div>
@@ -103,26 +106,26 @@ const ProjectFilters = () => {
         <div className="flex flex-col md:flex-row gap-6 mb-12">
           {/* Search Bar */}
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
+            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input
               type="text"
               placeholder="Search projects, technologies..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-800 focus:outline-none focus:border-blue-500 dark:focus:border-blue-400"
+              className="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-xl bg-white focus:outline-none focus:border-accent-lime transition-all font-medium"
             />
           </div>
 
           {/* Category Filters */}
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-3">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setActiveFilter(category)}
-                className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
+                className={`px-6 py-4 rounded-xl font-bold transition-all duration-300 ${
                   activeFilter === category
-                    ? 'bg-blue-600 text-white shadow-lg'
-                    : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-600 hover:bg-blue-50 dark:hover:bg-slate-700'
+                    ? 'bg-black text-accent-lime shadow-lg scale-105'
+                    : 'bg-white text-black border-2 border-gray-200 hover:border-accent-lime hover:bg-accent-lime/10'
                 }`}
               >
                 {category}
@@ -136,39 +139,39 @@ const ProjectFilters = () => {
           {filteredProjects.map((project) => (
             <div
               key={project.id}
-              className="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group border border-slate-200 dark:border-slate-700"
+              className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group border-2 border-gray-100 hover:border-accent-lime"
             >
               {/* Project Image */}
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-56 overflow-hidden bg-gray-100">
                 <ProjectImage 
                   project={project} 
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                 />
                 
                 {/* Featured Badge */}
                 {project.featured && (
-                  <div className="absolute top-4 left-4 px-3 py-1 bg-yellow-400 text-yellow-900 rounded-full text-xs font-bold z-20">
-                    Featured
+                  <div className="absolute top-4 left-4 px-4 py-2 bg-accent-lime text-black rounded-full text-xs font-extrabold z-20 shadow-lg">
+                    ⭐ FEATURED
                   </div>
                 )}
                 
                 {/* Status Badge */}
                 <div className="absolute top-4 right-4 z-20">
                   {project.links.live ? (
-                    <span className="px-2 py-1 bg-green-500 text-white rounded-full text-xs font-bold flex items-center gap-1">
-                      <div className="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></div>
-                      Live
+                    <span className="px-3 py-2 bg-accent-lime text-black rounded-full text-xs font-extrabold flex items-center gap-1.5 shadow-lg">
+                      <div className="w-2 h-2 bg-black rounded-full animate-pulse"></div>
+                      LIVE
                     </span>
                   ) : (
-                    <span className="px-2 py-1 bg-yellow-500 text-yellow-900 rounded-full text-xs font-bold">
-                      In Development
+                    <span className="px-3 py-2 bg-orange-400 text-black rounded-full text-xs font-extrabold shadow-lg">
+                      IN DEV
                     </span>
                   )}
                 </div>
 
                 {/* Year Badge */}
                 <div className="absolute bottom-4 left-4 z-20">
-                  <span className="bg-white/90 backdrop-blur-sm text-slate-800 px-2 py-1 rounded-full text-xs font-bold">
+                  <span className="bg-black/80 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-xs font-bold">
                     {project.year}
                   </span>
                 </div>
@@ -199,36 +202,33 @@ const ProjectFilters = () => {
 
               {/* Project Content */}
               <div className="p-6">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-xs font-medium">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="px-4 py-1.5 bg-accent-lime/20 text-black rounded-full text-xs font-extrabold">
                     {project.category}
                   </span>
-                  {project.featured && (
-                    <span className="text-yellow-500 text-sm">⭐ Featured</span>
-                  )}
                 </div>
 
-                <h3 className="text-xl font-bold mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2">
+                <h3 className="text-xl font-extrabold mb-3 line-clamp-2">
                   {project.title}
                 </h3>
 
-                <p className="text-slate-600 dark:text-slate-300 mb-4 text-sm leading-relaxed line-clamp-3">
+                <p className="text-gray-600 mb-4 text-sm leading-relaxed line-clamp-3">
                   {project.description}
                 </p>
 
                 {/* Technologies */}
-                <div className="flex flex-wrap gap-2 mb-4">
+                <div className="flex flex-wrap gap-2 mb-5">
                   {project.tech.slice(0, 3).map((tech) => (
                     <span
                       key={tech}
-                      className="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded text-xs"
+                      className="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-xs font-semibold"
                     >
                       {tech}
                     </span>
                   ))}
                   {project.tech.length > 3 && (
-                    <span className="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded text-xs">
-                      +{project.tech.length - 3} more
+                    <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-xs font-semibold">
+                      +{project.tech.length - 3}
                     </span>
                   )}
                 </div>
@@ -238,24 +238,24 @@ const ProjectFilters = () => {
                   {project.links.live ? (
                     <a
                       href={project.links.live}
-                      className="flex-1 text-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+                      className="flex-1 text-center px-4 py-3 bg-black text-accent-lime rounded-xl hover:shadow-lg transition-all font-bold"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
                       View Live
                     </a>
                   ) : (
-                    <div className="flex-1 text-center px-4 py-2 bg-gray-600 text-white rounded-lg text-sm font-medium">
-                      In Development
+                    <div className="flex-1 text-center px-4 py-3 bg-gray-400 text-white rounded-xl font-bold">
+                      In Dev
                     </div>
                   )}
                   <a
                     href={project.links.github}
-                    className="flex-1 text-center px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors text-sm font-medium"
+                    className="flex-1 text-center px-4 py-3 border-2 border-black text-black rounded-xl hover:bg-black hover:text-white transition-all font-bold"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Case Study
+                    Details
                   </a>
                 </div>
               </div>
@@ -277,7 +277,7 @@ const ProjectFilters = () => {
         {/* Load More Button */}
         {filteredProjects.length > 0 && (
           <div className="text-center mt-12">
-            <button className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:shadow-lg transition-all duration-300 font-medium">
+            <button className="px-10 py-4 bg-black text-accent-lime rounded-xl hover:shadow-xl transition-all duration-300 font-extrabold hover:scale-105">
               Load More Projects
             </button>
           </div>

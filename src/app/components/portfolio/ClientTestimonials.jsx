@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
 import { ChevronLeft, ChevronRight, Quote, Star } from 'lucide-react';
+import { useState } from 'react';
 
 const ClientTestimonials = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
@@ -97,7 +97,7 @@ const ClientTestimonials = () => {
   const currentClient = testimonials[currentTestimonial];
 
   return (
-    <section className="py-20 px-4">
+    <section className="py-20 px-4 md:px-6 lg:px-8 bg-white">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -109,38 +109,38 @@ const ClientTestimonials = () => {
         </div>
 
         {/* Main Testimonial Display */}
-        <div className="bg-white dark:bg-slate-800 rounded-3xl p-8 md:p-12 shadow-2xl border border-slate-200 dark:border-slate-700 mb-12">
+        <div className="bg-accent-lime rounded-3xl p-8 md:p-12 shadow-2xl mb-12">
           <div className="grid lg:grid-cols-3 gap-8 items-center">
             
             {/* Client Info */}
             <div className="text-center lg:text-left">
-              <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-3xl mx-auto lg:mx-0 mb-4">
+              <div className="w-28 h-28 bg-black rounded-2xl flex items-center justify-center text-accent-lime text-3xl mx-auto lg:mx-0 mb-4 shadow-lg font-extrabold">
                 {currentClient.name.split(' ').map(n => n[0]).join('')}
               </div>
-              <h3 className="text-xl font-bold mb-1">{currentClient.name}</h3>
-              <p className="text-blue-600 dark:text-blue-400 font-medium mb-1">{currentClient.title}</p>
-              <p className="text-slate-600 dark:text-slate-300 mb-4">{currentClient.company}</p>
+              <h3 className="text-2xl font-extrabold mb-1">{currentClient.name}</h3>
+              <p className="text-black font-bold mb-1">{currentClient.title}</p>
+              <p className="text-black/70 font-semibold mb-4">{currentClient.company}</p>
               
               {/* Rating */}
               <div className="flex justify-center lg:justify-start items-center mb-4">
                 {[...Array(currentClient.rating)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                  <Star key={i} className="w-6 h-6 text-black fill-current" />
                 ))}
               </div>
 
               {/* Project Info */}
-              <div className="bg-slate-100 dark:bg-slate-700 rounded-lg p-4">
-                <div className="text-sm text-slate-500 dark:text-slate-400 mb-1">Project Type</div>
-                <div className="font-semibold text-sm">{currentClient.projectType}</div>
-                <div className="text-sm text-slate-500 dark:text-slate-400 mt-2 mb-1">Key Result</div>
-                <div className="font-semibold text-sm text-green-600 dark:text-green-400">{currentClient.metrics}</div>
+              <div className="bg-white rounded-2xl p-5 shadow-md">
+                <div className="text-sm text-gray-600 mb-1 font-bold">Project Type</div>
+                <div className="font-extrabold text-sm mb-3">{currentClient.projectType}</div>
+                <div className="text-sm text-gray-600 mb-1 font-bold">Key Result</div>
+                <div className="font-extrabold text-sm text-black">{currentClient.metrics}</div>
               </div>
             </div>
 
             {/* Testimonial Content */}
             <div className="lg:col-span-2">
-              <Quote className="w-12 h-12 text-blue-600 dark:text-blue-400 mb-6" />
-              <blockquote className="text-lg md:text-xl leading-relaxed text-slate-700 dark:text-slate-200 mb-6 italic">
+              <Quote className="w-14 h-14 text-black mb-6" />
+              <blockquote className="text-xl md:text-2xl leading-relaxed text-black mb-6 font-semibold">
                 "{currentClient.testimonial}"
               </blockquote>
               
@@ -148,20 +148,20 @@ const ClientTestimonials = () => {
               <div className="flex items-center justify-between">
                 <button
                   onClick={prevTestimonial}
-                  className="p-3 bg-slate-100 dark:bg-slate-700 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 rounded-full transition-all duration-300 group"
+                  className="p-4 bg-white hover:bg-black hover:text-accent-lime rounded-2xl transition-all duration-300 group shadow-md"
                 >
-                  <ChevronLeft className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                  <ChevronLeft className="w-6 h-6 group-hover:scale-110 transition-transform" />
                 </button>
                 
-                <div className="text-sm text-slate-500 dark:text-slate-400">
-                  {currentTestimonial + 1} of {testimonials.length}
+                <div className="text-sm font-extrabold text-black px-4 py-2 bg-white rounded-full">
+                  {currentTestimonial + 1} / {testimonials.length}
                 </div>
                 
                 <button
                   onClick={nextTestimonial}
-                  className="p-3 bg-slate-100 dark:bg-slate-700 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 rounded-full transition-all duration-300 group"
+                  className="p-4 bg-white hover:bg-black hover:text-accent-lime rounded-2xl transition-all duration-300 group shadow-md"
                 >
-                  <ChevronRight className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                  <ChevronRight className="w-6 h-6 group-hover:scale-110 transition-transform" />
                 </button>
               </div>
             </div>
@@ -174,10 +174,10 @@ const ClientTestimonials = () => {
             <button
               key={index}
               onClick={() => goToTestimonial(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              className={`w-4 h-4 rounded-full transition-all duration-300 ${
                 index === currentTestimonial 
-                  ? 'bg-blue-600 scale-125' 
-                  : 'bg-slate-300 dark:bg-slate-600 hover:bg-blue-400'
+                  ? 'bg-black scale-125' 
+                  : 'bg-gray-300 hover:bg-gray-400'
               }`}
             />
           ))}
@@ -188,39 +188,39 @@ const ClientTestimonials = () => {
           {testimonials.map((testimonial, index) => (
             <div
               key={testimonial.id}
-              className={`bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border ${
+              className={`bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 ${
                 index === currentTestimonial 
-                  ? 'border-blue-500 dark:border-blue-400' 
-                  : 'border-slate-200 dark:border-slate-700'
+                  ? 'border-accent-lime scale-105' 
+                  : 'border-gray-100 hover:border-accent-lime'
               } cursor-pointer group`}
               onClick={() => goToTestimonial(index)}
             >
               {/* Client Avatar */}
               <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-sm mr-3">
+                <div className="w-14 h-14 bg-accent-lime rounded-xl flex items-center justify-center text-black text-sm font-extrabold mr-3">
                   {testimonial.name.split(' ').map(n => n[0]).join('')}
                 </div>
                 <div>
-                  <h4 className="font-bold text-sm">{testimonial.name}</h4>
-                  <p className="text-slate-600 dark:text-slate-300 text-xs">{testimonial.company}</p>
+                  <h4 className="font-extrabold text-sm">{testimonial.name}</h4>
+                  <p className="text-gray-600 text-xs font-semibold">{testimonial.company}</p>
                 </div>
               </div>
 
               {/* Rating */}
               <div className="flex items-center mb-3">
                 {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
+                  <Star key={i} className="w-5 h-5 text-accent-lime fill-current" />
                 ))}
               </div>
 
               {/* Testimonial Preview */}
-              <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed line-clamp-3 group-hover:text-slate-700 dark:group-hover:text-slate-200 transition-colors">
+              <p className="text-gray-600 text-sm leading-relaxed line-clamp-3 group-hover:text-black transition-colors font-medium">
                 "{testimonial.testimonial.substring(0, 120)}..."
               </p>
 
               {/* Project Type */}
-              <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-700">
-                <span className="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-2 py-1 rounded-full">
+              <div className="mt-4 pt-4 border-t-2 border-gray-100">
+                <span className="text-xs bg-accent-lime/20 text-black px-3 py-1.5 rounded-full font-bold">
                   {testimonial.projectType}
                 </span>
               </div>
@@ -229,30 +229,30 @@ const ClientTestimonials = () => {
         </div>
 
         {/* Trust Indicators */}
-        <div className="mt-16 bg-slate-100 dark:bg-slate-800 rounded-2xl p-8">
-          <div className="text-center mb-8">
-            <h3 className="text-2xl font-bold mb-2">Trusted by Industry Leaders</h3>
-            <p className="text-slate-600 dark:text-slate-300">
+        <div className="mt-16 bg-gray-50 rounded-3xl p-10 border-2 border-gray-100">
+          <div className="text-center mb-10">
+            <h3 className="text-3xl font-extrabold mb-3">Trusted by Industry Leaders</h3>
+            <p className="text-gray-600 font-medium">
               From startups to enterprise companies, clients trust me to deliver exceptional results.
             </p>
           </div>
           
           <div className="grid md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">5.0</div>
-              <div className="text-sm text-slate-600 dark:text-slate-300">Average Rating</div>
+            <div className="bg-white rounded-2xl p-6 shadow-md">
+              <div className="text-4xl font-extrabold mb-2">5.0</div>
+              <div className="text-sm text-gray-600 font-bold">Average Rating</div>
             </div>
-            <div>
-              <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">100%</div>
-              <div className="text-sm text-slate-600 dark:text-slate-300">On-Time Delivery</div>
+            <div className="bg-white rounded-2xl p-6 shadow-md">
+              <div className="text-4xl font-extrabold mb-2">100%</div>
+              <div className="text-sm text-gray-600 font-bold">On-Time Delivery</div>
             </div>
-            <div>
-              <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">95%</div>
-              <div className="text-sm text-slate-600 dark:text-slate-300">Client Retention</div>
+            <div className="bg-white rounded-2xl p-6 shadow-md">
+              <div className="text-4xl font-extrabold mb-2">95%</div>
+              <div className="text-sm text-gray-600 font-bold">Client Retention</div>
             </div>
-            <div>
-              <div className="text-3xl font-bold text-orange-600 dark:text-orange-400 mb-2">12+</div>
-              <div className="text-sm text-slate-600 dark:text-slate-300">Happy Clients</div>
+            <div className="bg-white rounded-2xl p-6 shadow-md">
+              <div className="text-4xl font-extrabold mb-2">12+</div>
+              <div className="text-sm text-gray-600 font-bold">Happy Clients</div>
             </div>
           </div>
         </div>

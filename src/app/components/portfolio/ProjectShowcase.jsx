@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
 import { ExternalLink, Github, Play } from 'lucide-react';
+import { useState } from 'react';
 import ProjectImage from './ProjectImage';
 
 const ProjectShowcase = () => {
@@ -82,17 +82,17 @@ const ProjectShowcase = () => {
   const currentProject = PROJECT_DATA[activeProject];
 
   return (
-    <section className="relative py-20 px-4 overflow-hidden">
+    <section className="relative py-20 px-4 md:px-6 lg:px-8 overflow-hidden bg-white">
       <div className="max-w-7xl mx-auto">
         {/* Hero Header */}
         <div className="text-center mb-16">
-          <div className="inline-block px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium mb-6">
-            🚀 Featured Work
+          <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-bold mb-6">
+            🚀 FEATURED WORK
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-slate-900 via-blue-800 to-slate-900 dark:from-slate-100 dark:via-blue-300 dark:to-slate-100 bg-clip-text text-transparent">
-            My Portfolio
-          </h1>
-          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            Featured Projects
+          </h2>
+          <p className="body-text text-gray-600 max-w-3xl mx-auto">
             Discover the projects that showcase my expertise in full stack development. 
             Each project represents a unique challenge and innovative solution.
           </p>
@@ -102,7 +102,7 @@ const ProjectShowcase = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
           {/* Project Visual */}
           <div className="relative">
-            <div className="aspect-video bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl shadow-2xl overflow-hidden relative">
+            <div className="aspect-video bg-gray-100 rounded-3xl shadow-2xl overflow-hidden relative border border-gray-200">
               {/* Project Image */}
               <ProjectImage 
                 project={currentProject} 
@@ -116,10 +116,10 @@ const ProjectShowcase = () => {
 
               {/* Project Status Badge */}
               <div className="absolute top-4 right-4 z-10">
-                <span className={`px-3 py-1 rounded-full text-xs font-bold ${
+                <span className={`px-4 py-2 rounded-xl text-sm font-bold shadow-lg ${
                   currentProject.status === 'Live' 
-                    ? 'bg-green-500 text-white' 
-                    : 'bg-yellow-500 text-yellow-900'
+                    ? 'bg-accent-lime text-black' 
+                    : 'bg-accent-orange text-white'
                 }`}>
                   {currentProject.status}
                 </span>
@@ -127,7 +127,7 @@ const ProjectShowcase = () => {
 
               {/* Year Badge */}
               <div className="absolute top-4 left-4 z-10">
-                <span className="bg-white/90 backdrop-blur-sm text-slate-800 px-3 py-1 rounded-full text-xs font-bold">
+                <span className="bg-white text-black px-4 py-2 rounded-xl text-sm font-bold shadow-lg">
                   {currentProject.year}
                 </span>
               </div>
@@ -141,13 +141,13 @@ const ProjectShowcase = () => {
                   onClick={() => setActiveProject(index)}
                   className={`w-3 h-3 rounded-full transition-all duration-300 relative group ${
                     index === activeProject 
-                      ? 'bg-blue-600 scale-125' 
-                      : 'bg-slate-300 dark:bg-slate-600 hover:bg-blue-400'
+                      ? 'bg-accent-lime scale-125' 
+                      : 'bg-gray-300 hover:bg-accent-lime/50'
                   }`}
                   title={project.title}
                 >
                   {/* Tooltip */}
-                  <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none">
+                  <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none">
                     {project.title}
                   </div>
                 </button>
@@ -159,32 +159,32 @@ const ProjectShowcase = () => {
           <div className="space-y-6">
             <div>
               <div className="flex items-center gap-3 mb-3">
-                <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium">
+                <span className="px-4 py-2 bg-accent-lime/20 text-black rounded-lg text-sm font-bold">
                   {currentProject.category.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}
                 </span>
-                <span className="text-slate-500 dark:text-slate-400 text-sm">
+                <span className="text-gray-600 text-sm font-medium">
                   {currentProject.duration}
                 </span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-2">
                 {currentProject.title}
               </h2>
-              <p className="text-lg text-blue-600 dark:text-blue-400 font-medium mb-4">
+              <p className="text-lg text-black/70 font-semibold mb-4">
                 {currentProject.subtitle}
               </p>
-              <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-gray-600 leading-relaxed">
                 {currentProject.description}
               </p>
             </div>
 
             {/* Technologies */}
             <div>
-              <h3 className="font-semibold mb-3">Technologies Used:</h3>
+              <h3 className="font-bold mb-3 text-lg">Technologies Used:</h3>
               <div className="flex flex-wrap gap-2">
                 {currentProject.tech.map((tech) => (
                   <span
                     key={tech}
-                    className="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm font-medium"
+                    className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium"
                   >
                     {tech}
                   </span>
@@ -193,15 +193,15 @@ const ProjectShowcase = () => {
             </div>
 
             {/* Key Metrics */}
-            <div className="bg-slate-100 dark:bg-slate-800 rounded-xl p-6">
-              <h3 className="font-semibold mb-4">Key Results:</h3>
+            <div className="bg-accent-lime rounded-3xl p-8">
+              <h3 className="font-bold mb-6 text-xl">Key Results:</h3>
               <div className="grid grid-cols-3 gap-4">
                 {currentProject.results.map((result, index) => (
                   <div key={index} className="text-center">
-                    <div className="text-lg font-bold text-blue-600 dark:text-blue-400 mb-1">
+                    <div className="text-2xl font-extrabold mb-1">
                       {result.split(' ')[0]}
                     </div>
-                    <div className="text-sm text-slate-600 dark:text-slate-400">
+                    <div className="text-sm font-semibold text-black/70">
                       {result.split(' ').slice(1).join(' ')}
                     </div>
                   </div>
@@ -214,50 +214,50 @@ const ProjectShowcase = () => {
               {currentProject.link ? (
                 <a
                   href={currentProject.link}
-                  className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                  className="inline-flex items-center px-8 py-4 bg-black text-accent-lime rounded-xl font-bold hover:shadow-lg transition-all hover:scale-105"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <ExternalLink className="w-4 h-4 mr-2" />
+                  <ExternalLink className="w-5 h-5 mr-2" />
                   View Live
                 </a>
               ) : (
-                <div className="inline-flex items-center px-6 py-3 bg-gray-600 text-white rounded-lg font-medium">
-                  <Play className="w-4 h-4 mr-2" />
+                <div className="inline-flex items-center px-8 py-4 bg-gray-400 text-white rounded-xl font-bold">
+                  <Play className="w-5 h-5 mr-2" />
                   In Development
                 </div>
               )}
-              <button className="inline-flex items-center px-6 py-3 border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors font-medium">
-                <Github className="w-4 h-4 mr-2" />
+              <button className="inline-flex items-center px-8 py-4 bg-white border-2 border-black text-black rounded-xl font-semibold hover:bg-black hover:text-white transition-all">
+                <Github className="w-5 h-5 mr-2" />
                 Case Study
               </button>
             </div>
 
             {/* Client Info */}
-            <div className="border-t border-slate-200 dark:border-slate-700 pt-6">
-              <div className="text-sm text-slate-500 dark:text-slate-400 mb-1">Client</div>
-              <div className="font-semibold">{currentProject.client}</div>
+            <div className="border-t-2 border-gray-200 pt-6">
+              <div className="text-sm text-gray-600 mb-1 font-semibold">Client</div>
+              <div className="font-bold text-lg">{currentProject.client}</div>
             </div>
           </div>
         </div>
 
         {/* Portfolio Stats */}
-        <div className="grid md:grid-cols-4 gap-8 text-center">
-          <div className="p-6">
-            <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">15+</div>
-            <div className="text-slate-600 dark:text-slate-300">Projects Completed</div>
+        <div className="grid md:grid-cols-4 gap-6 text-center">
+          <div className="p-6 bg-accent-lime rounded-2xl">
+            <div className="text-3xl md:text-4xl font-extrabold mb-2">15+</div>
+            <div className="text-black/70 font-semibold">Projects Completed</div>
           </div>
-          <div className="p-6">
-            <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">100%</div>
-            <div className="text-slate-600 dark:text-slate-300">Client Satisfaction</div>
+          <div className="p-6 bg-accent-lime rounded-2xl">
+            <div className="text-3xl md:text-4xl font-extrabold mb-2">100%</div>
+            <div className="text-black/70 font-semibold">Client Satisfaction</div>
           </div>
-          <div className="p-6">
-            <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">5+</div>
-            <div className="text-slate-600 dark:text-slate-300">Years Experience</div>
+          <div className="p-6 bg-accent-lime rounded-2xl">
+            <div className="text-3xl md:text-4xl font-extrabold mb-2">5+</div>
+            <div className="text-black/70 font-semibold">Years Experience</div>
           </div>
-          <div className="p-6">
-            <div className="text-3xl font-bold text-orange-600 dark:text-orange-400 mb-2">24/7</div>
-            <div className="text-slate-600 dark:text-slate-300">Support Available</div>
+          <div className="p-6 bg-accent-lime rounded-2xl">
+            <div className="text-3xl md:text-4xl font-extrabold mb-2">24/7</div>
+            <div className="text-black/70 font-semibold">Support Available</div>
           </div>
         </div>
       </div>
