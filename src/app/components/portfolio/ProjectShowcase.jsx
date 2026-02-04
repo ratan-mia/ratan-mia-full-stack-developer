@@ -17,6 +17,7 @@ const ProjectShowcase = () => {
       tech: ["React Native", "Expo", "Supabase", "SSL Commerz", "Push Notifications"],
       category: "mobile-app",
       link: "/case-studies/chery-bangladesh",
+      liveUrl: null,
       image: "/images/projects/cherybd-mockup.png",
       status: "Live",
       year: "2024",
@@ -34,6 +35,7 @@ const ProjectShowcase = () => {
       tech: ["React Native", "Next.js", "Prisma", "SSL Commerz", "Supabase"],
       category: "saas-platform",
       link: "/case-studies/turfnations-booking",
+      liveUrl: "https://www.turflet.app",
       image: "/images/projects/turflet/www.turflet.app.png",
       status: "Live",
       year: "2024",
@@ -51,6 +53,7 @@ const ProjectShowcase = () => {
       tech: ["React Native", "Supabase", "QR Scanner", "Gamification", "Fraud Detection"],
       category: "loyalty-platform",
       link: "/case-studies/gamify",
+      liveUrl: null,
       image: "/images/projects/pieqr/screenshots/home-screen.jpg",
       status: "Live",
       year: "2024",
@@ -68,6 +71,7 @@ const ProjectShowcase = () => {
       tech: ["Next.js", "Tailwind CSS", "Zoho CRM", "WhatsApp API", "Strapi CMS"],
       category: "web-development",
       link: "https://asian-petroleum.com/",
+      liveUrl: "https://asian-petroleum.com/",
       image: "/images/projects/elf-apl-mockup.jpg",
       status: "Live",
       year: "2024",
@@ -85,6 +89,7 @@ const ProjectShowcase = () => {
       tech: ["React.js", "Tailwind CSS", "E-commerce", "SEO", "Product Configurator"],
       category: "ecommerce",
       link: "https://elf-bangladesh.vercel.app",
+      liveUrl: "https://elf-bangladesh.vercel.app",
       image: "/images/projects/elf-international-mockup.png",
       status: "Live",
       year: "2024",
@@ -102,6 +107,7 @@ const ProjectShowcase = () => {
       tech: ["Next.js", "Headless CMS", "E-commerce", "Search Engine", "Inventory Management"],
       category: "ecommerce",
       link: null,
+      liveUrl: null,
       image: "/images/projects/japan-parts-headless.png",
       status: "Development",
       year: "2024",
@@ -119,6 +125,7 @@ const ProjectShowcase = () => {
       tech: ["React Native", "AI/ML", "Analytics", "Real-time Data", "Supabase"],
       category: "ai-analytics",
       link: null,
+      liveUrl: null,
       image: "/images/projects/matchlyzer.png",
       status: "Live",
       year: "2024",
@@ -136,6 +143,7 @@ const ProjectShowcase = () => {
       tech: ["Next.js", "React.js", "CRM Integration", "Facebook Pixel", "360° Viewer"],
       category: "web-development",
       link: "https://www.cherybd.com",
+      liveUrl: "https://www.cherybd.com",
       image: "/images/projects/cherybd-nextjs.png",
       status: "Live",
       year: "2023",
@@ -172,10 +180,12 @@ const ProjectShowcase = () => {
           <div className="relative">
             <div className="aspect-video bg-gray-100 rounded-3xl shadow-2xl overflow-hidden relative border border-gray-200">
               {/* Project Image */}
-              <ProjectImage 
-                project={currentProject} 
-                className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-              />
+              <div className="relative w-full h-full">
+                <ProjectImage 
+                  project={currentProject} 
+                  className="object-cover"
+                />
+              </div>
               
               {/* Overlay for images */}
               {currentProject.image && (
@@ -305,8 +315,23 @@ const ProjectShowcase = () => {
               )}
             </div>
 
+            {/* Live URL Display */}
+            {currentProject.liveUrl && (
+              <div className="border-t-2 border-gray-200 pt-6 mt-6">
+                <div className="text-sm text-gray-600 mb-2 font-semibold">Live URL</div>
+                <a 
+                  href={currentProject.liveUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-black hover:text-accent-lime font-bold break-all transition-colors"
+                >
+                  {currentProject.liveUrl}
+                </a>
+              </div>
+            )}
+
             {/* Client Info */}
-            <div className="border-t-2 border-gray-200 pt-6">
+            <div className="border-t-2 border-gray-200 pt-6 mt-6">
               <div className="text-sm text-gray-600 mb-1 font-semibold">Client</div>
               <div className="font-bold text-lg">{currentProject.client}</div>
             </div>

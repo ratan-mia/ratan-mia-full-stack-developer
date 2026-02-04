@@ -18,6 +18,7 @@ const ProjectFilters = () => {
       tech: ["React Native", "Expo", "Supabase", "SSL Commerz", "Push Notifications"],
       image: "/images/projects/cherybd-mockup.png",
       links: { live: "/case-studies/chery-bangladesh", github: "/case-studies/chery-bangladesh" },
+      liveUrl: null,
       featured: true,
       year: "2024"
     },
@@ -29,6 +30,7 @@ const ProjectFilters = () => {
       tech: ["React Native", "Next.js", "Prisma", "SSL Commerz", "Supabase"],
       image: "/images/projects/turflet/www.turflet.app.png",
       links: { live: "/case-studies/turfnations-booking", github: "/case-studies/turfnations-booking" },
+      liveUrl: "https://www.turflet.app",
       featured: true,
       year: "2024"
     },
@@ -40,6 +42,7 @@ const ProjectFilters = () => {
       tech: ["React Native", "Supabase", "QR Scanner", "Gamification", "Fraud Detection"],
       image: "/images/projects/pieqr/screenshots/home-screen.jpg",
       links: { live: "/case-studies/gamify", github: "/case-studies/gamify" },
+      liveUrl: null,
       featured: true,
       year: "2024"
     },
@@ -51,6 +54,7 @@ const ProjectFilters = () => {
       tech: ["Next.js", "Tailwind CSS", "Zoho CRM", "WhatsApp API", "Strapi CMS"],
       image: "/images/projects/elf-apl-mockup.jpg",
       links: { live: "https://asian-petroleum.com/", github: "https://asian-petroleum.com/" },
+      liveUrl: "https://asian-petroleum.com/",
       featured: true,
       year: "2024"
     },
@@ -62,6 +66,7 @@ const ProjectFilters = () => {
       tech: ["React.js", "Tailwind CSS", "E-commerce", "SEO", "Product Configurator"],
       image: "/images/projects/elf-international-mockup.png",
       links: { live: "https://elf-bangladesh.vercel.app", github: "https://elf-bangladesh.vercel.app" },
+      liveUrl: "https://elf-bangladesh.vercel.app",
       featured: true,
       year: "2024"
     },
@@ -73,6 +78,7 @@ const ProjectFilters = () => {
       tech: ["Next.js", "Headless CMS", "E-commerce", "Search Engine", "Inventory"],
       image: "/images/projects/japan-parts-headless.png",
       links: { live: null, github: "#" },
+      liveUrl: null,
       featured: true,
       year: "2024"
     },
@@ -84,6 +90,7 @@ const ProjectFilters = () => {
       tech: ["React.js", "PHP", "API Integration", "WhatsApp API", "MySQL"],
       image: "/images/projects/japan-parts-mockup.png",
       links: { live: "https://japanparts.com.bd", github: "https://japanparts.com.bd" },
+      liveUrl: "https://japanparts.com.bd",
       featured: false,
       year: "2023"
     },
@@ -95,6 +102,7 @@ const ProjectFilters = () => {
       tech: ["React Native", "AI/ML", "Analytics", "Real-time Data", "Supabase"],
       image: "/images/projects/matchlyzer.png",
       links: { live: null, github: "#" },
+      liveUrl: null,
       featured: true,
       year: "2024"
     },
@@ -106,6 +114,7 @@ const ProjectFilters = () => {
       tech: ["Next.js", "React.js", "CRM Integration", "Facebook Pixel", "360° Viewer"],
       image: "/images/projects/cherybd-nextjs.png",
       links: { live: "https://www.cherybd.com", github: "https://www.cherybd.com" },
+      liveUrl: "https://www.cherybd.com",
       featured: true,
       year: "2023"
     },
@@ -117,6 +126,7 @@ const ProjectFilters = () => {
       tech: ["Next.js", "Shopify", "Headless Commerce", "GraphQL", "Tailwind CSS"],
       image: "/images/projects/motojp-shopify-headless.png",
       links: { live: null, github: "#" },
+      liveUrl: null,
       featured: false,
       year: "2024"
     }
@@ -187,10 +197,12 @@ const ProjectFilters = () => {
             >
               {/* Project Image */}
               <div className="relative h-56 overflow-hidden bg-gray-100">
-                <ProjectImage 
-                  project={project} 
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                />
+                <div className="relative w-full h-full">
+                  <ProjectImage 
+                    project={project} 
+                    className="object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                </div>
                 
                 {/* Featured Badge */}
                 {project.featured && (
@@ -276,6 +288,22 @@ const ProjectFilters = () => {
                     </span>
                   )}
                 </div>
+
+                {/* Live URL */}
+                {project.liveUrl && (
+                  <div className="mb-5 pb-5 border-b-2 border-gray-100">
+                    <div className="text-xs text-gray-500 mb-1 font-bold">Live URL</div>
+                    <a 
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs text-black hover:text-accent-lime font-semibold break-all transition-colors line-clamp-1"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      {project.liveUrl}
+                    </a>
+                  </div>
+                )}
 
                 {/* Action Buttons */}
                 <div className="flex gap-3">
