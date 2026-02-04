@@ -1,30 +1,30 @@
 'use client';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
-  ArrowRight,
-  Award,
-  Briefcase,
-  ChevronDown,
-  ChevronLeft,
-  ChevronRight,
-  Cloud,
-  Code2,
-  Database,
-  Download,
-  GitBranch,
-  Globe,
-  Layers,
-  Mail,
-  MessageCircle,
-  Monitor,
-  Phone,
-  Rocket,
-  Server,
-  Settings,
-  Smartphone,
-  Star,
-  Target,
-  Users
+    ArrowRight,
+    Award,
+    Briefcase,
+    ChevronDown,
+    ChevronLeft,
+    ChevronRight,
+    Cloud,
+    Code2,
+    Database,
+    Download,
+    GitBranch,
+    Globe,
+    Layers,
+    Mail,
+    MessageCircle,
+    Monitor,
+    Phone,
+    Rocket,
+    Server,
+    Settings,
+    Smartphone,
+    Star,
+    Target,
+    Users
 } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
@@ -254,7 +254,7 @@ const HeroSlider = () => {
 
   const statistics = [
     { icon: Target, number: '150+', label: 'Projects', color: 'from-yellow-500 to-orange-500' },
-    { icon: Award, number: '8+', label: 'Years', color: 'from-purple-500 to-pink-500' },
+    { icon: Award, number: '10+', label: 'Years', color: 'from-purple-500 to-pink-500' },
     { icon: Users, number: '25+', label: 'Countries', color: 'from-blue-500 to-cyan-500' },
     { icon: Star, number: '98%', label: 'Success', color: 'from-green-500 to-emerald-500' }
   ];
@@ -425,7 +425,7 @@ const HeroSlider = () => {
           className="text-xs sm:text-sm md:text-base lg:text-lg text-slate-300 font-light leading-relaxed max-w-xl lg:max-w-2xl mx-auto lg:mx-0"
         >
           Specialized in crafting high-performance web applications with{' '}
-          <span className="text-white font-bold">8+ years of expertise</span>.
+          <span className="text-white font-bold">10+ years of expertise</span>.
           Expert in Laravel, React.js, and WordPress development.
         </motion.p>
 

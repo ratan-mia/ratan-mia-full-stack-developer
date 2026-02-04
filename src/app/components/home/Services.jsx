@@ -153,7 +153,7 @@ const Services = () => {
   const stats = [
     { icon: TrendingUp, number: '150+', label: 'Projects Completed' },
     { icon: Star, number: '98%', label: 'Client Satisfaction' },
-    { icon: Zap, number: '8+', label: 'Years Experience' }
+    { icon: Zap, number: '10+', label: 'Years Experience' }
   ];
 
   return (

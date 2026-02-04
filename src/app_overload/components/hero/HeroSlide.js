@@ -67,7 +67,7 @@ const HeroSlide = () => {
           {/* Description */}
           <p className="text-sm md:text-base text-gray-200 leading-relaxed max-w-xl mx-auto lg:mx-0">
             Crafting next-generation digital experiences with{' '}
-            <span className="text-white font-bold">8+ years of mastery</span>{' '}
+            <span className="text-white font-bold">10+ years of mastery</span>{' '}
             in cutting-edge web technologies.
           </p>
 

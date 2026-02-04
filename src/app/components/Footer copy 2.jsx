@@ -1,30 +1,30 @@
 'use client';
 import { motion, useScroll } from 'framer-motion';
 import {
-  AlertCircle,
-  ArrowUp,
-  Award,
-  Briefcase,
-  CheckCircle,
-  Clock,
-  Code,
-  ExternalLink,
-  Gauge,
-  Github,
-  Globe,
-  Heart,
-  Linkedin,
-  Mail,
-  MapPin,
-  MessageCircle,
-  Phone,
-  Rocket,
-  Send,
-  Settings,
-  Shield,
-  Star,
-  Users,
-  Zap
+    AlertCircle,
+    ArrowUp,
+    Award,
+    Briefcase,
+    CheckCircle,
+    Clock,
+    Code,
+    ExternalLink,
+    Gauge,
+    Github,
+    Globe,
+    Heart,
+    Linkedin,
+    Mail,
+    MapPin,
+    MessageCircle,
+    Phone,
+    Rocket,
+    Send,
+    Settings,
+    Shield,
+    Star,
+    Users,
+    Zap
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
@@ -220,7 +220,7 @@ const Footer = () => {
 
   const stats = [
     { number: '150+', label: 'Projects', icon: Briefcase, color: 'from-blue-500 to-purple-500' },
-    { number: '8+', label: 'Years', icon: Award, color: 'from-purple-500 to-pink-500' },
+    { number: '10+', label: 'Years', icon: Award, color: 'from-purple-500 to-pink-500' },
     { number: '25+', label: 'Countries', icon: Users, color: 'from-blue-500 to-cyan-500' },
     { number: '98%', label: 'Success', icon: Star, color: 'from-green-500 to-emerald-500' }
   ];
@@ -421,7 +421,7 @@ const Footer = () => {
                     <span className="text-white"> Web Solutions</span>
                   </div>
                   <p className="text-gray-300 leading-relaxed text-sm md:text-base">
-                    Performance-driven Full Stack Developer with 8+ years of precision engineering 
+                    Performance-driven Full Stack Developer with 10+ years of precision engineering 
                     exceptional web applications that accelerate business growth.
                   </p>
                 </div>

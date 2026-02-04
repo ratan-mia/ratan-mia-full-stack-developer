@@ -2,17 +2,17 @@
 
 import { motion, useInView } from 'framer-motion';
 import {
-  ArrowRight,
-  CheckCircle,
-  Code,
-  Database,
-  Globe,
-  Lightbulb,
-  Rocket,
-  Settings,
-  Smartphone,
-  Star,
-  Zap
+    ArrowRight,
+    CheckCircle,
+    Code,
+    Database,
+    Globe,
+    Lightbulb,
+    Rocket,
+    Settings,
+    Smartphone,
+    Star,
+    Zap
 } from 'lucide-react';
 import { useRef } from 'react';
 
@@ -438,7 +438,7 @@ const ProcessHowIWork = () => {
           >
             <div className="flex items-center gap-4">
               <div className="text-center">
-                <div className="text-2xl font-bold text-accent-lime">8+</div>
+                <div className="text-2xl font-bold text-accent-lime">10+</div>
                 <div className="text-xs text-gray-400">Years</div>
               </div>
               <div className="w-px h-8 bg-gray-600" />
@@ -499,7 +499,7 @@ const ProcessHowIWork = () => {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 1, duration: 0.6 }}
             >
-              As an IBM-certified developer with 8+ years of experience, I specialize in building scalable, 
+              As an IBM-certified developer with 10+ years of experience, I specialize in building scalable, 
               modern applications using cutting-edge technologies and industry best practices.
             </motion.p>
             

@@ -132,7 +132,7 @@ const StatsSection = () => {
   const stats = [
     { number: "150+", label: "Projects Completed", icon: Code },
     { number: "98%", label: "Client Satisfaction", icon: Star },
-    { number: "8+", label: "Years Experience", icon: TrendingUp },
+    { number: "10+", label: "Years Experience", icon: TrendingUp },
     { number: "24/7", label: "Support Available", icon: Zap }
   ];
 

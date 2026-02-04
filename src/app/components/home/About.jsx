@@ -2,13 +2,13 @@
 
 import { motion, useInView } from 'framer-motion';
 import {
-  ArrowRight,
-  Award,
-  Download,
-  Mail,
-  MapPin,
-  Target,
-  Users
+    ArrowRight,
+    Award,
+    Download,
+    Mail,
+    MapPin,
+    Target,
+    Users
 } from 'lucide-react';
 import { useRef } from 'react';
 
@@ -50,7 +50,7 @@ const ANIMATION_VARIANTS = {
 
 const CORE_STATS = [
   { 
-    number: '8+', 
+    number: '10+', 
     label: 'Years of Experience', 
     description: 'Building robust, scalable applications with modern technologies and best practices across multiple industries.',
     icon: Award 

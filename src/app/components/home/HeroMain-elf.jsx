@@ -1,31 +1,31 @@
 'use client';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import {
-  ArrowRight,
-  Award,
-  CheckCircle,
-  Clock,
-  Cloud,
-  Code2,
-  Database,
-  Download,
-  ExternalLink,
-  GitBranch,
-  Globe,
-  Layers,
-  Mail,
-  MapPin,
-  MessageCircle,
-  Monitor,
-  Phone,
-  Server,
-  Settings,
-  Shield,
-  Smartphone,
-  Star,
-  Target,
-  Users,
-  Zap
+    ArrowRight,
+    Award,
+    CheckCircle,
+    Clock,
+    Cloud,
+    Code2,
+    Database,
+    Download,
+    ExternalLink,
+    GitBranch,
+    Globe,
+    Layers,
+    Mail,
+    MapPin,
+    MessageCircle,
+    Monitor,
+    Phone,
+    Server,
+    Settings,
+    Shield,
+    Smartphone,
+    Star,
+    Target,
+    Users,
+    Zap
 } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
 
@@ -107,7 +107,7 @@ const CompactHero = () => {
     },
     { 
       icon: Award, 
-      number: '8+', 
+      number: '10+', 
       label: 'Years',
       color: 'from-purple-500 to-pink-500',
       textColor: 'text-purple-400'
@@ -327,7 +327,7 @@ const CompactHero = () => {
             <motion.div variants={fadeInUp} className="space-y-5">
               <p className="text-lg md:text-xl text-slate-300 font-light leading-relaxed max-w-3xl mx-auto lg:mx-0">
                 Specialized in crafting high-performance web applications with{' '}
-                <span className="text-white font-semibold">8+ years of expertise</span>. 
+                <span className="text-white font-semibold">10+ years of expertise</span>. 
                 Expert in Laravel, React.js, and WordPress development for enterprise-grade solutions.
               </p>
               

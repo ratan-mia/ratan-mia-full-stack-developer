@@ -10,6 +10,7 @@
 ## 📱 Mobile App Features
 
 ### 🔐 Authentication System
+
 - **Email/Password Login** - Secure authentication with JWT tokens
 - **User Registration** - Sign up with email, name, phone, and role selection
 - **Role-Based Access** - Automatic routing based on user role (Player, Owner, Admin)
@@ -18,6 +19,7 @@
 - **Logout Functionality** - Clean session termination
 
 **Roles Supported:**
+
 - `PLAYER` - Browse and book turfs
 - `OWNER` - Manage turfs and view analytics
 - `ADMIN` - Platform management and moderation
@@ -27,6 +29,7 @@
 ### 🏠 Player Features
 
 #### 1. Browse & Search Turfs
+
 - **Home Screen** - Featured turfs with promotional banners
 - **Search Functionality** - Find turfs by name, location, or amenities
 - **Filter Options** - Filter by city, price range, field type
@@ -35,6 +38,7 @@
 - **Nearby Turfs** - Geo-location based recommendations
 
 #### 2. Turf Details & Information
+
 - **High-Quality Images** - Gallery view with horizontal scroll
 - **Ratings & Reviews** - Overall rating with review count
 - **Amenities List** - Parking, changing rooms, washrooms, cafeteria, etc.
@@ -45,6 +49,7 @@
 - **Location Map** - Embedded map with address
 
 #### 3. Real-Time Booking System
+
 - **30-Day Calendar View** - Scroll through next 30 days
 - **Date Availability Indicator** - Color-coded dates (Available/Limited/Booked)
 - **Hourly Time Slots** - View available slots for selected date
@@ -55,12 +60,14 @@
 - **Add to Calendar** - Export booking to device calendar
 
 **Pricing Logic:**
+
 - Base Price: ৳1000/hour
 - Weekend Surcharge: +৳500
 - Peak Hours (6-10 PM): +৳300
 - Early Bird (6-9 AM): -৳200
 
 #### 4. Payment Integration (SSLCommerz)
+
 - **Payment Gateway Integration** - SSLCommerz sandbox mode
 - **Multiple Payment Methods:**
   - Visa/Mastercard
@@ -76,6 +83,7 @@
 - **Success/Failure Screens** - Beautiful HTML pages with booking details
 
 **Payment Flow:**
+
 1. Select time slot → Create pending booking
 2. Redirect to SSLCommerz payment gateway
 3. Complete payment with card/mobile banking
@@ -86,6 +94,7 @@
 8. Display success screen with booking details
 
 #### 5. Booking Management
+
 - **My Bookings Screen** - List of all user bookings
 - **Filter by Status:**
   - All Bookings
@@ -110,6 +119,7 @@
   - NO_SHOW - Customer didn't show up
 
 #### 6. Reviews & Ratings
+
 - **Write Reviews** - Rate turfs after booking completion
 - **5-Star Rating System** - Select 1-5 stars
 - **Review Text** - Add detailed feedback
@@ -121,6 +131,7 @@
 - **Flag Inappropriate Content** - Report spam or offensive reviews
 
 #### 7. User Profile
+
 - **Profile Overview:**
   - Name, email, phone number
   - Profile picture upload
@@ -140,6 +151,7 @@
   - Update contact details
 
 #### 8. Loyalty & Rewards System
+
 - **Loyalty Points** - Earn points on every booking
 - **Tier System:**
   - 🥉 Bronze (0-999 points)
@@ -155,6 +167,7 @@
 - **Progress Tracking** - Points to next tier
 
 #### 9. Social Features
+
 - **My Teams:**
   - Create sports teams
   - Invite members
@@ -174,6 +187,7 @@
   - Find playing partners
 
 #### 10. Notifications
+
 - **Push Notifications** - Real-time alerts
 - **Notification Types:**
   - Booking confirmation
@@ -192,6 +206,7 @@
 ### 🏢 Owner Features
 
 #### 1. Owner Dashboard
+
 - **Business Overview:**
   - Total revenue (today, week, month)
   - Total bookings count
@@ -214,6 +229,7 @@
   - Rating trends
 
 #### 2. Turf Management
+
 - **My Turfs List** - All registered turfs
 - **Add New Turf:**
   - Turf name and description
@@ -241,6 +257,7 @@
   - Discount management
 
 #### 3. Booking Management (Owner View)
+
 - **View All Bookings** - Bookings across all turfs
 - **Filter Options:**
   - By turf
@@ -259,6 +276,7 @@
   - Payment status
 
 #### 4. Revenue & Payout Management
+
 - **Revenue Dashboard:**
   - Total earnings
   - Platform commission (15%)
@@ -277,6 +295,7 @@
   - Transaction dates
 
 #### 5. Review Management
+
 - **View Reviews** - All reviews for owner's turfs
 - **Respond to Reviews** - Reply to customer feedback
 - **Rating Analytics:**
@@ -286,6 +305,7 @@
 - **Flag Management** - Address flagged reviews
 
 #### 6. Owner Profile
+
 - **Business Information:**
   - Company name
   - Business type
@@ -313,6 +333,7 @@
 ### 👨‍💼 Admin Features (Mobile App)
 
 #### 1. Admin Dashboard
+
 - **Platform Statistics:**
   - Total users (players + owners)
   - Total turfs registered
@@ -333,6 +354,7 @@
   - Disputes raised
 
 #### 2. User Management
+
 - **View All Users:**
   - Players list
   - Owners list
@@ -351,6 +373,7 @@
   - View activity logs
 
 #### 3. Turf Approval System
+
 - **Pending Approvals Queue** - List of new turf submissions
 - **Turf Review:**
   - View all turf details
@@ -371,6 +394,7 @@
   - Complete information
 
 #### 4. Analytics & Reports
+
 - **Revenue Analytics:**
   - Daily/weekly/monthly revenue
   - Platform commission earned
@@ -399,6 +423,7 @@
 ### Core Features
 
 #### 1. Dashboard Overview
+
 - **Real-Time Statistics:**
   - Total users count
   - Total turfs (approved/pending/rejected)
@@ -419,6 +444,7 @@
   - System alerts
 
 #### 2. User Management
+
 - **User List** - Paginated table (20 per page)
 - **Advanced Search:**
   - Search by name, email, phone
@@ -446,6 +472,7 @@
   - Send notification
 
 #### 3. Turf Management
+
 - **Turf List** - All registered turfs
 - **Filter Options:**
   - By status (Pending/Approved/Rejected/Suspended)
@@ -478,6 +505,7 @@
   - Contact owner
 
 #### 4. Booking Management
+
 - **Booking List** - All platform bookings
 - **Advanced Filters:**
   - By status
@@ -508,6 +536,7 @@
   - Refund processing
 
 #### 5. Payment Management
+
 - **Payment List** - All transactions
 - **Payment Details:**
   - Transaction ID
@@ -532,6 +561,7 @@
   - Export transactions
 
 #### 6. Payout Management
+
 - **Payout Requests Queue:**
   - Pending requests
   - Request amount
@@ -557,6 +587,7 @@
   - Top earning owners
 
 #### 7. Review Moderation
+
 - **Review List** - All platform reviews
 - **Filter Options:**
   - By rating (1-5 stars)
@@ -584,6 +615,7 @@
   - Fake review detection
 
 #### 8. Analytics Dashboard
+
 - **Revenue Analytics:**
   - Daily revenue chart
   - Weekly comparison
@@ -614,6 +646,7 @@
   - Owner satisfaction score
 
 #### 9. Notifications & Emails
+
 - **Notification Center:**
   - All system notifications
   - Mark as read
@@ -636,6 +669,7 @@
   - Bounce tracking
 
 #### 10. Settings Management
+
 - **Platform Settings:**
   - Platform name and branding
   - Contact information
@@ -674,6 +708,7 @@
 ## 🛠️ Technical Features
 
 ### Database & Backend
+
 - **PostgreSQL Database** - Supabase hosted
 - **Prisma ORM** - Type-safe database queries
 - **Database Tables:** (20+ tables)
@@ -688,8 +723,9 @@
 - **Seed Data** - Test data for development
 
 ### API Architecture
+
 - **RESTful API** - Next.js API routes
-- **88+ API Endpoints:**
+- **810+ API Endpoints:**
   - Authentication APIs
   - User management APIs
   - Turf CRUD APIs
@@ -706,6 +742,7 @@
 - **API Rate Limiting** - DDoS protection
 
 ### Security
+
 - **Password Hashing** - bcrypt (salt rounds: 10)
 - **JWT Tokens** - Secure session management
 - **HTTPS Only** - Encrypted communications
@@ -715,6 +752,7 @@
 - **CSRF Protection** - Token validation
 
 ### Mobile App Architecture
+
 - **React Native** - Cross-platform mobile framework
 - **Expo Router** - File-based routing
 - **TypeScript** - Type safety
@@ -727,6 +765,7 @@
 - **expo-location** - Geolocation services
 
 ### Design System
+
 - **Custom Theme** - Material Design 3 inspired
 - **Color Schemes:**
   - Light mode
@@ -741,6 +780,7 @@
 - **Responsive Design** - Works on all screen sizes
 
 ### Payment Integration
+
 - **SSLCommerz Gateway** - Bangladesh payment gateway
 - **Sandbox Mode** - Testing environment
 - **Form-Encoded Data Parsing** - URLSearchParams handling
@@ -750,6 +790,7 @@
 - **Receipt Generation** - PDF/HTML receipts
 
 ### Deep Linking
+
 - **Custom URL Scheme** - `turfnations://`
 - **Deep Link Routes:**
   - `turfnations://bookings` - Open bookings screen
@@ -764,6 +805,7 @@
 ## 📊 Data & Analytics
 
 ### Tracking & Metrics
+
 - **User Analytics:**
   - Daily active users
   - Monthly active users
@@ -792,6 +834,7 @@
 ## 🌟 User Experience Features
 
 ### Mobile UX
+
 - **Smooth Animations** - 60 FPS performance
 - **Pull-to-Refresh** - Update data with swipe
 - **Skeleton Loaders** - Content placeholders
@@ -803,6 +846,7 @@
 - **Offline Support** - Cached data access
 
 ### Admin Panel UX
+
 - **Responsive Design** - Works on desktop, tablet, mobile
 - **Data Tables** - Sortable, filterable, searchable
 - **Pagination** - Efficient data loading
@@ -854,19 +898,21 @@
 **Total Features Implemented:** 100+
 
 **Mobile App Screens:** 35+
+
 - Player Screens: 20+
 - Owner Screens: 10+
 - Admin Screens: 5+
 
 **Admin Panel Pages:** 15+
 
-**API Endpoints:** 88+
+**API Endpoints:** 810+
 
 **Database Tables:** 20+
 
 **Components:** 50+
 
 **Integration Services:** 10+
+
 - Supabase Authentication
 - SSLCommerz Payment Gateway
 - Google Maps
@@ -885,4 +931,4 @@
 
 ---
 
-*This documentation is automatically generated and maintained by the TurfNations development team.*
+_This documentation is automatically generated and maintained by the TurfNations development team._

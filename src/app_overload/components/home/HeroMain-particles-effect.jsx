@@ -1,35 +1,35 @@
 'use client';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
-  ArrowRight,
-  Award,
-  Briefcase,
-  ChevronDown,
-  ChevronLeft,
-  ChevronRight,
-  Clock,
-  Cloud,
-  Code2,
-  Cpu,
-  Database,
-  Download,
-  Eye,
-  GitBranch,
-  Globe,
-  Layers,
-  Mail,
-  MessageCircle,
-  Monitor,
-  Phone,
-  Rocket,
-  Server,
-  Settings,
-  Shield,
-  Smartphone,
-  Star,
-  Target,
-  Users,
-  Zap
+    ArrowRight,
+    Award,
+    Briefcase,
+    ChevronDown,
+    ChevronLeft,
+    ChevronRight,
+    Clock,
+    Cloud,
+    Code2,
+    Cpu,
+    Database,
+    Download,
+    Eye,
+    GitBranch,
+    Globe,
+    Layers,
+    Mail,
+    MessageCircle,
+    Monitor,
+    Phone,
+    Rocket,
+    Server,
+    Settings,
+    Shield,
+    Smartphone,
+    Star,
+    Target,
+    Users,
+    Zap
 } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
@@ -553,7 +553,7 @@ const HeroSlider = () => {
           className="text-base md:text-lg text-gray-200 leading-relaxed max-w-2xl mx-auto lg:mx-0"
         >
           Crafting next-generation digital experiences with{' '}
-          <span className="text-white font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">8+ years of mastery</span>{' '}
+          <span className="text-white font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">10+ years of mastery</span>{' '}
           in cutting-edge web technologies.
         </motion.p>
 

@@ -1,33 +1,33 @@
 'use client';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
-  ArrowRight,
-  Award,
-  ChevronDown,
-  ChevronLeft,
-  ChevronRight,
-  Cloud,
-  Code2,
-  Cpu,
-  Database,
-  Download,
-  GitBranch,
-  Globe,
-  Layers,
-  Mail,
-  MessageCircle,
-  Monitor,
-  Palette,
-  Phone,
-  Rocket,
-  Server,
-  Settings,
-  Shield,
-  Smartphone,
-  Star,
-  Target,
-  Users,
-  Zap
+    ArrowRight,
+    Award,
+    ChevronDown,
+    ChevronLeft,
+    ChevronRight,
+    Cloud,
+    Code2,
+    Cpu,
+    Database,
+    Download,
+    GitBranch,
+    Globe,
+    Layers,
+    Mail,
+    MessageCircle,
+    Monitor,
+    Palette,
+    Phone,
+    Rocket,
+    Server,
+    Settings,
+    Shield,
+    Smartphone,
+    Star,
+    Target,
+    Users,
+    Zap
 } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
@@ -272,7 +272,7 @@ const HeroSlider = () => {
 
   const achievements = [
     { icon: Target, number: '150+', label: 'Projects Delivered', color: 'from-yellow-400 to-orange-400', desc: 'Successfully completed' },
-    { icon: Award, number: '8+', label: 'Years Experience', color: 'from-purple-400 to-pink-400', desc: 'In web development' },
+    { icon: Award, number: '10+', label: 'Years Experience', color: 'from-purple-400 to-pink-400', desc: 'In web development' },
     { icon: Users, number: '25+', label: 'Countries Served', color: 'from-blue-400 to-cyan-400', desc: 'Global clientele' },
     { icon: Star, number: '98%', label: 'Success Rate', color: 'from-green-400 to-emerald-400', desc: 'Client satisfaction' }
   ];
@@ -478,7 +478,7 @@ const HeroSlider = () => {
           className="text-base md:text-lg text-gray-200 leading-relaxed max-w-2xl mx-auto lg:mx-0"
         >
           Crafting next-generation digital experiences with{' '}
-          <span className="text-white font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">8+ years of mastery</span>{' '}
+          <span className="text-white font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">10+ years of mastery</span>{' '}
           in cutting-edge web technologies. Transforming ideas into powerful, scalable solutions.
         </motion.p>
 

@@ -2,34 +2,31 @@
 
 import { AnimatePresence, motion, useInView } from 'framer-motion';
 import {
-  Award,
-  Briefcase,
-  Code,
-  Eye,
-  Globe,
-  MousePointer,
-  Server,
-  Settings,
-  Star,
-  TrendingUp,
-  Zap,
-  Search,
-  Filter,
-  X,
-  ChevronDown,
-  ChevronUp,
-  ExternalLink,
-  Book,
-  Calendar,
-  Clock,
-  Target,
-  CheckCircle2,
-  Sparkles,
-  BarChart3,
-  Trophy,
-  Flame
+    Award,
+    BarChart3,
+    Book,
+    Briefcase,
+    Calendar,
+    CheckCircle2,
+    ChevronDown,
+    ChevronUp,
+    Code,
+    ExternalLink,
+    Eye,
+    Flame,
+    Globe,
+    MousePointer,
+    Search,
+    Server,
+    Settings,
+    Sparkles,
+    Star,
+    Target,
+    Trophy,
+    X,
+    Zap
 } from 'lucide-react';
-import { useState, useMemo, useCallback, useRef, useEffect } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 
 // Constants
 const SKILL_CATEGORIES = {
@@ -312,7 +309,7 @@ const SKILL_CATEGORIES = {
 };
 
 const ACHIEVEMENTS = [
-  { icon: Trophy, value: "8+", label: "Years", color: "text-yellow-400", description: "Professional experience" },
+  { icon: Trophy, value: "10+", label: "Years", color: "text-yellow-400", description: "Professional experience" },
   { icon: Code, value: "25+", label: "Technologies", color: "text-blue-400", description: "Mastered skills" },
   { icon: Briefcase, value: "150+", label: "Projects", color: "text-green-400", description: "Completed successfully" },
   { icon: Star, value: "98%", label: "Success Rate", color: "text-purple-400", description: "Client satisfaction" }

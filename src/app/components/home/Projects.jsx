@@ -12,7 +12,7 @@ const PROJECTS_DATA = [
     category: 'SaaS Product',
     year: '2024',
     client: 'FMCG & Automotive Brands',
-    image: '/images/projects/pieqr/screenshots/gamify-thumb.png',
+    image: '/images/projects/pieqr/screenshots/home-screen.jpg',
     technologies: ['React Native', 'Node.js', 'PostgreSQL', 'QR Engine'],
     description: 'Complete engagement engine for FMCG, oil companies, automotive parts with QR-based loyalty, gamification, and fraud detection.',
     liveUrl: '#',
@@ -227,6 +227,15 @@ const ProjectRow = ({ project, index, setHoveredImage, inView }) => (
       <p className="text-gray-500 group-hover:text-gray-300 text-sm lg:text-base mb-3 transition-colors">
         {project.description}
       </p>
+      {/* Project URL */}
+      {project.liveUrl && project.liveUrl !== '#' && (
+        <div className="flex items-center gap-2 mb-3">
+          <ExternalLink className="w-4 h-4 text-accent-lime" />
+          <span className="text-accent-lime text-sm font-medium group-hover:underline">
+            {project.liveUrl.replace(/^https?:\/\//, '').replace(/\/$/, '')}
+          </span>
+        </div>
+      )}
       <div className="flex flex-wrap gap-2">
         {project.technologies.map(tech => (
           <span 

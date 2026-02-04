@@ -236,7 +236,7 @@ const TrainingCertificates = () => {
       type: 'certificate', 
       title: "Full-Stack PHP & Laravel Development", 
       provider: "Udemy", 
-      skills: ["PHP 8+", "Laravel", "MySQL", "API Development"],
+      skills: ["PHP 10+", "Laravel", "MySQL", "API Development"],
       description: "Complete Laravel framework mastery including MVC architecture, Eloquent ORM, authentication systems, and building RESTful APIs with advanced PHP concepts.",
       duration: "45+ hours",
       highlights: [

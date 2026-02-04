@@ -1,31 +1,31 @@
 'use client';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import {
-  ArrowRight,
-  Award,
-  CheckCircle,
-  Clock,
-  Cloud,
-  Code2,
-  Database,
-  Download,
-  ExternalLink,
-  GitBranch,
-  Globe,
-  Layers,
-  Mail,
-  MapPin,
-  MessageCircle,
-  Monitor,
-  Phone,
-  Server,
-  Settings,
-  Shield,
-  Smartphone,
-  Star,
-  Target,
-  Users,
-  Zap
+    ArrowRight,
+    Award,
+    CheckCircle,
+    Clock,
+    Cloud,
+    Code2,
+    Database,
+    Download,
+    ExternalLink,
+    GitBranch,
+    Globe,
+    Layers,
+    Mail,
+    MapPin,
+    MessageCircle,
+    Monitor,
+    Phone,
+    Server,
+    Settings,
+    Shield,
+    Smartphone,
+    Star,
+    Target,
+    Users,
+    Zap
 } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
 
@@ -119,7 +119,7 @@ const CompactHero = () => {
     },
     { 
       icon: Award, 
-      number: '8+', 
+      number: '10+', 
       label: 'Years',
       color: 'from-purple-500 to-pink-500',
       textColor: 'text-purple-400'
@@ -340,7 +340,7 @@ const CompactHero = () => {
             <motion.div variants={slideInFromLeft} className="space-y-4">
               <p className="text-lg md:text-xl text-slate-300 font-light leading-relaxed max-w-2xl mx-auto lg:mx-0">
                 Specialized in crafting high-performance web applications with{' '}
-                <span className="text-white font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">8+ years of expertise</span>. 
+                <span className="text-white font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">10+ years of expertise</span>. 
                 Expert in Laravel, React.js, and WordPress development.
               </p>
               
@@ -525,7 +525,7 @@ const CompactHero = () => {
                 {[
                   { icon: Globe, metric: '25+', title: 'Countries', position: '-top-4 -left-4', delay: 0.8, color: 'from-blue-500 to-cyan-500' },
                   { icon: Clock, metric: '<2h', title: 'Response', position: '-top-4 -right-4', delay: 1, color: 'from-green-500 to-emerald-500' },
-                  { icon: Award, metric: '8+', title: 'Years', position: '-bottom-4 -left-4', delay: 1.2, color: 'from-purple-500 to-pink-500' },
+                  { icon: Award, metric: '10+', title: 'Years', position: '-bottom-4 -left-4', delay: 1.2, color: 'from-purple-500 to-pink-500' },
                   { icon: Star, metric: '98%', title: 'Success', position: '-bottom-4 -right-4', delay: 1.4, color: 'from-yellow-500 to-orange-500' }
                 ].map((achievement, index) => (
                   <motion.div

@@ -2,10 +2,10 @@
 
 import { motion, useInView } from 'framer-motion';
 import {
-  ArrowRight,
-  Award, CheckCircle,
-  Code2, Database, Download, Github, Linkedin, Mail, ShoppingBag,
-  Sparkles, Star
+    ArrowRight,
+    Award, CheckCircle,
+    Code2, Database, Download, Github, Linkedin, Mail, ShoppingBag,
+    Sparkles, Star
 } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
@@ -199,7 +199,7 @@ const HeroMain = () => {
                   }}
                 >
                   <div>
-                    <div className="text-4xl lg:text-5xl font-extrabold text-black mb-1">8+</div>
+                    <div className="text-4xl lg:text-5xl font-extrabold text-black mb-1">10+</div>
                     <div className="text-xs tracking-wide font-medium text-black/70 uppercase">
                       Years Exp
                     </div>
@@ -416,7 +416,7 @@ const HeroMain = () => {
                     transition={{ duration: 0.8, delay: 2.2 }}
                   >
                     <div className="text-center">
-                      <div className="text-2xl font-black text-black">8+</div>
+                      <div className="text-2xl font-black text-black">10+</div>
                       <div className="text-sm font-medium text-black/70">Years Experience</div>
                     </div>
                   </motion.div>
@@ -481,7 +481,7 @@ const HeroMain = () => {
                 >
                   <div className="flex justify-between text-white text-center">
                     <div>
-                      <div className="text-lg font-bold text-accent-lime">8+</div>
+                      <div className="text-lg font-bold text-accent-lime">10+</div>
                       <div className="text-xs">Years</div>
                     </div>
                     <div>

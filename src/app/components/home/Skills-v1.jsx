@@ -2,18 +2,18 @@
 
 import { motion } from 'framer-motion';
 import {
-  Cloud,
-  Code,
-  Database,
-  GitBranch,
-  Globe,
-  Palette,
-  Server,
-  Settings,
-  Shield,
-  Smartphone,
-  Star,
-  Zap
+    Cloud,
+    Code,
+    Database,
+    GitBranch,
+    Globe,
+    Palette,
+    Server,
+    Settings,
+    Shield,
+    Smartphone,
+    Star,
+    Zap
 } from 'lucide-react';
 
 const Skills = () => {
@@ -51,7 +51,7 @@ const Skills = () => {
       skills: [
         { name: "React.js", level: 95, experience: "5+ years" },
         { name: "Next.js", level: 90, experience: "3+ years" },
-        { name: "JavaScript ES6+", level: 95, experience: "8+ years" },
+        { name: "JavaScript ES6+", level: 95, experience: "10+ years" },
         { name: "TypeScript", level: 85, experience: "2+ years" }
       ]
     },
@@ -71,7 +71,7 @@ const Skills = () => {
       icon: Globe,
       color: "green",
       skills: [
-        { name: "WordPress", level: 95, experience: "8+ years" },
+        { name: "WordPress", level: 95, experience: "10+ years" },
         { name: "Shopify", level: 85, experience: "4+ years" },
         { name: "WooCommerce", level: 90, experience: "5+ years" },
         { name: "Custom Themes", level: 92, experience: "6+ years" }
@@ -83,7 +83,7 @@ const Skills = () => {
       color: "orange",
       skills: [
         { name: "Docker", level: 85, experience: "3+ years" },
-        { name: "Git & GitHub", level: 90, experience: "8+ years" },
+        { name: "Git & GitHub", level: 90, experience: "10+ years" },
         { name: "AWS", level: 80, experience: "2+ years" },
         { name: "Digital Ocean", level: 85, experience: "4+ years" }
       ]

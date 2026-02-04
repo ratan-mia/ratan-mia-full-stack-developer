@@ -2,38 +2,38 @@
 
 import { AnimatePresence, motion, useInView } from 'framer-motion';
 import {
-  ArrowRight,
-  Award,
-  Briefcase,
-  Calendar,
-  ChevronRight,
-  Clock,
-  Cloud,
-  Code2,
-  Coffee,
-  Database,
-  DollarSign,
-  Download,
-  FileText,
-  Globe,
-  Heart,
-  Mail,
-  MapPin,
-  Palette,
-  Rocket,
-  Shield,
-  Star,
-  Target,
-  TrendingUp,
-  User,
-  Users,
-  Zap
+    ArrowRight,
+    Award,
+    Briefcase,
+    Calendar,
+    ChevronRight,
+    Clock,
+    Cloud,
+    Code2,
+    Coffee,
+    Database,
+    DollarSign,
+    Download,
+    FileText,
+    Globe,
+    Heart,
+    Mail,
+    MapPin,
+    Palette,
+    Rocket,
+    Shield,
+    Star,
+    Target,
+    TrendingUp,
+    User,
+    Users,
+    Zap
 } from 'lucide-react';
 import { useCallback, useMemo, useRef, useState } from 'react';
 
 // Constants
 const PERSONAL_STATS = [
-  { label: 'Years Experience', value: '8+', icon: Calendar, color: 'text-blue-400', description: 'Professional web development' },
+  { label: 'Years Experience', value: '10+', icon: Calendar, color: 'text-blue-400', description: 'Professional web development' },
   { label: 'Projects Delivered', value: '150+', icon: Rocket, color: 'text-green-400', description: 'Successful project completions' },
   { label: 'Technologies', value: '25+', icon: Zap, color: 'text-yellow-400', description: 'Modern tech stack mastery' },
   { label: 'Happy Clients', value: '50+', icon: Heart, color: 'text-red-400', description: 'Satisfied global clients' }
@@ -497,7 +497,7 @@ const About = () => {
     name: 'Ratan Mia',
     title: 'Senior Full Stack Developer',
     location: 'Dhaka, Bangladesh',
-    experience: '8+ Years',
+    experience: '10+ Years',
     email: 'shorifull@gmail.com',
     specialties: ['React.js Expert', 'Next.js Specialist', 'Laravel Pro', 'WordPress Expert', 'Team Leader']
   }), []);
@@ -669,7 +669,7 @@ const About = () => {
                       </h3>
                       <div className="space-y-4 text-sm md:text-base text-gray-300 leading-relaxed">
                         <p>
-                          As a <strong className="text-white">Senior Full Stack Developer</strong> with 8+ years of experience, 
+                          As a <strong className="text-white">Senior Full Stack Developer</strong> with 10+ years of experience, 
                           I specialize in creating high-performance, scalable web applications that drive business growth.
                         </p>
                         <p>

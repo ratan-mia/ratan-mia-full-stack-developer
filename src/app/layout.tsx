@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     default: "Ratan Mia - Full Stack Developer | React.js & Next.js Expert",
     template: "%s | Ratan Mia - Full Stack Developer"
   },
-  description: "Experienced Full Stack Developer with 8+ years expertise in React.js, Next.js, Laravel & WordPress. Building high-performance web applications for global clients. Available for new projects.",
+  description: "Experienced Full Stack Developer with 10+ years expertise in React.js, Next.js, Laravel & WordPress. Building high-performance web applications for global clients. Available for new projects.",
   keywords: [
     "Full Stack Developer",
     "React.js Developer",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     url: "https://ratanmia.dev",
     siteName: "Ratan Mia - Full Stack Developer",
     title: "Ratan Mia - Expert Full Stack Developer | React.js & Next.js Specialist",
-    description: "Professional Full Stack Developer with 8+ years experience building high-performance web applications. Specializing in React.js, Next.js, Laravel, and WordPress development.",
+    description: "Professional Full Stack Developer with 10+ years experience building high-performance web applications. Specializing in React.js, Next.js, Laravel, and WordPress development.",
     images: [
       {
         url: "/images/og-image.jpg",
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     site: "@shorifull",
     creator: "@shorifull",
     title: "Ratan Mia - Full Stack Developer | React.js & Next.js Expert",
-    description: "Professional Full Stack Developer with 8+ years experience. Specializing in React.js, Next.js, Laravel & WordPress.",
+    description: "Professional Full Stack Developer with 10+ years experience. Specializing in React.js, Next.js, Laravel & WordPress.",
     images: ["/images/twitter-image.jpg"],
   },
 
@@ -96,7 +96,7 @@ const structuredData = {
   "@type": "Person",
   name: "Ratan Mia",
   jobTitle: "Full Stack Developer",
-  description: "Full Stack Developer with 8+ years of experience specializing in React.js, Next.js, Laravel, and WordPress development",
+  description: "Full Stack Developer with 10+ years of experience specializing in React.js, Next.js, Laravel, and WordPress development",
   url: "https://ratanmia.dev",
   image: "https://ratanmia.dev/images/profile.jpg",
   sameAs: [
@@ -126,7 +126,7 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        
+
         {/* Performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

@@ -2,25 +2,25 @@
 
 import { motion } from 'framer-motion';
 import {
-  ArrowRight,
-  Award,
-  CheckCircle,
-  Cloud,
-  Code2,
-  Database,
-  GitBranch,
-  Globe,
-  Layers,
-  Monitor,
-  Palette,
-  Server,
-  Settings,
-  Shield,
-  Smartphone,
-  Star,
-  Target,
-  TrendingUp,
-  Zap
+    ArrowRight,
+    Award,
+    CheckCircle,
+    Cloud,
+    Code2,
+    Database,
+    GitBranch,
+    Globe,
+    Layers,
+    Monitor,
+    Palette,
+    Server,
+    Settings,
+    Shield,
+    Smartphone,
+    Star,
+    Target,
+    TrendingUp,
+    Zap
 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -68,10 +68,10 @@ const Skills = () => {
       skills: [
         { name: "React.js", level: 95, experience: "5+ years", icon: Layers },
         { name: "Next.js", level: 90, experience: "3+ years", icon: Code2 },
-        { name: "JavaScript ES6+", level: 95, experience: "8+ years", icon: Code2 },
+        { name: "JavaScript ES6+", level: 95, experience: "10+ years", icon: Code2 },
         { name: "TypeScript", level: 85, experience: "2+ years", icon: Code2 },
         { name: "Tailwind CSS", level: 90, experience: "4+ years", icon: Palette },
-        { name: "HTML5 & CSS3", level: 95, experience: "8+ years", icon: Palette }
+        { name: "HTML5 & CSS3", level: 95, experience: "10+ years", icon: Palette }
       ]
     },
     {
@@ -84,7 +84,7 @@ const Skills = () => {
       textColor: "text-purple-600",
       description: "Robust server-side solutions and API development",
       skills: [
-        { name: "PHP & Laravel", level: 95, experience: "8+ years", icon: Server },
+        { name: "PHP & Laravel", level: 95, experience: "10+ years", icon: Server },
         { name: "Node.js", level: 80, experience: "3+ years", icon: Server },
         { name: "RESTful APIs", level: 90, experience: "5+ years", icon: Settings },
         { name: "MySQL", level: 90, experience: "7+ years", icon: Database },
@@ -102,7 +102,7 @@ const Skills = () => {
       textColor: "text-green-600",
       description: "Content management and e-commerce platforms",
       skills: [
-        { name: "WordPress", level: 95, experience: "8+ years", icon: Globe },
+        { name: "WordPress", level: 95, experience: "10+ years", icon: Globe },
         { name: "Shopify", level: 85, experience: "4+ years", icon: Smartphone },
         { name: "WooCommerce", level: 90, experience: "5+ years", icon: Smartphone },
         { name: "Custom Themes", level: 92, experience: "6+ years", icon: Palette },
@@ -120,7 +120,7 @@ const Skills = () => {
       description: "Development operations and deployment tools",
       skills: [
         { name: "Docker", level: 85, experience: "3+ years", icon: Shield },
-        { name: "Git & GitHub", level: 90, experience: "8+ years", icon: GitBranch },
+        { name: "Git & GitHub", level: 90, experience: "10+ years", icon: GitBranch },
         { name: "AWS", level: 80, experience: "2+ years", icon: Cloud },
         { name: "Digital Ocean", level: 85, experience: "4+ years", icon: Cloud },
         { name: "CI/CD", level: 75, experience: "2+ years", icon: Settings }
@@ -138,7 +138,7 @@ const Skills = () => {
 
   const achievements = [
     { 
-      number: '8+', 
+      number: '10+', 
       label: 'Years Experience', 
       icon: Award, 
       color: 'text-blue-500',

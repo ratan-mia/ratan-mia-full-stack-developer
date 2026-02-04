@@ -56,7 +56,7 @@ export default function PortfolioPage() {
             Transforming ideas into exceptional web experiences with cutting-edge technology
           </p>
           <p className="text-lg md:text-xl text-blue-200/80 mb-12 max-w-3xl mx-auto">
-            Explore my journey through 8+ years of full-stack development, from concept to deployment
+            Explore my journey through 10+ years of full-stack development, from concept to deployment
           </p>
           
           {/* Real Stats from Home Page */}
@@ -67,7 +67,7 @@ export default function PortfolioPage() {
               <div className="text-xs text-blue-300/70 mt-1">Successfully completed</div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 hover:bg-white/15 transition-all duration-300">
-              <div className="text-3xl md:text-4xl font-bold text-green-400 mb-2">8+</div>
+              <div className="text-3xl md:text-4xl font-bold text-green-400 mb-2">10+</div>
               <div className="text-sm text-blue-200 uppercase tracking-wide font-medium">Years Experience</div>
               <div className="text-xs text-blue-300/70 mt-1">Since 2016</div>
             </div>

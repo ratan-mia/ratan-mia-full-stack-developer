@@ -2,22 +2,22 @@
 
 import { motion } from 'framer-motion';
 import {
-  Award,
-  Cloud,
-  Code,
-  Database,
-  GitBranch,
-  Globe,
-  Palette,
-  Rocket,
-  Server,
-  Settings,
-  Shield,
-  Smartphone,
-  Star,
-  Target,
-  TrendingUp,
-  Zap
+    Award,
+    Cloud,
+    Code,
+    Database,
+    GitBranch,
+    Globe,
+    Palette,
+    Rocket,
+    Server,
+    Settings,
+    Shield,
+    Smartphone,
+    Star,
+    Target,
+    TrendingUp,
+    Zap
 } from 'lucide-react';
 
 const Skills = () => {
@@ -56,7 +56,7 @@ const Skills = () => {
       skills: [
         { name: "React.js", level: 95, experience: "5+ years", trending: true },
         { name: "Next.js", level: 90, experience: "3+ years", trending: true },
-        { name: "JavaScript ES6+", level: 95, experience: "8+ years", trending: false },
+        { name: "JavaScript ES6+", level: 95, experience: "10+ years", trending: false },
         { name: "TypeScript", level: 85, experience: "2+ years", trending: true }
       ]
     },
@@ -74,7 +74,7 @@ const Skills = () => {
       category: "CMS & E-commerce",
       icon: Globe,
       skills: [
-        { name: "WordPress", level: 95, experience: "8+ years", trending: false },
+        { name: "WordPress", level: 95, experience: "10+ years", trending: false },
         { name: "Shopify", level: 85, experience: "4+ years", trending: true },
         { name: "WooCommerce", level: 90, experience: "5+ years", trending: false },
         { name: "Headless CMS", level: 80, experience: "2+ years", trending: true }

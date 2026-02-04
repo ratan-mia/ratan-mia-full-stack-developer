@@ -2,19 +2,19 @@
 
 import { motion, useInView } from 'framer-motion';
 import {
-  Award,
-  CheckCircle,
-  Clock,
-  Code,
-  Globe,
-  Heart,
-  MessageCircle,
-  RefreshCw,
-  Shield,
-  Star,
-  Target,
-  Users,
-  Zap
+    Award,
+    CheckCircle,
+    Clock,
+    Code,
+    Globe,
+    Heart,
+    MessageCircle,
+    RefreshCw,
+    Shield,
+    Star,
+    Target,
+    Users,
+    Zap
 } from 'lucide-react';
 import { useRef } from 'react';
 
@@ -88,7 +88,7 @@ const WhyChooseMe = () => {
     },
     {
       icon: Code,
-      number: "8+",
+      number: "10+",
       label: "Years Experience",
       description: "Proven expertise in web development"
     }

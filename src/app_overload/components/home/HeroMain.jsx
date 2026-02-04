@@ -2,26 +2,25 @@
 
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import {
-  ArrowDown,
-  ArrowRight,
-  Award,
-  CheckCircle2,
-  Clock,
-  Code2,
-  Download,
-  ExternalLink,
-  Github,
-  Globe,
-  Heart,
-  Linkedin,
-  Mail,
-  MapPin,
-  MessageCircle,
-  Phone,
-  Rocket,
-  Star,
-  Twitter,
-  Users
+    ArrowRight,
+    Award,
+    CheckCircle2,
+    Clock,
+    Code2,
+    Download,
+    ExternalLink,
+    Github,
+    Globe,
+    Heart,
+    Linkedin,
+    Mail,
+    MapPin,
+    MessageCircle,
+    Phone,
+    Rocket,
+    Star,
+    Twitter,
+    Users
 } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
@@ -47,7 +46,7 @@ const SOCIAL_LINKS = [
 
 const STATS = [
   { icon: Award, number: '150+', label: 'Projects Completed', color: 'text-orange-500', description: 'Successfully delivered projects' },
-  { icon: Users, number: '8+', label: 'Years Experience', color: 'text-purple-500', description: 'Years in web development' },
+  { icon: Users, number: '10+', label: 'Years Experience', color: 'text-purple-500', description: 'Years in web development' },
   { icon: Globe, number: '25+', label: 'Countries Served', color: 'text-blue-500', description: 'Global client reach' },
   { icon: Star, number: '98%', label: 'Client Satisfaction', color: 'text-green-500', description: 'Happy clients rate' }
 ];
@@ -81,7 +80,7 @@ const CONTACT_METHODS = [
 
 const QUICK_FACTS = [
   { icon: CheckCircle2, text: '150+ Projects Delivered', metric: '100%' },
-  { icon: CheckCircle2, text: '8+ Years Experience', metric: 'Since 2016' },
+  { icon: CheckCircle2, text: '10+ Years Experience', metric: 'Since 2016' },
   { icon: CheckCircle2, text: '25+ Countries Served', metric: 'Global' },
   { icon: CheckCircle2, text: '98% Client Satisfaction', metric: '5★ Rating' }
 ];
@@ -400,7 +399,7 @@ const HeroMain = () => {
             "@type": "Person",
             "name": "Ratan Mia",
             "jobTitle": "Full Stack Developer",
-            "description": "Expert Full Stack Developer with 8+ years experience in React.js, Next.js, Laravel, and WordPress development",
+            "description": "Expert Full Stack Developer with 10+ years experience in React.js, Next.js, Laravel, and WordPress development",
             "url": "https://ratanmia.dev",
             "sameAs": [
               "https://github.com/shorifull",
@@ -469,7 +468,7 @@ const HeroMain = () => {
                 animate={leftInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ delay: 0.6 }}
               >
-                Crafting exceptional web experiences with <span className="text-white font-semibold">8+ years</span> of expertise in modern technologies. Specialized in React.js, Next.js, Laravel, and WordPress development with a passion for clean, scalable code.
+                Crafting exceptional web experiences with <span className="text-white font-semibold">10+ years</span> of expertise in modern technologies. Specialized in React.js, Next.js, Laravel, and WordPress development with a passion for clean, scalable code.
               </motion.p>
 
               {/* Skills Pills */}

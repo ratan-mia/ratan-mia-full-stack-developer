@@ -2,30 +2,30 @@
 
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import {
-  AlertCircle,
-  ArrowUp,
-  Award,
-  Briefcase,
-  CheckCircle,
-  Clock,
-  Code,
-  ExternalLink,
-  FolderOpen,
-  Github,
-  Globe,
-  Heart,
-  Linkedin,
-  Mail,
-  MapPin,
-  MessageCircle,
-  Phone,
-  Rocket,
-  Send,
-  Shield,
-  Star,
-  Twitter,
-  Users,
-  Zap
+    AlertCircle,
+    ArrowUp,
+    Award,
+    Briefcase,
+    CheckCircle,
+    Clock,
+    Code,
+    ExternalLink,
+    FolderOpen,
+    Github,
+    Globe,
+    Heart,
+    Linkedin,
+    Mail,
+    MapPin,
+    MessageCircle,
+    Phone,
+    Rocket,
+    Send,
+    Shield,
+    Star,
+    Twitter,
+    Users,
+    Zap
 } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import ScrollToTop from './ScrollToTop';
@@ -158,7 +158,7 @@ const Footer = () => {
 
   const stats = [
     { number: '150+', label: 'Projects Completed', icon: Briefcase, color: 'text-blue-400' },
-    { number: '8+', label: 'Years Experience', icon: Award, color: 'text-green-400' },
+    { number: '10+', label: 'Years Experience', icon: Award, color: 'text-green-400' },
     { number: '25+', label: 'Countries Served', icon: Globe, color: 'text-purple-400' },
     { number: '98%', label: 'Client Satisfaction', icon: Star, color: 'text-yellow-400' }
   ];
@@ -359,7 +359,7 @@ const Footer = () => {
                     Ratan Mia
                   </motion.h3>
                   <p className="text-slate-300 leading-relaxed text-base mb-6">
-                    Passionate Full Stack Developer with <span className="text-blue-400 font-semibold">8+ years</span> of experience crafting 
+                    Passionate Full Stack Developer with <span className="text-blue-400 font-semibold">10+ years</span> of experience crafting 
                     exceptional digital experiences that drive business growth and user engagement.
                   </p>
                   
