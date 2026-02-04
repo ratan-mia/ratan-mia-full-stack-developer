@@ -1,0 +1,123 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+@import "tailwindcss";
+
+@layer base {
+  /* Essential custom properties only */
+  :root {
+    --accent-lime: #ccff00;
+    --accent-orange: #ff8c42;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer components {
+  /* Custom accent colors that extend Tailwind */
+  .bg-accent-lime {
+    background-color: var(--accent-lime);
+  }
+  
+  .text-accent-lime {
+    color: var(--accent-lime);
+  }
+  
+  .border-accent-lime {
+    border-color: var(--accent-lime);
+  }
+  
+  .bg-accent-orange {
+    background-color: var(--accent-orange);
+  }
+  
+  .text-accent-orange {
+    color: var(--accent-orange);
+  }
+  
+  .border-accent-orange {
+    border-color: var(--accent-orange);
+  }
+
+  /* Lime accent shadow utilities */
+  .shadow-lime-glow {
+    box-shadow: 0 8px 25px rgba(204, 255, 0, 0.3);
+  }
+  
+  .shadow-orange-glow {
+    box-shadow: 0 8px 25px rgba(255, 140, 66, 0.2);
+  }
+
+  /* Typography utilities */
+  .hero-title {
+    font-size: clamp(60px, 8vw, 80px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+
+  .section-header {
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .body-text {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.7;
+  }
+
+  .body-text-small {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  .caption-text {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  /* Contact section with lime background */
+  .contact-section {
+    background-color: var(--accent-lime);
+    color: #000000;
+  }
+
+  .contact-section input,
+  .contact-section textarea {
+    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    color: #000000;
+  }
+
+  .contact-section input::placeholder,
+  .contact-section textarea::placeholder {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .contact-section input:focus,
+  .contact-section textarea:focus {
+    outline: none;
+    border-color: #000000;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: clamp(40px, 10vw, 60px);
+  }
+  
+  .section-header {
+    font-size: clamp(28px, 6vw, 36px);
+  }
+}
