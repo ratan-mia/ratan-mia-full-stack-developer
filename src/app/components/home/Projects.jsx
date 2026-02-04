@@ -16,6 +16,7 @@ const PROJECTS_DATA = [
     technologies: ['React Native', 'Node.js', 'PostgreSQL', 'QR Engine'],
     description: 'Complete engagement engine for FMCG, oil companies, automotive parts with QR-based loyalty, gamification, and fraud detection.',
     liveUrl: '#',
+    caseStudyUrl: '/case-studies/gamify',
     icon: Smartphone,
   },
   {
@@ -28,6 +29,7 @@ const PROJECTS_DATA = [
     technologies: ['React Native', 'Expo', 'Supabase', 'TypeScript'],
     description: 'Full-stack automotive platform with test drive booking, service scheduling, e-commerce, and complete vehicle ecosystem.',
     liveUrl: '#',
+    caseStudyUrl: '/case-studies/chery-bangladesh-app',
     icon: Smartphone,
   },
   {
@@ -40,6 +42,7 @@ const PROJECTS_DATA = [
     technologies: ['React Native', 'Next.js', 'Prisma', 'PostgreSQL'],
     description: 'Complete booking platform for sports grounds with real-time availability, dynamic pricing, and SSL Commerce payment integration.',
     liveUrl: 'https://www.turflet.app',
+    caseStudyUrl: '/case-studies/turfnations',
     icon: Smartphone,
   },
   {
@@ -188,10 +191,7 @@ const SectionHeader = ({ children, inView }) => (
 );
 
 const ProjectRow = ({ project, index, setHoveredImage, inView }) => (
-  <motion.a
-    href={project.liveUrl}
-    target="_blank"
-    rel="noopener noreferrer"
+  <motion.div
     onMouseEnter={() => setHoveredImage(project.image)}
     onMouseLeave={() => setHoveredImage(null)}
     className="group grid grid-cols-12 items-center gap-4 lg:gap-6 py-8 lg:py-12 border-b border-gray-800 transition-all duration-500 hover:bg-gray-800/30 rounded-lg px-4 lg:px-6"
@@ -231,10 +231,25 @@ const ProjectRow = ({ project, index, setHoveredImage, inView }) => (
       {project.liveUrl && project.liveUrl !== '#' && (
         <div className="flex items-center gap-2 mb-3">
           <ExternalLink className="w-4 h-4 text-accent-lime" />
-          <span className="text-accent-lime text-sm font-medium group-hover:underline">
+          <a 
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent-lime text-sm font-medium hover:underline"
+          >
             {project.liveUrl.replace(/^https?:\/\//, '').replace(/\/$/, '')}
-          </span>
+          </a>
         </div>
+      )}
+      {/* Case Study Link */}
+      {project.caseStudyUrl && (
+        <a
+          href={project.caseStudyUrl}
+          className="inline-flex items-center gap-2 px-4 py-2 mb-3 bg-accent-lime text-black text-sm font-semibold rounded-lg hover:bg-accent-lime/90 transition-all duration-300 hover:scale-105"
+        >
+          <span>View Case Study</span>
+          <ExternalLink className="w-4 h-4" />
+        </a>
       )}
       <div className="flex flex-wrap gap-2">
         {project.technologies.map(tech => (
@@ -256,14 +271,18 @@ const ProjectRow = ({ project, index, setHoveredImage, inView }) => (
         </div>
         <div className="text-gray-500 text-sm">Client</div>
       </div>
-      <motion.div 
-        className="text-gray-400 group-hover:text-accent-lime opacity-70 group-hover:opacity-100 transition-all duration-300"
-        whileHover={{ scale: 1.2, rotate: 15 }}
-      >
-        <ExternalLink className="w-6 h-6" />
-      </motion.div>
+      {project.liveUrl && project.liveUrl !== '#' && (
+        <a
+          href={project.liveUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-400 group-hover:text-accent-lime opacity-70 group-hover:opacity-100 transition-all duration-300 hover:scale-125"
+        >
+          <ExternalLink className="w-6 h-6" />
+        </a>
+      )}
     </div>
-  </motion.a>
+  </motion.div>
 );
 
 const FilterButton = ({ category, filter, setFilter, index, inView }) => (
