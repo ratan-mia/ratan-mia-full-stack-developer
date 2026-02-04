@@ -1,7 +1,7 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import { Download, Menu, X, ChevronDown } from 'lucide-react';
+import { ChevronDown, Download, Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 const Header = () => {
@@ -12,12 +12,12 @@ const Header = () => {
   const [showMobileCaseStudies, setShowMobileCaseStudies] = useState(false);
 
   const navigationItems = [
-    { name: 'HOME', href: '#home' },
-    { name: 'ABOUT', href: '#about' },
-    { name: 'SERVICES', href: '#services' },
-    { name: 'PORTFOLIO', href: '#projects' },
+    { name: 'HOME', href: '/' },
+    { name: 'ABOUT', href: '/about' },
+    { name: 'SERVICES', href: '/services' },
+    { name: 'PORTFOLIO', href: '/portfolio' },
     { name: 'CASE STUDIES', href: '#', hasDropdown: true },
-    { name: 'CONTACT', href: '#contact' }
+    { name: 'CONTACT', href: '/#contact' }
   ];
 
   const caseStudies = [
@@ -73,16 +73,22 @@ const Header = () => {
 
   const handleNavigation = (href) => {
     if (href.startsWith('#')) {
-      const element = document.getElementById(href.slice(1));
-      if (element) {
-        const headerHeight = 88; // Updated header height
-        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = elementPosition - headerHeight;
-
-        window.scrollTo({ 
-          top: href === '#home' ? 0 : offsetPosition, 
-          behavior: 'smooth' 
-        });
+      // Handle anchor links
+      if (window.location.pathname !== '/') {
+        // If not on home page, go to home first
+        window.location.href = '/' + href;
+      } else {
+        // On home page, smooth scroll
+        const element = document.getElementById(href.slice(1));
+        if (element) {
+          const headerHeight = 88;
+          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - headerHeight;
+          window.scrollTo({ 
+            top: href === '#home' ? 0 : offsetPosition, 
+            behavior: 'smooth' 
+          });
+        }
       }
     } else if (href.startsWith('/')) {
       // Navigate to internal page
