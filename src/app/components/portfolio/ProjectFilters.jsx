@@ -8,77 +8,121 @@ const ProjectFilters = () => {
   const [activeFilter, setActiveFilter] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Real project data from home page
+  // Real project data with actual images
   const PROJECT_DATA = [
     {
       id: 1,
-      title: "Elf Bangladesh - Asian Petroleum",
-      description: "Complete digital presence for Elf Bangladesh using Next.js, Tailwind CSS, Zoho CRM, WhatsApp Business API, Strapi CMS, and Facebook Pixel. Built with performance and conversion optimization in mind.",
-      category: "Web Development",
-      tech: ["Next.js", "Tailwind CSS", "Zoho CRM", "WhatsApp API", "Strapi CMS", "Facebook Pixel"],
-      image: "/images/projects/elf-apl-mockup.jpg",
-      links: { live: "https://asian-petroleum.com/", github: "#" },
+      title: "Chery Bangladesh Mobile App",
+      description: "Revolutionary mobile app for Chery Bangladesh featuring vehicle showroom, test drive booking, service management, parts e-commerce, and customer engagement. Built with React Native and Expo.",
+      category: "Mobile Apps",
+      tech: ["React Native", "Expo", "Supabase", "SSL Commerz", "Push Notifications"],
+      image: "/images/projects/cherybd-mockup.png",
+      links: { live: "/case-studies/chery-bangladesh", github: "/case-studies/chery-bangladesh" },
       featured: true,
       year: "2024"
     },
     {
       id: 2,
-      title: "Chery Bangladesh",
-      description: "Official automotive website featuring an immersive 360° car viewer and achieving 97% PageSpeed optimization. Revolutionary customer experience with virtual showroom capabilities.",
-      category: "Web Development",
-      tech: ["Next.js", "React.js", "CRM Integration", "Facebook Pixel", "360° Viewer"],
-      image: "/images/projects/cherybd-mockup.png",
-      links: { live: "https://www.cherybd.com", github: "#" },
+      title: "TurfNations Booking Platform",
+      description: "Comprehensive real-time booking platform for sports turfs with 30-day calendar, dynamic pricing, SSL Commerz payment integration, and owner dashboard with analytics.",
+      category: "SaaS Platform",
+      tech: ["React Native", "Next.js", "Prisma", "SSL Commerz", "Supabase"],
+      image: "/images/projects/turflet/www.turflet.app.png",
+      links: { live: "/case-studies/turfnations-booking", github: "/case-studies/turfnations-booking" },
       featured: true,
-      year: "2023"
+      year: "2024"
     },
     {
       id: 3,
-      title: "Car Parts E-commerce",
-      description: "Comprehensive e-commerce platform with intelligent make/model/year specification system. Advanced inventory management and real-time pricing integration.",
-      category: "E-commerce",
-      tech: ["React.js", "PHP", "API Integration", "WhatsApp API", "MySQL"],
-      image: "/images/projects/japan-parts-mockup.png",
-      links: { live: "https://japanparts.com.bd", github: "#" },
-      featured: false,
-      year: "2023"
+      title: "Gamify Loyalty Platform",
+      description: "Innovative QR-based loyalty platform with gamification (spin wheel, card flip), digital wallet, prize redemption, and fraud prevention for nationwide campaigns.",
+      category: "Mobile Apps",
+      tech: ["React Native", "Supabase", "QR Scanner", "Gamification", "Fraud Detection"],
+      image: "/images/projects/pieqr/screenshots/home-screen.jpg",
+      links: { live: "/case-studies/gamify", github: "/case-studies/gamify" },
+      featured: true,
+      year: "2024"
     },
     {
       id: 4,
-      title: "ELF International",
-      description: "High-converting e-commerce platform showcasing premium lubricant products with modern design principles. Advanced product configurator and real-time inventory management.",
-      category: "E-commerce",
-      tech: ["React.js", "Tailwind CSS", "E-commerce", "SEO", "Product Configurator"],
-      image: "/images/projects/elf-international-mockup.png",
-      links: { live: "https://elf-bangladesh.vercel.app", github: "#" },
+      title: "Elf Bangladesh - Asian Petroleum",
+      description: "Complete digital presence for Elf Bangladesh using Next.js, Tailwind CSS, Zoho CRM, WhatsApp Business API, Strapi CMS, and Facebook Pixel. Built with performance optimization.",
+      category: "Web Development",
+      tech: ["Next.js", "Tailwind CSS", "Zoho CRM", "WhatsApp API", "Strapi CMS"],
+      image: "/images/projects/elf-apl-mockup.jpg",
+      links: { live: "https://asian-petroleum.com/", github: "https://asian-petroleum.com/" },
       featured: true,
       year: "2024"
     },
     {
       id: 5,
-      title: "OpenAI Counselling Chatbot",
-      description: "Revolutionary WordPress plugin integrating ChatGPT and OpenAI APIs with advanced Text-to-Speech functionality. 24/7 mental health support with personalized responses.",
-      category: "AI Integration",
-      tech: ["WordPress", "OpenAI API", "Text-to-Speech", "ChatGPT", "PHP"],
-      image: "https://images.unsplash.com/photo-1587560699334-cc4ff634909a?w=800&h=600&fit=crop",
-      links: { live: null, github: "#" },
+      title: "ELF International",
+      description: "High-converting e-commerce platform showcasing premium lubricant products with modern design principles. Advanced product configurator and real-time inventory management.",
+      category: "E-commerce",
+      tech: ["React.js", "Tailwind CSS", "E-commerce", "SEO", "Product Configurator"],
+      image: "/images/projects/elf-international-mockup.png",
+      links: { live: "https://elf-bangladesh.vercel.app", github: "https://elf-bangladesh.vercel.app" },
       featured: true,
       year: "2024"
     },
     {
       id: 6,
-      title: "CWL Detailing Web",
-      description: "Modern service business website leveraging React.js and Tailwind CSS with intuitive UI/UX. Integrated booking system and customer management portal.",
-      category: "Web Development",
-      tech: ["React.js", "Tailwind CSS", "Responsive Design", "Booking System"],
-      image: null,
-      links: { live: "https://cwl-detailing-web.vercel.app", github: "#" },
+      title: "Japan Auto Parts",
+      description: "Modern headless e-commerce platform for automotive parts with advanced search, filtering, and inventory management. 20K+ products with real-time stock updates.",
+      category: "E-commerce",
+      tech: ["Next.js", "Headless CMS", "E-commerce", "Search Engine", "Inventory"],
+      image: "/images/projects/japan-parts-headless.png",
+      links: { live: null, github: "#" },
+      featured: true,
+      year: "2024"
+    },
+    {
+      id: 7,
+      title: "Japan Parts Mockup",
+      description: "Comprehensive e-commerce platform with intelligent make/model/year specification system. Advanced inventory management and real-time pricing integration.",
+      category: "E-commerce",
+      tech: ["React.js", "PHP", "API Integration", "WhatsApp API", "MySQL"],
+      image: "/images/projects/japan-parts-mockup.png",
+      links: { live: "https://japanparts.com.bd", github: "https://japanparts.com.bd" },
       featured: false,
       year: "2023"
+    },
+    {
+      id: 8,
+      title: "Matchlyzer",
+      description: "Intelligent sports analytics platform using AI to analyze match data, player performance, and team statistics. Real-time insights and predictive analytics for coaches.",
+      category: "AI & Analytics",
+      tech: ["React Native", "AI/ML", "Analytics", "Real-time Data", "Supabase"],
+      image: "/images/projects/matchlyzer.png",
+      links: { live: null, github: "#" },
+      featured: true,
+      year: "2024"
+    },
+    {
+      id: 9,
+      title: "Chery Bangladesh Website",
+      description: "Official automotive website featuring immersive 360° car viewer and achieving 97% PageSpeed optimization. Revolutionary customer experience with virtual showroom.",
+      category: "Web Development",
+      tech: ["Next.js", "React.js", "CRM Integration", "Facebook Pixel", "360° Viewer"],
+      image: "/images/projects/cherybd-nextjs.png",
+      links: { live: "https://www.cherybd.com", github: "https://www.cherybd.com" },
+      featured: true,
+      year: "2023"
+    },
+    {
+      id: 10,
+      title: "MotoJP Shopify Headless",
+      description: "Modern headless Shopify implementation for Japanese motorcycle parts. Seamless shopping experience with advanced filtering and search capabilities.",
+      category: "E-commerce",
+      tech: ["Next.js", "Shopify", "Headless Commerce", "GraphQL", "Tailwind CSS"],
+      image: "/images/projects/motojp-shopify-headless.png",
+      links: { live: null, github: "#" },
+      featured: false,
+      year: "2024"
     }
   ];
 
-  const categories = ['All', 'Web Development', 'E-commerce', 'AI Integration'];
+  const categories = ['All', 'Mobile Apps', 'Web Development', 'E-commerce', 'SaaS Platform', 'AI & Analytics'];
 
   const filteredProjects = PROJECT_DATA.filter(project => {
     const matchesCategory = activeFilter === 'All' || project.category === activeFilter;
@@ -239,10 +283,10 @@ const ProjectFilters = () => {
                     <a
                       href={project.links.live}
                       className="flex-1 text-center px-4 py-3 bg-black text-accent-lime rounded-xl hover:shadow-lg transition-all font-bold"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      target={project.links.live.startsWith('http') ? "_blank" : "_self"}
+                      rel={project.links.live.startsWith('http') ? "noopener noreferrer" : undefined}
                     >
-                      View Live
+                      {project.links.live.startsWith('/case-studies') ? 'View Case' : 'View Live'}
                     </a>
                   ) : (
                     <div className="flex-1 text-center px-4 py-3 bg-gray-400 text-white rounded-xl font-bold">
@@ -252,8 +296,8 @@ const ProjectFilters = () => {
                   <a
                     href={project.links.github}
                     className="flex-1 text-center px-4 py-3 border-2 border-black text-black rounded-xl hover:bg-black hover:text-white transition-all font-bold"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    target={project.links.github.startsWith('http') ? "_blank" : "_self"}
+                    rel={project.links.github.startsWith('http') ? "noopener noreferrer" : undefined}
                   >
                     Details
                   </a>

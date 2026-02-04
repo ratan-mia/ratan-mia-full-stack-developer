@@ -1,38 +1,38 @@
 const ProjectStats = () => {
   const stats = [
     {
-      number: "15+",
+      number: "50+",
       label: "Projects Completed",
       description: "Successfully delivered projects across various industries",
       icon: "🚀",
       color: "from-blue-500 to-cyan-500"
     },
     {
-      number: "12+",
+      number: "35+",
       label: "Happy Clients",
       description: "Satisfied clients from startups to enterprise companies",
       icon: "😊",
       color: "from-green-500 to-emerald-500"
     },
     {
-      number: "5+",
+      number: "10+",
       label: "Years Experience",
       description: "Years of professional web development experience",
       icon: "⏰",
       color: "from-purple-500 to-pink-500"
     },
     {
-      number: "100%",
+      number: "98%",
       label: "Success Rate",
       description: "All projects delivered on time and within budget",
       icon: "🎯",
       color: "from-orange-500 to-red-500"
     },
     {
-      number: "24/7",
-      label: "Support Available",
-      description: "Continuous support and maintenance for all projects",
-      icon: "🛠️",
+      number: "25+",
+      label: "Countries Served",
+      description: "Global reach with clients from across the world",
+      icon: "🌍",
       color: "from-indigo-500 to-purple-500"
     },
     {
@@ -46,42 +46,42 @@ const ProjectStats = () => {
 
   const achievements = [
     {
-      title: "Best Performance Award",
+      title: "Mobile App Excellence",
       platform: "Client Recognition",
-      description: "Achieved 97% PageSpeed score for Chery Bangladesh automotive website",
-      year: "2023",
+      description: "Chery Bangladesh mobile app achieved 50K+ downloads with 4.8★ rating",
+      year: "2024",
       icon: "🏆"
     },
     {
-      title: "E-commerce Excellence",
-      platform: "Industry Recognition",
-      description: "ELF International e-commerce platform achieved 150% conversion rate increase",
+      title: "Booking Platform Success",
+      platform: "SaaS Innovation",
+      description: "TurfNations platform processed 5K+ bookings with 95% payment success",
       year: "2024",
       icon: "⭐"
     },
     {
-      title: "AI Innovation",
+      title: "Gamification Pioneer",
       platform: "Tech Community",
-      description: "Revolutionary AI chatbot integration with OpenAI APIs for healthcare",
+      description: "Gamify loyalty platform engaged 8K+ users with 50K+ QR scans",
       year: "2024",
-      icon: "🤖"
+      icon: "🎮"
     },
     {
-      title: "CRM Integration Expert",
+      title: "Performance Champion",
       platform: "Technical Excellence",
-      description: "Seamless Zoho CRM integration for Asian Petroleum business automation",
-      year: "2024",
-      icon: "🎤"
+      description: "Achieved 97% PageSpeed score with 360° viewer for Chery website",
+      year: "2023",
+      icon: "⚡"
     }
   ];
 
   const technologies = [
-    { name: "Next.js", projects: 8, percentage: 53 },
-    { name: "React.js", projects: 12, percentage: 80 },
-    { name: "Laravel", projects: 6, percentage: 40 },
-    { name: "Tailwind CSS", projects: 10, percentage: 67 },
-    { name: "Node.js", projects: 5, percentage: 33 },
-    { name: "WordPress", projects: 4, percentage: 27 }
+    { name: "React Native", projects: 15, percentage: 75 },
+    { name: "Next.js", projects: 18, percentage: 90 },
+    { name: "React.js", projects: 25, percentage: 85 },
+    { name: "Tailwind CSS", projects: 22, percentage: 88 },
+    { name: "Supabase", projects: 12, percentage: 60 },
+    { name: "Laravel", projects: 10, percentage: 50 }
   ];
 
   return (
@@ -191,12 +191,12 @@ const ProjectStats = () => {
             Join the growing list of satisfied clients who have transformed their ideas into successful web applications.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <button className="px-10 py-4 bg-black text-accent-lime rounded-xl hover:shadow-xl transition-all duration-300 font-extrabold hover:scale-105">
+            <a href="/quote" className="px-10 py-4 bg-black text-accent-lime rounded-xl hover:shadow-xl transition-all duration-300 font-extrabold hover:scale-105">
               Start Your Project
-            </button>
-            <button className="px-10 py-4 border-2 border-black text-black rounded-xl hover:bg-black hover:text-white transition-all duration-300 font-extrabold hover:scale-105">
-              View All Projects
-            </button>
+            </a>
+            <a href="/case-studies" className="px-10 py-4 border-2 border-black text-black rounded-xl hover:bg-black hover:text-white transition-all duration-300 font-extrabold hover:scale-105">
+              View Case Studies
+            </a>
           </div>
         </div>
       </div>

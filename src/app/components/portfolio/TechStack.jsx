@@ -176,24 +176,24 @@ const TechStack = () => {
         <div className="mt-16 text-center">
           <h3 className="text-2xl font-bold mb-6">Development Philosophy</h3>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="p-6">
+            <div className="p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all">
               <div className="text-4xl mb-4">🚀</div>
-              <h4 className="font-bold mb-2">Performance First</h4>
-              <p className="text-slate-600 dark:text-slate-300 text-sm">
+              <h4 className="font-extrabold mb-3 text-lg">Performance First</h4>
+              <p className="text-gray-600 text-sm leading-relaxed">
                 Every application is optimized for speed, scalability, and efficiency from day one.
               </p>
             </div>
-            <div className="p-6">
+            <div className="p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all">
               <div className="text-4xl mb-4">🔧</div>
-              <h4 className="font-bold mb-2">Clean Code</h4>
-              <p className="text-slate-600 dark:text-slate-300 text-sm">
+              <h4 className="font-extrabold mb-3 text-lg">Clean Code</h4>
+              <p className="text-gray-600 text-sm leading-relaxed">
                 Writing maintainable, readable code that follows industry best practices and standards.
               </p>
             </div>
-            <div className="p-6">
+            <div className="p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all">
               <div className="text-4xl mb-4">🎯</div>
-              <h4 className="font-bold mb-2">User-Centric</h4>
-              <p className="text-slate-600 dark:text-slate-300 text-sm">
+              <h4 className="font-extrabold mb-3 text-lg">User-Centric</h4>
+              <p className="text-gray-600 text-sm leading-relaxed">
                 Focusing on user experience and business goals to deliver solutions that matter.
               </p>
             </div>

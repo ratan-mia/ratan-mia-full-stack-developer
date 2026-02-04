@@ -7,14 +7,65 @@ import ProjectImage from './ProjectImage';
 const ProjectShowcase = () => {
   const [activeProject, setActiveProject] = useState(0);
 
-  // Real project data from home page
+  // Real project data with actual images
   const PROJECT_DATA = [
     {
       id: 1,
+      title: "Chery Bangladesh Mobile App",
+      subtitle: "Complete Automotive Ecosystem",
+      description: "Revolutionary mobile app for Chery Bangladesh featuring vehicle showroom, test drive booking, service management, parts e-commerce, and customer engagement. Built with React Native and Expo for seamless cross-platform experience.",
+      tech: ["React Native", "Expo", "Supabase", "SSL Commerz", "Push Notifications"],
+      category: "mobile-app",
+      link: "/case-studies/chery-bangladesh",
+      image: "/images/projects/cherybd-mockup.png",
+      status: "Live",
+      year: "2024",
+      client: "Chery Bangladesh",
+      duration: "4 months",
+      results: ["300% Bookings Increase", "50K+ Users", "4.8★ Rating"],
+      metrics: { conversion: "300%", performance: "98%", satisfaction: "96%" },
+      featured: true
+    },
+    {
+      id: 2,
+      title: "TurfNations Booking Platform",
+      subtitle: "Sports Venue Management System",
+      description: "Comprehensive real-time booking platform for sports turfs with 30-day calendar, dynamic pricing, SSL Commerz payment integration, and owner dashboard with analytics. Next.js admin panel with Prisma ORM.",
+      tech: ["React Native", "Next.js", "Prisma", "SSL Commerz", "Supabase"],
+      category: "saas-platform",
+      link: "/case-studies/turfnations-booking",
+      image: "/images/projects/turflet/www.turflet.app.png",
+      status: "Live",
+      year: "2024",
+      client: "TurfNations",
+      duration: "3 months",
+      results: ["5K+ Bookings", "2.5K+ Users", "95% Success Rate"],
+      metrics: { conversion: "250%", performance: "97%", satisfaction: "94%" },
+      featured: true
+    },
+    {
+      id: 3,
+      title: "Gamify Loyalty Platform",
+      subtitle: "QR-Based Engagement System",
+      description: "Innovative QR-based loyalty platform with gamification (spin wheel, card flip), digital wallet, prize redemption, and fraud prevention. Features category-based user profiles and geo-tracking for nationwide campaigns.",
+      tech: ["React Native", "Supabase", "QR Scanner", "Gamification", "Fraud Detection"],
+      category: "loyalty-platform",
+      link: "/case-studies/gamify",
+      image: "/images/projects/pieqr/screenshots/home-screen.jpg",
+      status: "Live",
+      year: "2024",
+      client: "FMCG & Automotive Brands",
+      duration: "2.5 months",
+      results: ["8K+ Users", "50K+ Scans", "25K+ Games"],
+      metrics: { conversion: "400%", performance: "96%", satisfaction: "92%" },
+      featured: true
+    },
+    {
+      id: 4,
       title: "Elf Bangladesh - Asian Petroleum",
-      subtitle: "Modern Digital Platform for Global Lubricant Brand",
+      subtitle: "Modern Digital Platform for Global Brand",
       description: "Complete digital presence for Elf Bangladesh using Next.js, Tailwind CSS, Zoho CRM, WhatsApp Business API, Strapi CMS, and Facebook Pixel. Built with performance and conversion optimization in mind.",
-      tech: ["Next.js", "Tailwind CSS", "Zoho CRM", "WhatsApp API", "Strapi CMS", "Facebook Pixel"],
+      tech: ["Next.js", "Tailwind CSS", "Zoho CRM", "WhatsApp API", "Strapi CMS"],
       category: "web-development",
       link: "https://asian-petroleum.com/",
       image: "/images/projects/elf-apl-mockup.jpg",
@@ -22,31 +73,14 @@ const ProjectShowcase = () => {
       year: "2024",
       client: "Asian Petroleum Limited",
       duration: "3 months",
-      results: ["85% Conversion Rate Increase", "Automated Sales Pipeline", "300% User Engagement Boost"],
+      results: ["85% Conversion Up", "300% Engagement", "Automated Pipeline"],
       metrics: { conversion: "85%", performance: "97%", satisfaction: "98%" },
       featured: true
     },
     {
-      id: 2,
-      title: "Chery Bangladesh",
-      subtitle: "Automotive Excellence Platform",
-      description: "Official automotive website featuring an immersive 360° car viewer and achieving 97% PageSpeed optimization. Revolutionary customer experience with virtual showroom capabilities.",
-      tech: ["Next.js", "React.js", "CRM Integration", "Facebook Pixel", "360° Viewer"],
-      category: "web-development",
-      link: "https://www.cherybd.com",
-      image: "/images/projects/cherybd-mockup.png",
-      status: "Live",
-      year: "2023",
-      client: "Chery Bangladesh",
-      duration: "3 months",
-      results: ["97% PageSpeed Score", "200% Sales Increase", "50% Bounce Rate Reduction"],
-      metrics: { conversion: "200%", performance: "97%", satisfaction: "96%" },
-      featured: true
-    },
-    {
-      id: 3,
+      id: 5,
       title: "ELF International",
-      subtitle: "Rebranding and E-commerce",
+      subtitle: "Premium E-commerce Platform",
       description: "High-converting e-commerce platform showcasing premium lubricant products with modern design principles. Advanced product configurator and real-time inventory management.",
       tech: ["React.js", "Tailwind CSS", "E-commerce", "SEO", "Product Configurator"],
       category: "ecommerce",
@@ -56,25 +90,59 @@ const ProjectShowcase = () => {
       year: "2024",
       client: "ELF Bangladesh",
       duration: "2 months",
-      results: ["150% Conversion Rate", "40% Cart Recovery", "95% PageSpeed Score"],
+      results: ["150% Conversion", "40% Cart Recovery", "95% PageSpeed"],
       metrics: { conversion: "150%", performance: "95%", satisfaction: "94%" },
       featured: true
     },
     {
-      id: 4,
-      title: "OpenAI Counselling Chatbot",
-      subtitle: "AI-Powered Mental Health Platform",
-      description: "Revolutionary WordPress plugin integrating ChatGPT and OpenAI APIs with advanced Text-to-Speech functionality. 24/7 mental health support with personalized responses.",
-      tech: ["WordPress", "OpenAI API", "Text-to-Speech", "ChatGPT", "PHP"],
-      category: "ai-integration",
+      id: 6,
+      title: "Japan Auto Parts",
+      subtitle: "Headless E-commerce Solution",
+      description: "Modern headless e-commerce platform for automotive parts with advanced search, filtering, and inventory management. Built with Next.js and headless CMS for maximum flexibility.",
+      tech: ["Next.js", "Headless CMS", "E-commerce", "Search Engine", "Inventory Management"],
+      category: "ecommerce",
       link: null,
-      image: "https://images.unsplash.com/photo-1587560699334-cc4ff634909a?w=800&h=600&fit=crop",
+      image: "/images/projects/japan-parts-headless.png",
       status: "Development",
       year: "2024",
-      client: "Healthcare Provider",
-      duration: "6 months",
-      results: ["24/7 Support Available", "70% Efficiency Improvement", "500+ Active Users"],
-      metrics: { conversion: "70%", performance: "92%", satisfaction: "89%" },
+      client: "Japan Auto Parts",
+      duration: "2 months",
+      results: ["20K+ Products", "Advanced Search", "Real-time Stock"],
+      metrics: { conversion: "180%", performance: "96%", satisfaction: "93%" },
+      featured: true
+    },
+    {
+      id: 7,
+      title: "Matchlyzer",
+      subtitle: "AI Sports Analytics Platform",
+      description: "Intelligent sports analytics platform using AI to analyze match data, player performance, and team statistics. Real-time insights and predictive analytics for coaches and analysts.",
+      tech: ["React Native", "AI/ML", "Analytics", "Real-time Data", "Supabase"],
+      category: "ai-analytics",
+      link: null,
+      image: "/images/projects/matchlyzer.png",
+      status: "Live",
+      year: "2024",
+      client: "Sports Analytics",
+      duration: "4 months",
+      results: ["500+ Matches", "10K+ Data Points", "Real-time Insights"],
+      metrics: { conversion: "220%", performance: "94%", satisfaction: "91%" },
+      featured: true
+    },
+    {
+      id: 8,
+      title: "Chery Bangladesh Website",
+      subtitle: "Next.js Automotive Platform",
+      description: "Official automotive website featuring immersive 360° car viewer and achieving 97% PageSpeed optimization. Revolutionary customer experience with virtual showroom capabilities.",
+      tech: ["Next.js", "React.js", "CRM Integration", "Facebook Pixel", "360° Viewer"],
+      category: "web-development",
+      link: "https://www.cherybd.com",
+      image: "/images/projects/cherybd-nextjs.png",
+      status: "Live",
+      year: "2023",
+      client: "Chery Bangladesh",
+      duration: "3 months",
+      results: ["97% PageSpeed", "200% Sales Up", "50% Bounce Down"],
+      metrics: { conversion: "200%", performance: "97%", satisfaction: "96%" },
       featured: true
     }
   ];
@@ -215,11 +283,11 @@ const ProjectShowcase = () => {
                 <a
                   href={currentProject.link}
                   className="inline-flex items-center px-8 py-4 bg-black text-accent-lime rounded-xl font-bold hover:shadow-lg transition-all hover:scale-105"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target={currentProject.link.startsWith('http') ? "_blank" : "_self"}
+                  rel={currentProject.link.startsWith('http') ? "noopener noreferrer" : undefined}
                 >
                   <ExternalLink className="w-5 h-5 mr-2" />
-                  View Live
+                  {currentProject.link.startsWith('/case-studies') ? 'View Case Study' : 'View Live'}
                 </a>
               ) : (
                 <div className="inline-flex items-center px-8 py-4 bg-gray-400 text-white rounded-xl font-bold">
@@ -227,10 +295,14 @@ const ProjectShowcase = () => {
                   In Development
                 </div>
               )}
-              <button className="inline-flex items-center px-8 py-4 bg-white border-2 border-black text-black rounded-xl font-semibold hover:bg-black hover:text-white transition-all">
-                <Github className="w-5 h-5 mr-2" />
-                Case Study
-              </button>
+              {currentProject.category !== 'web-development' && (
+                <a 
+                  href="/quote"
+                  className="inline-flex items-center px-8 py-4 bg-white border-2 border-black text-black rounded-xl font-semibold hover:bg-black hover:text-white transition-all"
+                >
+                  Similar Project
+                </a>
+              )}
             </div>
 
             {/* Client Info */}
@@ -244,20 +316,20 @@ const ProjectShowcase = () => {
         {/* Portfolio Stats */}
         <div className="grid md:grid-cols-4 gap-6 text-center">
           <div className="p-6 bg-accent-lime rounded-2xl">
-            <div className="text-3xl md:text-4xl font-extrabold mb-2">15+</div>
+            <div className="text-3xl md:text-4xl font-extrabold mb-2">50+</div>
             <div className="text-black/70 font-semibold">Projects Completed</div>
           </div>
           <div className="p-6 bg-accent-lime rounded-2xl">
-            <div className="text-3xl md:text-4xl font-extrabold mb-2">100%</div>
+            <div className="text-3xl md:text-4xl font-extrabold mb-2">98%</div>
             <div className="text-black/70 font-semibold">Client Satisfaction</div>
           </div>
           <div className="p-6 bg-accent-lime rounded-2xl">
-            <div className="text-3xl md:text-4xl font-extrabold mb-2">5+</div>
+            <div className="text-3xl md:text-4xl font-extrabold mb-2">10+</div>
             <div className="text-black/70 font-semibold">Years Experience</div>
           </div>
           <div className="p-6 bg-accent-lime rounded-2xl">
-            <div className="text-3xl md:text-4xl font-extrabold mb-2">24/7</div>
-            <div className="text-black/70 font-semibold">Support Available</div>
+            <div className="text-3xl md:text-4xl font-extrabold mb-2">25+</div>
+            <div className="text-black/70 font-semibold">Countries Served</div>
           </div>
         </div>
       </div>

@@ -101,8 +101,11 @@ const ClientTestimonials = () => {
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
+          <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-bold mb-6">
+            💬 TESTIMONIALS
+          </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Client Testimonials</h2>
-          <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+          <p className="text-gray-600 max-w-2xl mx-auto font-medium">
             Don't just take my word for it. Here's what clients say about working with me 
             and the results we've achieved together.
           </p>
@@ -238,20 +241,20 @@ const ClientTestimonials = () => {
           </div>
           
           <div className="grid md:grid-cols-4 gap-8 text-center">
-            <div className="bg-white rounded-2xl p-6 shadow-md">
-              <div className="text-4xl font-extrabold mb-2">5.0</div>
+            <div className="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition-shadow">
+              <div className="text-4xl font-extrabold mb-2 text-black">5.0</div>
               <div className="text-sm text-gray-600 font-bold">Average Rating</div>
             </div>
-            <div className="bg-white rounded-2xl p-6 shadow-md">
-              <div className="text-4xl font-extrabold mb-2">100%</div>
+            <div className="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition-shadow">
+              <div className="text-4xl font-extrabold mb-2 text-black">98%</div>
               <div className="text-sm text-gray-600 font-bold">On-Time Delivery</div>
             </div>
-            <div className="bg-white rounded-2xl p-6 shadow-md">
-              <div className="text-4xl font-extrabold mb-2">95%</div>
+            <div className="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition-shadow">
+              <div className="text-4xl font-extrabold mb-2 text-black">95%</div>
               <div className="text-sm text-gray-600 font-bold">Client Retention</div>
             </div>
-            <div className="bg-white rounded-2xl p-6 shadow-md">
-              <div className="text-4xl font-extrabold mb-2">12+</div>
+            <div className="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition-shadow">
+              <div className="text-4xl font-extrabold mb-2 text-black">35+</div>
               <div className="text-sm text-gray-600 font-bold">Happy Clients</div>
             </div>
           </div>
