@@ -76,31 +76,51 @@ export default function AboutPage() {
               <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
                 📖 MY JOURNEY
               </div>
-              <h2 className="text-4xl md:text-5xl font-extrabold mb-6">The Story Behind the Code</h2>
-              <p className="text-gray-600 max-w-3xl mx-auto font-medium">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight">
+                The Story Behind the Code
+              </h2>
+              <p className="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto font-medium">
                 From building my first website to delivering enterprise solutions for global brands
               </p>
             </div>
             
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
               {[
                 {
                   title: "The Beginning",
                   icon: "🌱",
                   year: "2015",
-                  content: "Started my journey in web development during college. Built my first e-commerce website and discovered my passion for creating digital solutions that solve real problems."
+                  highlight: "First E-commerce Site",
+                  content: "Started my journey in web development during college. Built my first e-commerce website and discovered my passion for creating digital solutions that solve real problems.",
+                  achievement: "Learned PHP, MySQL & JavaScript",
+                  bgColor: "bg-accent-lime",
+                  textColor: "text-black",
+                  badgeBg: "bg-black/15",
+                  borderColor: "border-black/10"
                 },
                 {
                   title: "Professional Growth",
                   icon: "🚀",
                   year: "2016-2020",
-                  content: "Worked with 30+ clients ranging from startups to established brands. Delivered 50+ projects including mobile apps, SaaS platforms, and enterprise systems."
+                  highlight: "50+ Projects Delivered",
+                  content: "Worked with 30+ clients ranging from startups to established brands. Delivered mobile apps, SaaS platforms, and enterprise systems across multiple industries.",
+                  achievement: "Mastered React, React Native & Node.js",
+                  bgColor: "bg-accent-orange",
+                  textColor: "text-white",
+                  badgeBg: "bg-white/20",
+                  borderColor: "border-white/10"
                 },
                 {
                   title: "Current Focus",
                   icon: "🎯",
                   year: "2021-Present",
-                  content: "Building innovative products like Gamify, TurfNations, and automotive ecosystems. Focused on React Native, Next.js, and scalable cloud architectures."
+                  highlight: "Building Products",
+                  content: "Building innovative products like Gamify, TurfNations, and automotive ecosystems. Focused on React Native, Next.js, and scalable cloud architectures.",
+                  achievement: "Leading full-stack development",
+                  bgColor: "bg-black",
+                  textColor: "text-white",
+                  badgeBg: "bg-accent-lime/20",
+                  borderColor: "border-accent-lime/20"
                 }
               ].map((story, i) => (
                 <motion.div
@@ -109,14 +129,35 @@ export default function AboutPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.1 }}
-                  className="bg-gray-50 rounded-3xl p-8 shadow-lg border-2 border-gray-100 hover:border-accent-lime transition-all group"
+                  className={`relative ${story.bgColor} rounded-3xl p-8 md:p-10 shadow-xl border-2 ${story.borderColor} hover:shadow-2xl hover:-translate-y-1 transition-all group`}
                 >
-                  <div className="text-5xl mb-4">{story.icon}</div>
-                  <div className="inline-block px-4 py-1.5 bg-accent-lime/20 text-black rounded-full text-xs font-extrabold mb-4">
-                    {story.year}
+                  {/* Timeline connector - hidden on mobile */}
+                  {i < 2 && (
+                    <div className="hidden md:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gray-300 group-hover:bg-accent-lime transition-colors z-10" />
+                  )}
+                  
+                  <div className="text-6xl mb-6 group-hover:scale-110 transition-transform">{story.icon}</div>
+                  
+                  <div className="flex flex-wrap items-center gap-3 mb-4">
+                    <div className={`px-4 py-1.5 ${story.badgeBg} ${story.textColor} rounded-full text-xs font-extrabold backdrop-blur-sm`}>
+                      {story.year}
+                    </div>
+                    <div className={`px-4 py-1.5 ${story.badgeBg} ${story.textColor} rounded-full text-xs font-bold backdrop-blur-sm`}>
+                      {story.highlight}
+                    </div>
                   </div>
-                  <h3 className="text-2xl font-extrabold mb-4">{story.title}</h3>
-                  <p className="text-gray-700 leading-relaxed font-medium">{story.content}</p>
+                  
+                  <h3 className={`text-2xl md:text-3xl font-extrabold mb-4 ${story.textColor}`}>{story.title}</h3>
+                  <p className={`${story.textColor} ${story.textColor === 'text-white' ? 'opacity-90' : 'opacity-80'} text-base md:text-lg leading-relaxed font-medium mb-4`}>
+                    {story.content}
+                  </p>
+                  
+                  <div className={`pt-4 border-t-2 ${story.borderColor}`}>
+                    <div className={`flex items-center gap-2 ${story.textColor === 'text-white' ? 'text-accent-lime' : 'text-black'}`}>
+                      <span className="text-lg">✓</span>
+                      <span className="text-sm font-bold">{story.achievement}</span>
+                    </div>
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -203,7 +244,7 @@ export default function AboutPage() {
       </section>
 
       {/* Values Section */}
-      <section className="px-4 md:px-6 lg:px-8 py-20 bg-gray-50">
+      <section className="px-4 md:px-6 lg:px-8 py-24 md:py-32 bg-white">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -211,7 +252,7 @@ export default function AboutPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="text-center mb-16">
+            <div className="text-center mb-16 md:mb-20">
               <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
                 💎 CORE VALUES
               </div>
@@ -229,25 +270,57 @@ export default function AboutPage() {
                   icon: Heart,
                   emoji: "❤️",
                   title: "Passion for Craft",
-                  content: "I love what I do. Every project is an opportunity to create something meaningful that can make a real difference in people's lives and businesses."
+                  subtitle: "Love What I Do",
+                  content: "Every project is an opportunity to create something meaningful that makes a real difference. I bring enthusiasm and dedication to every line of code, every design decision, and every user interaction.",
+                  highlight: "10+ years of passionate coding",
+                  bgColor: "bg-accent-lime",
+                  textColor: "text-black",
+                  iconBg: "bg-black",
+                  iconText: "text-accent-lime",
+                  subtitleColor: "text-black/70",
+                  borderColor: "border-black/10"
                 },
                 {
                   icon: Award,
                   emoji: "🏆",
                   title: "Excellence Always",
-                  content: "Quality is non-negotiable. I take pride in delivering work that exceeds expectations, follows best practices, and stands the test of time."
+                  subtitle: "No Compromise on Quality",
+                  content: "Quality is non-negotiable. I take pride in delivering work that exceeds expectations, follows industry best practices, and stands the test of time through maintainable, scalable architecture.",
+                  highlight: "98% client satisfaction rate",
+                  bgColor: "bg-accent-orange",
+                  textColor: "text-white",
+                  iconBg: "bg-white",
+                  iconText: "text-accent-orange",
+                  subtitleColor: "text-white/80",
+                  borderColor: "border-white/10"
                 },
                 {
                   icon: Sparkles,
                   emoji: "✨",
                   title: "Innovation First",
-                  content: "I embrace cutting-edge technologies and modern approaches, always looking for better ways to solve problems and deliver exceptional value."
+                  subtitle: "Stay Ahead of the Curve",
+                  content: "I embrace cutting-edge technologies and modern approaches. Constantly learning and experimenting with new tools to deliver exceptional value and future-proof solutions.",
+                  highlight: "Early adopter of React Native & Next.js",
+                  bgColor: "bg-black",
+                  textColor: "text-white",
+                  iconBg: "bg-accent-lime",
+                  iconText: "text-black",
+                  subtitleColor: "text-accent-lime/90",
+                  borderColor: "border-accent-lime/20"
                 },
                 {
                   icon: Target,
                   emoji: "🎯",
                   title: "Results That Matter",
-                  content: "Success isn't just about shipping features - it's about creating solutions that drive real business results, growth, and user satisfaction."
+                  subtitle: "Business Impact Focus",
+                  content: "Success isn't just about shipping features - it's about creating solutions that drive measurable business results, revenue growth, and genuine user satisfaction.",
+                  highlight: "50+ successful project launches",
+                  bgColor: "bg-gray-900",
+                  textColor: "text-white",
+                  iconBg: "bg-accent-orange",
+                  iconText: "text-white",
+                  subtitleColor: "text-accent-orange/90",
+                  borderColor: "border-accent-orange/20"
                 }
               ].map((value, i) => (
                 <motion.div
@@ -256,19 +329,26 @@ export default function AboutPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.1 }}
-                  className="bg-white rounded-3xl p-8 md:p-10 shadow-xl border-2 border-gray-200 hover:border-accent-lime transition-all group hover:shadow-2xl hover:-translate-y-1"
+                  className={`${value.bgColor} rounded-3xl p-8 md:p-10 lg:p-12 shadow-xl border-2 ${value.borderColor} hover:shadow-2xl hover:-translate-y-1 transition-all group`}
                 >
-                  <div className="flex items-start gap-4 mb-6">
-                    <div className="bg-accent-lime w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                      <span className="text-3xl">{value.emoji}</span>
+                  <div className="flex items-start gap-6 mb-6">
+                    <div className={`${value.iconBg} w-20 h-20 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform`}>
+                      <span className={`text-4xl ${value.iconText}`}>{value.emoji}</span>
                     </div>
                     <div className="flex-1 pt-2">
-                      <h3 className="text-2xl md:text-3xl font-extrabold text-black">{value.title}</h3>
+                      <h3 className={`text-2xl md:text-3xl font-extrabold ${value.textColor} mb-2`}>{value.title}</h3>
+                      <p className={`${value.subtitleColor} text-sm font-bold`}>{value.subtitle}</p>
                     </div>
                   </div>
-                  <p className="text-gray-700 text-base md:text-lg leading-relaxed font-medium">
+                  <p className={`${value.textColor} ${value.textColor === 'text-white' ? 'opacity-90' : 'opacity-80'} text-base md:text-lg leading-relaxed font-medium mb-6`}>
                     {value.content}
                   </p>
+                  <div className={`pt-4 border-t-2 ${value.borderColor}`}>
+                    <div className="flex items-center gap-2">
+                      <div className={`w-2 h-2 ${value.textColor === 'text-white' ? 'bg-accent-lime' : 'bg-black'} rounded-full`} />
+                      <span className={`text-sm font-bold ${value.textColor}`}>{value.highlight}</span>
+                    </div>
+                  </div>
                 </motion.div>
               ))}
             </div>
