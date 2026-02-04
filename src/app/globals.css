@@ -22,23 +22,23 @@
   .bg-accent-lime {
     background-color: var(--accent-lime);
   }
-  
+
   .text-accent-lime {
     color: var(--accent-lime);
   }
-  
+
   .border-accent-lime {
     border-color: var(--accent-lime);
   }
-  
+
   .bg-accent-orange {
     background-color: var(--accent-orange);
   }
-  
+
   .text-accent-orange {
     color: var(--accent-orange);
   }
-  
+
   .border-accent-orange {
     border-color: var(--accent-orange);
   }
@@ -47,7 +47,7 @@
   .shadow-lime-glow {
     box-shadow: 0 8px 25px rgba(204, 255, 0, 0.3);
   }
-  
+
   .shadow-orange-glow {
     box-shadow: 0 8px 25px rgba(255, 140, 66, 0.2);
   }
@@ -116,7 +116,7 @@
   .hero-title {
     font-size: clamp(40px, 10vw, 60px);
   }
-  
+
   .section-header {
     font-size: clamp(28px, 6vw, 36px);
   }

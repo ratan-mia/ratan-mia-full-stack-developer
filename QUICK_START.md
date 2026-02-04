@@ -3,18 +3,21 @@
 ## 🚀 Immediate Implementation (5 Minutes)
 
 ### Step 1: Update Your Projects Section
+
 Replace the old Projects component with the new minimal design:
 
 **File:** `src/app/page.tsx`
 
 Change this line:
+
 ```tsx
-import Projects from '@/components/home/Projects';
+import Projects from "@/components/home/Projects";
 ```
 
 To:
+
 ```tsx
-import Projects from '@/components/home/ProjectsNew';
+import Projects from "@/components/home/ProjectsNew";
 ```
 
 That's it! Your projects section now uses the new minimal design with all 14 projects.
@@ -26,22 +29,26 @@ That's it! Your projects section now uses the new minimal design with all 14 pro
 ### ✅ New Files Created:
 
 1. **`src/app/data/portfolio-data.js`**
+
    - Complete database of all 14 projects
    - Includes: Gamify, Chery App, TurfNations, Matchlyzer, and 10 more
    - Rich metadata: technologies, features, impact metrics, images
 
 2. **`src/app/components/home/ProjectsNew.jsx`**
+
    - Clean, minimal Projects component
    - Black background + lime accent
    - Category filtering
    - Responsive grid layout
 
 3. **`src/app/components/case-studies/CaseStudyDetail.jsx`**
+
    - Full project showcase page template
    - Use for individual project pages
    - Includes: hero, tech stack, features, impact, gallery
 
 4. **`design guideliens/minimal_global_css_final.css`**
+
    - Production-ready minimal CSS
    - Can replace your current globals.css if needed
 
@@ -55,12 +62,14 @@ That's it! Your projects section now uses the new minimal design with all 14 pro
 ## 🎨 Design Changes Applied
 
 ### Color Palette:
+
 - **Primary**: Black background (#000)
 - **Text**: White (#FFF)
 - **Accent**: Lime (#CCFF00) - for highlights and CTAs
 - **Secondary**: Orange (#FF8C42) - for project cards
 
 ### Typography:
+
 - All using your minimal design guidelines
 - `.hero-title` - 60-80px
 - `.section-header` - 32-48px
@@ -69,6 +78,7 @@ That's it! Your projects section now uses the new minimal design with all 14 pro
 - `.caption-text` - 14px
 
 ### Components:
+
 - Rounded corners: 12-16px
 - Smooth transitions: 300ms
 - Hover glow effects with lime shadow
@@ -79,11 +89,13 @@ That's it! Your projects section now uses the new minimal design with all 14 pro
 ## 📊 Your Project Portfolio
 
 ### Featured Projects (3):
+
 1. **Gamify (PieQR)** - QR Loyalty Platform
 2. **Chery Bangladesh App** - Automotive Ecosystem
 3. **TurfNations** - Sports Booking Platform
 
 ### Client Projects (11):
+
 - Matchlyzer (Chrome Extension)
 - Chery Websites (Next.js, Shopify)
 - MotoJP Headless Commerce
@@ -91,6 +103,7 @@ That's it! Your projects section now uses the new minimal design with all 14 pro
 - ELF Projects (3 projects)
 
 ### By Category:
+
 - Mobile Apps: 2
 - E-commerce: 6
 - SaaS Products: 2
@@ -112,6 +125,7 @@ This removes all unnecessary styles and keeps only what's needed.
 ## 🎯 Test Your Changes
 
 1. Start your dev server:
+
 ```bash
 npm run dev
 ```
@@ -151,23 +165,23 @@ Add a new object to the `PORTFOLIO_PROJECTS` array:
   images: ['/images/projects/your-project/1.jpg'],
   description: 'Detailed description...',
   shortDescription: 'Brief one-liner...',
-  
+
   technologies: {
     frontend: ['React', 'Next.js'],
     backend: ['Node.js', 'PostgreSQL'],
     features: ['Real-time', 'Authentication'],
   },
-  
+
   features: [
     'Feature 1',
     'Feature 2',
   ],
-  
+
   impact: [
     '50% increase in conversions',
     '10x faster load times',
   ],
-  
+
   liveUrl: 'https://project-url.com',
 }
 ```
@@ -177,15 +191,18 @@ Add a new object to the `PORTFOLIO_PROJECTS` array:
 ## 🎨 Customization Guide
 
 ### Change Accent Color:
+
 **File:** `src/app/globals.css`
+
 ```css
 :root {
-  --accent-lime: #ccff00;  /* Change this */
+  --accent-lime: #ccff00; /* Change this */
   --accent-orange: #ff8c42; /* And this */
 }
 ```
 
 ### Adjust Typography:
+
 ```css
 .hero-title {
   font-size: clamp(60px, 8vw, 80px); /* Adjust sizes */
@@ -193,6 +210,7 @@ Add a new object to the `PORTFOLIO_PROJECTS` array:
 ```
 
 ### Modify Hover Effects:
+
 ```css
 .shadow-lime-glow {
   box-shadow: 0 8px 25px rgba(204, 255, 0, 0.3); /* Adjust glow */
@@ -204,6 +222,7 @@ Add a new object to the `PORTFOLIO_PROJECTS` array:
 ## 🔍 Component Structure
 
 ### ProjectsNew Component Flow:
+
 1. Imports project data from `portfolio-data.js`
 2. Renders section header with overline
 3. Shows category filter buttons
@@ -218,6 +237,7 @@ Add a new object to the `PORTFOLIO_PROJECTS` array:
    - Hover effects with lime glow
 
 ### CaseStudyDetail Component Sections:
+
 1. Hero (title, client, year, CTA buttons)
 2. Technology Stack (organized by category)
 3. Key Features (grid with check icons)
@@ -243,15 +263,18 @@ Add a new object to the `PORTFOLIO_PROJECTS` array:
 ## 🐛 Troubleshooting
 
 ### Images not showing?
+
 - Check file paths in `portfolio-data.js`
 - Ensure images exist in `public/images/projects/`
 - Use lowercase filenames without spaces
 
 ### Component not rendering?
+
 - Clear `.next` cache: `rm -rf .next`
 - Restart dev server: `npm run dev`
 
 ### Styling issues?
+
 - Ensure Tailwind is configured properly
 - Check that globals.css is imported in layout.tsx
 - Verify custom CSS classes are defined
@@ -261,6 +284,7 @@ Add a new object to the `PORTFOLIO_PROJECTS` array:
 ## 📚 Learn More
 
 See `PORTFOLIO_IMPROVEMENT_SUMMARY.md` for:
+
 - Complete documentation
 - Design system details
 - Advanced customization
@@ -276,6 +300,6 @@ Your portfolio now features:
 ✅ Minimal black design with lime accent  
 ✅ Responsive, modern layout  
 ✅ Easy to maintain and extend  
-✅ Professional presentation  
+✅ Professional presentation
 
 Enjoy your improved portfolio! 🚀

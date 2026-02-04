@@ -1,9 +1,9 @@
 'use client';
 
+import { PORTFOLIO_PROJECTS, PROJECT_CATEGORIES, getFeaturedProjects } from '@/data/portfolio-data';
 import { motion, useInView } from 'framer-motion';
 import { ArrowRight, ExternalLink } from 'lucide-react';
 import { useRef, useState } from 'react';
-import { PORTFOLIO_PROJECTS, PROJECT_CATEGORIES, getFeaturedProjects } from '@/data/portfolio-data';
 
 /**
  * Projects Component - Minimal Design

@@ -140,14 +140,14 @@ const PROJECTS_DATA = [
   },
   {
     id: 12,
-    title: 'Japan Parts Headless',
+    title: 'Shopify Headless for Japan Parts Ltd.',
     category: 'E-commerce',
     year: '2024',
     client: 'Marketplace',
     image: '/images/projects/japan-parts-headless.png',
     technologies: ['React.js', 'Node.js', 'Headless CMS', 'API'],
     description: 'Headless commerce solution for Japan Auto Parts with improved performance and SEO.',
-    liveUrl: 'https://japanpartsbd.vercel.app/',
+    liveUrl: 'https://japanparts.com.bd/',
     icon: ShoppingCart,
   },
 ];

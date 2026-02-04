@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { ArrowLeft, Calendar, Check, ExternalLink, Globe, Users } from 'lucide-react';
+import { ArrowLeft, Check, ExternalLink, Globe } from 'lucide-react';
 import { useRef } from 'react';
 
 /**
