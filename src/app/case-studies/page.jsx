@@ -1,62 +1,64 @@
 import Contact from '@/components/home/Contact';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export const metadata = {
   title: 'Case Studies - Ratan Mia | In-Depth Project Analysis',
-  description: 'Explore detailed case studies of web development projects. Learn about challenges faced, solutions implemented, and results achieved.',
-  keywords: 'case studies, project analysis, web development projects, problem solving, React projects, Laravel development',
+  description: 'Explore detailed case studies of mobile and web development projects. Real solutions for automotive, sports booking, and loyalty platforms.',
+  keywords: 'case studies, mobile app development, React Native, booking platform, loyalty system, automotive app',
 };
 
 const caseStudies = [
   {
     id: 1,
-    title: "E-commerce Platform Transformation",
-    client: "TechMart Solutions",
-    category: "E-commerce",
+    title: "Chery Bangladesh Mobile App",
+    client: "Chery Bangladesh",
+    category: "Automotive",
     duration: "4 months",
-    technologies: ["Next.js", "Node.js", "PostgreSQL", "Stripe", "AWS"],
-    challenge: "Legacy e-commerce platform with poor performance and user experience",
-    solution: "Complete rebuild using modern stack with focus on performance and UX",
+    technologies: ["React Native", "Expo", "Supabase", "SSL Commerz"],
+    challenge: "Traditional dealerships lacked digital presence for vehicle browsing, test drives, and service bookings",
+    solution: "Comprehensive mobile app with vehicle showroom, test drive booking, service management, and parts e-commerce",
     results: {
-      performance: "85% faster page load times",
-      conversion: "40% increase in conversion rate",
-      sales: "$2M additional revenue in first year"
+      bookings: "300% increase",
+      users: "50K+ downloads",
+      rating: "4.8/5 stars"
     },
-    image: "/case-studies/ecommerce-transformation.jpg",
-    slug: "ecommerce-platform-transformation"
+    image: "/images/projects/cherybd-mockup.png",
+    slug: "chery-bangladesh"
   },
   {
     id: 2,
-    title: "SaaS Dashboard Redesign",
-    client: "DataFlow Analytics",
-    category: "SaaS",
+    title: "TurfNations Booking Platform",
+    client: "TurfNations",
+    category: "Sports & Recreation",
     duration: "3 months",
-    technologies: ["React", "Laravel", "MySQL", "Chart.js", "Docker"],
-    challenge: "Complex data visualization with poor user interface and slow performance",
-    solution: "Redesigned dashboard with optimized data fetching and intuitive UI",
+    technologies: ["React Native", "Next.js", "Prisma", "SSL Commerz"],
+    challenge: "Sports venues needed real-time booking system with dynamic pricing and payment integration",
+    solution: "Complete booking platform with 30-day calendar, availability management, and owner dashboard",
     results: {
-      performance: "70% reduction in data load times",
-      satisfaction: "95% user satisfaction score",
-      engagement: "60% increase in daily active users"
+      bookings: "5K+ processed",
+      users: "2.5K+ active",
+      success: "95% payment rate"
     },
-    image: "/case-studies/saas-dashboard.jpg",
-    slug: "saas-dashboard-redesign"
+    image: "/images/projects/turflet/www.turflet.app.png",
+    slug: "turfnations-booking"
   },
   {
     id: 3,
-    title: "Real Estate Portal Development",
-    client: "PropertyHub Pro",
-    category: "Real Estate",
-    duration: "5 months",
-    technologies: ["Next.js", "Laravel", "MySQL", "MapBox", "AWS S3"],
-    challenge: "Build a comprehensive real estate platform from scratch",
-    solution: "Full-featured platform with advanced search, virtual tours, and agent tools",
+    title: "Gamify Loyalty Platform",
+    client: "FMCG & Automotive Brands",
+    category: "Loyalty & Engagement",
+    duration: "2.5 months",
+    technologies: ["React Native", "Supabase", "QR Scanner", "Gamification"],
+    challenge: "Brands needed engaging loyalty system with fraud prevention and prize management",
+    solution: "QR-based platform with interactive games, digital wallet, and comprehensive redemption system",
     results: {
-      listings: "50,000+ properties listed",
-      users: "10,000+ registered users",
-      growth: "300% month-over-month growth"
+      users: "8K+ active",
+      scans: "50K+ QR codes",
+      games: "25K+ played"
     },
-    image: "/case-studies/real-estate-portal.jpg",
-    slug: "real-estate-portal-development"
+    image: "/images/projects/pieqr/screenshots/home-screen.jpg",
+    slug: "gamify"
   }
 ];
 
@@ -201,12 +203,15 @@ export default function CaseStudiesPage() {
                       </div>
                     </div>
 
-                    <button className="inline-flex items-center px-8 py-4 bg-black text-accent-lime rounded-xl font-bold hover:shadow-lg transition-all hover:scale-105">
+                    <Link 
+                      href={`/case-studies/${study.slug}`}
+                      className="inline-flex items-center px-8 py-4 bg-black text-accent-lime rounded-xl font-bold hover:shadow-lg transition-all hover:scale-105"
+                    >
                       View Full Case Study
                       <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
-                    </button>
+                    </Link>
                   </div>
                 </div>
 
@@ -214,15 +219,13 @@ export default function CaseStudiesPage() {
                 <div className={index % 2 === 1 ? 'lg:col-start-1' : ''}>
                   <div className="relative">
                     <div className="aspect-video bg-gray-100 rounded-3xl shadow-2xl overflow-hidden border border-gray-200">
-                      <div className="absolute inset-0 bg-gradient-to-br from-accent-lime/20 to-accent-orange/20 flex items-center justify-center">
-                        <div className="text-black text-center">
-                          <div className="text-6xl mb-4">
-                            {study.category === 'E-commerce' ? '🛒' :
-                             study.category === 'SaaS' ? '📊' : '🏠'}
-                          </div>
-                          <div className="text-lg font-bold px-4">{study.title}</div>
-                        </div>
-                      </div>
+                      <Image
+                        src={study.image}
+                        alt={study.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                      />
                     </div>
                     
                     {/* Floating checkmark */}
