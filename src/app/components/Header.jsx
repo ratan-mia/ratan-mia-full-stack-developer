@@ -1,20 +1,41 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import { Download, Menu, X } from 'lucide-react';
+import { Download, Menu, X, ChevronDown } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [showCaseStudiesDropdown, setShowCaseStudiesDropdown] = useState(false);
+  const [showMobileCaseStudies, setShowMobileCaseStudies] = useState(false);
 
   const navigationItems = [
     { name: 'HOME', href: '#home' },
     { name: 'ABOUT', href: '#about' },
     { name: 'SERVICES', href: '#services' },
     { name: 'PORTFOLIO', href: '#projects' },
+    { name: 'CASE STUDIES', href: '#', hasDropdown: true },
     { name: 'CONTACT', href: '#contact' }
+  ];
+
+  const caseStudies = [
+    { 
+      name: 'Gamify (PieQR)', 
+      href: '/case-studies/gamify',
+      description: 'QR Loyalty & Engagement Platform'
+    },
+    { 
+      name: 'Chery Bangladesh App', 
+      href: '/case-studies/chery-bangladesh-app',
+      description: 'Full-stack Automotive Platform'
+    },
+    { 
+      name: 'TurfNations', 
+      href: '/case-studies/turfnations',
+      description: 'Sports Venue Booking Platform'
+    }
   ];
 
   // Enhanced scroll detection with section tracking
@@ -63,8 +84,13 @@ const Header = () => {
           behavior: 'smooth' 
         });
       }
+    } else if (href.startsWith('/')) {
+      // Navigate to internal page
+      window.location.href = href;
     }
     setIsMenuOpen(false);
+    setShowCaseStudiesDropdown(false);
+    setShowMobileCaseStudies(false);
   };
   
   const handleDownloadCV = () => {
@@ -141,6 +167,61 @@ const Header = () => {
             <div className="hidden lg:flex items-center gap-8 xl:gap-12">
               {navigationItems.map((item) => {
                 const isActive = activeSection === item.href.slice(1);
+                
+                if (item.hasDropdown) {
+                  return (
+                    <div 
+                      key={item.name}
+                      className="relative"
+                      onMouseEnter={() => setShowCaseStudiesDropdown(true)}
+                      onMouseLeave={() => setShowCaseStudiesDropdown(false)}
+                    >
+                      <motion.button
+                        className={`${getNavTextStyle()} transition-all duration-300 font-semibold text-sm tracking-wider relative group flex items-center gap-1`}
+                        whileHover={{ y: -2 }}
+                        whileTap={{ y: 0 }}
+                      >
+                        {item.name}
+                        <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${showCaseStudiesDropdown ? 'rotate-180' : ''}`} />
+                        <motion.span 
+                          className="absolute bottom-[-6px] left-0 h-0.5 bg-accent-lime transition-all duration-300 w-0 group-hover:w-full"
+                        />
+                      </motion.button>
+                      
+                      {/* Dropdown Menu */}
+                      <AnimatePresence>
+                        {showCaseStudiesDropdown && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 10 }}
+                            transition={{ duration: 0.2 }}
+                            className="absolute top-full mt-2 left-0 w-80 bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden"
+                          >
+                            {caseStudies.map((study, index) => (
+                              <motion.a
+                                key={study.name}
+                                href={study.href}
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: index * 0.05 }}
+                                className="block px-6 py-4 hover:bg-gray-50 transition-colors duration-200 border-b border-gray-100 last:border-b-0 group"
+                              >
+                                <div className="font-semibold text-black group-hover:text-accent-lime transition-colors text-sm mb-1">
+                                  {study.name}
+                                </div>
+                                <div className="text-xs text-gray-600">
+                                  {study.description}
+                                </div>
+                              </motion.a>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  );
+                }
+                
                 return (
                   <motion.button
                     key={item.name}
@@ -234,23 +315,77 @@ const Header = () => {
                 transition={{ duration: 0.5, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
               >
                 {/* Mobile Navigation */}
-                {navigationItems.map((item, index) => (
-                  <motion.button
-                    key={item.name}
-                    onClick={() => handleNavigation(item.href)}
-                    className="text-3xl lg:text-4xl font-bold text-gray-300 hover:text-accent-lime transition-all duration-300 text-center w-full relative group"
-                    initial={{ opacity: 0, x: -50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.3 + index * 0.1 }}
-                    whileHover={{ scale: 1.05, x: 10 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <span className="relative">
-                      {item.name}
-                      <span className="absolute bottom-0 left-0 w-0 h-1 bg-accent-lime group-hover:w-full transition-all duration-300"></span>
-                    </span>
-                  </motion.button>
-                ))}
+                {navigationItems.map((item, index) => {
+                  if (item.hasDropdown) {
+                    return (
+                      <div key={item.name} className="w-full">
+                        <motion.button
+                          onClick={() => setShowMobileCaseStudies(!showMobileCaseStudies)}
+                          className="text-3xl lg:text-4xl font-bold text-gray-300 hover:text-accent-lime transition-all duration-300 text-center w-full relative group flex items-center justify-center gap-2"
+                          initial={{ opacity: 0, x: -50 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.3 + index * 0.1 }}
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <span className="relative">
+                            {item.name}
+                            <span className="absolute bottom-0 left-0 w-0 h-1 bg-accent-lime group-hover:w-full transition-all duration-300"></span>
+                          </span>
+                          <ChevronDown className={`w-6 h-6 transition-transform duration-300 ${showMobileCaseStudies ? 'rotate-180' : ''}`} />
+                        </motion.button>
+                        
+                        <AnimatePresence>
+                          {showMobileCaseStudies && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: 'auto' }}
+                              exit={{ opacity: 0, height: 0 }}
+                              className="mt-4 space-y-3 overflow-hidden"
+                            >
+                              {caseStudies.map((study, studyIndex) => (
+                                <motion.a
+                                  key={study.name}
+                                  href={study.href}
+                                  initial={{ opacity: 0, x: -20 }}
+                                  animate={{ opacity: 1, x: 0 }}
+                                  transition={{ delay: studyIndex * 0.1 }}
+                                  className="block px-6 py-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-gray-700"
+                                  onClick={() => setIsMenuOpen(false)}
+                                >
+                                  <div className="text-lg font-semibold text-white mb-1">
+                                    {study.name}
+                                  </div>
+                                  <div className="text-sm text-gray-400">
+                                    {study.description}
+                                  </div>
+                                </motion.a>
+                              ))}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    );
+                  }
+                  
+                  return (
+                    <motion.button
+                      key={item.name}
+                      onClick={() => handleNavigation(item.href)}
+                      className="text-3xl lg:text-4xl font-bold text-gray-300 hover:text-accent-lime transition-all duration-300 text-center w-full relative group"
+                      initial={{ opacity: 0, x: -50 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.3 + index * 0.1 }}
+                      whileHover={{ scale: 1.05, x: 10 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <span className="relative">
+                        {item.name}
+                        <span className="absolute bottom-0 left-0 w-0 h-1 bg-accent-lime group-hover:w-full transition-all duration-300"></span>
+                      </span>
+                    </motion.button>
+                  );
+                })}
                 
                 {/* Mobile Action Buttons */}
                 <motion.div 
