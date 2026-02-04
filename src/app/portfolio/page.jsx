@@ -104,7 +104,6 @@ export default function PortfolioPage() {
         <ProjectShowcase />
         <ProjectFilters />
         <TechStack />
-        <ProjectStats />
         <ClientTestimonials />
         <Contact />
       </div>

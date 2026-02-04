@@ -63,8 +63,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Story Section */}
-      <section className="px-4 md:px-6 lg:px-8 py-20 bg-white">
+      {/* Story Section - My Journey */}
+      <section className="px-4 md:px-6 lg:px-8 py-24 md:py-32 bg-white">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -165,8 +165,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Featured Projects Showcase */}
-      <section className="px-4 md:px-6 lg:px-8 py-20 bg-gray-50">
+      {/* Values Section - What Drives Me */}
+      <section className="px-4 md:px-6 lg:px-8 py-24 md:py-32 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -243,7 +243,10 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Values Section */}
+      {/* Skills Section */}
+      <Skills />
+
+      {/* Featured Projects Showcase */}
       <section className="px-4 md:px-6 lg:px-8 py-24 md:py-32 bg-white">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -355,9 +358,6 @@ export default function AboutPage() {
           </motion.div>
         </div>
       </section>
-
-      {/* Skills Section */}
-      <Skills />
 
       {/* Training Certificates */}
       <TrainingCertificates />
