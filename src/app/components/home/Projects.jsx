@@ -8,6 +8,42 @@ import { useEffect, useRef, useState } from 'react';
 const PROJECTS_DATA = [
   {
     id: 1,
+    title: 'Gamify (PieQR)',
+    category: 'SaaS Product',
+    year: '2024',
+    client: 'FMCG & Automotive Brands',
+    image: '/images/projects/pieqr/screenshots/gamify-thumb.png',
+    technologies: ['React Native', 'Node.js', 'PostgreSQL', 'QR Engine'],
+    description: 'Complete engagement engine for FMCG, oil companies, automotive parts with QR-based loyalty, gamification, and fraud detection.',
+    liveUrl: '#',
+    icon: Smartphone,
+  },
+  {
+    id: 2,
+    title: 'Chery Bangladesh Mobile App',
+    category: 'Mobile App',
+    year: '2024',
+    client: 'Chery Bangladesh',
+    image: '/images/projects/cherymobileapp/02-home-screen.jpg',
+    technologies: ['React Native', 'Expo', 'Supabase', 'TypeScript'],
+    description: 'Full-stack automotive platform with test drive booking, service scheduling, e-commerce, and complete vehicle ecosystem.',
+    liveUrl: '#',
+    icon: Smartphone,
+  },
+  {
+    id: 3,
+    title: 'TurfNations',
+    category: 'SaaS Product',
+    year: '2024',
+    client: 'Sports Venues',
+    image: '/images/projects/turflet/www.turflet.app.png',
+    technologies: ['React Native', 'Next.js', 'Prisma', 'PostgreSQL'],
+    description: 'Complete booking platform for sports grounds with real-time availability, dynamic pricing, and SSL Commerce payment integration.',
+    liveUrl: 'https://www.turflet.app',
+    icon: Smartphone,
+  },
+  {
+    id: 4,
     title: 'Matchlyzer',
     category: 'Chrome Extension',
     year: '2024',
@@ -19,7 +55,7 @@ const PROJECTS_DATA = [
     icon: Chrome,
   },
   {
-    id: 2,
+    id: 5,
     title: 'Elf BD',
     category: 'Mobile App',
     year: '2023',
@@ -31,7 +67,7 @@ const PROJECTS_DATA = [
     icon: Smartphone,
   },
   {
-    id: 3,
+    id: 6,
     title: 'Chery Bangladesh',
     category: 'E-commerce',
     year: '2023',
@@ -43,7 +79,7 @@ const PROJECTS_DATA = [
     icon: ShoppingCart,
   },
   {
-    id: 4,
+    id: 7,
     title: 'ELF International',
     category: 'Corporate',
     year: '2022',
@@ -55,7 +91,7 @@ const PROJECTS_DATA = [
     icon: Globe,
   },
   {
-    id: 5,
+    id: 8,
     title: 'Japan Auto Parts',
     category: 'E-commerce',
     year: '2021',
@@ -67,7 +103,7 @@ const PROJECTS_DATA = [
     icon: ShoppingCart,
   },
   {
-    id: 6,
+    id: 9,
     title: 'ELF APL',
     category: 'Web App',
     year: '2021',
@@ -79,7 +115,7 @@ const PROJECTS_DATA = [
     icon: Globe,
   },
   {
-    id: 7,
+    id: 10,
     title: 'MotoJP Shopify',
     category: 'E-commerce',
     year: '2023',
@@ -91,7 +127,7 @@ const PROJECTS_DATA = [
     icon: ShoppingCart,
   },
   {
-    id: 8,
+    id: 11,
     title: 'Chery Bangladesh Next.js',
     category: 'E-commerce',
     year: '2024',
@@ -103,7 +139,7 @@ const PROJECTS_DATA = [
     icon: ShoppingCart,
   },
   {
-    id: 9,
+    id: 12,
     title: 'Japan Parts Headless',
     category: 'E-commerce',
     year: '2024',
@@ -260,7 +296,7 @@ const Projects = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  const categories = ['all', 'Chrome Extension', 'Mobile App', 'E-commerce', 'Corporate', 'Web App'];
+  const categories = ['all', 'SaaS Product', 'Chrome Extension', 'Mobile App', 'E-commerce', 'Corporate', 'Web App'];
 
   const filteredProjects = filter === 'all'
     ? PROJECTS_DATA
