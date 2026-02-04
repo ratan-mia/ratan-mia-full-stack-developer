@@ -242,62 +242,81 @@ const featuredResources = [
 
 export default function ResourcesPage() {
   return (
-    <main className="bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-blue-900 text-slate-900 dark:text-slate-100 overflow-hidden">
+    <main className="bg-white text-black overflow-hidden">
       
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-4">
-        <div className="max-w-6xl mx-auto text-center">
-          <div className="inline-block px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium mb-6">
-            🎁 Free Resources
+      {/* Hero Section - Following Design Guidelines */}
+      <section className="relative min-h-screen w-full overflow-hidden bg-accent-lime">
+        {/* Decorative elements - desktop only */}
+        <div className="absolute inset-0 z-10 pointer-events-none hidden lg:block">
+          <div className="absolute top-20 right-20 w-32 h-32 rounded-full bg-black/5 animate-pulse" />
+          <div className="absolute bottom-40 left-20 w-24 h-24 rounded-2xl bg-black/5 animate-pulse" style={{ animationDelay: '1s' }} />
+        </div>
+
+        {/* Main content */}
+        <div className="relative z-20 min-h-screen flex items-center">
+          <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-32 w-full">
+            {/* Badge */}
+            <div className="inline-block px-6 py-2 bg-black/15 text-black rounded-full text-sm font-bold mb-6">
+              🎁 FREE RESOURCES
+            </div>
+
+            {/* Hero Title */}
+            <h1 className="hero-title text-black mb-6">
+              Developer Resources
+            </h1>
+            
+            {/* Description */}
+            <p className="body-text text-black/80 mb-12 max-w-3xl text-xl md:text-2xl">
+              Free tools, templates, and guides to accelerate your web development journey. 
+              Everything I use and recommend for building modern applications.
+            </p>
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-slate-900 via-blue-800 to-slate-900 dark:from-slate-100 dark:via-blue-300 dark:to-slate-100 bg-clip-text text-transparent">
-            Developer Resources
-          </h1>
-          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            Free tools, templates, and guides to accelerate your web development journey. 
-            Everything I use and recommend for building modern applications.
-          </p>
         </div>
       </section>
 
       {/* Featured Resources */}
-      <section className="px-4 pb-20">
+      <section className="px-4 md:px-6 lg:px-8 py-20">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Featured Resources</h2>
+          <div className="text-center mb-12">
+            <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-bold mb-6">
+              ⭐ FEATURED
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold">Featured Resources</h2>
+          </div>
           <div className="grid md:grid-cols-3 gap-8">
             {featuredResources.map((resource, index) => (
               <div
                 key={index}
-                className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-200 dark:border-slate-700 group"
+                className="bg-accent-lime text-black rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 group"
               >
                 <div className="text-6xl mb-4 text-center">{resource.image}</div>
-                <h3 className="text-xl font-bold mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                <h3 className="text-2xl font-bold mb-3">
                   {resource.title}
                 </h3>
-                <p className="text-slate-600 dark:text-slate-300 mb-4">
+                <p className="text-black/80 mb-6">
                   {resource.description}
                 </p>
                 
                 <div className="space-y-2 mb-6">
                   {resource.items.map((item, idx) => (
                     <div key={idx} className="flex items-center text-sm">
-                      <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                      <span className="text-slate-600 dark:text-slate-300">{item}</span>
+                      <div className="w-1.5 h-1.5 bg-black/40 rounded-full mr-2"></div>
+                      <span className="text-black/80 font-medium">{item}</span>
                     </div>
                   ))}
                 </div>
 
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-6 p-3 bg-black/10 rounded-xl">
                   <div className="flex items-center">
-                    <span className="text-yellow-500">⭐</span>
-                    <span className="text-sm font-medium ml-1">{resource.rating}</span>
+                    <span className="text-yellow-500 mr-1">⭐</span>
+                    <span className="text-sm font-bold">{resource.rating}</span>
                   </div>
-                  <div className="text-sm text-slate-500">
+                  <div className="text-sm font-bold text-black/70">
                     {resource.downloads} downloads
                   </div>
                 </div>
 
-                <button className="w-full px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium">
+                <button className="w-full px-6 py-4 bg-black text-accent-lime rounded-xl font-bold hover:shadow-lg transition-all hover:scale-105">
                   Download Free
                 </button>
               </div>
@@ -307,47 +326,47 @@ export default function ResourcesPage() {
       </section>
 
       {/* Resource Categories */}
-      <section className="px-4 pb-20">
+      <section className="px-4 md:px-6 lg:px-8 py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto">
-          <div className="space-y-16">
+          <div className="space-y-20">
             {resourceCategories.map((category, categoryIndex) => (
               <div key={categoryIndex}>
                 <div className="flex items-center mb-8">
-                  <span className="text-4xl mr-4">{category.icon}</span>
-                  <h2 className="text-3xl font-bold">{category.title}</h2>
+                  <span className="text-5xl mr-4">{category.icon}</span>
+                  <h2 className="text-3xl md:text-4xl font-bold">{category.title}</h2>
                 </div>
                 
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {category.items.map((item, index) => (
                     <div
                       key={index}
-                      className="bg-white dark:bg-slate-800 rounded-xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 group"
+                      className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 hover:border-accent-lime/50 group"
                     >
                       <div className="flex items-start justify-between mb-3">
-                        <h3 className="font-bold text-lg group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                        <h3 className="font-bold text-lg group-hover:text-accent-lime transition-colors flex-1">
                           {item.name}
                         </h3>
-                        <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded text-xs font-medium">
+                        <span className="px-3 py-1 bg-accent-lime/20 text-black rounded-lg text-xs font-bold flex-shrink-0 ml-2">
                           {item.type}
                         </span>
                       </div>
                       
-                      <p className="text-slate-600 dark:text-slate-300 text-sm mb-4 leading-relaxed">
+                      <p className="text-gray-600 text-sm mb-4 leading-relaxed">
                         {item.description}
                       </p>
                       
-                      <div className="flex flex-wrap gap-1 mb-4">
+                      <div className="flex flex-wrap gap-2 mb-4">
                         {item.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded text-xs"
+                            className="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs font-medium"
                           >
                             {tag}
                           </span>
                         ))}
                       </div>
                       
-                      <button className="w-full px-4 py-2 bg-slate-100 dark:bg-slate-700 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 rounded-lg transition-all duration-300 text-sm font-medium">
+                      <button className="w-full px-4 py-3 bg-black text-accent-lime rounded-xl font-bold hover:shadow-lg transition-all hover:scale-105 text-sm">
                         {item.link.startsWith('http') ? 'Visit Resource' : 'Download'}
                       </button>
                     </div>
@@ -360,42 +379,45 @@ export default function ResourcesPage() {
       </section>
 
       {/* Newsletter Section */}
-      <section className="px-4 py-20 bg-slate-100 dark:bg-slate-800">
+      <section className="px-4 md:px-6 lg:px-8 py-20">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-6">Get New Resources First</h2>
-          <p className="text-slate-600 dark:text-slate-300 mb-8 text-lg">
+          <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-bold mb-6">
+            📬 NEWSLETTER
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">Get New Resources First</h2>
+          <p className="body-text text-gray-600 mb-8">
             Subscribe to get notified when I release new tools, templates, and resources.
           </p>
           <div className="max-w-md mx-auto mb-8">
-            <div className="flex">
+            <div className="flex flex-col sm:flex-row gap-3">
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-l-lg border border-slate-300 dark:border-slate-600 dark:bg-slate-700 focus:outline-none focus:border-blue-500"
+                className="flex-1 px-6 py-4 rounded-xl border-2 border-gray-200 focus:outline-none focus:border-accent-lime font-medium"
               />
-              <button className="px-6 py-3 bg-blue-600 text-white rounded-r-lg hover:bg-blue-700 transition-colors font-medium">
+              <button className="px-8 py-4 bg-black text-accent-lime rounded-xl font-bold hover:shadow-lg transition-all hover:scale-105">
                 Subscribe
               </button>
             </div>
           </div>
-          <p className="text-sm text-slate-500 dark:text-slate-400">
+          <p className="text-sm text-gray-500 font-medium">
             No spam, unsubscribe at any time. I respect your privacy.
           </p>
         </div>
       </section>
 
       {/* Contribution Section */}
-      <section className="px-4 py-20">
+      <section className="px-4 md:px-6 lg:px-8 py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-6">Contribute to the Community</h2>
-          <p className="text-slate-600 dark:text-slate-300 mb-8 text-lg">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">Contribute to the Community</h2>
+          <p className="body-text text-gray-600 mb-8">
             Have a useful resource to share? I'm always looking for great tools and templates to feature.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <button className="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium">
+            <button className="px-8 py-4 bg-accent-lime text-black rounded-xl font-bold hover:shadow-lg transition-all hover:scale-105">
               Submit Resource
             </button>
-            <button className="px-6 py-3 border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors font-medium">
+            <button className="px-8 py-4 bg-white border-2 border-black text-black rounded-xl font-semibold hover:bg-black hover:text-white transition-all">
               Suggest Improvement
             </button>
           </div>

@@ -73,81 +73,91 @@ const categories = ["All", "React", "Next.js", "Laravel", "Database", "CSS", "AP
 
 export default function BlogPage() {
   return (
-    <main className="bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-blue-900 text-slate-900 dark:text-slate-100 overflow-hidden">
+    <main className="bg-white text-black overflow-hidden">
       
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-4">
-        <div className="max-w-6xl mx-auto text-center">
-          <div className="inline-block px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium mb-6">
-            💡 Knowledge Sharing
-          </div>
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-slate-900 via-blue-800 to-slate-900 dark:from-slate-100 dark:via-blue-300 dark:to-slate-100 bg-clip-text text-transparent">
-            Tech Blog & Insights
-          </h1>
-          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            Sharing my experiences, insights, and knowledge from building modern web applications. 
-            Learn from real-world development challenges and solutions.
-          </p>
+      {/* Hero Section - Following Design Guidelines */}
+      <section className="relative min-h-screen w-full overflow-hidden bg-accent-lime">
+        {/* Decorative elements - desktop only */}
+        <div className="absolute inset-0 z-10 pointer-events-none hidden lg:block">
+          <div className="absolute top-20 right-20 w-32 h-32 rounded-full bg-black/5 animate-pulse" />
+          <div className="absolute bottom-40 left-20 w-24 h-24 rounded-2xl bg-black/5 animate-pulse" style={{ animationDelay: '1s' }} />
         </div>
-      </section>
 
-      {/* Filter Section */}
-      <section className="px-4 mb-12">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-wrap justify-center gap-3 mb-8">
-            {categories.map((category) => (
-              <button
-                key={category}
-                className="px-4 py-2 rounded-full border border-slate-300 dark:border-slate-600 hover:bg-blue-600 hover:text-white hover:border-blue-600 dark:hover:bg-blue-500 transition-all duration-300 text-sm font-medium"
-              >
-                {category}
-              </button>
-            ))}
+        {/* Main content */}
+        <div className="relative z-20 min-h-screen flex items-center">
+          <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-32 w-full">
+            {/* Badge */}
+            <div className="inline-block px-6 py-2 bg-black/15 text-black rounded-full text-sm font-bold mb-6">
+              💡 KNOWLEDGE SHARING
+            </div>
+
+            {/* Hero Title */}
+            <h1 className="hero-title text-black mb-6">
+              Tech Blog & Insights
+            </h1>
+            
+            {/* Description */}
+            <p className="body-text text-black/80 mb-12 max-w-3xl text-xl md:text-2xl">
+              Sharing my experiences, insights, and knowledge from building modern web applications. 
+              Learn from real-world development challenges and solutions.
+            </p>
+
+            {/* Filter Section */}
+            <div className="flex flex-wrap gap-3 mb-8 max-w-3xl">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  className="px-4 py-2 bg-black/15 text-black text-sm font-semibold rounded-lg hover:bg-black/25 transition-all"
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Blog Posts Grid */}
-      <section className="px-4 pb-20">
+      <section className="px-4 md:px-6 lg:px-8 py-20">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {blogPosts.map((post) => (
               <article
                 key={post.id}
-                className="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group border border-slate-200 dark:border-slate-700"
+                className="bg-white rounded-3xl overflow-hidden border border-gray-200 hover:border-accent-lime/50 hover:shadow-xl transition-all duration-300 group"
               >
                 {/* Image */}
-                <div className="relative h-48 bg-gradient-to-br from-blue-500 to-purple-600 overflow-hidden">
-                  <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                    <div className="text-white text-center">
-                      <div className="text-3xl mb-2">📝</div>
-                      <div className="text-sm opacity-90">{post.category}</div>
+                <div className="relative h-48 bg-accent-lime overflow-hidden">
+                  <div className="absolute inset-0 bg-black/10 flex items-center justify-center">
+                    <div className="text-black text-center">
+                      <div className="text-4xl mb-2">📝</div>
+                      <div className="text-sm font-bold">{post.category}</div>
                     </div>
                   </div>
                 </div>
 
                 {/* Content */}
                 <div className="p-6">
-                  <div className="flex items-center text-sm text-slate-500 dark:text-slate-400 mb-3">
+                  <div className="flex items-center text-sm text-gray-600 mb-3 font-medium">
                     <span>{new Date(post.date).toLocaleDateString()}</span>
                     <span className="mx-2">•</span>
                     <span>{post.readTime}</span>
                   </div>
                   
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2">
+                  <h3 className="text-xl font-bold mb-3 group-hover:text-accent-lime transition-colors line-clamp-2">
                     {post.title}
                   </h3>
                   
-                  <p className="text-slate-600 dark:text-slate-300 mb-4 line-clamp-3">
+                  <p className="text-gray-600 mb-4 line-clamp-3 leading-relaxed">
                     {post.excerpt}
                   </p>
                   
                   <div className="flex items-center justify-between">
-                    <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-xs font-medium">
+                    <span className="px-4 py-2 bg-accent-lime/20 text-black rounded-lg text-xs font-bold">
                       {post.category}
                     </span>
                     
-                    <button className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium text-sm flex items-center">
+                    <button className="text-black font-bold text-sm flex items-center hover:gap-2 transition-all">
                       Read More
                       <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -161,7 +171,7 @@ export default function BlogPage() {
 
           {/* Load More Button */}
           <div className="text-center mt-12">
-            <button className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full hover:shadow-lg transition-all duration-300 font-medium">
+            <button className="px-8 py-4 bg-accent-lime text-black rounded-xl font-bold hover:shadow-lg transition-all hover:scale-105">
               Load More Articles
             </button>
           </div>
@@ -169,19 +179,22 @@ export default function BlogPage() {
       </section>
 
       {/* Newsletter Subscription */}
-      <section className="px-4 py-20 bg-slate-100 dark:bg-slate-800">
+      <section className="px-4 md:px-6 lg:px-8 py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
-          <p className="text-slate-600 dark:text-slate-300 mb-8">
+          <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-bold mb-6">
+            📬 NEWSLETTER
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Stay Updated</h2>
+          <p className="body-text text-gray-600 mb-8">
             Subscribe to get notified about new articles and development insights.
           </p>
-          <div className="flex max-w-md mx-auto">
+          <div className="flex flex-col sm:flex-row max-w-md mx-auto gap-3">
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 px-4 py-3 rounded-l-lg border border-slate-300 dark:border-slate-600 dark:bg-slate-700 focus:outline-none focus:border-blue-500"
+              className="flex-1 px-6 py-4 rounded-xl border-2 border-gray-200 focus:outline-none focus:border-accent-lime font-medium"
             />
-            <button className="px-6 py-3 bg-blue-600 text-white rounded-r-lg hover:bg-blue-700 transition-colors">
+            <button className="px-8 py-4 bg-black text-accent-lime rounded-xl font-bold hover:shadow-lg transition-all hover:scale-105">
               Subscribe
             </button>
           </div>
