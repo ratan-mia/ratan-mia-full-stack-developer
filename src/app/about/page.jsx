@@ -1,10 +1,9 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { Award, Code, Users, Target, TrendingUp, Heart, Zap, Globe } from 'lucide-react';
 import Skills from '@/app/components/home/Skills';
 import TrainingCertificates from '@/app/components/home/TrainingCertificates';
-import Contact from '@/app/components/home/Contact';
+import { motion } from 'framer-motion';
+import { Award, Code, Globe, Heart, Target, TrendingUp, Users, Zap } from 'lucide-react';
 
 export default function AboutPage() {
   return (
