@@ -162,14 +162,25 @@ export default function TufLetCaseStudy() {
             </div>
           </div>
 
-          <div className="bg-white p-10 rounded-3xl shadow-lg border-2 border-gray-100">
-            <h2 className="text-4xl font-extrabold mb-6">Project Overview</h2>
-            <p className="text-lg text-gray-700 leading-relaxed mb-6 font-medium">
-              TufLet is a revolutionary booking platform designed to connect sports enthusiasts with turf owners. The platform needed to handle real-time availability checks, prevent double bookings, integrate secure payment processing, and provide comprehensive management tools for turf owners.
-            </p>
-            <p className="text-lg text-gray-700 leading-relaxed font-medium">
-              The solution includes a mobile app for players to browse and book turfs, a web-based admin panel for owners to manage their facilities, and a robust backend system that handles complex booking logic, payment processing, and analytics.
-            </p>
+          <div className="grid lg:grid-cols-2 gap-8">
+            <div className="bg-white p-10 rounded-3xl shadow-lg border-2 border-gray-100">
+              <h2 className="text-4xl font-extrabold mb-6">Project Overview</h2>
+              <p className="text-lg text-gray-700 leading-relaxed mb-6 font-medium">
+                TufLet is a revolutionary booking platform designed to connect sports enthusiasts with turf owners. The platform needed to handle real-time availability checks, prevent double bookings, integrate secure payment processing, and provide comprehensive management tools for turf owners.
+              </p>
+              <p className="text-lg text-gray-700 leading-relaxed font-medium">
+                The solution includes a mobile app for players to browse and book turfs, a web-based admin panel for owners to manage their facilities, and a robust backend system that handles complex booking logic, payment processing, and analytics.
+              </p>
+            </div>
+            
+            <div className="relative h-96 rounded-3xl overflow-hidden shadow-2xl">
+              <Image
+                src="/images/projects/turflet/owner-dashboard and player -app.png"
+                alt="TufLet Platform Overview"
+                fill
+                className="object-contain bg-gray-100"
+              />
+            </div>
           </div>
             </div>
           </section>
@@ -184,33 +195,65 @@ export default function TufLetCaseStudy() {
             <h2 className="text-4xl md:text-5xl font-extrabold mb-6">Complex Requirements</h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-gray-50 p-8 rounded-3xl border-l-4 border-accent-lime">
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            <div className="bg-gray-50 p-8 rounded-3xl border-l-4 border-accent-lime hover:shadow-lg transition-all">
               <h3 className="text-2xl font-extrabold mb-4">Real-Time Availability</h3>
-              <p className="text-gray-700 leading-relaxed font-medium">
+              <p className="text-gray-700 leading-relaxed font-medium mb-4">
                 Needed to show accurate slot availability across 30-day calendar with instant updates to prevent double bookings and handle concurrent user requests.
               </p>
+              <div className="relative h-48 rounded-xl overflow-hidden">
+                <Image
+                  src="/images/projects/turflet/screenshots/06-booking-date-time.jpg"
+                  alt="Real-time booking calendar"
+                  fill
+                  className="object-cover"
+                />
+              </div>
             </div>
 
-            <div className="bg-gray-50 p-8 rounded-3xl border-l-4 border-accent-lime">
+            <div className="bg-gray-50 p-8 rounded-3xl border-l-4 border-accent-lime hover:shadow-lg transition-all">
               <h3 className="text-2xl font-extrabold mb-4">Payment Integration</h3>
-              <p className="text-gray-700 leading-relaxed font-medium">
+              <p className="text-gray-700 leading-relaxed font-medium mb-4">
                 Seamless SSL Commerz integration with multiple payment methods, auto-redirect after payment, and transaction validation with proper error handling.
               </p>
+              <div className="relative h-48 rounded-xl overflow-hidden">
+                <Image
+                  src="/images/projects/turflet/screenshots/07-booking-confirmation.jpg"
+                  alt="Payment integration"
+                  fill
+                  className="object-cover"
+                />
+              </div>
             </div>
 
-            <div className="bg-gray-50 p-8 rounded-3xl border-l-4 border-accent-lime">
+            <div className="bg-gray-50 p-8 rounded-3xl border-l-4 border-accent-lime hover:shadow-lg transition-all">
               <h3 className="text-2xl font-extrabold mb-4">Dynamic Pricing</h3>
-              <p className="text-gray-700 leading-relaxed font-medium">
+              <p className="text-gray-700 leading-relaxed font-medium mb-4">
                 Complex pricing logic with base rates, weekend surcharges, peak hour pricing, early bird discounts, and special promotional rates.
               </p>
+              <div className="relative h-48 rounded-xl overflow-hidden">
+                <Image
+                  src="/images/projects/turflet/screenshots/04-turf-details-champions.jpg"
+                  alt="Dynamic pricing display"
+                  fill
+                  className="object-cover"
+                />
+              </div>
             </div>
 
-            <div className="bg-gray-50 p-8 rounded-3xl border-l-4 border-accent-lime">
+            <div className="bg-gray-50 p-8 rounded-3xl border-l-4 border-accent-lime hover:shadow-lg transition-all">
               <h3 className="text-2xl font-extrabold mb-4">Multi-Role Dashboard</h3>
-              <p className="text-gray-700 leading-relaxed font-medium">
+              <p className="text-gray-700 leading-relaxed font-medium mb-4">
                 Separate interfaces for players, turf owners, and platform admins with role-based access control and feature permissions.
               </p>
+              <div className="relative h-48 rounded-xl overflow-hidden">
+                <Image
+                  src="/images/projects/turflet/owners-dashboard.png"
+                  alt="Multi-role dashboard"
+                  fill
+                  className="object-cover"
+                />
+              </div>
             </div>
           </div>
             </div>
@@ -230,7 +273,7 @@ export default function TufLetCaseStudy() {
               </div>
 
               <div className="grid md:grid-cols-2 gap-8 mb-12">
-                <div className="bg-white p-8 rounded-3xl shadow-lg border-2 border-gray-100">
+                <div className="bg-white p-8 rounded-3xl shadow-lg border-2 border-gray-100 hover:border-accent-lime/50 transition-all">
                   <div className="w-16 h-16 bg-accent-lime rounded-2xl flex items-center justify-center mb-6">
                     <Smartphone className="w-8 h-8 text-black" />
                   </div>
@@ -238,7 +281,7 @@ export default function TufLetCaseStudy() {
                   <p className="text-gray-700 leading-relaxed mb-4">
                     React Native mobile application for both players and turf owners with intuitive booking flow.
                   </p>
-                  <ul className="space-y-2">
+                  <ul className="space-y-2 mb-6">
                     <li className="flex items-start gap-2">
                       <Check className="w-5 h-5 text-accent-lime shrink-0 mt-0.5" />
                       <span className="text-sm text-gray-700">Real-time availability calendar</span>
@@ -252,9 +295,17 @@ export default function TufLetCaseStudy() {
                       <span className="text-sm text-gray-700">Push notifications for bookings</span>
                     </li>
                   </ul>
+                  <div className="relative h-64 rounded-xl overflow-hidden">
+                    <Image
+                      src="/images/projects/turflet/screenshots/03-home-search-turfs.jpg"
+                      alt="Mobile App Interface"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
                 </div>
 
-                <div className="bg-white p-8 rounded-3xl shadow-lg border-2 border-gray-100">
+                <div className="bg-white p-8 rounded-3xl shadow-lg border-2 border-gray-100 hover:border-accent-lime/50 transition-all">
                   <div className="w-16 h-16 bg-accent-lime rounded-2xl flex items-center justify-center mb-6">
                     <Monitor className="w-8 h-8 text-black" />
                   </div>
@@ -262,7 +313,7 @@ export default function TufLetCaseStudy() {
                   <p className="text-gray-700 leading-relaxed mb-4">
                     Next.js web dashboard for platform administrators with comprehensive management tools.
                   </p>
-                  <ul className="space-y-2">
+                  <ul className="space-y-2 mb-6">
                     <li className="flex items-start gap-2">
                       <Check className="w-5 h-5 text-accent-lime shrink-0 mt-0.5" />
                       <span className="text-sm text-gray-700">Analytics and revenue tracking</span>
@@ -276,6 +327,14 @@ export default function TufLetCaseStudy() {
                       <span className="text-sm text-gray-700">User and booking management</span>
                     </li>
                   </ul>
+                  <div className="relative h-64 rounded-xl overflow-hidden">
+                    <Image
+                      src="/images/projects/turflet/clients-revenue-details.png"
+                      alt="Admin Dashboard Interface"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
                 </div>
               </div>
 
@@ -327,33 +386,67 @@ export default function TufLetCaseStudy() {
                   </div>
                   Player Features
                 </h3>
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid md:grid-cols-2 gap-6 mb-8">
                   {[
                     {
                       icon: Calendar,
                       title: 'Real-Time Booking',
-                      description: '30-day calendar with hourly time slots, dynamic pricing, and instant confirmation'
+                      description: '30-day calendar with hourly time slots, dynamic pricing, and instant confirmation',
+                      image: '/images/projects/turflet/screenshots/06-booking-date-time.jpg'
                     },
                     {
                       icon: DollarSign,
                       title: 'Multiple Payment Options',
-                      description: 'SSL Commerz integration supporting cards, bKash, Nagad, and bank transfers'
+                      description: 'SSL Commerz integration supporting cards, bKash, Nagad, and bank transfers',
+                      image: '/images/projects/turflet/screenshots/07-booking-confirmation.jpg'
                     },
                     {
                       icon: Star,
                       title: 'Reviews & Ratings',
-                      description: '5-star rating system with photo uploads and verified booking badges'
+                      description: '5-star rating system with photo uploads and verified booking badges',
+                      image: '/images/projects/turflet/screenshots/05-turf-facilities-reviews.jpg'
                     },
                     {
                       icon: Award,
                       title: 'Loyalty Rewards',
-                      description: 'Tier-based system with points on every booking and exclusive discounts'
+                      description: 'Tier-based system with points on every booking and exclusive discounts',
+                      image: '/images/projects/turflet/screenshots/14-rewards-loyalty.jpg'
                     },
                   ].map((feature, idx) => (
-                    <div key={idx} className="bg-gray-50 p-6 rounded-2xl border-2 border-gray-100 hover:border-accent-lime/50 transition-all">
-                      <feature.icon className="w-8 h-8 text-accent-lime mb-4" />
-                      <h4 className="text-xl font-bold mb-2">{feature.title}</h4>
-                      <p className="text-gray-600 text-sm leading-relaxed">{feature.description}</p>
+                    <div key={idx} className="bg-white p-6 rounded-2xl shadow-lg border-2 border-gray-100 hover:border-accent-lime/50 hover:shadow-xl transition-all group">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-12 h-12 bg-accent-lime rounded-xl flex items-center justify-center shrink-0">
+                          <feature.icon className="w-6 h-6 text-black" />
+                        </div>
+                        <h4 className="text-xl font-bold group-hover:text-accent-lime transition-colors">{feature.title}</h4>
+                      </div>
+                      <p className="text-gray-600 text-sm leading-relaxed mb-4">{feature.description}</p>
+                      <div className="relative h-48 rounded-xl overflow-hidden">
+                        <Image
+                          src={feature.image}
+                          alt={feature.title}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                
+                {/* Player App Showcase */}
+                <div className="grid md:grid-cols-3 gap-4">
+                  {[
+                    { img: '08-my-bookings-list.jpg', title: 'My Bookings' },
+                    { img: '13-user-profile.jpg', title: 'User Profile' },
+                    { img: '15-points-history.jpg', title: 'Points History' },
+                  ].map((item, idx) => (
+                    <div key={idx} className="relative aspect-9/16 rounded-2xl overflow-hidden shadow-lg border-2 border-gray-100 hover:border-accent-lime transition-all">
+                      <Image
+                        src={`/images/projects/turflet/screenshots/${item.img}`}
+                        alt={item.title}
+                        fill
+                        className="object-cover"
+                      />
                     </div>
                   ))}
                 </div>
@@ -554,43 +647,72 @@ export default function TufLetCaseStudy() {
           {/* Results Section */}
           <section id="results" className="py-20 px-4 md:px-6 lg:px-8 bg-white">
             <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
-            <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
-              📊 RESULTS & METRICS
-            </div>
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-6">Outstanding Performance</h2>
-          </div>
+              <div className="text-center mb-16">
+                <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
+                  📊 RESULTS & METRICS
+                </div>
+                <h2 className="text-4xl md:text-5xl font-extrabold mb-6">Outstanding Performance</h2>
+              </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="bg-accent-lime p-8 rounded-3xl text-center shadow-lg">
-              <Calendar className="w-12 h-12 mx-auto mb-4 text-black" />
-              <div className="text-5xl font-extrabold mb-2">5K+</div>
-              <p className="text-black/80 font-bold">Bookings Processed</p>
-            </div>
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div className="bg-accent-lime p-8 rounded-3xl text-center shadow-lg hover:shadow-2xl hover:scale-105 transition-all">
+                  <Calendar className="w-12 h-12 mx-auto mb-4 text-black" />
+                  <div className="text-5xl font-extrabold mb-2">5K+</div>
+                  <p className="text-black/80 font-bold">Bookings Processed</p>
+                </div>
 
-            <div className="bg-accent-lime p-8 rounded-3xl text-center shadow-lg">
-              <Users className="w-12 h-12 mx-auto mb-4 text-black" />
-              <div className="text-5xl font-extrabold mb-2">2.5K+</div>
-              <p className="text-black/80 font-bold">Active Users</p>
-            </div>
+                <div className="bg-accent-lime p-8 rounded-3xl text-center shadow-lg hover:shadow-2xl hover:scale-105 transition-all">
+                  <Users className="w-12 h-12 mx-auto mb-4 text-black" />
+                  <div className="text-5xl font-extrabold mb-2">2.5K+</div>
+                  <p className="text-black/80 font-bold">Active Users</p>
+                </div>
 
-            <div className="bg-accent-lime p-8 rounded-3xl text-center shadow-lg">
-              <Award className="w-12 h-12 mx-auto mb-4 text-black" />
-              <div className="text-5xl font-extrabold mb-2">0%</div>
-              <p className="text-black/80 font-bold">Double Booking Rate</p>
-            </div>
+                <div className="bg-accent-lime p-8 rounded-3xl text-center shadow-lg hover:shadow-2xl hover:scale-105 transition-all">
+                  <Award className="w-12 h-12 mx-auto mb-4 text-black" />
+                  <div className="text-5xl font-extrabold mb-2">0%</div>
+                  <p className="text-black/80 font-bold">Double Booking Rate</p>
+                </div>
 
-            <div className="bg-accent-lime p-8 rounded-3xl text-center shadow-lg">
-              <Zap className="w-12 h-12 mx-auto mb-4 text-black" />
-              <div className="text-5xl font-extrabold mb-2">95%</div>
-              <p className="text-black/80 font-bold">Payment Success Rate</p>
-            </div>
-          </div>
-        </div>
-      </section>
+                <div className="bg-accent-lime p-8 rounded-3xl text-center shadow-lg hover:shadow-2xl hover:scale-105 transition-all">
+                  <Zap className="w-12 h-12 mx-auto mb-4 text-black" />
+                  <div className="text-5xl font-extrabold mb-2">95%</div>
+                  <p className="text-black/80 font-bold">Payment Success Rate</p>
+                </div>
+              </div>
 
-      {/* Business Impact Section */}
-      <section id="impact" className="py-20 px-4 md:px-6 lg:px-8 bg-gray-50">
+              {/* Visual Results Showcase */}
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="bg-gray-50 p-6 rounded-3xl border-2 border-gray-100">
+                  <h3 className="text-xl font-extrabold mb-4">Owner Analytics Dashboard</h3>
+                  <div className="relative h-64 rounded-xl overflow-hidden mb-4">
+                    <Image
+                      src="/images/projects/turflet/screenshots/20-owner-analytics.jpg"
+                      alt="Owner Analytics"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <p className="text-sm text-gray-600">Real-time analytics showing booking trends, revenue growth, and occupancy rates.</p>
+                </div>
+
+                <div className="bg-gray-50 p-6 rounded-3xl border-2 border-gray-100">
+                  <h3 className="text-xl font-extrabold mb-4">Revenue Tracking</h3>
+                  <div className="relative h-64 rounded-xl overflow-hidden mb-4">
+                    <Image
+                      src="/images/projects/turflet/screenshots/21-owner-revenue-details.jpg"
+                      alt="Revenue Details"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <p className="text-sm text-gray-600">Comprehensive revenue breakdown with transaction history and payout management.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Business Impact Section */}
+          <section id="impact" className="py-20 px-4 md:px-6 lg:px-8 bg-gray-50">
             <div className="max-w-5xl mx-auto">
               <div className="text-center mb-16">
                 <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
