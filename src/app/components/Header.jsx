@@ -114,24 +114,36 @@ const Header = () => {
     document.body.removeChild(link);
   };
 
-  // Always fully transparent header
+  // Header background based on scroll
   const getHeaderStyle = () => {
+    if (scrolled) {
+      return 'bg-black/95 backdrop-blur-lg shadow-lg shadow-black/20';
+    }
     return 'bg-transparent';
   };
 
   const getTextStyle = () => {
+    if (scrolled) {
+      return 'text-white';
+    }
     return (!scrolled && activeSection === 'home') 
       ? 'text-black' 
       : 'text-white';
   };
 
   const getLogoAccentStyle = () => {
+    if (scrolled) {
+      return 'text-accent-lime';
+    }
     return (!scrolled && activeSection === 'home') 
       ? 'text-black' 
       : 'text-accent-lime';
   };
 
   const getNavTextStyle = () => {
+    if (scrolled) {
+      return 'text-gray-300 hover:text-accent-lime';
+    }
     return (!scrolled && activeSection === 'home') 
       ? 'text-black/80 hover:text-black' 
       : 'text-gray-300 hover:text-accent-lime';
