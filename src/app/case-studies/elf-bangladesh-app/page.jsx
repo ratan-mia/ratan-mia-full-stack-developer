@@ -261,14 +261,14 @@ export default function ELFBangladeshCaseStudy() {
               <div className="text-center">
                 <div className="relative h-[600px] mb-4 rounded-3xl overflow-hidden shadow-xl border-4 border-gray-100">
                   <Image
-                    src="/images/projects/elf-mobile-store/08-category-selection.jpg"
-                    alt="Category Selection"
+                    src="/images/projects/elf-mobile-store/18-wishlist.jpg"
+                    alt="Wishlist"
                     fill
                     className="object-cover"
                   />
                 </div>
-                <h4 className="font-bold text-lg">Categories</h4>
-                <p className="text-gray-600 text-sm">Easy product navigation</p>
+                <h4 className="font-bold text-lg">Wishlist</h4>
+                <p className="text-gray-600 text-sm">Save favorite products</p>
               </div>
             </div>
           </div>
@@ -304,19 +304,19 @@ export default function ELFBangladeshCaseStudy() {
               <div className="text-center">
                 <div className="relative h-[600px] mb-4 rounded-3xl overflow-hidden shadow-xl border-4 border-gray-100">
                   <Image
-                    src="/images/projects/elf-mobile-store/27-favorites-screen.jpg"
-                    alt="Favorites"
+                    src="/images/projects/elf-mobile-store/21-my-wallet.jpg"
+                    alt="Digital Wallet"
                     fill
                     className="object-cover"
                   />
                 </div>
-                <h4 className="font-bold text-lg">Favorites</h4>
-                <p className="text-gray-600 text-sm">Save & track wishlist</p>
+                <h4 className="font-bold text-lg">Digital Wallet</h4>
+                <p className="text-gray-600 text-sm">Manage coins & balance</p>
               </div>
             </div>
           </div>
 
-          {/* Vehicle Management */}
+          {/* Vehicle & Services */}
           <div className="mb-16">
             <h3 className="text-2xl font-extrabold mb-8 text-center">Vehicle & Services</h3>
             <div className="grid md:grid-cols-3 gap-8">
@@ -335,26 +335,26 @@ export default function ELFBangladeshCaseStudy() {
               <div className="text-center">
                 <div className="relative h-[600px] mb-4 rounded-3xl overflow-hidden shadow-xl border-4 border-gray-100">
                   <Image
-                    src="/images/projects/elf-mobile-store/18-motorcycle-category.jpg"
-                    alt="Motorcycle Products"
+                    src="/images/projects/elf-mobile-store/12-elf-workshops.jpg"
+                    alt="ELF Workshops"
                     fill
                     className="object-cover"
                   />
                 </div>
-                <h4 className="font-bold text-lg">Motorcycle Products</h4>
-                <p className="text-gray-600 text-sm">Specialized bike solutions</p>
+                <h4 className="font-bold text-lg">Workshop Booking</h4>
+                <p className="text-gray-600 text-sm">Book service appointments</p>
               </div>
               <div className="text-center">
                 <div className="relative h-[600px] mb-4 rounded-3xl overflow-hidden shadow-xl border-4 border-gray-100">
                   <Image
-                    src="/images/projects/elf-mobile-store/26-onboarding-motorcycle-care.jpg"
-                    alt="Onboarding"
+                    src="/images/projects/elf-mobile-store/13-roadside-assistance.jpg"
+                    alt="Roadside Assistance"
                     fill
                     className="object-cover"
                   />
                 </div>
-                <h4 className="font-bold text-lg">Onboarding</h4>
-                <p className="text-gray-600 text-sm">Premium care introduction</p>
+                <h4 className="font-bold text-lg">Emergency Assistance</h4>
+                <p className="text-gray-600 text-sm">24/7 roadside support</p>
               </div>
             </div>
           </div>
@@ -364,10 +364,10 @@ export default function ELFBangladeshCaseStudy() {
             <h3 className="text-2xl font-extrabold mb-8 text-center">Additional Features</h3>
             <div className="grid md:grid-cols-4 gap-6">
               {[
-                { img: "04-search-input.jpg", title: "Search", desc: "Smart product search" },
-                { img: "09-filters-and-sorting.jpg", title: "Filters", desc: "Advanced filtering" },
-                { img: "13-promotional-banner.jpg", title: "Promotions", desc: "Special offers" },
-                { img: "23-notifications.jpg", title: "Notifications", desc: "Real-time alerts" },
+                { img: "04-qr-scan.jpg", title: "QR Scanner", desc: "Scan product QR codes" },
+                { img: "14-my-orders.jpg", title: "My Orders", desc: "Track order history" },
+                { img: "17-notifications.jpg", title: "Notifications", desc: "Real-time alerts" },
+                { img: "25-help-and-support.jpg", title: "Support", desc: "Help & assistance" },
               ].map((screen, index) => (
                 <div key={index} className="text-center">
                   <div className="relative h-[400px] mb-4 rounded-2xl overflow-hidden shadow-lg border-2 border-gray-100">

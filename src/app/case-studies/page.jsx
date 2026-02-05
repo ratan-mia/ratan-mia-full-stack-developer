@@ -99,10 +99,10 @@ const caseStudies = [
     technologies: ["React Native", "Expo 54", "TypeScript", "Supabase", "Redux Toolkit"],
     heroImage: "/images/projects/elf-mobile-store/02-products-listing.jpg",
     screenshots: [
-      "/images/projects/elf-mobile-store/03-product-detail-transmission-fluid.jpg",
       "/images/projects/elf-mobile-store/07-gamification-spin-wheel.jpg",
       "/images/projects/elf-mobile-store/11-rewards-catalog.jpg",
       "/images/projects/elf-mobile-store/15-my-vehicles.jpg",
+      "/images/projects/elf-mobile-store/12-elf-workshops.jpg",
     ],
     challenge: "ELF Bangladesh needed to transform traditional automotive product sales into an engaging digital ecosystem integrating e-commerce, loyalty programs, service bookings, and emergency assistance.",
     solution: "Built a comprehensive mobile app with 60+ screens combining product marketplace, gamification, workshop bookings, digital wallet, and multi-language support for complete customer lifecycle management.",
