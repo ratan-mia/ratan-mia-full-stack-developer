@@ -256,62 +256,15 @@ export default function TufLetCaseStudy() {
           {/* Challenge Section */}
           <section id="challenge" className="py-20 px-4 md:px-6 lg:px-8 bg-gray-50">
             <div className="max-w-7xl mx-auto">
-              <div className="text-center mb-16">
+              <div className="text-center mb-12">
                 <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
                   <Zap className="w-4 h-4" />
                   REQUIREMENTS & CHALLENGES
                 </div>
                 <h2 className="text-4xl md:text-5xl font-extrabold mb-6">Complex Requirements</h2>
-                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                  Building a real-time booking platform required solving several technical challenges.
+                <p className="text-lg text-gray-600 leading-relaxed max-w-4xl mx-auto">
+                  Building a real-time booking platform required solving several technical challenges including <span className="font-bold text-black">real-time availability management</span> with a 30-day calendar view that prevents double bookings and handles concurrent requests seamlessly. We integrated <span className="font-bold text-black">SSL Commerz payment gateway</span> to support multiple payment methods with secure transaction validation. The platform features a <span className="font-bold text-black">dynamic pricing engine</span> that adjusts rates based on peak hours, weekends, and promotional discounts. Additionally, we developed <span className="font-bold text-black">multi-role dashboards</span> with distinct interfaces for players, venue owners, and administrators, each optimized for their specific workflows and requirements.
                 </p>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-8">
-                {[
-                  {
-                    icon: Calendar,
-                    title: 'Real-Time Availability',
-                    description: 'Show accurate slot availability with instant updates.',
-                    points: ['30-day calendar view', 'Prevent double bookings', 'Handle concurrent requests']
-                  },
-                  {
-                    icon: DollarSign,
-                    title: 'Payment Integration',
-                    description: 'Seamless payment processing with multiple methods.',
-                    points: ['SSL Commerz gateway', 'Multiple payment options', 'Transaction validation']
-                  },
-                  {
-                    icon: BarChart,
-                    title: 'Dynamic Pricing',
-                    description: 'Flexible pricing engine with various rates.',
-                    points: ['Peak hour pricing', 'Weekend surcharges', 'Promotional discounts']
-                  },
-                  {
-                    icon: Users,
-                    title: 'Multi-Role Dashboard',
-                    description: 'Separate interfaces for different user types.',
-                    points: ['Player interface', 'Owner dashboard', 'Admin controls']
-                  },
-                ].map((challenge, idx) => (
-                  <div key={idx} className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all border-2 border-gray-100 hover:border-accent-lime/40">
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="w-12 h-12 bg-accent-lime/10 rounded-xl flex items-center justify-center shrink-0">
-                        <challenge.icon className="w-6 h-6 text-black" />
-                      </div>
-                      <h3 className="text-xl font-bold">{challenge.title}</h3>
-                    </div>
-                    <p className="text-gray-600 mb-4 text-sm">{challenge.description}</p>
-                    <ul className="space-y-2">
-                      {challenge.points.map((point, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
-                          <span className="text-accent-lime mt-1">•</span>
-                          <span>{point}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
               </div>
             </div>
           </section>
