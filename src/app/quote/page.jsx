@@ -21,14 +21,14 @@ export default function QuotePage() {
     <main className="bg-white overflow-hidden">
       {/* Hero Section */}
       <QuoteHeroSection />
-
+   {/* Supporting Content Sections */}
+      <WhyChooseMe />
       {/* Prominent Quote Form Section - Moved Early */}
       <div id="quote-form" className="bg-accent-lime">
         <GetQuote />
       </div>
 
-      {/* Supporting Content Sections */}
-      <WhyChooseMe />
+   
       <Services />
       <ProjectTypes />
       <ProcessHowIWork />

@@ -69,6 +69,8 @@ const QUICK_ACTIONS = [
 const INITIAL_FORM_DATA = {
   name: '',
   email: '',
+  phone: '',
+  subject: '',
   website: '',
   message: ''
 };
@@ -239,34 +241,33 @@ const MapSection = ({ isInView }) => (
 );
 
 // --- CONTACT FORM COMPONENT ---
-const ContactForm = ({ formData, handleChange, handleSubmit, isInView }) => (
+const ContactForm = ({ formData, handleChange, handleSubmit, isSubmitting, isInView }) => (
   <motion.div
-    className="text-black flex flex-col justify-center px-4 py-8 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20 sm:py-12 md:py-16 lg:py-20 relative"
+    className="text-black flex flex-col justify-center px-4 py-12 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20 sm:py-16 md:py-20 relative"
     variants={ANIMATION_VARIANTS.slideInRight}
     initial="hidden"
     animate={isInView ? "visible" : "hidden"}
     transition={{ delay: 0.2 }}
   >
-    {/* Header */}
-    <motion.h2
-      className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight leading-[1.1] mb-4 sm:mb-6"
+    {/* Modern Header with Badge */}
+    <motion.div
+      className="mb-10"
       variants={ANIMATION_VARIANTS.fadeUp}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       transition={{ delay: 0.3 }}
     >
-      Have Any Project on Your Mind?
-    </motion.h2>
-
-    <motion.p
-      className="text-base sm:text-lg lg:text-xl text-black/80 leading-relaxed mb-8 sm:mb-12 max-w-lg"
-      variants={ANIMATION_VARIANTS.fadeUp}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      transition={{ delay: 0.4 }}
-    >
-      Great! We're excited to hear from you and let's start something
-    </motion.p>
+      <div className="inline-block bg-black text-accent-lime px-6 py-3 rounded-full text-xs font-extrabold uppercase tracking-widest mb-6 shadow-lg">
+        ✉️ Get In Touch
+      </div>
+      <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-[1.1] mb-6">
+        Let's Create<br />
+        <span className="bg-clip-text text-transparent bg-gradient-to-r from-black to-gray-600">Something Amazing</span>
+      </h2>
+      <p className="text-lg sm:text-xl text-black/80 leading-relaxed max-w-xl font-medium">
+        Have a project in mind? Drop me a message and I'll get back to you within 24 hours. Let's turn your ideas into reality! 🚀
+      </p>
+    </motion.div>
 
     {/* Mobile Contact Info */}
     <motion.div
@@ -320,73 +321,212 @@ const ContactForm = ({ formData, handleChange, handleSubmit, isInView }) => (
       </div>
     </motion.div>
 
-    {/* Form */}
-    <div className="space-y-4 sm:space-y-6">
-      {/* Name and Email Row */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-        <FormInput
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          placeholder="Full name*"
-          isInView={isInView}
-          delay={0.5}
-        />
-        
-        <FormInput
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          placeholder="Email address*"
-          isInView={isInView}
-          delay={0.6}
-        />
-      </div>
+    {/* Enhanced Form Card */}
+    <motion.div
+      className="bg-white border-2 border-black/10 rounded-3xl p-8 lg:p-10 shadow-2xl hover:shadow-3xl transition-shadow duration-500"
+      variants={ANIMATION_VARIANTS.fadeUp}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      transition={{ delay: 0.45 }}
+    >
+      <form onSubmit={handleSubmit} className="space-y-8">
+        {/* Name and Email Row - Modern Floating Labels */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <motion.div
+            className="relative"
+            variants={ANIMATION_VARIANTS.fadeUp}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            transition={{ delay: 0.5 }}
+          >
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              className="peer w-full px-6 py-5 bg-gray-50 border-2 border-gray-200 rounded-2xl text-black placeholder-transparent focus:outline-none focus:border-black focus:bg-white transition-all duration-300 text-lg font-medium"
+              placeholder="Full name"
+              id="name"
+            />
+            <label
+              htmlFor="name"
+              className="absolute left-6 -top-3 bg-white px-2 text-sm font-bold text-black/70 peer-placeholder-shown:text-lg peer-placeholder-shown:text-black/50 peer-placeholder-shown:top-5 peer-placeholder-shown:bg-transparent peer-focus:-top-3 peer-focus:text-sm peer-focus:text-black peer-focus:bg-white transition-all duration-300"
+            >
+              Full Name *
+            </label>
+          </motion.div>
+          
+          <motion.div
+            className="relative"
+            variants={ANIMATION_VARIANTS.fadeUp}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            transition={{ delay: 0.55 }}
+          >
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              className="peer w-full px-6 py-5 bg-gray-50 border-2 border-gray-200 rounded-2xl text-black placeholder-transparent focus:outline-none focus:border-black focus:bg-white transition-all duration-300 text-lg font-medium"
+              placeholder="Email address"
+              id="email"
+            />
+            <label
+              htmlFor="email"
+              className="absolute left-6 -top-3 bg-white px-2 text-sm font-bold text-black/70 peer-placeholder-shown:text-lg peer-placeholder-shown:text-black/50 peer-placeholder-shown:top-5 peer-placeholder-shown:bg-transparent peer-focus:-top-3 peer-focus:text-sm peer-focus:text-black peer-focus:bg-white transition-all duration-300"
+            >
+              Email Address *
+            </label>
+          </motion.div>
+        </div>
 
-      {/* Website Link */}
-      <FormInput
-        type="url"
-        name="website"
-        value={formData.website}
-        onChange={handleChange}
-        placeholder="Website link"
-        isInView={isInView}
-        delay={0.7}
-      />
+        {/* Phone and Subject Row */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <motion.div
+            className="relative"
+            variants={ANIMATION_VARIANTS.fadeUp}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            transition={{ delay: 0.6 }}
+          >
+            <input
+              type="tel"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              className="peer w-full px-6 py-5 bg-gray-50 border-2 border-gray-200 rounded-2xl text-black placeholder-transparent focus:outline-none focus:border-black focus:bg-white transition-all duration-300 text-lg font-medium"
+              placeholder="Phone number"
+              id="phone"
+            />
+            <label
+              htmlFor="phone"
+              className="absolute left-6 -top-3 bg-white px-2 text-sm font-bold text-black/70 peer-placeholder-shown:text-lg peer-placeholder-shown:text-black/50 peer-placeholder-shown:top-5 peer-placeholder-shown:bg-transparent peer-focus:-top-3 peer-focus:text-sm peer-focus:text-black peer-focus:bg-white transition-all duration-300"
+            >
+              Phone Number (optional)
+            </label>
+          </motion.div>
+          
+          <motion.div
+            className="relative"
+            variants={ANIMATION_VARIANTS.fadeUp}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            transition={{ delay: 0.65 }}
+          >
+            <input
+              type="text"
+              name="subject"
+              value={formData.subject}
+              onChange={handleChange}
+              required
+              className="peer w-full px-6 py-5 bg-gray-50 border-2 border-gray-200 rounded-2xl text-black placeholder-transparent focus:outline-none focus:border-black focus:bg-white transition-all duration-300 text-lg font-medium"
+              placeholder="Subject"
+              id="subject"
+            />
+            <label
+              htmlFor="subject"
+              className="absolute left-6 -top-3 bg-white px-2 text-sm font-bold text-black/70 peer-placeholder-shown:text-lg peer-placeholder-shown:text-black/50 peer-placeholder-shown:top-5 peer-placeholder-shown:bg-transparent peer-focus:-top-3 peer-focus:text-sm peer-focus:text-black peer-focus:bg-white transition-all duration-300"
+            >
+              Subject *
+            </label>
+          </motion.div>
+        </div>
 
-      {/* Message */}
-      <FormInput
-        type="textarea"
-        name="message"
-        value={formData.message}
-        onChange={handleChange}
-        placeholder="How Can We Help You*"
-        rows={4}
-        isInView={isInView}
-        delay={0.8}
-      />
-
-      {/* Submit Button */}
-      <motion.div
-        variants={ANIMATION_VARIANTS.fadeUp}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-        transition={{ delay: 0.9 }}
-      >
-        <motion.button
-          type="button"
-          onClick={handleSubmit}
-          className="bg-black text-accent-lime px-6 sm:px-8 py-3 sm:py-4 rounded-none font-semibold text-base sm:text-lg hover:bg-black/90 transition-colors inline-flex items-center gap-2 sm:gap-3 mt-6 sm:mt-8 uppercase tracking-wider focus:outline-none focus:ring-2 focus:ring-black/20 w-full sm:w-auto justify-center sm:justify-start"
-          whileHover={{ x: 5 }}
-          whileTap={{ scale: 0.98 }}
+        {/* Website Link */}
+        <motion.div
+          className="relative"
+          variants={ANIMATION_VARIANTS.fadeUp}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          transition={{ delay: 0.7 }}
         >
-          <span>Send Message</span>
-          <Send className="w-4 h-4 sm:w-5 sm:h-5" />
-        </motion.button>
-      </motion.div>
-    </div>
+          <input
+            type="url"
+            name="website"
+            value={formData.website}
+            onChange={handleChange}
+            className="peer w-full px-6 py-5 bg-gray-50 border-2 border-gray-200 rounded-2xl text-black placeholder-transparent focus:outline-none focus:border-black focus:bg-white transition-all duration-300 text-lg font-medium"
+            placeholder="Website link"
+            id="website"
+          />
+          <label
+            htmlFor="website"
+            className="absolute left-6 -top-3 bg-white px-2 text-sm font-bold text-black/70 peer-placeholder-shown:text-lg peer-placeholder-shown:text-black/50 peer-placeholder-shown:top-5 peer-placeholder-shown:bg-transparent peer-focus:-top-3 peer-focus:text-sm peer-focus:text-black peer-focus:bg-white transition-all duration-300"
+          >
+            Website (optional)
+          </label>
+        </motion.div>
+
+        {/* Message Textarea */}
+        <motion.div
+          className="relative"
+          variants={ANIMATION_VARIANTS.fadeUp}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          transition={{ delay: 0.75 }}
+        >
+          <textarea
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            required
+            rows={6}
+            className="peer w-full px-6 py-5 bg-gray-50 border-2 border-gray-200 rounded-2xl text-black placeholder-transparent focus:outline-none focus:border-black focus:bg-white transition-all duration-300 resize-none text-lg font-medium"
+            placeholder="Your message"
+            id="message"
+          />
+          <label
+            htmlFor="message"
+            className="absolute left-6 -top-3 bg-white px-2 text-sm font-bold text-black/70 peer-placeholder-shown:text-lg peer-placeholder-shown:text-black/50 peer-placeholder-shown:top-5 peer-placeholder-shown:bg-transparent peer-focus:-top-3 peer-focus:text-sm peer-focus:text-black peer-focus:bg-white transition-all duration-300"
+          >
+            Your Message *
+          </label>
+        </motion.div>
+
+        {/* Premium Submit Button */}
+        <motion.div
+          variants={ANIMATION_VARIANTS.fadeUp}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          transition={{ delay: 0.8 }}
+        >
+          <motion.button
+            type="submit"
+            disabled={isSubmitting}
+            className="group relative w-full bg-black text-accent-lime px-10 py-6 rounded-2xl font-extrabold text-lg hover:bg-black/90 transition-all duration-300 inline-flex items-center justify-center gap-4 uppercase tracking-wider focus:outline-none focus:ring-4 focus:ring-black/20 shadow-2xl hover:shadow-black/30 border-3 border-black disabled:opacity-60 disabled:cursor-not-allowed overflow-hidden"
+            whileHover={!isSubmitting ? { scale: 1.02, y: -3 } : {}}
+            whileTap={!isSubmitting ? { scale: 0.98 } : {}}
+          >
+            <span className="absolute inset-0 bg-accent-lime opacity-0 group-hover:opacity-10 transition-opacity duration-300"></span>
+            {isSubmitting ? (
+              <>
+                <div className="w-6 h-6 border-3 border-accent-lime border-t-transparent rounded-full animate-spin"></div>
+                <span className="relative z-10">Sending Your Message...</span>
+              </>
+            ) : (
+              <>
+                <span className="relative z-10">Send Message</span>
+                <Send className="w-6 h-6 relative z-10 group-hover:translate-x-1 transition-transform" />
+              </>
+            )}
+          </motion.button>
+        </motion.div>
+
+        {/* Form Footer Note */}
+        <motion.p
+          className="text-center text-sm text-black/60 mt-6"
+          variants={ANIMATION_VARIANTS.fadeUp}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          transition={{ delay: 0.85 }}
+        >
+          🔒 Your information is secure and will never be shared. I'll respond within 24 hours.
+        </motion.p>
+      </form>
+    </motion.div>
   </motion.div>
 );
 
@@ -395,21 +535,39 @@ const Contact = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, threshold: 0.1 });
   const [formData, setFormData] = useState(INITIAL_FORM_DATA);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = useCallback(async () => {
+  const handleSubmit = useCallback(async (e) => {
+    e.preventDefault();
+    
     // Basic form validation
     if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      alert('Please fill in all required fields');
       return;
     }
 
+    setIsSubmitting(true);
+
     try {
-      // Handle form submission
-      console.log('Form submitted:', formData);
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
       
-      // Reset form after successful submission
-      setFormData(INITIAL_FORM_DATA);
+      const data = await response.json();
+      
+      if (response.ok) {
+        alert('✅ Message sent successfully! I\'ll get back to you soon.');
+        setFormData(INITIAL_FORM_DATA);
+      } else {
+        alert(`Error: ${data.error || 'Failed to send message'}`);
+      }
     } catch (error) {
       console.error('Form submission error:', error);
+      alert('Error sending message. Please try emailing me directly at shorifull@gmail.com');
+    } finally {
+      setIsSubmitting(false);
     }
   }, [formData]);
 
@@ -446,6 +604,7 @@ const Contact = () => {
             formData={formData}
             handleChange={handleChange}
             handleSubmit={handleSubmit}
+            isSubmitting={isSubmitting}
             isInView={isInView}
           />
         </motion.div>

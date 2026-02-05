@@ -1,31 +1,31 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
-// Import email templates with error handling
-let customerEmailTemplate, adminEmailTemplate;
+// Import contact email templates
+let contactClientTemplate, contactAdminTemplate;
 
 try {
-  const customerModule = await import('@/lib/email-templates/customer-template');
-  const adminModule = await import('@/lib/email-templates/admin-template');
-  customerEmailTemplate = customerModule.customerEmailTemplate;
-  adminEmailTemplate = adminModule.adminEmailTemplate;
+  const clientModule = await import('@/lib/email-templates/contact-client-template');
+  const adminModule = await import('@/lib/email-templates/contact-admin-template');
+  contactClientTemplate = clientModule.contactClientTemplate;
+  contactAdminTemplate = adminModule.contactAdminTemplate;
 } catch (error) {
-  console.error('Failed to import email templates:', error);
+  console.error('Failed to import contact email templates:', error);
   // Fallback templates
-  customerEmailTemplate = (formData) => `
+  contactClientTemplate = (formData) => `
     <h1>Thank you, ${formData.name}!</h1>
     <p>We received your message about: ${formData.subject}</p>
     <p>We'll get back to you at ${formData.email} within 24 hours.</p>
     <p>Best regards,<br>Ratan Mia</p>
   `;
-  adminEmailTemplate = (formData) => `
+  contactAdminTemplate = (formData) => `
     <h1>New Contact Form Submission</h1>
     <p><strong>Name:</strong> ${formData.name}</p>
     <p><strong>Email:</strong> ${formData.email}</p>
     <p><strong>Subject:</strong> ${formData.subject}</p>
     <p><strong>Message:</strong> ${formData.message}</p>
-    ${formData.projectType ? `<p><strong>Project Type:</strong> ${formData.projectType}</p>` : ''}
-    ${formData.budget ? `<p><strong>Budget:</strong> ${formData.budget}</p>` : ''}
+    ${formData.phone ? `<p><strong>Phone:</strong> ${formData.phone}</p>` : ''}
+    ${formData.website ? `<p><strong>Website:</strong> ${formData.website}</p>` : ''}
   `;
 }
 
@@ -208,11 +208,11 @@ export async function POST(request) {
     }
 
     // Generate email templates with error handling
-    let customerHtml, adminHtml;
+    let clientHtml, adminHtml;
     try {
-      customerHtml = customerEmailTemplate(formData);
-      adminHtml = adminEmailTemplate(formData);
-      console.log('✅ Email templates generated successfully');
+      clientHtml = contactClientTemplate(formData);
+      adminHtml = contactAdminTemplate(formData);
+      console.log('✅ Contact email templates generated successfully');
     } catch (error) {
       console.error('❌ Email template generation failed:', error);
       return NextResponse.json(
@@ -225,29 +225,29 @@ export async function POST(request) {
       );
     }
     
-    // Prepare customer email
-    const customerMailOptions = {
+    // Prepare client confirmation email
+    const clientMailOptions = {
       from: {
         name: 'Ratan Mia - Full Stack Developer',
         address: process.env.GMAIL_USER
       },
       to: formData.email,
-      subject: `Thank you for reaching out, ${formData.name}!`,
-      html: customerHtml,
+      subject: `✅ Thank you for reaching out, ${formData.name}!`,
+      html: clientHtml,
       headers: {
         'X-Mailer': 'Ratan Mia Portfolio Contact Form',
         'X-Priority': '3'
       }
     };
     
-    // Prepare admin email
+    // Prepare admin notification email
     const adminMailOptions = {
       from: {
         name: 'Portfolio Contact Form',
         address: process.env.GMAIL_USER
       },
       to: 'shorifull@gmail.com',
-      subject: `🚨 New Contact: ${formData.name} - ${formData.subject}`,
+      subject: `🔔 New Contact: ${formData.name} - ${formData.subject}`,
       html: adminHtml,
       replyTo: formData.email,
       headers: {
@@ -260,26 +260,26 @@ export async function POST(request) {
     
     // Send both emails with individual error handling
     const emailResults = await Promise.allSettled([
-      transporter.sendMail(customerMailOptions),
+      transporter.sendMail(clientMailOptions),
       transporter.sendMail(adminMailOptions)
     ]);
 
-    const customerResult = emailResults[0];
+    const clientResult = emailResults[0];
     const adminResult = emailResults[1];
 
     // Check results
     const success = {
-      customer: customerResult.status === 'fulfilled',
+      client: clientResult.status === 'fulfilled',
       admin: adminResult.status === 'fulfilled'
     };
 
     console.log('📧 Email send results:', success);
 
-    if (success.customer && success.admin) {
+    if (success.client && success.admin) {
       console.log('✅ Both emails sent successfully');
       return NextResponse.json(
         { 
-          message: 'Emails sent successfully',
+          message: 'Your message has been sent successfully! Check your email for confirmation.',
           timestamp: formData.timestamp,
           code: 'SUCCESS'
         },
@@ -288,12 +288,12 @@ export async function POST(request) {
     } else {
       // Partial failure
       const errors = [];
-      if (!success.customer) {
-        console.error('❌ Customer email failed:', customerResult.reason);
-        errors.push(`Customer email failed: ${customerResult.reason?.message || 'Unknown error'}`);
+      if (!success.client) {
+        console.error('❌ Client confirmation email failed:', clientResult.reason);
+        errors.push(`Client email failed: ${clientResult.reason?.message || 'Unknown error'}`);
       }
       if (!success.admin) {
-        console.error('❌ Admin email failed:', adminResult.reason);
+        console.error('❌ Admin notification email failed:', adminResult.reason);
         errors.push(`Admin email failed: ${adminResult.reason?.message || 'Unknown error'}`);
       }
 
