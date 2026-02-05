@@ -199,30 +199,6 @@ export default function TufLetCaseStudy() {
           {/* Project Overview */}
           <section id="overview" className="py-20 px-4 md:px-6 lg:px-8 bg-gray-50">
             <div className="max-w-7xl mx-auto">
-              <div className="grid lg:grid-cols-3 gap-8 mb-16">
-            <div className="bg-white p-8 rounded-3xl shadow-lg border-2 border-gray-100">
-              <div className="w-12 h-12 bg-accent-lime/10 rounded-xl flex items-center justify-center mb-4">
-                <Award className="w-6 h-6 text-black" />
-              </div>
-              <h3 className="text-xl font-extrabold mb-2">Industry</h3>
-              <p className="text-gray-600 font-medium">Sports & Recreation</p>
-            </div>
-            <div className="bg-white p-8 rounded-3xl shadow-lg border-2 border-gray-100">
-              <div className="w-12 h-12 bg-accent-lime/10 rounded-xl flex items-center justify-center mb-4">
-                <Clock className="w-6 h-6 text-black" />
-              </div>
-              <h3 className="text-xl font-extrabold mb-2">Duration</h3>
-              <p className="text-gray-600 font-medium">3 Months</p>
-            </div>
-            <div className="bg-white p-8 rounded-3xl shadow-lg border-2 border-gray-100">
-              <div className="w-12 h-12 bg-accent-lime/10 rounded-xl flex items-center justify-center mb-4">
-                <Smartphone className="w-6 h-6 text-black" />
-              </div>
-              <h3 className="text-xl font-extrabold mb-2">Deliverables</h3>
-              <p className="text-gray-600 font-medium">Mobile App + Admin Panel</p>
-            </div>
-          </div>
-
           <div className="space-y-12">
             <div className="max-w-7xl">
               <h2 className="text-4xl font-extrabold mb-6">About the Project</h2>
