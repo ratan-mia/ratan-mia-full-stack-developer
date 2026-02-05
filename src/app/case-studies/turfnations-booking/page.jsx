@@ -8,6 +8,37 @@ import HeroSection from '../../components/case-studies/HeroSection';
 
 export default function TufLetCaseStudy() {
   const [activeSection, setActiveSection] = useState('overview');
+  const [currentScreenshot, setCurrentScreenshot] = useState(0);
+
+  const screenshots = [
+    {
+      image: '03-home-search-turfs.jpg',
+      title: 'Discover Sports Venues',
+      description: 'Browse and search through a wide selection of turf venues with detailed information, photos, and real-time availability.'
+    },
+    {
+      image: '04-turf-details-champions.jpg',
+      title: 'Venue Details & Reviews',
+      description: 'View comprehensive venue information including amenities, pricing, location, and authentic user reviews to make informed decisions.'
+    },
+    {
+      image: '06-booking-date-time.jpg',
+      title: 'Easy Booking Process',
+      description: 'Select your preferred date and time with an intuitive calendar interface showing real-time slot availability.'
+    },
+    {
+      image: '08-my-bookings-list.jpg',
+      title: 'Manage Your Bookings',
+      description: 'Track all your bookings in one place with options to view details, cancel, or rebook your favorite venues.'
+    },
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentScreenshot((prev) => (prev + 1) % screenshots.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -797,25 +828,93 @@ export default function TufLetCaseStudy() {
                 </div>
               </div>
 
-              {/* App Screenshots Gallery */}
-              <div className="bg-gray-50 p-8 rounded-3xl border-2 border-gray-100 mt-16">
-                <h3 className="text-2xl font-extrabold mb-6 text-center">Mobile App Screenshots</h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  {[
-                    '03-home-search-turfs.jpg',
-                    '04-turf-details-champions.jpg',
-                    '06-booking-date-time.jpg',
-                    '08-my-bookings-list.jpg',
-                  ].map((img, idx) => (
-                    <div key={idx} className="relative aspect-9/16 rounded-2xl overflow-hidden shadow-lg border-2 border-white">
-                      <Image
-                        src={`/images/projects/turflet/screenshots/${img}`}
-                        alt={`TufLet Screenshot ${idx + 1}`}
-                        fill
-                        className="object-contain"
-                      />
+              {/* Mobile App Screenshots Section */}
+              <div className="grid lg:grid-cols-2 gap-12 items-center mt-16 bg-gradient-to-br from-gray-50 to-white p-8 md:p-12 rounded-3xl border-2 border-gray-100">
+                {/* Left - Mobile Mockup with Slider */}
+                <div className="flex justify-center">
+                  <div className="relative w-[300px] h-[600px]">
+                    {/* Mobile Frame */}
+                    <div className="absolute inset-0 bg-black rounded-[3rem] shadow-2xl p-3">
+                      <div className="relative w-full h-full bg-white rounded-[2.5rem] overflow-hidden">
+                        {/* Notch */}
+                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-black rounded-b-2xl z-10"></div>
+                        
+                        {/* Screenshot Display */}
+                        <div className="relative w-full h-full">
+                          <Image
+                            src={`/images/projects/turflet/screenshots/${screenshots[currentScreenshot].image}`}
+                            alt={screenshots[currentScreenshot].title}
+                            fill
+                            className="object-cover transition-opacity duration-500"
+                          />
+                        </div>
+                      </div>
                     </div>
-                  ))}
+                    
+                    {/* Navigation Dots */}
+                    <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
+                      {screenshots.map((_, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => setCurrentScreenshot(idx)}
+                          className={`w-2 h-2 rounded-full transition-all ${
+                            idx === currentScreenshot 
+                              ? 'bg-accent-lime w-8' 
+                              : 'bg-gray-300 hover:bg-gray-400'
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right - Content */}
+                <div>
+                  <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
+                    <Smartphone className="w-4 h-4" />
+                    MOBILE APP FEATURES
+                  </div>
+                  
+                  <h3 className="text-4xl md:text-5xl font-extrabold mb-6">
+                    Seamless Mobile Experience
+                  </h3>
+                  
+                  <p className="text-lg text-gray-600 mb-8">
+                    Our intuitive mobile app makes booking sports venues effortless. From discovering venues to managing bookings, everything is just a tap away.
+                  </p>
+
+                  {/* Feature List */}
+                  <div className="space-y-6">
+                    {screenshots.map((screenshot, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => setCurrentScreenshot(idx)}
+                        className={`w-full text-left p-4 rounded-2xl transition-all ${
+                          idx === currentScreenshot
+                            ? 'bg-accent-lime shadow-lg scale-105'
+                            : 'bg-white hover:bg-gray-50 border-2 border-gray-100'
+                        }`}
+                      >
+                        <div className="flex items-start gap-4">
+                          <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
+                            idx === currentScreenshot ? 'bg-black' : 'bg-accent-lime'
+                          }`}>
+                            <Check className={`w-5 h-5 ${
+                              idx === currentScreenshot ? 'text-accent-lime' : 'text-black'
+                            }`} />
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="text-lg font-bold mb-1">{screenshot.title}</h4>
+                            <p className={`text-sm ${
+                              idx === currentScreenshot ? 'text-black/80' : 'text-gray-600'
+                            }`}>
+                              {screenshot.description}
+                            </p>
+                          </div>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
