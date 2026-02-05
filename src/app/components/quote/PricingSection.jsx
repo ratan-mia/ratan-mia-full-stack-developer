@@ -52,7 +52,7 @@ const PricingSection = () => {
   ];
 
   return (
-    <section className="py-20 px-4 bg-white">
+    <section className="py-20 px-4 bg-gray-50">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -129,24 +129,24 @@ const PricingSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="p-8 bg-gray-50 rounded-2xl text-center border border-gray-200"
+            className="p-8 bg-accent-lime rounded-2xl text-center border-2 border-black/10"
           >
-            <h3 className="text-2xl font-bold mb-3">Need a Custom Solution?</h3>
-            <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+            <h3 className="text-2xl font-bold mb-3 text-black">Need a Custom Solution?</h3>
+            <p className="text-black/80 mb-6 max-w-2xl mx-auto">
               Every project is unique. Let's discuss a custom solution tailored to your requirements and budget.
             </p>
             <div className="flex flex-wrap justify-center gap-6 text-sm">
               <div className="flex items-center gap-2">
-                <CheckCircle className="w-5 h-5 text-accent-lime" />
-                <span className="text-gray-700">Custom Pricing</span>
+                <CheckCircle className="w-5 h-5 text-black" />
+                <span className="text-black font-medium">Custom Pricing</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle className="w-5 h-5 text-accent-lime" />
-                <span className="text-gray-700">Flexible Payment Terms</span>
+                <CheckCircle className="w-5 h-5 text-black" />
+                <span className="text-black font-medium">Flexible Payment Terms</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle className="w-5 h-5 text-accent-lime" />
-                <span className="text-gray-700">Extended Support Options</span>
+                <CheckCircle className="w-5 h-5 text-black" />
+                <span className="text-black font-medium">Extended Support Options</span>
               </div>
             </div>
           </motion.div>

@@ -44,7 +44,7 @@ const QuoteProcess = () => {
   ];
 
   return (
-    <section className="relative w-full py-20 px-4 bg-gray-50">
+    <section className="relative w-full py-20 px-4 bg-white">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -73,28 +73,28 @@ const QuoteProcess = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="p-6 rounded-2xl bg-white border border-gray-200 hover:border-accent-lime/50 hover:shadow-lg transition-all"
+                className="p-8 rounded-3xl bg-white border-2 border-gray-200 hover:border-accent-lime hover:shadow-2xl transition-all hover:scale-105 duration-300"
               >
-                {/* Step Number */}
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-accent-lime/20 flex items-center justify-center">
-                    <step.icon className="w-6 h-6 text-black" />
+                {/* Step Number Badge and Duration */}
+                <div className="flex items-center justify-between mb-6">
+                  <div className="px-4 py-2 bg-accent-lime rounded-full">
+                    <span className="text-black text-sm font-extrabold">STEP {index + 1}</span>
                   </div>
-                  <div className="text-xs font-bold text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+                  <div className="text-xs font-bold text-gray-500 bg-gray-100 px-3 py-1.5 rounded-full">
                     {step.duration}
                   </div>
                 </div>
 
-                {/* Number */}
-                <div className="text-accent-lime text-sm font-extrabold mb-2">
-                  STEP {index + 1}
+                {/* Icon */}
+                <div className="w-16 h-16 rounded-2xl bg-accent-lime flex items-center justify-center mb-6">
+                  <step.icon className="w-8 h-8 text-black" />
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl font-bold mb-2">{step.title}</h3>
+                <h3 className="text-2xl font-extrabold mb-3">{step.title}</h3>
 
                 {/* Description */}
-                <p className="text-gray-600 text-sm leading-relaxed">
+                <p className="text-gray-600 leading-relaxed">
                   {step.description}
                 </p>
               </motion.div>

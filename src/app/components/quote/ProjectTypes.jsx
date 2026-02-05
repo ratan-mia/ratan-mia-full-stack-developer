@@ -96,15 +96,15 @@ const ProjectTypes = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="p-6 rounded-2xl bg-white border border-gray-200 hover:border-accent-lime/50 hover:shadow-lg transition-all"
+                className="p-6 rounded-2xl bg-white border-2 border-gray-200 hover:border-accent-lime hover:shadow-xl transition-all hover:scale-105 duration-300"
               >
                 {/* Icon */}
-                <div className="w-14 h-14 rounded-xl bg-accent-lime/20 flex items-center justify-center mb-4">
+                <div className="w-14 h-14 rounded-xl bg-accent-lime flex items-center justify-center mb-4">
                   <project.icon className="w-7 h-7 text-black" />
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+                <h3 className="text-2xl font-extrabold mb-3">{project.title}</h3>
 
                 {/* Description */}
                 <p className="text-gray-600 text-sm leading-relaxed mb-4">

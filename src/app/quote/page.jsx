@@ -1,10 +1,13 @@
 import Contact from '@/components/home/Contact';
+import FAQ from '@/components/home/FAQ';
 import GetQuote from '@/components/home/GetQuote';
-import PricingSection from '@/components/quote/PricingSection';
+import PricingPlan from '@/components/home/PricingPlan';
+import ProcessHowIWork from '@/components/home/ProcessHowIWork';
+import Services from '@/components/home/Services';
+import Testimonials from '@/components/home/Testimonials';
 import ProjectTypes from '@/components/quote/ProjectTypes';
 import QuoteCTA from '@/components/quote/QuoteCTA';
 import QuoteHeroSection from '@/components/quote/QuoteHeroSection';
-import QuoteProcess from '@/components/quote/QuoteProcess';
 import WhyChooseMe from '@/components/quote/WhyChooseMe';
 
 export const metadata = {
@@ -21,12 +24,15 @@ export default function QuotePage() {
 
       {/* Main Content Sections */}
       <WhyChooseMe />
+      <Services />
       <ProjectTypes />
-      <QuoteProcess />
-      <PricingSection />
+      <ProcessHowIWork />
+      <PricingPlan />
+      <Testimonials />
       <div id="quote-form" className="bg-gray-50">
         <GetQuote />
       </div>
+      <FAQ />
       <QuoteCTA />
       <Contact />
     </main>
