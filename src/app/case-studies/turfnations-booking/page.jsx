@@ -1,14 +1,56 @@
-import { ArrowLeft, Award, Calendar, ExternalLink, Users, Zap } from 'lucide-react';
+'use client';
+
+import { ArrowLeft, Award, Calendar, ExternalLink, Users, Zap, Check, DollarSign, Clock, Shield, BarChart, Star, Smartphone, Monitor, Database, Code, CheckCircle, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-
-export const metadata = {
-  title: 'TufLet Booking Platform - Case Study | Ratan Mia',
-  description: 'Real-time sports turf booking platform with payment integration, built with React Native and Next.js admin panel.',
-  keywords: 'booking platform, React Native, sports booking, SSL Commerz, real-time booking, Supabase',
-};
+import { useState, useEffect } from 'react';
 
 export default function TufLetCaseStudy() {
+  const [activeSection, setActiveSection] = useState('overview');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['overview', 'challenge', 'solution', 'features', 'tech-stack', 'results', 'impact'];
+      const scrollPosition = window.scrollY + 200;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 100;
+      const elementPosition = element.offsetTop - offset;
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const navItems = [
+    { id: 'overview', label: 'Project Overview', icon: ExternalLink },
+    { id: 'challenge', label: 'The Challenge', icon: Zap },
+    { id: 'solution', label: 'Solution', icon: CheckCircle },
+    { id: 'features', label: 'Key Features', icon: Star },
+    { id: 'tech-stack', label: 'Tech Stack', icon: Code },
+    { id: 'results', label: 'Results & Impact', icon: BarChart },
+    { id: 'impact', label: 'Business Impact', icon: Award },
+  ];
+
   return (
     <main className="bg-white text-black">
       {/* Hero Section */}
@@ -54,7 +96,7 @@ export default function TufLetCaseStudy() {
               </div>
             </div>
 
-            <div className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl">
+            <div className="relative h-125 rounded-3xl overflow-hidden shadow-2xl">
               <Image
                 src="/images/projects/turflet/www.turflet.app.png"
                 alt="TufLet Platform"
@@ -67,10 +109,42 @@ export default function TufLetCaseStudy() {
         </div>
       </section>
 
-      {/* Project Overview */}
-      <section className="py-20 px-4 md:px-6 lg:px-8 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-3 gap-8 mb-16">
+      {/* Main Content with Sidebar */}
+      <div className="relative">
+        {/* Sidebar Navigation - Fixed on left */}
+        <aside className="hidden lg:block fixed left-8 top-32 w-64 z-30">
+          <div className="bg-white rounded-2xl shadow-lg border-2 border-gray-100 p-6">
+            <h3 className="text-sm font-extrabold text-gray-400 mb-4 uppercase tracking-wide">
+              On This Page
+            </h3>
+            <nav className="space-y-1">
+              {navItems.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => scrollToSection(item.id)}
+                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-all ${
+                      activeSection === item.id
+                        ? 'bg-accent-lime text-black font-bold shadow-md'
+                        : 'text-gray-600 hover:bg-gray-50 hover:text-black font-medium'
+                    }`}
+                  >
+                    <Icon className="w-4 h-4 shrink-0" />
+                    <span className="text-sm">{item.label}</span>
+                  </button>
+                );
+              })}
+            </nav>
+          </div>
+        </aside>
+
+        {/* Main Content Area */}
+        <div className="lg:ml-80 lg:mr-8">
+          {/* Project Overview */}
+          <section id="overview" className="py-20 px-4 md:px-6 lg:px-8 bg-gray-50">
+            <div className="max-w-5xl mx-auto">
+              <div className="grid lg:grid-cols-3 gap-8 mb-16">
             <div className="bg-white p-8 rounded-3xl shadow-lg border-2 border-gray-100">
               <div className="text-4xl mb-4">🏟️</div>
               <h3 className="text-xl font-extrabold mb-2">Industry</h3>
@@ -97,13 +171,13 @@ export default function TufLetCaseStudy() {
               The solution includes a mobile app for players to browse and book turfs, a web-based admin panel for owners to manage their facilities, and a robust backend system that handles complex booking logic, payment processing, and analytics.
             </p>
           </div>
-        </div>
-      </section>
+            </div>
+          </section>
 
-      {/* Challenge Section */}
-      <section className="py-20 px-4 md:px-6 lg:px-8 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          {/* Challenge Section */}
+          <section id="challenge" className="py-20 px-4 md:px-6 lg:px-8 bg-white">
+            <div className="max-w-5xl mx-auto">
+              <div className="text-center mb-16">
             <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
               🎯 THE CHALLENGE
             </div>
@@ -139,12 +213,347 @@ export default function TufLetCaseStudy() {
               </p>
             </div>
           </div>
-        </div>
-      </section>
+            </div>
+          </section>
 
-      {/* Results Section */}
-      <section className="py-20 px-4 md:px-6 lg:px-8 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
+          {/* Solution Section */}
+          <section id="solution" className="py-20 px-4 md:px-6 lg:px-8 bg-gray-50">
+            <div className="max-w-5xl mx-auto">
+              <div className="text-center mb-16">
+                <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
+                  💡 THE SOLUTION
+                </div>
+                <h2 className="text-4xl md:text-5xl font-extrabold mb-6">Our Approach</h2>
+                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                  We built a comprehensive multi-platform solution combining mobile apps and web dashboards.
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-8 mb-12">
+                <div className="bg-white p-8 rounded-3xl shadow-lg border-2 border-gray-100">
+                  <div className="w-16 h-16 bg-accent-lime rounded-2xl flex items-center justify-center mb-6">
+                    <Smartphone className="w-8 h-8 text-black" />
+                  </div>
+                  <h3 className="text-2xl font-extrabold mb-4">Mobile App</h3>
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    React Native mobile application for both players and turf owners with intuitive booking flow.
+                  </p>
+                  <ul className="space-y-2">
+                    <li className="flex items-start gap-2">
+                      <Check className="w-5 h-5 text-accent-lime shrink-0 mt-0.5" />
+                      <span className="text-sm text-gray-700">Real-time availability calendar</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Check className="w-5 h-5 text-accent-lime shrink-0 mt-0.5" />
+                      <span className="text-sm text-gray-700">Integrated SSL Commerz payments</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Check className="w-5 h-5 text-accent-lime shrink-0 mt-0.5" />
+                      <span className="text-sm text-gray-700">Push notifications for bookings</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="bg-white p-8 rounded-3xl shadow-lg border-2 border-gray-100">
+                  <div className="w-16 h-16 bg-accent-lime rounded-2xl flex items-center justify-center mb-6">
+                    <Monitor className="w-8 h-8 text-black" />
+                  </div>
+                  <h3 className="text-2xl font-extrabold mb-4">Admin Dashboard</h3>
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    Next.js web dashboard for platform administrators with comprehensive management tools.
+                  </p>
+                  <ul className="space-y-2">
+                    <li className="flex items-start gap-2">
+                      <Check className="w-5 h-5 text-accent-lime shrink-0 mt-0.5" />
+                      <span className="text-sm text-gray-700">Analytics and revenue tracking</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Check className="w-5 h-5 text-accent-lime shrink-0 mt-0.5" />
+                      <span className="text-sm text-gray-700">Turf approval workflow</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Check className="w-5 h-5 text-accent-lime shrink-0 mt-0.5" />
+                      <span className="text-sm text-gray-700">User and booking management</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Architecture Diagram */}
+              <div className="bg-white p-8 rounded-3xl shadow-lg border-2 border-gray-100">
+                <h3 className="text-2xl font-extrabold mb-6 text-center">System Architecture</h3>
+                <div className="grid md:grid-cols-3 gap-6">
+                  <div className="text-center">
+                    <div className="w-20 h-20 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                      <Smartphone className="w-10 h-10 text-gray-700" />
+                    </div>
+                    <h4 className="font-bold mb-2">Frontend</h4>
+                    <p className="text-sm text-gray-600">React Native<br/>Expo Framework</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-20 h-20 bg-accent-lime rounded-2xl flex items-center justify-center mx-auto mb-4">
+                      <Database className="w-10 h-10 text-black" />
+                    </div>
+                    <h4 className="font-bold mb-2">Backend</h4>
+                    <p className="text-sm text-gray-600">Supabase PostgreSQL<br/>Prisma ORM</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-20 h-20 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                      <Shield className="w-10 h-10 text-gray-700" />
+                    </div>
+                    <h4 className="font-bold mb-2">Payments</h4>
+                    <p className="text-sm text-gray-600">SSL Commerz<br/>Gateway</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Key Features Section */}
+          <section id="features" className="py-20 px-4 md:px-6 lg:px-8 bg-white">
+            <div className="max-w-5xl mx-auto">
+              <div className="text-center mb-16">
+                <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
+                  ⚡ KEY FEATURES
+                </div>
+                <h2 className="text-4xl md:text-5xl font-extrabold mb-6">Powerful Capabilities</h2>
+              </div>
+
+              {/* Player Features */}
+              <div className="mb-16">
+                <h3 className="text-3xl font-extrabold mb-8 flex items-center gap-3">
+                  <div className="w-10 h-10 bg-accent-lime rounded-xl flex items-center justify-center">
+                    <Users className="w-6 h-6 text-black" />
+                  </div>
+                  Player Features
+                </h3>
+                <div className="grid md:grid-cols-2 gap-6">
+                  {[
+                    {
+                      icon: Calendar,
+                      title: 'Real-Time Booking',
+                      description: '30-day calendar with hourly time slots, dynamic pricing, and instant confirmation'
+                    },
+                    {
+                      icon: DollarSign,
+                      title: 'Multiple Payment Options',
+                      description: 'SSL Commerz integration supporting cards, bKash, Nagad, and bank transfers'
+                    },
+                    {
+                      icon: Star,
+                      title: 'Reviews & Ratings',
+                      description: '5-star rating system with photo uploads and verified booking badges'
+                    },
+                    {
+                      icon: Award,
+                      title: 'Loyalty Rewards',
+                      description: 'Tier-based system with points on every booking and exclusive discounts'
+                    },
+                  ].map((feature, idx) => (
+                    <div key={idx} className="bg-gray-50 p-6 rounded-2xl border-2 border-gray-100 hover:border-accent-lime/50 transition-all">
+                      <feature.icon className="w-8 h-8 text-accent-lime mb-4" />
+                      <h4 className="text-xl font-bold mb-2">{feature.title}</h4>
+                      <p className="text-gray-600 text-sm leading-relaxed">{feature.description}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Owner Features */}
+              <div className="mb-16">
+                <h3 className="text-3xl font-extrabold mb-8 flex items-center gap-3">
+                  <div className="w-10 h-10 bg-accent-lime rounded-xl flex items-center justify-center">
+                    <BarChart className="w-6 h-6 text-black" />
+                  </div>
+                  Owner Dashboard
+                </h3>
+                <div className="grid md:grid-cols-2 gap-6 mb-8">
+                  {[
+                    {
+                      icon: BarChart,
+                      title: 'Revenue Analytics',
+                      description: 'Real-time revenue tracking with daily, weekly, and monthly reports'
+                    },
+                    {
+                      icon: Calendar,
+                      title: 'Booking Management',
+                      description: 'View and manage all bookings with customer information and status updates'
+                    },
+                    {
+                      icon: Clock,
+                      title: 'Availability Control',
+                      description: 'Set operating hours, block dates, and manage field-specific pricing'
+                    },
+                    {
+                      icon: DollarSign,
+                      title: 'Payout System',
+                      description: 'Request payouts, track transaction history, and manage bank details'
+                    },
+                  ].map((feature, idx) => (
+                    <div key={idx} className="bg-gray-50 p-6 rounded-2xl border-2 border-gray-100 hover:border-accent-lime/50 transition-all">
+                      <feature.icon className="w-8 h-8 text-accent-lime mb-4" />
+                      <h4 className="text-xl font-bold mb-2">{feature.title}</h4>
+                      <p className="text-gray-600 text-sm leading-relaxed">{feature.description}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Owner Dashboard Images */}
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="bg-white p-6 rounded-2xl shadow-lg border-2 border-gray-100">
+                    <div className="relative w-full h-64 rounded-xl overflow-hidden mb-4">
+                      <Image
+                        src="/images/projects/turflet/owners-dashboard.png"
+                        alt="Owner Dashboard Analytics"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <h4 className="text-lg font-bold mb-2">Owner Dashboard Overview</h4>
+                    <p className="text-sm text-gray-600">Comprehensive analytics with revenue tracking, booking statistics, and performance metrics in real-time.</p>
+                  </div>
+
+                  <div className="bg-white p-6 rounded-2xl shadow-lg border-2 border-gray-100">
+                    <div className="relative w-full h-64 rounded-xl overflow-hidden mb-4">
+                      <Image
+                        src="/images/projects/turflet/clients-revenue-details.png"
+                        alt="Revenue Details and Client Management"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <h4 className="text-lg font-bold mb-2">Revenue & Client Details</h4>
+                    <p className="text-sm text-gray-600">Detailed revenue breakdown by client, booking history, and payment transaction records.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Community Features */}
+              <div className="mb-16">
+                <h3 className="text-3xl font-extrabold mb-8 flex items-center gap-3">
+                  <div className="w-10 h-10 bg-accent-lime rounded-xl flex items-center justify-center">
+                    <Users className="w-6 h-6 text-black" />
+                  </div>
+                  Social & Community Features
+                </h3>
+
+                <div className="grid md:grid-cols-3 gap-6 mb-8">
+                  <div className="bg-white p-6 rounded-2xl shadow-lg border-2 border-gray-100">
+                    <div className="relative w-full h-48 rounded-xl overflow-hidden mb-4">
+                      <Image
+                        src="/images/projects/turflet/players-community.png"
+                        alt="Players Community"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <h4 className="text-lg font-bold mb-2">Players Community</h4>
+                    <p className="text-sm text-gray-600">Connect with fellow players, share experiences, and find playing partners in your area.</p>
+                  </div>
+
+                  <div className="bg-white p-6 rounded-2xl shadow-lg border-2 border-gray-100">
+                    <div className="relative w-full h-48 rounded-xl overflow-hidden mb-4">
+                      <Image
+                        src="/images/projects/turflet/friends-family-community.png"
+                        alt="Friends and Family Network"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <h4 className="text-lg font-bold mb-2">Friends & Family</h4>
+                    <p className="text-sm text-gray-600">Build your network, invite friends to join matches, and create memorable sports moments together.</p>
+                  </div>
+
+                  <div className="bg-white p-6 rounded-2xl shadow-lg border-2 border-gray-100">
+                    <div className="relative w-full h-48 rounded-xl overflow-hidden mb-4">
+                      <Image
+                        src="/images/projects/turflet/team-details.png"
+                        alt="Team Management"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <h4 className="text-lg font-bold mb-2">Team Management</h4>
+                    <p className="text-sm text-gray-600">Create and manage sports teams, track statistics, organize matches, and challenge other teams.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Dual Platform Showcase */}
+              <div className="bg-linear-to-r from-accent-lime to-accent-lime/80 p-8 rounded-3xl">
+                <div className="text-center mb-6">
+                  <h3 className="text-3xl font-extrabold mb-2">Complete Platform Solution</h3>
+                  <p className="text-black/80 font-medium">Player Mobile App + Owner Dashboard</p>
+                </div>
+                <div className="relative w-full h-96 rounded-2xl overflow-hidden shadow-2xl">
+                  <Image
+                    src="/images/projects/turflet/owner-dashboard and player -app.png"
+                    alt="Complete Platform - Owner Dashboard and Player App"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+              </div>
+
+              {/* App Screenshots Gallery */}
+              <div className="bg-gray-50 p-8 rounded-3xl border-2 border-gray-100 mt-16">
+                <h3 className="text-2xl font-extrabold mb-6 text-center">Mobile App Screenshots</h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {[
+                    '03-home-search-turfs.jpg',
+                    '04-turf-details-champions.jpg',
+                    '06-booking-date-time.jpg',
+                    '08-my-bookings-list.jpg',
+                  ].map((img, idx) => (
+                    <div key={idx} className="relative aspect-9/16 rounded-2xl overflow-hidden shadow-lg border-2 border-white">
+                      <Image
+                        src={`/images/projects/turflet/screenshots/${img}`}
+                        alt={`TufLet Screenshot ${idx + 1}`}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Tech Stack Section */}
+          <section id="tech-stack" className="py-20 px-4 md:px-6 lg:px-8 bg-gray-50">
+            <div className="max-w-5xl mx-auto">
+              <div className="text-center mb-16">
+                <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
+                  🛠️ TECHNOLOGY
+                </div>
+                <h2 className="text-4xl md:text-5xl font-extrabold mb-6">Tech Stack</h2>
+              </div>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[
+                  { category: 'Mobile', tech: 'React Native', detail: 'Cross-platform mobile development' },
+                  { category: 'Framework', tech: 'Expo', detail: 'Build and deployment tooling' },
+                  { category: 'Web Admin', tech: 'Next.js 14', detail: 'Server-side rendered dashboard' },
+                  { category: 'Database', tech: 'Supabase PostgreSQL', detail: 'Real-time database and auth' },
+                  { category: 'ORM', tech: 'Prisma', detail: 'Type-safe database client' },
+                  { category: 'Payments', tech: 'SSL Commerz', detail: 'Bangladesh payment gateway' },
+                  { category: 'State', tech: 'React Context', detail: 'Global state management' },
+                  { category: 'Navigation', tech: 'React Navigation', detail: 'Stack and tab navigation' },
+                  { category: 'Styling', tech: 'Tailwind CSS', detail: 'Utility-first CSS framework' },
+                ].map((item, idx) => (
+                  <div key={idx} className="bg-white p-6 rounded-2xl shadow-lg border-2 border-gray-100 hover:shadow-xl transition-all">
+                    <div className="text-xs font-bold text-accent-lime mb-2">{item.category}</div>
+                    <h4 className="text-xl font-extrabold mb-2">{item.tech}</h4>
+                    <p className="text-sm text-gray-600">{item.detail}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Results Section */}
+          <section id="results" className="py-20 px-4 md:px-6 lg:px-8 bg-white">
+            <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
             <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
               📊 RESULTS & METRICS
@@ -180,31 +589,106 @@ export default function TufLetCaseStudy() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 px-4 md:px-6 lg:px-8 bg-accent-lime">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-6">
-            Need a Booking Platform?
-          </h2>
-          <p className="text-xl text-black/80 mb-10 font-medium">
-            Let's build a custom booking solution that transforms your business operations.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link 
-              href="/quote"
-              className="px-10 py-5 bg-black text-accent-lime rounded-xl font-extrabold hover:shadow-2xl transition-all hover:scale-105"
-            >
-              Start Your Project
-            </Link>
-            <Link 
-              href="/case-studies"
-              className="px-10 py-5 border-2 border-black text-black rounded-xl font-extrabold hover:bg-black hover:text-accent-lime transition-all"
-            >
-              More Case Studies
-            </Link>
-          </div>
+      {/* Business Impact Section */}
+      <section id="impact" className="py-20 px-4 md:px-6 lg:px-8 bg-gray-50">
+            <div className="max-w-5xl mx-auto">
+              <div className="text-center mb-16">
+                <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
+                  🚀 BUSINESS IMPACT
+                </div>
+                <h2 className="text-4xl md:text-5xl font-extrabold mb-6">Transforming Sports Booking</h2>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-8 mb-12">
+                <div className="bg-white p-8 rounded-3xl shadow-lg border-2 border-gray-100">
+                  <h3 className="text-2xl font-extrabold mb-6">For Players</h3>
+                  <ul className="space-y-4">
+                    {[
+                      'Instant booking confirmation without phone calls',
+                      'Transparent pricing with no hidden charges',
+                      'Multiple payment options for convenience',
+                      'Loyalty rewards on every booking',
+                      'Easy cancellation and refund process',
+                    ].map((item, idx) => (
+                      <li key={idx} className="flex items-start gap-3">
+                        <div className="w-6 h-6 bg-accent-lime rounded-full flex items-center justify-center shrink-0 mt-0.5">
+                          <Check className="w-4 h-4 text-black" />
+                        </div>
+                        <span className="text-gray-700 leading-relaxed">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="bg-white p-8 rounded-3xl shadow-lg border-2 border-gray-100">
+                  <h3 className="text-2xl font-extrabold mb-6">For Owners</h3>
+                  <ul className="space-y-4">
+                    {[
+                      'Automated booking management system',
+                      'Real-time revenue tracking and analytics',
+                      'Reduced administrative overhead',
+                      'Increased booking efficiency and revenue',
+                      'Direct customer feedback and ratings',
+                    ].map((item, idx) => (
+                      <li key={idx} className="flex items-start gap-3">
+                        <div className="w-6 h-6 bg-accent-lime rounded-full flex items-center justify-center shrink-0 mt-0.5">
+                          <Check className="w-4 h-4 text-black" />
+                        </div>
+                        <span className="text-gray-700 leading-relaxed">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* Key Achievements */}
+              <div className="bg-accent-lime p-8 rounded-3xl">
+                <h3 className="text-2xl font-extrabold mb-6 text-center">Key Achievements</h3>
+                <div className="grid md:grid-cols-3 gap-6">
+                  <div className="text-center">
+                    <div className="text-4xl font-extrabold mb-2">100%</div>
+                    <p className="text-black/80 font-medium">Booking Accuracy</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-4xl font-extrabold mb-2">3x</div>
+                    <p className="text-black/80 font-medium">Faster Booking Process</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-4xl font-extrabold mb-2">50+</div>
+                    <p className="text-black/80 font-medium">Active Turf Venues</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* CTA Section */}
+          <section className="py-20 px-4 md:px-6 lg:px-8 bg-accent-lime">
+            <div className="max-w-4xl mx-auto text-center">
+              <h2 className="text-4xl md:text-5xl font-extrabold mb-6">
+                Need a Booking Platform?
+              </h2>
+              <p className="text-xl text-black/80 mb-10 font-medium">
+                Let's build a custom booking solution that transforms your business operations.
+              </p>
+              <div className="flex flex-wrap justify-center gap-4">
+                <Link 
+                  href="/quote"
+                  className="px-10 py-5 bg-black text-accent-lime rounded-xl font-extrabold hover:shadow-2xl transition-all hover:scale-105"
+                >
+                  Start Your Project
+                </Link>
+                <Link 
+                  href="/case-studies"
+                  className="px-10 py-5 border-2 border-black text-black rounded-xl font-extrabold hover:bg-black hover:text-accent-lime transition-all"
+                >
+                  More Case Studies
+                </Link>
+              </div>
+            </div>
+          </section>
         </div>
-      </section>
+      </div>
     </main>
   );
 }
