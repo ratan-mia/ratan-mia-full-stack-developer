@@ -446,38 +446,59 @@ export default function TufLetCaseStudy() {
           </section>
 
           {/* Key Features Section */}
-          <section id="features" className="py-20 px-4 md:px-6 lg:px-8 bg-white">
-            <div className="max-w-7xl mx-auto">
-              <div className="text-center mb-16">
-                <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
-                  <Star className="w-4 h-4" />
-                  KEY FEATURES
-                </div>
-                <h2 className="text-4xl md:text-5xl font-extrabold mb-6">Powerful Capabilities</h2>
+          <section id="features" className="py-20 bg-white">
+            <div className="grid lg:grid-cols-2 gap-0 items-center">
+              {/* Left - Image */}
+              <div className="w-full">
+                <Image
+                  src="/images/projects/turflet/players-community.png"
+                  alt="Players Community - Social Features"
+                  width={2000}
+                  height={2000}
+                  className="w-full h-auto"
+                />
               </div>
 
-              {/* Community Features */}
-              <div className="bg-gradient-to-br from-gray-50 to-white p-12 rounded-3xl shadow-lg border-2 border-gray-100">
-                <div className="text-center mb-12">
-                  <div className="inline-flex items-center gap-3 mb-4">
-                    <div className="w-12 h-12 bg-accent-lime rounded-xl flex items-center justify-center">
-                      <Users className="w-7 h-7 text-black" />
-                    </div>
-                    <h3 className="text-3xl font-extrabold">Social & Community</h3>
-                  </div>
-                  <p className="text-gray-600 max-w-2xl mx-auto">
-                    Connect with fellow players, share experiences, and find playing partners in your area.
-                  </p>
+              {/* Right - Content */}
+              <div className="px-8 md:px-12 lg:px-16 py-12">
+                <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
+                  <Users className="w-4 h-4" />
+                  SOCIAL & COMMUNITY
                 </div>
+                <h3 className="text-4xl md:text-5xl font-extrabold mb-6">Players Community</h3>
+                <p className="text-lg text-gray-600 leading-relaxed mb-8">
+                  Connect with fellow players, share experiences, and find playing partners in your area. Build your sports network and never play alone again.
+                </p>
 
-                <div className="relative w-full max-w-4xl mx-auto">
-                  <div className="relative aspect-square rounded-2xl overflow-hidden shadow-xl">
-                    <Image
-                      src="/images/projects/turflet/players-community.png"
-                      alt="Players Community"
-                      fill
-                      className="object-contain"
-                    />
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-accent-lime rounded-xl flex items-center justify-center shrink-0">
+                      <Users className="w-6 h-6 text-black" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold mb-1">Find Players</h4>
+                      <p className="text-gray-600 text-sm">Connect with players nearby and organize games together</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-accent-lime rounded-xl flex items-center justify-center shrink-0">
+                      <Star className="w-6 h-6 text-black" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold mb-1">Share Experiences</h4>
+                      <p className="text-gray-600 text-sm">Post photos, reviews, and connect with the community</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-accent-lime rounded-xl flex items-center justify-center shrink-0">
+                      <Award className="w-6 h-6 text-black" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold mb-1">Build Network</h4>
+                      <p className="text-gray-600 text-sm">Create your sports circle and grow your connections</p>
+                    </div>
                   </div>
                 </div>
               </div>
