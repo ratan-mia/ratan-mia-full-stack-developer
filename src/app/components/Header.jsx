@@ -291,7 +291,7 @@ const Header = () => {
               
               {/* Primary CTA Button */}
               <motion.button
-                onClick={() => handleNavigation('#contact')}
+                onClick={() => handleNavigation('/quote')}
                 className="bg-black text-accent-lime px-8 py-3 font-bold text-sm tracking-wider rounded-xl hover:bg-black/90 hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-black/30 border border-black/20"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -429,7 +429,7 @@ const Header = () => {
                   </motion.button>
                   
                   <motion.button
-                    onClick={() => handleNavigation('#contact')}
+                    onClick={() => handleNavigation('/quote')}
                     className="w-full bg-accent-lime text-black py-4 px-6 font-bold tracking-wider hover:bg-lime-300 hover:-translate-y-1 transition-all duration-300 rounded-xl shadow-lg hover:shadow-lime-400/30"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
