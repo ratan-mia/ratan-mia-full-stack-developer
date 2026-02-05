@@ -16,7 +16,8 @@ const Header = () => {
     { name: 'ABOUT', href: '/about' },
     { name: 'SERVICES', href: '/services' },
     { name: 'PORTFOLIO', href: '/portfolio' },
-    { name: 'CASE STUDIES', href: '#', hasDropdown: true },
+    { name: 'CASE STUDIES', href: '/case-studies', hasDropdown: true },
+    { name: 'BLOG', href: '/blog' },
     { name: 'CONTACT', href: '/#contact' }
   ];
 
@@ -38,7 +39,7 @@ const Header = () => {
     },
     { 
       name: 'TufLet', 
-      href: '/case-studies/TufLet',
+      href: '/case-studies/turfnations-booking',
       description: 'Sports Venue Booking Platform'
     }
   ];
@@ -144,7 +145,7 @@ const Header = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
       >
-        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+        <div className="w-full px-4 md:px-6 lg:px-12 xl:px-20">
           <nav className="flex justify-between items-center h-20 lg:h-24">
             
             {/* Enhanced Logo */}
@@ -175,7 +176,7 @@ const Header = () => {
             </motion.button>
             
             {/* Desktop Navigation - Enhanced */}
-            <div className="hidden lg:flex items-center gap-8 xl:gap-12">
+            <div className="hidden lg:flex items-center gap-6 xl:gap-8">
               {navigationItems.map((item) => {
                 const isActive = activeSection === item.href.slice(1);
                 
