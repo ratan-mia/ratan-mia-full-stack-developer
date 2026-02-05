@@ -23,9 +23,14 @@ const GetQuote = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    company: '',
+    phone: '',
     projectType: '',
     budget: '',
-    message: ''
+    timeline: '',
+    priority: 'medium',
+    description: '',
+    features: []
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -54,6 +59,22 @@ const GetQuote = () => {
     'Let\'s Discuss'
   ];
 
+  const timelineOptions = [
+    'ASAP (Rush Job)',
+    '1-2 Weeks',
+    '1 Month',
+    '2-3 Months',
+    '3-6 Months',
+    'Flexible Timeline'
+  ];
+
+  const priorityOptions = [
+    { value: 'low', label: 'Low Priority' },
+    { value: 'medium', label: 'Medium Priority' },
+    { value: 'high', label: 'High Priority' },
+    { value: 'urgent', label: 'Urgent Priority' }
+  ];
+
   const benefits = [
     { icon: Zap, title: 'Quick Response', desc: '24-hour detailed quote' },
     { icon: Shield, title: 'Transparent Pricing', desc: 'No hidden fees' },
@@ -75,12 +96,28 @@ const GetQuote = () => {
         body: JSON.stringify(formData),
       });
       
+      const data = await response.json();
+      
       if (response.ok) {
-        alert('Quote request sent! I\'ll respond within 24 hours.');
-        setFormData({ name: '', email: '', projectType: '', budget: '', message: '' });
+        alert(`Quote request sent successfully! 🎉\n\nReference ID: #${data.referenceId}\n\nI'll respond within 24 hours with a detailed quote.`);
+        setFormData({ 
+          name: '', 
+          email: '', 
+          company: '',
+          phone: '',
+          projectType: '', 
+          budget: '', 
+          timeline: '',
+          priority: 'medium',
+          description: '',
+          features: []
+        });
+      } else {
+        alert(`Error: ${data.error || 'Failed to send quote request'}`);
       }
     } catch (error) {
-      alert('Error sending request. Please try again.');
+      console.error('Error sending quote request:', error);
+      alert('Error sending request. Please try again or contact me directly at shorifull@gmail.com');
     } finally {
       setIsSubmitting(false);
     }
@@ -220,14 +257,28 @@ const GetQuote = () => {
                 </div>
               </div>
 
-              {/* Website Link */}
-              <div>
-                <input
-                  type="url"
-                  name="website"
-                  className="w-full px-0 py-4 bg-transparent border-0 border-b-2 border-black/30 text-black placeholder-black/60 focus:outline-none focus:border-black transition-colors text-lg"
-                  placeholder="Website link"
-                />
+              {/* Company & Phone Row */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <input
+                    type="text"
+                    name="company"
+                    value={formData.company}
+                    onChange={handleChange}
+                    className="w-full px-0 py-4 bg-transparent border-0 border-b-2 border-black/30 text-black placeholder-black/60 focus:outline-none focus:border-black transition-colors text-lg"
+                    placeholder="Company name (optional)"
+                  />
+                </div>
+                <div>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="w-full px-0 py-4 bg-transparent border-0 border-b-2 border-black/30 text-black placeholder-black/60 focus:outline-none focus:border-black transition-colors text-lg"
+                    placeholder="Phone number (optional)"
+                  />
+                </div>
               </div>
 
               {/* Project Type & Budget Row */}
@@ -262,16 +313,48 @@ const GetQuote = () => {
                 </div>
               </div>
 
-              {/* Message */}
+              {/* Timeline & Priority Row */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <select
+                    name="timeline"
+                    value={formData.timeline}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-0 py-4 bg-transparent border-0 border-b-2 border-black/30 text-black focus:outline-none focus:border-black transition-colors text-lg appearance-none"
+                  >
+                    <option value="" className="bg-accent-lime text-black">Timeline*</option>
+                    {timelineOptions.map(time => (
+                      <option key={time} value={time} className="bg-accent-lime text-black">{time}</option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <select
+                    name="priority"
+                    value={formData.priority}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-0 py-4 bg-transparent border-0 border-b-2 border-black/30 text-black focus:outline-none focus:border-black transition-colors text-lg appearance-none"
+                  >
+                    <option value="" className="bg-accent-lime text-black">Priority*</option>
+                    {priorityOptions.map(opt => (
+                      <option key={opt.value} value={opt.value} className="bg-accent-lime text-black">{opt.label}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              {/* Description */}
               <div>
                 <textarea
-                  name="message"
-                  value={formData.message}
+                  name="description"
+                  value={formData.description}
                   onChange={handleChange}
                   required
                   rows={4}
                   className="w-full px-0 py-4 bg-transparent border-0 border-b-2 border-black/30 text-black placeholder-black/60 focus:outline-none focus:border-black transition-colors resize-none text-lg"
-                  placeholder="How Can We Help You*"
+                  placeholder="Project description & requirements*"
                 />
               </div>
 
