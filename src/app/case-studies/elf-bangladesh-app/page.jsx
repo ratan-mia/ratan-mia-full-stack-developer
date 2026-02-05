@@ -12,6 +12,7 @@ import { useRef, useState } from 'react';
 
 export default function ELFBangladeshCaseStudy() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [activeSection, setActiveSection] = useState('overview');
   const featuresRef = useRef(null);
   const techRef = useRef(null);
   const screenshotsRef = useRef(null);
@@ -19,6 +20,23 @@ export default function ELFBangladeshCaseStudy() {
   const featuresInView = useInView(featuresRef, { once: true, margin: "-100px" });
   const techInView = useInView(techRef, { once: true, margin: "-100px" });
   const screenshotsInView = useInView(screenshotsRef, { once: true, margin: "-100px" });
+
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    const targetId = href.replace('#', '');
+    const element = document.getElementById(targetId);
+    if (element) {
+      const offset = 100; // Offset for sticky header
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+      setActiveSection(targetId);
+    }
+  };
 
   const heroImages = [
     { src: '/images/projects/elf-mobile-store/01-splash-screen.jpg', alt: 'Splash Screen' },
@@ -79,206 +97,219 @@ export default function ELFBangladeshCaseStudy() {
             </Link>
           </motion.div>
 
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16">
-            {/* Main Content - Left Side */}
-            <div className="lg:col-span-7">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
+            {/* Content */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
               <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
+                className="inline-flex items-center gap-2 px-5 py-2 bg-black/10 border-2 border-black/20 text-black rounded-full text-sm font-bold mb-6 uppercase tracking-wider"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
               >
-                <motion.div
-                  className="inline-flex items-center gap-2 px-5 py-2 bg-black/10 border-2 border-black/20 text-black rounded-full text-sm font-bold mb-6 uppercase tracking-wider"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                >
-                  <Smartphone className="w-4 h-4" />
-                  Mobile App Design & Development
-                </motion.div>
-
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-black mb-6 leading-[1.1] tracking-[-0.04em] text-black">
-                  ELF Bangladesh Mobile App
-                </h1>
-
-                <p className="text-xl md:text-2xl text-black/80 mb-8 font-medium leading-[1.6]">
-                  Enterprise-grade automotive e-commerce ecosystem combining loyalty rewards, gamification, and service bookings in one powerful platform.
-                </p>
-                
-                {/* Social Share */}
-                <motion.div 
-                  className="flex items-center gap-4 mb-8"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.6, delay: 0.5 }}
-                >
-                  <span className="text-sm font-bold text-black/70 uppercase tracking-wider">Share:</span>
-                  <div className="flex gap-2">
-                    {[
-                      { icon: '𝕏', label: 'Twitter' },
-                      { icon: 'in', label: 'LinkedIn' },
-                      { icon: 'f', label: 'Facebook' }
-                    ].map((social) => (
-                      <button
-                        key={social.label}
-                        className="w-10 h-10 rounded-full bg-black/10 hover:bg-black hover:text-accent-lime flex items-center justify-center font-bold transition-all"
-                        aria-label={`Share on ${social.label}`}
-                      >
-                        {social.icon}
-                      </button>
-                    ))}
-                  </div>
-                </motion.div>
-
-                {/* Stats Grid */}
-                <motion.div
-                  className="grid grid-cols-2 md:grid-cols-4 gap-6"
-                  variants={staggerContainer}
-                  initial="initial"
-                  animate="animate"
-                >
-                  {[
-                    { value: '60+', label: 'Screens' },
-                    { value: '500+', label: 'Products' },
-                    { value: '25+', label: 'DB Tables' },
-                    { value: '95%', label: 'Complete' }
-                  ].map((stat, index) => (
-                    <motion.div
-                      key={stat.label}
-                      className="text-center"
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.6, delay: 0.7 + index * 0.1 }}
-                    >
-                      <div className="text-4xl lg:text-5xl font-black text-black mb-2 tracking-[-0.02em]">{stat.value}</div>
-                      <div className="text-sm text-black/70 font-semibold uppercase tracking-wider">{stat.label}</div>
-                    </motion.div>
-                  ))}
-                </motion.div>
+                <Smartphone className="w-4 h-4" />
+                Mobile App Design & Development
               </motion.div>
-            </div>
 
-            {/* Sidebar - Right Side */}
-            <div className="lg:col-span-5 space-y-6">
-              {/* Mobile Mockup */}
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-black mb-6 leading-[1.1] tracking-[-0.04em] text-black">
+                ELF Bangladesh Mobile App
+              </h1>
+
+              <p className="text-lg md:text-xl text-black/80 mb-8 font-medium leading-[1.6]">
+                Enterprise-grade automotive e-commerce ecosystem combining loyalty rewards, gamification, and service bookings in one powerful platform.
+              </p>
+              
+              {/* Tech Stack Tags */}
+              <div className="flex flex-wrap gap-2 mb-8">
+                {['React Native', 'Expo 54', 'TypeScript', 'Supabase', 'Redux'].map((tech) => (
+                  <span key={tech} className="px-4 py-2 bg-black/10 border border-black/20 text-black rounded-lg text-xs font-bold hover:bg-black hover:text-accent-lime transition-all">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+
+              {/* Stats Grid */}
               <motion.div
-                className="relative flex items-center justify-center mb-8"
-                initial={{ opacity: 0, scale: 0.9, rotateY: 20 }}
-                animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-                transition={{ duration: 1, delay: 0.4 }}
+                className="grid grid-cols-2 gap-6"
+                variants={staggerContainer}
+                initial="initial"
+                animate="animate"
               >
-                <div className="relative">
-                  {/* Glow effect */}
-                  <div className="absolute inset-0 bg-black/10 rounded-[3rem] blur-3xl" />
-                  
-                  {/* Phone mockup */}
-                  <div className="relative bg-gray-900 p-3 rounded-[3rem] border-4 border-black/30 shadow-2xl">
-                    {/* Phone screen with carousel */}
-                    <div className="relative w-[300px] h-[600px] bg-black rounded-[2.5rem] overflow-hidden">
-                      <AnimatePresence mode="wait">
-                        <motion.div
-                          key={currentImageIndex}
-                          initial={{ x: 300, opacity: 0 }}
-                          animate={{ x: 0, opacity: 1 }}
-                          exit={{ x: -300, opacity: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="absolute inset-0"
+                {[
+                  { value: '60+', label: 'Screens' },
+                  { value: '500+', label: 'Products' },
+                  { value: '25+', label: 'DB Tables' },
+                  { value: '95%', label: 'Complete' }
+                ].map((stat, index) => (
+                  <motion.div
+                    key={stat.label}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6, delay: 0.7 + index * 0.1 }}
+                  >
+                    <div className="text-3xl lg:text-4xl font-black text-black mb-1 tracking-[-0.02em]">{stat.value}</div>
+                    <div className="text-xs text-black/70 font-semibold uppercase tracking-wider">{stat.label}</div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </motion.div>
+
+            {/* Mobile Mockup */}
+            <motion.div
+              className="relative flex items-center justify-center"
+              initial={{ opacity: 0, scale: 0.9, rotateY: 20 }}
+              animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+              transition={{ duration: 1, delay: 0.4 }}
+            >
+                  <div className="relative">
+                    {/* Glow effect */}
+                    <div className="absolute inset-0 bg-black/10 rounded-[3rem] blur-3xl" />
+                    
+                    {/* Phone mockup */}
+                    <div className="relative bg-gray-900 p-3 rounded-[3rem] border-4 border-black/30 shadow-2xl">
+                      {/* Phone screen with carousel */}
+                      <div className="relative w-[280px] h-[560px] bg-black rounded-[2.5rem] overflow-hidden">
+                        <AnimatePresence mode="wait">
+                          <motion.div
+                            key={currentImageIndex}
+                            initial={{ x: 300, opacity: 0 }}
+                            animate={{ x: 0, opacity: 1 }}
+                            exit={{ x: -300, opacity: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="absolute inset-0"
+                          >
+                            <Image
+                              src={heroImages[currentImageIndex].src}
+                              alt={heroImages[currentImageIndex].alt}
+                              fill
+                              className="object-cover"
+                              priority
+                            />
+                          </motion.div>
+                        </AnimatePresence>
+                        
+                        {/* Navigation arrows */}
+                        <button
+                          onClick={prevImage}
+                          className="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/70 transition-all z-10"
+                          aria-label="Previous image"
                         >
-                          <Image
-                            src={heroImages[currentImageIndex].src}
-                            alt={heroImages[currentImageIndex].alt}
-                            fill
-                            className="object-cover"
-                            priority
-                          />
-                        </motion.div>
-                      </AnimatePresence>
-                      
-                      {/* Navigation arrows */}
-                      <button
-                        onClick={prevImage}
-                        className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/70 transition-all z-10"
-                        aria-label="Previous image"
-                      >
-                        <ChevronLeft className="w-6 h-6" />
-                      </button>
-                      <button
-                        onClick={nextImage}
-                        className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/70 transition-all z-10"
-                        aria-label="Next image"
-                      >
-                        <ChevronRight className="w-6 h-6" />
-                      </button>
-                      
-                      {/* Dots indicator */}
-                      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-                        {heroImages.map((_, index) => (
-                          <button
-                            key={index}
-                            onClick={() => setCurrentImageIndex(index)}
-                            className={`w-2 h-2 rounded-full transition-all ${
-                              index === currentImageIndex 
-                                ? 'bg-accent-lime w-6' 
-                                : 'bg-white/50 hover:bg-white/80'
-                            }`}
-                            aria-label={`Go to image ${index + 1}`}
-                          />
-                        ))}
+                          <ChevronLeft className="w-5 h-5" />
+                        </button>
+                        <button
+                          onClick={nextImage}
+                          className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/70 transition-all z-10"
+                          aria-label="Next image"
+                        >
+                          <ChevronRight className="w-5 h-5" />
+                        </button>
+                        
+                        {/* Dots indicator */}
+                        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+                          {heroImages.map((_, index) => (
+                            <button
+                              key={index}
+                              onClick={() => setCurrentImageIndex(index)}
+                              className={`w-1.5 h-1.5 rounded-full transition-all ${
+                                index === currentImageIndex 
+                                  ? 'bg-accent-lime w-4' 
+                                  : 'bg-white/50 hover:bg-white/80'
+                              }`}
+                              aria-label={`Go to image ${index + 1}`}
+                            />
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </motion.div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
 
-              {/* Project Info Card */}
-              <motion.div
-                className="bg-black/10 backdrop-blur-sm border-2 border-black/20 rounded-2xl p-8"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
-              >
-                <div className="space-y-6">
-                  <div>
-                    <div className="text-xs font-bold uppercase tracking-wider text-black/60 mb-2">Company</div>
-                    <div className="text-lg font-black text-black">ELF Bangladesh</div>
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold uppercase tracking-wider text-black/60 mb-2">Category</div>
-                    <div className="text-lg font-black text-black">Automotive E-commerce</div>
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold uppercase tracking-wider text-black/60 mb-2">Timeline</div>
-                    <div className="text-lg font-black text-black">6 Months (Ongoing)</div>
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold uppercase tracking-wider text-black/60 mb-2">Services Provided</div>
-                    <div className="flex flex-wrap gap-2 mt-2">
-                      {['UI/UX Design', 'Mobile Development', 'Backend API', 'Database Design'].map((service) => (
-                        <span key={service} className="px-3 py-1 bg-black/10 border border-black/20 rounded-lg text-xs font-bold text-black">
-                          {service}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-xs font-bold uppercase tracking-wider text-black/60 mb-2">Tech Stack</div>
-                    <div className="flex flex-wrap gap-2 mt-2">
-                      {['React Native', 'Expo 54', 'TypeScript', 'Supabase', 'Redux'].map((tech) => (
-                        <span key={tech} className="px-3 py-1 bg-black text-accent-lime rounded-lg text-xs font-bold">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+      {/* Sidebar Navigation Section */}
+      <section className="py-12 px-4 md:px-6 lg:px-8 bg-white border-b-2 border-gray-200 sticky top-0 z-40">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-12 gap-8">
+            {/* Left Sidebar - Navigation */}
+            <div className="lg:col-span-3">
+              <div className="space-y-2">
+                {[
+                  { label: 'Overview', href: '#overview' },
+                  { label: 'Challenges', href: '#challenges' },
+                  { label: 'Features', href: '#features' },
+                  { label: 'Tech Stack', href: '#tech-stack' },
+                  { label: 'Screenshots', href: '#screenshots' }
+                ].map((item) => {
+                  const isActive = activeSection === item.href.replace('#', '');
+                  return (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      onClick={(e) => handleNavClick(e, item.href)}
+                      className={`block px-4 py-2 text-sm font-bold rounded-lg transition-all ${
+                        isActive 
+                          ? 'bg-accent-lime text-black' 
+                          : 'text-gray-600 hover:text-black hover:bg-accent-lime/10'
+                      }`}
+                    >
+                      {item.label}
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Right Content - Project Info */}
+            <div className="lg:col-span-9">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div>
+                  <div className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Company</div>
+                  <div className="text-base font-black text-black">ELF Bangladesh</div>
                 </div>
-              </motion.div>
+                <div>
+                  <div className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Category</div>
+                  <div className="text-base font-black text-black">Automotive E-commerce</div>
+                </div>
+                <div>
+                  <div className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Timeline</div>
+                  <div className="text-base font-black text-black">6 Months</div>
+                </div>
+                <div>
+                  <div className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Platform</div>
+                  <div className="text-base font-black text-black">iOS & Android</div>
+                </div>
+              </div>
+              
+              <div className="mt-6 pt-6 border-t-2 border-gray-200">
+                <div className="flex flex-wrap gap-4 items-center">
+                  <span className="text-xs font-bold uppercase tracking-wider text-gray-500">Share:</span>
+                  {[
+                    { icon: 'f', label: 'Facebook' },
+                    { icon: '𝕏', label: 'Twitter' },
+                    { icon: 'in', label: 'LinkedIn' },
+                    { icon: '💬', label: 'WhatsApp' }
+                  ].map((social) => (
+                    <button
+                      key={social.label}
+                      className="w-9 h-9 rounded-full bg-gray-100 hover:bg-black hover:text-accent-lime flex items-center justify-center font-bold transition-all text-sm"
+                      aria-label={`Share on ${social.label}`}
+                    >
+                      {social.icon}
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Project Overview */}
-      <section className="py-24 lg:py-32 px-4 md:px-6 lg:px-8 bg-gray-50">
+      <section id="overview" className="py-24 lg:py-32 px-4 md:px-6 lg:px-8 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <motion.div
             className="grid lg:grid-cols-3 gap-6 mb-16"
@@ -333,7 +364,7 @@ export default function ELFBangladeshCaseStudy() {
       </section>
 
       {/* Challenges & Solutions */}
-      <section className="py-24 lg:py-32 px-4 md:px-6 lg:px-8 bg-white">
+      <section id="challenges" className="py-24 lg:py-32 px-4 md:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <motion.div
             className="text-center mb-16"
@@ -440,7 +471,7 @@ export default function ELFBangladeshCaseStudy() {
       </section>
 
       {/* Key Features */}
-      <section ref={featuresRef} className="py-24 lg:py-32 px-4 md:px-6 lg:px-8 bg-white">
+      <section id="features" ref={featuresRef} className="py-24 lg:py-32 px-4 md:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <motion.div
             className="text-center mb-16"
@@ -529,7 +560,7 @@ export default function ELFBangladeshCaseStudy() {
       </section>
 
       {/* Tech Stack */}
-      <section ref={techRef} className="py-24 lg:py-32 px-4 md:px-6 lg:px-8 bg-black">
+      <section id="tech-stack" ref={techRef} className="py-24 lg:py-32 px-4 md:px-6 lg:px-8 bg-black">
         <div className="max-w-7xl mx-auto">
           <motion.div
             className="text-center mb-16"
@@ -600,7 +631,7 @@ export default function ELFBangladeshCaseStudy() {
       </section>
 
       {/* Screenshots Showcase */}
-      <section ref={screenshotsRef} className="py-24 lg:py-32 px-4 md:px-6 lg:px-8 bg-white">
+      <section id="screenshots" ref={screenshotsRef} className="py-24 lg:py-32 px-4 md:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <motion.div
             className="text-center mb-16"
