@@ -1,618 +1,561 @@
-import { ArrowLeft, MapPin, ShoppingCart, Star, Trophy, Wallet, Zap } from 'lucide-react';
+'use client';
+
+import { motion, useInView } from 'framer-motion';
+import { 
+  ArrowLeft, ArrowRight, CheckCircle, Code, Database, Globe, 
+  MapPin, Palette, Server, ShoppingCart, Smartphone, Star, 
+  Trophy, Wallet, Zap 
+} from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-
-export const metadata = {
-  title: 'ELF Bangladesh Mobile App - Case Study | Ratan Mia',
-  description: 'Enterprise-grade automotive e-commerce and service platform with loyalty programs, gamification, and emergency assistance built with React Native and Supabase.',
-  keywords: 'React Native, Expo, e-commerce, automotive app, loyalty program, gamification, Supabase, TypeScript',
-};
+import { useRef } from 'react';
 
 export default function ELFBangladeshCaseStudy() {
+  const featuresRef = useRef(null);
+  const techRef = useRef(null);
+  const screenshotsRef = useRef(null);
+  
+  const featuresInView = useInView(featuresRef, { once: true, margin: "-100px" });
+  const techInView = useInView(techRef, { once: true, margin: "-100px" });
+  const screenshotsInView = useInView(screenshotsRef, { once: true, margin: "-100px" });
+
+  const fadeInUp = {
+    initial: { opacity: 0, y: 60 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.8, ease: [0.23, 1, 0.32, 1] }
+  };
+
+  const staggerContainer = {
+    animate: {
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
   return (
     <main className="bg-white text-black">
       {/* Hero Section */}
-      <section className="relative min-h-[80vh] w-full overflow-hidden bg-accent-lime flex items-center">
-        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-20">
-          <Link 
-            href="/case-studies" 
-            className="inline-flex items-center gap-2 mb-8 text-black hover:text-black/70 transition-colors font-bold"
-          >
-            <ArrowLeft className="w-5 h-5" />
-            Back to Case Studies
-          </Link>
+      <section className="relative min-h-screen w-full overflow-hidden bg-black flex items-center">
+        {/* Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-accent-lime/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent-lime/10 rounded-full blur-3xl" />
+        </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="inline-block px-6 py-2 bg-black/10 text-black rounded-full text-sm font-extrabold mb-6">
-                🚗 AUTOMOTIVE E-COMMERCE
-              </div>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
-                ELF Bangladesh<br />Mobile App
+        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-20 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <Link 
+              href="/case-studies" 
+              className="inline-flex items-center gap-2 mb-8 text-white hover:text-accent-lime transition-colors font-bold uppercase tracking-wider text-sm"
+            >
+              <ArrowLeft className="w-5 h-5" />
+              Back to Case Studies
+            </Link>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <motion.div
+                className="inline-flex items-center gap-2 px-5 py-2 bg-accent-lime/10 border-2 border-accent-lime/30 text-accent-lime rounded-full text-sm font-bold mb-6 uppercase tracking-wider"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                <Smartphone className="w-4 h-4" />
+                Mobile App Development
+              </motion.div>
+
+              <h1 className="text-5xl md:text-6xl lg:text-[72px] font-black mb-8 leading-[1.1] tracking-[-0.04em] text-white">
+                ELF Bangladesh
+                <br />
+                <span className="text-accent-lime">Mobile App</span>
               </h1>
-              <p className="text-xl md:text-2xl text-black/80 mb-8 font-medium leading-relaxed">
-                A comprehensive automotive ecosystem combining e-commerce, loyalty rewards, gamification, service bookings, and emergency assistance in one powerful mobile platform.
+
+              <p className="text-xl md:text-2xl text-gray-400 mb-10 font-medium leading-[1.6]">
+                Enterprise-grade automotive e-commerce ecosystem combining loyalty rewards, gamification, and service bookings in one powerful platform.
               </p>
               
-              <div className="flex flex-wrap gap-3 mb-8">
-                <span className="px-4 py-2 bg-black text-accent-lime rounded-xl font-bold text-sm">React Native</span>
-                <span className="px-4 py-2 bg-black text-accent-lime rounded-xl font-bold text-sm">Expo 54</span>
-                <span className="px-4 py-2 bg-black text-accent-lime rounded-xl font-bold text-sm">TypeScript</span>
-                <span className="px-4 py-2 bg-black text-accent-lime rounded-xl font-bold text-sm">Supabase</span>
+              <div className="flex flex-wrap gap-3 mb-10">
+                {['React Native', 'Expo 54', 'TypeScript', 'Supabase', 'Redux Toolkit'].map((tech, index) => (
+                  <motion.span
+                    key={tech}
+                    className="px-5 py-2 bg-white/5 border border-white/10 text-white rounded-xl font-bold text-sm hover:bg-accent-lime hover:text-black hover:border-accent-lime transition-all"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.5 + index * 0.05 }}
+                    whileHover={{ scale: 1.05, y: -2 }}
+                  >
+                    {tech}
+                  </motion.span>
+                ))}
               </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                <div>
-                  <div className="text-3xl font-extrabold text-black">60+</div>
-                  <div className="text-sm text-black/70 font-bold">Screens</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-extrabold text-black">500+</div>
-                  <div className="text-sm text-black/70 font-bold">Products</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-extrabold text-black">25+</div>
-                  <div className="text-sm text-black/70 font-bold">DB Tables</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-extrabold text-black">95%</div>
-                  <div className="text-sm text-black/70 font-bold">Complete</div>
+              <motion.div
+                className="grid grid-cols-2 md:grid-cols-4 gap-6"
+                variants={staggerContainer}
+                initial="initial"
+                animate="animate"
+              >
+                {[
+                  { value: '60+', label: 'Screens' },
+                  { value: '500+', label: 'Products' },
+                  { value: '25+', label: 'DB Tables' },
+                  { value: '95%', label: 'Complete' }
+                ].map((stat, index) => (
+                  <motion.div
+                    key={stat.label}
+                    className="text-center"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6, delay: 0.7 + index * 0.1 }}
+                  >
+                    <div className="text-4xl lg:text-5xl font-black text-accent-lime mb-2 tracking-[-0.02em]">{stat.value}</div>
+                    <div className="text-sm text-gray-400 font-semibold uppercase tracking-wider">{stat.label}</div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </motion.div>
+
+            <motion.div
+              className="relative flex items-center justify-center"
+              initial={{ opacity: 0, scale: 0.9, rotateY: 20 }}
+              animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+              transition={{ duration: 1, delay: 0.4 }}
+            >
+              <div className="relative">
+                {/* Glow effect */}
+                <div className="absolute inset-0 bg-accent-lime/20 rounded-[3rem] blur-3xl" />
+                
+                {/* Phone mockup */}
+                <div className="relative bg-black p-3 rounded-[3rem] border-4 border-accent-lime/30 shadow-2xl">
+                  <Image
+                    src="/images/projects/elf-mobile-store/02-products-listing.jpg"
+                    alt="ELF Bangladesh App - Products Listing"
+                    width={350}
+                    height={700}
+                    className="rounded-[2.5rem] object-cover"
+                    priority
+                  />
                 </div>
               </div>
-            </div>
-
-            <div className="relative h-[600px] flex items-center justify-center">
-              <Image
-                src="/images/projects/elf-mobile-store/02-products-listing.jpg"
-                alt="ELF Bangladesh App - Products Listing"
-                width={300}
-                height={650}
-                className="object-contain rounded-3xl shadow-2xl"
-                priority
-              />
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* Project Overview */}
-      <section className="py-20 px-4 md:px-6 lg:px-8 bg-gray-50">
+      <section className="py-24 lg:py-32 px-4 md:px-6 lg:px-8 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-3 gap-8 mb-16">
-            <div className="bg-white p-8 rounded-3xl shadow-lg border-2 border-gray-100 hover:border-accent-lime/50 transition-all">
-              <div className="text-4xl mb-4">🏭</div>
-              <h3 className="text-xl font-extrabold mb-2">Industry</h3>
-              <p className="text-gray-600 font-medium">Automotive Products & Services</p>
-            </div>
-            <div className="bg-white p-8 rounded-3xl shadow-lg border-2 border-gray-100 hover:border-accent-lime/50 transition-all">
-              <div className="text-4xl mb-4">⏱️</div>
-              <h3 className="text-xl font-extrabold mb-2">Duration</h3>
-              <p className="text-gray-600 font-medium">6 Months (Ongoing)</p>
-            </div>
-            <div className="bg-white p-8 rounded-3xl shadow-lg border-2 border-gray-100 hover:border-accent-lime/50 transition-all">
-              <div className="text-4xl mb-4">📱</div>
-              <h3 className="text-xl font-extrabold mb-2">Platform</h3>
-              <p className="text-gray-600 font-medium">iOS & Android</p>
-            </div>
-          </div>
+          <motion.div
+            className="grid lg:grid-cols-3 gap-6 mb-16"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            {[
+              { icon: <ShoppingCart className="w-7 h-7" />, title: 'Industry', value: 'Automotive Products & Services' },
+              { icon: <Zap className="w-7 h-7" />, title: 'Duration', value: '6 Months (Ongoing)' },
+              { icon: <Smartphone className="w-7 h-7" />, title: 'Platform', value: 'iOS & Android' }
+            ].map((item, index) => (
+              <motion.div
+                key={item.title}
+                className="bg-white p-8 rounded-2xl border-2 border-gray-200 hover:border-accent-lime transition-all"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                whileHover={{ y: -4 }}
+              >
+                <div className="w-14 h-14 rounded-xl bg-accent-lime/10 flex items-center justify-center mb-4 text-black">
+                  {item.icon}
+                </div>
+                <h3 className="text-lg font-black mb-2 tracking-[-0.01em]">{item.title}</h3>
+                <p className="text-gray-600 font-semibold">{item.value}</p>
+              </motion.div>
+            ))}
+          </motion.div>
 
-          <div className="bg-white p-10 rounded-3xl shadow-lg border-2 border-gray-100">
-            <h2 className="text-4xl font-extrabold mb-6">Project <span className="text-accent-lime">Overview</span></h2>
-            <p className="text-lg text-gray-700 leading-relaxed mb-6 font-medium">
-              ELF Bangladesh needed to transform their traditional automotive product sales into an engaging digital ecosystem. The challenge was to create a unified mobile platform that seamlessly integrates e-commerce, customer loyalty, service bookings, and emergency assistance while maintaining a user-friendly interface for diverse user segments.
-            </p>
-            <p className="text-lg text-gray-700 leading-relaxed font-medium">
-              The solution is a feature-rich mobile application built with React Native and Expo 54, offering over 60 screens covering everything from browsing automotive products to booking workshop services and earning loyalty rewards through gamification. The app serves vehicle owners across Bangladesh with multi-language support and integrated payment gateways.
-            </p>
-          </div>
+          <motion.div
+            className="bg-white p-10 lg:p-12 rounded-2xl border-2 border-gray-200"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-4xl lg:text-5xl font-black mb-8 tracking-[-0.02em]">
+              Project <span className="text-accent-lime">Overview</span>
+            </h2>
+            <div className="space-y-6 text-lg text-gray-700 leading-[1.7]">
+              <p className="font-medium">
+                ELF Bangladesh needed to transform their traditional automotive product sales into an engaging digital ecosystem. The challenge was to create a unified mobile platform that seamlessly integrates e-commerce, customer loyalty, service bookings, and emergency assistance while maintaining a user-friendly interface for diverse user segments.
+              </p>
+              <p className="font-medium">
+                The solution is a feature-rich mobile application built with <strong className="text-black">React Native and Expo 54</strong>, offering over <strong className="text-black">60 screens</strong> covering everything from browsing automotive products to booking workshop services and earning loyalty rewards through gamification. The app serves vehicle owners across Bangladesh with multi-language support and integrated payment gateways.
+              </p>
+            </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Key Features */}
-      <section className="py-20 px-4 md:px-6 lg:px-8 bg-white">
+      <section ref={featuresRef} className="py-24 lg:py-32 px-4 md:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-bold mb-6">
-              CORE FEATURES
-            </div>
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
-              Powerful <span className="text-accent-lime">Features</span>
-            </h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto font-medium">
-              A comprehensive suite of features designed to create an unmatched automotive shopping and service experience
-            </p>
-          </div>
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            animate={featuresInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+          >
+            <motion.div
+              className="inline-flex items-center gap-4 mb-8"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={featuresInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="w-12 h-1 bg-accent-lime" />
+              <span className="text-gray-500 font-semibold text-sm uppercase tracking-[0.15em]">Core Features</span>
+              <div className="w-12 h-1 bg-accent-lime" />
+            </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <h2 className="text-4xl lg:text-6xl font-black mb-6 tracking-[-0.04em]">
+              Powerful Features for
+              <br />
+              <span className="text-accent-lime">Modern Automotive</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-[1.6]">
+              A comprehensive suite designed to create an unmatched shopping and service experience
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+            variants={staggerContainer}
+            initial="initial"
+            animate={featuresInView ? "animate" : "initial"}
+          >
             {[
               {
                 icon: <ShoppingCart className="w-8 h-8" />,
                 title: "E-Commerce Marketplace",
-                description: "Browse 500+ automotive products including engine oils, lubricants, and accessories with advanced filtering and smart search capabilities."
+                description: "Browse 500+ automotive products including engine oils, lubricants, and accessories with advanced filtering and smart search."
               },
               {
                 icon: <Trophy className="w-8 h-8" />,
                 title: "Loyalty & Rewards",
-                description: "Earn coins with every purchase, redeem rewards from the catalog, and enjoy exclusive benefits for loyal customers."
+                description: "Earn coins with every purchase, redeem rewards from catalog, and enjoy exclusive benefits for loyal customers."
               },
               {
                 icon: <Zap className="w-8 h-8" />,
                 title: "Gamification System",
-                description: "Play interactive games like spin wheel to win prizes, boost engagement, and earn additional coins and rewards."
+                description: "Play interactive games like spin wheel, flip cards to win prizes, boost engagement, and earn rewards."
               },
               {
                 icon: <MapPin className="w-8 h-8" />,
                 title: "Service Center Booking",
-                description: "Find nearby workshops, view available time slots, book maintenance appointments, and manage vehicle service history."
+                description: "Find nearby workshops, view time slots, book maintenance appointments, and manage vehicle service history."
               },
               {
                 icon: <Wallet className="w-8 h-8" />,
                 title: "Digital Wallet",
-                description: "Integrated wallet system for storing coins, processing payments, and managing transactions with bKash and Nagad support."
+                description: "Integrated wallet for storing coins, processing payments with bKash, Nagad, and SSL Commerz support."
               },
               {
                 icon: <Star className="w-8 h-8" />,
                 title: "Emergency Assistance",
-                description: "24/7 roadside assistance with GPS location sharing, real-time tracking, and immediate response for vehicle emergencies."
+                description: "24/7 roadside assistance with GPS location sharing, real-time tracking, and immediate emergency response."
               }
             ].map((feature, index) => (
-              <div 
-                key={index}
-                className="p-8 rounded-3xl bg-white border-2 border-gray-100 hover:border-accent-lime hover:shadow-2xl transition-all duration-500 group"
+              <motion.div
+                key={feature.title}
+                className="p-8 rounded-2xl bg-white border-2 border-gray-200 hover:border-accent-lime hover:shadow-xl transition-all duration-300 group"
+                initial={{ opacity: 0, y: 30 }}
+                animate={featuresInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                whileHover={{ y: -8 }}
               >
-                <div className="w-16 h-16 rounded-2xl bg-accent-lime/10 flex items-center justify-center mb-6 group-hover:bg-accent-lime group-hover:scale-110 transition-all duration-500">
-                  <div className="text-black">
+                <div className="w-16 h-16 rounded-xl bg-accent-lime/10 flex items-center justify-center mb-6 group-hover:bg-accent-lime transition-all duration-300">
+                  <div className="text-black group-hover:scale-110 transition-transform">
                     {feature.icon}
                   </div>
                 </div>
-                <h3 className="text-xl font-extrabold mb-3">{feature.title}</h3>
-                <p className="text-gray-600 leading-relaxed font-medium">{feature.description}</p>
-              </div>
+                <h3 className="text-xl font-black mb-3 tracking-[-0.01em]">{feature.title}</h3>
+                <p className="text-gray-600 leading-[1.7]">{feature.description}</p>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Tech Stack */}
-      <section className="py-20 px-4 md:px-6 lg:px-8 bg-gray-50">
+      <section ref={techRef} className="py-24 lg:py-32 px-4 md:px-6 lg:px-8 bg-black">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-bold mb-6">
-              TECHNOLOGY
-            </div>
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
-              Tech <span className="text-accent-lime">Stack</span>
-            </h2>
-          </div>
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            animate={techInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+          >
+            <motion.div
+              className="inline-flex items-center gap-4 mb-8"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={techInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="w-12 h-1 bg-accent-lime" />
+              <span className="text-gray-400 font-semibold text-sm uppercase tracking-[0.15em]">Technology Stack</span>
+              <div className="w-12 h-1 bg-accent-lime" />
+            </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <h2 className="text-4xl lg:text-6xl font-black mb-6 tracking-[-0.04em] text-white">
+              Built With Modern
+              <br />
+              <span className="text-accent-lime">Technology</span>
+            </h2>
+          </motion.div>
+
+          <motion.div
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+            variants={staggerContainer}
+            initial="initial"
+            animate={techInView ? "animate" : "initial"}
+          >
             {[
-              { category: "Frontend", items: ["React Native 0.81.5", "Expo 54", "TypeScript 5.9", "React 19.1.0"] },
-              { category: "State Management", items: ["Redux Toolkit 2.0", "React Redux 9.1", "AsyncStorage", "Redux Persist"] },
-              { category: "UI/UX", items: ["React Native Paper 5.14", "React Navigation 7.1", "Lucide Icons", "Reanimated"] },
-              { category: "Backend", items: ["Supabase", "PostgreSQL", "Row-Level Security", "Axios 1.6"] },
-              { category: "Payments", items: ["bKash", "Nagad", "SSL Commerz", "Cash on Delivery"] },
-              { category: "Native Features", items: ["expo-camera", "expo-location", "expo-notifications", "expo-print"] },
-              { category: "Internationalization", items: ["i18next 25.7", "react-i18next 16.5", "expo-localization"] },
-              { category: "Dev Tools", items: ["ESLint", "Babel", "Metro Bundler", "TypeScript Compiler"] }
+              { icon: <Code className="w-6 h-6" />, category: "Frontend", items: ["React Native 0.81.5", "Expo 54", "TypeScript 5.9", "React 19.1.0"] },
+              { icon: <Database className="w-6 h-6" />, category: "Backend", items: ["Supabase", "PostgreSQL", "Row-Level Security", "Axios 1.6"] },
+              { icon: <Palette className="w-6 h-6" />, category: "UI/UX", items: ["React Native Paper 5.14", "React Navigation 7.1", "Lucide Icons", "Reanimated"] },
+              { icon: <Server className="w-6 h-6" />, category: "State Management", items: ["Redux Toolkit 2.0", "React Redux 9.1", "AsyncStorage", "Redux Persist"] },
+              { icon: <Wallet className="w-6 h-6" />, category: "Payments", items: ["bKash", "Nagad", "SSL Commerz", "Cash on Delivery"] },
+              { icon: <Smartphone className="w-6 h-6" />, category: "Native Features", items: ["expo-camera", "expo-location", "expo-notifications", "expo-print"] },
+              { icon: <Globe className="w-6 h-6" />, category: "i18n", items: ["i18next 25.7", "react-i18next 16.5", "expo-localization"] },
+              { icon: <Zap className="w-6 h-6" />, category: "Dev Tools", items: ["ESLint", "Babel", "Metro Bundler", "TypeScript"] }
             ].map((stack, index) => (
-              <div 
-                key={index}
-                className="bg-white p-6 rounded-2xl shadow-lg border-2 border-gray-100 hover:border-accent-lime/50 transition-all"
+              <motion.div
+                key={stack.category}
+                className="bg-white/5 border-2 border-white/10 p-6 rounded-2xl hover:bg-white/10 hover:border-accent-lime/30 transition-all"
+                initial={{ opacity: 0, y: 30 }}
+                animate={techInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: index * 0.05 }}
+                whileHover={{ y: -4 }}
               >
-                <h3 className="text-lg font-extrabold mb-4">{stack.category}</h3>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-lg bg-accent-lime/10 flex items-center justify-center text-accent-lime">
+                    {stack.icon}
+                  </div>
+                  <h3 className="text-lg font-black text-white tracking-[-0.01em]">{stack.category}</h3>
+                </div>
                 <ul className="space-y-2">
                   {stack.items.map((item, i) => (
-                    <li key={i} className="text-sm text-gray-600 font-medium flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-accent-lime"></span>
-                      {item}
+                    <li key={i} className="text-sm text-gray-400 font-medium flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-accent-lime flex-shrink-0" />
+                      <span>{item}</span>
                     </li>
                   ))}
                 </ul>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Screenshots Showcase */}
-      <section className="py-20 px-4 md:px-6 lg:px-8 bg-white">
+      <section ref={screenshotsRef} className="py-24 lg:py-32 px-4 md:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-bold mb-6">
-              APP SCREENS
-            </div>
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
-              Visual <span className="text-accent-lime">Showcase</span>
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            animate={screenshotsInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+          >
+            <motion.div
+              className="inline-flex items-center gap-4 mb-8"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={screenshotsInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="w-12 h-1 bg-accent-lime" />
+              <span className="text-gray-500 font-semibold text-sm uppercase tracking-[0.15em]">App Screenshots</span>
+              <div className="w-12 h-1 bg-accent-lime" />
+            </motion.div>
+
+            <h2 className="text-4xl lg:text-6xl font-black mb-6 tracking-[-0.04em]">
+              Visual Design
+              <br />
+              <span className="text-accent-lime">Showcase</span>
             </h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto font-medium">
-              Explore the app&apos;s interface and user experience through key screens
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-[1.6]">
+              Explore the app's interface and user experience through key screens
             </p>
-          </div>
+          </motion.div>
 
-          {/* Product Listing & Detail */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-extrabold mb-8 text-center">E-Commerce Experience</h3>
+          {/* E-Commerce Experience */}
+          <div className="mb-20">
+            <motion.h3
+              className="text-3xl font-black mb-10 text-center tracking-[-0.02em]"
+              initial={{ opacity: 0, y: 20 }}
+              animate={screenshotsInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
+            >
+              E-Commerce Experience
+            </motion.h3>
             <div className="grid md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="relative h-[600px] mb-4 rounded-3xl overflow-hidden shadow-xl border-4 border-gray-100">
-                  <Image
-                    src="/images/projects/elf-mobile-store/02-products-listing.jpg"
-                    alt="Products Listing"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <h4 className="font-bold text-lg">Products Listing</h4>
-                <p className="text-gray-600 text-sm">Browse 500+ automotive products</p>
-              </div>
-              <div className="text-center">
-                <div className="relative h-[600px] mb-4 rounded-3xl overflow-hidden shadow-xl border-4 border-gray-100">
-                  <Image
-                    src="/images/projects/elf-mobile-store/03-product-detail-transmission-fluid.jpg"
-                    alt="Product Detail"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <h4 className="font-bold text-lg">Product Detail</h4>
-                <p className="text-gray-600 text-sm">Complete specs & TDS download</p>
-              </div>
-              <div className="text-center">
-                <div className="relative h-[600px] mb-4 rounded-3xl overflow-hidden shadow-xl border-4 border-gray-100">
-                  <Image
-                    src="/images/projects/elf-mobile-store/18-wishlist.jpg"
-                    alt="Wishlist"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <h4 className="font-bold text-lg">Wishlist</h4>
-                <p className="text-gray-600 text-sm">Save favorite products</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Gamification & Rewards */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-extrabold mb-8 text-center">Gamification & Loyalty</h3>
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="relative h-[600px] mb-4 rounded-3xl overflow-hidden shadow-xl border-4 border-gray-100">
-                  <Image
-                    src="/images/projects/elf-mobile-store/07-gamification-spin-wheel.jpg"
-                    alt="Spin Wheel Game"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <h4 className="font-bold text-lg">Spin Wheel</h4>
-                <p className="text-gray-600 text-sm">Win prizes & earn coins</p>
-              </div>
-              <div className="text-center">
-                <div className="relative h-[600px] mb-4 rounded-3xl overflow-hidden shadow-xl border-4 border-gray-100">
-                  <Image
-                    src="/images/projects/elf-mobile-store/11-rewards-catalog.jpg"
-                    alt="Rewards Catalog"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <h4 className="font-bold text-lg">Rewards Catalog</h4>
-                <p className="text-gray-600 text-sm">Redeem coins for rewards</p>
-              </div>
-              <div className="text-center">
-                <div className="relative h-[600px] mb-4 rounded-3xl overflow-hidden shadow-xl border-4 border-gray-100">
-                  <Image
-                    src="/images/projects/elf-mobile-store/21-my-wallet.jpg"
-                    alt="Digital Wallet"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <h4 className="font-bold text-lg">Digital Wallet</h4>
-                <p className="text-gray-600 text-sm">Manage coins & balance</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Vehicle & Services */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-extrabold mb-8 text-center">Vehicle & Services</h3>
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="relative h-[600px] mb-4 rounded-3xl overflow-hidden shadow-xl border-4 border-gray-100">
-                  <Image
-                    src="/images/projects/elf-mobile-store/15-my-vehicles.jpg"
-                    alt="My Vehicles"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <h4 className="font-bold text-lg">My Vehicles</h4>
-                <p className="text-gray-600 text-sm">Manage registered vehicles</p>
-              </div>
-              <div className="text-center">
-                <div className="relative h-[600px] mb-4 rounded-3xl overflow-hidden shadow-xl border-4 border-gray-100">
-                  <Image
-                    src="/images/projects/elf-mobile-store/12-elf-workshops.jpg"
-                    alt="ELF Workshops"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <h4 className="font-bold text-lg">Workshop Booking</h4>
-                <p className="text-gray-600 text-sm">Book service appointments</p>
-              </div>
-              <div className="text-center">
-                <div className="relative h-[600px] mb-4 rounded-3xl overflow-hidden shadow-xl border-4 border-gray-100">
-                  <Image
-                    src="/images/projects/elf-mobile-store/13-roadside-assistance.jpg"
-                    alt="Roadside Assistance"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <h4 className="font-bold text-lg">Emergency Assistance</h4>
-                <p className="text-gray-600 text-sm">24/7 roadside support</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Additional Features */}
-          <div>
-            <h3 className="text-2xl font-extrabold mb-8 text-center">Additional Features</h3>
-            <div className="grid md:grid-cols-4 gap-6">
               {[
-                { img: "04-qr-scan.jpg", title: "QR Scanner", desc: "Scan product QR codes" },
-                { img: "14-my-orders.jpg", title: "My Orders", desc: "Track order history" },
-                { img: "17-notifications.jpg", title: "Notifications", desc: "Real-time alerts" },
-                { img: "25-help-and-support.jpg", title: "Support", desc: "Help & assistance" },
+                { img: '02-products-listing.jpg', title: 'Products Listing', desc: 'Browse 500+ products' },
+                { img: '03-product-detail-transmission-fluid.jpg', title: 'Product Detail', desc: 'Complete specifications' },
+                { img: '18-wishlist.jpg', title: 'Wishlist', desc: 'Save favorites' }
               ].map((screen, index) => (
-                <div key={index} className="text-center">
-                  <div className="relative h-[400px] mb-4 rounded-2xl overflow-hidden shadow-lg border-2 border-gray-100">
+                <motion.div
+                  key={screen.img}
+                  className="group"
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={screenshotsInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                >
+                  <div className="relative h-[550px] mb-6 rounded-2xl overflow-hidden border-4 border-gray-200 group-hover:border-accent-lime transition-all duration-300 bg-black">
                     <Image
                       src={`/images/projects/elf-mobile-store/${screen.img}`}
                       alt={screen.title}
                       fill
-                      className="object-cover"
+                      className="object-contain"
                     />
                   </div>
-                  <h4 className="font-bold">{screen.title}</h4>
-                  <p className="text-gray-600 text-sm">{screen.desc}</p>
-                </div>
+                  <h4 className="font-black text-xl mb-2 tracking-[-0.01em]">{screen.title}</h4>
+                  <p className="text-gray-600">{screen.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Gamification & Rewards */}
+          <div className="mb-20">
+            <motion.h3
+              className="text-3xl font-black mb-10 text-center tracking-[-0.02em]"
+              initial={{ opacity: 0, y: 20 }}
+              animate={screenshotsInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              Gamification & Loyalty
+            </motion.h3>
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                { img: '07-gamification-spin-wheel.jpg', title: 'Spin Wheel', desc: 'Win prizes & earn coins' },
+                { img: '11-rewards-catalog.jpg', title: 'Rewards Catalog', desc: 'Redeem exclusive rewards' },
+                { img: '19-rewards-balance.jpg', title: 'Rewards Balance', desc: 'Track your earnings' }
+              ].map((screen, index) => (
+                <motion.div
+                  key={screen.img}
+                  className="group"
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={screenshotsInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
+                >
+                  <div className="relative h-[550px] mb-6 rounded-2xl overflow-hidden border-4 border-gray-200 group-hover:border-accent-lime transition-all duration-300 bg-black">
+                    <Image
+                      src={`/images/projects/elf-mobile-store/${screen.img}`}
+                      alt={screen.title}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  <h4 className="font-black text-xl mb-2 tracking-[-0.01em]">{screen.title}</h4>
+                  <p className="text-gray-600">{screen.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Services & Assistance */}
+          <div>
+            <motion.h3
+              className="text-3xl font-black mb-10 text-center tracking-[-0.02em]"
+              initial={{ opacity: 0, y: 20 }}
+              animate={screenshotsInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              Services & Assistance
+            </motion.h3>
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                { img: '12-elf-workshops.jpg', title: 'Workshop Finder', desc: 'Locate service centers' },
+                { img: '13-roadside-assistance.jpg', title: 'Roadside Help', desc: '24/7 emergency support' },
+                { img: '22-my-appointments.jpg', title: 'Appointments', desc: 'Manage bookings' }
+              ].map((screen, index) => (
+                <motion.div
+                  key={screen.img}
+                  className="group"
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={screenshotsInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
+                >
+                  <div className="relative h-[550px] mb-6 rounded-2xl overflow-hidden border-4 border-gray-200 group-hover:border-accent-lime transition-all duration-300 bg-black">
+                    <Image
+                      src={`/images/projects/elf-mobile-store/${screen.img}`}
+                      alt={screen.title}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  <h4 className="font-black text-xl mb-2 tracking-[-0.01em]">{screen.title}</h4>
+                  <p className="text-gray-600">{screen.desc}</p>
+                </motion.div>
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Challenges & Solutions */}
-      <section className="py-20 px-4 md:px-6 lg:px-8 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-bold mb-6">
-              PROBLEM SOLVING
-            </div>
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
-              Challenges & <span className="text-accent-lime">Solutions</span>
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {[
-              {
-                challenge: "Legacy System Integration",
-                solution: "Implemented dual-service architecture allowing gradual migration from legacy backend to modern Supabase while maintaining backward compatibility.",
-                impact: "Zero downtime during transition, incremental feature rollout"
-              },
-              {
-                challenge: "Complex State Management",
-                solution: "Utilized Redux Toolkit with AsyncStorage persistence for cart/wishlist, ensuring data consistency across app restarts and offline scenarios.",
-                impact: "Seamless user experience, no data loss, offline-first architecture"
-              },
-              {
-                challenge: "Multi-Language Support",
-                solution: "Integrated i18next with expo-localization for automatic language detection and complete English/Bengali translation coverage.",
-                impact: "Expanded user base, improved accessibility for local users"
-              },
-              {
-                challenge: "Real-time Booking Conflicts",
-                solution: "Implemented Supabase real-time subscriptions with optimistic locking to prevent workshop appointment double-bookings.",
-                impact: "100% booking accuracy, enhanced user trust"
-              }
-            ].map((item, index) => (
-              <div 
-                key={index}
-                className="bg-white p-8 rounded-3xl shadow-lg border-2 border-gray-100 hover:border-accent-lime/50 transition-all"
-              >
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
-                    <span className="text-xl">❌</span>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-extrabold mb-2">Challenge</h3>
-                    <p className="text-gray-700 font-medium">{item.challenge}</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
-                    <span className="text-xl">✅</span>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-extrabold mb-2">Solution</h3>
-                    <p className="text-gray-700 font-medium">{item.solution}</p>
-                  </div>
-                </div>
-                <div className="pl-12">
-                  <div className="bg-accent-lime/10 p-4 rounded-xl">
-                    <p className="text-sm font-bold text-black">
-                      <span className="text-accent-lime">Impact:</span> {item.impact}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Results & Impact */}
-      <section className="py-20 px-4 md:px-6 lg:px-8 bg-black text-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <div className="inline-block px-6 py-2 bg-accent-lime/20 text-accent-lime rounded-full text-sm font-bold mb-6">
-              RESULTS
-            </div>
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
-              Project <span className="text-accent-lime">Impact</span>
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-            {[
-              { metric: "95%", label: "Development Complete", icon: "📊" },
-              { metric: "60+", label: "App Screens", icon: "📱" },
-              { metric: "500+", label: "Products Listed", icon: "🛍️" },
-              { metric: "25+", label: "Database Tables", icon: "💾" }
-            ].map((stat, index) => (
-              <div 
-                key={index}
-                className="bg-white/5 backdrop-blur p-8 rounded-3xl border border-white/10 text-center hover:bg-accent-lime/10 hover:border-accent-lime/50 transition-all"
-              >
-                <div className="text-4xl mb-4">{stat.icon}</div>
-                <div className="text-4xl md:text-5xl font-extrabold mb-2 text-accent-lime">{stat.metric}</div>
-                <div className="text-white/70 font-medium">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "User Experience",
-                points: [
-                  "Onboarding time < 2 minutes",
-                  "95% registration completion rate",
-                  "Seamless multi-language switching",
-                  "Intuitive navigation structure"
-                ]
-              },
-              {
-                title: "Technical Excellence",
-                points: [
-                  "TypeScript for type safety",
-                  "Redux Toolkit state management",
-                  "Offline-first architecture",
-                  "Row-level security implementation"
-                ]
-              },
-              {
-                title: "Business Value",
-                points: [
-                  "Unified digital ecosystem",
-                  "Enhanced customer loyalty",
-                  "Integrated payment gateways",
-                  "Emergency assistance feature"
-                ]
-              }
-            ].map((section, index) => (
-              <div 
-                key={index}
-                className="bg-white/5 backdrop-blur p-8 rounded-3xl border border-white/10"
-              >
-                <h3 className="text-xl font-extrabold mb-6 text-accent-lime">{section.title}</h3>
-                <ul className="space-y-3">
-                  {section.points.map((point, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <span className="w-1.5 h-1.5 rounded-full bg-accent-lime mt-2 flex-shrink-0"></span>
-                      <span className="text-white/80 font-medium">{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Key Takeaways */}
-      <section className="py-20 px-4 md:px-6 lg:px-8 bg-white">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
-            <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-bold mb-6">
-              KEY LEARNINGS
-            </div>
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
-              Project <span className="text-accent-lime">Takeaways</span>
-            </h2>
-          </div>
-
-          <div className="space-y-6">
-            {[
-              {
-                title: "Dual Architecture Strategy",
-                content: "Successfully managed gradual migration from legacy system to modern stack without disrupting existing functionality, proving incremental modernization as viable approach."
-              },
-              {
-                title: "User-Centric Gamification",
-                content: "Gamification features like spin wheel and rewards system significantly increased user engagement and created sticky user experience beyond traditional e-commerce."
-              },
-              {
-                title: "Comprehensive Ecosystem",
-                content: "Building unified platform that combines commerce, services, and loyalty proved more effective than separate apps, creating seamless user journey."
-              },
-              {
-                title: "Type Safety Benefits",
-                content: "TypeScript implementation reduced runtime errors by ~40% and improved developer productivity through better IDE support and auto-completion."
-              },
-              {
-                title: "Offline-First Design",
-                content: "AsyncStorage persistence and Redux state management ensured app functionality even with poor connectivity, critical for Bangladesh market."
-              }
-            ].map((takeaway, index) => (
-              <div 
-                key={index}
-                className="p-8 rounded-3xl bg-gray-50 border-2 border-gray-100 hover:border-accent-lime hover:shadow-lg transition-all"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 rounded-full bg-accent-lime flex items-center justify-center flex-shrink-0">
-                    <span className="text-black font-extrabold">{index + 1}</span>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-extrabold mb-2">{takeaway.title}</h3>
-                    <p className="text-gray-700 leading-relaxed font-medium">{takeaway.content}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
-      <section className="py-20 px-4 md:px-6 lg:px-8 bg-accent-lime">
+      <section className="py-24 lg:py-32 px-4 md:px-6 lg:px-8 bg-accent-lime">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-6 text-black">
-            Need a Similar Solution?
-          </h2>
-          <p className="text-xl text-black/80 mb-8 font-medium leading-relaxed">
-            Let&apos;s build your next mobile app with cutting-edge technology and exceptional user experience.
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center">
+          <motion.h2
+            className="text-4xl lg:text-6xl font-black mb-8 tracking-[-0.04em] text-black"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            Ready to Build Your
+            <br />
+            <span className="text-black">Next Mobile App?</span>
+          </motion.h2>
+          <motion.p
+            className="text-xl text-black/80 mb-10 leading-[1.6]"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            Let's discuss your project and create something amazing together
+          </motion.p>
+          <motion.div
+            className="flex flex-wrap gap-4 justify-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
             <Link 
-              href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-black text-accent-lime rounded-xl font-extrabold hover:shadow-2xl transition-all hover:scale-105"
+              href="/#contact"
+              className="inline-flex items-center gap-3 bg-black text-accent-lime font-black px-10 py-5 rounded-2xl hover:bg-gray-900 transition-all text-lg shadow-xl uppercase tracking-wider"
             >
-              Get in Touch
+              <span>Start Your Project</span>
+              <ArrowRight className="w-6 h-6" />
             </Link>
-            <Link 
+            <Link
               href="/case-studies"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-white text-black rounded-xl font-extrabold hover:shadow-2xl transition-all hover:scale-105"
+              className="inline-flex items-center gap-3 bg-black/10 text-black border-2 border-black font-black px-10 py-5 rounded-2xl hover:bg-black/20 transition-all text-lg uppercase tracking-wider"
             >
-              View More Projects
+              <span>View More Cases</span>
             </Link>
-          </div>
+          </motion.div>
         </div>
       </section>
     </main>
