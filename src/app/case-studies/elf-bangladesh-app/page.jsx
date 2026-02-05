@@ -230,13 +230,14 @@ export default function ELFBangladeshCaseStudy() {
         </div>
       </section>
 
-      {/* Sidebar Navigation Section */}
-      <section className="py-12 px-4 md:px-6 lg:px-8 bg-white border-b-2 border-gray-200 sticky top-0 z-40">
+      {/* Project Overview with Sidebar */}
+      <section id="overview" className="py-24 lg:py-32 px-4 md:px-6 lg:px-8 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-12 gap-8">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
             {/* Left Sidebar - Navigation */}
             <div className="lg:col-span-3">
-              <div className="space-y-2">
+              <div className="sticky top-24 space-y-2 bg-white p-6 rounded-2xl border-2 border-gray-200">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-4">Navigation</h3>
                 {[
                   { label: 'Overview', href: '#overview' },
                   { label: 'Challenges', href: '#challenges' },
@@ -250,7 +251,7 @@ export default function ELFBangladeshCaseStudy() {
                       key={item.href}
                       href={item.href}
                       onClick={(e) => handleNavClick(e, item.href)}
-                      className={`block px-4 py-2 text-sm font-bold rounded-lg transition-all ${
+                      className={`block px-4 py-2.5 text-sm font-bold rounded-lg transition-all ${
                         isActive 
                           ? 'bg-accent-lime text-black' 
                           : 'text-gray-600 hover:text-black hover:bg-accent-lime/10'
@@ -263,54 +264,8 @@ export default function ELFBangladeshCaseStudy() {
               </div>
             </div>
 
-            {/* Right Content - Project Info */}
+            {/* Main Content */}
             <div className="lg:col-span-9">
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div>
-                  <div className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Company</div>
-                  <div className="text-base font-black text-black">ELF Bangladesh</div>
-                </div>
-                <div>
-                  <div className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Category</div>
-                  <div className="text-base font-black text-black">Automotive E-commerce</div>
-                </div>
-                <div>
-                  <div className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Timeline</div>
-                  <div className="text-base font-black text-black">6 Months</div>
-                </div>
-                <div>
-                  <div className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Platform</div>
-                  <div className="text-base font-black text-black">iOS & Android</div>
-                </div>
-              </div>
-              
-              <div className="mt-6 pt-6 border-t-2 border-gray-200">
-                <div className="flex flex-wrap gap-4 items-center">
-                  <span className="text-xs font-bold uppercase tracking-wider text-gray-500">Share:</span>
-                  {[
-                    { icon: 'f', label: 'Facebook' },
-                    { icon: '𝕏', label: 'Twitter' },
-                    { icon: 'in', label: 'LinkedIn' },
-                    { icon: '💬', label: 'WhatsApp' }
-                  ].map((social) => (
-                    <button
-                      key={social.label}
-                      className="w-9 h-9 rounded-full bg-gray-100 hover:bg-black hover:text-accent-lime flex items-center justify-center font-bold transition-all text-sm"
-                      aria-label={`Share on ${social.label}`}
-                    >
-                      {social.icon}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Project Overview */}
-      <section id="overview" className="py-24 lg:py-32 px-4 md:px-6 lg:px-8 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
           <motion.div
             className="grid lg:grid-cols-3 gap-6 mb-16"
             initial={{ opacity: 0, y: 40 }}
@@ -360,6 +315,8 @@ export default function ELFBangladeshCaseStudy() {
               </p>
             </div>
           </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
