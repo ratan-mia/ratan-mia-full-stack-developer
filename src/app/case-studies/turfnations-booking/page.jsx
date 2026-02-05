@@ -232,142 +232,55 @@ export default function TufLetCaseStudy() {
                 </div>
                 <h2 className="text-4xl md:text-5xl font-extrabold mb-6">Complex Requirements</h2>
                 <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                  Building a real-time booking platform with dynamic pricing and multi-user roles required solving complex technical challenges.
+                  Building a real-time booking platform required solving several technical challenges.
                 </p>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-6">
-                {/* Challenge 1 */}
-                <div className="group relative bg-white p-10 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border-2 border-gray-100 hover:border-accent-lime/40 overflow-hidden">
-                  <div className="absolute top-0 right-0 w-40 h-40 bg-accent-lime/5 rounded-full blur-3xl -mr-20 -mt-20"></div>
-                  <div className="relative">
-                    <div className="flex items-start gap-4 mb-6">
-                      <div className="w-16 h-16 bg-accent-lime/10 rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-accent-lime/20 transition-colors">
-                        <Calendar className="w-8 h-8 text-black" />
+              <div className="grid md:grid-cols-2 gap-8">
+                {[
+                  {
+                    icon: Calendar,
+                    title: 'Real-Time Availability',
+                    description: 'Show accurate slot availability with instant updates.',
+                    points: ['30-day calendar view', 'Prevent double bookings', 'Handle concurrent requests']
+                  },
+                  {
+                    icon: DollarSign,
+                    title: 'Payment Integration',
+                    description: 'Seamless payment processing with multiple methods.',
+                    points: ['SSL Commerz gateway', 'Multiple payment options', 'Transaction validation']
+                  },
+                  {
+                    icon: BarChart,
+                    title: 'Dynamic Pricing',
+                    description: 'Flexible pricing engine with various rates.',
+                    points: ['Peak hour pricing', 'Weekend surcharges', 'Promotional discounts']
+                  },
+                  {
+                    icon: Users,
+                    title: 'Multi-Role Dashboard',
+                    description: 'Separate interfaces for different user types.',
+                    points: ['Player interface', 'Owner dashboard', 'Admin controls']
+                  },
+                ].map((challenge, idx) => (
+                  <div key={idx} className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all border-2 border-gray-100 hover:border-accent-lime/40">
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-12 h-12 bg-accent-lime/10 rounded-xl flex items-center justify-center shrink-0">
+                        <challenge.icon className="w-6 h-6 text-black" />
                       </div>
-                      <div className="flex-1">
-                        <h3 className="text-2xl font-extrabold mb-2">Real-Time Availability</h3>
-                        <p className="text-sm text-accent-lime font-bold">Critical Feature</p>
-                      </div>
+                      <h3 className="text-xl font-bold">{challenge.title}</h3>
                     </div>
-                    <p className="text-gray-700 leading-relaxed mb-8 text-base">
-                      Show accurate slot availability across a 30-day calendar with instant updates to prevent double bookings and handle concurrent user requests efficiently.
-                    </p>
-                    <div className="space-y-3">
-                      <div className="flex items-start gap-3 p-3 rounded-xl bg-gray-50 group-hover:bg-accent-lime/5 transition-colors">
-                        <div className="w-2 h-2 bg-accent-lime rounded-full mt-1.5 shrink-0"></div>
-                        <span className="text-sm text-gray-700 font-medium">Instant calendar synchronization</span>
-                      </div>
-                      <div className="flex items-start gap-3 p-3 rounded-xl bg-gray-50 group-hover:bg-accent-lime/5 transition-colors">
-                        <div className="w-2 h-2 bg-accent-lime rounded-full mt-1.5 shrink-0"></div>
-                        <span className="text-sm text-gray-700 font-medium">Conflict prevention logic</span>
-                      </div>
-                      <div className="flex items-start gap-3 p-3 rounded-xl bg-gray-50 group-hover:bg-accent-lime/5 transition-colors">
-                        <div className="w-2 h-2 bg-accent-lime rounded-full mt-1.5 shrink-0"></div>
-                        <span className="text-sm text-gray-700 font-medium">Multi-user concurrency handling</span>
-                      </div>
-                    </div>
+                    <p className="text-gray-600 mb-4 text-sm">{challenge.description}</p>
+                    <ul className="space-y-2">
+                      {challenge.points.map((point, i) => (
+                        <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
+                          <span className="text-accent-lime mt-1">•</span>
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                </div>
-
-                {/* Challenge 2 */}
-                <div className="group relative bg-white p-10 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border-2 border-gray-100 hover:border-accent-lime/40 overflow-hidden">
-                  <div className="absolute top-0 right-0 w-40 h-40 bg-accent-lime/5 rounded-full blur-3xl -mr-20 -mt-20"></div>
-                  <div className="relative">
-                    <div className="flex items-start gap-4 mb-6">
-                      <div className="w-16 h-16 bg-accent-lime/10 rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-accent-lime/20 transition-colors">
-                        <DollarSign className="w-8 h-8 text-black" />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-2xl font-extrabold mb-2">Payment Integration</h3>
-                        <p className="text-sm text-accent-lime font-bold">Secure Transactions</p>
-                      </div>
-                    </div>
-                    <p className="text-gray-700 leading-relaxed mb-8 text-base">
-                      Seamless SSL Commerz integration supporting multiple payment methods with auto-redirect after payment and robust transaction validation.
-                    </p>
-                    <div className="space-y-3">
-                      <div className="flex items-start gap-3 p-3 rounded-xl bg-gray-50 group-hover:bg-accent-lime/5 transition-colors">
-                        <div className="w-2 h-2 bg-accent-lime rounded-full mt-1.5 shrink-0"></div>
-                        <span className="text-sm text-gray-700 font-medium">Multiple payment gateways</span>
-                      </div>
-                      <div className="flex items-start gap-3 p-3 rounded-xl bg-gray-50 group-hover:bg-accent-lime/5 transition-colors">
-                        <div className="w-2 h-2 bg-accent-lime rounded-full mt-1.5 shrink-0"></div>
-                        <span className="text-sm text-gray-700 font-medium">Transaction error handling</span>
-                      </div>
-                      <div className="flex items-start gap-3 p-3 rounded-xl bg-gray-50 group-hover:bg-accent-lime/5 transition-colors">
-                        <div className="w-2 h-2 bg-accent-lime rounded-full mt-1.5 shrink-0"></div>
-                        <span className="text-sm text-gray-700 font-medium">Payment status tracking</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Challenge 3 */}
-                <div className="group relative bg-white p-10 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border-2 border-gray-100 hover:border-accent-lime/40 overflow-hidden">
-                  <div className="absolute top-0 right-0 w-40 h-40 bg-accent-lime/5 rounded-full blur-3xl -mr-20 -mt-20"></div>
-                  <div className="relative">
-                    <div className="flex items-start gap-4 mb-6">
-                      <div className="w-16 h-16 bg-accent-lime/10 rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-accent-lime/20 transition-colors">
-                        <BarChart className="w-8 h-8 text-black" />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-2xl font-extrabold mb-2">Dynamic Pricing</h3>
-                        <p className="text-sm text-accent-lime font-bold">Complex Logic</p>
-                      </div>
-                    </div>
-                    <p className="text-gray-700 leading-relaxed mb-8 text-base">
-                      Implement flexible pricing engine with base rates, weekend surcharges, peak hour pricing, early bird discounts, and promotional campaigns.
-                    </p>
-                    <div className="space-y-3">
-                      <div className="flex items-start gap-3 p-3 rounded-xl bg-gray-50 group-hover:bg-accent-lime/5 transition-colors">
-                        <div className="w-2 h-2 bg-accent-lime rounded-full mt-1.5 shrink-0"></div>
-                        <span className="text-sm text-gray-700 font-medium">Time-based price calculation</span>
-                      </div>
-                      <div className="flex items-start gap-3 p-3 rounded-xl bg-gray-50 group-hover:bg-accent-lime/5 transition-colors">
-                        <div className="w-2 h-2 bg-accent-lime rounded-full mt-1.5 shrink-0"></div>
-                        <span className="text-sm text-gray-700 font-medium">Discount code management</span>
-                      </div>
-                      <div className="flex items-start gap-3 p-3 rounded-xl bg-gray-50 group-hover:bg-accent-lime/5 transition-colors">
-                        <div className="w-2 h-2 bg-accent-lime rounded-full mt-1.5 shrink-0"></div>
-                        <span className="text-sm text-gray-700 font-medium">Seasonal pricing variations</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Challenge 4 */}
-                <div className="group relative bg-white p-10 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border-2 border-gray-100 hover:border-accent-lime/40 overflow-hidden">
-                  <div className="absolute top-0 right-0 w-40 h-40 bg-accent-lime/5 rounded-full blur-3xl -mr-20 -mt-20"></div>
-                  <div className="relative">
-                    <div className="flex items-start gap-4 mb-6">
-                      <div className="w-16 h-16 bg-accent-lime/10 rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-accent-lime/20 transition-colors">
-                        <Users className="w-8 h-8 text-black" />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-2xl font-extrabold mb-2">Multi-Role Dashboard</h3>
-                        <p className="text-sm text-accent-lime font-bold">Access Control</p>
-                      </div>
-                    </div>
-                    <p className="text-gray-700 leading-relaxed mb-8 text-base">
-                      Create separate interfaces for players, turf owners, and admins with granular role-based permissions and customized feature access.
-                    </p>
-                    <div className="space-y-3">
-                      <div className="flex items-start gap-3 p-3 rounded-xl bg-gray-50 group-hover:bg-accent-lime/5 transition-colors">
-                        <div className="w-2 h-2 bg-accent-lime rounded-full mt-1.5 shrink-0"></div>
-                        <span className="text-sm text-gray-700 font-medium">Role-based authentication</span>
-                      </div>
-                      <div className="flex items-start gap-3 p-3 rounded-xl bg-gray-50 group-hover:bg-accent-lime/5 transition-colors">
-                        <div className="w-2 h-2 bg-accent-lime rounded-full mt-1.5 shrink-0"></div>
-                        <span className="text-sm text-gray-700 font-medium">Permission management system</span>
-                      </div>
-                      <div className="flex items-start gap-3 p-3 rounded-xl bg-gray-50 group-hover:bg-accent-lime/5 transition-colors">
-                        <div className="w-2 h-2 bg-accent-lime rounded-full mt-1.5 shrink-0"></div>
-                        <span className="text-sm text-gray-700 font-medium">Customized UI per role</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </section>
@@ -551,54 +464,49 @@ export default function TufLetCaseStudy() {
                   </div>
                   Player Features
                 </h3>
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid md:grid-cols-2 gap-8">
                   {[
                     {
                       icon: Calendar,
                       title: 'Real-Time Booking',
-                      description: '30-day calendar with hourly time slots, dynamic pricing, and instant confirmation',
-                      features: ['Live availability updates', 'Hourly slot selection', 'Instant booking confirmation']
+                      description: 'Book turfs instantly with live availability.',
+                      features: ['30-day calendar view', 'Hourly time slots', 'Instant confirmation']
                     },
                     {
                       icon: DollarSign,
-                      title: 'Multiple Payment Options',
-                      description: 'SSL Commerz integration supporting cards, bKash, Nagad, and bank transfers',
-                      features: ['Credit/Debit cards', 'Mobile banking', 'Secure transactions']
+                      title: 'Secure Payments',
+                      description: 'Multiple payment options for easy checkout.',
+                      features: ['SSL Commerz integration', 'Cards & mobile banking', 'Transaction security']
                     },
                     {
                       icon: Star,
                       title: 'Reviews & Ratings',
-                      description: '5-star rating system with photo uploads and verified booking badges',
-                      features: ['Photo reviews', 'Verified badges', 'Detailed feedback']
+                      description: 'Share experiences and discover top turfs.',
+                      features: ['5-star rating system', 'Photo uploads', 'Verified reviews']
                     },
                     {
                       icon: Award,
                       title: 'Loyalty Rewards',
-                      description: 'Tier-based system with points on every booking and exclusive discounts',
-                      features: ['Points per booking', 'Tier upgrades', 'Exclusive discounts']
+                      description: 'Earn points and get exclusive benefits.',
+                      features: ['Points on bookings', 'Tier-based rewards', 'Special discounts']
                     },
                   ].map((feature, idx) => (
-                    <div key={idx} className="group relative bg-gradient-to-br from-white to-gray-50 p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border-2 border-gray-100 hover:border-accent-lime/40 overflow-hidden">
-                      <div className="absolute top-0 right-0 w-32 h-32 bg-accent-lime/5 rounded-full blur-2xl -mr-16 -mt-16"></div>
-                      <div className="relative">
-                        <div className="flex items-start gap-4 mb-6">
-                          <div className="w-14 h-14 bg-accent-lime/10 rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-accent-lime/20 transition-colors">
-                            <feature.icon className="w-7 h-7 text-black" />
-                          </div>
-                          <div className="flex-1">
-                            <h4 className="text-xl font-extrabold mb-2 group-hover:text-accent-lime transition-colors">{feature.title}</h4>
-                          </div>
+                    <div key={idx} className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all border-2 border-gray-100 hover:border-accent-lime/40">
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="w-12 h-12 bg-accent-lime/10 rounded-xl flex items-center justify-center shrink-0">
+                          <feature.icon className="w-6 h-6 text-black" />
                         </div>
-                        <p className="text-gray-700 leading-relaxed mb-6 text-base">{feature.description}</p>
-                        <div className="space-y-2">
-                          {feature.features.map((item, i) => (
-                            <div key={i} className="flex items-center gap-3 p-2 rounded-xl bg-white/50 group-hover:bg-accent-lime/5 transition-colors">
-                              <div className="w-1.5 h-1.5 bg-accent-lime rounded-full shrink-0"></div>
-                              <span className="text-sm text-gray-700 font-medium">{item}</span>
-                            </div>
-                          ))}
-                        </div>
+                        <h4 className="text-xl font-bold">{feature.title}</h4>
                       </div>
+                      <p className="text-gray-600 mb-4 text-sm">{feature.description}</p>
+                      <ul className="space-y-2">
+                        {feature.features.map((item, i) => (
+                          <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
+                            <span className="text-accent-lime mt-1">•</span>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   ))}
                 </div>
@@ -610,56 +518,51 @@ export default function TufLetCaseStudy() {
                   <div className="w-10 h-10 bg-accent-lime rounded-xl flex items-center justify-center">
                     <BarChart className="w-6 h-6 text-black" />
                   </div>
-                  Owner Dashboard Features
+                  Owner Dashboard
                 </h3>
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid md:grid-cols-2 gap-8">
                   {[
                     {
                       icon: BarChart,
                       title: 'Revenue Analytics',
-                      description: 'Real-time revenue tracking with daily, weekly, and monthly reports',
-                      features: ['Live revenue tracking', 'Performance metrics', 'Export reports']
+                      description: 'Track earnings with detailed insights.',
+                      features: ['Real-time tracking', 'Daily/weekly reports', 'Revenue breakdown']
                     },
                     {
                       icon: Calendar,
                       title: 'Booking Management',
-                      description: 'View and manage all bookings with customer information and status updates',
-                      features: ['Booking overview', 'Customer details', 'Status management']
+                      description: 'Manage all reservations efficiently.',
+                      features: ['View all bookings', 'Customer information', 'Status updates']
                     },
                     {
                       icon: Clock,
                       title: 'Availability Control',
-                      description: 'Set operating hours, block dates, and manage field-specific pricing',
-                      features: ['Custom schedules', 'Blocked dates', 'Dynamic pricing']
+                      description: 'Set schedules and manage pricing.',
+                      features: ['Operating hours', 'Block dates', 'Dynamic pricing']
                     },
                     {
                       icon: DollarSign,
                       title: 'Payout System',
-                      description: 'Request payouts, track transaction history, and manage bank details',
-                      features: ['Payout requests', 'Transaction history', 'Bank management']
+                      description: 'Easy withdrawals and transaction tracking.',
+                      features: ['Request payouts', 'Transaction history', 'Bank details']
                     },
                   ].map((feature, idx) => (
-                    <div key={idx} className="group relative bg-gradient-to-br from-white to-gray-50 p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border-2 border-gray-100 hover:border-accent-lime/40 overflow-hidden">
-                      <div className="absolute top-0 right-0 w-32 h-32 bg-accent-lime/5 rounded-full blur-2xl -mr-16 -mt-16"></div>
-                      <div className="relative">
-                        <div className="flex items-start gap-4 mb-6">
-                          <div className="w-14 h-14 bg-accent-lime/10 rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-accent-lime/20 transition-colors">
-                            <feature.icon className="w-7 h-7 text-black" />
-                          </div>
-                          <div className="flex-1">
-                            <h4 className="text-xl font-extrabold mb-2 group-hover:text-accent-lime transition-colors">{feature.title}</h4>
-                          </div>
+                    <div key={idx} className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all border-2 border-gray-100 hover:border-accent-lime/40">
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="w-12 h-12 bg-accent-lime/10 rounded-xl flex items-center justify-center shrink-0">
+                          <feature.icon className="w-6 h-6 text-black" />
                         </div>
-                        <p className="text-gray-700 leading-relaxed mb-6 text-base">{feature.description}</p>
-                        <div className="space-y-2">
-                          {feature.features.map((item, i) => (
-                            <div key={i} className="flex items-center gap-3 p-2 rounded-xl bg-white/50 group-hover:bg-accent-lime/5 transition-colors">
-                              <div className="w-1.5 h-1.5 bg-accent-lime rounded-full shrink-0"></div>
-                              <span className="text-sm text-gray-700 font-medium">{item}</span>
-                            </div>
-                          ))}
-                        </div>
+                        <h4 className="text-xl font-bold">{feature.title}</h4>
                       </div>
+                      <p className="text-gray-600 mb-4 text-sm">{feature.description}</p>
+                      <ul className="space-y-2">
+                        {feature.features.map((item, i) => (
+                          <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
+                            <span className="text-accent-lime mt-1">•</span>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   ))}
                 </div>
