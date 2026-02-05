@@ -3,15 +3,45 @@ import GetQuote from '@/components/home/GetQuote';
 import Image from 'next/image';
 
 export const metadata = {
-  title: 'Web Development Services - Ratan Mia | Full Stack Solutions',
-  description: 'Professional web development services including React development, Laravel APIs, e-commerce solutions, and custom web applications.',
-  keywords: 'web development services, React development, Laravel development, e-commerce, custom web applications',
+  title: 'Mobile & Web Development Services - Ratan Mia | Full Stack Solutions',
+  description: 'Professional mobile app and web development services including React Native apps, Next.js development, Laravel APIs, e-commerce solutions, and custom applications.',
+  keywords: 'mobile app development, React Native, web development services, React development, Laravel development, e-commerce, custom web applications',
 };
 
 // Real service data from home page
 const SERVICE_DATA = [
   {
     id: 1,
+    icon: '�',
+    title: "Mobile App Development",
+    shortDescription: "Cross-platform mobile apps for iOS and Android",
+    description: "Professional React Native mobile applications with native performance, smooth animations, offline capabilities, and seamless user experiences for both iOS and Android platforms.",
+    features: [
+      "React Native Development for iOS & Android",
+      "Native Performance & Smooth Animations",
+      "Offline-First Architecture & Data Sync",
+      "Push Notifications & Deep Linking",
+      "In-App Purchases & Payment Integration",
+      "Real-time Features with WebSockets",
+      "App Store & Play Store Deployment",
+      "Post-Launch Support & Maintenance"
+    ],
+    technologies: ["React Native", "TypeScript", "Expo", "Supabase", "Firebase", "Redux"],
+    basePrice: "$8,000",
+    timeline: "8-16 weeks",
+    category: "mobile",
+    featured: true,
+    gradient: "from-blue-600 to-indigo-600",
+    projectImage: "/images/projects/elf-mobile-store/01-splash-screen.jpg",
+    projectExample: "ELF Bangladesh Mobile App",
+    testimonial: {
+      text: "The mobile app transformed how we connect with customers and boosted sales significantly.",
+      author: "Ahmed Hassan",
+      company: "ELF Lubricants Bangladesh"
+    }
+  },
+  {
+    id: 2,
     icon: '💻',
     title: "Full Stack Development",
     shortDescription: "End-to-end web applications with modern architecture",
@@ -36,28 +66,28 @@ const SERVICE_DATA = [
     projectExample: "Chery Bangladesh",
     testimonial: {
       text: "Exceptional full-stack development that exceeded our expectations.",
-      author: "Sarah Johnson",
-      company: "TechCorp"
+      author: "Mohammad Nayab",
+      company: "Chery Bangladesh"
     }
   },
   {
-    id: 2,
+    id: 3,
     icon: '🛒',
     title: "E-commerce Solutions",
-    shortDescription: "High-converting online stores with advanced features",
-    description: "Complete e-commerce solutions with secure payments, inventory management, analytics dashboard, and conversion optimization for maximum sales performance.",
+    shortDescription: "High-converting online stores and mobile commerce",
+    description: "Complete e-commerce solutions including mobile apps, web stores, secure payments, inventory management, and analytics dashboard for maximum sales performance.",
     features: [
+      "Mobile E-commerce Apps (React Native)",
       "Custom E-commerce Development",
       "Shopify & WooCommerce Integration",
-      "Payment Gateway Integration (Stripe, PayPal)",
+      "Payment Gateway Integration (Stripe, PayPal, SSL Commerce)",
       "Inventory Management System",
       "Order Processing & Fulfillment",
       "Analytics & Sales Reporting",
-      "Multi-currency & Multi-language",
-      "Advanced SEO & Marketing Tools"
+      "Multi-currency & Multi-language"
     ],
-    technologies: ["Shopify", "WooCommerce", "Stripe", "React", "PHP", "MySQL"],
-    basePrice: "$4,000",
+    technologies: ["React Native", "Shopify", "WooCommerce", "Stripe", "React", "Laravel"],
+    basePrice: "$5,000",
     timeline: "6-16 weeks",
     category: "ecommerce",
     featured: true,
@@ -71,7 +101,7 @@ const SERVICE_DATA = [
     }
   },
   {
-    id: 3,
+    id: 4,
     icon: '🌐',
     title: "WordPress Development",
     shortDescription: "Custom WordPress solutions and optimization",
@@ -101,7 +131,7 @@ const SERVICE_DATA = [
     }
   },
   {
-    id: 4,
+    id: 5,
     icon: '⚙️',
     title: "DevOps & Cloud Services",
     shortDescription: "Infrastructure automation and cloud deployment",
@@ -131,7 +161,7 @@ const SERVICE_DATA = [
     }
   },
   {
-    id: 5,
+    id: 6,
     icon: '⚡',
     title: "Performance Optimization",
     shortDescription: "Speed optimization for existing websites",
@@ -161,7 +191,7 @@ const SERVICE_DATA = [
     }
   },
   {
-    id: 6,
+    id: 7,
     icon: '🤖',
     title: "AI Integration",
     shortDescription: "Cutting-edge AI solutions and automation",
@@ -231,11 +261,11 @@ export default function ServicesPage() {
             💼 PROFESSIONAL SERVICES
           </div>
           <h1 className="hero-title text-black mb-6">
-            Web Development<br />Services
+            Mobile & Web Development<br />Services
           </h1>
           <p className="text-xl md:text-2xl text-black/80 max-w-3xl mx-auto leading-relaxed font-medium mb-10">
-            Transform your ideas into powerful web applications with modern technologies and best practices. 
-            From concept to deployment, I deliver solutions that drive business growth.
+            Transform your ideas into powerful mobile apps and web applications with React Native, Next.js, and modern technologies. 
+            From concept to deployment, I deliver cross-platform solutions that drive business growth.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <button className="px-10 py-5 bg-black text-accent-lime rounded-xl font-extrabold hover:shadow-2xl transition-all duration-300 hover:scale-105">
@@ -260,7 +290,7 @@ export default function ServicesPage() {
               What I <span className="text-accent-lime">Offer</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto font-medium">
-              Comprehensive web development solutions tailored to your business needs
+              Comprehensive mobile and web development solutions tailored to your business needs
             </p>
           </div>
 
