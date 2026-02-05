@@ -585,7 +585,7 @@ export default function TufLetCaseStudy() {
                   Social & Community Features
                 </h3>
 
-                <div className="grid md:grid-cols-3 gap-8 mb-8">
+                <div className="grid md:grid-cols-1 gap-8 mb-8">
                   <div className="group">
                     <div className="relative w-full aspect-square rounded-2xl overflow-hidden mb-4 shadow-lg hover:shadow-2xl transition-shadow">
                       <Image
@@ -598,36 +598,142 @@ export default function TufLetCaseStudy() {
                     <h4 className="text-xl font-bold mb-2">Players Community</h4>
                     <p className="text-gray-600 leading-relaxed">Connect with fellow players, share experiences, and find playing partners in your area.</p>
                   </div>
+                </div>
+              </div>
+            </div>
+          </section>
 
-                  <div className="group">
-                    <div className="relative w-full aspect-square rounded-2xl overflow-hidden mb-4 shadow-lg hover:shadow-2xl transition-shadow">
-                      <Image
-                        src="/images/projects/turflet/friends-family-community.png"
-                        alt="Friends and Family Network"
-                        fill
-                        className="object-contain group-hover:scale-105 transition-transform duration-300"
-                      />
+          {/* Full Width - Friends & Family Network */}
+          <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
+            <div className="grid lg:grid-cols-2 gap-0 items-center">
+              {/* Left - Image */}
+              <div className="w-full">
+                <Image
+                  src="/images/projects/turflet/friends-family-community.png"
+                  alt="Friends and Family Network - Connect and Play Together"
+                  width={4000}
+                  height={2663}
+                  className="w-full h-auto"
+                />
+              </div>
+
+              {/* Right - Content */}
+              <div className="px-8 md:px-12 lg:px-16 py-12">
+                <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
+                  👥 FRIENDS & FAMILY
+                </div>
+                <h3 className="text-4xl md:text-5xl font-extrabold mb-6">Build Your Sports Network</h3>
+                <p className="text-lg text-gray-600 leading-relaxed mb-8">
+                  Connect with friends and family members, invite them to join your sports activities, and create a vibrant community of sports enthusiasts. Share your love for sports and make every match a social celebration.
+                </p>
+
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-accent-lime rounded-xl flex items-center justify-center shrink-0">
+                      <Users className="w-6 h-6 text-black" />
                     </div>
-                    <h4 className="text-xl font-bold mb-2">Friends & Family</h4>
-                    <p className="text-gray-600 leading-relaxed">Build your network, invite friends to join matches, and create memorable sports moments together.</p>
+                    <div>
+                      <h4 className="text-lg font-bold mb-1">Friend Invitations</h4>
+                      <p className="text-gray-600 text-sm">Send invites to friends and family to join your network and play together</p>
+                    </div>
                   </div>
 
-                  <div className="group">
-                    <div className="relative w-full aspect-square rounded-2xl overflow-hidden mb-4 shadow-lg hover:shadow-2xl transition-shadow">
-                      <Image
-                        src="/images/projects/turflet/team-details.png"
-                        alt="Team Management"
-                        fill
-                        className="object-contain group-hover:scale-105 transition-transform duration-300"
-                      />
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-accent-lime rounded-xl flex items-center justify-center shrink-0">
+                      <Calendar className="w-6 h-6 text-black" />
                     </div>
-                    <h4 className="text-xl font-bold mb-2">Team Management</h4>
-                    <p className="text-gray-600 leading-relaxed">Create and manage sports teams, track statistics, organize matches, and challenge other teams.</p>
+                    <div>
+                      <h4 className="text-lg font-bold mb-1">Group Bookings</h4>
+                      <p className="text-gray-600 text-sm">Book turfs for group matches with friends and split payments easily</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-accent-lime rounded-xl flex items-center justify-center shrink-0">
+                      <Star className="w-6 h-6 text-black" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold mb-1">Activity Feed</h4>
+                      <p className="text-gray-600 text-sm">Stay updated with your network's activities and upcoming matches</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Full Width - Team Management */}
+          <section className="py-20 bg-white">
+            <div className="grid lg:grid-cols-2 gap-0 items-center">
+              {/* Left - Content */}
+              <div className="px-8 md:px-12 lg:px-16 py-12 order-2 lg:order-1">
+                <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
+                  ⚽ TEAM MANAGEMENT
+                </div>
+                <h3 className="text-4xl md:text-5xl font-extrabold mb-6">Create & Manage Your Teams</h3>
+                <p className="text-lg text-gray-600 leading-relaxed mb-8">
+                  Form your own sports teams, manage rosters, track performance statistics, and organize competitive matches. Challenge other teams and build a winning legacy with comprehensive team management tools.
+                </p>
+
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-accent-lime rounded-xl flex items-center justify-center shrink-0">
+                      <Users className="w-6 h-6 text-black" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold mb-1">Roster Management</h4>
+                      <p className="text-gray-600 text-sm">Add players, assign positions, and manage team members</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-accent-lime rounded-xl flex items-center justify-center shrink-0">
+                      <BarChart className="w-6 h-6 text-black" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold mb-1">Team Statistics</h4>
+                      <p className="text-gray-600 text-sm">Track wins, losses, goals, and player performance metrics</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-accent-lime rounded-xl flex items-center justify-center shrink-0">
+                      <Calendar className="w-6 h-6 text-black" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold mb-1">Match Scheduling</h4>
+                      <p className="text-gray-600 text-sm">Organize practice sessions and competitive matches</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-accent-lime rounded-xl flex items-center justify-center shrink-0">
+                      <Award className="w-6 h-6 text-black" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold mb-1">Team Challenges</h4>
+                      <p className="text-gray-600 text-sm">Challenge other teams and compete in tournaments</p>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              {/* Dual Platform Showcase */}
+              {/* Right - Image */}
+              <div className="w-full order-1 lg:order-2">
+                <Image
+                  src="/images/projects/turflet/team-details.png"
+                  alt="Team Management - Create, Organize, and Compete"
+                  width={4000}
+                  height={2663}
+                  className="w-full h-auto"
+                />
+              </div>
+            </div>
+          </section>
+
+          {/* Dual Platform Showcase */}
+          <section className="py-20 px-4 md:px-6 lg:px-8 bg-gray-50">
+            <div className="max-w-5xl mx-auto">
               <div className="relative overflow-hidden rounded-2xl bg-linear-to-br from-accent-lime via-accent-lime to-accent-lime/70 p-12">
                 <div className="text-center mb-8">
                   <h3 className="text-4xl font-extrabold mb-3">Complete Platform Solution</h3>
