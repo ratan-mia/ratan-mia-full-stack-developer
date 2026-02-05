@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import HeroSection from '../../components/case-studies/HeroSection';
+import ProjectInquirySection from '../../components/ProjectInquirySection';
 
 export default function TufLetCaseStudy() {
   const [activeSection, setActiveSection] = useState('overview');
@@ -1069,6 +1070,9 @@ export default function TufLetCaseStudy() {
               </div>
             </div>
           </section>
+
+          {/* Project Inquiry Section */}
+          <ProjectInquirySection />
         </div>
       </div>
     </main>
