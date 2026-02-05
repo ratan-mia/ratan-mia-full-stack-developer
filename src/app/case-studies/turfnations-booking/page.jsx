@@ -162,8 +162,8 @@ export default function TufLetCaseStudy() {
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8">
-            <div className="bg-white p-10 rounded-3xl shadow-lg border-2 border-gray-100">
+          <div className="space-y-12">
+            <div className="max-w-3xl">
               <h2 className="text-4xl font-extrabold mb-6">Project Overview</h2>
               <p className="text-lg text-gray-700 leading-relaxed mb-6 font-medium">
                 TufLet is a revolutionary booking platform designed to connect sports enthusiasts with turf owners. The platform needed to handle real-time availability checks, prevent double bookings, integrate secure payment processing, and provide comprehensive management tools for turf owners.
@@ -173,12 +173,12 @@ export default function TufLetCaseStudy() {
               </p>
             </div>
             
-            <div className="relative h-96 rounded-3xl overflow-hidden shadow-2xl">
+            <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
               <Image
-                src="/images/projects/turflet/owner-dashboard and player -app.png"
+                src="/images/projects/turflet/mockup/owner-dashboard and player -app.png"
                 alt="TufLet Platform Overview"
                 fill
-                className="object-contain bg-gray-100"
+                className="object-cover"
               />
             </div>
           </div>
@@ -492,31 +492,31 @@ export default function TufLetCaseStudy() {
                 </div>
 
                 {/* Owner Dashboard Images */}
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="bg-white p-6 rounded-2xl shadow-lg border-2 border-gray-100">
-                    <div className="relative w-full h-64 rounded-xl overflow-hidden mb-4">
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div className="group">
+                    <div className="relative w-full aspect-video rounded-2xl overflow-hidden mb-4 shadow-lg hover:shadow-2xl transition-shadow">
                       <Image
                         src="/images/projects/turflet/owners-dashboard.png"
                         alt="Owner Dashboard Analytics"
                         fill
-                        className="object-cover"
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                     </div>
-                    <h4 className="text-lg font-bold mb-2">Owner Dashboard Overview</h4>
-                    <p className="text-sm text-gray-600">Comprehensive analytics with revenue tracking, booking statistics, and performance metrics in real-time.</p>
+                    <h4 className="text-xl font-bold mb-2">Owner Dashboard Overview</h4>
+                    <p className="text-gray-600 leading-relaxed">Comprehensive analytics with revenue tracking, booking statistics, and performance metrics in real-time.</p>
                   </div>
 
-                  <div className="bg-white p-6 rounded-2xl shadow-lg border-2 border-gray-100">
-                    <div className="relative w-full h-64 rounded-xl overflow-hidden mb-4">
+                  <div className="group">
+                    <div className="relative w-full aspect-video rounded-2xl overflow-hidden mb-4 shadow-lg hover:shadow-2xl transition-shadow">
                       <Image
                         src="/images/projects/turflet/clients-revenue-details.png"
                         alt="Revenue Details and Client Management"
                         fill
-                        className="object-cover"
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                     </div>
-                    <h4 className="text-lg font-bold mb-2">Revenue & Client Details</h4>
-                    <p className="text-sm text-gray-600">Detailed revenue breakdown by client, booking history, and payment transaction records.</p>
+                    <h4 className="text-xl font-bold mb-2">Revenue & Client Details</h4>
+                    <p className="text-gray-600 leading-relaxed">Detailed revenue breakdown by client, booking history, and payment transaction records.</p>
                   </div>
                 </div>
               </div>
@@ -530,60 +530,60 @@ export default function TufLetCaseStudy() {
                   Social & Community Features
                 </h3>
 
-                <div className="grid md:grid-cols-3 gap-6 mb-8">
-                  <div className="bg-white p-6 rounded-2xl shadow-lg border-2 border-gray-100">
-                    <div className="relative w-full h-48 rounded-xl overflow-hidden mb-4">
+                <div className="grid md:grid-cols-3 gap-8 mb-8">
+                  <div className="group">
+                    <div className="relative w-full aspect-square rounded-2xl overflow-hidden mb-4 shadow-lg hover:shadow-2xl transition-shadow">
                       <Image
                         src="/images/projects/turflet/players-community.png"
                         alt="Players Community"
                         fill
-                        className="object-cover"
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                     </div>
-                    <h4 className="text-lg font-bold mb-2">Players Community</h4>
-                    <p className="text-sm text-gray-600">Connect with fellow players, share experiences, and find playing partners in your area.</p>
+                    <h4 className="text-xl font-bold mb-2">Players Community</h4>
+                    <p className="text-gray-600 leading-relaxed">Connect with fellow players, share experiences, and find playing partners in your area.</p>
                   </div>
 
-                  <div className="bg-white p-6 rounded-2xl shadow-lg border-2 border-gray-100">
-                    <div className="relative w-full h-48 rounded-xl overflow-hidden mb-4">
+                  <div className="group">
+                    <div className="relative w-full aspect-square rounded-2xl overflow-hidden mb-4 shadow-lg hover:shadow-2xl transition-shadow">
                       <Image
                         src="/images/projects/turflet/friends-family-community.png"
                         alt="Friends and Family Network"
                         fill
-                        className="object-cover"
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                     </div>
-                    <h4 className="text-lg font-bold mb-2">Friends & Family</h4>
-                    <p className="text-sm text-gray-600">Build your network, invite friends to join matches, and create memorable sports moments together.</p>
+                    <h4 className="text-xl font-bold mb-2">Friends & Family</h4>
+                    <p className="text-gray-600 leading-relaxed">Build your network, invite friends to join matches, and create memorable sports moments together.</p>
                   </div>
 
-                  <div className="bg-white p-6 rounded-2xl shadow-lg border-2 border-gray-100">
-                    <div className="relative w-full h-48 rounded-xl overflow-hidden mb-4">
+                  <div className="group">
+                    <div className="relative w-full aspect-square rounded-2xl overflow-hidden mb-4 shadow-lg hover:shadow-2xl transition-shadow">
                       <Image
                         src="/images/projects/turflet/team-details.png"
                         alt="Team Management"
                         fill
-                        className="object-cover"
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                     </div>
-                    <h4 className="text-lg font-bold mb-2">Team Management</h4>
-                    <p className="text-sm text-gray-600">Create and manage sports teams, track statistics, organize matches, and challenge other teams.</p>
+                    <h4 className="text-xl font-bold mb-2">Team Management</h4>
+                    <p className="text-gray-600 leading-relaxed">Create and manage sports teams, track statistics, organize matches, and challenge other teams.</p>
                   </div>
                 </div>
               </div>
 
               {/* Dual Platform Showcase */}
-              <div className="bg-linear-to-r from-accent-lime to-accent-lime/80 p-8 rounded-3xl">
-                <div className="text-center mb-6">
-                  <h3 className="text-3xl font-extrabold mb-2">Complete Platform Solution</h3>
-                  <p className="text-black/80 font-medium">Player Mobile App + Owner Dashboard</p>
+              <div className="relative overflow-hidden rounded-2xl bg-linear-to-br from-accent-lime via-accent-lime to-accent-lime/70 p-12">
+                <div className="text-center mb-8">
+                  <h3 className="text-4xl font-extrabold mb-3">Complete Platform Solution</h3>
+                  <p className="text-lg text-black/80 font-medium">Player Mobile App + Owner Dashboard</p>
                 </div>
-                <div className="relative w-full h-96 rounded-2xl overflow-hidden shadow-2xl">
+                <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-2xl border-2 border-black/10">
                   <Image
-                    src="/images/projects/turflet/owner-dashboard and player -app.png"
+                    src="/images/projects/turflet/mockup/owner-dashboard and player -app.png"
                     alt="Complete Platform - Owner Dashboard and Player App"
                     fill
-                    className="object-contain"
+                    className="object-cover"
                   />
                 </div>
               </div>
