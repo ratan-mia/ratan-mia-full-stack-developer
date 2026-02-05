@@ -23,17 +23,15 @@ const PricingCard = ({ plan, index }) => {
         isPopular 
           ? `${cardColor.border || 'border-accent-lime'} shadow-xl ${cardColor.shadow || 'shadow-accent-lime/20'}` 
           : `${cardColor.border || 'border-gray-200'} hover:${cardColor.hoverBorder || 'border-gray-300'}`
-      } p-8 lg:p-10 rounded-3xl text-left h-full flex flex-col group transition-all duration-500 hover:shadow-2xl ${
-        isPopular ? 'scale-105' : 'hover:scale-105'
-      }`}
+      } p-8 lg:p-10 rounded-3xl text-left h-full flex flex-col group transition-all duration-500 hover:shadow-2xl`}
       initial={{ opacity: 0, y: 40, scale: 0.95 }}
-      animate={isInView ? { opacity: 1, y: 0, scale: isPopular ? 1.05 : 1 } : { opacity: 0, y: 40, scale: 0.95 }}
+      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 40, scale: 0.95 }}
       transition={{ 
         duration: 0.8, 
         delay: index * 0.1,
         ease: [0.23, 1, 0.32, 1]
       }}
-      whileHover={{ y: -12, scale: isPopular ? 1.08 : 1.05 }}
+      whileHover={{ y: -8, scale: 1.02 }}
     >
       {/* Decorative background elements */}
       <div className="absolute top-0 right-0 w-64 h-64 opacity-10 blur-3xl pointer-events-none">
