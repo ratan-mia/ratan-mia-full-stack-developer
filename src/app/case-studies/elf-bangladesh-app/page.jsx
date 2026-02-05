@@ -21,10 +21,16 @@ export default function ELFBangladeshCaseStudy() {
   const screenshotsInView = useInView(screenshotsRef, { once: true, margin: "-100px" });
 
   const heroImages = [
+    { src: '/images/projects/elf-mobile-store/01-splash-screen.jpg', alt: 'Splash Screen' },
     { src: '/images/projects/elf-mobile-store/02-products-listing.jpg', alt: 'Products Listing' },
     { src: '/images/projects/elf-mobile-store/03-product-detail-transmission-fluid.jpg', alt: 'Product Detail' },
+    { src: '/images/projects/elf-mobile-store/04-qr-scan.jpg', alt: 'QR Scanner' },
     { src: '/images/projects/elf-mobile-store/07-gamification-spin-wheel.jpg', alt: 'Spin Wheel Game' },
+    { src: '/images/projects/elf-mobile-store/11-rewards-catalog.jpg', alt: 'Rewards Catalog' },
     { src: '/images/projects/elf-mobile-store/12-elf-workshops.jpg', alt: 'Workshop Finder' },
+    { src: '/images/projects/elf-mobile-store/13-roadside-assistance.jpg', alt: 'Roadside Assistance' },
+    { src: '/images/projects/elf-mobile-store/18-wishlist.jpg', alt: 'Wishlist' },
+    { src: '/images/projects/elf-mobile-store/21-my-wallet.jpg', alt: 'Digital Wallet' },
   ];
 
   const nextImage = () => {
