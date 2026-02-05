@@ -13,14 +13,17 @@ const PricingCard = ({ plan, index }) => {
   const priceValue = isMonthly ? plan.price.replace('/mo', '') : plan.price;
   const isPopular = plan.popular;
 
+  // Get card color configuration
+  const cardColor = plan.color || {};
+
   return (
     <motion.div
       ref={ref}
-      className={`relative bg-white border-2 ${
+      className={`relative overflow-hidden ${cardColor.gradient || 'bg-white'} border-2 ${
         isPopular 
-          ? 'border-accent-lime shadow-xl shadow-accent-lime/10' 
-          : 'border-gray-200 hover:border-accent-lime/30'
-      } p-8 lg:p-10 rounded-2xl text-left h-full flex flex-col group transition-all duration-500 hover:shadow-xl ${
+          ? `${cardColor.border || 'border-accent-lime'} shadow-xl ${cardColor.shadow || 'shadow-accent-lime/20'}` 
+          : `${cardColor.border || 'border-gray-200'} hover:${cardColor.hoverBorder || 'border-gray-300'}`
+      } p-8 lg:p-10 rounded-3xl text-left h-full flex flex-col group transition-all duration-500 hover:shadow-2xl ${
         isPopular ? 'scale-105' : 'hover:scale-105'
       }`}
       initial={{ opacity: 0, y: 40, scale: 0.95 }}
@@ -30,12 +33,19 @@ const PricingCard = ({ plan, index }) => {
         delay: index * 0.1,
         ease: [0.23, 1, 0.32, 1]
       }}
-      whileHover={{ y: -8, scale: isPopular ? 1.08 : 1.05 }}
+      whileHover={{ y: -12, scale: isPopular ? 1.08 : 1.05 }}
     >
+      {/* Decorative background elements */}
+      <div className="absolute top-0 right-0 w-64 h-64 opacity-10 blur-3xl pointer-events-none">
+        <div className={`w-full h-full ${cardColor.blurBg || 'bg-accent-lime'} rounded-full`} />
+      </div>
+      <div className="absolute bottom-0 left-0 w-48 h-48 opacity-10 blur-3xl pointer-events-none">
+        <div className={`w-full h-full ${cardColor.blurBg || 'bg-accent-lime'} rounded-full`} />
+      </div>
       {/* Popular Badge */}
       {isPopular && (
         <motion.div 
-          className="absolute -top-4 left-1/2 -translate-x-1/2 bg-accent-lime text-black px-6 py-2.5 rounded-full font-bold text-xs uppercase tracking-widest shadow-lg"
+          className={`absolute -top-4 left-1/2 -translate-x-1/2 ${cardColor.badgeBg || 'bg-accent-lime'} ${cardColor.badgeText || 'text-black'} px-6 py-2.5 rounded-full font-bold text-xs uppercase tracking-widest shadow-lg z-10`}
           initial={{ opacity: 0, scale: 0 }}
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
           transition={{ delay: 0.5 + index * 0.1, type: 'spring', stiffness: 300 }}
@@ -47,41 +57,47 @@ const PricingCard = ({ plan, index }) => {
 
       {/* Service Icon */}
       <motion.div 
-        className={`w-16 h-16 ${isPopular ? 'bg-accent-lime/20' : 'bg-gray-100'} rounded-2xl flex items-center justify-center mb-8 group-hover:bg-accent-lime/30 transition-colors`}
-        whileHover={{ scale: 1.1, rotate: 5 }}
+        className={`relative w-20 h-20 ${cardColor.iconBg || 'bg-white/80'} backdrop-blur-sm rounded-2xl flex items-center justify-center mb-8 shadow-lg z-10 group-hover:shadow-xl transition-all`}
+        whileHover={{ scale: 1.15, rotate: 360 }}
+        transition={{ type: "spring", stiffness: 200 }}
       >
-        <plan.icon className={`w-8 h-8 ${isPopular ? 'text-accent-lime' : 'text-gray-600'} group-hover:text-accent-lime transition-colors`} />
+        {/* Icon glow effect */}
+        <div className={`absolute inset-0 ${cardColor.iconGlow || 'bg-accent-lime/20'} rounded-2xl blur-md`} />
+        <plan.icon className={`relative w-10 h-10 ${cardColor.iconColor || 'text-accent-lime'} transition-all`} />
       </motion.div>
 
       {/* Title and Category */}
-      <div className="mb-8">
-        <span className="text-accent-lime font-semibold text-xs uppercase tracking-[0.15em] mb-3 block leading-none">
+      <div className="mb-8 relative z-10">
+        <motion.span 
+          className={`inline-block ${cardColor.categoryBg || 'bg-white/50'} backdrop-blur-sm ${cardColor.categoryText || 'text-accent-lime'} px-4 py-2 rounded-full font-bold text-xs uppercase tracking-[0.15em] mb-4 shadow-sm`}
+          whileHover={{ scale: 1.05 }}
+        >
           {plan.category}
-        </span>
-        <h3 className="text-2xl lg:text-[28px] font-bold text-gray-900 mb-3 leading-tight tracking-[-0.02em] group-hover:text-gray-800 transition-colors">
+        </motion.span>
+        <h3 className={`text-2xl lg:text-[28px] font-bold ${cardColor.titleText || 'text-gray-900'} mb-3 leading-tight tracking-[-0.02em] transition-all`}>
           {plan.title}
         </h3>
       </div>
 
       {/* Pricing */}
-      <div className="mb-8">
-        {!isMonthly && <span className="text-sm font-medium text-gray-500 block mb-2 leading-relaxed">Starting from</span>}
+      <div className="mb-8 relative z-10">
+        {!isMonthly && <span className={`text-sm font-medium ${cardColor.priceLabel || 'text-gray-600'} block mb-2 leading-relaxed`}>Starting from</span>}
         <div className="flex items-baseline gap-1 mb-1">
-          <span className="text-5xl lg:text-[56px] font-black text-gray-900 tracking-[-0.04em] leading-none">{priceValue}</span>
-          {isMonthly && <span className="text-xl font-bold text-gray-500 leading-none">/mo</span>}
+          <span className={`text-5xl lg:text-[56px] font-black ${cardColor.priceText || 'text-gray-900'} tracking-[-0.04em] leading-none`}>{priceValue}</span>
+          {isMonthly && <span className={`text-xl font-bold ${cardColor.priceLabel || 'text-gray-600'} leading-none`}>/mo</span>}
         </div>
         {plan.timeline && (
-          <span className="text-sm font-medium text-gray-500 mt-2 block leading-relaxed">{plan.timeline}</span>
+          <span className={`text-sm font-medium ${cardColor.timeline || 'text-gray-600'} mt-2 block leading-relaxed`}>{plan.timeline}</span>
         )}
       </div>
 
       {/* Description */}
-      <p className="text-gray-600 mb-10 flex-grow leading-[1.65] text-base font-normal">
+      <p className={`${cardColor.descText || 'text-gray-700'} mb-10 flex-grow leading-[1.65] text-base font-normal relative z-10`}>
         {plan.description}
       </p>
       
       {/* Features List */}
-      <ul className="space-y-5 mb-12">
+      <ul className="space-y-5 mb-12 relative z-10">
         {plan.features.map((feature, i) => (
           <motion.li 
             key={i} 
@@ -91,12 +107,12 @@ const PricingCard = ({ plan, index }) => {
             transition={{ delay: 0.6 + index * 0.1 + i * 0.05 }}
           >
             <motion.div 
-              className="w-6 h-6 bg-accent-lime rounded-lg flex items-center justify-center flex-shrink-0 mt-1 group-hover/item:scale-110 transition-transform"
-              whileHover={{ rotate: 90 }}
+              className={`w-6 h-6 ${cardColor.checkBg || 'bg-white/90'} backdrop-blur-sm shadow-md rounded-lg flex items-center justify-center flex-shrink-0 mt-1 group-hover/item:scale-110 transition-transform`}
+              whileHover={{ rotate: 180, scale: 1.2 }}
             >
-              <Check className="w-4 h-4 text-black" />
+              <Check className={`w-4 h-4 ${cardColor.checkIcon || 'text-accent-lime'}`} />
             </motion.div>
-            <span className="text-gray-800 font-medium text-base leading-[1.6]">{feature}</span>
+            <span className={`${cardColor.featureText || 'text-gray-800'} font-medium text-base leading-[1.6]`}>{feature}</span>
           </motion.li>
         ))}
       </ul>
@@ -104,16 +120,19 @@ const PricingCard = ({ plan, index }) => {
       {/* CTA Button */}
       <motion.a 
         href="#contact" 
-        className={`w-full ${
-          isPopular 
-            ? 'bg-accent-lime text-black hover:bg-lime-300' 
-            : 'bg-black text-white hover:bg-gray-800'
-        } font-bold py-4 px-6 rounded-xl text-center mt-auto transition-all duration-300 inline-flex items-center justify-center gap-3 group/btn text-base leading-none tracking-[-0.01em]`}
-        whileHover={{ scale: 1.02, y: -2 }}
+        className={`relative w-full overflow-hidden ${cardColor.ctaBg || 'bg-white'} ${cardColor.ctaText || 'text-gray-900'} border-2 ${cardColor.ctaBorder || 'border-gray-900'} font-bold py-4 px-6 rounded-xl text-center mt-auto transition-all duration-300 inline-flex items-center justify-center gap-3 group/btn text-base leading-none tracking-[-0.01em] shadow-lg hover:shadow-xl z-10`}
+        whileHover={{ scale: 1.03, y: -4 }}
         whileTap={{ scale: 0.98 }}
       >
-        <span>{plan.cta}</span>
+        {/* Button shine effect */}
         <motion.div
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+          animate={{ x: ["-100%", "200%"] }}
+          transition={{ duration: 2, repeat: Infinity, repeatDelay: 1.5 }}
+        />
+        <span className="relative z-10">{plan.cta}</span>
+        <motion.div
+          className="relative z-10"
           whileHover={{ x: 4 }}
           transition={{ type: "spring", stiffness: 400 }}
         >
@@ -170,7 +189,7 @@ const PricingPlans = () => {
   const sectionInView = useInView(sectionRef, { once: true, threshold: 0.1 });
   const headerInView = useInView(headerRef, { once: true, margin: "-100px" });
 
-  // Enhanced pricing plans with realistic developer services
+  // Enhanced pricing plans with realistic developer services and colorful themes
   const pricingPlans = [
     {
       icon: Code,
@@ -187,6 +206,29 @@ const PricingPlans = () => {
         "Mobile Responsive Design"
       ],
       cta: "Start WordPress Project",
+      color: {
+        gradient: 'bg-white',
+        border: 'border-gray-200',
+        hoverBorder: 'border-accent-lime',
+        shadow: 'shadow-gray-200',
+        blurBg: 'bg-accent-lime',
+        iconBg: 'bg-accent-lime/10',
+        iconColor: 'text-black',
+        iconGlow: 'bg-accent-lime/20',
+        categoryBg: 'bg-accent-lime/20',
+        categoryText: 'text-black',
+        titleText: 'text-black',
+        priceText: 'text-black',
+        priceLabel: 'text-gray-600',
+        timeline: 'text-gray-600',
+        descText: 'text-gray-700',
+        checkBg: 'bg-accent-lime',
+        checkIcon: 'text-black',
+        featureText: 'text-black',
+        ctaBg: 'bg-black',
+        ctaText: 'text-accent-lime',
+        ctaBorder: 'border-black'
+      }
     },
     {
       icon: Globe,
@@ -204,6 +246,31 @@ const PricingPlans = () => {
       ],
       cta: "Build My App",
       popular: true,
+      color: {
+        gradient: 'bg-accent-lime',
+        border: 'border-black',
+        hoverBorder: 'border-black',
+        shadow: 'shadow-accent-lime/40',
+        blurBg: 'bg-black',
+        badgeBg: 'bg-black',
+        badgeText: 'text-accent-lime',
+        iconBg: 'bg-black/10',
+        iconColor: 'text-black',
+        iconGlow: 'bg-black/30',
+        categoryBg: 'bg-black/20',
+        categoryText: 'text-black',
+        titleText: 'text-black',
+        priceText: 'text-black',
+        priceLabel: 'text-black/70',
+        timeline: 'text-black/70',
+        descText: 'text-black/80',
+        checkBg: 'bg-black',
+        checkIcon: 'text-accent-lime',
+        featureText: 'text-black',
+        ctaBg: 'bg-black',
+        ctaText: 'text-accent-lime',
+        ctaBorder: 'border-black'
+      }
     },
     {
       icon: ShoppingCart,
@@ -220,6 +287,29 @@ const PricingPlans = () => {
         "Analytics & Reporting"
       ],
       cta: "Launch My Store",
+      color: {
+        gradient: 'bg-gray-50',
+        border: 'border-gray-200',
+        hoverBorder: 'border-accent-lime',
+        shadow: 'shadow-gray-200',
+        blurBg: 'bg-accent-lime',
+        iconBg: 'bg-white',
+        iconColor: 'text-black',
+        iconGlow: 'bg-accent-lime/20',
+        categoryBg: 'bg-white',
+        categoryText: 'text-black',
+        titleText: 'text-black',
+        priceText: 'text-black',
+        priceLabel: 'text-gray-600',
+        timeline: 'text-gray-600',
+        descText: 'text-gray-700',
+        checkBg: 'bg-accent-lime/20',
+        checkIcon: 'text-black',
+        featureText: 'text-black',
+        ctaBg: 'bg-black',
+        ctaText: 'text-accent-lime',
+        ctaBorder: 'border-black'
+      }
     },
     {
       icon: Server,
@@ -236,6 +326,29 @@ const PricingPlans = () => {
         "Database Administration"
       ],
       cta: "Get IT Support",
+      color: {
+        gradient: 'bg-white',
+        border: 'border-gray-200',
+        hoverBorder: 'border-accent-lime',
+        shadow: 'shadow-gray-200',
+        blurBg: 'bg-accent-lime',
+        iconBg: 'bg-accent-lime/10',
+        iconColor: 'text-black',
+        iconGlow: 'bg-accent-lime/20',
+        categoryBg: 'bg-accent-lime/20',
+        categoryText: 'text-black',
+        titleText: 'text-black',
+        priceText: 'text-black',
+        priceLabel: 'text-gray-600',
+        timeline: 'text-gray-600',
+        descText: 'text-gray-700',
+        checkBg: 'bg-accent-lime',
+        checkIcon: 'text-black',
+        featureText: 'text-black',
+        ctaBg: 'bg-black',
+        ctaText: 'text-accent-lime',
+        ctaBorder: 'border-black'
+      }
     },
     {
       icon: TrendingUp,
@@ -252,6 +365,29 @@ const PricingPlans = () => {
         "Performance Monitoring"
       ],
       cta: "Speed Up My Site",
+      color: {
+        gradient: 'bg-gray-50',
+        border: 'border-gray-200',
+        hoverBorder: 'border-accent-lime',
+        shadow: 'shadow-gray-200',
+        blurBg: 'bg-accent-lime',
+        iconBg: 'bg-white',
+        iconColor: 'text-black',
+        iconGlow: 'bg-accent-lime/20',
+        categoryBg: 'bg-white',
+        categoryText: 'text-black',
+        titleText: 'text-black',
+        priceText: 'text-black',
+        priceLabel: 'text-gray-600',
+        timeline: 'text-gray-600',
+        descText: 'text-gray-700',
+        checkBg: 'bg-accent-lime/20',
+        checkIcon: 'text-black',
+        featureText: 'text-black',
+        ctaBg: 'bg-black',
+        ctaText: 'text-accent-lime',
+        ctaBorder: 'border-black'
+      }
     },
     {
       icon: Bot,
@@ -268,6 +404,29 @@ const PricingPlans = () => {
         "Intelligent Data Analysis"
       ],
       cta: "Add AI Features",
+      color: {
+        gradient: 'bg-white',
+        border: 'border-gray-200',
+        hoverBorder: 'border-accent-lime',
+        shadow: 'shadow-gray-200',
+        blurBg: 'bg-accent-lime',
+        iconBg: 'bg-accent-lime/10',
+        iconColor: 'text-black',
+        iconGlow: 'bg-accent-lime/20',
+        categoryBg: 'bg-accent-lime/20',
+        categoryText: 'text-black',
+        titleText: 'text-black',
+        priceText: 'text-black',
+        priceLabel: 'text-gray-600',
+        timeline: 'text-gray-600',
+        descText: 'text-gray-700',
+        checkBg: 'bg-accent-lime',
+        checkIcon: 'text-black',
+        featureText: 'text-black',
+        ctaBg: 'bg-black',
+        ctaText: 'text-accent-lime',
+        ctaBorder: 'border-black'
+      }
     }
   ];
 
