@@ -197,32 +197,6 @@ export default function TufLetCaseStudy() {
                 </div>
               </div>
             </div>
-
-            {/* Navigation Card */}
-            <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
-              <h3 className="text-sm font-extrabold text-gray-400 mb-4 uppercase tracking-wide">
-                On This Page
-              </h3>
-              <nav className="space-y-1">
-                {navItems.map((item) => {
-                  const Icon = item.icon;
-                  return (
-                    <button
-                      key={item.id}
-                      onClick={() => scrollToSection(item.id)}
-                      className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-all ${
-                        activeSection === item.id
-                          ? 'bg-accent-lime text-black font-bold shadow-md'
-                          : 'text-gray-600 hover:bg-gray-50 hover:text-black font-medium'
-                      }`}
-                    >
-                      <Icon className="w-4 h-4 shrink-0" />
-                      <span className="text-sm">{item.label}</span>
-                    </button>
-                  );
-                })}
-              </nav>
-            </div>
           </div>
         </aside>
 
@@ -1070,10 +1044,10 @@ export default function TufLetCaseStudy() {
               </div>
             </div>
           </section>
-
-          {/* Project Inquiry Section */}
-          <ProjectInquirySection />
         </div>
+
+        {/* Project Inquiry Section - Full Width */}
+        <ProjectInquirySection />
       </div>
     </main>
   );
