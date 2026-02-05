@@ -45,12 +45,12 @@ const PricingCard = ({ plan, index }) => {
       {/* Popular Badge */}
       {isPopular && (
         <motion.div 
-          className={`absolute -top-4 left-1/2 -translate-x-1/2 ${cardColor.badgeBg || 'bg-accent-lime'} ${cardColor.badgeText || 'text-black'} px-6 py-2.5 rounded-full font-bold text-xs uppercase tracking-widest shadow-lg z-10`}
+          className={`absolute top-6 right-6 ${cardColor.badgeBg || 'bg-accent-lime'} ${cardColor.badgeText || 'text-black'} px-4 py-2 rounded-full font-bold text-xs uppercase tracking-widest shadow-lg z-10`}
           initial={{ opacity: 0, scale: 0 }}
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
           transition={{ delay: 0.5 + index * 0.1, type: 'spring', stiffness: 300 }}
         >
-          <Star className="w-4 h-4 inline mr-2" />
+          <Star className="w-3 h-3 inline mr-1" />
           Most Popular
         </motion.div>
       )}
