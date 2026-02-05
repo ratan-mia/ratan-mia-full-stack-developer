@@ -1,6 +1,7 @@
 import Contact from '@/components/home/Contact';
 import GetQuote from '@/components/home/GetQuote';
 import Image from 'next/image';
+import { Smartphone, Code2, ShoppingCart, Globe, Settings, Zap, Bot, DollarSign, TrendingUp, Handshake, Calendar, ArrowRight } from 'lucide-react';
 
 export const metadata = {
   title: 'Mobile & Web Development Services - Ratan Mia | Full Stack Solutions',
@@ -12,7 +13,7 @@ export const metadata = {
 const SERVICE_DATA = [
   {
     id: 1,
-    icon: '�',
+    icon: Smartphone,
     title: "Mobile App Development",
     shortDescription: "Cross-platform mobile apps for iOS and Android",
     description: "Professional React Native mobile applications with native performance, smooth animations, offline capabilities, and seamless user experiences for both iOS and Android platforms.",
@@ -42,7 +43,7 @@ const SERVICE_DATA = [
   },
   {
     id: 2,
-    icon: '💻',
+    icon: Code2,
     title: "Full Stack Development",
     shortDescription: "End-to-end web applications with modern architecture",
     description: "Complete web application development using cutting-edge technologies like React.js, Next.js, Node.js, and PHP Laravel. From concept to deployment with scalable architecture.",
@@ -72,7 +73,7 @@ const SERVICE_DATA = [
   },
   {
     id: 3,
-    icon: '🛒',
+    icon: ShoppingCart,
     title: "E-commerce Solutions",
     shortDescription: "High-converting online stores and mobile commerce",
     description: "Complete e-commerce solutions including mobile apps, web stores, secure payments, inventory management, and analytics dashboard for maximum sales performance.",
@@ -102,7 +103,7 @@ const SERVICE_DATA = [
   },
   {
     id: 4,
-    icon: '🌐',
+    icon: Globe,
     title: "WordPress Development",
     shortDescription: "Custom WordPress solutions and optimization",
     description: "Professional WordPress development including custom themes, plugins, performance optimization, and complete CMS implementations for businesses of all sizes.",
@@ -132,7 +133,7 @@ const SERVICE_DATA = [
   },
   {
     id: 5,
-    icon: '⚙️',
+    icon: Settings,
     title: "DevOps & Cloud Services",
     shortDescription: "Infrastructure automation and cloud deployment",
     description: "Complete IT infrastructure setup, cloud deployment, containerization, automated CI/CD pipelines, and ongoing server management for optimal performance.",
@@ -162,7 +163,7 @@ const SERVICE_DATA = [
   },
   {
     id: 6,
-    icon: '⚡',
+    icon: Zap,
     title: "Performance Optimization",
     shortDescription: "Speed optimization for existing websites",
     description: "Comprehensive performance optimization for existing websites using advanced techniques, modern best practices, and cutting-edge tools to achieve perfect Core Web Vitals scores.",
@@ -192,7 +193,7 @@ const SERVICE_DATA = [
   },
   {
     id: 7,
-    icon: '🤖',
+    icon: Bot,
     title: "AI Integration",
     shortDescription: "Cutting-edge AI solutions and automation",
     description: "Advanced AI integration including chatbots, natural language processing, machine learning implementation, and intelligent automation for modern applications.",
@@ -257,8 +258,9 @@ export default function ServicesPage() {
       {/* Hero Section */}
       <section className="relative min-h-[70vh] w-full overflow-hidden bg-accent-lime flex items-center">
         <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-20 text-center">
-          <div className="inline-block px-6 py-2 bg-black/10 text-black rounded-full text-sm font-extrabold mb-6">
-            💼 PROFESSIONAL SERVICES
+          <div className="inline-flex items-center gap-2 px-6 py-2 bg-black/10 text-black rounded-full text-sm font-extrabold mb-6">
+            <Code2 className="w-4 h-4" />
+            <span>PROFESSIONAL SERVICES</span>
           </div>
           <h1 className="hero-title text-black mb-6">
             Mobile & Web Development<br />Services
@@ -283,8 +285,9 @@ export default function ServicesPage() {
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
           <div className="text-center mb-16">
-            <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
-              🚀 OUR SERVICES
+            <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
+              <Zap className="w-4 h-4" />
+              <span>OUR SERVICES</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
               What I <span className="text-accent-lime">Offer</span>
@@ -312,8 +315,8 @@ export default function ServicesPage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
                   
                   {/* Icon Badge */}
-                  <div className="absolute top-4 left-4 w-14 h-14 bg-accent-lime rounded-2xl flex items-center justify-center text-3xl shadow-lg">
-                    {service.icon}
+                  <div className="absolute top-4 left-4 w-14 h-14 bg-accent-lime rounded-2xl flex items-center justify-center shadow-lg">
+                    <service.icon className="w-7 h-7 text-black" />
                   </div>
                   
                   {/* Featured Badge */}
@@ -424,8 +427,9 @@ export default function ServicesPage() {
       <section className="px-4 md:px-6 lg:px-8 py-20 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
-              📋 WORK PROCESS
+            <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
+              <Settings className="w-4 h-4" />
+              <span>WORK PROCESS</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-extrabold mb-4">How I Work</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto font-medium">
@@ -462,8 +466,9 @@ export default function ServicesPage() {
       <section className="px-4 md:px-6 lg:px-8 py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
-              💰 TRANSPARENT PRICING
+            <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
+              <DollarSign className="w-4 h-4" />
+              <span>TRANSPARENT PRICING</span>
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6">
               Investment in <span className="text-accent-lime">Your Success</span>
@@ -476,8 +481,8 @@ export default function ServicesPage() {
           {/* Pricing Cards */}
           <div className="grid md:grid-cols-3 gap-8 mb-16">
             <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-gray-100 hover:border-accent-lime group hover:-translate-y-2">
-              <div className="w-16 h-16 bg-accent-lime/20 rounded-2xl flex items-center justify-center mb-6 text-4xl group-hover:scale-110 transition-transform">
-                💰
+              <div className="w-16 h-16 bg-accent-lime/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <DollarSign className="w-8 h-8 text-black" />
               </div>
               <h3 className="text-2xl font-extrabold mb-4 group-hover:text-accent-lime transition-colors">No Hidden Costs</h3>
               <p className="text-gray-600 leading-relaxed font-medium mb-6">
@@ -501,11 +506,12 @@ export default function ServicesPage() {
 
             <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-accent-lime group hover:-translate-y-2 relative overflow-hidden">
               {/* Featured Badge */}
-              <div className="absolute top-4 right-4 px-3 py-1 bg-accent-lime text-black rounded-full text-xs font-extrabold">
-                ⭐ RECOMMENDED
+              <div className="absolute top-4 right-4 px-3 py-1 bg-accent-lime text-black rounded-full text-xs font-extrabold flex items-center gap-1">
+                <TrendingUp className="w-3 h-3" />
+                <span>RECOMMENDED</span>
               </div>
-              <div className="w-16 h-16 bg-accent-lime rounded-2xl flex items-center justify-center mb-6 text-4xl group-hover:scale-110 transition-transform">
-                📊
+              <div className="w-16 h-16 bg-accent-lime rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <TrendingUp className="w-8 h-8 text-black" />
               </div>
               <h3 className="text-2xl font-extrabold mb-4 group-hover:text-accent-lime transition-colors">Value-Based Pricing</h3>
               <p className="text-gray-600 leading-relaxed font-medium mb-6">
@@ -528,8 +534,8 @@ export default function ServicesPage() {
             </div>
 
             <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-gray-100 hover:border-accent-lime group hover:-translate-y-2">
-              <div className="w-16 h-16 bg-accent-lime/20 rounded-2xl flex items-center justify-center mb-6 text-4xl group-hover:scale-110 transition-transform">
-                🤝
+              <div className="w-16 h-16 bg-accent-lime/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <Handshake className="w-8 h-8 text-black" />
               </div>
               <h3 className="text-2xl font-extrabold mb-4 group-hover:text-accent-lime transition-colors">Flexible Payment</h3>
               <p className="text-gray-600 leading-relaxed font-medium mb-6">
@@ -596,16 +602,12 @@ export default function ServicesPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button className="px-10 py-5 bg-black text-accent-lime rounded-xl font-extrabold hover:shadow-2xl transition-all duration-300 hover:scale-105 inline-flex items-center justify-center gap-3">
+                  <Calendar className="w-5 h-5" />
                   <span>Schedule Discovery Call</span>
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
                 </button>
                 <button className="px-10 py-5 border-2 border-black text-black rounded-xl font-extrabold hover:bg-black hover:text-accent-lime transition-all duration-300 inline-flex items-center justify-center gap-3">
                   <span>Get Instant Quote</span>
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
+                  <ArrowRight className="w-5 h-5" />
                 </button>
               </div>
             </div>
