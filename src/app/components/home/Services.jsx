@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { ArrowRight, Code2, Database, Globe, Layers, ShoppingCart, Smartphone, Star, TrendingUp, Zap } from 'lucide-react';
+import { ArrowRight, Code2, Database, Globe, Layers, ShoppingCart, Smartphone, Star, TrendingUp, Zap, Palette, Cloud, BarChart3 } from 'lucide-react';
 import { useRef } from 'react';
 
 // --- Enhanced Service Card Component ---
@@ -47,7 +47,7 @@ const ServiceCard = ({ icon: Icon, title, description, features, index, inView, 
         <motion.div 
           className="mb-8 w-18 h-18 rounded-2xl flex items-center justify-center bg-black/15 group-hover:scale-110 transition-all duration-300"
           whileHover={{ rotate: [0, -10, 10, 0] }}
-          transition={{ type: 'spring', stiffness: 400 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
         >
           <Icon className="w-9 h-9 text-black" />
         </motion.div>
@@ -114,37 +114,58 @@ const Services = () => {
       isPopular: false
     },
     {
-      icon: Database,
-      title: 'Backend Development', 
-      description: 'Scalable server-side solutions with robust APIs, secure authentication, and optimized database architecture.',
-      features: ['Laravel & PHP', 'RESTful APIs', 'Database Design', 'Security Implementation'],
+      icon: Smartphone,
+      title: 'Mobile App Development',
+      description: 'Native-quality mobile applications for iOS and Android using React Native, delivering seamless cross-platform experiences.',
+      features: ['React Native Development', 'iOS & Android Apps', 'Cross-Platform Solutions', 'App Store Deployment'],
       isPopular: true
     },
     {
-      icon: Smartphone,
-      title: 'Full Stack Solutions',
-      description: 'Complete web applications from concept to deployment, handling both frontend and backend development.',
-      features: ['End-to-End Development', 'Cloud Deployment', 'DevOps Integration', 'Maintenance & Support'],
+      icon: Database,
+      title: 'Backend Development', 
+      description: 'Scalable server-side solutions with robust APIs, secure authentication, and optimized database architecture.',
+      features: ['Laravel & Node.js', 'RESTful APIs', 'Database Design', 'Security Implementation'],
       isPopular: false
     },
     {
-      icon: Layers,
-      title: 'WordPress Development',
-      description: 'Custom WordPress solutions including themes, plugins, and high-performance websites for any business need.',
-      features: ['Custom Themes', 'Plugin Development', 'Site Optimization', 'E-commerce Integration'],
-      isPopular: false
+      icon: Cloud,
+      title: 'Full Stack Solutions',
+      description: 'Complete web and mobile applications from concept to deployment, handling both frontend and backend development.',
+      features: ['End-to-End Development', 'Supabase & Firebase', 'Cloud Deployment', 'Maintenance & Support'],
+      isPopular: true
     },
     {
       icon: ShoppingCart,
       title: 'E-commerce Solutions',
-      description: 'High-converting online stores with secure payment processing, inventory management, and analytics.',
-      features: ['Shopify & WooCommerce', 'Payment Integration', 'Inventory Management', 'Analytics & Reporting'],
+      description: 'High-converting online stores with secure payment processing, inventory management, and real-time analytics.',
+      features: ['Mobile E-commerce Apps', 'Payment Gateway Integration', 'Inventory Management', 'Analytics & Reporting'],
+      isPopular: false
+    },
+    {
+      icon: Palette,
+      title: 'UI/UX Design',
+      description: 'Beautiful, intuitive interfaces designed with user experience in mind, from wireframes to high-fidelity prototypes.',
+      features: ['User Interface Design', 'Prototyping & Wireframes', 'Design Systems', 'Usability Testing'],
+      isPopular: false
+    },
+    {
+      icon: BarChart3,
+      title: 'API Integration',
+      description: 'Seamless integration of third-party services, payment gateways, and custom APIs to extend your application capabilities.',
+      features: ['Third-party APIs', 'Payment Integration', 'Data Synchronization', 'Webhook Implementation'],
+      isPopular: false
+    },
+    {
+      icon: Layers,
+      title: 'CMS Development',
+      description: 'Custom content management systems and WordPress solutions including themes, plugins, and headless CMS integration.',
+      features: ['WordPress Development', 'Headless CMS', 'Custom Themes', 'Plugin Development'],
       isPopular: false
     },
     {
       icon: Globe,
       title: 'Web Optimization',
-      description: 'Performance enhancement, SEO optimization, and technical improvements to boost your online presence.',
+      description: 'Performance enhancement, SEO optimization, and technical improvements to boost your online presence and rankings.',
       features: ['SEO Optimization', 'Speed Enhancement', 'Technical Audits', 'Analytics Setup'],
       isPopular: false
     }
