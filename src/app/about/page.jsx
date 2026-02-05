@@ -3,7 +3,7 @@
 import Skills from '@/app/components/home/Skills';
 import TrainingCertificates from '@/app/components/home/TrainingCertificates';
 import { motion } from 'framer-motion';
-import { Award, Heart, Target, Sparkles, Code, Users, TrendingUp } from 'lucide-react';
+import { Award, Code, Heart, Sparkles, Target, TrendingUp, Users } from 'lucide-react';
 import Image from 'next/image';
 
 export default function AboutPage() {
@@ -115,7 +115,7 @@ export default function AboutPage() {
                   icon: "🎯",
                   year: "2021-Present",
                   highlight: "Building Products",
-                  content: "Building innovative products like Gamify, TurfNations, and automotive ecosystems. Focused on React Native, Next.js, and scalable cloud architectures.",
+                  content: "Building innovative products like Gamify, TufLet, and automotive ecosystems. Focused on React Native, Next.js, and scalable cloud architectures.",
                   achievement: "Leading full-stack development",
                   bgColor: "bg-black",
                   textColor: "text-white",
@@ -194,10 +194,10 @@ export default function AboutPage() {
                   metrics: "50K+ Users • 4.8★ Rating"
                 },
                 {
-                  title: "TurfNations Platform",
+                  title: "TufLet Platform",
                   description: "Sports booking system with 5K+ bookings",
                   image: "/images/projects/turflet/www.turflet.app.png",
-                  link: "/case-studies/turfnations-booking",
+                  link: "/case-studies/TufLet-booking",
                   metrics: "5K+ Bookings • 95% Success"
                 },
                 {

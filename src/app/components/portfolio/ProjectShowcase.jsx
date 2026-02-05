@@ -1,6 +1,6 @@
 'use client';
 
-import { ExternalLink, Github, Play } from 'lucide-react';
+import { ExternalLink, Play } from 'lucide-react';
 import { useState } from 'react';
 import ProjectImage from './ProjectImage';
 
@@ -29,17 +29,17 @@ const ProjectShowcase = () => {
     },
     {
       id: 2,
-      title: "TurfNations Booking Platform",
+      title: "TufLet Booking Platform",
       subtitle: "Sports Venue Management System",
       description: "Comprehensive real-time booking platform for sports turfs with 30-day calendar, dynamic pricing, SSL Commerz payment integration, and owner dashboard with analytics. Next.js admin panel with Prisma ORM.",
       tech: ["React Native", "Next.js", "Prisma", "SSL Commerz", "Supabase"],
       category: "saas-platform",
-      link: "/case-studies/turfnations-booking",
+      link: "/case-studies/TufLet-booking",
       liveUrl: "https://www.turflet.app",
       image: "/images/projects/turflet/www.turflet.app.png",
       status: "Live",
       year: "2024",
-      client: "TurfNations",
+      client: "TufLet",
       duration: "3 months",
       results: ["5K+ Bookings", "2.5K+ Users", "95% Success Rate"],
       metrics: { conversion: "250%", performance: "97%", satisfaction: "94%" },

@@ -32,8 +32,8 @@ const Header = () => {
       description: 'Full-stack Automotive Platform'
     },
     { 
-      name: 'TurfNations', 
-      href: '/case-studies/turfnations',
+      name: 'TufLet', 
+      href: '/case-studies/TufLet',
       description: 'Sports Venue Booking Platform'
     }
   ];

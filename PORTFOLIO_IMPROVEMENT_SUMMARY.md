@@ -21,7 +21,7 @@ A complete, centralized data file containing all your projects with detailed inf
 - **Chery Bangladesh Mobile App** - Automotive Digital Ecosystem
   - 43 comprehensive screens covering test drives, service booking, e-commerce
   - Technologies: React Native, Expo SDK 54, Supabase, TypeScript
-- **TurfNations** - Sports Booking Platform
+- **TufLet** - Sports Booking Platform
   - Real-time booking system with dynamic pricing
   - Technologies: React Native, Next.js, Supabase, Prisma
 
@@ -134,6 +134,8 @@ Clean, production-ready CSS following your design philosophy:
 
 ```css
 .hero-title        /* 60-80px, weight 800 */
+/* 60-80px, weight 800 */
+/* 60-80px, weight 800 */
 /* 60-80px, weight 800 */
 .section-header    /* 32-48px, weight 700 */
 .body-text         /* 18px, weight 400 */
@@ -307,7 +309,7 @@ export default function GamifyPage() {
 
 **By Category:**
 
-- SaaS Product: 2 (Gamify, TurfNations)
+- SaaS Product: 2 (Gamify, TufLet)
 - Mobile App: 2 (Chery App, Elf BD)
 - E-commerce: 6 (Chery x2, MotoJP, Japan Parts x2, Elf sites)
 - Chrome Extension: 1 (Matchlyzer)

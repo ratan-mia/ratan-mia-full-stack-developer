@@ -1,4 +1,4 @@
-# TurfNations - Current Features Documentation
+# TufLet - Current Features Documentation
 
 **Last Updated:** November 14, 2025  
 **Version:** 1.0.0  
@@ -78,7 +78,7 @@
 - **Secure Payment Processing** - HTTPS encrypted transactions
 - **Payment Status Tracking** - Real-time payment validation
 - **Auto-Redirect** - Return to app after payment (3-second timer)
-- **Deep Linking** - `turfnations://bookings` scheme
+- **Deep Linking** - `TufLet://bookings` scheme
 - **Transaction Receipt** - Payment confirmation with transaction ID
 - **Success/Failure Screens** - Beautiful HTML pages with booking details
 
@@ -791,11 +791,11 @@
 
 ### Deep Linking
 
-- **Custom URL Scheme** - `turfnations://`
+- **Custom URL Scheme** - `TufLet://`
 - **Deep Link Routes:**
-  - `turfnations://bookings` - Open bookings screen
-  - `turfnations://booking-success` - Payment success
-  - `turfnations://booking-failed` - Payment failure
+  - `TufLet://bookings` - Open bookings screen
+  - `TufLet://booking-success` - Payment success
+  - `TufLet://booking-failed` - Payment failure
 - **Cold Start Handling** - App opens from deep link
 - **Runtime Handling** - App already open
 - **Auto-Redirect** - 3-second timer after payment
@@ -931,4 +931,4 @@
 
 ---
 
-_This documentation is automatically generated and maintained by the TurfNations development team._
+_This documentation is automatically generated and maintained by the TufLet development team._

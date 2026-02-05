@@ -34,7 +34,7 @@ const PROJECTS_DATA = [
   },
   {
     id: 3,
-    title: 'TurfNations',
+    title: 'TufLet',
     category: 'SaaS Product',
     year: '2024',
     client: 'Sports Venues',
@@ -42,7 +42,7 @@ const PROJECTS_DATA = [
     technologies: ['React Native', 'Next.js', 'Prisma', 'PostgreSQL'],
     description: 'Complete booking platform for sports grounds with real-time availability, dynamic pricing, and SSL Commerce payment integration.',
     liveUrl: 'https://www.turflet.app',
-    caseStudyUrl: '/case-studies/turfnations',
+    caseStudyUrl: '/case-studies/TufLet',
     icon: Smartphone,
   },
   {

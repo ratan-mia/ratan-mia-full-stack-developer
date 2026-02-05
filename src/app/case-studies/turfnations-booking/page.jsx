@@ -1,14 +1,14 @@
+import { ArrowLeft, Award, Calendar, ExternalLink, Users, Zap } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, ExternalLink, Check, Award, TrendingUp, Users, Zap, Calendar } from 'lucide-react';
 
 export const metadata = {
-  title: 'TurfNations Booking Platform - Case Study | Ratan Mia',
+  title: 'TufLet Booking Platform - Case Study | Ratan Mia',
   description: 'Real-time sports turf booking platform with payment integration, built with React Native and Next.js admin panel.',
   keywords: 'booking platform, React Native, sports booking, SSL Commerz, real-time booking, Supabase',
 };
 
-export default function TurfNationsCaseStudy() {
+export default function TufLetCaseStudy() {
   return (
     <main className="bg-white text-black">
       {/* Hero Section */}
@@ -28,7 +28,7 @@ export default function TurfNationsCaseStudy() {
                 ⚽ BOOKING PLATFORM
               </div>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
-                TurfNations<br />Booking System
+                TufLet<br />Booking System
               </h1>
               <p className="text-xl md:text-2xl text-black/80 mb-8 font-medium leading-relaxed">
                 A comprehensive real-time booking platform for sports turfs with integrated payments, availability management, and owner dashboard.
@@ -57,7 +57,7 @@ export default function TurfNationsCaseStudy() {
             <div className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl">
               <Image
                 src="/images/projects/turflet/www.turflet.app.png"
-                alt="TurfNations Platform"
+                alt="TufLet Platform"
                 fill
                 className="object-cover"
                 priority
@@ -91,7 +91,7 @@ export default function TurfNationsCaseStudy() {
           <div className="bg-white p-10 rounded-3xl shadow-lg border-2 border-gray-100">
             <h2 className="text-4xl font-extrabold mb-6">Project Overview</h2>
             <p className="text-lg text-gray-700 leading-relaxed mb-6 font-medium">
-              TurfNations is a revolutionary booking platform designed to connect sports enthusiasts with turf owners. The platform needed to handle real-time availability checks, prevent double bookings, integrate secure payment processing, and provide comprehensive management tools for turf owners.
+              TufLet is a revolutionary booking platform designed to connect sports enthusiasts with turf owners. The platform needed to handle real-time availability checks, prevent double bookings, integrate secure payment processing, and provide comprehensive management tools for turf owners.
             </p>
             <p className="text-lg text-gray-700 leading-relaxed font-medium">
               The solution includes a mobile app for players to browse and book turfs, a web-based admin panel for owners to manage their facilities, and a robust backend system that handles complex booking logic, payment processing, and analytics.

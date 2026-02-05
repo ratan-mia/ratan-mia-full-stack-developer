@@ -55,7 +55,7 @@ const ProjectStats = () => {
     {
       title: "Booking Platform Success",
       platform: "SaaS Innovation",
-      description: "TurfNations platform processed 5K+ bookings with 95% payment success",
+      description: "TufLet platform processed 5K+ bookings with 95% payment success",
       year: "2024",
       icon: "⭐"
     },

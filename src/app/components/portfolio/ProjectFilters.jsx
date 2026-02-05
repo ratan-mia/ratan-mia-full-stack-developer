@@ -24,12 +24,12 @@ const ProjectFilters = () => {
     },
     {
       id: 2,
-      title: "TurfNations Booking Platform",
+      title: "TufLet Booking Platform",
       description: "Comprehensive real-time booking platform for sports turfs with 30-day calendar, dynamic pricing, SSL Commerz payment integration, and owner dashboard with analytics.",
       category: "SaaS Platform",
       tech: ["React Native", "Next.js", "Prisma", "SSL Commerz", "Supabase"],
       image: "/images/projects/turflet/www.turflet.app.png",
-      links: { live: "/case-studies/turfnations-booking", github: "/case-studies/turfnations-booking" },
+      links: { live: "/case-studies/TufLet-booking", github: "/case-studies/TufLet-booking" },
       liveUrl: "https://www.turflet.app",
       featured: true,
       year: "2024"

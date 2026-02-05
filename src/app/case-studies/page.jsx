@@ -1,92 +1,160 @@
-import Contact from '@/components/home/Contact';
+'use client';
+import { motion } from 'framer-motion';
+import { Award, Calendar, Smartphone, TrendingUp, Users, Zap, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Contact from '@/app/components/home/Contact';
 
-export const metadata = {
-  title: 'Case Studies - Ratan Mia | In-Depth Project Analysis',
-  description: 'Explore detailed case studies of mobile and web development projects. Real solutions for automotive, sports booking, and loyalty platforms.',
-  keywords: 'case studies, mobile app development, React Native, booking platform, loyalty system, automotive app',
-};
-
+// Case studies data mapped from markdown content and images
 const caseStudies = [
   {
     id: 1,
-    title: "Chery Bangladesh Mobile App",
+    title: "Chery Bangladesh",
+    subtitle: "Complete Automotive Ecosystem",
     client: "Chery Bangladesh",
-    category: "Automotive",
+    category: "Automotive & E-commerce",
+    year: "2025",
     duration: "4 months",
-    technologies: ["React Native", "Expo", "Supabase", "SSL Commerz"],
-    challenge: "Traditional dealerships lacked digital presence for vehicle browsing, test drives, and service bookings",
-    solution: "Comprehensive mobile app with vehicle showroom, test drive booking, service management, and parts e-commerce",
-    results: {
-      bookings: "300% increase",
-      users: "50K+ downloads",
-      rating: "4.8/5 stars"
-    },
-    image: "/images/projects/cherybd-mockup.png",
-    slug: "chery-bangladesh"
+    platform: "Android & iOS",
+    technologies: ["React Native", "Expo SDK 54", "Supabase", "PostgreSQL", "SSL Commerz"],
+    heroImage: "/images/projects/cherymobileapp/02-home-screen.jpg",
+    screenshots: [
+      "/images/projects/cherymobileapp/22-products-vehicle-browse.jpg",
+      "/images/projects/cherymobileapp/11-service-booking-vehicle.jpg",
+      "/images/projects/cherymobileapp/17-testdrive-vehicle-selection.jpg",
+      "/images/projects/cherymobileapp/28-shop-accessories.jpg",
+    ],
+    challenge: "Traditional automotive dealerships needed a comprehensive digital platform to showcase vehicles, manage service bookings, enable test drives, and sell parts & accessories online.",
+    solution: "Built a feature-rich mobile application with complete vehicle catalog, intelligent booking system, e-commerce functionality, and real-time service management.",
+    features: [
+      "Complete vehicle showroom with 360° views",
+      "Service booking with vehicle selection",
+      "Test drive scheduling system",
+      "Parts & accessories e-commerce",
+      "User profile & vehicle management",
+      "Push notifications for bookings",
+      "Dealer locator with maps",
+      "News, events & promotions"
+    ],
+    results: [
+      { label: "Downloads", value: "50K+", icon: Users },
+      { label: "Test Drives", value: "300%", icon: TrendingUp },
+      { label: "User Rating", value: "4.8/5", icon: Award },
+      { label: "Active Users", value: "35K+", icon: Smartphone }
+    ],
+    impact: "The app transformed Chery Bangladesh's customer engagement, digitizing the entire vehicle ownership journey from discovery to after-sales service.",
+    slug: "chery-bangladesh-app",
+    bgColor: "bg-white",
+    accentColor: "accent-lime"
   },
   {
     id: 2,
-    title: "TurfNations Booking Platform",
-    client: "TurfNations",
+    title: "TufLet",
+    subtitle: "Smart Sports Venue Booking",
+    client: "TufLet Bangladesh",
     category: "Sports & Recreation",
+    year: "2025",
     duration: "3 months",
-    technologies: ["React Native", "Next.js", "Prisma", "SSL Commerz"],
-    challenge: "Sports venues needed real-time booking system with dynamic pricing and payment integration",
-    solution: "Complete booking platform with 30-day calendar, availability management, and owner dashboard",
-    results: {
-      bookings: "5K+ processed",
-      users: "2.5K+ active",
-      success: "95% payment rate"
-    },
-    image: "/images/projects/turflet/www.turflet.app.png",
-    slug: "turfnations-booking"
+    platform: "Mobile App + Admin Panel",
+    technologies: ["React Native", "Next.js", "Prisma ORM", "Supabase", "SSL Commerz"],
+    heroImage: "/images/projects/turflet/screenshots/03-home-search-turfs.jpg",
+    screenshots: [
+      "/images/projects/turflet/screenshots/04-turf-details-champions.jpg",
+      "/images/projects/turflet/screenshots/06-booking-date-time.jpg",
+      "/images/projects/turflet/screenshots/08-my-bookings-list.jpg",
+      "/images/projects/turflet/screenshots/16-owner-dashboard.jpg",
+    ],
+    challenge: "Sports venues struggled with manual booking management, pricing complexity, and payment collection. Players had difficulty finding and booking turfs in real-time.",
+    solution: "Developed a comprehensive booking platform with 30-day calendar view, dynamic pricing engine, secure payment gateway, and dual interfaces for players and venue owners.",
+    features: [
+      "Real-time availability calendar (30 days)",
+      "Dynamic pricing (weekend/peak/early bird)",
+      "SSL Commerz payment integration",
+      "Instant booking confirmation",
+      "Owner dashboard with analytics",
+      "Venue management & pricing control",
+      "Reviews & ratings system",
+      "Community features (teams & friends)"
+    ],
+    results: [
+      { label: "Bookings", value: "5K+", icon: Calendar },
+      { label: "Active Users", value: "2.5K+", icon: Users },
+      { label: "Payment Success", value: "95%", icon: TrendingUp },
+      { label: "Venues", value: "25+", icon: Award }
+    ],
+    impact: "Streamlined the entire sports venue booking ecosystem, increasing venue utilization by 40% and reducing booking conflicts to near zero.",
+    slug: "TufLet-booking",
+    bgColor: "bg-gray-50",
+    accentColor: "accent-lime"
   },
   {
     id: 3,
-    title: "Gamify Loyalty Platform",
+    title: "Gamify",
+    subtitle: "QR-Powered Loyalty Platform",
     client: "FMCG & Automotive Brands",
-    category: "Loyalty & Engagement",
+    category: "Loyalty & Gamification",
+    year: "2025",
     duration: "2.5 months",
-    technologies: ["React Native", "Supabase", "QR Scanner", "Gamification"],
-    challenge: "Brands needed engaging loyalty system with fraud prevention and prize management",
-    solution: "QR-based platform with interactive games, digital wallet, and comprehensive redemption system",
-    results: {
-      users: "8K+ active",
-      scans: "50K+ QR codes",
-      games: "25K+ played"
-    },
-    image: "/images/projects/pieqr/screenshots/home-screen.jpg",
-    slug: "gamify"
+    platform: "Mobile App + Admin Panel",
+    technologies: ["React Native", "Supabase", "QR Scanner", "PostgreSQL", "Admin Dashboard"],
+    heroImage: "/images/projects/pieqr/screenshots/home-screen.jpg",
+    screenshots: [
+      "/images/projects/pieqr/screenshots/game-screen.jpg",
+      "/images/projects/pieqr/screenshots/wallet.jpg",
+      "/images/projects/pieqr/screenshots/gifts.jpg",
+      "/images/projects/pieqr/screenshots/trasactions-insights.jpg",
+    ],
+    challenge: "Brands needed an engaging loyalty system to drive product purchases, prevent fraud, and manage complex reward distributions across multiple customer categories.",
+    solution: "Created a QR-based gamification platform with interactive games (Spin Wheel, Flip Card), digital wallet, tiered rewards, and comprehensive admin analytics.",
+    features: [
+      "QR code scanner with instant verification",
+      "OTP-based authentication",
+      "Spin Wheel & Flip Card games",
+      "Probability-based reward engine",
+      "Digital wallet with coin balance",
+      "Multi-tier user system (Customer/Driver/Retailer/Mechanic)",
+      "Gift catalog with redemption",
+      "Admin analytics dashboard"
+    ],
+    results: [
+      { label: "Active Users", value: "8K+", icon: Users },
+      { label: "QR Scans", value: "50K+", icon: Zap },
+      { label: "Games Played", value: "25K+", icon: Award },
+      { label: "Redemptions", value: "3K+", icon: TrendingUp }
+    ],
+    impact: "Increased brand engagement by 200% and provided valuable customer insights through gamified interactions and purchase tracking.",
+    slug: "gamify",
+    bgColor: "bg-white",
+    accentColor: "accent-lime"
   }
 ];
 
+// Process steps
 const processSteps = [
   {
     step: "01",
-    title: "Discovery & Analysis",
-    description: "Deep dive into business requirements, user needs, and technical constraints"
+    title: "Discovery",
+    description: "Deep dive into business requirements and user needs"
   },
   {
     step: "02",
-    title: "Strategy & Planning",
-    description: "Define project scope, technical architecture, and development roadmap"
+    title: "Strategy",
+    description: "Define scope, architecture, and development roadmap"
   },
   {
     step: "03",
-    title: "Design & Prototyping",
+    title: "Design",
     description: "Create wireframes, mockups, and interactive prototypes"
   },
   {
     step: "04",
-    title: "Development & Testing",
-    description: "Build the solution with continuous testing and quality assurance"
+    title: "Development",
+    description: "Build with continuous testing and quality assurance"
   },
   {
     step: "05",
-    title: "Launch & Optimization",
-    description: "Deploy the solution and continuously optimize based on user feedback"
+    title: "Launch",
+    description: "Deploy and optimize based on user feedback"
   }
 ];
 
@@ -94,9 +162,9 @@ export default function CaseStudiesPage() {
   return (
     <main className="bg-white text-black overflow-hidden">
       
-      {/* Hero Section - Following Design Guidelines */}
+      {/* Hero Section */}
       <section className="relative min-h-screen w-full overflow-hidden bg-accent-lime">
-        {/* Decorative elements - desktop only */}
+        {/* Decorative floating elements - desktop only */}
         <div className="absolute inset-0 z-10 pointer-events-none hidden lg:block">
           <div className="absolute top-20 left-20 w-32 h-32 rounded-full bg-black/5 animate-pulse" />
           <div className="absolute bottom-40 right-20 w-24 h-24 rounded-2xl bg-black/5 animate-pulse" style={{ animationDelay: '1s' }} />
@@ -167,70 +235,118 @@ export default function CaseStudiesPage() {
                       </div>
                     </div>
 
-                    {/* Challenge & Solution */}
-                    <div className="space-y-4">
-                      <div className="p-4 bg-red-50 border-l-4 border-red-500 rounded-lg">
-                        <h3 className="font-bold text-red-700 mb-2">Challenge:</h3>
-                        <p className="text-gray-700">{study.challenge}</p>
-                      </div>
-                      <div className="p-4 bg-green-50 border-l-4 border-green-500 rounded-lg">
-                        <h3 className="font-bold text-green-700 mb-2">Solution:</h3>
-                        <p className="text-gray-700">{study.solution}</p>
-                      </div>
+                    {/* Challenge */}
+                    <div className="p-6 bg-red-50 border-l-4 border-red-500 rounded-xl">
+                      <h3 className="font-bold text-red-700 mb-2 flex items-center gap-2">
+                        <span className="text-xl">🎯</span> Challenge
+                      </h3>
+                      <p className="text-gray-700 leading-relaxed">{study.challenge}</p>
                     </div>
 
-                    {/* Results */}
-                    <div className="bg-accent-lime text-black rounded-3xl p-8">
-                      <h3 className="font-bold mb-6 text-xl">Key Results:</h3>
-                      <div className="grid md:grid-cols-3 gap-6">
-                        {Object.entries(study.results).map(([key, value]) => (
-                          <div key={key} className="text-center">
-                            <div className="text-3xl font-extrabold mb-2">
-                              {value}
+                    {/* Solution */}
+                    <div className="p-6 bg-green-50 border-l-4 border-green-500 rounded-xl">
+                      <h3 className="font-bold text-green-700 mb-2 flex items-center gap-2">
+                        <span className="text-xl">💡</span> Solution
+                      </h3>
+                      <p className="text-gray-700 leading-relaxed">{study.solution}</p>
+                    </div>
+
+                    {/* Key Features */}
+                    <div>
+                      <h3 className="font-bold mb-4 text-lg">Key Features:</h3>
+                      <div className="grid gap-3">
+                        {study.features.map((feature, idx) => (
+                          <div key={idx} className="flex items-start gap-3">
+                            <div className="w-6 h-6 rounded-lg bg-accent-lime flex items-center justify-center flex-shrink-0 mt-0.5">
+                              <span className="text-black font-bold text-xs">✓</span>
                             </div>
-                            <div className="text-sm font-semibold text-black/70 capitalize">
-                              {key === 'performance' ? 'Performance' : 
-                               key === 'conversion' ? 'Conversion' :
-                               key === 'sales' ? 'Revenue' :
-                               key === 'satisfaction' ? 'Satisfaction' :
-                               key === 'engagement' ? 'Engagement' :
-                               key === 'listings' ? 'Listings' :
-                               key === 'users' ? 'Users' :
-                               key === 'growth' ? 'Growth' : key}
-                            </div>
+                            <span className="text-gray-700">{feature}</span>
                           </div>
                         ))}
                       </div>
                     </div>
 
+                    {/* Results Metrics */}
+                    <div className="bg-accent-lime text-black rounded-3xl p-8">
+                      <h3 className="font-bold mb-6 text-xl">Impact & Results:</h3>
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
+                        {study.results.map((result, idx) => {
+                          const Icon = result.icon;
+                          return (
+                            <div key={idx} className="text-center">
+                              <div className="w-12 h-12 bg-black/15 rounded-xl flex items-center justify-center mx-auto mb-3">
+                                <Icon className="w-6 h-6 text-black" />
+                              </div>
+                              <div className="text-2xl md:text-3xl font-extrabold mb-1">
+                                {result.value}
+                              </div>
+                              <div className="text-sm font-semibold text-black/70">
+                                {result.label}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                      <p className="text-black/80 text-sm leading-relaxed">{study.impact}</p>
+                    </div>
+
                     <Link 
                       href={`/case-studies/${study.slug}`}
-                      className="inline-flex items-center px-8 py-4 bg-black text-accent-lime rounded-xl font-bold hover:shadow-lg transition-all hover:scale-105"
+                      className="inline-flex items-center px-8 py-4 bg-black text-accent-lime rounded-xl font-bold hover:shadow-lg transition-all hover:scale-105 group"
                     >
                       View Full Case Study
-                      <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
+                      <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </div>
                 </div>
 
-                {/* Image */}
+                {/* Screenshots Grid */}
                 <div className={index % 2 === 1 ? 'lg:col-start-1' : ''}>
-                  <div className="relative">
-                    <div className="aspect-video bg-gray-100 rounded-3xl shadow-2xl overflow-hidden border border-gray-200">
-                      <Image
-                        src={study.image}
-                        alt={study.title}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
-                      />
-                    </div>
-                    
-                    {/* Floating checkmark */}
-                    <div className="absolute -top-4 -right-4 w-16 h-16 bg-accent-lime rounded-full flex items-center justify-center text-2xl border-4 border-white shadow-lg">
-                      ✅
+                  <div className="space-y-4">
+                    {/* Hero Image */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6 }}
+                      className="relative"
+                    >
+                      <div className="aspect-[9/16] md:aspect-video bg-gray-100 rounded-3xl shadow-2xl overflow-hidden border border-gray-200 relative">
+                        <Image
+                          src={study.heroImage}
+                          alt={`${study.title} - Main Screenshot`}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                        />
+                      </div>
+                      
+                      {/* Year Badge */}
+                      <div className="absolute -top-4 -right-4 w-16 h-16 bg-accent-lime rounded-full flex items-center justify-center text-lg font-extrabold border-4 border-white shadow-lg">
+                        {study.year}
+                      </div>
+                    </motion.div>
+
+                    {/* Additional Screenshots */}
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      {study.screenshots.slice(0, 4).map((screenshot, idx) => (
+                        <motion.div
+                          key={idx}
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.4, delay: idx * 0.1 }}
+                          className="aspect-[9/16] bg-gray-100 rounded-xl overflow-hidden border border-gray-200 relative hover:scale-105 transition-transform cursor-pointer"
+                        >
+                          <Image
+                            src={screenshot}
+                            alt={`${study.title} - Screenshot ${idx + 1}`}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 50vw, 200px"
+                          />
+                        </motion.div>
+                      ))}
                     </div>
                   </div>
                 </div>
