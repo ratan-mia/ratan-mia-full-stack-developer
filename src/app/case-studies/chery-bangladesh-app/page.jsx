@@ -268,13 +268,13 @@ export default function CheryBangladeshAppCaseStudy() {
                 >
                   {/* Screenshot */}
                   <div className={index % 2 === 1 ? 'lg:col-start-2' : ''}>
-                    <div className="relative group">
+                    <div className="relative group max-w-sm mx-auto">
                       {/* Badge */}
                       <div className="absolute -top-4 -left-4 z-10 px-4 py-2 bg-accent-lime text-black rounded-xl font-bold text-sm shadow-lg">
                         {feature.badge}
                       </div>
                       
-                      {/* Screenshot */}
+                      {/* Screenshot - Reduced Size with Aspect Ratio */}
                       <div className="relative aspect-[9/16] rounded-3xl overflow-hidden shadow-2xl border-4 border-white group-hover:scale-105 transition-transform duration-500">
                         <Image
                           src={feature.image}
