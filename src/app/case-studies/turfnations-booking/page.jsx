@@ -223,82 +223,177 @@ export default function TufLetCaseStudy() {
           </section>
 
           {/* Challenge Section */}
-          <section id="challenge" className="py-20 px-4 md:px-6 lg:px-8 bg-white">
+          <section id="challenge" className="py-20 px-4 md:px-6 lg:px-8 bg-gray-50">
             <div className="max-w-7xl mx-auto">
               <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
-              <Zap className="w-4 h-4" />
-              REQUIREMENTS & CHALLENGES
-            </div>
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-6">Complex Requirements</h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-gray-50 p-8 rounded-3xl border-l-4 border-accent-lime hover:shadow-lg transition-all">
-              <h3 className="text-2xl font-extrabold mb-4">Real-Time Availability</h3>
-              <p className="text-gray-700 leading-relaxed font-medium mb-4">
-                Needed to show accurate slot availability across 30-day calendar with instant updates to prevent double bookings and handle concurrent user requests.
-              </p>
-              <div className="relative h-48 rounded-xl overflow-hidden">
-                <Image
-                  src="/images/projects/turflet/screenshots/06-booking-date-time.jpg"
-                  alt="Real-time booking calendar"
-                  fill
-                  className="object-contain"
-                />
+                <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
+                  <Zap className="w-4 h-4" />
+                  REQUIREMENTS & CHALLENGES
+                </div>
+                <h2 className="text-4xl md:text-5xl font-extrabold mb-6">Complex Requirements</h2>
+                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                  Building a real-time booking platform with dynamic pricing and multi-user roles required solving complex technical challenges.
+                </p>
               </div>
-            </div>
 
-            <div className="bg-gray-50 p-8 rounded-3xl border-l-4 border-accent-lime hover:shadow-lg transition-all">
-              <h3 className="text-2xl font-extrabold mb-4">Payment Integration</h3>
-              <p className="text-gray-700 leading-relaxed font-medium mb-4">
-                Seamless SSL Commerz integration with multiple payment methods, auto-redirect after payment, and transaction validation with proper error handling.
-              </p>
-              <div className="relative h-48 rounded-xl overflow-hidden">
-                <Image
-                  src="/images/projects/turflet/screenshots/07-booking-confirmation.jpg"
-                  alt="Payment integration"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-            </div>
+              <div className="grid md:grid-cols-2 gap-8">
+                {/* Challenge 1 */}
+                <div className="group bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-accent-lime/30">
+                  <div className="flex items-start gap-4 mb-6">
+                    <div className="w-14 h-14 bg-accent-lime/10 rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-accent-lime/20 transition-colors">
+                      <Calendar className="w-7 h-7 text-black" />
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-extrabold mb-2">Real-Time Availability</h3>
+                      <p className="text-sm text-accent-lime font-bold">Critical Feature</p>
+                    </div>
+                  </div>
+                  <p className="text-gray-700 leading-relaxed mb-6">
+                    Show accurate slot availability across a 30-day calendar with instant updates to prevent double bookings and handle concurrent user requests efficiently.
+                  </p>
+                  <ul className="space-y-2 mb-6">
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 bg-accent-lime rounded-full mt-2 shrink-0"></div>
+                      <span className="text-sm text-gray-600">Instant calendar synchronization</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 bg-accent-lime rounded-full mt-2 shrink-0"></div>
+                      <span className="text-sm text-gray-600">Conflict prevention logic</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 bg-accent-lime rounded-full mt-2 shrink-0"></div>
+                      <span className="text-sm text-gray-600">Multi-user concurrency handling</span>
+                    </li>
+                  </ul>
+                  <div className="relative h-56 rounded-2xl overflow-hidden bg-gray-50">
+                    <Image
+                      src="/images/projects/turflet/screenshots/06-booking-date-time.jpg"
+                      alt="Real-time booking calendar"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                </div>
 
-            <div className="bg-gray-50 p-8 rounded-3xl border-l-4 border-accent-lime hover:shadow-lg transition-all">
-              <h3 className="text-2xl font-extrabold mb-4">Dynamic Pricing</h3>
-              <p className="text-gray-700 leading-relaxed font-medium mb-4">
-                Complex pricing logic with base rates, weekend surcharges, peak hour pricing, early bird discounts, and special promotional rates.
-              </p>
-              <div className="relative h-48 rounded-xl overflow-hidden">
-                <Image
-                  src="/images/projects/turflet/screenshots/04-turf-details-champions.jpg"
-                  alt="Dynamic pricing display"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-            </div>
+                {/* Challenge 2 */}
+                <div className="group bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-accent-lime/30">
+                  <div className="flex items-start gap-4 mb-6">
+                    <div className="w-14 h-14 bg-accent-lime/10 rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-accent-lime/20 transition-colors">
+                      <DollarSign className="w-7 h-7 text-black" />
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-extrabold mb-2">Payment Integration</h3>
+                      <p className="text-sm text-accent-lime font-bold">Secure Transactions</p>
+                    </div>
+                  </div>
+                  <p className="text-gray-700 leading-relaxed mb-6">
+                    Seamless SSL Commerz integration supporting multiple payment methods with auto-redirect after payment and robust transaction validation.
+                  </p>
+                  <ul className="space-y-2 mb-6">
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 bg-accent-lime rounded-full mt-2 shrink-0"></div>
+                      <span className="text-sm text-gray-600">Multiple payment gateways</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 bg-accent-lime rounded-full mt-2 shrink-0"></div>
+                      <span className="text-sm text-gray-600">Transaction error handling</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 bg-accent-lime rounded-full mt-2 shrink-0"></div>
+                      <span className="text-sm text-gray-600">Payment status tracking</span>
+                    </li>
+                  </ul>
+                  <div className="relative h-56 rounded-2xl overflow-hidden bg-gray-50">
+                    <Image
+                      src="/images/projects/turflet/screenshots/07-booking-confirmation.jpg"
+                      alt="Payment integration"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                </div>
 
-            <div className="bg-gray-50 p-8 rounded-3xl border-l-4 border-accent-lime hover:shadow-lg transition-all">
-              <h3 className="text-2xl font-extrabold mb-4">Multi-Role Dashboard</h3>
-              <p className="text-gray-700 leading-relaxed font-medium mb-4">
-                Separate interfaces for players, turf owners, and platform admins with role-based access control and feature permissions.
-              </p>
-              <div className="relative h-48 rounded-xl overflow-hidden">
-                <Image
-                  src="/images/projects/turflet/owners-dashboard.png"
-                  alt="Multi-role dashboard"
-                  fill
-                  className="object-contain"
-                />
+                {/* Challenge 3 */}
+                <div className="group bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-accent-lime/30">
+                  <div className="flex items-start gap-4 mb-6">
+                    <div className="w-14 h-14 bg-accent-lime/10 rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-accent-lime/20 transition-colors">
+                      <BarChart className="w-7 h-7 text-black" />
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-extrabold mb-2">Dynamic Pricing</h3>
+                      <p className="text-sm text-accent-lime font-bold">Complex Logic</p>
+                    </div>
+                  </div>
+                  <p className="text-gray-700 leading-relaxed mb-6">
+                    Implement flexible pricing engine with base rates, weekend surcharges, peak hour pricing, early bird discounts, and promotional campaigns.
+                  </p>
+                  <ul className="space-y-2 mb-6">
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 bg-accent-lime rounded-full mt-2 shrink-0"></div>
+                      <span className="text-sm text-gray-600">Time-based price calculation</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 bg-accent-lime rounded-full mt-2 shrink-0"></div>
+                      <span className="text-sm text-gray-600">Discount code management</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 bg-accent-lime rounded-full mt-2 shrink-0"></div>
+                      <span className="text-sm text-gray-600">Seasonal pricing variations</span>
+                    </li>
+                  </ul>
+                  <div className="relative h-56 rounded-2xl overflow-hidden bg-gray-50">
+                    <Image
+                      src="/images/projects/turflet/screenshots/04-turf-details-champions.jpg"
+                      alt="Dynamic pricing display"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                </div>
+
+                {/* Challenge 4 */}
+                <div className="group bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-accent-lime/30">
+                  <div className="flex items-start gap-4 mb-6">
+                    <div className="w-14 h-14 bg-accent-lime/10 rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-accent-lime/20 transition-colors">
+                      <Users className="w-7 h-7 text-black" />
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-extrabold mb-2">Multi-Role Dashboard</h3>
+                      <p className="text-sm text-accent-lime font-bold">Access Control</p>
+                    </div>
+                  </div>
+                  <p className="text-gray-700 leading-relaxed mb-6">
+                    Create separate interfaces for players, turf owners, and admins with granular role-based permissions and customized feature access.
+                  </p>
+                  <ul className="space-y-2 mb-6">
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 bg-accent-lime rounded-full mt-2 shrink-0"></div>
+                      <span className="text-sm text-gray-600">Role-based authentication</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 bg-accent-lime rounded-full mt-2 shrink-0"></div>
+                      <span className="text-sm text-gray-600">Permission management system</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 bg-accent-lime rounded-full mt-2 shrink-0"></div>
+                      <span className="text-sm text-gray-600">Customized UI per role</span>
+                    </li>
+                  </ul>
+                  <div className="relative h-56 rounded-2xl overflow-hidden bg-gray-50">
+                    <Image
+                      src="/images/projects/turflet/owners-dashboard.png"
+                      alt="Multi-role dashboard"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
             </div>
           </section>
 
           {/* Solution Section */}
-          <section id="solution" className="py-20 px-4 md:px-6 lg:px-8 bg-gray-50">
+          <section id="solution" className="py-20 px-4 md:px-6 lg:px-8 bg-white">
             <div className="max-w-7xl mx-auto">
               <div className="text-center mb-16">
                 <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
@@ -306,73 +401,139 @@ export default function TufLetCaseStudy() {
                   OUR SOLUTIONS
                 </div>
                 <h2 className="text-4xl md:text-5xl font-extrabold mb-6">Our Approach</h2>
-                <p className="text-lg text-gray-600 max-w-7xl mx-auto">
-                  We built a comprehensive multi-platform solution combining mobile apps and web dashboards.
+                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                  We built a comprehensive multi-platform solution combining mobile apps and web dashboards with modern technology stack.
                 </p>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-8 mb-12">
-                <div className="bg-white p-8 rounded-3xl shadow-lg border-2 border-gray-100 hover:border-accent-lime/50 transition-all">
-                  <div className="w-16 h-16 bg-accent-lime rounded-2xl flex items-center justify-center mb-6">
-                    <Smartphone className="w-8 h-8 text-black" />
-                  </div>
-                  <h3 className="text-2xl font-extrabold mb-4">Mobile App</h3>
-                  <p className="text-gray-700 leading-relaxed mb-4">
-                    React Native mobile application for both players and turf owners with intuitive booking flow.
-                  </p>
-                  <ul className="space-y-2 mb-6">
-                    <li className="flex items-start gap-2">
-                      <Check className="w-5 h-5 text-accent-lime shrink-0 mt-0.5" />
-                      <span className="text-sm text-gray-700">Real-time availability calendar</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Check className="w-5 h-5 text-accent-lime shrink-0 mt-0.5" />
-                      <span className="text-sm text-gray-700">Integrated SSL Commerz payments</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Check className="w-5 h-5 text-accent-lime shrink-0 mt-0.5" />
-                      <span className="text-sm text-gray-700">Push notifications for bookings</span>
-                    </li>
-                  </ul>
-                  <div className="relative h-64 rounded-xl overflow-hidden">
-                    <Image
-                      src="/images/projects/turflet/screenshots/03-home-search-turfs.jpg"
-                      alt="Mobile App Interface"
-                      fill
-                      className="object-contain"
-                    />
+              <div className="grid lg:grid-cols-2 gap-8 mb-16">
+                {/* Mobile App Solution */}
+                <div className="group relative bg-gray-50 p-10 rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-transparent hover:border-accent-lime/30">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-accent-lime/5 rounded-full -mr-16 -mt-16"></div>
+                  <div className="relative">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-16 h-16 bg-accent-lime rounded-2xl flex items-center justify-center shrink-0">
+                        <Smartphone className="w-8 h-8 text-black" />
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-extrabold">Mobile App</h3>
+                        <p className="text-sm text-accent-lime font-bold">React Native</p>
+                      </div>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed mb-6">
+                      Cross-platform mobile application for both players and turf owners, featuring an intuitive booking flow and real-time updates.
+                    </p>
+                    <div className="space-y-3 mb-6">
+                      <div className="flex items-start gap-3">
+                        <div className="w-6 h-6 bg-accent-lime/20 rounded-lg flex items-center justify-center shrink-0 mt-0.5">
+                          <Check className="w-4 h-4 text-black" />
+                        </div>
+                        <div>
+                          <p className="font-bold text-gray-900 text-sm">Real-time Availability</p>
+                          <p className="text-xs text-gray-600">Live calendar with instant slot updates</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-6 h-6 bg-accent-lime/20 rounded-lg flex items-center justify-center shrink-0 mt-0.5">
+                          <Check className="w-4 h-4 text-black" />
+                        </div>
+                        <div>
+                          <p className="font-bold text-gray-900 text-sm">Secure Payments</p>
+                          <p className="text-xs text-gray-600">SSL Commerz integration with multiple methods</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-6 h-6 bg-accent-lime/20 rounded-lg flex items-center justify-center shrink-0 mt-0.5">
+                          <Check className="w-4 h-4 text-black" />
+                        </div>
+                        <div>
+                          <p className="font-bold text-gray-900 text-sm">Push Notifications</p>
+                          <p className="text-xs text-gray-600">Instant booking confirmations and updates</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-6 h-6 bg-accent-lime/20 rounded-lg flex items-center justify-center shrink-0 mt-0.5">
+                          <Check className="w-4 h-4 text-black" />
+                        </div>
+                        <div>
+                          <p className="font-bold text-gray-900 text-sm">Location Services</p>
+                          <p className="text-xs text-gray-600">GPS-based turf discovery and navigation</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="relative h-72 rounded-2xl overflow-hidden bg-white shadow-inner">
+                      <Image
+                        src="/images/projects/turflet/screenshots/03-home-search-turfs.jpg"
+                        alt="Mobile App Interface"
+                        fill
+                        className="object-contain p-4"
+                      />
+                    </div>
                   </div>
                 </div>
 
-                <div className="bg-white p-8 rounded-3xl shadow-lg border-2 border-gray-100 hover:border-accent-lime/50 transition-all">
-                  <div className="w-16 h-16 bg-accent-lime rounded-2xl flex items-center justify-center mb-6">
-                    <Monitor className="w-8 h-8 text-black" />
-                  </div>
-                  <h3 className="text-2xl font-extrabold mb-4">Admin Dashboard</h3>
-                  <p className="text-gray-700 leading-relaxed mb-4">
-                    Next.js web dashboard for platform administrators with comprehensive management tools.
-                  </p>
-                  <ul className="space-y-2 mb-6">
-                    <li className="flex items-start gap-2">
-                      <Check className="w-5 h-5 text-accent-lime shrink-0 mt-0.5" />
-                      <span className="text-sm text-gray-700">Analytics and revenue tracking</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Check className="w-5 h-5 text-accent-lime shrink-0 mt-0.5" />
-                      <span className="text-sm text-gray-700">Turf approval workflow</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Check className="w-5 h-5 text-accent-lime shrink-0 mt-0.5" />
-                      <span className="text-sm text-gray-700">User and booking management</span>
-                    </li>
-                  </ul>
-                  <div className="relative h-64 rounded-xl overflow-hidden">
-                    <Image
-                      src="/images/projects/turflet/clients-revenue-details.png"
-                      alt="Admin Dashboard Interface"
-                      fill
-                      className="object-contain"
-                    />
+                {/* Admin Dashboard Solution */}
+                <div className="group relative bg-gray-50 p-10 rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-transparent hover:border-accent-lime/30">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-accent-lime/5 rounded-full -mr-16 -mt-16"></div>
+                  <div className="relative">
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="w-16 h-16 bg-accent-lime rounded-2xl flex items-center justify-center shrink-0">
+                        <Monitor className="w-8 h-8 text-black" />
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-extrabold">Admin Dashboard</h3>
+                        <p className="text-sm text-accent-lime font-bold">Next.js</p>
+                      </div>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed mb-6">
+                      Comprehensive web dashboard for platform administrators with advanced analytics, management tools, and reporting capabilities.
+                    </p>
+                    <div className="space-y-3 mb-6">
+                      <div className="flex items-start gap-3">
+                        <div className="w-6 h-6 bg-accent-lime/20 rounded-lg flex items-center justify-center shrink-0 mt-0.5">
+                          <Check className="w-4 h-4 text-black" />
+                        </div>
+                        <div>
+                          <p className="font-bold text-gray-900 text-sm">Revenue Analytics</p>
+                          <p className="text-xs text-gray-600">Real-time tracking and financial reports</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-6 h-6 bg-accent-lime/20 rounded-lg flex items-center justify-center shrink-0 mt-0.5">
+                          <Check className="w-4 h-4 text-black" />
+                        </div>
+                        <div>
+                          <p className="font-bold text-gray-900 text-sm">Turf Management</p>
+                          <p className="text-xs text-gray-600">Approval workflow and listing management</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-6 h-6 bg-accent-lime/20 rounded-lg flex items-center justify-center shrink-0 mt-0.5">
+                          <Check className="w-4 h-4 text-black" />
+                        </div>
+                        <div>
+                          <p className="font-bold text-gray-900 text-sm">Booking Oversight</p>
+                          <p className="text-xs text-gray-600">Complete booking history and management</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-6 h-6 bg-accent-lime/20 rounded-lg flex items-center justify-center shrink-0 mt-0.5">
+                          <Check className="w-4 h-4 text-black" />
+                        </div>
+                        <div>
+                          <p className="font-bold text-gray-900 text-sm">User Administration</p>
+                          <p className="text-xs text-gray-600">Role management and access control</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="relative h-72 rounded-2xl overflow-hidden bg-white shadow-inner">
+                      <Image
+                        src="/images/projects/turflet/clients-revenue-details.png"
+                        alt="Admin Dashboard Interface"
+                        fill
+                        className="object-contain p-4"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
