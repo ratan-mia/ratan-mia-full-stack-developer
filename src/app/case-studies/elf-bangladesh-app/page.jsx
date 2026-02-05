@@ -56,7 +56,7 @@ export default function ELFBangladeshCaseStudy() {
   };
   return (
     <main className="bg-white text-black">
-      {/* Hero Section */}
+      {/* Hero Section with Sidebar */}
       <section className="relative min-h-screen w-full overflow-hidden bg-accent-lime flex items-center">
         {/* Background Elements */}
         <div className="absolute inset-0">
@@ -64,7 +64,7 @@ export default function ELFBangladeshCaseStudy() {
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-black/5 rounded-full blur-3xl" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-20 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-20 relative z-10 w-full">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -79,141 +79,200 @@ export default function ELFBangladeshCaseStudy() {
             </Link>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16">
+            {/* Main Content - Left Side */}
+            <div className="lg:col-span-7">
               <motion.div
-                className="inline-flex items-center gap-2 px-5 py-2 bg-black/10 border-2 border-black/20 text-black rounded-full text-sm font-bold mb-6 uppercase tracking-wider"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
               >
-                <Smartphone className="w-4 h-4" />
-                Mobile App Development
-              </motion.div>
+                <motion.div
+                  className="inline-flex items-center gap-2 px-5 py-2 bg-black/10 border-2 border-black/20 text-black rounded-full text-sm font-bold mb-6 uppercase tracking-wider"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                >
+                  <Smartphone className="w-4 h-4" />
+                  Mobile App Design & Development
+                </motion.div>
 
-              <h1 className="text-5xl md:text-6xl lg:text-[72px] font-black mb-8 leading-[1.1] tracking-[-0.04em] text-black">
-                ELF Bangladesh
-                <br />
-                <span className="text-black">Mobile App</span>
-              </h1>
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-black mb-6 leading-[1.1] tracking-[-0.04em] text-black">
+                  ELF Bangladesh Mobile App
+                </h1>
 
-              <p className="text-xl md:text-2xl text-black/80 mb-10 font-medium leading-[1.6]">
-                Enterprise-grade automotive e-commerce ecosystem combining loyalty rewards, gamification, and service bookings in one powerful platform.
-              </p>
-              
-              <div className="flex flex-wrap gap-3 mb-10">
-                {['React Native', 'Expo 54', 'TypeScript', 'Supabase', 'Redux Toolkit'].map((tech, index) => (
-                  <motion.span
-                    key={tech}
-                    className="px-5 py-2 bg-black/10 border-2 border-black/20 text-black rounded-xl font-bold text-sm hover:bg-black hover:text-accent-lime hover:border-black transition-all"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.5 + index * 0.05 }}
-                    whileHover={{ scale: 1.05, y: -2 }}
-                  >
-                    {tech}
-                  </motion.span>
-                ))}
-              </div>
-
-              <motion.div
-                className="grid grid-cols-2 md:grid-cols-4 gap-6"
-                variants={staggerContainer}
-                initial="initial"
-                animate="animate"
-              >
-                {[
-                  { value: '60+', label: 'Screens' },
-                  { value: '500+', label: 'Products' },
-                  { value: '25+', label: 'DB Tables' },
-                  { value: '95%', label: 'Complete' }
-                ].map((stat, index) => (
-                  <motion.div
-                    key={stat.label}
-                    className="text-center"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.6, delay: 0.7 + index * 0.1 }}
-                  >
-                    <div className="text-4xl lg:text-5xl font-black text-black mb-2 tracking-[-0.02em]">{stat.value}</div>
-                    <div className="text-sm text-black/70 font-semibold uppercase tracking-wider">{stat.label}</div>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </motion.div>
-
-            <motion.div
-              className="relative flex items-center justify-center"
-              initial={{ opacity: 0, scale: 0.9, rotateY: 20 }}
-              animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-              transition={{ duration: 1, delay: 0.4 }}
-            >
-              <div className="relative">
-                {/* Glow effect */}
-                <div className="absolute inset-0 bg-black/10 rounded-[3rem] blur-3xl" />
+                <p className="text-xl md:text-2xl text-black/80 mb-8 font-medium leading-[1.6]">
+                  Enterprise-grade automotive e-commerce ecosystem combining loyalty rewards, gamification, and service bookings in one powerful platform.
+                </p>
                 
-                {/* Phone mockup */}
-                <div className="relative bg-gray-900 p-3 rounded-[3rem] border-4 border-black/30 shadow-2xl">
-                  {/* Phone screen with carousel */}
-                  <div className="relative w-[350px] h-[700px] bg-black rounded-[2.5rem] overflow-hidden">
-                    <AnimatePresence mode="wait">
-                      <motion.div
-                        key={currentImageIndex}
-                        initial={{ x: 300, opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
-                        exit={{ x: -300, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="absolute inset-0"
+                {/* Social Share */}
+                <motion.div 
+                  className="flex items-center gap-4 mb-8"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 0.5 }}
+                >
+                  <span className="text-sm font-bold text-black/70 uppercase tracking-wider">Share:</span>
+                  <div className="flex gap-2">
+                    {[
+                      { icon: '𝕏', label: 'Twitter' },
+                      { icon: 'in', label: 'LinkedIn' },
+                      { icon: 'f', label: 'Facebook' }
+                    ].map((social) => (
+                      <button
+                        key={social.label}
+                        className="w-10 h-10 rounded-full bg-black/10 hover:bg-black hover:text-accent-lime flex items-center justify-center font-bold transition-all"
+                        aria-label={`Share on ${social.label}`}
                       >
-                        <Image
-                          src={heroImages[currentImageIndex].src}
-                          alt={heroImages[currentImageIndex].alt}
-                          fill
-                          className="object-cover"
-                          priority
-                        />
-                      </motion.div>
-                    </AnimatePresence>
-                    
-                    {/* Navigation arrows */}
-                    <button
-                      onClick={prevImage}
-                      className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/70 transition-all z-10"
-                      aria-label="Previous image"
+                        {social.icon}
+                      </button>
+                    ))}
+                  </div>
+                </motion.div>
+
+                {/* Stats Grid */}
+                <motion.div
+                  className="grid grid-cols-2 md:grid-cols-4 gap-6"
+                  variants={staggerContainer}
+                  initial="initial"
+                  animate="animate"
+                >
+                  {[
+                    { value: '60+', label: 'Screens' },
+                    { value: '500+', label: 'Products' },
+                    { value: '25+', label: 'DB Tables' },
+                    { value: '95%', label: 'Complete' }
+                  ].map((stat, index) => (
+                    <motion.div
+                      key={stat.label}
+                      className="text-center"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.6, delay: 0.7 + index * 0.1 }}
                     >
-                      <ChevronLeft className="w-6 h-6" />
-                    </button>
-                    <button
-                      onClick={nextImage}
-                      className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/70 transition-all z-10"
-                      aria-label="Next image"
-                    >
-                      <ChevronRight className="w-6 h-6" />
-                    </button>
-                    
-                    {/* Dots indicator */}
-                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-                      {heroImages.map((_, index) => (
-                        <button
-                          key={index}
-                          onClick={() => setCurrentImageIndex(index)}
-                          className={`w-2 h-2 rounded-full transition-all ${
-                            index === currentImageIndex 
-                              ? 'bg-accent-lime w-6' 
-                              : 'bg-white/50 hover:bg-white/80'
-                          }`}
-                          aria-label={`Go to image ${index + 1}`}
-                        />
+                      <div className="text-4xl lg:text-5xl font-black text-black mb-2 tracking-[-0.02em]">{stat.value}</div>
+                      <div className="text-sm text-black/70 font-semibold uppercase tracking-wider">{stat.label}</div>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </motion.div>
+            </div>
+
+            {/* Sidebar - Right Side */}
+            <div className="lg:col-span-5 space-y-6">
+              {/* Mobile Mockup */}
+              <motion.div
+                className="relative flex items-center justify-center mb-8"
+                initial={{ opacity: 0, scale: 0.9, rotateY: 20 }}
+                animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+                transition={{ duration: 1, delay: 0.4 }}
+              >
+                <div className="relative">
+                  {/* Glow effect */}
+                  <div className="absolute inset-0 bg-black/10 rounded-[3rem] blur-3xl" />
+                  
+                  {/* Phone mockup */}
+                  <div className="relative bg-gray-900 p-3 rounded-[3rem] border-4 border-black/30 shadow-2xl">
+                    {/* Phone screen with carousel */}
+                    <div className="relative w-[300px] h-[600px] bg-black rounded-[2.5rem] overflow-hidden">
+                      <AnimatePresence mode="wait">
+                        <motion.div
+                          key={currentImageIndex}
+                          initial={{ x: 300, opacity: 0 }}
+                          animate={{ x: 0, opacity: 1 }}
+                          exit={{ x: -300, opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="absolute inset-0"
+                        >
+                          <Image
+                            src={heroImages[currentImageIndex].src}
+                            alt={heroImages[currentImageIndex].alt}
+                            fill
+                            className="object-cover"
+                            priority
+                          />
+                        </motion.div>
+                      </AnimatePresence>
+                      
+                      {/* Navigation arrows */}
+                      <button
+                        onClick={prevImage}
+                        className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/70 transition-all z-10"
+                        aria-label="Previous image"
+                      >
+                        <ChevronLeft className="w-6 h-6" />
+                      </button>
+                      <button
+                        onClick={nextImage}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/70 transition-all z-10"
+                        aria-label="Next image"
+                      >
+                        <ChevronRight className="w-6 h-6" />
+                      </button>
+                      
+                      {/* Dots indicator */}
+                      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                        {heroImages.map((_, index) => (
+                          <button
+                            key={index}
+                            onClick={() => setCurrentImageIndex(index)}
+                            className={`w-2 h-2 rounded-full transition-all ${
+                              index === currentImageIndex 
+                                ? 'bg-accent-lime w-6' 
+                                : 'bg-white/50 hover:bg-white/80'
+                            }`}
+                            aria-label={`Go to image ${index + 1}`}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Project Info Card */}
+              <motion.div
+                className="bg-black/10 backdrop-blur-sm border-2 border-black/20 rounded-2xl p-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+              >
+                <div className="space-y-6">
+                  <div>
+                    <div className="text-xs font-bold uppercase tracking-wider text-black/60 mb-2">Company</div>
+                    <div className="text-lg font-black text-black">ELF Bangladesh</div>
+                  </div>
+                  <div>
+                    <div className="text-xs font-bold uppercase tracking-wider text-black/60 mb-2">Category</div>
+                    <div className="text-lg font-black text-black">Automotive E-commerce</div>
+                  </div>
+                  <div>
+                    <div className="text-xs font-bold uppercase tracking-wider text-black/60 mb-2">Timeline</div>
+                    <div className="text-lg font-black text-black">6 Months (Ongoing)</div>
+                  </div>
+                  <div>
+                    <div className="text-xs font-bold uppercase tracking-wider text-black/60 mb-2">Services Provided</div>
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      {['UI/UX Design', 'Mobile Development', 'Backend API', 'Database Design'].map((service) => (
+                        <span key={service} className="px-3 py-1 bg-black/10 border border-black/20 rounded-lg text-xs font-bold text-black">
+                          {service}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <div className="text-xs font-bold uppercase tracking-wider text-black/60 mb-2">Tech Stack</div>
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      {['React Native', 'Expo 54', 'TypeScript', 'Supabase', 'Redux'].map((tech) => (
+                        <span key={tech} className="px-3 py-1 bg-black text-accent-lime rounded-lg text-xs font-bold">
+                          {tech}
+                        </span>
                       ))}
                     </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -270,6 +329,113 @@ export default function ELFBangladeshCaseStudy() {
               </p>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Challenges & Solutions */}
+      <section className="py-24 lg:py-32 px-4 md:px-6 lg:px-8 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <motion.div
+              className="inline-flex items-center gap-4 mb-8"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="w-12 h-1 bg-accent-lime" />
+              <span className="text-gray-500 font-semibold text-sm uppercase tracking-[0.15em]">Problem Solving</span>
+              <div className="w-12 h-1 bg-accent-lime" />
+            </motion.div>
+
+            <h2 className="text-4xl lg:text-6xl font-black mb-6 tracking-[-0.04em]">
+              Challenges &
+              <br />
+              <span className="text-accent-lime">Solutions</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-[1.6]">
+              Overcoming complex technical and business challenges to deliver a seamless experience
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {[
+              {
+                challenge: "Legacy System Integration",
+                problem: "ELF Bangladesh had an existing backend system that needed to be maintained while migrating to modern architecture.",
+                solution: "Implemented dual-service architecture allowing gradual migration from legacy backend to modern Supabase while maintaining backward compatibility.",
+                impact: "Zero downtime during transition with incremental feature rollout"
+              },
+              {
+                challenge: "Complex State Management",
+                problem: "Managing cart, wishlist, user preferences, and offline data across 60+ screens with consistent user experience.",
+                solution: "Utilized Redux Toolkit with AsyncStorage persistence, ensuring data consistency across app restarts and offline scenarios.",
+                impact: "Seamless UX with no data loss and offline-first architecture"
+              },
+              {
+                challenge: "Multi-Language Support",
+                problem: "Need to serve diverse user base with complete Bengali and English language support throughout the entire app.",
+                solution: "Integrated i18next with expo-localization for automatic language detection and complete translation coverage.",
+                impact: "Expanded user base and improved accessibility for local users"
+              },
+              {
+                challenge: "Real-time Booking Conflicts",
+                problem: "Multiple users attempting to book the same workshop time slot simultaneously causing double-bookings.",
+                solution: "Implemented Supabase real-time subscriptions with optimistic locking to prevent appointment conflicts.",
+                impact: "100% booking accuracy and enhanced user trust"
+              }
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                className="bg-gray-50 p-8 rounded-2xl border-2 border-gray-200 hover:border-accent-lime transition-all"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <div className="flex items-start gap-3 mb-6">
+                  <div className="w-8 h-8 rounded-full bg-accent-lime flex items-center justify-center flex-shrink-0">
+                    <span className="text-black font-black text-sm">{index + 1}</span>
+                  </div>
+                  <h3 className="text-2xl font-black tracking-[-0.01em]">{item.challenge}</h3>
+                </div>
+                
+                <div className="space-y-4">
+                  <div>
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-5 h-5 rounded-full bg-red-100 flex items-center justify-center">
+                        <span className="text-xs">❌</span>
+                      </div>
+                      <h4 className="font-bold text-sm uppercase tracking-wider text-gray-500">Problem</h4>
+                    </div>
+                    <p className="text-gray-700 leading-[1.7] pl-7">{item.problem}</p>
+                  </div>
+                  
+                  <div>
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center">
+                        <span className="text-xs">✅</span>
+                      </div>
+                      <h4 className="font-bold text-sm uppercase tracking-wider text-gray-500">Solution</h4>
+                    </div>
+                    <p className="text-gray-700 leading-[1.7] pl-7">{item.solution}</p>
+                  </div>
+                  
+                  <div className="bg-accent-lime/10 border-2 border-accent-lime/30 p-4 rounded-xl mt-4">
+                    <p className="text-sm font-bold text-black">
+                      <span className="text-accent-lime">Impact:</span> {item.impact}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
