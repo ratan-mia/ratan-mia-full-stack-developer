@@ -213,19 +213,19 @@ const ProcessHowIWork = () => {
   
   const technicalServices = [
     {
+      icon: Smartphone,
+      title: 'Mobile App Development',
+      description: 'Cross-platform mobile applications using React Native for iOS and Android with native performance, smooth animations, and offline capabilities.'
+    },
+    {
       icon: Globe,
       title: 'Full-Stack Web Development',
-      description: 'End-to-end web applications using React, Next.js, Laravel, and modern frameworks with responsive design and optimal performance.'
+      description: 'End-to-end web applications using React, Next.js, Laravel, and modern frameworks with responsive design, SEO optimization, and optimal performance.'
     },
     {
       icon: Database,
       title: 'Database & API Architecture', 
-      description: 'Scalable database design and RESTful API development for robust backend systems with security and performance optimization.'
-    },
-    {
-      icon: Smartphone,
-      title: 'Mobile & Cross-Platform Apps',
-      description: 'React Native applications and progressive web apps for multi-platform reach with native performance and user experience.'
+      description: 'Scalable database design with PostgreSQL/MySQL and RESTful API development using Node.js, Laravel, or Supabase for robust backend systems.'
     }
   ];
 

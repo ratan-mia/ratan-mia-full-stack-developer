@@ -10,22 +10,29 @@ const TESTIMONIALS_DATA = [
     id: 1,
     name: "Dewan Saidur Rahman",
     position: "Managing Director, Kawasaki Bangladesh",
-    quote: "Their work on speed optimization exceeded all our expectations, leading to a direct and significant impact on our sales. An outstanding performance from a truly professional team.",
+    quote: "The mobile app development and speed optimization work exceeded all our expectations, leading to a significant impact on our sales and customer engagement. Outstanding performance from a truly professional developer.",
     avatar: "D",
   },
   {
     id: 2,
-    name: "Sarah Johnson",
-    position: "CEO, Digital Innovations",
-    quote: "They flawlessly transformed our complex vision into a scalable and user-friendly e-commerce platform. The final product was not just beautiful but also incredibly robust.",
-    avatar: "S",
+    name: "Mohammad Nayab",
+    position: "Operations Manager, Chery Bangladesh",
+    quote: "The React Native mobile app and CRM integration delivered were game-changers for our operations. The cross-platform solution works flawlessly on both iOS and Android, resulting in tremendous business growth.",
+    avatar: "M",
   },
   {
     id: 3,
-    name: "Mohammad Nayab",
-    position: "Operations Manager, Chery Bangladesh",
-    quote: "The CRM integration and API work they delivered were game-changers for our operations, resulting in a 200% increase in sales. We couldn't be happier with the results.",
-    avatar: "M",
+    name: "Ahmed Hassan",
+    position: "CEO, ELF Lubricants Bangladesh",
+    quote: "The e-commerce mobile app built with React Native transformed how we connect with customers. The intuitive design, smooth performance, and comprehensive features have significantly boosted our online sales.",
+    avatar: "A",
+  },
+  {
+    id: 4,
+    name: "Sarah Thompson",
+    position: "Product Manager, TufLet Sports",
+    quote: "The booking platform's mobile app is exceptional. React Native expertise delivered a seamless experience for our users. Real-time availability, payment integration, and push notifications work perfectly.",
+    avatar: "S",
   }
 ];
 

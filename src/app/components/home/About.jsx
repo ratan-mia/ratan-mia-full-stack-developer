@@ -52,52 +52,59 @@ const CORE_STATS = [
   { 
     number: '10+', 
     label: 'Years of Experience', 
-    description: 'Building robust, scalable applications with modern technologies and best practices across multiple industries.',
+    description: 'Building robust web and mobile applications with modern technologies like React Native, Next.js, and Laravel across diverse industries.',
     icon: Award 
   },
   { 
     number: '150+', 
     label: 'Successful Projects', 
-    description: 'Delivered end-to-end solutions from concept to deployment, helping businesses grow and succeed digitally.',
+    description: 'Delivered complete solutions including mobile apps, e-commerce platforms, and enterprise systems from concept to deployment.',
     icon: Target 
   },
   { 
-    number: '98%', 
+    number: '100%', 
     label: 'Client Satisfaction', 
-    description: 'Maintained exceptional relationships through clear communication, timely delivery, and ongoing support.',
+    description: 'Maintained exceptional relationships through clear communication, timely delivery, ongoing support, and quality-driven development.',
     icon: Users 
   }
 ];
 
 const EXPERIENCE = [
   {
+    company: 'ELF Bangladesh',
+    role: 'Senior Mobile App Developer',
+    period: '2022 - Present',
+    tech: ['React Native', 'TypeScript', 'Supabase', 'Redux'],
+    description: 'Developing cross-platform mobile applications for e-commerce, implementing real-time features and payment integrations.'
+  },
+  {
     company: 'Kawasaki Bangladesh',
     role: 'Senior Full Stack Developer',
-    period: '2020 - Present',
+    period: '2020 - 2022',
     tech: ['React', 'Laravel', 'AWS', 'MySQL'],
-    description: 'Leading development of enterprise-level applications and managing cloud infrastructure.'
+    description: 'Led development of enterprise-level applications, managed cloud infrastructure, and mentored junior developers.'
   },
   {
     company: 'Continental Motors',
     role: 'IT Manager & Lead Developer',
     period: '2018 - 2020',
     tech: ['PHP', 'WordPress', 'MySQL', 'Linux'],
-    description: 'Managed IT operations while developing custom business solutions and team leadership.'
+    description: 'Managed IT operations while developing custom business solutions, CRM systems, and team leadership.'
   },
   {
     company: 'Chery Bangladesh',
     role: 'Lead Web Developer',
     period: '2016 - 2018',
     tech: ['HTML5', 'CSS3', 'JavaScript', 'PHP'],
-    description: 'Developed responsive websites and e-commerce platforms for automotive industry.'
+    description: 'Developed responsive websites, mobile-first designs, and e-commerce platforms for automotive industry.'
   }
 ];
 
 const DEVELOPMENT_SERVICES = [
+  { name: 'Mobile App Development (React Native)', level: 95, color: 'bg-black' },
   { name: 'Front-End Development (React/Next.js)', level: 95, color: 'bg-black' },
-  { name: 'Back-End Development (Laravel/PHP)', level: 90, color: 'bg-black' },
-  { name: 'E-commerce & CMS (Shopify/WordPress)', level: 92, color: 'bg-black' },
-  { name: 'API & Database Architecture', level: 88, color: 'bg-black' },
+  { name: 'Back-End Development (Laravel/Node.js)', level: 90, color: 'bg-black' },
+  { name: 'E-commerce Solutions & API Integration', level: 92, color: 'bg-black' },
 ];
 
 // --- SECTION HEADER COMPONENT ---
@@ -326,9 +333,9 @@ const MainAboutSection = ({ isInView }) => (
             className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6 sm:mb-8"
             variants={ANIMATION_VARIANTS.fadeUp}
           >
-            Passionate About Creating
+            Building Exceptional
             <br />
-            <span className="text-black/80">Quality Development</span>
+            <span className="text-black/80">Web & Mobile Experiences</span>
           </motion.h2>
           
           {/* Content Sections */}
@@ -338,10 +345,10 @@ const MainAboutSection = ({ isInView }) => (
           >
             <div>
               <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-black mb-3 sm:mb-4">
-                IBM Certified Developer
+                Full Stack & Mobile Developer
               </h3>
               <p className="text-base sm:text-lg text-black/80 leading-relaxed max-w-lg">
-                Specializing in full-stack development with over 8 years of experience building scalable applications using modern technologies and industry best practices.
+                Specializing in React Native mobile apps, Next.js web applications, and Laravel backend systems. With 10+ years of experience, I build scalable solutions using cutting-edge technologies and industry best practices.
               </p>
             </div>
 
@@ -350,7 +357,7 @@ const MainAboutSection = ({ isInView }) => (
                 Why Choose My Services
               </h4>
               <p className="text-base sm:text-lg text-black/80 leading-relaxed max-w-lg">
-                I focus on delivering robust, maintainable solutions that scale with your business. From e-commerce platforms to enterprise applications, I bring technical expertise and strategic thinking to every project.
+                I deliver cross-platform mobile apps, progressive web applications, and enterprise solutions that drive business growth. From concept to deployment, I combine technical expertise with strategic thinking to create products users love.
               </p>
             </div>
           </motion.div>
@@ -423,7 +430,7 @@ const ExperienceSection = ({ isInView }) => (
           Professional Journey
         </h3>
         <p className="text-lg sm:text-xl text-gray-500">
-          Companies and roles that shaped my expertise in full-stack development.
+          Experience across web, mobile, and enterprise development with leading companies in Bangladesh.
         </p>
       </SectionHeader>
       

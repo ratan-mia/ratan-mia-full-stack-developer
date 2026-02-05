@@ -200,9 +200,9 @@ const FAQ = () => {
       answer: "Project timelines vary based on complexity and requirements. I provide detailed timelines during our initial consultation to set clear expectations.",
       details: [
         "Simple websites: 2-3 weeks",
-        "E-commerce platforms: 4-6 weeks", 
-        "Complex web applications: 6-12 weeks",
-        "Mobile apps: 8-16 weeks"
+        "Mobile apps (React Native): 6-12 weeks", 
+        "E-commerce platforms: 4-8 weeks",
+        "Complex web applications: 8-16 weeks"
       ]
     },
     { 
@@ -213,6 +213,7 @@ const FAQ = () => {
       details: [
         "Landing pages: Starting from $1,500",
         "Business websites: $3,000 - $8,000",
+        "Mobile apps (React Native): $8,000 - $25,000",
         "E-commerce platforms: $5,000 - $15,000",
         "Custom web applications: $10,000+"
       ]
@@ -221,13 +222,13 @@ const FAQ = () => {
       id: 3, 
       icon: Code2,
       question: "What technologies and frameworks do you use?", 
-      answer: "I specialize in modern, industry-standard technologies that ensure scalability, performance, and maintainability for your projects.",
+      answer: "I specialize in modern, industry-standard technologies that ensure scalability, performance, and maintainability for your mobile and web projects.",
       details: [
+        "Mobile: React Native, Expo, TypeScript",
         "Frontend: React.js, Next.js, TypeScript, Tailwind CSS",
-        "Backend: Laravel, Node.js, Express.js, PHP",
-        "Mobile: React Native, Progressive Web Apps",
-        "Database: MySQL, PostgreSQL, MongoDB",
-        "Cloud: AWS, Vercel, DigitalOcean"
+        "Backend: Laravel, Node.js, Express.js",
+        "Database: Supabase, PostgreSQL, MySQL, Firebase",
+        "Cloud: AWS, Vercel, Netlify, DigitalOcean"
       ]
     },
     { 
@@ -237,16 +238,17 @@ const FAQ = () => {
       answer: "Absolutely! I collaborate with clients worldwide and have experience working across different time zones with clear communication protocols.",
       details: [
         "Flexible working hours to accommodate time zones",
-        "Regular progress updates via Slack/Email",
+        "Regular progress updates via Slack/Email/WhatsApp",
         "Weekly video calls for project alignment",
-        "English as primary communication language"
+        "English as primary communication language",
+        "Experience with clients in Bangladesh, USA, Europe, and Middle East"
       ]
     },
     { 
       id: 5, 
       icon: Shield,
       question: "What kind of ongoing support do you provide?", 
-      answer: "I offer comprehensive maintenance and support packages to ensure your application runs smoothly and stays up-to-date with the latest security standards.",
+      answer: "I offer comprehensive maintenance and support packages to ensure your mobile app or web application runs smoothly and stays up-to-date with the latest security standards.",
       details: [
         "First month of support included with every project",
         "Monthly maintenance packages available",

@@ -21,6 +21,19 @@ const PROJECTS_DATA = [
   },
   {
     id: 2,
+    title: 'ELF Bangladesh Mobile App',
+    category: 'Mobile App',
+    year: '2024',
+    client: 'ELF Lubricants Bangladesh',
+    image: '/images/projects/elf-mobile-store/01-splash-screen.jpg',
+    technologies: ['React Native', 'TypeScript', 'Supabase', 'Redux'],
+    description: 'Comprehensive e-commerce mobile app for lubricant products with product catalog, dealer locator, cart, and user authentication.',
+    liveUrl: '#',
+    caseStudyUrl: '/case-studies/elf-bangladesh-app',
+    icon: Smartphone,
+  },
+  {
+    id: 3,
     title: 'Chery Bangladesh Mobile App',
     category: 'Mobile App',
     year: '2024',
@@ -33,7 +46,7 @@ const PROJECTS_DATA = [
     icon: Smartphone,
   },
   {
-    id: 3,
+    id: 4,
     title: 'TufLet',
     category: 'SaaS Product',
     year: '2024',
@@ -42,11 +55,11 @@ const PROJECTS_DATA = [
     technologies: ['React Native', 'Next.js', 'Prisma', 'PostgreSQL'],
     description: 'Complete booking platform for sports grounds with real-time availability, dynamic pricing, and SSL Commerce payment integration.',
     liveUrl: 'https://www.turflet.app',
-    caseStudyUrl: '/case-studies/TufLet',
+    caseStudyUrl: '/case-studies/turfnations-booking',
     icon: Smartphone,
   },
   {
-    id: 4,
+    id: 5,
     title: 'Matchlyzer',
     category: 'Chrome Extension',
     year: '2024',
@@ -58,7 +71,7 @@ const PROJECTS_DATA = [
     icon: Chrome,
   },
   {
-    id: 5,
+    id: 6,
     title: 'Elf BD',
     category: 'Mobile App',
     year: '2023',
@@ -70,7 +83,7 @@ const PROJECTS_DATA = [
     icon: Smartphone,
   },
   {
-    id: 6,
+    id: 7,
     title: 'Chery Bangladesh',
     category: 'E-commerce',
     year: '2023',
@@ -82,7 +95,7 @@ const PROJECTS_DATA = [
     icon: ShoppingCart,
   },
   {
-    id: 7,
+    id: 8,
     title: 'ELF International',
     category: 'Corporate',
     year: '2022',
@@ -94,7 +107,7 @@ const PROJECTS_DATA = [
     icon: Globe,
   },
   {
-    id: 8,
+    id: 9,
     title: 'Japan Auto Parts',
     category: 'E-commerce',
     year: '2021',
@@ -106,7 +119,7 @@ const PROJECTS_DATA = [
     icon: ShoppingCart,
   },
   {
-    id: 9,
+    id: 10,
     title: 'ELF APL',
     category: 'Web App',
     year: '2021',
@@ -118,7 +131,7 @@ const PROJECTS_DATA = [
     icon: Globe,
   },
   {
-    id: 10,
+    id: 11,
     title: 'MotoJP Shopify',
     category: 'E-commerce',
     year: '2023',
@@ -130,7 +143,7 @@ const PROJECTS_DATA = [
     icon: ShoppingCart,
   },
   {
-    id: 11,
+    id: 12,
     title: 'Chery Bangladesh Next.js',
     category: 'E-commerce',
     year: '2024',
@@ -142,7 +155,7 @@ const PROJECTS_DATA = [
     icon: ShoppingCart,
   },
   {
-    id: 12,
+    id: 13,
     title: 'Shopify Headless for Japan Parts Ltd.',
     category: 'E-commerce',
     year: '2024',

@@ -34,17 +34,17 @@ const Skills = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, threshold: 0.2 });
 
-  // Original technical skills data preserved
+  // Updated technical skills data with mobile development
   const allSkills = [
+    { name: 'React Native', level: 95 },
     { name: 'React.js', level: 95 },
     { name: 'Next.js', level: 92 },
-    { name: 'TypeScript', level: 88 },
+    { name: 'TypeScript', level: 90 },
     { name: 'Laravel', level: 94 },
-    { name: 'PHP', level: 91 },
-    { name: 'Node.js', level: 85 },
-    { name: 'WordPress', level: 93 },
-    { name: 'Docker', level: 82 },
-    { name: 'AWS', level: 78 }
+    { name: 'Node.js', level: 87 },
+    { name: 'Supabase & Firebase', level: 88 },
+    { name: 'PostgreSQL & MySQL', level: 90 },
+    { name: 'AWS & Cloud Services', level: 82 }
   ];
 
   const containerVariants = {
@@ -109,7 +109,7 @@ const Skills = () => {
               className="text-lg lg:text-xl text-black/80 leading-relaxed mb-12 max-w-lg"
               variants={itemVariants}
             >
-              We are a creative agency working with brands building insightful strategy, creating unique designs and crafting value
+              Mastering cross-platform mobile development, modern web technologies, and cloud infrastructure to build scalable applications that deliver exceptional user experiences.
             </motion.p>
 
             <div className="space-y-5 mb-16">
