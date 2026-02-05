@@ -10,6 +10,7 @@ import ProjectInquirySection from '../../components/ProjectInquirySection';
 export default function TufLetCaseStudy() {
   const [activeSection, setActiveSection] = useState('overview');
   const [currentScreenshot, setCurrentScreenshot] = useState(0);
+  const [showSidebar, setShowSidebar] = useState(true);
 
   const screenshots = [
     {
@@ -45,6 +46,13 @@ export default function TufLetCaseStudy() {
     const handleScroll = () => {
       const sections = ['overview', 'challenge', 'solution', 'features', 'tech-stack', 'results', 'impact'];
       const scrollPosition = window.scrollY + 200;
+
+      // Check if we've scrolled to the inquiry section
+      const inquirySection = document.querySelector('#project-inquiry-section');
+      if (inquirySection) {
+        const inquiryTop = inquirySection.offsetTop;
+        setShowSidebar(scrollPosition < inquiryTop - 1000);
+      }
 
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -86,13 +94,13 @@ export default function TufLetCaseStudy() {
 
   return (
     <main className="bg-white text-black">
-      {/* Hero Section */}
+      {/* Hero Section - Full Width */}
       <HeroSection />
 
-      {/* Main Content with Sidebars */}
+      {/* Case Study Content with Sidebar */}
       <div className="relative">
-        {/* Left Sidebar - Project Details & Navigation */}
-        <aside className="hidden lg:block fixed left-8 top-32 w-80 z-30">
+        {/* Left Sidebar - Project Details */}
+        <aside className={`hidden lg:block fixed left-8 top-32 w-80 z-30 transition-opacity duration-300 ${showSidebar ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
           <div className="space-y-6">
             {/* Project Details Card */}
             <div className="bg-gray-50 rounded-2xl p-8 space-y-6">
@@ -1045,10 +1053,10 @@ export default function TufLetCaseStudy() {
             </div>
           </section>
         </div>
-
-        {/* Project Inquiry Section - Full Width */}
-        <ProjectInquirySection />
       </div>
+
+      {/* Project Inquiry Section - Full Width, No Sidebar */}
+      <ProjectInquirySection />
     </main>
   );
 }

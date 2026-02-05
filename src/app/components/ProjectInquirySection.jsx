@@ -84,7 +84,7 @@ export default function ProjectInquirySection() {
   };
 
   return (
-    <section className="relative py-20 px-4 md:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-white overflow-hidden">
+    <section id="project-inquiry-section" className="relative py-20 px-4 md:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-white overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-20 left-10 w-72 h-72 bg-accent-lime rounded-full blur-3xl"></div>
