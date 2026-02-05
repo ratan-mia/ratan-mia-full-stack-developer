@@ -456,139 +456,28 @@ export default function TufLetCaseStudy() {
                 <h2 className="text-4xl md:text-5xl font-extrabold mb-6">Powerful Capabilities</h2>
               </div>
 
-              {/* Player Features */}
-              <div className="mb-16">
-                <h3 className="text-3xl font-extrabold mb-8 flex items-center gap-3">
-                  <div className="w-10 h-10 bg-accent-lime rounded-xl flex items-center justify-center">
-                    <Users className="w-6 h-6 text-black" />
-                  </div>
-                  Player Features
-                </h3>
-                <div className="grid md:grid-cols-2 gap-8">
-                  {[
-                    {
-                      icon: Calendar,
-                      title: 'Real-Time Booking',
-                      description: 'Book turfs instantly with live availability.',
-                      features: ['30-day calendar view', 'Hourly time slots', 'Instant confirmation']
-                    },
-                    {
-                      icon: DollarSign,
-                      title: 'Secure Payments',
-                      description: 'Multiple payment options for easy checkout.',
-                      features: ['SSL Commerz integration', 'Cards & mobile banking', 'Transaction security']
-                    },
-                    {
-                      icon: Star,
-                      title: 'Reviews & Ratings',
-                      description: 'Share experiences and discover top turfs.',
-                      features: ['5-star rating system', 'Photo uploads', 'Verified reviews']
-                    },
-                    {
-                      icon: Award,
-                      title: 'Loyalty Rewards',
-                      description: 'Earn points and get exclusive benefits.',
-                      features: ['Points on bookings', 'Tier-based rewards', 'Special discounts']
-                    },
-                  ].map((feature, idx) => (
-                    <div key={idx} className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all border-2 border-gray-100 hover:border-accent-lime/40">
-                      <div className="flex items-center gap-4 mb-4">
-                        <div className="w-12 h-12 bg-accent-lime/10 rounded-xl flex items-center justify-center shrink-0">
-                          <feature.icon className="w-6 h-6 text-black" />
-                        </div>
-                        <h4 className="text-xl font-bold">{feature.title}</h4>
-                      </div>
-                      <p className="text-gray-600 mb-4 text-sm">{feature.description}</p>
-                      <ul className="space-y-2">
-                        {feature.features.map((item, i) => (
-                          <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
-                            <span className="text-accent-lime mt-1">•</span>
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Owner Features */}
-              <div className="mb-16">
-                <h3 className="text-3xl font-extrabold mb-8 flex items-center gap-3">
-                  <div className="w-10 h-10 bg-accent-lime rounded-xl flex items-center justify-center">
-                    <BarChart className="w-6 h-6 text-black" />
-                  </div>
-                  Owner Dashboard
-                </h3>
-                <div className="grid md:grid-cols-2 gap-8">
-                  {[
-                    {
-                      icon: BarChart,
-                      title: 'Revenue Analytics',
-                      description: 'Track earnings with detailed insights.',
-                      features: ['Real-time tracking', 'Daily/weekly reports', 'Revenue breakdown']
-                    },
-                    {
-                      icon: Calendar,
-                      title: 'Booking Management',
-                      description: 'Manage all reservations efficiently.',
-                      features: ['View all bookings', 'Customer information', 'Status updates']
-                    },
-                    {
-                      icon: Clock,
-                      title: 'Availability Control',
-                      description: 'Set schedules and manage pricing.',
-                      features: ['Operating hours', 'Block dates', 'Dynamic pricing']
-                    },
-                    {
-                      icon: DollarSign,
-                      title: 'Payout System',
-                      description: 'Easy withdrawals and transaction tracking.',
-                      features: ['Request payouts', 'Transaction history', 'Bank details']
-                    },
-                  ].map((feature, idx) => (
-                    <div key={idx} className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all border-2 border-gray-100 hover:border-accent-lime/40">
-                      <div className="flex items-center gap-4 mb-4">
-                        <div className="w-12 h-12 bg-accent-lime/10 rounded-xl flex items-center justify-center shrink-0">
-                          <feature.icon className="w-6 h-6 text-black" />
-                        </div>
-                        <h4 className="text-xl font-bold">{feature.title}</h4>
-                      </div>
-                      <p className="text-gray-600 mb-4 text-sm">{feature.description}</p>
-                      <ul className="space-y-2">
-                        {feature.features.map((item, i) => (
-                          <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
-                            <span className="text-accent-lime mt-1">•</span>
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
               {/* Community Features */}
-              <div className="mb-16">
-                <h3 className="text-3xl font-extrabold mb-8 flex items-center gap-3">
-                  <div className="w-10 h-10 bg-accent-lime rounded-xl flex items-center justify-center">
-                    <Users className="w-6 h-6 text-black" />
-                  </div>
-                  Social & Community Features
-                </h3>
-
-                <div className="grid md:grid-cols-1 gap-8 mb-8">
-                  <div className="group">
-                    <div className="relative w-full aspect-square rounded-2xl overflow-hidden mb-4 shadow-lg hover:shadow-2xl transition-shadow">
-                      <Image
-                        src="/images/projects/turflet/players-community.png"
-                        alt="Players Community"
-                        fill
-                        className="object-contain group-hover:scale-105 transition-transform duration-300"
-                      />
+              <div className="bg-gradient-to-br from-gray-50 to-white p-12 rounded-3xl shadow-lg border-2 border-gray-100">
+                <div className="text-center mb-12">
+                  <div className="inline-flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 bg-accent-lime rounded-xl flex items-center justify-center">
+                      <Users className="w-7 h-7 text-black" />
                     </div>
-                    <h4 className="text-xl font-bold mb-2">Players Community</h4>
-                    <p className="text-gray-600 leading-relaxed">Connect with fellow players, share experiences, and find playing partners in your area.</p>
+                    <h3 className="text-3xl font-extrabold">Social & Community</h3>
+                  </div>
+                  <p className="text-gray-600 max-w-2xl mx-auto">
+                    Connect with fellow players, share experiences, and find playing partners in your area.
+                  </p>
+                </div>
+
+                <div className="relative w-full max-w-4xl mx-auto">
+                  <div className="relative aspect-square rounded-2xl overflow-hidden shadow-xl">
+                    <Image
+                      src="/images/projects/turflet/players-community.png"
+                      alt="Players Community"
+                      fill
+                      className="object-contain"
+                    />
                   </div>
                 </div>
               </div>
