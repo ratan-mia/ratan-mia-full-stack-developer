@@ -283,146 +283,158 @@ export default function TufLetCaseStudy() {
                 </p>
               </div>
 
-              <div className="grid lg:grid-cols-2 gap-8 mb-16">
-                {/* Mobile App Solution */}
-                <div className="group relative bg-gradient-to-br from-gray-50 to-white p-12 rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-gray-100 hover:border-accent-lime/40">
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-accent-lime/5 rounded-full blur-3xl -mr-32 -mt-32"></div>
-                  <div className="relative">
-                    <div className="flex items-center gap-5 mb-8">
-                      <div className="w-20 h-20 bg-accent-lime rounded-2xl flex items-center justify-center shrink-0 shadow-lg shadow-accent-lime/20">
-                        <Smartphone className="w-10 h-10 text-black" />
-                      </div>
-                      <div>
-                        <h3 className="text-3xl font-extrabold mb-1">Mobile App</h3>
-                        <p className="text-base text-accent-lime font-bold">React Native • Expo</p>
-                      </div>
-                    </div>
-                    <p className="text-gray-700 leading-relaxed mb-10 text-base">
-                      Cross-platform mobile application for both players and turf owners, featuring an intuitive booking flow and real-time updates.
-                    </p>
-                    <div className="space-y-4">
-                      <div className="flex items-start gap-4 p-4 rounded-2xl bg-white border border-gray-100 group-hover:border-accent-lime/20 transition-colors">
-                        <div className="w-10 h-10 bg-accent-lime/10 rounded-xl flex items-center justify-center shrink-0">
-                          <Check className="w-5 h-5 text-black" />
-                        </div>
-                        <div>
-                          <p className="font-bold text-gray-900 text-base mb-1">Real-time Availability</p>
-                          <p className="text-sm text-gray-600">Live calendar with instant slot updates and conflict prevention</p>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-4 p-4 rounded-2xl bg-white border border-gray-100 group-hover:border-accent-lime/20 transition-colors">
-                        <div className="w-10 h-10 bg-accent-lime/10 rounded-xl flex items-center justify-center shrink-0">
-                          <Check className="w-5 h-5 text-black" />
-                        </div>
-                        <div>
-                          <p className="font-bold text-gray-900 text-base mb-1">Secure Payments</p>
-                          <p className="text-sm text-gray-600">SSL Commerz integration with multiple payment methods</p>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-4 p-4 rounded-2xl bg-white border border-gray-100 group-hover:border-accent-lime/20 transition-colors">
-                        <div className="w-10 h-10 bg-accent-lime/10 rounded-xl flex items-center justify-center shrink-0">
-                          <Check className="w-5 h-5 text-black" />
-                        </div>
-                        <div>
-                          <p className="font-bold text-gray-900 text-base mb-1">Push Notifications</p>
-                          <p className="text-sm text-gray-600">Instant booking confirmations and real-time updates</p>
-                        </div>
-                      </div>
-                      <div className="flex items-start gap-4 p-4 rounded-2xl bg-white border border-gray-100 group-hover:border-accent-lime/20 transition-colors">
-                        <div className="w-10 h-10 bg-accent-lime/10 rounded-xl flex items-center justify-center shrink-0">
-                          <Check className="w-5 h-5 text-black" />
-                        </div>
-                        <div>
-                          <p className="font-bold text-gray-900 text-base mb-1">Location Services</p>
-                          <p className="text-sm text-gray-600">GPS-based turf discovery with map integration</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+              {/* Solution 1: Mobile App with Image */}
+              <div className="grid lg:grid-cols-2 gap-0 items-center mb-16 bg-gray-50 rounded-3xl overflow-hidden">
+                <div className="w-full">
+                  <Image
+                    src="/images/projects/turflet/owner-dashboard and player.png"
+                    alt="Mobile App - Player & Owner Interface"
+                    width={2000}
+                    height={2000}
+                    className="w-full h-auto"
+                  />
                 </div>
-
-                {/* Admin Dashboard Solution */}
-                <div className="group relative bg-gradient-to-br from-gray-50 to-white p-12 rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-gray-100 hover:border-accent-lime/40">
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-accent-lime/5 rounded-full blur-3xl -mr-32 -mt-32"></div>
-                  <div className="relative">
-                    <div className="flex items-center gap-5 mb-8">
-                      <div className="w-20 h-20 bg-accent-lime rounded-2xl flex items-center justify-center shrink-0 shadow-lg shadow-accent-lime/20">
-                        <Monitor className="w-10 h-10 text-black" />
+                <div className="p-8 md:p-12">
+                  <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
+                    <Smartphone className="w-4 h-4" />
+                    MOBILE APP
+                  </div>
+                  <h3 className="text-3xl md:text-4xl font-extrabold mb-4">Player & Owner Experience</h3>
+                  <p className="text-lg text-gray-600 mb-8">
+                    Cross-platform mobile application built with React Native and Expo, featuring intuitive interfaces for both players and turf owners with real-time booking capabilities.
+                  </p>
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 bg-accent-lime rounded-xl flex items-center justify-center shrink-0">
+                        <Check className="w-5 h-5 text-black" />
                       </div>
                       <div>
-                        <h3 className="text-3xl font-extrabold mb-1">Admin Dashboard</h3>
-                        <p className="text-base text-accent-lime font-bold">Next.js • Prisma</p>
+                        <h4 className="text-lg font-bold mb-1">Real-time Availability</h4>
+                        <p className="text-gray-600 text-sm">Live calendar with instant slot updates and conflict prevention</p>
                       </div>
                     </div>
-                    <p className="text-gray-700 leading-relaxed mb-10 text-base">
-                      Comprehensive web dashboard for platform administrators with advanced analytics, management tools, and reporting capabilities.
-                    </p>
-                    <div className="space-y-4">
-                      <div className="flex items-start gap-4 p-4 rounded-2xl bg-white border border-gray-100 group-hover:border-accent-lime/20 transition-colors">
-                        <div className="w-10 h-10 bg-accent-lime/10 rounded-xl flex items-center justify-center shrink-0">
-                          <Check className="w-5 h-5 text-black" />
-                        </div>
-                        <div>
-                          <p className="font-bold text-gray-900 text-base mb-1">Revenue Analytics</p>
-                          <p className="text-sm text-gray-600">Real-time financial tracking with detailed reports</p>
-                        </div>
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 bg-accent-lime rounded-xl flex items-center justify-center shrink-0">
+                        <Check className="w-5 h-5 text-black" />
                       </div>
-                      <div className="flex items-start gap-4 p-4 rounded-2xl bg-white border border-gray-100 group-hover:border-accent-lime/20 transition-colors">
-                        <div className="w-10 h-10 bg-accent-lime/10 rounded-xl flex items-center justify-center shrink-0">
-                          <Check className="w-5 h-5 text-black" />
-                        </div>
-                        <div>
-                          <p className="font-bold text-gray-900 text-base mb-1">Turf Management</p>
-                          <p className="text-sm text-gray-600">Complete approval workflow and listing control</p>
-                        </div>
+                      <div>
+                        <h4 className="text-lg font-bold mb-1">Secure Payments</h4>
+                        <p className="text-gray-600 text-sm">SSL Commerz integration with multiple payment methods</p>
                       </div>
-                      <div className="flex items-start gap-4 p-4 rounded-2xl bg-white border border-gray-100 group-hover:border-accent-lime/20 transition-colors">
-                        <div className="w-10 h-10 bg-accent-lime/10 rounded-xl flex items-center justify-center shrink-0">
-                          <Check className="w-5 h-5 text-black" />
-                        </div>
-                        <div>
-                          <p className="font-bold text-gray-900 text-base mb-1">Booking Oversight</p>
-                          <p className="text-sm text-gray-600">Full booking history with management capabilities</p>
-                        </div>
+                    </div>
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 bg-accent-lime rounded-xl flex items-center justify-center shrink-0">
+                        <Check className="w-5 h-5 text-black" />
                       </div>
-                      <div className="flex items-start gap-4 p-4 rounded-2xl bg-white border border-gray-100 group-hover:border-accent-lime/20 transition-colors">
-                        <div className="w-10 h-10 bg-accent-lime/10 rounded-xl flex items-center justify-center shrink-0">
-                          <Check className="w-5 h-5 text-black" />
-                        </div>
-                        <div>
-                          <p className="font-bold text-gray-900 text-base mb-1">User Administration</p>
-                          <p className="text-sm text-gray-600">Role-based access and permission management</p>
-                        </div>
+                      <div>
+                        <h4 className="text-lg font-bold mb-1">Push Notifications</h4>
+                        <p className="text-gray-600 text-sm">Instant booking confirmations and real-time updates</p>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Architecture Diagram */}
-              <div className="bg-white p-8 rounded-3xl shadow-lg border-2 border-gray-100">
-                <h3 className="text-2xl font-extrabold mb-6 text-center">System Architecture</h3>
-                <div className="grid md:grid-cols-3 gap-6">
-                  <div className="text-center">
-                    <div className="w-20 h-20 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                      <Smartphone className="w-10 h-10 text-gray-700" />
-                    </div>
-                    <h4 className="font-bold mb-2">Frontend</h4>
-                    <p className="text-sm text-gray-600">React Native<br/>Expo Framework</p>
+              {/* Solution 2: Owner Dashboard with Image */}
+              <div className="grid lg:grid-cols-2 gap-0 items-center mb-16 bg-gray-50 rounded-3xl overflow-hidden">
+                <div className="p-8 md:p-12 order-2 lg:order-1">
+                  <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
+                    <Monitor className="w-4 h-4" />
+                    OWNER DASHBOARD
                   </div>
-                  <div className="text-center">
-                    <div className="w-20 h-20 bg-accent-lime rounded-2xl flex items-center justify-center mx-auto mb-4">
-                      <Database className="w-10 h-10 text-black" />
+                  <h3 className="text-3xl md:text-4xl font-extrabold mb-4">Business Management</h3>
+                  <p className="text-lg text-gray-600 mb-8">
+                    Comprehensive dashboard for venue owners to manage bookings, track revenue, and optimize their business operations with real-time analytics.
+                  </p>
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 bg-accent-lime rounded-xl flex items-center justify-center shrink-0">
+                        <Check className="w-5 h-5 text-black" />
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-bold mb-1">Revenue Analytics</h4>
+                        <p className="text-gray-600 text-sm">Real-time financial tracking with detailed reports</p>
+                      </div>
                     </div>
-                    <h4 className="font-bold mb-2">Backend</h4>
-                    <p className="text-sm text-gray-600">Supabase PostgreSQL<br/>Prisma ORM</p>
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 bg-accent-lime rounded-xl flex items-center justify-center shrink-0">
+                        <Check className="w-5 h-5 text-black" />
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-bold mb-1">Booking Management</h4>
+                        <p className="text-gray-600 text-sm">Complete control over schedules and reservations</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 bg-accent-lime rounded-xl flex items-center justify-center shrink-0">
+                        <Check className="w-5 h-5 text-black" />
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-bold mb-1">Client Insights</h4>
+                        <p className="text-gray-600 text-sm">Customer data and booking patterns analysis</p>
+                      </div>
+                    </div>
                   </div>
-                  <div className="text-center">
-                    <div className="w-20 h-20 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                      <Shield className="w-10 h-10 text-gray-700" />
+                </div>
+                <div className="w-full order-1 lg:order-2">
+                  <Image
+                    src="/images/projects/turflet/owners-dashboard.png"
+                    alt="Owner Dashboard - Analytics & Management"
+                    width={2000}
+                    height={2000}
+                    className="w-full h-auto"
+                  />
+                </div>
+              </div>
+
+              {/* Solution 3: Admin Panel with Image */}
+              <div className="grid lg:grid-cols-2 gap-0 items-center bg-gray-50 rounded-3xl overflow-hidden">
+                <div className="w-full">
+                  <Image
+                    src="/images/projects/turflet/clients-revenue-details.png"
+                    alt="Admin Dashboard - Revenue & Client Management"
+                    width={2000}
+                    height={2000}
+                    className="w-full h-auto"
+                  />
+                </div>
+                <div className="p-8 md:p-12">
+                  <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
+                    <BarChart className="w-4 h-4" />
+                    ADMIN PANEL
+                  </div>
+                  <h3 className="text-3xl md:text-4xl font-extrabold mb-4">Platform Administration</h3>
+                  <p className="text-lg text-gray-600 mb-8">
+                    Next.js powered web dashboard with advanced analytics, complete platform oversight, and comprehensive management tools for administrators.
+                  </p>
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 bg-accent-lime rounded-xl flex items-center justify-center shrink-0">
+                        <Check className="w-5 h-5 text-black" />
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-bold mb-1">Revenue Tracking</h4>
+                        <p className="text-gray-600 text-sm">Comprehensive financial reports and transaction history</p>
+                      </div>
                     </div>
-                    <h4 className="font-bold mb-2">Payments</h4>
-                    <p className="text-sm text-gray-600">SSL Commerz<br/>Gateway</p>
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 bg-accent-lime rounded-xl flex items-center justify-center shrink-0">
+                        <Check className="w-5 h-5 text-black" />
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-bold mb-1">Turf Management</h4>
+                        <p className="text-gray-600 text-sm">Approval workflow and venue listing control</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 bg-accent-lime rounded-xl flex items-center justify-center shrink-0">
+                        <Check className="w-5 h-5 text-black" />
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-bold mb-1">User Administration</h4>
+                        <p className="text-gray-600 text-sm">Role-based access and permission management</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
