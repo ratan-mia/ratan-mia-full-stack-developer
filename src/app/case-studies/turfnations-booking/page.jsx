@@ -447,6 +447,10 @@ export default function TufLetCaseStudy() {
 
           {/* Key Features Section */}
           <section id="features" className="py-20 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+              <h2 className="text-5xl md:text-6xl font-extrabold mb-4">Key Features</h2>
+              <p className="text-xl text-gray-600">Powerful tools designed for modern sports facility management</p>
+            </div>
             <div className="grid lg:grid-cols-2 gap-0 items-center">
               {/* Left - Image */}
               <div className="w-full">
