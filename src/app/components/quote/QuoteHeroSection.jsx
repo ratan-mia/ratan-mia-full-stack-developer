@@ -21,7 +21,7 @@ const QuoteHeroSection = () => {
     <section 
       className="relative min-h-screen w-full overflow-hidden bg-accent-lime"
       style={{
-        backgroundImage: 'linear-gradient(rgba(204, 255, 0, 0.75), rgba(204, 255, 0, 0.75)), url(https://images.unsplash.com/photo-1551434678-e076c223a692?w=1920&q=80)',
+        backgroundImage: 'linear-gradient(rgba(204, 255, 0, 0.90), rgba(204, 255, 0, 0.90)), url(https://images.unsplash.com/photo-1551434678-e076c223a692?w=1920&q=80)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed'
