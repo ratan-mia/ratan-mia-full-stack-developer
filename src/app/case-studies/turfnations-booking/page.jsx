@@ -894,28 +894,30 @@ export default function TufLetCaseStudy() {
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="bg-gray-50 p-6 rounded-3xl border-2 border-gray-100">
                   <h3 className="text-xl font-extrabold mb-4">Owner Analytics Dashboard</h3>
-                  <div className="relative h-64 rounded-xl overflow-hidden mb-4">
+                  <div className="rounded-xl overflow-hidden mb-4">
                     <Image
-                      src="/images/projects/turflet/screenshots/20-owner-analytics.jpg"
-                      alt="Owner Analytics"
-                      fill
-                      className="object-contain"
+                      src="/images/projects/turflet/owners-dashboard.png"
+                      alt="Owner Analytics Dashboard"
+                      width={2000}
+                      height={2000}
+                      className="w-full h-auto"
                     />
                   </div>
                   <p className="text-sm text-gray-600">Real-time analytics showing booking trends, revenue growth, and occupancy rates.</p>
                 </div>
 
                 <div className="bg-gray-50 p-6 rounded-3xl border-2 border-gray-100">
-                  <h3 className="text-xl font-extrabold mb-4">Revenue Tracking</h3>
-                  <div className="relative h-64 rounded-xl overflow-hidden mb-4">
+                  <h3 className="text-xl font-extrabold mb-4">Revenue & Client Tracking</h3>
+                  <div className="rounded-xl overflow-hidden mb-4">
                     <Image
-                      src="/images/projects/turflet/screenshots/21-owner-revenue-details.jpg"
-                      alt="Revenue Details"
-                      fill
-                      className="object-contain"
+                      src="/images/projects/turflet/clients-revenue-details.png"
+                      alt="Revenue and Client Details"
+                      width={2000}
+                      height={2000}
+                      className="w-full h-auto"
                     />
                   </div>
-                  <p className="text-sm text-gray-600">Comprehensive revenue breakdown with transaction history and payout management.</p>
+                  <p className="text-sm text-gray-600">Comprehensive revenue breakdown with transaction history and client management.</p>
                 </div>
               </div>
             </div>
