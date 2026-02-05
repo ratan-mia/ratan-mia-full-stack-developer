@@ -43,9 +43,9 @@ export default function TufLetCaseStudy() {
   };
 
   const navItems = [
-    { id: 'overview', label: 'Project Overview', icon: ExternalLink },
-    { id: 'challenge', label: 'The Challenge', icon: Zap },
-    { id: 'solution', label: 'Solution', icon: CheckCircle },
+    { id: 'overview', label: 'About the Project', icon: ExternalLink },
+    { id: 'challenge', label: 'Requirements & Challenges', icon: Zap },
+    { id: 'solution', label: 'Our Solutions', icon: CheckCircle },
     { id: 'features', label: 'Key Features', icon: Star },
     { id: 'tech-stack', label: 'Tech Stack', icon: Code },
     { id: 'results', label: 'Results & Impact', icon: BarChart },
@@ -219,7 +219,7 @@ export default function TufLetCaseStudy() {
 
           <div className="space-y-12">
             <div className="max-w-3xl">
-              <h2 className="text-4xl font-extrabold mb-6">Project Overview</h2>
+              <h2 className="text-4xl font-extrabold mb-6">About the Project</h2>
               <p className="text-lg text-gray-700 leading-relaxed mb-6 font-medium">
                 TufLet is a revolutionary booking platform designed to connect sports enthusiasts with turf owners. The platform needed to handle real-time availability checks, prevent double bookings, integrate secure payment processing, and provide comprehensive management tools for turf owners.
               </p>
@@ -245,7 +245,7 @@ export default function TufLetCaseStudy() {
             <div className="max-w-5xl mx-auto">
               <div className="text-center mb-16">
             <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
-              🎯 THE CHALLENGE
+              🎯 REQUIREMENTS & CHALLENGES
             </div>
             <h2 className="text-4xl md:text-5xl font-extrabold mb-6">Complex Requirements</h2>
           </div>
@@ -319,7 +319,7 @@ export default function TufLetCaseStudy() {
             <div className="max-w-5xl mx-auto">
               <div className="text-center mb-16">
                 <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
-                  💡 THE SOLUTION
+                  💡 OUR SOLUTIONS
                 </div>
                 <h2 className="text-4xl md:text-5xl font-extrabold mb-6">Our Approach</h2>
                 <p className="text-lg text-gray-600 max-w-3xl mx-auto">
