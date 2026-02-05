@@ -198,7 +198,7 @@ export default function TufLetCaseStudy() {
         <div className="lg:ml-96 lg:mr-8">
           {/* Project Overview */}
           <section id="overview" className="py-20 px-4 md:px-6 lg:px-8 bg-gray-50">
-            <div className="max-w-5xl mx-auto">
+            <div className="max-w-7xl mx-auto">
               <div className="grid lg:grid-cols-3 gap-8 mb-16">
             <div className="bg-white p-8 rounded-3xl shadow-lg border-2 border-gray-100">
               <div className="w-12 h-12 bg-accent-lime/10 rounded-xl flex items-center justify-center mb-4">
@@ -224,7 +224,7 @@ export default function TufLetCaseStudy() {
           </div>
 
           <div className="space-y-12">
-            <div className="max-w-3xl">
+            <div className="max-w-7xl">
               <h2 className="text-4xl font-extrabold mb-6">About the Project</h2>
               <p className="text-lg text-gray-700 leading-relaxed mb-6 font-medium">
                 TufLet is a revolutionary booking platform designed to connect sports enthusiasts with turf owners. The platform needed to handle real-time availability checks, prevent double bookings, integrate secure payment processing, and provide comprehensive management tools for turf owners.
@@ -248,7 +248,7 @@ export default function TufLetCaseStudy() {
 
           {/* Challenge Section */}
           <section id="challenge" className="py-20 px-4 md:px-6 lg:px-8 bg-white">
-            <div className="max-w-5xl mx-auto">
+            <div className="max-w-7xl mx-auto">
               <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
               <Zap className="w-4 h-4" />
@@ -323,14 +323,14 @@ export default function TufLetCaseStudy() {
 
           {/* Solution Section */}
           <section id="solution" className="py-20 px-4 md:px-6 lg:px-8 bg-gray-50">
-            <div className="max-w-5xl mx-auto">
+            <div className="max-w-7xl mx-auto">
               <div className="text-center mb-16">
                 <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
                   <CheckCircle className="w-4 h-4" />
                   OUR SOLUTIONS
                 </div>
                 <h2 className="text-4xl md:text-5xl font-extrabold mb-6">Our Approach</h2>
-                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                <p className="text-lg text-gray-600 max-w-7xl mx-auto">
                   We built a comprehensive multi-platform solution combining mobile apps and web dashboards.
                 </p>
               </div>
@@ -433,7 +433,7 @@ export default function TufLetCaseStudy() {
 
           {/* Key Features Section */}
           <section id="features" className="py-20 px-4 md:px-6 lg:px-8 bg-white">
-            <div className="max-w-5xl mx-auto">
+            <div className="max-w-7xl mx-auto">
               <div className="text-center mb-16">
                 <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
                   <Star className="w-4 h-4" />
@@ -855,7 +855,7 @@ export default function TufLetCaseStudy() {
 
           {/* Dual Platform Showcase */}
           <section className="py-20 px-4 md:px-6 lg:px-8 bg-gray-50">
-            <div className="max-w-5xl mx-auto">
+            <div className="max-w-7xl mx-auto">
               <div className="relative overflow-hidden rounded-2xl bg-linear-to-br from-accent-lime via-accent-lime to-accent-lime/70 p-12">
                 <div className="text-center mb-8">
                   <h3 className="text-4xl font-extrabold mb-3">Complete Platform Solution</h3>
@@ -897,7 +897,7 @@ export default function TufLetCaseStudy() {
 
           {/* Tech Stack Section */}
           <section id="tech-stack" className="py-20 px-4 md:px-6 lg:px-8 bg-gray-50">
-            <div className="max-w-5xl mx-auto">
+            <div className="max-w-7xl mx-auto">
               <div className="text-center mb-16">
                 <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
                   🛠️ TECHNOLOGY
@@ -929,7 +929,7 @@ export default function TufLetCaseStudy() {
 
           {/* Results Section */}
           <section id="results" className="py-20 px-4 md:px-6 lg:px-8 bg-white">
-            <div className="max-w-5xl mx-auto">
+            <div className="max-w-7xl mx-auto">
               <div className="text-center mb-16">
                 <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
                   <BarChart className="w-4 h-4" />
@@ -997,7 +997,7 @@ export default function TufLetCaseStudy() {
 
           {/* Business Impact Section */}
           <section id="impact" className="py-20 px-4 md:px-6 lg:px-8 bg-gray-50">
-            <div className="max-w-5xl mx-auto">
+            <div className="max-w-7xl mx-auto">
               <div className="text-center mb-16">
                 <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
                   🚀 BUSINESS IMPACT
@@ -1070,7 +1070,7 @@ export default function TufLetCaseStudy() {
 
           {/* CTA Section */}
           <section className="py-20 px-4 md:px-6 lg:px-8 bg-accent-lime">
-            <div className="max-w-4xl mx-auto text-center">
+            <div className="max-w-7xl mx-auto text-center">
               <h2 className="text-4xl md:text-5xl font-extrabold mb-6">
                 Need a Booking Platform?
               </h2>
