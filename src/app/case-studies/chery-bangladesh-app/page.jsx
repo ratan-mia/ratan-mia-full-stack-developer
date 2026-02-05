@@ -1,9 +1,9 @@
 'use client';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Award, Users, TrendingUp, Smartphone, CheckCircle2, ChevronLeft, ChevronRight } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ArrowLeft, Award, CheckCircle2, ChevronLeft, ChevronRight, Smartphone, TrendingUp, Users } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function CheryBangladeshAppCaseStudy() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -681,29 +681,57 @@ export default function CheryBangladeshAppCaseStudy() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="text-center mb-16">
-              <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-bold mb-6">
-                KEY FEATURES SHOWCASE
-              </div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                Interactive Feature <span className="text-accent-lime">Highlights</span>
-              </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto text-lg mb-8">
-                Explore the 10 core features that define the complete automotive experience
-              </p>
+            <div className="text-center mb-20">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+              >
+                <div className="inline-flex items-center gap-2 px-6 py-3 bg-accent-lime rounded-full text-black font-extrabold text-sm mb-6">
+                  <span className="text-lg">⭐</span>
+                  KEY FEATURES SHOWCASE
+                </div>
+              </motion.div>
               
-              {/* Slide Counter */}
-              <div className="inline-flex items-center gap-2 px-6 py-3 bg-black/5 rounded-full">
-                <span className="text-2xl font-extrabold text-black">{currentSlide + 1}</span>
-                <span className="text-gray-400">/</span>
-                <span className="text-gray-600 font-semibold">{featuredScreens.length}</span>
-              </div>
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight"
+              >
+                Interactive Feature <br />
+                <span className="text-accent-lime">Highlights</span>
+              </motion.h2>
+              
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="text-gray-600 max-w-2xl mx-auto text-xl mb-10 leading-relaxed"
+              >
+                Explore the 10 core features that define the complete automotive experience
+              </motion.p>
+              
+              {/* Enhanced Slide Counter */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="inline-flex items-center gap-3 px-8 py-4 bg-black rounded-2xl shadow-lg"
+              >
+                <span className="text-3xl font-extrabold text-accent-lime">{currentSlide + 1}</span>
+                <div className="w-px h-8 bg-accent-lime/30" />
+                <span className="text-white/60 font-semibold">of {featuredScreens.length}</span>
+              </motion.div>
             </div>
 
             {/* Feature Slider */}
             <div className="relative">
               {/* Main Slider Container */}
-              <div className="relative overflow-hidden">
+              <div className="relative overflow-hidden bg-gradient-to-br from-gray-50 to-white rounded-[3rem] p-8 md:p-12 border-2 border-gray-100">
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.div
                     key={currentSlide}
@@ -711,55 +739,77 @@ export default function CheryBangladeshAppCaseStudy() {
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -100 }}
                     transition={{ duration: 0.5, ease: "easeInOut" }}
-                    className="grid lg:grid-cols-2 gap-12 items-center"
+                    className="grid lg:grid-cols-2 gap-16 items-center"
                   >
                     {/* Screenshot */}
                     <div className={currentSlide % 2 === 1 ? 'lg:order-2' : ''}>
-                      <div className="relative group max-w-sm mx-auto">
-                        {/* Badge */}
-                        <div className="absolute -top-4 -left-4 z-10 px-4 py-2 bg-accent-lime text-black rounded-xl font-bold text-sm shadow-lg">
-                          {featuredScreens[currentSlide].badge}
-                        </div>
+                      <div className="relative group">
+                        {/* Decorative Background */}
+                        <div className="absolute inset-0 bg-accent-lime/10 rounded-[3rem] blur-3xl" />
                         
-                        {/* Screenshot */}
-                        <div className="relative aspect-[9/16] rounded-3xl overflow-hidden shadow-2xl border-4 border-white group-hover:scale-105 transition-transform duration-500">
-                          <Image
-                            src={featuredScreens[currentSlide].image}
-                            alt={featuredScreens[currentSlide].title}
-                            fill
-                            className="object-cover"
-                            sizes="(max-width: 768px) 100vw, 50vw"
-                            priority={currentSlide === 0}
-                          />
+                        <div className="relative max-w-sm mx-auto">
+                          {/* Badge */}
+                          <motion.div
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{ delay: 0.2, type: "spring" }}
+                            className="absolute -top-6 -left-6 z-10 px-6 py-3 bg-accent-lime text-black rounded-2xl font-extrabold text-sm shadow-2xl border-4 border-white"
+                          >
+                            {featuredScreens[currentSlide].badge}
+                          </motion.div>
+                          
+                          {/* Screenshot Container */}
+                          <div className="relative aspect-[9/16] rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white group-hover:scale-[1.02] transition-transform duration-500">
+                            <Image
+                              src={featuredScreens[currentSlide].image}
+                              alt={featuredScreens[currentSlide].title}
+                              fill
+                              className="object-cover"
+                              sizes="(max-width: 768px) 100vw, 50vw"
+                              priority={currentSlide === 0}
+                            />
+                          </div>
+                          
+                          {/* Decorative Accent */}
+                          <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-accent-lime/20 rounded-full blur-2xl" />
                         </div>
                       </div>
                     </div>
 
                     {/* Description */}
                     <div className={currentSlide % 2 === 1 ? 'lg:order-1' : ''}>
-                      <div className="space-y-6">
-                        <h3 className="text-3xl md:text-4xl font-extrabold text-gray-900">
-                          {featuredScreens[currentSlide].title}
-                        </h3>
+                      <div className="space-y-8">
+                        {/* Title with accent */}
+                        <div>
+                          <motion.div
+                            initial={{ width: 0 }}
+                            animate={{ width: "4rem" }}
+                            transition={{ delay: 0.3, duration: 0.5 }}
+                            className="h-1.5 bg-accent-lime rounded-full mb-6"
+                          />
+                          <h3 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+                            {featuredScreens[currentSlide].title}
+                          </h3>
+                        </div>
                         
-                        <p className="text-lg text-gray-700 leading-relaxed">
+                        <p className="text-xl text-gray-600 leading-relaxed">
                           {featuredScreens[currentSlide].description}
                         </p>
 
                         {/* Highlights */}
-                        <div className="space-y-3">
+                        <div className="space-y-4 pt-4">
                           {featuredScreens[currentSlide].highlights.map((highlight, idx) => (
                             <motion.div
                               key={idx}
                               initial={{ opacity: 0, x: -20 }}
                               animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: 0.1 + idx * 0.05 }}
-                              className="flex items-start gap-3"
+                              transition={{ delay: 0.1 + idx * 0.08 }}
+                              className="flex items-start gap-4 group"
                             >
-                              <div className="w-6 h-6 rounded-lg bg-accent-lime flex items-center justify-center shrink-0 mt-0.5">
-                                <CheckCircle2 className="w-4 h-4 text-black" />
+                              <div className="w-8 h-8 rounded-xl bg-accent-lime flex items-center justify-center shrink-0 mt-0.5 group-hover:scale-110 transition-transform">
+                                <CheckCircle2 className="w-5 h-5 text-black" />
                               </div>
-                              <span className="text-gray-700 leading-relaxed">{highlight}</span>
+                              <span className="text-gray-700 leading-relaxed text-lg font-medium">{highlight}</span>
                             </motion.div>
                           ))}
                         </div>
@@ -770,45 +820,48 @@ export default function CheryBangladeshAppCaseStudy() {
               </div>
 
               {/* Navigation Buttons */}
-              <div className="flex items-center justify-center gap-4 mt-12">
-                <button
-                  onClick={() => setCurrentSlide((prev) => (prev === 0 ? featuredScreens.length - 1 : prev - 1))}
-                  className="w-14 h-14 rounded-full bg-black hover:bg-accent-lime text-accent-lime hover:text-black border-2 border-black flex items-center justify-center transition-all hover:scale-110 shadow-lg"
-                  aria-label="Previous slide"
-                >
-                  <ChevronLeft className="w-6 h-6" />
-                </button>
+              <div className="flex flex-col items-center gap-8 mt-16">
+                <div className="flex items-center justify-center gap-6">
+                  <button
+                    onClick={() => setCurrentSlide((prev) => (prev === 0 ? featuredScreens.length - 1 : prev - 1))}
+                    className="group w-16 h-16 rounded-2xl bg-black hover:bg-accent-lime text-accent-lime hover:text-black border-4 border-black hover:border-accent-lime flex items-center justify-center transition-all hover:scale-110 shadow-xl hover:shadow-2xl"
+                    aria-label="Previous slide"
+                  >
+                    <ChevronLeft className="w-7 h-7 group-hover:-translate-x-1 transition-transform" />
+                  </button>
 
-                {/* Dots Indicator */}
-                <div className="flex items-center gap-2">
-                  {featuredScreens.map((_, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setCurrentSlide(idx)}
-                      className={`transition-all ${
-                        currentSlide === idx
-                          ? 'w-8 h-3 bg-accent-lime rounded-full'
-                          : 'w-3 h-3 bg-gray-300 hover:bg-gray-400 rounded-full'
-                      }`}
-                      aria-label={`Go to slide ${idx + 1}`}
-                    />
-                  ))}
+                  {/* Enhanced Dots Indicator */}
+                  <div className="flex items-center gap-3 px-6 py-4 bg-white rounded-2xl shadow-lg border-2 border-gray-200">
+                    {featuredScreens.map((_, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => setCurrentSlide(idx)}
+                        className={`transition-all ${
+                          currentSlide === idx
+                            ? 'w-12 h-4 bg-accent-lime rounded-full shadow-md'
+                            : 'w-4 h-4 bg-gray-300 hover:bg-gray-400 rounded-full hover:scale-125'
+                        }`}
+                        aria-label={`Go to slide ${idx + 1}`}
+                      />
+                    ))}
+                  </div>
+
+                  <button
+                    onClick={() => setCurrentSlide((prev) => (prev === featuredScreens.length - 1 ? 0 : prev + 1))}
+                    className="group w-16 h-16 rounded-2xl bg-black hover:bg-accent-lime text-accent-lime hover:text-black border-4 border-black hover:border-accent-lime flex items-center justify-center transition-all hover:scale-110 shadow-xl hover:shadow-2xl"
+                    aria-label="Next slide"
+                  >
+                    <ChevronRight className="w-7 h-7 group-hover:translate-x-1 transition-transform" />
+                  </button>
                 </div>
 
-                <button
-                  onClick={() => setCurrentSlide((prev) => (prev === featuredScreens.length - 1 ? 0 : prev + 1))}
-                  className="w-14 h-14 rounded-full bg-black hover:bg-accent-lime text-accent-lime hover:text-black border-2 border-black flex items-center justify-center transition-all hover:scale-110 shadow-lg"
-                  aria-label="Next slide"
-                >
-                  <ChevronRight className="w-6 h-6" />
-                </button>
-              </div>
-
-              {/* Keyboard Navigation Hint */}
-              <div className="text-center mt-6">
-                <p className="text-sm text-gray-500">
-                  Use <kbd className="px-2 py-1 bg-gray-200 rounded text-xs font-mono">←</kbd> and <kbd className="px-2 py-1 bg-gray-200 rounded text-xs font-mono">→</kbd> arrow keys to navigate
-                </p>
+                {/* Keyboard Navigation Hint */}
+                <div className="flex items-center gap-3 px-6 py-3 bg-black/5 rounded-xl">
+                  <span className="text-sm text-gray-600 font-medium">Navigate with</span>
+                  <kbd className="px-3 py-2 bg-white border-2 border-gray-300 rounded-lg text-sm font-bold shadow-sm">←</kbd>
+                  <kbd className="px-3 py-2 bg-white border-2 border-gray-300 rounded-lg text-sm font-bold shadow-sm">→</kbd>
+                  <span className="text-sm text-gray-600 font-medium">keys</span>
+                </div>
               </div>
             </div>
           </motion.div>
@@ -823,71 +876,102 @@ export default function CheryBangladeshAppCaseStudy() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <div className="text-center mb-16">
-              <div className="inline-block px-6 py-2 bg-black/5 text-black rounded-full text-sm font-bold mb-6">
-                ALL FEATURES
-              </div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                Complete Feature <span className="text-accent-lime">Ecosystem</span>
-              </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-                33 additional screens covering every aspect of the automotive journey
-              </p>
+            <div className="text-center mb-20">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+              >
+                <div className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-full font-extrabold text-sm mb-8 shadow-lg">
+                  <span className="text-lg">📱</span>
+                  ALL FEATURES
+                </div>
+              </motion.div>
+              
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight"
+              >
+                Complete Feature <br />
+                <span className="text-accent-lime">Ecosystem</span>
+              </motion.h2>
+              
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="text-gray-600 max-w-3xl mx-auto text-xl leading-relaxed"
+              >
+                33 additional screens covering every aspect of the automotive journey - from onboarding to ownership
+              </motion.p>
             </div>
 
             {/* Alternating Feature Rows */}
-            <div className="space-y-20">
+            <div className="space-y-24">
               {additionalFeatures.map((feature, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.05 }}
-                  className={`grid lg:grid-cols-2 gap-12 items-center ${
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.6 }}
+                  className={`grid lg:grid-cols-2 gap-16 items-center bg-gradient-to-br from-gray-50 to-white rounded-[3rem] p-8 md:p-12 border-2 border-gray-100 hover:border-gray-200 hover:shadow-xl transition-all duration-500 ${
                     index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''
                   }`}
                 >
                   {/* Screenshot */}
                   <div className={index % 2 === 1 ? 'lg:col-start-2' : ''}>
-                    <div className="relative group max-w-sm mx-auto">
-                      {/* Badge */}
-                      <div className="absolute -top-4 -left-4 z-10 px-4 py-2 bg-black/10 backdrop-blur-sm text-black rounded-xl font-bold text-sm shadow-lg border border-gray-200">
-                        {feature.badge}
-                      </div>
+                    <div className="relative group">
+                      {/* Subtle Background Glow */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-gray-200/50 to-transparent rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                       
-                      {/* Screenshot */}
-                      <div className="relative aspect-[9/16] rounded-3xl overflow-hidden shadow-xl border-2 border-gray-200 group-hover:scale-105 transition-transform duration-500">
-                        <Image
-                          src={feature.image}
-                          alt={feature.title}
-                          fill
-                          className="object-cover"
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                        />
+                      <div className="relative max-w-sm mx-auto">
+                        {/* Badge */}
+                        <div className="absolute -top-4 -left-4 z-10 px-5 py-2.5 bg-white text-black rounded-xl font-bold text-sm shadow-xl border-2 border-gray-200 group-hover:border-accent-lime group-hover:bg-accent-lime transition-all">
+                          {feature.badge}
+                        </div>
+                        
+                        {/* Screenshot */}
+                        <div className="relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-xl border-4 border-white group-hover:scale-[1.02] transition-transform duration-500">
+                          <Image
+                            src={feature.image}
+                            alt={feature.title}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
 
                   {/* Description */}
                   <div className={index % 2 === 1 ? 'lg:col-start-1' : ''}>
-                    <div className="space-y-4">
-                      <h3 className="text-2xl md:text-3xl font-extrabold text-gray-900">
-                        {feature.title}
-                      </h3>
+                    <div className="space-y-6">
+                      {/* Title */}
+                      <div>
+                        <div className="w-12 h-1 bg-accent-lime rounded-full mb-4" />
+                        <h3 className="text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight">
+                          {feature.title}
+                        </h3>
+                      </div>
                       
-                      <p className="text-base text-gray-700 leading-relaxed">
+                      <p className="text-lg text-gray-600 leading-relaxed">
                         {feature.description}
                       </p>
 
                       {/* Highlights */}
-                      <div className="space-y-2">
+                      <div className="space-y-3 pt-2">
                         {feature.highlights.map((highlight, idx) => (
-                          <div key={idx} className="flex items-start gap-3">
-                            <div className="w-5 h-5 rounded bg-gray-200 flex items-center justify-center shrink-0 mt-0.5">
-                              <CheckCircle2 className="w-3.5 h-3.5 text-gray-600" />
+                          <div key={idx} className="flex items-start gap-3 group/item">
+                            <div className="w-6 h-6 rounded-lg bg-gray-900 flex items-center justify-center shrink-0 mt-0.5 group-hover/item:bg-accent-lime transition-colors">
+                              <CheckCircle2 className="w-4 h-4 text-accent-lime group-hover/item:text-black transition-colors" />
                             </div>
-                            <span className="text-gray-600 leading-relaxed text-sm">{highlight}</span>
+                            <span className="text-gray-700 leading-relaxed font-medium">{highlight}</span>
                           </div>
                         ))}
                       </div>

@@ -1,9 +1,9 @@
 'use client';
+import Contact from '@/app/components/home/Contact';
 import { motion } from 'framer-motion';
-import { ArrowRight, Users, TrendingUp, Award, Smartphone, Calendar, Zap } from 'lucide-react';
+import { ArrowRight, Award, Calendar, Smartphone, TrendingUp, Users, Zap } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import Contact from '@/app/components/home/Contact';
 
 // Simplified case studies listing - Each case study has its own unique page
 const caseStudies = [

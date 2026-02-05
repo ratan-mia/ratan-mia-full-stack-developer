@@ -1,6 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Users, Zap, Award, TrendingUp, CheckCircle2, Gift, Smartphone } from 'lucide-react';
+import { ArrowLeft, Award, CheckCircle2, Gift, Smartphone, TrendingUp, Users, Zap } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
