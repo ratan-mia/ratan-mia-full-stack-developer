@@ -51,10 +51,13 @@ const HeroMain = () => {
 
   const roles = [
     'Full Stack',
+    'React Native Expert',
     'IT Manager',
     'Shopify Expert',
     'WordPress Developer',
     'React & Next.js',
+    'Mobile App Developer',
+    'E-Commerce Specialist',
   ];
   const typedRole = useTypewriter(roles, 110, 55, 2000);
   const widestRole = getMaxRole(roles);
@@ -188,7 +191,7 @@ const HeroMain = () => {
                     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
                   }}
                 >
-                  IBM-certified developer specializing in full-stack solutions, e-commerce platforms, and modern web tech.
+                  IBM-certified developer specializing in React Native mobile apps, full-stack web solutions, e-commerce platforms (Shopify/WordPress), and modern tech stacks including Next.js, TypeScript, and Supabase.
                 </motion.p>
                 {/* Stats */}
                 <motion.div
@@ -211,7 +214,7 @@ const HeroMain = () => {
                     </div>
                   </div>
                   <div>
-                    <div className="text-4xl lg:text-5xl font-extrabold text-black mb-1">5+</div>
+                    <div className="text-4xl lg:text-5xl font-extrabold text-black mb-1">15+</div>
                     <div className="text-xs tracking-wide font-medium text-black/70 uppercase">
                       Tech Stacks
                     </div>
