@@ -103,7 +103,7 @@ const HeroMain = () => {
         className="relative h-screen flex items-center w-full z-20 focus:outline-none"
         tabIndex={-1}
       >
-        <div className="w-full max-w-7xl mx-auto px-4 md:px-6 lg:px-8 h-full">
+        <div className="w-full px-4 md:px-6 lg:px-12 xl:px-20 h-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 h-full min-h-screen">
             {/* Left: Hero Main Content */}
             <motion.div
