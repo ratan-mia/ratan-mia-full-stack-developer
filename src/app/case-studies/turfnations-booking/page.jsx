@@ -923,31 +923,15 @@ export default function TufLetCaseStudy() {
           {/* Tech Stack Section */}
           <section id="tech-stack" className="py-20 px-4 md:px-6 lg:px-8 bg-gray-50">
             <div className="max-w-7xl mx-auto">
-              <div className="text-center mb-16">
-                <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
-                  🛠️ TECHNOLOGY
+              <div className="text-center mb-12">
+                <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
+                  <Code className="w-4 h-4" />
+                  TECHNOLOGY STACK
                 </div>
-                <h2 className="text-4xl md:text-5xl font-extrabold mb-6">Tech Stack</h2>
-              </div>
-
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {[
-                  { category: 'Mobile', tech: 'React Native', detail: 'Cross-platform mobile development' },
-                  { category: 'Framework', tech: 'Expo', detail: 'Build and deployment tooling' },
-                  { category: 'Web Admin', tech: 'Next.js 14', detail: 'Server-side rendered dashboard' },
-                  { category: 'Database', tech: 'Supabase PostgreSQL', detail: 'Real-time database and auth' },
-                  { category: 'ORM', tech: 'Prisma', detail: 'Type-safe database client' },
-                  { category: 'Payments', tech: 'SSL Commerz', detail: 'Bangladesh payment gateway' },
-                  { category: 'State', tech: 'React Context', detail: 'Global state management' },
-                  { category: 'Navigation', tech: 'React Navigation', detail: 'Stack and tab navigation' },
-                  { category: 'Styling', tech: 'Tailwind CSS', detail: 'Utility-first CSS framework' },
-                ].map((item, idx) => (
-                  <div key={idx} className="bg-white p-6 rounded-2xl shadow-lg border-2 border-gray-100 hover:shadow-xl transition-all">
-                    <div className="text-xs font-bold text-accent-lime mb-2">{item.category}</div>
-                    <h4 className="text-xl font-extrabold mb-2">{item.tech}</h4>
-                    <p className="text-sm text-gray-600">{item.detail}</p>
-                  </div>
-                ))}
+                <h2 className="text-4xl md:text-5xl font-extrabold mb-6">Built with Modern Technologies</h2>
+                <p className="text-lg text-gray-600 leading-relaxed max-w-4xl mx-auto">
+                  The TufLet platform is built using <span className="font-bold text-black">React Native</span> and <span className="font-bold text-black">Expo</span> for cross-platform mobile development, ensuring a seamless experience on both iOS and Android devices. The admin dashboard is powered by <span className="font-bold text-black">Next.js 14</span> with server-side rendering for optimal performance. We leverage <span className="font-bold text-black">Supabase PostgreSQL</span> for our real-time database and authentication, with <span className="font-bold text-black">Prisma ORM</span> providing type-safe database queries. Payment processing is handled through <span className="font-bold text-black">SSL Commerz</span>, the leading payment gateway in Bangladesh. The application features smooth navigation via <span className="font-bold text-black">React Navigation</span> and is beautifully styled with <span className="font-bold text-black">Tailwind CSS</span>, delivering a modern and responsive user interface across all devices.
+                </p>
               </div>
             </div>
           </section>
