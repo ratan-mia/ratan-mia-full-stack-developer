@@ -22,16 +22,18 @@ export default function QuotePage() {
       {/* Hero Section */}
       <QuoteHeroSection />
 
-      {/* Main Content Sections */}
+      {/* Prominent Quote Form Section - Moved Early */}
+      <div id="quote-form" className="bg-accent-lime">
+        <GetQuote />
+      </div>
+
+      {/* Supporting Content Sections */}
       <WhyChooseMe />
       <Services />
       <ProjectTypes />
       <ProcessHowIWork />
       <PricingPlan />
       <Testimonials />
-      <div id="quote-form" className="bg-gray-50">
-        <GetQuote />
-      </div>
       <FAQ />
       <QuoteCTA />
       <Contact />

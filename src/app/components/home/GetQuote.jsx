@@ -169,12 +169,15 @@ const GetQuote = () => {
           >
             {/* Main Heading */}
             <div>
-              <h2 className="text-4xl lg:text-6xl font-extrabold text-black leading-tight mb-6">
-                Let's Work<br />
-                <span className="text-black">Together</span>
+              <div className="inline-block bg-black text-accent-lime px-4 py-2 rounded-lg text-sm font-bold uppercase tracking-wider mb-4">
+                Get Your Quote
+              </div>
+              <h2 className="text-5xl lg:text-7xl font-extrabold text-black leading-tight mb-6">
+                Start Your<br />
+                <span className="text-black">Project Today</span>
               </h2>
-              <p className="text-lg text-black/80 max-w-lg leading-relaxed">
-                We are digital agency that helps businesses develop immersive and engaging user experiences
+              <p className="text-xl text-black/90 max-w-lg leading-relaxed font-medium">
+                Fill out the form and get a detailed quote within 24 hours. Free consultation included.
               </p>
             </div>
 
@@ -223,14 +226,19 @@ const GetQuote = () => {
             </div>
           </motion.div>
 
-          {/* Right Form */}
+          {/* Right Form - Enhanced */}
           <motion.div
             className="lg:pl-8"
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="bg-black rounded-3xl p-8 lg:p-10 shadow-2xl border-4 border-black">
+              <div className="mb-8">
+                <h3 className="text-2xl font-extrabold text-accent-lime mb-2">Request Your Quote</h3>
+                <p className="text-white/80 text-sm">All fields marked with * are required</p>
+              </div>
+              <form onSubmit={handleSubmit} className="space-y-6">
               {/* Name & Email Row */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -240,7 +248,7 @@ const GetQuote = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-0 py-4 bg-transparent border-0 border-b-2 border-black/30 text-black placeholder-black/60 focus:outline-none focus:border-black transition-colors text-lg"
+                    className="w-full px-0 py-4 bg-transparent border-0 border-b-2 border-white/30 text-white placeholder-white/60 focus:outline-none focus:border-accent-lime transition-colors text-lg"
                     placeholder="Full name*"
                   />
                 </div>
@@ -251,7 +259,7 @@ const GetQuote = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-0 py-4 bg-transparent border-0 border-b-2 border-black/30 text-black placeholder-black/60 focus:outline-none focus:border-black transition-colors text-lg"
+                    className="w-full px-0 py-4 bg-transparent border-0 border-b-2 border-white/30 text-white placeholder-white/60 focus:outline-none focus:border-accent-lime transition-colors text-lg"
                     placeholder="Email address*"
                   />
                 </div>
@@ -265,7 +273,7 @@ const GetQuote = () => {
                     name="company"
                     value={formData.company}
                     onChange={handleChange}
-                    className="w-full px-0 py-4 bg-transparent border-0 border-b-2 border-black/30 text-black placeholder-black/60 focus:outline-none focus:border-black transition-colors text-lg"
+                    className="w-full px-0 py-4 bg-transparent border-0 border-b-2 border-white/30 text-white placeholder-white/60 focus:outline-none focus:border-accent-lime transition-colors text-lg"
                     placeholder="Company name (optional)"
                   />
                 </div>
@@ -275,7 +283,7 @@ const GetQuote = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-0 py-4 bg-transparent border-0 border-b-2 border-black/30 text-black placeholder-black/60 focus:outline-none focus:border-black transition-colors text-lg"
+                    className="w-full px-0 py-4 bg-transparent border-0 border-b-2 border-white/30 text-white placeholder-white/60 focus:outline-none focus:border-accent-lime transition-colors text-lg"
                     placeholder="Phone number (optional)"
                   />
                 </div>
@@ -289,11 +297,11 @@ const GetQuote = () => {
                     value={formData.projectType}
                     onChange={handleChange}
                     required
-                    className="w-full px-0 py-4 bg-transparent border-0 border-b-2 border-black/30 text-black focus:outline-none focus:border-black transition-colors text-lg appearance-none"
+                    className="w-full px-0 py-4 bg-transparent border-0 border-b-2 border-white/30 text-white focus:outline-none focus:border-accent-lime transition-colors text-lg appearance-none"
                   >
-                    <option value="" className="bg-accent-lime text-black">Project Type*</option>
+                    <option value="" className="bg-black text-white">Project Type*</option>
                     {projectTypes.map(type => (
-                      <option key={type} value={type} className="bg-accent-lime text-black">{type}</option>
+                      <option key={type} value={type} className="bg-black text-white">{type}</option>
                     ))}
                   </select>
                 </div>
@@ -303,11 +311,11 @@ const GetQuote = () => {
                     value={formData.budget}
                     onChange={handleChange}
                     required
-                    className="w-full px-0 py-4 bg-transparent border-0 border-b-2 border-black/30 text-black focus:outline-none focus:border-black transition-colors text-lg appearance-none"
+                    className="w-full px-0 py-4 bg-transparent border-0 border-b-2 border-white/30 text-white focus:outline-none focus:border-accent-lime transition-colors text-lg appearance-none"
                   >
-                    <option value="" className="bg-accent-lime text-black">Budget Range*</option>
+                    <option value="" className="bg-black text-white">Budget Range*</option>
                     {budgetRanges.map(range => (
-                      <option key={range} value={range} className="bg-accent-lime text-black">{range}</option>
+                      <option key={range} value={range} className="bg-black text-white">{range}</option>
                     ))}
                   </select>
                 </div>
@@ -321,11 +329,11 @@ const GetQuote = () => {
                     value={formData.timeline}
                     onChange={handleChange}
                     required
-                    className="w-full px-0 py-4 bg-transparent border-0 border-b-2 border-black/30 text-black focus:outline-none focus:border-black transition-colors text-lg appearance-none"
+                    className="w-full px-0 py-4 bg-transparent border-0 border-b-2 border-white/30 text-white focus:outline-none focus:border-accent-lime transition-colors text-lg appearance-none"
                   >
-                    <option value="" className="bg-accent-lime text-black">Timeline*</option>
+                    <option value="" className="bg-black text-white">Timeline*</option>
                     {timelineOptions.map(time => (
-                      <option key={time} value={time} className="bg-accent-lime text-black">{time}</option>
+                      <option key={time} value={time} className="bg-black text-white">{time}</option>
                     ))}
                   </select>
                 </div>
@@ -335,11 +343,11 @@ const GetQuote = () => {
                     value={formData.priority}
                     onChange={handleChange}
                     required
-                    className="w-full px-0 py-4 bg-transparent border-0 border-b-2 border-black/30 text-black focus:outline-none focus:border-black transition-colors text-lg appearance-none"
+                    className="w-full px-0 py-4 bg-transparent border-0 border-b-2 border-white/30 text-white focus:outline-none focus:border-accent-lime transition-colors text-lg appearance-none"
                   >
-                    <option value="" className="bg-accent-lime text-black">Priority*</option>
+                    <option value="" className="bg-black text-white">Priority*</option>
                     {priorityOptions.map(opt => (
-                      <option key={opt.value} value={opt.value} className="bg-accent-lime text-black">{opt.label}</option>
+                      <option key={opt.value} value={opt.value} className="bg-black text-white">{opt.label}</option>
                     ))}
                   </select>
                 </div>
@@ -352,8 +360,8 @@ const GetQuote = () => {
                   value={formData.description}
                   onChange={handleChange}
                   required
-                  rows={4}
-                  className="w-full px-0 py-4 bg-transparent border-0 border-b-2 border-black/30 text-black placeholder-black/60 focus:outline-none focus:border-black transition-colors resize-none text-lg"
+                  rows={5}
+                  className="w-full px-0 py-4 bg-transparent border-0 border-b-2 border-white/30 text-white placeholder-white/60 focus:outline-none focus:border-accent-lime transition-colors resize-none text-lg"
                   placeholder="Project description & requirements*"
                 />
               </div>
@@ -362,23 +370,24 @@ const GetQuote = () => {
               <motion.button
                 type="submit"
                 disabled={isSubmitting}
-                className="bg-black text-accent-lime px-8 py-4 rounded-none font-semibold text-lg hover:bg-black/90 transition-colors inline-flex items-center gap-3 mt-8 uppercase tracking-wider"
-                whileHover={{ x: 5 }}
+                className="w-full bg-accent-lime text-black px-8 py-5 rounded-xl font-extrabold text-lg hover:bg-accent-lime/90 transition-all duration-300 inline-flex items-center justify-center gap-3 mt-8 uppercase tracking-wider shadow-lg hover:shadow-accent-lime/30 border-2 border-accent-lime"
+                whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
                 {isSubmitting ? (
                   <>
-                    <div className="w-5 h-5 border-2 border-accent-lime border-t-transparent rounded-full animate-spin"></div>
-                    <span>Sending...</span>
+                    <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
+                    <span>Sending Quote Request...</span>
                   </>
                 ) : (
                   <>
-                    <span>Send Message</span>
-                    <ArrowRight className="w-5 h-5" />
+                    <span>Get My Quote Now</span>
+                    <ArrowRight className="w-6 h-6" />
                   </>
                 )}
               </motion.button>
             </form>
+            </div>
           </motion.div>
         </div>
       </div>
