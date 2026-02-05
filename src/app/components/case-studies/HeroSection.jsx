@@ -51,7 +51,7 @@ export default function HeroSection() {
               src="/images/projects/turflet/www.turflet.app.png"
               alt="TufLet Platform"
               fill
-              className="object-cover"
+              className="object-contain"
               priority
             />
           </div>

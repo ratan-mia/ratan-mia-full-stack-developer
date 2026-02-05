@@ -233,7 +233,7 @@ export default function TufLetCaseStudy() {
                 src="/images/projects/turflet/mockup/owner-dashboard and player -app.png"
                 alt="TufLet Platform Overview"
                 fill
-                className="object-cover"
+                className="object-contain"
               />
             </div>
           </div>
@@ -261,7 +261,7 @@ export default function TufLetCaseStudy() {
                   src="/images/projects/turflet/screenshots/06-booking-date-time.jpg"
                   alt="Real-time booking calendar"
                   fill
-                  className="object-cover"
+                  className="object-contain"
                 />
               </div>
             </div>
@@ -276,7 +276,7 @@ export default function TufLetCaseStudy() {
                   src="/images/projects/turflet/screenshots/07-booking-confirmation.jpg"
                   alt="Payment integration"
                   fill
-                  className="object-cover"
+                  className="object-contain"
                 />
               </div>
             </div>
@@ -291,7 +291,7 @@ export default function TufLetCaseStudy() {
                   src="/images/projects/turflet/screenshots/04-turf-details-champions.jpg"
                   alt="Dynamic pricing display"
                   fill
-                  className="object-cover"
+                  className="object-contain"
                 />
               </div>
             </div>
@@ -306,7 +306,7 @@ export default function TufLetCaseStudy() {
                   src="/images/projects/turflet/owners-dashboard.png"
                   alt="Multi-role dashboard"
                   fill
-                  className="object-cover"
+                  className="object-contain"
                 />
               </div>
             </div>
@@ -355,7 +355,7 @@ export default function TufLetCaseStudy() {
                       src="/images/projects/turflet/screenshots/03-home-search-turfs.jpg"
                       alt="Mobile App Interface"
                       fill
-                      className="object-cover"
+                      className="object-contain"
                     />
                   </div>
                 </div>
@@ -387,7 +387,7 @@ export default function TufLetCaseStudy() {
                       src="/images/projects/turflet/clients-revenue-details.png"
                       alt="Admin Dashboard Interface"
                       fill
-                      className="object-cover"
+                      className="object-contain"
                     />
                   </div>
                 </div>
@@ -481,7 +481,7 @@ export default function TufLetCaseStudy() {
                           src={feature.image}
                           alt={feature.title}
                           fill
-                          className="object-cover"
+                          className="object-contain"
                         />
                       </div>
                     </div>
@@ -500,7 +500,7 @@ export default function TufLetCaseStudy() {
                         src={`/images/projects/turflet/screenshots/${item.img}`}
                         alt={item.title}
                         fill
-                        className="object-cover"
+                        className="object-contain"
                       />
                     </div>
                   ))}
@@ -554,7 +554,7 @@ export default function TufLetCaseStudy() {
                         src="/images/projects/turflet/owners-dashboard.png"
                         alt="Owner Dashboard Analytics"
                         fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        className="object-contain group-hover:scale-105 transition-transform duration-300"
                       />
                     </div>
                     <h4 className="text-xl font-bold mb-2">Owner Dashboard Overview</h4>
@@ -567,7 +567,7 @@ export default function TufLetCaseStudy() {
                         src="/images/projects/turflet/clients-revenue-details.png"
                         alt="Revenue Details and Client Management"
                         fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        className="object-contain group-hover:scale-105 transition-transform duration-300"
                       />
                     </div>
                     <h4 className="text-xl font-bold mb-2">Revenue & Client Details</h4>
@@ -592,7 +592,7 @@ export default function TufLetCaseStudy() {
                         src="/images/projects/turflet/players-community.png"
                         alt="Players Community"
                         fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        className="object-contain group-hover:scale-105 transition-transform duration-300"
                       />
                     </div>
                     <h4 className="text-xl font-bold mb-2">Players Community</h4>
@@ -605,7 +605,7 @@ export default function TufLetCaseStudy() {
                         src="/images/projects/turflet/friends-family-community.png"
                         alt="Friends and Family Network"
                         fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        className="object-contain group-hover:scale-105 transition-transform duration-300"
                       />
                     </div>
                     <h4 className="text-xl font-bold mb-2">Friends & Family</h4>
@@ -618,7 +618,7 @@ export default function TufLetCaseStudy() {
                         src="/images/projects/turflet/team-details.png"
                         alt="Team Management"
                         fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        className="object-contain group-hover:scale-105 transition-transform duration-300"
                       />
                     </div>
                     <h4 className="text-xl font-bold mb-2">Team Management</h4>
@@ -638,7 +638,7 @@ export default function TufLetCaseStudy() {
                     src="/images/projects/turflet/mockup/owner-dashboard and player -app.png"
                     alt="Complete Platform - Owner Dashboard and Player App"
                     fill
-                    className="object-cover"
+                    className="object-contain"
                   />
                 </div>
               </div>
@@ -658,7 +658,7 @@ export default function TufLetCaseStudy() {
                         src={`/images/projects/turflet/screenshots/${img}`}
                         alt={`TufLet Screenshot ${idx + 1}`}
                         fill
-                        className="object-cover"
+                        className="object-contain"
                       />
                     </div>
                   ))}
@@ -744,7 +744,7 @@ export default function TufLetCaseStudy() {
                       src="/images/projects/turflet/screenshots/20-owner-analytics.jpg"
                       alt="Owner Analytics"
                       fill
-                      className="object-cover"
+                      className="object-contain"
                     />
                   </div>
                   <p className="text-sm text-gray-600">Real-time analytics showing booking trends, revenue growth, and occupancy rates.</p>
@@ -757,7 +757,7 @@ export default function TufLetCaseStudy() {
                       src="/images/projects/turflet/screenshots/21-owner-revenue-details.jpg"
                       alt="Revenue Details"
                       fill
-                      className="object-cover"
+                      className="object-contain"
                     />
                   </div>
                   <p className="text-sm text-gray-600">Comprehensive revenue breakdown with transaction history and payout management.</p>
