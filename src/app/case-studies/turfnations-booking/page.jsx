@@ -111,142 +111,143 @@ export default function TufLetCaseStudy() {
 
       {/* Main Content with Sidebars */}
       <div className="relative">
-        {/* Left Sidebar - Navigation */}
-        <aside className="hidden lg:block fixed left-8 top-32 w-64 z-30">
-          <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
-            <h3 className="text-sm font-extrabold text-gray-400 mb-4 uppercase tracking-wide">
-              On This Page
-            </h3>
-            <nav className="space-y-1">
-              {navItems.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => scrollToSection(item.id)}
-                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-all ${
-                      activeSection === item.id
-                        ? 'bg-accent-lime text-black font-bold shadow-md'
-                        : 'text-gray-600 hover:bg-gray-50 hover:text-black font-medium'
-                    }`}
+        {/* Left Sidebar - Project Details & Navigation */}
+        <aside className="hidden lg:block fixed left-8 top-32 w-80 z-30">
+          <div className="space-y-6">
+            {/* Project Details Card */}
+            <div className="bg-gray-50 rounded-2xl p-8 space-y-6">
+              {/* Company */}
+              <div>
+                <h3 className="text-xs font-extrabold text-gray-500 mb-3 uppercase tracking-wider">
+                  COMPANY
+                </h3>
+                <p className="text-2xl font-extrabold text-black">TufLet</p>
+              </div>
+
+              <div className="h-px bg-gray-200"></div>
+
+              {/* Category */}
+              <div>
+                <h3 className="text-xs font-extrabold text-gray-500 mb-3 uppercase tracking-wider">
+                  CATEGORY
+                </h3>
+                <p className="text-xl font-bold text-black">Booking Platform</p>
+              </div>
+
+              <div className="h-px bg-gray-200"></div>
+
+              {/* Live View */}
+              <div>
+                <h3 className="text-xs font-extrabold text-gray-500 mb-3 uppercase tracking-wider">
+                  LIVE VIEW
+                </h3>
+                <a 
+                  href="https://www.turflet.app" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-lg font-bold text-black hover:text-accent-lime transition-colors group"
+                >
+                  Visit Website
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </a>
+              </div>
+
+              <div className="h-px bg-gray-200"></div>
+
+              {/* Timeline */}
+              <div>
+                <h3 className="text-xs font-extrabold text-gray-500 mb-3 uppercase tracking-wider">
+                  TIMELINE
+                </h3>
+                <p className="text-2xl font-extrabold text-black">3 Months</p>
+              </div>
+
+              <div className="h-px bg-gray-200"></div>
+
+              {/* Services Provided */}
+              <div>
+                <h3 className="text-xs font-extrabold text-gray-500 mb-4 uppercase tracking-wider">
+                  SERVICES WE PROVIDED
+                </h3>
+                <div className="space-y-2">
+                  {['User Research', 'UI Design', 'Development', 'Backend Integration'].map((service, idx) => (
+                    <div key={idx} className="px-4 py-2 bg-white rounded-xl text-sm font-medium text-black">
+                      {service}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="h-px bg-gray-200"></div>
+
+              {/* Share */}
+              <div>
+                <h3 className="text-lg font-extrabold text-black mb-4">
+                  Share this Case Study:
+                </h3>
+                <div className="flex gap-3">
+                  <button 
+                    onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank')}
+                    className="w-12 h-12 bg-white hover:bg-accent-lime rounded-full flex items-center justify-center transition-all hover:scale-110 shadow-sm"
+                    aria-label="Share on Facebook"
                   >
-                    <Icon className="w-4 h-4 shrink-0" />
-                    <span className="text-sm">{item.label}</span>
+                    <Facebook className="w-5 h-5" />
                   </button>
-                );
-              })}
-            </nav>
-          </div>
-        </aside>
-
-        {/* Right Sidebar - Project Details */}
-        <aside className="hidden xl:block fixed right-8 top-32 w-80 z-30">
-          <div className="bg-gray-50 rounded-2xl p-8 space-y-8 sticky top-32">
-            {/* Company */}
-            <div>
-              <h3 className="text-xs font-extrabold text-gray-500 mb-3 uppercase tracking-wider">
-                COMPANY
-              </h3>
-              <p className="text-2xl font-extrabold text-black">TufLet</p>
-            </div>
-
-            <div className="h-px bg-gray-200"></div>
-
-            {/* Category */}
-            <div>
-              <h3 className="text-xs font-extrabold text-gray-500 mb-3 uppercase tracking-wider">
-                CATEGORY
-              </h3>
-              <p className="text-xl font-bold text-black">Booking Platform</p>
-            </div>
-
-            <div className="h-px bg-gray-200"></div>
-
-            {/* Live View */}
-            <div>
-              <h3 className="text-xs font-extrabold text-gray-500 mb-3 uppercase tracking-wider">
-                LIVE VIEW
-              </h3>
-              <a 
-                href="https://www.turflet.app" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-lg font-bold text-black hover:text-accent-lime transition-colors group"
-              >
-                Visit Website
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </a>
-            </div>
-
-            <div className="h-px bg-gray-200"></div>
-
-            {/* Timeline */}
-            <div>
-              <h3 className="text-xs font-extrabold text-gray-500 mb-3 uppercase tracking-wider">
-                TIMELINE
-              </h3>
-              <p className="text-2xl font-extrabold text-black">3 Months</p>
-            </div>
-
-            <div className="h-px bg-gray-200"></div>
-
-            {/* Services Provided */}
-            <div>
-              <h3 className="text-xs font-extrabold text-gray-500 mb-4 uppercase tracking-wider">
-                SERVICES WE PROVIDED
-              </h3>
-              <div className="space-y-2">
-                {['User Research', 'UI Design', 'Development', 'Backend Integration'].map((service, idx) => (
-                  <div key={idx} className="px-4 py-2 bg-white rounded-xl text-sm font-medium text-black">
-                    {service}
-                  </div>
-                ))}
+                  <button 
+                    onClick={() => window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=Check out this amazing booking platform case study!`, '_blank')}
+                    className="w-12 h-12 bg-white hover:bg-accent-lime rounded-full flex items-center justify-center transition-all hover:scale-110 shadow-sm"
+                    aria-label="Share on Twitter"
+                  >
+                    <Twitter className="w-5 h-5" />
+                  </button>
+                  <button 
+                    onClick={() => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`, '_blank')}
+                    className="w-12 h-12 bg-white hover:bg-accent-lime rounded-full flex items-center justify-center transition-all hover:scale-110 shadow-sm"
+                    aria-label="Share on LinkedIn"
+                  >
+                    <Linkedin className="w-5 h-5" />
+                  </button>
+                  <button 
+                    onClick={() => window.open(`https://wa.me/?text=${encodeURIComponent('Check out this amazing booking platform case study! ' + window.location.href)}`, '_blank')}
+                    className="w-12 h-12 bg-white hover:bg-accent-lime rounded-full flex items-center justify-center transition-all hover:scale-110 shadow-sm"
+                    aria-label="Share on WhatsApp"
+                  >
+                    <Share2 className="w-5 h-5" />
+                  </button>
+                </div>
               </div>
             </div>
 
-            <div className="h-px bg-gray-200"></div>
-
-            {/* Share */}
-            <div>
-              <h3 className="text-lg font-extrabold text-black mb-4">
-                Share this Case Study:
+            {/* Navigation Card */}
+            <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
+              <h3 className="text-sm font-extrabold text-gray-400 mb-4 uppercase tracking-wide">
+                On This Page
               </h3>
-              <div className="flex gap-3">
-                <button 
-                  onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank')}
-                  className="w-12 h-12 bg-white hover:bg-accent-lime rounded-full flex items-center justify-center transition-all hover:scale-110 shadow-sm"
-                  aria-label="Share on Facebook"
-                >
-                  <Facebook className="w-5 h-5" />
-                </button>
-                <button 
-                  onClick={() => window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=Check out this amazing booking platform case study!`, '_blank')}
-                  className="w-12 h-12 bg-white hover:bg-accent-lime rounded-full flex items-center justify-center transition-all hover:scale-110 shadow-sm"
-                  aria-label="Share on Twitter"
-                >
-                  <Twitter className="w-5 h-5" />
-                </button>
-                <button 
-                  onClick={() => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`, '_blank')}
-                  className="w-12 h-12 bg-white hover:bg-accent-lime rounded-full flex items-center justify-center transition-all hover:scale-110 shadow-sm"
-                  aria-label="Share on LinkedIn"
-                >
-                  <Linkedin className="w-5 h-5" />
-                </button>
-                <button 
-                  onClick={() => window.open(`https://wa.me/?text=${encodeURIComponent('Check out this amazing booking platform case study! ' + window.location.href)}`, '_blank')}
-                  className="w-12 h-12 bg-white hover:bg-accent-lime rounded-full flex items-center justify-center transition-all hover:scale-110 shadow-sm"
-                  aria-label="Share on WhatsApp"
-                >
-                  <Share2 className="w-5 h-5" />
-                </button>
-              </div>
+              <nav className="space-y-1">
+                {navItems.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => scrollToSection(item.id)}
+                      className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-all ${
+                        activeSection === item.id
+                          ? 'bg-accent-lime text-black font-bold shadow-md'
+                          : 'text-gray-600 hover:bg-gray-50 hover:text-black font-medium'
+                      }`}
+                    >
+                      <Icon className="w-4 h-4 shrink-0" />
+                      <span className="text-sm">{item.label}</span>
+                    </button>
+                  );
+                })}
+              </nav>
             </div>
           </div>
         </aside>
 
         {/* Main Content Area */}
-        <div className="lg:ml-80 xl:mr-96 lg:mr-8">
+        <div className="lg:ml-96 lg:mr-8">
           {/* Project Overview */}
           <section id="overview" className="py-20 px-4 md:px-6 lg:px-8 bg-gray-50">
             <div className="max-w-5xl mx-auto">
