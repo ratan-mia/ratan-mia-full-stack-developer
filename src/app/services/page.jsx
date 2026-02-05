@@ -459,47 +459,156 @@ export default function ServicesPage() {
       </section>
 
       {/* Pricing Philosophy */}
-      <section className="px-4 md:px-6 lg:px-8 py-20 bg-gray-50">
+      <section className="px-4 md:px-6 lg:px-8 py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
-              💰 PRICING
+              💰 TRANSPARENT PRICING
             </div>
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-6">Transparent Pricing</h2>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all border-2 border-gray-100 hover:border-accent-lime">
-              <div className="text-5xl mb-6">💰</div>
-              <h3 className="text-2xl font-extrabold mb-4">No Hidden Costs</h3>
-              <p className="text-gray-600 leading-relaxed font-medium">
-                All costs are discussed upfront with detailed proposals and clear pricing structure.
-              </p>
-            </div>
-            <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all border-2 border-gray-100 hover:border-accent-lime">
-              <div className="text-5xl mb-6">📊</div>
-              <h3 className="text-2xl font-extrabold mb-4">Value-Based Pricing</h3>
-              <p className="text-gray-600 leading-relaxed font-medium">
-                Pricing based on the value delivered to your business, not just hours worked.
-              </p>
-            </div>
-            <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all border-2 border-gray-100 hover:border-accent-lime">
-              <div className="text-5xl mb-6">🤝</div>
-              <h3 className="text-2xl font-extrabold mb-4">Flexible Payment</h3>
-              <p className="text-gray-600 leading-relaxed font-medium">
-                Multiple payment options and milestone-based payments for larger projects.
-              </p>
-            </div>
-          </div>
-
-          <div className="bg-accent-lime rounded-3xl p-10 text-center">
-            <p className="text-xl text-black leading-relaxed font-bold mb-6">
-              Every project is unique. The prices shown are starting points, and I'll provide a detailed 
-              quote based on your specific requirements during our discovery call.
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6">
+              Investment in <span className="text-accent-lime">Your Success</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto font-medium leading-relaxed">
+              Clear, honest pricing with no surprises. Every project is tailored to your needs and budget.
             </p>
-            <button className="px-10 py-5 bg-black text-accent-lime rounded-xl font-extrabold hover:shadow-2xl transition-all duration-300 hover:scale-105">
-              Schedule Discovery Call
-            </button>
+          </div>
+
+          {/* Pricing Cards */}
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
+            <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-gray-100 hover:border-accent-lime group hover:-translate-y-2">
+              <div className="w-16 h-16 bg-accent-lime/20 rounded-2xl flex items-center justify-center mb-6 text-4xl group-hover:scale-110 transition-transform">
+                💰
+              </div>
+              <h3 className="text-2xl font-extrabold mb-4 group-hover:text-accent-lime transition-colors">No Hidden Costs</h3>
+              <p className="text-gray-600 leading-relaxed font-medium mb-6">
+                All costs are discussed upfront with detailed proposals, clear milestones, and transparent pricing structure. You'll know exactly what you're paying for.
+              </p>
+              <ul className="space-y-3">
+                <li className="flex items-start text-sm">
+                  <span className="w-1.5 h-1.5 bg-accent-lime rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                  <span className="text-gray-700 font-medium">Detailed project breakdown</span>
+                </li>
+                <li className="flex items-start text-sm">
+                  <span className="w-1.5 h-1.5 bg-accent-lime rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                  <span className="text-gray-700 font-medium">Clear deliverables</span>
+                </li>
+                <li className="flex items-start text-sm">
+                  <span className="w-1.5 h-1.5 bg-accent-lime rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                  <span className="text-gray-700 font-medium">No surprise charges</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-accent-lime group hover:-translate-y-2 relative overflow-hidden">
+              {/* Featured Badge */}
+              <div className="absolute top-4 right-4 px-3 py-1 bg-accent-lime text-black rounded-full text-xs font-extrabold">
+                ⭐ RECOMMENDED
+              </div>
+              <div className="w-16 h-16 bg-accent-lime rounded-2xl flex items-center justify-center mb-6 text-4xl group-hover:scale-110 transition-transform">
+                📊
+              </div>
+              <h3 className="text-2xl font-extrabold mb-4 group-hover:text-accent-lime transition-colors">Value-Based Pricing</h3>
+              <p className="text-gray-600 leading-relaxed font-medium mb-6">
+                Pricing based on the ROI and value delivered to your business, not just hours worked. Your success is my priority.
+              </p>
+              <ul className="space-y-3">
+                <li className="flex items-start text-sm">
+                  <span className="w-1.5 h-1.5 bg-accent-lime rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                  <span className="text-gray-700 font-medium">ROI-focused approach</span>
+                </li>
+                <li className="flex items-start text-sm">
+                  <span className="w-1.5 h-1.5 bg-accent-lime rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                  <span className="text-gray-700 font-medium">Business goal alignment</span>
+                </li>
+                <li className="flex items-start text-sm">
+                  <span className="w-1.5 h-1.5 bg-accent-lime rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                  <span className="text-gray-700 font-medium">Long-term partnership</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-gray-100 hover:border-accent-lime group hover:-translate-y-2">
+              <div className="w-16 h-16 bg-accent-lime/20 rounded-2xl flex items-center justify-center mb-6 text-4xl group-hover:scale-110 transition-transform">
+                🤝
+              </div>
+              <h3 className="text-2xl font-extrabold mb-4 group-hover:text-accent-lime transition-colors">Flexible Payment</h3>
+              <p className="text-gray-600 leading-relaxed font-medium mb-6">
+                Multiple payment options and milestone-based payments for larger projects. Pay as we progress through development.
+              </p>
+              <ul className="space-y-3">
+                <li className="flex items-start text-sm">
+                  <span className="w-1.5 h-1.5 bg-accent-lime rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                  <span className="text-gray-700 font-medium">Milestone-based payments</span>
+                </li>
+                <li className="flex items-start text-sm">
+                  <span className="w-1.5 h-1.5 bg-accent-lime rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                  <span className="text-gray-700 font-medium">Multiple payment methods</span>
+                </li>
+                <li className="flex items-start text-sm">
+                  <span className="w-1.5 h-1.5 bg-accent-lime rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                  <span className="text-gray-700 font-medium">Easy invoicing</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Price Range Overview */}
+          <div className="bg-gradient-to-r from-gray-900 via-black to-gray-900 rounded-3xl p-8 md:p-12 mb-12 text-white">
+            <div className="text-center mb-10">
+              <h3 className="text-3xl md:text-4xl font-extrabold mb-4">Starting Investment Ranges</h3>
+              <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+                Get a clear understanding of project costs. Final pricing is customized to your specific needs.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all border border-white/20">
+                <div className="text-accent-lime text-2xl font-extrabold mb-2">$1,500+</div>
+                <div className="text-white font-bold mb-2">WordPress & CMS</div>
+                <div className="text-gray-300 text-sm">Custom themes, plugins, optimization</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all border border-white/20">
+                <div className="text-accent-lime text-2xl font-extrabold mb-2">$2,500+</div>
+                <div className="text-white font-bold mb-2">Web Applications</div>
+                <div className="text-gray-300 text-sm">Full stack React, Next.js, Laravel</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all border border-white/20">
+                <div className="text-accent-lime text-2xl font-extrabold mb-2">$5,000+</div>
+                <div className="text-white font-bold mb-2">E-commerce Solutions</div>
+                <div className="text-gray-300 text-sm">Online stores, payment integration</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all border border-accent-lime/50">
+                <div className="text-accent-lime text-2xl font-extrabold mb-2">$8,000+</div>
+                <div className="text-white font-bold mb-2">Mobile Apps</div>
+                <div className="text-gray-300 text-sm">React Native iOS & Android apps</div>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA Section */}
+          <div className="bg-gradient-to-br from-accent-lime to-lime-400 rounded-3xl p-10 md:p-12 text-center shadow-xl">
+            <div className="max-w-3xl mx-auto">
+              <h3 className="text-3xl md:text-4xl font-extrabold text-black mb-4">
+                Ready to Discuss Your Project?
+              </h3>
+              <p className="text-xl text-black/80 leading-relaxed font-bold mb-8">
+                Every project is unique. The prices shown are starting points, and I'll provide a detailed 
+                custom quote based on your specific requirements, timeline, and business goals during our discovery call.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button className="px-10 py-5 bg-black text-accent-lime rounded-xl font-extrabold hover:shadow-2xl transition-all duration-300 hover:scale-105 inline-flex items-center justify-center gap-3">
+                  <span>Schedule Discovery Call</span>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                </button>
+                <button className="px-10 py-5 border-2 border-black text-black rounded-xl font-extrabold hover:bg-black hover:text-accent-lime transition-all duration-300 inline-flex items-center justify-center gap-3">
+                  <span>Get Instant Quote</span>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
