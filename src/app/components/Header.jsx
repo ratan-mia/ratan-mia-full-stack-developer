@@ -32,6 +32,11 @@ const Header = () => {
       description: 'Full-stack Automotive Platform'
     },
     { 
+      name: 'ELF Bangladesh App', 
+      href: '/case-studies/elf-bangladesh-app',
+      description: 'Automotive E-Commerce Ecosystem'
+    },
+    { 
       name: 'TufLet', 
       href: '/case-studies/TufLet',
       description: 'Sports Venue Booking Platform'

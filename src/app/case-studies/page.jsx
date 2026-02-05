@@ -89,6 +89,46 @@ const caseStudies = [
   },
   {
     id: 3,
+    title: "ELF Bangladesh",
+    subtitle: "Automotive E-Commerce & Service Ecosystem",
+    client: "ELF Bangladesh",
+    category: "E-Commerce & Services",
+    year: "2025-2026",
+    duration: "6 months (Ongoing)",
+    platform: "iOS & Android",
+    technologies: ["React Native", "Expo 54", "TypeScript", "Supabase", "Redux Toolkit"],
+    heroImage: "/images/projects/elf-mobile-store/02-products-listing.jpg",
+    screenshots: [
+      "/images/projects/elf-mobile-store/03-product-detail-transmission-fluid.jpg",
+      "/images/projects/elf-mobile-store/07-gamification-spin-wheel.jpg",
+      "/images/projects/elf-mobile-store/11-rewards-catalog.jpg",
+      "/images/projects/elf-mobile-store/15-my-vehicles.jpg",
+    ],
+    challenge: "ELF Bangladesh needed to transform traditional automotive product sales into an engaging digital ecosystem integrating e-commerce, loyalty programs, service bookings, and emergency assistance.",
+    solution: "Built a comprehensive mobile app with 60+ screens combining product marketplace, gamification, workshop bookings, digital wallet, and multi-language support for complete customer lifecycle management.",
+    features: [
+      "500+ automotive products marketplace",
+      "Loyalty rewards & coin system",
+      "Interactive spin wheel gamification",
+      "Service center booking system",
+      "Vehicle management & registration",
+      "Emergency roadside assistance",
+      "Digital wallet with bKash/Nagad",
+      "English/Bengali language support"
+    ],
+    results: [
+      { label: "Screens Built", value: "60+", icon: Smartphone },
+      { label: "Products", value: "500+", icon: TrendingUp },
+      { label: "DB Tables", value: "25+", icon: Award },
+      { label: "Complete", value: "95%", icon: Zap }
+    ],
+    impact: "Created a unified digital ecosystem that transforms the automotive shopping experience with integrated services, loyalty programs, and emergency assistance features.",
+    slug: "elf-bangladesh-app",
+    bgColor: "bg-gray-50",
+    accentColor: "accent-lime"
+  },
+  {
+    id: 4,
     title: "Gamify",
     subtitle: "QR-Powered Loyalty Platform",
     client: "FMCG & Automotive Brands",
