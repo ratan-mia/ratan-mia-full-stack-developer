@@ -1,25 +1,28 @@
 'use client';
-import { motion } from 'framer-motion';
-import { ArrowLeft, Award, Users, TrendingUp, Smartphone, CheckCircle2 } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowLeft, Award, Users, TrendingUp, Smartphone, CheckCircle2, ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
 
 export default function CheryBangladeshAppCaseStudy() {
-  // Detailed features with screenshots for alternating layout
-  const detailedFeatures = [
-    {
-      title: "Seamless User Onboarding",
-      description: "Welcome users with an elegant splash screen and intuitive onboarding experience. The app features a clean, modern interface that introduces key features and guides users through initial setup. Built with React Native and Expo for cross-platform consistency.",
-      highlights: [
-        "Elegant animated splash screen with branding",
-        "Quick account creation with email/password",
-        "Social authentication ready (Google, Facebook)",
-        "Phone number verification support",
-        "Terms and conditions acceptance flow"
-      ],
-      image: "/images/projects/cherymobileapp/01-onboarding-splash.jpg",
-      badge: "User Experience"
-    },
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowLeft') {
+        setCurrentSlide((prev) => (prev === 0 ? featuredScreens.length - 1 : prev - 1));
+      } else if (e.key === 'ArrowRight') {
+        setCurrentSlide((prev) => (prev === featuredScreens.length - 1 ? 0 : prev + 1));
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+  // Featured screens for slider (key features)
+  const featuredScreens = [
     {
       title: "Comprehensive Home Dashboard",
       description: "Feature-rich home screen serving as the central hub for all automotive needs. Dynamic hero slider showcases latest vehicles and promotions, while quick action buttons provide instant access to key features like service booking, test drives, and dealer locator.",
@@ -47,45 +50,6 @@ export default function CheryBangladeshAppCaseStudy() {
       badge: "Vehicle Discovery"
     },
     {
-      title: "Interactive Vehicle Specifications",
-      description: "Dive deep into vehicle details with comprehensive specification sheets covering engine performance, dimensions, fuel efficiency, safety features, and technology. Interactive elements allow users to explore every aspect before making a purchase decision.",
-      highlights: [
-        "Complete technical specifications by category",
-        "Performance metrics and fuel economy",
-        "Safety ratings and features breakdown",
-        "Interior and exterior dimensions",
-        "Standard and optional features list"
-      ],
-      image: "/images/projects/cherymobileapp/24-products-vehicle-specs.jpg",
-      badge: "Specifications"
-    },
-    {
-      title: "Immersive Vehicle Gallery",
-      description: "Experience vehicles through high-resolution photo galleries showcasing exterior angles, interior details, and feature highlights. Swipe through professional photos, zoom in on details, and get a true feel of the vehicle before visiting the dealership.",
-      highlights: [
-        "Professional photography with multiple angles",
-        "Interior cabin detailed shots",
-        "Feature highlights with annotations",
-        "Color variant previews",
-        "Pinch-to-zoom functionality"
-      ],
-      image: "/images/projects/cherymobileapp/25-products-vehicle-gallery.jpg",
-      badge: "Gallery"
-    },
-    {
-      title: "Intelligent Feature Comparison",
-      description: "Compare multiple Chery models side-by-side with detailed feature matrices. Visual indicators highlight differences in specifications, pricing, and features to help customers make informed decisions about which model best fits their needs.",
-      highlights: [
-        "Side-by-side comparison of 2-3 vehicles",
-        "Specification difference highlights",
-        "Price and value comparison",
-        "Feature availability matrix",
-        "Export comparison as PDF"
-      ],
-      image: "/images/projects/cherymobileapp/27-products-compare-vehicles.jpg",
-      badge: "Comparison"
-    },
-    {
       title: "Test Drive Booking System",
       description: "Schedule test drives with an intuitive multi-step booking flow. Select your preferred vehicle, choose a convenient dealership location, pick date and time, and book your slot in real-time. The system prevents double bookings and sends instant confirmation notifications.",
       highlights: [
@@ -99,95 +63,17 @@ export default function CheryBangladeshAppCaseStudy() {
       badge: "Test Drive"
     },
     {
-      title: "Test Drive Scheduling",
-      description: "Smart date and time selection interface with real-time availability checking. Choose your preferred date from an interactive calendar, then select available time slots. The system automatically blocks unavailable times and sends booking confirmations instantly.",
-      highlights: [
-        "Interactive calendar with available dates",
-        "Time slot selection with availability status",
-        "Dealership capacity management",
-        "Automatic confirmation emails and SMS",
-        "Calendar sync integration"
-      ],
-      image: "/images/projects/cherymobileapp/18-testdrive-schedule-datetime.jpg",
-      badge: "Scheduling"
-    },
-    {
-      title: "Service Booking - Vehicle Selection",
+      title: "Service Booking & Management",
       description: "Book service appointments starting with vehicle selection from your garage or vehicle registration. The app remembers your vehicles and their service history, making future bookings even faster with pre-filled information.",
       highlights: [
         "Select from registered vehicles",
-        "Quick vehicle registration for new users",
-        "Service history auto-load",
-        "VIN-based vehicle identification",
-        "Multiple vehicle management"
+        "Multiple service types selection",
+        "Preferred service center booking",
+        "Service history tracking",
+        "Automated maintenance reminders"
       ],
       image: "/images/projects/cherymobileapp/11-service-booking-vehicle.jpg",
       badge: "Service Management"
-    },
-    {
-      title: "Service Type Selection",
-      description: "Choose from a comprehensive list of automotive services including regular maintenance, repairs, inspections, and warranty work. Each service type shows estimated duration, pricing, and service center capabilities.",
-      highlights: [
-        "Multiple service types (maintenance, repair, inspection)",
-        "Oil change, tire rotation, brake service",
-        "AC service and engine diagnostics",
-        "Body repair and detailing options",
-        "Service package bundles for savings"
-      ],
-      image: "/images/projects/cherymobileapp/12-service-booking-services.jpg",
-      badge: "Service Types"
-    },
-    {
-      title: "Service Center Selection",
-      description: "Find the nearest authorized Chery service centers with integrated maps and location-based search. View center details including specializations, available equipment, customer ratings, and real-time availability before booking.",
-      highlights: [
-        "Map view with service center markers",
-        "Distance calculation from current location",
-        "Service center capabilities and equipment",
-        "Customer ratings and reviews",
-        "Get directions with one tap"
-      ],
-      image: "/images/projects/cherymobileapp/13-service-booking-location.jpg",
-      badge: "Location Finder"
-    },
-    {
-      title: "Service Appointment Scheduling",
-      description: "Select your preferred date and time for service appointments with real-time availability checking. The smart scheduling system considers service type duration, technician availability, and peak hours to suggest optimal time slots.",
-      highlights: [
-        "Calendar view with available dates",
-        "Time slot selection based on service duration",
-        "Peak hour indicators",
-        "Multiple appointment support",
-        "Waitlist option for busy periods"
-      ],
-      image: "/images/projects/cherymobileapp/14-service-booking-schedule.jpg",
-      badge: "Appointment"
-    },
-    {
-      title: "Booking Review & Confirmation",
-      description: "Review all booking details before final submission. Comprehensive summary includes vehicle information, selected services, chosen service center, scheduled date/time, and estimated costs. Add special notes for technicians and confirm with one tap.",
-      highlights: [
-        "Complete booking summary review",
-        "Price breakdown with estimates",
-        "Special instructions field",
-        "Terms and conditions acceptance",
-        "One-tap confirmation"
-      ],
-      image: "/images/projects/cherymobileapp/15-service-booking-review.jpg",
-      badge: "Review"
-    },
-    {
-      title: "Service Booking Success",
-      description: "Receive instant confirmation with booking reference number, service center details, and appointment information. Automatic calendar integration, email confirmation, and SMS reminders ensure customers never miss their appointments.",
-      highlights: [
-        "Booking reference number generation",
-        "Confirmation email and SMS",
-        "Add to calendar integration",
-        "Service center contact details",
-        "Easy access to modify or cancel"
-      ],
-      image: "/images/projects/cherymobileapp/16-service-booking-confirmation.jpg",
-      badge: "Confirmation"
     },
     {
       title: "Parts & Accessories E-commerce",
@@ -201,19 +87,6 @@ export default function CheryBangladeshAppCaseStudy() {
       ],
       image: "/images/projects/cherymobileapp/28-shop-accessories.jpg",
       badge: "E-commerce"
-    },
-    {
-      title: "Product Details & Specifications",
-      description: "Comprehensive product pages with multiple high-resolution images, detailed descriptions, technical specifications, and compatibility information. View related products, customer reviews, and installation guides to make informed purchase decisions.",
-      highlights: [
-        "Multiple product images with zoom",
-        "Technical specifications and dimensions",
-        "Vehicle compatibility checker",
-        "Customer reviews and ratings",
-        "Installation difficulty indicators"
-      ],
-      image: "/images/projects/cherymobileapp/29-shop-product-details.jpg",
-      badge: "Product Info"
     },
     {
       title: "Smart Shopping Cart",
@@ -242,19 +115,6 @@ export default function CheryBangladeshAppCaseStudy() {
       badge: "Secure Payment"
     },
     {
-      title: "Order Confirmation & Tracking",
-      description: "Instant order confirmation with tracking number, estimated delivery date, and order details. Real-time order status updates, delivery tracking, and direct communication with delivery team ensure transparency throughout the fulfillment process.",
-      highlights: [
-        "Order confirmation with tracking ID",
-        "Estimated delivery timeline",
-        "Real-time status updates",
-        "Contact delivery team",
-        "Invoice download option"
-      ],
-      image: "/images/projects/cherymobileapp/32-shop-order-confirmation.jpg",
-      badge: "Order Status"
-    },
-    {
       title: "Profile & Account Settings",
       description: "Comprehensive account management hub where users can view and edit personal information, manage preferences, view activity history, and control privacy settings. Clean interface with organized sections for easy navigation.",
       highlights: [
@@ -266,19 +126,6 @@ export default function CheryBangladeshAppCaseStudy() {
       ],
       image: "/images/projects/cherymobileapp/33-profile-settings.jpg",
       badge: "Account"
-    },
-    {
-      title: "Profile Information Editor",
-      description: "Edit user profile with form validation and real-time updates. Update name, email, phone number, address, and other personal details. Changes sync instantly across all devices through Supabase real-time infrastructure.",
-      highlights: [
-        "Real-time form validation",
-        "Profile picture upload with cropping",
-        "Address autocomplete",
-        "Phone number verification",
-        "Instant sync across devices"
-      ],
-      image: "/images/projects/cherymobileapp/34-profile-edit.jpg",
-      badge: "Edit Profile"
     },
     {
       title: "My Vehicles Management",
@@ -294,84 +141,6 @@ export default function CheryBangladeshAppCaseStudy() {
       badge: "My Vehicles"
     },
     {
-      title: "Bookings History & Management",
-      description: "View all service and test drive bookings in one place. Track upcoming appointments, review past bookings, modify schedules, and cancel if needed. Color-coded status indicators show booking states at a glance.",
-      highlights: [
-        "Upcoming and past bookings view",
-        "Booking status indicators",
-        "Quick reschedule functionality",
-        "One-tap cancellation with refund info",
-        "Calendar integration"
-      ],
-      image: "/images/projects/cherymobileapp/35-profile-bookings.jpg",
-      badge: "Bookings"
-    },
-    {
-      title: "Order History & Tracking",
-      description: "Complete order history with detailed tracking for parts and accessories purchases. View order status, track shipments, download invoices, request returns, and reorder previously purchased items with one tap.",
-      highlights: [
-        "Complete order history with search",
-        "Real-time shipment tracking",
-        "Invoice and receipt downloads",
-        "Easy reordering of past purchases",
-        "Return and refund management"
-      ],
-      image: "/images/projects/cherymobileapp/36-profile-orders.jpg",
-      badge: "Orders"
-    },
-    {
-      title: "Dealer Locator & Information",
-      description: "Find authorized Chery dealerships with interactive map and list views. View dealership details including contact information, operating hours, available services, stock information, and customer reviews. Get directions or call directly from the app.",
-      highlights: [
-        "Interactive map with dealership markers",
-        "Distance calculation from current location",
-        "Operating hours and contact details",
-        "Available vehicle stock information",
-        "Get directions or call directly"
-      ],
-      image: "/images/projects/cherymobileapp/21-find-dealer-search.jpg",
-      badge: "Dealers"
-    },
-    {
-      title: "Latest News & Updates",
-      description: "Stay informed with the latest automotive news, company announcements, and industry updates. Browse news by categories, read full articles with images, and share interesting stories with friends through social media integration.",
-      highlights: [
-        "Latest automotive and company news",
-        "Category filtering (launches, tech, events)",
-        "Full article reading experience",
-        "Social media sharing",
-        "Bookmark favorite articles"
-      ],
-      image: "/images/projects/cherymobileapp/06-latest-news.jpg",
-      badge: "News"
-    },
-    {
-      title: "Upcoming Events Calendar",
-      description: "Discover and register for automotive events including auto shows, test drive events, launch ceremonies, and owner meetups. View event details, check availability, register with RSVP, and add events to your device calendar.",
-      highlights: [
-        "Event calendar with upcoming shows",
-        "Event details with agenda and speakers",
-        "RSVP and registration system",
-        "Calendar integration for reminders",
-        "Past event photo galleries"
-      ],
-      image: "/images/projects/cherymobileapp/07-upcoming-events.jpg",
-      badge: "Events"
-    },
-    {
-      title: "Featured Products Showcase",
-      description: "Discover featured parts, accessories, and special product bundles. Curated collection of popular items, new arrivals, and seasonal products with exclusive app-only discounts and promotions.",
-      highlights: [
-        "Curated featured products",
-        "New arrivals and trending items",
-        "Exclusive app-only discounts",
-        "Product bundles with savings",
-        "Limited-time special offers"
-      ],
-      image: "/images/projects/cherymobileapp/05-featured-products.jpg",
-      badge: "Featured"
-    },
-    {
       title: "24/7 Emergency Support",
       description: "Access immediate roadside assistance with one tap. Request towing, battery jump-start, tire change, fuel delivery, or lockout assistance. Real-time location sharing ensures help arrives quickly, with estimated arrival time display.",
       highlights: [
@@ -383,41 +152,248 @@ export default function CheryBangladeshAppCaseStudy() {
       ],
       image: "/images/projects/cherymobileapp/09-emergency-support.jpg",
       badge: "Emergency"
+    }
+  ];
+
+  // Additional features for grid layout
+  const additionalFeatures = [
+    {
+      title: "Seamless User Onboarding",
+      description: "Welcome users with an elegant splash screen and intuitive onboarding experience. The app features a clean, modern interface that introduces key features and guides users through initial setup.",
+      highlights: [
+        "Elegant animated splash screen with branding",
+        "Quick account creation with email/password",
+        "Phone number verification support"
+      ],
+      image: "/images/projects/cherymobileapp/01-onboarding-splash.jpg",
+      badge: "Onboarding"
     },
     {
-      title: "Quick Support Access",
-      description: "Get help fast with multiple support channels. Access FAQ, submit support tickets, start live chat, or call customer service directly. Categorized help topics and search functionality help users find answers quickly.",
+      title: "Vehicle Specifications",
+      description: "Dive deep into vehicle details with comprehensive specification sheets covering engine performance, dimensions, fuel efficiency, safety features, and technology.",
+      highlights: [
+        "Complete technical specifications by category",
+        "Performance metrics and fuel economy",
+        "Safety ratings and features breakdown"
+      ],
+      image: "/images/projects/cherymobileapp/24-products-vehicle-specs.jpg",
+      badge: "Specifications"
+    },
+    {
+      title: "Vehicle Gallery",
+      description: "Experience vehicles through high-resolution photo galleries showcasing exterior angles, interior details, and feature highlights.",
+      highlights: [
+        "Professional photography with multiple angles",
+        "Interior cabin detailed shots",
+        "Pinch-to-zoom functionality"
+      ],
+      image: "/images/projects/cherymobileapp/25-products-vehicle-gallery.jpg",
+      badge: "Gallery"
+    },
+    {
+      title: "Feature Comparison",
+      description: "Compare multiple Chery models side-by-side with detailed feature matrices and visual indicators highlighting differences.",
+      highlights: [
+        "Side-by-side comparison of 2-3 vehicles",
+        "Specification difference highlights",
+        "Price and value comparison"
+      ],
+      image: "/images/projects/cherymobileapp/27-products-compare-vehicles.jpg",
+      badge: "Comparison"
+    },
+    {
+      title: "Test Drive Scheduling",
+      description: "Smart date and time selection interface with real-time availability checking and automatic confirmation notifications.",
+      highlights: [
+        "Interactive calendar with available dates",
+        "Time slot selection with availability status",
+        "Calendar sync integration"
+      ],
+      image: "/images/projects/cherymobileapp/18-testdrive-schedule-datetime.jpg",
+      badge: "Scheduling"
+    },
+    {
+      title: "Service Type Selection",
+      description: "Choose from comprehensive automotive services including maintenance, repairs, inspections, and warranty work.",
+      highlights: [
+        "Multiple service types selection",
+        "Oil change, tire rotation, brake service",
+        "Service package bundles for savings"
+      ],
+      image: "/images/projects/cherymobileapp/12-service-booking-services.jpg",
+      badge: "Services"
+    },
+    {
+      title: "Service Center Selection",
+      description: "Find nearest authorized Chery service centers with integrated maps, customer ratings, and real-time availability.",
+      highlights: [
+        "Map view with service center markers",
+        "Distance calculation from current location",
+        "Get directions with one tap"
+      ],
+      image: "/images/projects/cherymobileapp/13-service-booking-location.jpg",
+      badge: "Location"
+    },
+    {
+      title: "Appointment Scheduling",
+      description: "Select preferred date and time for service appointments with smart scheduling considering service duration and technician availability.",
+      highlights: [
+        "Calendar view with available dates",
+        "Peak hour indicators",
+        "Waitlist option for busy periods"
+      ],
+      image: "/images/projects/cherymobileapp/14-service-booking-schedule.jpg",
+      badge: "Appointment"
+    },
+    {
+      title: "Booking Review",
+      description: "Review all booking details before final submission with complete summary and price breakdown.",
+      highlights: [
+        "Complete booking summary review",
+        "Price breakdown with estimates",
+        "One-tap confirmation"
+      ],
+      image: "/images/projects/cherymobileapp/15-service-booking-review.jpg",
+      badge: "Review"
+    },
+    {
+      title: "Booking Confirmation",
+      description: "Instant confirmation with booking reference, automatic calendar integration, and SMS reminders.",
+      highlights: [
+        "Booking reference number generation",
+        "Confirmation email and SMS",
+        "Add to calendar integration"
+      ],
+      image: "/images/projects/cherymobileapp/16-service-booking-confirmation.jpg",
+      badge: "Confirmation"
+    },
+    {
+      title: "Product Details",
+      description: "Comprehensive product pages with multiple images, specifications, compatibility checking, and customer reviews.",
+      highlights: [
+        "Multiple product images with zoom",
+        "Vehicle compatibility checker",
+        "Customer reviews and ratings"
+      ],
+      image: "/images/projects/cherymobileapp/29-shop-product-details.jpg",
+      badge: "Product Info"
+    },
+    {
+      title: "Order Confirmation",
+      description: "Instant order confirmation with tracking number, estimated delivery, and real-time status updates.",
+      highlights: [
+        "Order confirmation with tracking ID",
+        "Estimated delivery timeline",
+        "Invoice download option"
+      ],
+      image: "/images/projects/cherymobileapp/32-shop-order-confirmation.jpg",
+      badge: "Order Status"
+    },
+    {
+      title: "Profile Editor",
+      description: "Edit user profile with form validation, real-time updates, and instant sync across all devices.",
+      highlights: [
+        "Real-time form validation",
+        "Profile picture upload with cropping",
+        "Phone number verification"
+      ],
+      image: "/images/projects/cherymobileapp/34-profile-edit.jpg",
+      badge: "Edit Profile"
+    },
+    {
+      title: "Bookings History",
+      description: "View all service and test drive bookings with status tracking, quick reschedule, and cancellation options.",
+      highlights: [
+        "Upcoming and past bookings view",
+        "Booking status indicators",
+        "Quick reschedule functionality"
+      ],
+      image: "/images/projects/cherymobileapp/35-profile-bookings.jpg",
+      badge: "Bookings"
+    },
+    {
+      title: "Order History",
+      description: "Complete order history with tracking, invoice downloads, returns management, and easy reordering.",
+      highlights: [
+        "Complete order history with search",
+        "Real-time shipment tracking",
+        "Easy reordering of past purchases"
+      ],
+      image: "/images/projects/cherymobileapp/36-profile-orders.jpg",
+      badge: "Orders"
+    },
+    {
+      title: "Dealer Locator",
+      description: "Find authorized Chery dealerships with interactive map, distance calculation, and direct contact options.",
+      highlights: [
+        "Interactive map with dealership markers",
+        "Operating hours and contact details",
+        "Get directions or call directly"
+      ],
+      image: "/images/projects/cherymobileapp/21-find-dealer-search.jpg",
+      badge: "Dealers"
+    },
+    {
+      title: "Latest News",
+      description: "Stay informed with automotive news, company announcements, and industry updates with social sharing.",
+      highlights: [
+        "Latest automotive and company news",
+        "Category filtering",
+        "Social media sharing"
+      ],
+      image: "/images/projects/cherymobileapp/06-latest-news.jpg",
+      badge: "News"
+    },
+    {
+      title: "Events Calendar",
+      description: "Discover and register for automotive events including auto shows, launches, and owner meetups.",
+      highlights: [
+        "Event calendar with upcoming shows",
+        "RSVP and registration system",
+        "Calendar integration for reminders"
+      ],
+      image: "/images/projects/cherymobileapp/07-upcoming-events.jpg",
+      badge: "Events"
+    },
+    {
+      title: "Featured Products",
+      description: "Discover curated featured products, new arrivals, and exclusive app-only discounts.",
+      highlights: [
+        "Curated featured products",
+        "Exclusive app-only discounts",
+        "Limited-time special offers"
+      ],
+      image: "/images/projects/cherymobileapp/05-featured-products.jpg",
+      badge: "Featured"
+    },
+    {
+      title: "Quick Support",
+      description: "Get help fast with FAQ, support tickets, live chat, and direct contact options.",
       highlights: [
         "Comprehensive FAQ section",
-        "Support ticket submission",
         "Live chat with customer service",
-        "Direct phone and email contact",
         "Help topic search functionality"
       ],
       image: "/images/projects/cherymobileapp/10-quick-support.jpg",
       badge: "Support"
     },
     {
-      title: "Company Information & Values",
-      description: "Learn about Chery Bangladesh's mission, vision, and brand values. View company statistics, achievements, awards, and commitment to quality and innovation in the automotive industry.",
+      title: "Company Information",
+      description: "Learn about Chery Bangladesh's mission, vision, achievements, and commitment to quality.",
       highlights: [
         "Company mission and vision statements",
-        "Brand pillars and values",
-        "Achievement statistics and milestones",
-        "Quality commitment and certifications",
-        "Innovation and sustainability initiatives"
+        "Achievement statistics",
+        "Innovation initiatives"
       ],
       image: "/images/projects/cherymobileapp/04-about-excellence.jpg",
       badge: "About Us"
     },
     {
-      title: "Services Overview Menu",
-      description: "Quick access menu showcasing all available services including vehicle browsing, service booking, test drives, dealer locator, emergency support, and customer service. Clean card-based interface with clear iconography.",
+      title: "Services Menu",
+      description: "Quick access menu showcasing all available services with clear iconography and descriptions.",
       highlights: [
         "Visual service menu with icons",
         "Quick navigation to all features",
-        "Service descriptions and benefits",
-        "Recent activity shortcuts",
         "Personalized recommendations"
       ],
       image: "/images/projects/cherymobileapp/03-services-menu.jpg",
@@ -425,77 +401,65 @@ export default function CheryBangladeshAppCaseStudy() {
     },
     {
       title: "Contact & Find Us",
-      description: "Multiple ways to reach Chery Bangladesh including showroom locations, contact form, phone numbers, email addresses, and social media links. Interactive map shows all authorized touchpoints across Bangladesh.",
+      description: "Multiple contact channels including showroom locations, contact form, and social media integration.",
       highlights: [
         "Contact form with quick submission",
-        "Multiple phone numbers and emails",
         "Showroom locations on map",
-        "Social media integration",
         "Office hours and directions"
       ],
       image: "/images/projects/cherymobileapp/08-find-us-contact.jpg",
       badge: "Contact"
     },
     {
-      title: "Smart Notifications Center",
-      description: "Stay updated with push and in-app notifications for bookings, orders, promotions, and news. Customizable notification preferences with category-based controls for personalized update experience.",
+      title: "Notifications Center",
+      description: "Stay updated with push and in-app notifications with customizable category-based preferences.",
       highlights: [
         "Push notification support",
-        "In-app notification center",
         "Category-based preferences",
-        "Notification history",
         "Quick actions from notifications"
       ],
       image: "/images/projects/cherymobileapp/37-notifications.jpg",
       badge: "Notifications"
     },
     {
-      title: "Navigation Menu Drawer",
-      description: "Comprehensive side menu providing quick access to all app sections. Organized navigation with user profile summary, primary features, account management, and legal information all easily accessible.",
+      title: "Navigation Menu",
+      description: "Comprehensive side menu with user profile summary and organized access to all app sections.",
       highlights: [
         "User profile summary at top",
-        "Organized menu categories",
         "Quick links to all major features",
-        "Account and settings access",
-        "Legal documents and app info"
+        "Legal documents access"
       ],
       image: "/images/projects/cherymobileapp/38-menu-drawer.jpg",
       badge: "Navigation"
     },
     {
-      title: "App Information & About",
-      description: "View app version information, credits, legal notices, and links to support documentation. Access terms of service, privacy policy, and contact information for app-related inquiries.",
+      title: "App Information",
+      description: "View app version, credits, legal notices, and links to support documentation.",
       highlights: [
         "App version and build information",
-        "Development credits and team",
-        "Legal notices and licenses",
-        "Link to documentation",
+        "Development credits",
         "Feedback submission"
       ],
       image: "/images/projects/cherymobileapp/39-about-app.jpg",
       badge: "App Info"
     },
     {
-      title: "Frequently Asked Questions",
-      description: "Comprehensive FAQ covering common questions about account management, bookings, payments, vehicles, and technical issues. Searchable interface with expandable answers and related topic suggestions.",
+      title: "FAQ",
+      description: "Comprehensive FAQ with searchable interface, expandable answers, and related topic suggestions.",
       highlights: [
         "Categorized FAQ sections",
         "Search functionality",
-        "Expandable question/answer format",
-        "Related topics suggestions",
-        "Contact support for unanswered questions"
+        "Related topics suggestions"
       ],
       image: "/images/projects/cherymobileapp/40-faq.jpg",
       badge: "FAQ"
     },
     {
       title: "Terms & Conditions",
-      description: "Complete terms of service covering app usage, account responsibilities, service policies, and user agreements. Clear formatting with section navigation and last updated date for transparency.",
+      description: "Complete terms of service with section navigation and transparent acceptance tracking.",
       highlights: [
         "Complete terms of service",
         "Section-by-section navigation",
-        "Last updated timestamp",
-        "Acceptance tracking",
         "Printable format"
       ],
       image: "/images/projects/cherymobileapp/41-terms-conditions.jpg",
@@ -503,29 +467,58 @@ export default function CheryBangladeshAppCaseStudy() {
     },
     {
       title: "Privacy Policy",
-      description: "Detailed privacy policy explaining data collection, usage, storage, and protection practices. GDPR-compliant documentation with user rights explanation and data management options.",
+      description: "Detailed privacy policy with GDPR compliance and user data management options.",
       highlights: [
         "Data collection transparency",
-        "Usage and storage policies",
         "User rights and controls",
-        "GDPR compliance",
         "Data deletion requests"
       ],
       image: "/images/projects/cherymobileapp/42-privacy-policy.jpg",
       badge: "Privacy"
     },
     {
-      title: "Customer Support Contact",
-      description: "Direct access to customer support through multiple channels. Submit support tickets, start live chat, call hotline, or send email inquiries. Track support ticket status and view response history.",
+      title: "Customer Support",
+      description: "Multi-channel support access with ticket submission, tracking, and priority support options.",
       highlights: [
         "Multi-channel support access",
-        "Support ticket submission and tracking",
-        "Live chat integration",
-        "Priority support for urgent issues",
-        "Support history and responses"
+        "Support ticket tracking",
+        "Priority support for urgent issues"
       ],
       image: "/images/projects/cherymobileapp/43-contact-support.jpg",
-      badge: "Customer Support"
+      badge: "Support"
+    },
+    {
+      title: "Vehicle Details",
+      description: "In-depth vehicle information with comprehensive specs, pricing, and downloadable documentation.",
+      highlights: [
+        "Complete technical specifications",
+        "Pricing with financing calculator",
+        "Downloadable brochures"
+      ],
+      image: "/images/projects/cherymobileapp/23-products-vehicle-details.jpg",
+      badge: "Details"
+    },
+    {
+      title: "Vehicle Features",
+      description: "Explore vehicle features with detailed descriptions, benefits, and comparison capabilities.",
+      highlights: [
+        "Feature highlights with descriptions",
+        "Technology and safety features",
+        "Feature comparison tool"
+      ],
+      image: "/images/projects/cherymobileapp/26-products-vehicle-features.jpg",
+      badge: "Features"
+    },
+    {
+      title: "Test Drive Submit",
+      description: "Complete test drive booking submission with personal information and driving license verification.",
+      highlights: [
+        "Personal information form",
+        "Driving license verification",
+        "Booking confirmation"
+      ],
+      image: "/images/projects/cherymobileapp/19-testdrive-booking-submit.jpg",
+      badge: "Submit"
     }
   ];
 
@@ -690,25 +683,167 @@ export default function CheryBangladeshAppCaseStudy() {
           >
             <div className="text-center mb-16">
               <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-bold mb-6">
-                COMPREHENSIVE FEATURES
+                KEY FEATURES SHOWCASE
               </div>
               <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                43 Screens Covering <span className="text-accent-lime">Every Journey</span>
+                Interactive Feature <span className="text-accent-lime">Highlights</span>
+              </h2>
+              <p className="text-gray-600 max-w-2xl mx-auto text-lg mb-8">
+                Explore the 10 core features that define the complete automotive experience
+              </p>
+              
+              {/* Slide Counter */}
+              <div className="inline-flex items-center gap-2 px-6 py-3 bg-black/5 rounded-full">
+                <span className="text-2xl font-extrabold text-black">{currentSlide + 1}</span>
+                <span className="text-gray-400">/</span>
+                <span className="text-gray-600 font-semibold">{featuredScreens.length}</span>
+              </div>
+            </div>
+
+            {/* Feature Slider */}
+            <div className="relative">
+              {/* Main Slider Container */}
+              <div className="relative overflow-hidden">
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.div
+                    key={currentSlide}
+                    initial={{ opacity: 0, x: 100 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -100 }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                    className="grid lg:grid-cols-2 gap-12 items-center"
+                  >
+                    {/* Screenshot */}
+                    <div className={currentSlide % 2 === 1 ? 'lg:order-2' : ''}>
+                      <div className="relative group max-w-sm mx-auto">
+                        {/* Badge */}
+                        <div className="absolute -top-4 -left-4 z-10 px-4 py-2 bg-accent-lime text-black rounded-xl font-bold text-sm shadow-lg">
+                          {featuredScreens[currentSlide].badge}
+                        </div>
+                        
+                        {/* Screenshot */}
+                        <div className="relative aspect-[9/16] rounded-3xl overflow-hidden shadow-2xl border-4 border-white group-hover:scale-105 transition-transform duration-500">
+                          <Image
+                            src={featuredScreens[currentSlide].image}
+                            alt={featuredScreens[currentSlide].title}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                            priority={currentSlide === 0}
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Description */}
+                    <div className={currentSlide % 2 === 1 ? 'lg:order-1' : ''}>
+                      <div className="space-y-6">
+                        <h3 className="text-3xl md:text-4xl font-extrabold text-gray-900">
+                          {featuredScreens[currentSlide].title}
+                        </h3>
+                        
+                        <p className="text-lg text-gray-700 leading-relaxed">
+                          {featuredScreens[currentSlide].description}
+                        </p>
+
+                        {/* Highlights */}
+                        <div className="space-y-3">
+                          {featuredScreens[currentSlide].highlights.map((highlight, idx) => (
+                            <motion.div
+                              key={idx}
+                              initial={{ opacity: 0, x: -20 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: 0.1 + idx * 0.05 }}
+                              className="flex items-start gap-3"
+                            >
+                              <div className="w-6 h-6 rounded-lg bg-accent-lime flex items-center justify-center shrink-0 mt-0.5">
+                                <CheckCircle2 className="w-4 h-4 text-black" />
+                              </div>
+                              <span className="text-gray-700 leading-relaxed">{highlight}</span>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              {/* Navigation Buttons */}
+              <div className="flex items-center justify-center gap-4 mt-12">
+                <button
+                  onClick={() => setCurrentSlide((prev) => (prev === 0 ? featuredScreens.length - 1 : prev - 1))}
+                  className="w-14 h-14 rounded-full bg-black hover:bg-accent-lime text-accent-lime hover:text-black border-2 border-black flex items-center justify-center transition-all hover:scale-110 shadow-lg"
+                  aria-label="Previous slide"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+
+                {/* Dots Indicator */}
+                <div className="flex items-center gap-2">
+                  {featuredScreens.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setCurrentSlide(idx)}
+                      className={`transition-all ${
+                        currentSlide === idx
+                          ? 'w-8 h-3 bg-accent-lime rounded-full'
+                          : 'w-3 h-3 bg-gray-300 hover:bg-gray-400 rounded-full'
+                      }`}
+                      aria-label={`Go to slide ${idx + 1}`}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  onClick={() => setCurrentSlide((prev) => (prev === featuredScreens.length - 1 ? 0 : prev + 1))}
+                  className="w-14 h-14 rounded-full bg-black hover:bg-accent-lime text-accent-lime hover:text-black border-2 border-black flex items-center justify-center transition-all hover:scale-110 shadow-lg"
+                  aria-label="Next slide"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+              </div>
+
+              {/* Keyboard Navigation Hint */}
+              <div className="text-center mt-6">
+                <p className="text-sm text-gray-500">
+                  Use <kbd className="px-2 py-1 bg-gray-200 rounded text-xs font-mono">←</kbd> and <kbd className="px-2 py-1 bg-gray-200 rounded text-xs font-mono">→</kbd> arrow keys to navigate
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Additional Features Grid */}
+      <section className="py-20 px-4 md:px-6 lg:px-8 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="text-center mb-16">
+              <div className="inline-block px-6 py-2 bg-black/5 text-black rounded-full text-sm font-bold mb-6">
+                ALL FEATURES
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-4">
+                Complete Feature <span className="text-accent-lime">Ecosystem</span>
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-                From onboarding to ownership - complete automotive ecosystem with alternating layouts showcasing each feature
+                33 additional screens covering every aspect of the automotive journey
               </p>
             </div>
 
             {/* Alternating Feature Rows */}
             <div className="space-y-20">
-              {detailedFeatures.map((feature, index) => (
+              {additionalFeatures.map((feature, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  transition={{ duration: 0.6, delay: index * 0.05 }}
                   className={`grid lg:grid-cols-2 gap-12 items-center ${
                     index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''
                   }`}
@@ -717,12 +852,12 @@ export default function CheryBangladeshAppCaseStudy() {
                   <div className={index % 2 === 1 ? 'lg:col-start-2' : ''}>
                     <div className="relative group max-w-sm mx-auto">
                       {/* Badge */}
-                      <div className="absolute -top-4 -left-4 z-10 px-4 py-2 bg-accent-lime text-black rounded-xl font-bold text-sm shadow-lg">
+                      <div className="absolute -top-4 -left-4 z-10 px-4 py-2 bg-black/10 backdrop-blur-sm text-black rounded-xl font-bold text-sm shadow-lg border border-gray-200">
                         {feature.badge}
                       </div>
                       
-                      {/* Screenshot - Reduced Size with Aspect Ratio */}
-                      <div className="relative aspect-[9/16] rounded-3xl overflow-hidden shadow-2xl border-4 border-white group-hover:scale-105 transition-transform duration-500">
+                      {/* Screenshot */}
+                      <div className="relative aspect-[9/16] rounded-3xl overflow-hidden shadow-xl border-2 border-gray-200 group-hover:scale-105 transition-transform duration-500">
                         <Image
                           src={feature.image}
                           alt={feature.title}
@@ -736,23 +871,23 @@ export default function CheryBangladeshAppCaseStudy() {
 
                   {/* Description */}
                   <div className={index % 2 === 1 ? 'lg:col-start-1' : ''}>
-                    <div className="space-y-6">
-                      <h3 className="text-3xl md:text-4xl font-extrabold text-gray-900">
+                    <div className="space-y-4">
+                      <h3 className="text-2xl md:text-3xl font-extrabold text-gray-900">
                         {feature.title}
                       </h3>
                       
-                      <p className="text-lg text-gray-700 leading-relaxed">
+                      <p className="text-base text-gray-700 leading-relaxed">
                         {feature.description}
                       </p>
 
                       {/* Highlights */}
-                      <div className="space-y-3">
+                      <div className="space-y-2">
                         {feature.highlights.map((highlight, idx) => (
                           <div key={idx} className="flex items-start gap-3">
-                            <div className="w-6 h-6 rounded-lg bg-accent-lime flex items-center justify-center shrink-0 mt-0.5">
-                              <CheckCircle2 className="w-4 h-4 text-black" />
+                            <div className="w-5 h-5 rounded bg-gray-200 flex items-center justify-center shrink-0 mt-0.5">
+                              <CheckCircle2 className="w-3.5 h-3.5 text-gray-600" />
                             </div>
-                            <span className="text-gray-700 leading-relaxed">{highlight}</span>
+                            <span className="text-gray-600 leading-relaxed text-sm">{highlight}</span>
                           </div>
                         ))}
                       </div>
