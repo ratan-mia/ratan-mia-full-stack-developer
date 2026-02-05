@@ -1,16 +1,17 @@
 'use client';
 
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { 
   ArrowLeft, ArrowRight, CheckCircle, Code, Database, Globe, 
   MapPin, Palette, Server, ShoppingCart, Smartphone, Star, 
-  Trophy, Wallet, Zap 
+  Trophy, Wallet, Zap, ChevronLeft, ChevronRight 
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 export default function ELFBangladeshCaseStudy() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const featuresRef = useRef(null);
   const techRef = useRef(null);
   const screenshotsRef = useRef(null);
@@ -18,6 +19,21 @@ export default function ELFBangladeshCaseStudy() {
   const featuresInView = useInView(featuresRef, { once: true, margin: "-100px" });
   const techInView = useInView(techRef, { once: true, margin: "-100px" });
   const screenshotsInView = useInView(screenshotsRef, { once: true, margin: "-100px" });
+
+  const heroImages = [
+    { src: '/images/projects/elf-mobile-store/02-products-listing.jpg', alt: 'Products Listing' },
+    { src: '/images/projects/elf-mobile-store/03-product-detail-transmission-fluid.jpg', alt: 'Product Detail' },
+    { src: '/images/projects/elf-mobile-store/07-gamification-spin-wheel.jpg', alt: 'Spin Wheel Game' },
+    { src: '/images/projects/elf-mobile-store/12-elf-workshops.jpg', alt: 'Workshop Finder' },
+  ];
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + heroImages.length) % heroImages.length);
+  };
 
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
@@ -35,11 +51,11 @@ export default function ELFBangladeshCaseStudy() {
   return (
     <main className="bg-white text-black">
       {/* Hero Section */}
-      <section className="relative min-h-screen w-full overflow-hidden bg-black flex items-center">
+      <section className="relative min-h-screen w-full overflow-hidden bg-accent-lime flex items-center">
         {/* Background Elements */}
         <div className="absolute inset-0">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-accent-lime/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent-lime/10 rounded-full blur-3xl" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-black/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-black/5 rounded-full blur-3xl" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-20 relative z-10">
@@ -50,7 +66,7 @@ export default function ELFBangladeshCaseStudy() {
           >
             <Link 
               href="/case-studies" 
-              className="inline-flex items-center gap-2 mb-8 text-white hover:text-accent-lime transition-colors font-bold uppercase tracking-wider text-sm"
+              className="inline-flex items-center gap-2 mb-8 text-black hover:text-black/70 transition-colors font-bold uppercase tracking-wider text-sm"
             >
               <ArrowLeft className="w-5 h-5" />
               Back to Case Studies
@@ -64,7 +80,7 @@ export default function ELFBangladeshCaseStudy() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <motion.div
-                className="inline-flex items-center gap-2 px-5 py-2 bg-accent-lime/10 border-2 border-accent-lime/30 text-accent-lime rounded-full text-sm font-bold mb-6 uppercase tracking-wider"
+                className="inline-flex items-center gap-2 px-5 py-2 bg-black/10 border-2 border-black/20 text-black rounded-full text-sm font-bold mb-6 uppercase tracking-wider"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
@@ -73,13 +89,13 @@ export default function ELFBangladeshCaseStudy() {
                 Mobile App Development
               </motion.div>
 
-              <h1 className="text-5xl md:text-6xl lg:text-[72px] font-black mb-8 leading-[1.1] tracking-[-0.04em] text-white">
+              <h1 className="text-5xl md:text-6xl lg:text-[72px] font-black mb-8 leading-[1.1] tracking-[-0.04em] text-black">
                 ELF Bangladesh
                 <br />
-                <span className="text-accent-lime">Mobile App</span>
+                <span className="text-black">Mobile App</span>
               </h1>
 
-              <p className="text-xl md:text-2xl text-gray-400 mb-10 font-medium leading-[1.6]">
+              <p className="text-xl md:text-2xl text-black/80 mb-10 font-medium leading-[1.6]">
                 Enterprise-grade automotive e-commerce ecosystem combining loyalty rewards, gamification, and service bookings in one powerful platform.
               </p>
               
@@ -87,7 +103,7 @@ export default function ELFBangladeshCaseStudy() {
                 {['React Native', 'Expo 54', 'TypeScript', 'Supabase', 'Redux Toolkit'].map((tech, index) => (
                   <motion.span
                     key={tech}
-                    className="px-5 py-2 bg-white/5 border border-white/10 text-white rounded-xl font-bold text-sm hover:bg-accent-lime hover:text-black hover:border-accent-lime transition-all"
+                    className="px-5 py-2 bg-black/10 border-2 border-black/20 text-black rounded-xl font-bold text-sm hover:bg-black hover:text-accent-lime hover:border-black transition-all"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.5 + index * 0.05 }}
@@ -117,8 +133,8 @@ export default function ELFBangladeshCaseStudy() {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.6, delay: 0.7 + index * 0.1 }}
                   >
-                    <div className="text-4xl lg:text-5xl font-black text-accent-lime mb-2 tracking-[-0.02em]">{stat.value}</div>
-                    <div className="text-sm text-gray-400 font-semibold uppercase tracking-wider">{stat.label}</div>
+                    <div className="text-4xl lg:text-5xl font-black text-black mb-2 tracking-[-0.02em]">{stat.value}</div>
+                    <div className="text-sm text-black/70 font-semibold uppercase tracking-wider">{stat.label}</div>
                   </motion.div>
                 ))}
               </motion.div>
@@ -132,18 +148,63 @@ export default function ELFBangladeshCaseStudy() {
             >
               <div className="relative">
                 {/* Glow effect */}
-                <div className="absolute inset-0 bg-accent-lime/20 rounded-[3rem] blur-3xl" />
+                <div className="absolute inset-0 bg-black/10 rounded-[3rem] blur-3xl" />
                 
                 {/* Phone mockup */}
-                <div className="relative bg-black p-3 rounded-[3rem] border-4 border-accent-lime/30 shadow-2xl">
-                  <Image
-                    src="/images/projects/elf-mobile-store/02-products-listing.jpg"
-                    alt="ELF Bangladesh App - Products Listing"
-                    width={350}
-                    height={700}
-                    className="rounded-[2.5rem] object-cover"
-                    priority
-                  />
+                <div className="relative bg-gray-900 p-3 rounded-[3rem] border-4 border-black/30 shadow-2xl">
+                  {/* Phone screen with carousel */}
+                  <div className="relative w-[350px] h-[700px] bg-black rounded-[2.5rem] overflow-hidden">
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={currentImageIndex}
+                        initial={{ x: 300, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        exit={{ x: -300, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="absolute inset-0"
+                      >
+                        <Image
+                          src={heroImages[currentImageIndex].src}
+                          alt={heroImages[currentImageIndex].alt}
+                          fill
+                          className="object-cover"
+                          priority
+                        />
+                      </motion.div>
+                    </AnimatePresence>
+                    
+                    {/* Navigation arrows */}
+                    <button
+                      onClick={prevImage}
+                      className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/70 transition-all z-10"
+                      aria-label="Previous image"
+                    >
+                      <ChevronLeft className="w-6 h-6" />
+                    </button>
+                    <button
+                      onClick={nextImage}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/70 transition-all z-10"
+                      aria-label="Next image"
+                    >
+                      <ChevronRight className="w-6 h-6" />
+                    </button>
+                    
+                    {/* Dots indicator */}
+                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                      {heroImages.map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => setCurrentImageIndex(index)}
+                          className={`w-2 h-2 rounded-full transition-all ${
+                            index === currentImageIndex 
+                              ? 'bg-accent-lime w-6' 
+                              : 'bg-white/50 hover:bg-white/80'
+                          }`}
+                          aria-label={`Go to image ${index + 1}`}
+                        />
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             </motion.div>
