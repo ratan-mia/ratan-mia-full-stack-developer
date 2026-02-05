@@ -1,280 +1,384 @@
 'use client';
-
-import CaseStudyDetail from '@/app/components/case-studies/CaseStudyDetail';
+import { motion } from 'framer-motion';
+import { ArrowLeft, Users, Zap, Award, TrendingUp, CheckCircle2, Gift, Smartphone } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function GamifyCaseStudy() {
-  const project = {
-    id: 'gamify',
-    title: 'Gamify (PieQR)',
-    subtitle: 'QR Loyalty & Engagement Platform',
-    category: 'SaaS Product',
-    type: 'featured',
-    year: '2024',
-    status: 'live',
-    client: 'FMCG & Automotive Brands',
-    thumbnail: '/images/projects/pieqr/screenshots/home-screen.jpg',
-    images: [
-      '/images/projects/pieqr/screenshots/home-screen.jpg',
-      '/images/projects/pieqr/screenshots/game-screen.jpg',
-      '/images/projects/pieqr/screenshots/game-2-screen.jpg',
-      '/images/projects/pieqr/screenshots/wallet.jpg',
-      '/images/projects/pieqr/screenshots/gifts.jpg',
-      '/images/projects/pieqr/screenshots/trasactions-insights.jpg',
-    ],
-    description: 'Complete engagement engine designed for FMCG, oil companies, automotive parts, beverage brands, and nationwide campaigns. Features QR-based loyalty system with gamification, fraud detection, and multi-tier reward management.',
-    shortDescription: 'QR-based loyalty platform with gamification for nationwide campaigns',
-    
-    challenge: 'FMCG and automotive brands needed a scalable engagement platform to track product distribution, prevent fraud, and incentivize customer loyalty across 64 districts while managing multiple user categories with unique verification requirements.',
-    
-    solution: 'Built a comprehensive React Native mobile app with Node.js backend featuring QR scanning, gamification (Spin Wheel & Flip Card), category-based user profiles, geo-tracking, fraud detection algorithms, and a powerful admin dashboard with real-time analytics and heat map visualizations.',
-    
-    keyHighlights: [
-      {
-        title: 'Multi-Category User System',
-        description: '4 user types (Customer, Driver, Retailer, Mechanic) with unique verification workflows'
-      },
-      {
-        title: 'Advanced Fraud Prevention',
-        description: 'Device fingerprinting, geo-location tracking, and pattern recognition algorithms'
-      },
-      {
-        title: 'Real-Time Distribution Analytics',
-        description: 'Heat maps and insights down to store/shop level across entire country'
-      },
-      {
-        title: 'Tier-Based Reward System',
-        description: 'Dynamic membership tiers with automated eligibility and benefits'
-      }
-    ],
-    
-    technologies: {
-      frontend: ['React Native', 'Expo SDK', 'Redux Toolkit', 'TypeScript', 'React Navigation'],
-      backend: ['Node.js', 'Express.js', 'PostgreSQL', 'Redis', 'JWT Auth'],
-      features: ['QR Scanner', 'OTP Verification', 'Geo-tracking', 'Game Engine', 'Fraud Detection'],
-      payment: ['bKash', 'Nagad', 'SSL Commerce', 'Mobile Recharge API'],
-      devops: ['Docker', 'AWS EC2', 'S3', 'CloudFront', 'PM2']
-    },
-    
-    detailedFeatures: [
-      {
-        title: 'QR Scan & Authentication System',
-        description: 'Entry point featuring secure QR code scanning with unique code validation, OTP-based phone verification, and geo-location capture for campaign tracking. Supports bilingual interface (English/Bangla) with seamless flow from scan to dashboard access.',
-        image: '/images/projects/pieqr/screenshots/home-screen.jpg',
-        badge: 'Core Feature',
-        highlights: [
-          'Unique QR code generation with batch export capabilities',
-          'OTP verification with SMS integration and retry logic',
-          'Device fingerprinting for security',
-          'Location capture on initial login for distribution analytics',
-          'Profile completion check before redemption actions',
-          'Language toggle for English/Bangla support'
-        ],
-        technologies: ['React Native Camera', 'Expo Location', 'Twilio SMS', 'JWT']
-      },
-      {
-        title: 'Gamification Module - Spin Wheel & Flip Card',
-        description: 'Engaging game mechanics with probability-based reward systems. Features two game types with dynamic configuration from admin panel, membership tier-based prize eligibility, and multiple prize types including coins, physical gifts, cashback, and try again options.',
-        image: '/images/projects/pieqr/screenshots/game-screen.jpg',
-        badge: 'User Engagement',
-        highlights: [
-          'Spin Wheel game with smooth animations and haptic feedback',
-          'Flip Card matching game with multiple difficulty levels',
-          'Probability engine with configurable win rates per tier',
-          '4 prize types: Coins, Physical Gifts, Cashback, Try Again',
-          'Post-game flow with immediate redemption or scan again option',
-          'Congratulations popup with reward details',
-          'Game history tracking and analytics'
-        ],
-        technologies: ['React Native Reanimated', 'Lottie Animations', 'Redux']
-      },
-      {
-        title: 'Digital Wallet & Rewards System',
-        description: 'Comprehensive wallet system featuring coin balance management, transaction history, redemption request submission, and status tracking. Supports multiple redemption types including physical gifts, mobile recharge, and digital wallet transfers.',
-        image: '/images/projects/pieqr/screenshots/wallet.jpg',
-        highlights: [
-          'Real-time coin balance with transaction history',
-          'Redemption request submission with admin approval workflow',
-          'Status tracking: Pending, Approved, Rejected with notifications',
-          'Multiple redemption types: Physical gifts, Mobile recharge, Nagad, bKash',
-          'Gift catalog with tier-based filtering',
-          'Campaign duration and availability status indicators',
-          'Redemption history with export capabilities'
-        ],
-        technologies: ['PostgreSQL', 'Redis Cache', 'Push Notifications']
-      },
-      {
-        title: 'Category-Specific Profile Management',
-        description: 'Advanced profile system supporting 4 user categories (Customer, Driver, Retailer, Mechanic) with unique document verification workflows. Each category has tailored fields, mandatory document uploads, and admin verification processes.',
-        image: '/images/projects/pieqr/screenshots/home-screen.jpg',
-        highlights: [
-          'Customer: Vehicle details, ID document upload',
-          'Driver: Driving license (front/back), vehicle model/year',
-          'Retailer: Trade License, BIN Certificate, shop images, business card',
-          'Mechanic: Workshop details, mechanic ID, association documents',
-          'Profile completion percentage tracking',
-          'Document verification status indicators',
-          'Admin review and approval dashboard',
-          'Multiple image upload with compression'
-        ],
-        technologies: ['React Native Image Picker', 'S3', 'Image Compression']
-      },
-      {
-        title: 'Interactive Gift Catalog',
-        description: 'Beautifully designed gift catalog with grid layout, detailed product views, and smart filtering. Shows eligibility criteria, availability status, campaign duration, and step-by-step redemption instructions with terms and conditions.',
-        image: '/images/projects/pieqr/screenshots/gifts.jpg',
-        highlights: [
-          'Grid-based responsive layout with high-quality images',
-          'Gift detail modal with specifications',
-          'Tier + points eligibility criteria display',
-          'Real-time availability status',
-          'Campaign duration countdown',
-          'Step-by-step redemption process',
-          'Search and filter by category',
-          'Favorites and wishlist functionality'
-        ],
-        technologies: ['React Native FlatList', 'Image CDN', 'Search Algorithm']
-      },
-      {
-        title: 'Admin Dashboard & Analytics',
-        description: 'Powerful admin panel with Google Analytics-style charts, real-time data visualization, and comprehensive reports. Features heat maps for distribution tracking, user management, QR generation, and campaign performance monitoring.',
-        image: '/images/projects/pieqr/screenshots/trasactions-insights.jpg',
-        badge: 'Admin Panel',
-        highlights: [
-          'Interactive charts with date range filters',
-          'Key metrics: Total Scans, Users, Rewards, ROI',
-          'Scan and redemption trends (daily/monthly/yearly)',
-          'Heat map with district-level distribution insights',
-          'User list with advanced filtering and search',
-          'QR code batch generation with PDF export',
-          'Marketplace product management',
-          'Game probability configuration',
-          'Redemption approval workflow',
-          'Export functionality for all reports'
-        ],
-        technologies: ['React.js', 'Chart.js', 'Leaflet Maps', 'PDF Generation']
-      }
-    ],
-    
-    features: [
-      'QR Scan Engine with unique code tracking and validation',
-      'OTP Verification with device tracking and security',
-      'Spin Wheel and Flip Card game systems with animations',
-      'Probability-based reward logic with admin configuration',
-      'Digital wallet with coin balance and transaction history',
-      'Multi-category user profiles (Customer, Driver, Retailer, Mechanic)',
-      'Category-specific document upload and verification',
-      'Geo-tagged scans for distribution analytics and tracking',
-      'Fraud detection and abuse prevention algorithms',
-      'Admin dashboard with real-time visualization and reports',
-      'Bilingual support (English/Bangla) with language toggle',
-      'Gift catalog with tier-based eligibility filtering',
-      'Multiple redemption types (Physical gifts, Mobile recharge, Digital wallets)',
-      'Campaign duration management with availability tracking',
-      'Push notifications for rewards and updates',
-      'Batch QR code generation with PDF export',
-      'Heat map visualization with district-level insights',
-      'User verification workflow with document review',
-      'Transaction history with export capabilities',
-      'Mobile recharge integration (All Operators)',
-      'bKash & Nagad wallet transfers',
-      'Gift inventory management',
-      'Campaign scheduling and automation',
-      'Performance analytics by user category',
-      'Scan pattern detection for fraud prevention',
-      'Device fingerprinting and IP tracking',
-      'Profile completion enforcement',
-      'Multi-language content management',
-      'SMS notification system',
-      'Email verification and notifications',
-      'Role-based admin access control',
-      'Audit logs for all admin actions',
-      'Data export for business intelligence',
-      'API integration for third-party services',
-      'Offline mode with sync capability',
-      'Image compression and optimization',
-      'CDN integration for fast asset delivery'
-    ],
-    
-    technicalDetails: [
-      {
-        title: 'Scalable Architecture',
-        description: 'Built with microservices architecture to handle high traffic and concurrent users.',
-        specs: [
-          'Node.js cluster mode for load balancing',
-          'Redis caching for frequent queries',
-          'PostgreSQL with optimized indexes',
-          'AWS S3 for media storage',
-          'CloudFront CDN for global delivery'
-        ]
-      },
-      {
-        title: 'Security Implementation',
-        description: 'Multi-layered security with encryption, authentication, and fraud prevention.',
-        specs: [
-          'JWT-based authentication with refresh tokens',
-          'Device fingerprinting for fraud detection',
-          'IP whitelisting for admin access',
-          'SQL injection prevention with parameterized queries',
-          'Rate limiting on all API endpoints'
-        ]
-      },
-      {
-        title: 'Mobile Performance',
-        description: 'Optimized React Native app for smooth user experience.',
-        specs: [
-          'Code splitting and lazy loading',
-          'Image optimization and caching',
-          'Offline-first architecture with sync',
-          'Hermes JavaScript engine',
-          'Native module integration for camera'
-        ]
-      },
-      {
-        title: 'Analytics & Monitoring',
-        description: 'Comprehensive tracking and error monitoring system.',
-        specs: [
-          'Custom event tracking',
-          'Error logging with Sentry',
-          'Performance monitoring',
-          'User behavior analytics',
-          'Real-time dashboard updates'
-        ]
-      }
-    ],
-    
-    impact: [
-      { value: '10x', label: 'Increase in customer engagement' },
-      { value: '64', label: 'Districts covered nationwide' },
-      { value: '85%', label: 'Reduction in fraudulent claims' },
-      { value: '50K+', label: 'Active users in 3 months' },
-      { value: '4', label: 'User categories supported' },
-      { value: '100K+', label: 'Daily QR scans processed' },
-      { value: '95%', label: 'User satisfaction rate' },
-      { value: '24/7', label: 'System uptime' }
-    ],
-    
-    challenges: [
-      {
-        title: 'Fraud Prevention',
-        description: 'Implemented device fingerprinting, geo-location tracking, and pattern recognition to prevent duplicate scans and fraudulent redemptions.',
-      },
-      {
-        title: 'Scalability',
-        description: 'Designed system to handle 100,000+ daily scans with Redis caching and optimized database queries.',
-      },
-      {
-        title: 'Offline Support',
-        description: 'Built offline-first architecture allowing users to scan QR codes without internet and sync later.',
-      },
-      {
-        title: 'Multi-tier Management',
-        description: 'Created flexible tier system supporting different user categories with unique benefits and redemption rules.',
-      },
-    ],
-    
-    liveUrl: '#',
-    demoVideo: null,
-  };
+  const features = [
+    { icon: Zap, title: "QR Code Scanner", desc: "Instant product verification with unique codes" },
+    { icon: Smartphone, title: "OTP Authentication", desc: "Secure phone-based user verification" },
+    { icon: Gift, title: "Spin Wheel & Flip Card", desc: "Engaging probability-based games" },
+    { icon: Award, title: "Reward Engine", desc: "Dynamic prize distribution system" },
+    { icon: Users, title: "Multi-Tier Users", desc: "Customer/Driver/Retailer/Mechanic categories" },
+    { icon: CheckCircle2, title: "Digital Wallet", desc: "Coin balance and redemption tracking" },
+  ];
 
-  return <CaseStudyDetail project={project} />;
+  const screenshots = [
+    { src: "/images/projects/pieqr/screenshots/home-screen.jpg", title: "Home & QR Scanner" },
+    { src: "/images/projects/pieqr/screenshots/game-screen.jpg", title: "Spin Wheel Game" },
+    { src: "/images/projects/pieqr/screenshots/game-2-screen.jpg", title: "Flip Card Game" },
+    { src: "/images/projects/pieqr/screenshots/wallet.jpg", title: "Digital Wallet" },
+    { src: "/images/projects/pieqr/screenshots/gifts.jpg", title: "Gifts Catalog" },
+    { src: "/images/projects/pieqr/screenshots/trasactions-insights.jpg", title: "Transaction Insights" },
+  ];
+
+  const techStack = [
+    { category: "Frontend", items: ["React Native", "Expo SDK", "Redux Toolkit", "TypeScript"] },
+    { category: "Backend", items: ["Node.js", "Express.js", "PostgreSQL", "Redis"] },
+    { category: "Features", items: ["QR Scanner", "OTP System", "Geo-tracking", "Fraud Detection"] },
+    { category: "Payment", items: ["bKash", "Nagad", "SSL Commerce", "Mobile Recharge"] },
+  ];
+
+  return (
+    <main className="bg-white text-black overflow-hidden">
+      
+      {/* Hero Section - Following Design Guidelines */}
+      <section className="relative min-h-screen w-full overflow-hidden bg-accent-lime">
+        {/* Decorative floating elements - desktop only */}
+        <div className="absolute inset-0 z-10 pointer-events-none hidden lg:block">
+          <motion.div 
+            animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
+            transition={{ duration: 5, repeat: Infinity }}
+            className="absolute top-40 right-20 w-24 h-24 rounded-2xl bg-black/5"
+          />
+          <motion.div 
+            animate={{ y: [0, 20, 0], rotate: [0, -5, 0] }}
+            transition={{ duration: 6, repeat: Infinity }}
+            className="absolute bottom-40 left-20 w-32 h-32 rounded-full bg-black/5"
+          />
+        </div>
+
+        {/* Main content */}
+        <div className="relative z-20 min-h-screen flex items-center">
+          <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-32 w-full">
+            {/* Back Button */}
+            <Link 
+              href="/case-studies"
+              className="inline-flex items-center gap-2 text-black/70 hover:text-black mb-12 font-bold transition-colors group"
+            >
+              <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+              Back to Case Studies
+            </Link>
+
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              {/* Content */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                {/* Badge */}
+                <div className="inline-block px-6 py-2 bg-black/15 text-black rounded-full text-sm font-bold mb-6">
+                  🎮 LOYALTY & GAMIFICATION
+                </div>
+
+                {/* Hero Title */}
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-black mb-6 leading-tight">
+                  Gamify<br />
+                  <span className="text-black/80">Loyalty Platform</span>
+                </h1>
+                
+                {/* Description */}
+                <p className="text-xl text-black/80 mb-8 max-w-xl leading-relaxed">
+                  QR-powered engagement platform with interactive games, digital wallet, and 
+                  comprehensive analytics for FMCG and automotive brands nationwide.
+                </p>
+
+                {/* Quick Stats */}
+                <div className="grid grid-cols-2 gap-4 mb-8">
+                  {[
+                    { icon: Users, label: "Active Users", value: "8K+" },
+                    { icon: Zap, label: "QR Scans", value: "50K+" },
+                    { icon: Award, label: "Games Played", value: "25K+" },
+                    { icon: TrendingUp, label: "Redemptions", value: "3K+" },
+                  ].map((stat, idx) => {
+                    const Icon = stat.icon;
+                    return (
+                      <motion.div
+                        key={idx}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.2 + idx * 0.1 }}
+                        className="bg-black/10 backdrop-blur-sm p-4 rounded-2xl"
+                      >
+                        <Icon className="w-6 h-6 text-black mb-2" />
+                        <div className="text-2xl font-extrabold text-black">{stat.value}</div>
+                        <div className="text-sm font-semibold text-black/70">{stat.label}</div>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+
+                {/* Tech Tags */}
+                <div className="flex flex-wrap gap-2">
+                  {["React Native", "Node.js", "PostgreSQL", "QR Scanner"].map((tech) => (
+                    <span key={tech} className="px-4 py-2 bg-black/15 text-black rounded-lg text-sm font-bold">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Hero Image */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="relative"
+              >
+                <div className="relative h-[600px] rounded-3xl overflow-hidden shadow-2xl border-4 border-black/10">
+                  <Image
+                    src="/images/projects/pieqr/screenshots/home-screen.jpg"
+                    alt="Gamify Platform"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+                {/* Floating Badge */}
+                <div className="absolute -top-6 -left-6 bg-black text-accent-lime px-6 py-4 rounded-2xl font-extrabold text-xl shadow-2xl">
+                  2025
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Challenge & Solution - White Background */}
+      <section className="relative w-full py-20 px-4 md:px-6 lg:px-8 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="text-center mb-12">
+              <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-bold mb-6">
+                THE PROBLEM
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-4">
+                Complex <span className="text-accent-lime">Engagement Challenge</span>
+              </h2>
+              <p className="text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed">
+                FMCG and automotive brands needed a scalable platform to track distribution, 
+                prevent fraud, and drive customer loyalty across 64 districts.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Challenge */}
+              <div className="p-8 rounded-3xl bg-red-50 border-2 border-red-200">
+                <div className="text-4xl mb-4">🎯</div>
+                <h3 className="text-2xl font-bold mb-4">The Challenge</h3>
+                <ul className="space-y-3 text-gray-700">
+                  <li className="flex items-start gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-red-500 mt-2" />
+                    <span>Track product distribution across entire country</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-red-500 mt-2" />
+                    <span>Prevent QR code fraud and duplicate scans</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-red-500 mt-2" />
+                    <span>Manage 4 different user categories with unique workflows</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-red-500 mt-2" />
+                    <span>Complex reward tiers and eligibility rules</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Solution */}
+              <div className="p-8 rounded-3xl bg-green-50 border-2 border-green-200">
+                <div className="text-4xl mb-4">💡</div>
+                <h3 className="text-2xl font-bold mb-4">The Solution</h3>
+                <ul className="space-y-3 text-gray-700">
+                  <li className="flex items-start gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-500 mt-2" />
+                    <span>QR scanning with geo-location tracking and device fingerprinting</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-500 mt-2" />
+                    <span>Interactive games (Spin Wheel & Flip Card) with probability engine</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-500 mt-2" />
+                    <span>Category-based profiles with document verification</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-500 mt-2" />
+                    <span>Admin dashboard with heat maps and real-time analytics</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Features Grid - Gray Background */}
+      <section className="relative w-full py-20 px-4 md:px-6 lg:px-8 bg-gray-50">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="text-center mb-12">
+              <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-bold mb-6">
+                CORE FEATURES
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-4">
+                Complete Engagement <span className="text-accent-lime">Ecosystem</span>
+              </h2>
+            </div>
+
+            {/* Feature Cards with Lime Background */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {features.map((feature, index) => {
+                const Icon = feature.icon;
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="p-8 rounded-3xl bg-accent-lime text-black hover:shadow-2xl transition-all duration-500 group"
+                  >
+                    {/* Icon */}
+                    <div className="mb-6 w-16 h-16 rounded-2xl flex items-center justify-center bg-black/15">
+                      <Icon className="w-8 h-8 text-black" />
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="text-2xl lg:text-3xl font-extrabold mb-4">{feature.title}</h3>
+
+                    {/* Description */}
+                    <p className="text-black/80 leading-relaxed">{feature.desc}</p>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Screenshots Gallery - White Background */}
+      <section className="relative w-full py-20 px-4 md:px-6 lg:px-8 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">App Screenshots</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+              Intuitive interface designed for maximum engagement
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+            {screenshots.map((screenshot, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.1 }}
+                className="group relative aspect-[9/16] rounded-2xl overflow-hidden border border-gray-200 hover:shadow-lg transition-all"
+              >
+                <Image
+                  src={screenshot.src}
+                  alt={screenshot.title}
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                  <span className="text-white font-bold text-sm">{screenshot.title}</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Tech Stack - Gray Background */}
+      <section className="relative w-full py-20 px-4 md:px-6 lg:px-8 bg-gray-50">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-bold mb-6">
+              TECHNOLOGY
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Tech Stack</h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {techStack.map((stack, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="p-6 bg-white rounded-2xl border border-gray-200 hover:border-accent-lime/50 hover:shadow-lg transition-all"
+              >
+                <h3 className="font-bold text-lg mb-4 text-black">{stack.category}</h3>
+                <ul className="space-y-2">
+                  {stack.items.map((item) => (
+                    <li key={item} className="text-gray-600 text-sm flex items-center gap-2">
+                      <div className="w-1.5 h-1.5 rounded-full bg-accent-lime" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Impact & Results - Lime Background */}
+      <section className="relative w-full py-20 px-4 md:px-6 lg:px-8 bg-accent-lime">
+        <div className="max-w-6xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-4xl md:text-5xl font-extrabold mb-8 text-black">
+              Measurable Business Impact
+            </h2>
+            <p className="text-2xl text-black/80 mb-12 max-w-3xl mx-auto leading-relaxed">
+              Increased brand engagement by 200% while providing valuable customer insights 
+              through gamified interactions and purchase tracking.
+            </p>
+
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              {[
+                { value: "200%", label: "Brand Engagement Increase" },
+                { value: "8K+", label: "Active Users Nationwide" },
+                { value: "64", label: "Districts Covered" },
+              ].map((stat, idx) => (
+                <div key={idx} className="bg-black/10 p-8 rounded-3xl">
+                  <div className="text-5xl font-extrabold text-black mb-2">{stat.value}</div>
+                  <div className="text-black/80 font-bold">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+
+            <Link 
+              href="/case-studies"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-black text-accent-lime rounded-xl font-bold hover:shadow-2xl transition-all hover:scale-105"
+            >
+              Explore More Case Studies
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+    </main>
+  );
 }
