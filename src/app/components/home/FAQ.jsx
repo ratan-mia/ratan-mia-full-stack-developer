@@ -2,17 +2,17 @@
 
 import { AnimatePresence, motion, useInView } from 'framer-motion';
 import {
-  ArrowRight,
-  Calendar,
-  Clock,
-  Code2,
-  CreditCard,
-  DollarSign,
-  Globe,
-  Mail,
-  Minus,
-  Plus,
-  Shield
+    ArrowRight,
+    Calendar,
+    Clock,
+    Code2,
+    CreditCard,
+    DollarSign,
+    Globe,
+    Mail,
+    Minus,
+    Plus,
+    Shield
 } from 'lucide-react';
 import { useRef, useState } from 'react';
 

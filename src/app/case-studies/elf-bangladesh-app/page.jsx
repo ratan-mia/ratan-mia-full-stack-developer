@@ -1,4 +1,4 @@
-import { ArrowLeft, Award, Calendar, ExternalLink, Users, Zap, Smartphone, ShoppingCart, Trophy, MapPin, Wallet, Star } from 'lucide-react';
+import { ArrowLeft, MapPin, ShoppingCart, Star, Trophy, Wallet, Zap } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 

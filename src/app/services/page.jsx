@@ -1,7 +1,7 @@
 import Contact from '@/components/home/Contact';
 import GetQuote from '@/components/home/GetQuote';
+import { ArrowRight, Bot, Calendar, Code2, DollarSign, Globe, Handshake, Settings, ShoppingCart, Smartphone, TrendingUp, Zap } from 'lucide-react';
 import Image from 'next/image';
-import { Smartphone, Code2, ShoppingCart, Globe, Settings, Zap, Bot, DollarSign, TrendingUp, Handshake, Calendar, ArrowRight } from 'lucide-react';
 
 export const metadata = {
   title: 'Mobile & Web Development Services - Ratan Mia | Full Stack Solutions',

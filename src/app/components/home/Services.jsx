@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { ArrowRight, Code2, Database, Globe, Layers, ShoppingCart, Smartphone, Star, TrendingUp, Zap, Palette, Cloud, BarChart3 } from 'lucide-react';
+import { ArrowRight, BarChart3, Cloud, Code2, Database, Globe, Layers, Palette, ShoppingCart, Smartphone, Star, TrendingUp, Zap } from 'lucide-react';
 import { useRef } from 'react';
 
 // --- Enhanced Service Card Component ---
