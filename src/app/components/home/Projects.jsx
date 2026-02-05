@@ -207,7 +207,7 @@ const ProjectRow = ({ project, index, setHoveredImage, inView }) => (
   <motion.div
     onMouseEnter={() => setHoveredImage(project.image)}
     onMouseLeave={() => setHoveredImage(null)}
-    className="group grid grid-cols-12 items-center gap-4 lg:gap-6 py-8 lg:py-12 border-b border-gray-800 transition-all duration-500 hover:bg-gray-800/30 rounded-lg px-4 lg:px-6"
+    className="group grid grid-cols-12 items-center gap-4 lg:gap-6 py-8 lg:py-12 border-b border-white/5 transition-all duration-500 hover:bg-white/5 rounded-2xl px-4 lg:px-8"
     initial={{ opacity: 0, x: -30 }}
     animate={inView ? { opacity: 1, x: 0 } : {}}
     transition={{ 
@@ -218,15 +218,15 @@ const ProjectRow = ({ project, index, setHoveredImage, inView }) => (
     whileHover={{ x: 8, scale: 1.01 }}
   >
     {/* Year and Icon */}
-    <div className="col-span-3 lg:col-span-2 flex items-center gap-3">
-      <div className="w-12 h-12 rounded-xl bg-gray-800 group-hover:bg-accent-lime group-hover:text-black flex items-center justify-center transition-all duration-300">
-        <project.icon className="w-6 h-6 text-gray-400 group-hover:text-black" />
+    <div className="col-span-3 lg:col-span-2 flex items-center gap-4">
+      <div className="w-16 h-16 rounded-2xl bg-accent-lime/10 border-2 border-accent-lime/20 group-hover:bg-accent-lime group-hover:border-accent-lime flex items-center justify-center transition-all duration-300 group-hover:rotate-12">
+        <project.icon className="w-8 h-8 text-accent-lime group-hover:text-black transition-colors" />
       </div>
       <div className="hidden lg:block">
-        <div className="text-accent-lime font-bold text-lg group-hover:scale-105 transition-transform">
+        <div className="text-accent-lime font-black text-xl tracking-[-0.02em]">
           {project.year}
         </div>
-        <div className="text-gray-500 text-sm font-medium">
+        <div className="text-gray-500 text-sm font-semibold uppercase tracking-wider">
           {project.category}
         </div>
       </div>
@@ -234,10 +234,10 @@ const ProjectRow = ({ project, index, setHoveredImage, inView }) => (
 
     {/* Project Details */}
     <div className="col-span-8 lg:col-span-6">
-      <h3 className="text-2xl lg:text-3xl font-bold text-gray-200 group-hover:text-accent-lime transition-colors mb-2">
+      <h3 className="text-2xl lg:text-3xl font-black text-white group-hover:text-accent-lime transition-colors mb-3 tracking-[-0.02em] leading-tight">
         {project.title}
       </h3>
-      <p className="text-gray-500 group-hover:text-gray-300 text-sm lg:text-base mb-3 transition-colors">
+      <p className="text-gray-400 group-hover:text-gray-200 text-base lg:text-lg mb-4 transition-colors leading-[1.6]">
         {project.description}
       </p>
       {/* Project URL */}
@@ -256,19 +256,21 @@ const ProjectRow = ({ project, index, setHoveredImage, inView }) => (
       )}
       {/* Case Study Link */}
       {project.caseStudyUrl && (
-        <a
+        <motion.a
           href={project.caseStudyUrl}
-          className="inline-flex items-center gap-2 px-4 py-2 mb-3 bg-accent-lime text-black text-sm font-semibold rounded-lg hover:bg-accent-lime/90 transition-all duration-300 hover:scale-105"
+          className="inline-flex items-center gap-2 px-5 py-2.5 mb-3 bg-accent-lime text-black text-sm font-bold rounded-xl hover:bg-lime-300 transition-all duration-300 shadow-lg hover:shadow-xl uppercase tracking-wider"
+          whileHover={{ scale: 1.05, y: -2 }}
+          whileTap={{ scale: 0.95 }}
         >
           <span>View Case Study</span>
-          <ExternalLink className="w-4 h-4" />
-        </a>
+          <ArrowRight className="w-4 h-4" />
+        </motion.a>
       )}
       <div className="flex flex-wrap gap-2">
         {project.technologies.map(tech => (
           <span 
             key={tech}
-            className="px-3 py-1 text-xs lg:text-sm bg-gray-800 group-hover:bg-gray-700 text-gray-400 group-hover:text-gray-200 rounded-full font-medium transition-all duration-300 hover:bg-accent-lime hover:text-black cursor-default"
+            className="px-4 py-2 text-xs lg:text-sm bg-white/5 border border-white/10 group-hover:bg-accent-lime/10 group-hover:border-accent-lime/30 text-gray-400 group-hover:text-accent-lime rounded-lg font-semibold transition-all duration-300 hover:bg-accent-lime hover:text-black cursor-default"
           >
             {tech}
           </span>
@@ -279,10 +281,10 @@ const ProjectRow = ({ project, index, setHoveredImage, inView }) => (
     {/* Client Info and External Link */}
     <div className="col-span-1 lg:col-span-4 flex items-center justify-end gap-4">
       <div className="hidden lg:block text-right">
-        <div className="text-gray-200 group-hover:text-accent-lime font-bold text-lg transition-colors">
+        <div className="text-white group-hover:text-accent-lime font-bold text-lg transition-colors tracking-[-0.01em]">
           {project.client}
         </div>
-        <div className="text-gray-500 text-sm">Client</div>
+        <div className="text-gray-500 text-sm font-semibold uppercase tracking-wider">Client</div>
       </div>
       {project.liveUrl && project.liveUrl !== '#' && (
         <a
@@ -301,10 +303,10 @@ const ProjectRow = ({ project, index, setHoveredImage, inView }) => (
 const FilterButton = ({ category, filter, setFilter, index, inView }) => (
   <motion.button
     onClick={() => setFilter(category)}
-    className={`px-6 py-3 rounded-xl text-sm font-semibold uppercase tracking-wider transition-all duration-300 ${
+    className={`px-6 py-3 rounded-xl text-sm font-bold uppercase tracking-[0.1em] transition-all duration-300 ${
       filter === category
-        ? 'bg-accent-lime text-black shadow-lime-glow scale-105'
-        : 'bg-gray-800 border border-gray-700 text-gray-300 hover:bg-gray-700 hover:text-white hover:border-gray-600 hover:scale-105'
+        ? 'bg-accent-lime text-black shadow-xl shadow-accent-lime/20'
+        : 'bg-white/5 border-2 border-white/10 text-gray-300 hover:bg-accent-lime/10 hover:text-accent-lime hover:border-accent-lime/30'
     }`}
     initial={{ opacity: 0, y: 20 }}
     animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -313,7 +315,7 @@ const FilterButton = ({ category, filter, setFilter, index, inView }) => (
       delay: 0.3 + index * 0.1,
       ease: [0.23, 1, 0.32, 1]
     }}
-    whileHover={{ y: -2 }}
+    whileHover={{ y: -2, scale: 1.05 }}
     whileTap={{ scale: 0.95 }}
   >
     {category === 'all' ? 'All Projects' : category}
@@ -344,13 +346,18 @@ const Projects = () => {
     : PROJECTS_DATA.filter(project => project.category === filter);
 
   return (
-    <section ref={ref} className="py-24 lg:py-32 bg-gray-900 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(204,255,0,0.08),rgba(255,255,255,0))] relative" id="projects">
+    <section ref={ref} className="py-24 lg:py-32 bg-black relative overflow-hidden" id="projects">
+      {/* Background Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent-lime/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent-lime/5 rounded-full blur-3xl" />
+      </div>
         
       {/* Enhanced Floating Image on Hover */}
       <AnimatePresence>
         {hoveredImage && (
           <motion.div
-            className="hidden lg:block fixed top-0 left-0 w-96 h-80 rounded-2xl overflow-hidden shadow-2xl z-50 pointer-events-none border-2 border-accent-lime/30"
+            className="hidden lg:block fixed top-0 left-0 w-96 h-80 rounded-2xl overflow-hidden shadow-2xl z-50 pointer-events-none bg-black p-3"
             style={{
               x: mousePosition.x + 30,
               y: mousePosition.y - 200,
@@ -365,12 +372,14 @@ const Projects = () => {
               duration: 0.4
             }}
           >
-            <img 
-              src={hoveredImage} 
-              alt="Project preview" 
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+            <div className="w-full h-full border-2 border-accent-lime/30 rounded-xl overflow-hidden relative">
+              <img 
+                src={hoveredImage} 
+                alt="Project preview" 
+                className="w-full h-full object-contain"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -384,23 +393,26 @@ const Projects = () => {
         >
           <SectionHeader inView={isInView}>
             <motion.div
-              className="inline-flex items-center gap-4 mb-8"
+              className="inline-flex items-center gap-5 mb-8"
               variants={itemVariants}
             >
               <div className="w-12 h-1 bg-accent-lime" />
-              <span className="text-gray-400 font-semibold text-sm uppercase tracking-wider">Portfolio</span>
+              <span className="text-gray-400 font-semibold text-sm uppercase tracking-[0.15em]">Portfolio</span>
+              <div className="w-12 h-1 bg-accent-lime" />
             </motion.div>
             <motion.h2 
-              className="text-4xl lg:text-5xl xl:text-6xl font-extrabold text-white mb-6 leading-tight"
+              className="text-4xl lg:text-6xl xl:text-[72px] font-black text-white mb-8 leading-[1.1] tracking-[-0.04em]"
               variants={itemVariants}
             >
-              Selected <span className="text-accent-lime">Projects</span>
+              Selected Work &
+              <br />
+              <span className="text-accent-lime">Case Studies</span>
             </motion.h2>
             <motion.p 
-              className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
+              className="text-xl lg:text-[22px] text-gray-400 max-w-3xl mx-auto leading-[1.6]"
               variants={itemVariants}
             >
-              A comprehensive collection of my work, spanning from Chrome extensions and mobile apps to complex e-commerce platforms and corporate websites.
+              Real-world projects delivering tangible results for clients across industries—from mobile apps to enterprise solutions.
             </motion.p>
           </SectionHeader>
 
@@ -423,17 +435,19 @@ const Projects = () => {
 
           {/* Projects Counter */}
           <motion.div 
-            className="text-center mb-12"
+            className="text-center mb-12 flex items-center justify-center gap-3"
             variants={itemVariants}
           >
-            <span className="text-gray-400 font-medium">
-              Showing {filteredProjects.length} of {PROJECTS_DATA.length} projects
+            <div className="h-px w-12 bg-accent-lime/30" />
+            <span className="text-gray-400 font-semibold uppercase tracking-wider text-sm">
+              Showing <span className="text-accent-lime font-black">{filteredProjects.length}</span> of <span className="text-accent-lime font-black">{PROJECTS_DATA.length}</span> projects
             </span>
+            <div className="h-px w-12 bg-accent-lime/30" />
           </motion.div>
 
           {/* Projects List */}
           <motion.div 
-            className="border-t border-gray-800"
+            className="border-t border-white/10"
             variants={itemVariants}
           >
             <AnimatePresence mode="wait">
@@ -451,28 +465,30 @@ const Projects = () => {
           
           {/* Enhanced CTA */}
           <motion.div 
-            className="text-center mt-24"
+            className="text-center mt-24 pt-16 border-t border-white/10"
             variants={itemVariants}
           >
-            <div className="space-y-6">
-              <h3 className="text-2xl lg:text-3xl font-bold text-white">
-                Ready to Start Your Project?
+            <div className="space-y-8">
+              <h3 className="text-3xl lg:text-4xl font-black text-white tracking-[-0.02em]">
+                Let's Build Something
+                <br />
+                <span className="text-accent-lime">Amazing Together</span>
               </h3>
-              <p className="text-gray-400 max-w-md mx-auto">
-                Let's discuss your ideas and build something amazing together.
+              <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-[1.6]">
+                Have a project in mind? Let's discuss your ideas and create a solution that exceeds expectations.
               </p>
               <motion.a 
                 href="#contact" 
-                className="bg-accent-lime text-black font-bold px-10 py-4 rounded-xl hover:bg-lime-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-lime-glow transition-all duration-300 inline-flex items-center justify-center gap-3 text-lg"
-                whileHover={{ scale: 1.05 }}
+                className="bg-accent-lime text-black font-black px-12 py-5 rounded-2xl hover:bg-lime-300 transition-all duration-300 inline-flex items-center justify-center gap-3 text-lg shadow-xl hover:shadow-2xl shadow-accent-lime/20 uppercase tracking-wider"
+                whileHover={{ scale: 1.05, y: -4 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <span>Start a Project</span>
+                <span>Start Your Project</span>
                 <motion.div
                   whileHover={{ x: 4 }}
                   transition={{ type: "spring", stiffness: 400 }}
                 >
-                  <ArrowRight className="w-5 h-5" />
+                  <ArrowRight className="w-6 h-6" />
                 </motion.div>
               </motion.a>
             </div>
