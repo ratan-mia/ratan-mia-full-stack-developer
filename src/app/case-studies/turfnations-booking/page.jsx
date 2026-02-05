@@ -545,35 +545,6 @@ export default function TufLetCaseStudy() {
                     </div>
                   ))}
                 </div>
-
-                {/* Owner Dashboard Images */}
-                <div className="grid md:grid-cols-2 gap-8">
-                  <div className="group">
-                    <div className="relative w-full aspect-video rounded-2xl overflow-hidden mb-4 shadow-lg hover:shadow-2xl transition-shadow">
-                      <Image
-                        src="/images/projects/turflet/owners-dashboard.png"
-                        alt="Owner Dashboard Analytics"
-                        fill
-                        className="object-contain group-hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                    <h4 className="text-xl font-bold mb-2">Owner Dashboard Overview</h4>
-                    <p className="text-gray-600 leading-relaxed">Comprehensive analytics with revenue tracking, booking statistics, and performance metrics in real-time.</p>
-                  </div>
-
-                  <div className="group">
-                    <div className="relative w-full aspect-video rounded-2xl overflow-hidden mb-4 shadow-lg hover:shadow-2xl transition-shadow">
-                      <Image
-                        src="/images/projects/turflet/clients-revenue-details.png"
-                        alt="Revenue Details and Client Management"
-                        fill
-                        className="object-contain group-hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                    <h4 className="text-xl font-bold mb-2">Revenue & Client Details</h4>
-                    <p className="text-gray-600 leading-relaxed">Detailed revenue breakdown by client, booking history, and payment transaction records.</p>
-                  </div>
-                </div>
               </div>
 
               {/* Community Features */}
@@ -599,6 +570,144 @@ export default function TufLetCaseStudy() {
                     <p className="text-gray-600 leading-relaxed">Connect with fellow players, share experiences, and find playing partners in your area.</p>
                   </div>
                 </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Full Width - Owner Dashboard Overview */}
+          <section className="py-20 bg-white">
+            <div className="grid lg:grid-cols-2 gap-0 items-center">
+              {/* Left - Image */}
+              <div className="w-full">
+                <Image
+                  src="/images/projects/turflet/owners-dashboard.png"
+                  alt="Owner Dashboard Analytics Overview"
+                  width={1410}
+                  height={1182}
+                  className="w-full h-auto"
+                />
+              </div>
+
+              {/* Right - Content */}
+              <div className="px-8 md:px-12 lg:px-16 py-12">
+                <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
+                  📊 OWNER DASHBOARD
+                </div>
+                <h3 className="text-4xl md:text-5xl font-extrabold mb-6">Complete Analytics Overview</h3>
+                <p className="text-lg text-gray-600 leading-relaxed mb-8">
+                  Comprehensive analytics dashboard providing real-time insights into your turf business. Track revenue, monitor bookings, analyze customer behavior, and make data-driven decisions to grow your sports facility.
+                </p>
+
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-accent-lime rounded-xl flex items-center justify-center shrink-0">
+                      <BarChart className="w-6 h-6 text-black" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold mb-1">Real-Time Analytics</h4>
+                      <p className="text-gray-600 text-sm">Live dashboard showing booking trends, revenue growth, and occupancy rates with interactive charts</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-accent-lime rounded-xl flex items-center justify-center shrink-0">
+                      <DollarSign className="w-6 h-6 text-black" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold mb-1">Revenue Tracking</h4>
+                      <p className="text-gray-600 text-sm">Monitor daily, weekly, and monthly revenue with detailed breakdown by turf and time slot</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-accent-lime rounded-xl flex items-center justify-center shrink-0">
+                      <Calendar className="w-6 h-6 text-black" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold mb-1">Booking Statistics</h4>
+                      <p className="text-gray-600 text-sm">Track total bookings, cancellations, peak hours, and customer retention metrics</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-accent-lime rounded-xl flex items-center justify-center shrink-0">
+                      <Users className="w-6 h-6 text-black" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold mb-1">Customer Insights</h4>
+                      <p className="text-gray-600 text-sm">Analyze customer demographics, booking patterns, and identify your most valuable clients</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Full Width - Revenue & Client Details */}
+          <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
+            <div className="grid lg:grid-cols-2 gap-0 items-center">
+              {/* Left - Content */}
+              <div className="px-8 md:px-12 lg:px-16 py-12 order-2 lg:order-1">
+                <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
+                  💰 REVENUE MANAGEMENT
+                </div>
+                <h3 className="text-4xl md:text-5xl font-extrabold mb-6">Revenue & Client Details</h3>
+                <p className="text-lg text-gray-600 leading-relaxed mb-8">
+                  Detailed financial insights with comprehensive revenue breakdown by client, booking history, payment transactions, and payout management. Keep track of every penny and understand your business performance.
+                </p>
+
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-accent-lime rounded-xl flex items-center justify-center shrink-0">
+                      <DollarSign className="w-6 h-6 text-black" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold mb-1">Revenue Breakdown</h4>
+                      <p className="text-gray-600 text-sm">Detailed analysis of revenue by client, time period, and booking type with export options</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-accent-lime rounded-xl flex items-center justify-center shrink-0">
+                      <Users className="w-6 h-6 text-black" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold mb-1">Client Management</h4>
+                      <p className="text-gray-600 text-sm">Complete client profiles with booking history, spending patterns, and loyalty status</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-accent-lime rounded-xl flex items-center justify-center shrink-0">
+                      <Check className="w-6 h-6 text-black" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold mb-1">Payment Records</h4>
+                      <p className="text-gray-600 text-sm">Track all payment transactions, refunds, and pending payments with detailed records</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-accent-lime rounded-xl flex items-center justify-center shrink-0">
+                      <BarChart className="w-6 h-6 text-black" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold mb-1">Payout Management</h4>
+                      <p className="text-gray-600 text-sm">Request payouts, view transaction history, and manage your bank account details securely</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right - Image */}
+              <div className="w-full order-1 lg:order-2">
+                <Image
+                  src="/images/projects/turflet/clients-revenue-details.png"
+                  alt="Revenue Details and Client Management Dashboard"
+                  width={1485}
+                  height={1485}
+                  className="w-full h-auto"
+                />
               </div>
             </div>
           </section>
