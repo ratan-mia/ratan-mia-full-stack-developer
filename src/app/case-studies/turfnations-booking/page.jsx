@@ -201,17 +201,23 @@ export default function TufLetCaseStudy() {
             <div className="max-w-5xl mx-auto">
               <div className="grid lg:grid-cols-3 gap-8 mb-16">
             <div className="bg-white p-8 rounded-3xl shadow-lg border-2 border-gray-100">
-              <div className="text-4xl mb-4">🏟️</div>
+              <div className="w-12 h-12 bg-accent-lime/10 rounded-xl flex items-center justify-center mb-4">
+                <Award className="w-6 h-6 text-black" />
+              </div>
               <h3 className="text-xl font-extrabold mb-2">Industry</h3>
               <p className="text-gray-600 font-medium">Sports & Recreation</p>
             </div>
             <div className="bg-white p-8 rounded-3xl shadow-lg border-2 border-gray-100">
-              <div className="text-4xl mb-4">⏱️</div>
+              <div className="w-12 h-12 bg-accent-lime/10 rounded-xl flex items-center justify-center mb-4">
+                <Clock className="w-6 h-6 text-black" />
+              </div>
               <h3 className="text-xl font-extrabold mb-2">Duration</h3>
               <p className="text-gray-600 font-medium">3 Months</p>
             </div>
             <div className="bg-white p-8 rounded-3xl shadow-lg border-2 border-gray-100">
-              <div className="text-4xl mb-4">📱</div>
+              <div className="w-12 h-12 bg-accent-lime/10 rounded-xl flex items-center justify-center mb-4">
+                <Smartphone className="w-6 h-6 text-black" />
+              </div>
               <h3 className="text-xl font-extrabold mb-2">Deliverables</h3>
               <p className="text-gray-600 font-medium">Mobile App + Admin Panel</p>
             </div>
@@ -244,8 +250,9 @@ export default function TufLetCaseStudy() {
           <section id="challenge" className="py-20 px-4 md:px-6 lg:px-8 bg-white">
             <div className="max-w-5xl mx-auto">
               <div className="text-center mb-16">
-            <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
-              🎯 REQUIREMENTS & CHALLENGES
+            <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
+              <Zap className="w-4 h-4" />
+              REQUIREMENTS & CHALLENGES
             </div>
             <h2 className="text-4xl md:text-5xl font-extrabold mb-6">Complex Requirements</h2>
           </div>
@@ -318,8 +325,9 @@ export default function TufLetCaseStudy() {
           <section id="solution" className="py-20 px-4 md:px-6 lg:px-8 bg-gray-50">
             <div className="max-w-5xl mx-auto">
               <div className="text-center mb-16">
-                <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
-                  💡 OUR SOLUTIONS
+                <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
+                  <CheckCircle className="w-4 h-4" />
+                  OUR SOLUTIONS
                 </div>
                 <h2 className="text-4xl md:text-5xl font-extrabold mb-6">Our Approach</h2>
                 <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -427,8 +435,9 @@ export default function TufLetCaseStudy() {
           <section id="features" className="py-20 px-4 md:px-6 lg:px-8 bg-white">
             <div className="max-w-5xl mx-auto">
               <div className="text-center mb-16">
-                <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
-                  ⚡ KEY FEATURES
+                <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
+                  <Star className="w-4 h-4" />
+                  KEY FEATURES
                 </div>
                 <h2 className="text-4xl md:text-5xl font-extrabold mb-6">Powerful Capabilities</h2>
               </div>
@@ -590,8 +599,9 @@ export default function TufLetCaseStudy() {
 
               {/* Right - Content */}
               <div className="px-8 md:px-12 lg:px-16 py-12">
-                <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
-                  📊 OWNER DASHBOARD
+                <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
+                  <Monitor className="w-4 h-4" />
+                  OWNER DASHBOARD
                 </div>
                 <h3 className="text-4xl md:text-5xl font-extrabold mb-6">Complete Analytics Overview</h3>
                 <p className="text-lg text-gray-600 leading-relaxed mb-8">
@@ -648,8 +658,9 @@ export default function TufLetCaseStudy() {
             <div className="grid lg:grid-cols-2 gap-0 items-center">
               {/* Left - Content */}
               <div className="px-8 md:px-12 lg:px-16 py-12 order-2 lg:order-1">
-                <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
-                  💰 REVENUE MANAGEMENT
+                <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
+                  <DollarSign className="w-4 h-4" />
+                  REVENUE MANAGEMENT
                 </div>
                 <h3 className="text-4xl md:text-5xl font-extrabold mb-6">Revenue & Client Details</h3>
                 <p className="text-lg text-gray-600 leading-relaxed mb-8">
@@ -728,8 +739,9 @@ export default function TufLetCaseStudy() {
 
               {/* Right - Content */}
               <div className="px-8 md:px-12 lg:px-16 py-12">
-                <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
-                  👥 FRIENDS & FAMILY
+                <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
+                  <Users className="w-4 h-4" />
+                  FRIENDS & FAMILY
                 </div>
                 <h3 className="text-4xl md:text-5xl font-extrabold mb-6">Build Your Sports Network</h3>
                 <p className="text-lg text-gray-600 leading-relaxed mb-8">
@@ -776,8 +788,9 @@ export default function TufLetCaseStudy() {
             <div className="grid lg:grid-cols-2 gap-0 items-center">
               {/* Left - Content */}
               <div className="px-8 md:px-12 lg:px-16 py-12 order-2 lg:order-1">
-                <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
-                  ⚽ TEAM MANAGEMENT
+                <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
+                  <Award className="w-4 h-4" />
+                  TEAM MANAGEMENT
                 </div>
                 <h3 className="text-4xl md:text-5xl font-extrabold mb-6">Create & Manage Your Teams</h3>
                 <p className="text-lg text-gray-600 leading-relaxed mb-8">
@@ -919,7 +932,8 @@ export default function TufLetCaseStudy() {
             <div className="max-w-5xl mx-auto">
               <div className="text-center mb-16">
                 <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
-                  📊 RESULTS & METRICS
+                  <BarChart className="w-4 h-4" />
+                  RESULTS & METRICS
                 </div>
                 <h2 className="text-4xl md:text-5xl font-extrabold mb-6">Outstanding Performance</h2>
               </div>
