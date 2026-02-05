@@ -551,67 +551,54 @@ export default function TufLetCaseStudy() {
                   </div>
                   Player Features
                 </h3>
-                <div className="grid md:grid-cols-2 gap-6 mb-8">
+                <div className="grid md:grid-cols-2 gap-6">
                   {[
                     {
                       icon: Calendar,
                       title: 'Real-Time Booking',
                       description: '30-day calendar with hourly time slots, dynamic pricing, and instant confirmation',
-                      image: '/images/projects/turflet/screenshots/06-booking-date-time.jpg'
+                      features: ['Live availability updates', 'Hourly slot selection', 'Instant booking confirmation']
                     },
                     {
                       icon: DollarSign,
                       title: 'Multiple Payment Options',
                       description: 'SSL Commerz integration supporting cards, bKash, Nagad, and bank transfers',
-                      image: '/images/projects/turflet/screenshots/07-booking-confirmation.jpg'
+                      features: ['Credit/Debit cards', 'Mobile banking', 'Secure transactions']
                     },
                     {
                       icon: Star,
                       title: 'Reviews & Ratings',
                       description: '5-star rating system with photo uploads and verified booking badges',
-                      image: '/images/projects/turflet/screenshots/05-turf-facilities-reviews.jpg'
+                      features: ['Photo reviews', 'Verified badges', 'Detailed feedback']
                     },
                     {
                       icon: Award,
                       title: 'Loyalty Rewards',
                       description: 'Tier-based system with points on every booking and exclusive discounts',
-                      image: '/images/projects/turflet/screenshots/14-rewards-loyalty.jpg'
+                      features: ['Points per booking', 'Tier upgrades', 'Exclusive discounts']
                     },
                   ].map((feature, idx) => (
-                    <div key={idx} className="bg-white p-6 rounded-2xl shadow-lg border-2 border-gray-100 hover:border-accent-lime/50 hover:shadow-xl transition-all group">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="w-12 h-12 bg-accent-lime rounded-xl flex items-center justify-center shrink-0">
-                          <feature.icon className="w-6 h-6 text-black" />
+                    <div key={idx} className="group relative bg-gradient-to-br from-white to-gray-50 p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border-2 border-gray-100 hover:border-accent-lime/40 overflow-hidden">
+                      <div className="absolute top-0 right-0 w-32 h-32 bg-accent-lime/5 rounded-full blur-2xl -mr-16 -mt-16"></div>
+                      <div className="relative">
+                        <div className="flex items-start gap-4 mb-6">
+                          <div className="w-14 h-14 bg-accent-lime/10 rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-accent-lime/20 transition-colors">
+                            <feature.icon className="w-7 h-7 text-black" />
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="text-xl font-extrabold mb-2 group-hover:text-accent-lime transition-colors">{feature.title}</h4>
+                          </div>
                         </div>
-                        <h4 className="text-xl font-bold group-hover:text-accent-lime transition-colors">{feature.title}</h4>
+                        <p className="text-gray-700 leading-relaxed mb-6 text-base">{feature.description}</p>
+                        <div className="space-y-2">
+                          {feature.features.map((item, i) => (
+                            <div key={i} className="flex items-center gap-3 p-2 rounded-xl bg-white/50 group-hover:bg-accent-lime/5 transition-colors">
+                              <div className="w-1.5 h-1.5 bg-accent-lime rounded-full shrink-0"></div>
+                              <span className="text-sm text-gray-700 font-medium">{item}</span>
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                      <p className="text-gray-600 text-sm leading-relaxed mb-4">{feature.description}</p>
-                      <div className="relative h-48 rounded-xl overflow-hidden">
-                        <Image
-                          src={feature.image}
-                          alt={feature.title}
-                          fill
-                          className="object-contain"
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                
-                {/* Player App Showcase */}
-                <div className="grid md:grid-cols-3 gap-4">
-                  {[
-                    { img: '08-my-bookings-list.jpg', title: 'My Bookings' },
-                    { img: '13-user-profile.jpg', title: 'User Profile' },
-                    { img: '15-points-history.jpg', title: 'Points History' },
-                  ].map((item, idx) => (
-                    <div key={idx} className="relative aspect-9/16 rounded-2xl overflow-hidden shadow-lg border-2 border-gray-100 hover:border-accent-lime transition-all">
-                      <Image
-                        src={`/images/projects/turflet/screenshots/${item.img}`}
-                        alt={item.title}
-                        fill
-                        className="object-contain"
-                      />
                     </div>
                   ))}
                 </div>
@@ -623,35 +610,56 @@ export default function TufLetCaseStudy() {
                   <div className="w-10 h-10 bg-accent-lime rounded-xl flex items-center justify-center">
                     <BarChart className="w-6 h-6 text-black" />
                   </div>
-                  Owner Dashboard
+                  Owner Dashboard Features
                 </h3>
-                <div className="grid md:grid-cols-2 gap-6 mb-8">
+                <div className="grid md:grid-cols-2 gap-6">
                   {[
                     {
                       icon: BarChart,
                       title: 'Revenue Analytics',
-                      description: 'Real-time revenue tracking with daily, weekly, and monthly reports'
+                      description: 'Real-time revenue tracking with daily, weekly, and monthly reports',
+                      features: ['Live revenue tracking', 'Performance metrics', 'Export reports']
                     },
                     {
                       icon: Calendar,
                       title: 'Booking Management',
-                      description: 'View and manage all bookings with customer information and status updates'
+                      description: 'View and manage all bookings with customer information and status updates',
+                      features: ['Booking overview', 'Customer details', 'Status management']
                     },
                     {
                       icon: Clock,
                       title: 'Availability Control',
-                      description: 'Set operating hours, block dates, and manage field-specific pricing'
+                      description: 'Set operating hours, block dates, and manage field-specific pricing',
+                      features: ['Custom schedules', 'Blocked dates', 'Dynamic pricing']
                     },
                     {
                       icon: DollarSign,
                       title: 'Payout System',
-                      description: 'Request payouts, track transaction history, and manage bank details'
+                      description: 'Request payouts, track transaction history, and manage bank details',
+                      features: ['Payout requests', 'Transaction history', 'Bank management']
                     },
                   ].map((feature, idx) => (
-                    <div key={idx} className="bg-gray-50 p-6 rounded-2xl border-2 border-gray-100 hover:border-accent-lime/50 transition-all">
-                      <feature.icon className="w-8 h-8 text-accent-lime mb-4" />
-                      <h4 className="text-xl font-bold mb-2">{feature.title}</h4>
-                      <p className="text-gray-600 text-sm leading-relaxed">{feature.description}</p>
+                    <div key={idx} className="group relative bg-gradient-to-br from-white to-gray-50 p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border-2 border-gray-100 hover:border-accent-lime/40 overflow-hidden">
+                      <div className="absolute top-0 right-0 w-32 h-32 bg-accent-lime/5 rounded-full blur-2xl -mr-16 -mt-16"></div>
+                      <div className="relative">
+                        <div className="flex items-start gap-4 mb-6">
+                          <div className="w-14 h-14 bg-accent-lime/10 rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-accent-lime/20 transition-colors">
+                            <feature.icon className="w-7 h-7 text-black" />
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="text-xl font-extrabold mb-2 group-hover:text-accent-lime transition-colors">{feature.title}</h4>
+                          </div>
+                        </div>
+                        <p className="text-gray-700 leading-relaxed mb-6 text-base">{feature.description}</p>
+                        <div className="space-y-2">
+                          {feature.features.map((item, i) => (
+                            <div key={i} className="flex items-center gap-3 p-2 rounded-xl bg-white/50 group-hover:bg-accent-lime/5 transition-colors">
+                              <div className="w-1.5 h-1.5 bg-accent-lime rounded-full shrink-0"></div>
+                              <span className="text-sm text-gray-700 font-medium">{item}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   ))}
                 </div>
