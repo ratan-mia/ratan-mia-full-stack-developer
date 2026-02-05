@@ -59,45 +59,61 @@ const ProcessStep = ({ step, index, inView }) => {
   
   return (
     <motion.div
-      className="relative flex flex-col text-left group"
+      className="relative flex flex-col text-left group cursor-pointer"
       variants={itemVariants}
-      whileHover={{ y: -12 }}
-      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      whileHover={{ y: -16, scale: 1.03 }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
     >
+      {/* Hover glow effect */}
+      <div className="absolute inset-0 bg-accent-lime/0 group-hover:bg-accent-lime/5 rounded-3xl blur-xl transition-all duration-500 -z-10"></div>
+      
       {/* Enhanced Step Number and Icon */}
       <div className="flex items-center mb-8">
         <motion.div 
-          className={`relative w-20 h-20 rounded-3xl ${isEven ? 'bg-accent-lime' : 'bg-accent-orange'} 
+          className={`relative w-20 h-20 rounded-3xl bg-accent-lime
                      flex items-center justify-center z-10 shadow-xl
-                     ${isEven ? 'shadow-accent-lime/25' : 'shadow-accent-orange/25'}
+                     shadow-accent-lime/25 group-hover:shadow-accent-lime/50
                      group-hover:shadow-2xl transition-all duration-500`}
-          whileHover={{ rotate: 8, scale: 1.1 }}
-          transition={{ type: "spring", stiffness: 400, damping: 25 }}
+          whileHover={{ rotate: 360, scale: 1.15 }}
+          transition={{ type: "spring", stiffness: 200, damping: 15 }}
         >
-          {/* Subtle background pattern */}
-          <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/10 to-transparent" />
+          {/* Gradient overlay */}
+          <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/20 to-transparent group-hover:from-white/30 transition-all duration-500" />
           
-          <step.icon className={`w-10 h-10 relative z-10 ${isEven ? 'text-black' : 'text-white'}`} />
+          {/* Animated border on hover */}
+          <motion.div 
+            className="absolute inset-0 rounded-3xl border-2 border-white/0 group-hover:border-white/20 transition-all duration-500"
+          />
           
-          {/* Floating indicator */}
+          <step.icon className="w-10 h-10 relative z-10 text-black group-hover:scale-110 transition-transform duration-300" />
+          
+          {/* Floating indicator with pulse */}
           <motion.div
-            className="absolute -top-2 -right-2 w-6 h-6 bg-white rounded-full flex items-center justify-center"
+            className="absolute -top-2 -right-2 w-7 h-7 bg-black rounded-full flex items-center justify-center shadow-lg group-hover:scale-125 transition-transform duration-300"
             initial={{ scale: 0 }}
             animate={inView ? { scale: 1 } : {}}
             transition={{ delay: 0.5 + index * 0.1, type: "spring", bounce: 0.5 }}
+            whileHover={{ rotate: 360 }}
           >
-            <span className="text-xs font-bold text-black">{index + 1}</span>
+            <span className="text-xs font-bold text-accent-lime">{index + 1}</span>
           </motion.div>
+
+          {/* Pulse ring on hover */}
+          <motion.div
+            className="absolute inset-0 rounded-3xl border-4 border-accent-lime opacity-0 group-hover:opacity-100"
+            animate={{ scale: [1, 1.3, 1.3], opacity: [0.5, 0, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+          />
         </motion.div>
         
         <div className="ml-6">
           <motion.div 
-            className="text-xs font-bold text-gray-500 tracking-widest uppercase mb-2 flex items-center gap-2"
+            className="text-xs font-bold text-gray-500 group-hover:text-accent-lime tracking-widest uppercase mb-2 flex items-center gap-2 transition-colors duration-300"
             initial={{ opacity: 0, x: -10 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ delay: 0.6 + index * 0.1 }}
           >
-            <div className="w-2 h-2 bg-accent-lime rounded-full" />
+            <div className="w-2 h-2 bg-accent-lime rounded-full group-hover:scale-150 transition-transform duration-300" />
             Step {index + 1}
           </motion.div>
           <motion.div 
@@ -113,9 +129,9 @@ const ProcessStep = ({ step, index, inView }) => {
       
       {/* Enhanced title with gradient text effect */}
       <motion.h3 
-        className="text-2xl lg:text-3xl xl:text-4xl font-bold text-white mb-6 tracking-tight 
-                   group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-accent-lime 
-                   group-hover:to-white group-hover:bg-clip-text transition-all duration-500 leading-tight"
+        className="text-2xl lg:text-3xl xl:text-4xl font-extrabold text-white mb-6 tracking-tight 
+                   group-hover:text-accent-lime transition-all duration-300 leading-tight
+                   transform group-hover:translate-x-2"
         initial={{ opacity: 0 }}
         animate={inView ? { opacity: 1 } : {}}
         transition={{ delay: 0.8 + index * 0.1 }}
@@ -124,13 +140,22 @@ const ProcessStep = ({ step, index, inView }) => {
       </motion.h3>
       
       <motion.p 
-        className="text-gray-400 leading-relaxed text-base lg:text-lg group-hover:text-gray-300 transition-colors duration-300"
+        className="text-gray-400 leading-relaxed text-base lg:text-lg group-hover:text-gray-300 transition-all duration-300
+                   transform group-hover:translate-x-2"
         initial={{ opacity: 0 }}
         animate={inView ? { opacity: 1 } : {}}
         transition={{ delay: 0.9 + index * 0.1 }}
       >
         {step.description}
       </motion.p>
+
+      {/* Decorative line on hover */}
+      <motion.div 
+        className="absolute left-0 bottom-0 h-1 bg-accent-lime rounded-full"
+        initial={{ width: 0 }}
+        whileHover={{ width: "100%" }}
+        transition={{ duration: 0.3 }}
+      />
 
       {/* Enhanced connection line for desktop */}
       {index < 3 && (
@@ -149,7 +174,7 @@ const ProcessStep = ({ step, index, inView }) => {
 // --- Enhanced Service Feature Component ---
 const ServiceFeature = ({ feature, index, inView }) => (
   <motion.div
-    className="flex items-start gap-6 group cursor-default"
+    className="flex items-start gap-6 group cursor-pointer relative p-6 rounded-2xl hover:bg-white/5 transition-all duration-300"
     initial={{ opacity: 0, x: -30 }}
     animate={inView ? { opacity: 1, x: 0 } : {}}
     transition={{
@@ -157,25 +182,46 @@ const ServiceFeature = ({ feature, index, inView }) => (
       delay: 0.9 + index * 0.15,
       ease: [0.23, 1, 0.32, 1]
     }}
-    whileHover={{ x: 12 }}
+    whileHover={{ x: 16, scale: 1.02 }}
   >
+    {/* Glow effect on hover */}
+    <div className="absolute inset-0 bg-accent-lime/0 group-hover:bg-accent-lime/5 rounded-2xl blur-xl transition-all duration-500 -z-10"></div>
+    
     <motion.div 
-      className="w-12 h-12 rounded-2xl bg-gradient-to-br from-accent-lime to-accent-lime/80 
+      className="w-14 h-14 rounded-2xl bg-accent-lime
                  flex items-center justify-center flex-shrink-0 mt-1 shadow-lg shadow-accent-lime/25
-                 group-hover:shadow-xl group-hover:shadow-accent-lime/40 transition-all duration-300"
-      whileHover={{ rotate: 180, scale: 1.1 }}
-      transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                 group-hover:shadow-2xl group-hover:shadow-accent-lime/50 transition-all duration-300
+                 relative overflow-hidden"
+      whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.15 }}
+      transition={{ duration: 0.5 }}
     >
-      <feature.icon className="w-6 h-6 text-black" />
+      {/* Shine effect */}
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+        animate={{ x: ["-100%", "200%"] }}
+        transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+      />
+      <feature.icon className="w-7 h-7 text-black relative z-10 group-hover:scale-110 transition-transform duration-300" />
     </motion.div>
     <div className="flex-1">
-      <h4 className="text-xl lg:text-2xl font-bold text-white mb-3 group-hover:text-accent-lime transition-colors duration-300">
+      <h4 className="text-xl lg:text-2xl font-extrabold text-white mb-3 group-hover:text-accent-lime transition-all duration-300
+                     transform group-hover:translate-x-2">
         {feature.title}
       </h4>
-      <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300 leading-relaxed text-base lg:text-lg">
+      <p className="text-gray-400 group-hover:text-gray-300 transition-all duration-300 leading-relaxed text-base lg:text-lg
+                    transform group-hover:translate-x-2">
         {feature.description}
       </p>
     </div>
+
+    {/* Arrow indicator on hover */}
+    <motion.div
+      className="absolute right-6 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+      initial={{ x: -10 }}
+      whileHover={{ x: 0 }}
+    >
+      <ArrowRight className="w-6 h-6 text-accent-lime" />
+    </motion.div>
   </motion.div>
 );
 
@@ -230,57 +276,42 @@ const ProcessHowIWork = () => {
   ];
 
   return (
-    <section ref={ref} className="bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white relative overflow-hidden" id="process">
+    <section ref={ref} className="bg-black text-white relative overflow-hidden" id="process">
       
       {/* Enhanced Background Elements */}
       <div className="absolute inset-0">
-        {/* Enhanced grid pattern */}
-        <div className="absolute inset-0 opacity-[0.03]" 
+        {/* Animated grid pattern */}
+        <div className="absolute inset-0 opacity-[0.05]" 
              style={{
-               backgroundImage: `radial-gradient(circle at 1px 1px, rgba(204, 255, 0, 0.4) 1px, transparent 0)`,
-               backgroundSize: '60px 60px'
+               backgroundImage: `linear-gradient(rgba(204, 255, 0, 0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(204, 255, 0, 0.15) 1px, transparent 1px)`,
+               backgroundSize: '100px 100px'
              }} 
         />
         
-        {/* Subtle noise texture overlay */}
-        <div className="absolute inset-0 opacity-[0.015]"
-             style={{
-               backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-             }}
-        />
-        
-        {/* Enhanced gradient orbs */}
+        {/* Large gradient orbs */}
         <motion.div
-          className="absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-br from-accent-lime/8 to-accent-orange/5 rounded-full blur-3xl"
+          className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-accent-lime/10 via-transparent to-transparent rounded-full blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
-            opacity: [0.4, 0.6, 0.4],
+            opacity: [0.3, 0.5, 0.3],
           }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         />
         
         <motion.div
-          className="absolute bottom-1/3 left-1/4 w-80 h-80 bg-gradient-to-tr from-accent-orange/6 to-accent-lime/4 rounded-full blur-3xl"
+          className="absolute bottom-0 left-0 w-[700px] h-[700px] bg-gradient-to-tr from-accent-lime/8 via-transparent to-transparent rounded-full blur-3xl"
           animate={{
             scale: [1.2, 1, 1.2],
-            opacity: [0.3, 0.5, 0.3],
+            opacity: [0.2, 0.4, 0.2],
           }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
         />
 
-        {/* Additional depth layers */}
-        <motion.div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] 
-                     bg-gradient-to-r from-transparent via-gray-800/20 to-transparent rounded-full blur-3xl"
-          animate={{
-            rotate: [0, 360],
-            opacity: [0.1, 0.3, 0.1],
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        />
+        {/* Center glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-accent-lime/5 rounded-full blur-3xl"></div>
       </div>
 
-      {/* Top Section: Enhanced Process */}
+      {/* Process Steps Section */}
       <div className="relative py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
@@ -288,70 +319,71 @@ const ProcessHowIWork = () => {
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
           >
-            {/* Enhanced Section Header */}
-            <motion.div className="text-center mb-20 lg:mb-24" variants={itemVariants}>
+            {/* Section Header */}
+            <motion.div className="text-center mb-20 lg:mb-28" variants={itemVariants}>
               <motion.div
-                className="inline-flex items-center gap-6 mb-8"
+                className="inline-flex items-center gap-3 mb-8 px-6 py-3 bg-accent-lime/10 backdrop-blur-sm border border-accent-lime/20 rounded-full"
                 variants={itemVariants}
               >
-                <motion.div 
-                  className="w-16 h-1 bg-accent-lime rounded-full"
-                  initial={{ width: 0 }}
-                  animate={isInView ? { width: 64 } : {}}
-                  transition={{ duration: 1, delay: 0.5 }}
-                />
-                <span className="text-gray-400 font-bold text-sm uppercase tracking-widest flex items-center gap-2">
-                  <Star size={16} className="text-accent-lime" />
+                <Star size={20} className="text-accent-lime" />
+                <span className="text-accent-lime font-extrabold text-sm uppercase tracking-widest">
                   My Process
                 </span>
-                <motion.div 
-                  className="w-16 h-1 bg-accent-lime rounded-full"
-                  initial={{ width: 0 }}
-                  animate={isInView ? { width: 64 } : {}}
-                  transition={{ duration: 1, delay: 0.5 }}
-                />
               </motion.div>
               
               <motion.h2 
-                className="text-4xl lg:text-6xl xl:text-7xl font-extrabold mb-8 tracking-tight leading-[0.9]"
+                className="text-5xl lg:text-7xl xl:text-8xl font-extrabold mb-8 tracking-tight leading-[0.95]"
                 variants={itemVariants}
               >
                 How I Work With
                 <br />
-                <span className="bg-gradient-to-r from-accent-lime to-accent-orange bg-clip-text text-transparent">
+                <span className="text-accent-lime">
                   My Clients
                 </span>
               </motion.h2>
               
               <motion.p 
-                className="text-xl lg:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-medium"
+                className="text-xl lg:text-2xl text-gray-400 max-w-4xl mx-auto leading-relaxed"
                 variants={itemVariants}
               >
-                My proven 4-step development process ensures successful project delivery from initial concept to final deployment and beyond.
+                My proven 4-step development process ensures successful project delivery from initial concept to final deployment.
               </motion.p>
 
-              {/* Success metrics */}
+              {/* Success metrics with icons */}
               <motion.div 
-                className="flex justify-center items-center gap-8 mt-8 text-sm text-gray-400"
+                className="flex flex-wrap justify-center items-center gap-6 lg:gap-8 mt-10"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 1, duration: 0.6 }}
               >
-                <div className="flex items-center gap-2">
-                  <CheckCircle size={16} className="text-green-500" />
-                  <span>150+ Projects Delivered</span>
+                <div className="flex items-center gap-3 px-5 py-3 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
+                  <CheckCircle size={20} className="text-green-400" />
+                  <span className="text-sm font-bold text-gray-300">150+ Projects</span>
                 </div>
-                <div className="w-px h-4 bg-gray-600" />
-                <div className="flex items-center gap-2">
-                  <Zap size={16} className="text-accent-lime" />
-                  <span>98% Client Satisfaction</span>
+                <div className="flex items-center gap-3 px-5 py-3 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
+                  <Zap size={20} className="text-accent-lime" />
+                  <span className="text-sm font-bold text-gray-300">98% Satisfaction</span>
+                </div>
+                <div className="flex items-center gap-3 px-5 py-3 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
+                  <Star size={20} className="text-accent-lime" />
+                  <span className="text-sm font-bold text-gray-300">25+ Countries</span>
                 </div>
               </motion.div>
             </motion.div>
 
-            {/* Enhanced Process Steps Grid */}
+            {/* Process Steps Grid */}
             <div className="relative">
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
+              {/* Connecting line for desktop */}
+              <div className="hidden lg:block absolute top-10 left-0 right-0 h-px">
+                <motion.div 
+                  className="h-full bg-gradient-to-r from-transparent via-accent-lime/30 to-transparent"
+                  initial={{ scaleX: 0 }}
+                  animate={isInView ? { scaleX: 1 } : {}}
+                  transition={{ delay: 1.5, duration: 1.5 }}
+                />
+              </div>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
                 {processSteps.map((step, index) => (
                   <ProcessStep
                     key={step.title}
@@ -366,39 +398,38 @@ const ProcessHowIWork = () => {
         </div>
       </div>
 
-      {/* Enhanced Bottom Section: Technical Services */}
+      {/* Technical Services Section */}
       <motion.div 
-        className="grid lg:grid-cols-2 items-center relative"
+        className="grid lg:grid-cols-2 items-center relative border-t border-white/10"
         initial={{ opacity: 0, y: 60 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 1.2, delay: 0.6, ease: [0.23, 1, 0.32, 1] }}
       >
-        {/* Left Column: Enhanced Image */}
+        {/* Left Column: Image with overlay */}
         <div className="h-[500px] lg:h-[700px] relative overflow-hidden">
           <motion.img 
             src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1470&auto=format&fit=crop"
-            alt="Developer working on multiple projects"
+            alt="Developer working on projects"
             className="w-full h-full object-cover"
             loading="lazy"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
+            whileHover={{ scale: 1.08 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           />
           
-          {/* Enhanced gradient overlays */}
-          <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 via-black/30 to-gray-900/60" />
-          <div className="absolute inset-0 bg-gradient-to-t from-gray-900/70 via-transparent to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-br from-transparent via-accent-lime/5 to-accent-orange/5" />
+          {/* Dark overlay for better contrast */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-black/90" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
           
-          {/* Enhanced Floating Tech Icons */}
+          {/* Floating Tech Icons with glow */}
           <div className="absolute inset-0 hidden lg:block">
             <motion.div
-              className="absolute top-16 right-16 w-20 h-20 bg-accent-lime/15 backdrop-blur-md rounded-2xl 
-                        flex items-center justify-center border border-accent-lime/20 shadow-xl shadow-accent-lime/10"
+              className="absolute top-20 right-20 w-24 h-24 bg-accent-lime/20 backdrop-blur-xl rounded-3xl 
+                        flex items-center justify-center border-2 border-accent-lime/40 shadow-2xl shadow-accent-lime/20"
               variants={floatingVariants}
               initial="hidden"
               animate={isInView ? "visible" : {}}
               transition={{ delay: 1.2 }}
-              whileHover={{ scale: 1.1, rotate: 5 }}
+              whileHover={{ rotate: 180, scale: 1.1 }}
             >
               <Code className="w-10 h-10 text-accent-lime" />
             </motion.div>
