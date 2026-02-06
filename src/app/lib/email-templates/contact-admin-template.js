@@ -4,7 +4,7 @@
  */
 
 export const contactAdminTemplate = (formData) => {
-  const { name, email, phone, subject, message, website } = formData;
+  const { name, email, phone, subject, message, website, company, projectTimeline, preferredContact } = formData;
   const timestamp = new Date().toLocaleString('en-US', {
     weekday: 'long',
     year: 'numeric',
@@ -329,9 +329,24 @@ export const contactAdminTemplate = (formData) => {
             <div class="info-value"><a href="tel:${phone}" style="color: #000000; text-decoration: none; font-weight: 600;">${phone}</a></div>
             ` : ''}
             
+            ${company ? `
+            <div class="info-label">Company:</div>
+            <div class="info-value" style="font-weight: 600;">${company}</div>
+            ` : ''}
+            
             ${website ? `
             <div class="info-label">Website:</div>
             <div class="info-value"><a href="${website}" target="_blank" style="color: #0066cc; text-decoration: none;">${website}</a></div>
+            ` : ''}
+            
+            ${projectTimeline ? `
+            <div class="info-label">Project Timeline:</div>
+            <div class="info-value" style="font-weight: 600; color: #ff8c42;">${projectTimeline}</div>
+            ` : ''}
+            
+            ${preferredContact ? `
+            <div class="info-label">Preferred Contact:</div>
+            <div class="info-value" style="font-weight: 600;">${preferredContact === 'phone' ? '📱 Phone' : '📧 Email'}</div>
             ` : ''}
             
             <div class="info-label">Received:</div>

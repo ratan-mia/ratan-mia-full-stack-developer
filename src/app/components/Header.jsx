@@ -18,7 +18,7 @@ const Header = () => {
     { name: 'PORTFOLIO', href: '/portfolio' },
     { name: 'CASE STUDIES', href: '/case-studies', hasDropdown: true },
     { name: 'BLOG', href: '/blog' },
-    { name: 'CONTACT', href: '/#contact' }
+    { name: 'CONTACT', href: '/contact' }
   ];
 
   const caseStudies = [

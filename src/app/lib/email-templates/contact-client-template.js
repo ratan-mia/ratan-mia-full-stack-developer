@@ -4,7 +4,7 @@
  */
 
 export const contactClientTemplate = (formData) => {
-  const { name, email, phone, subject, message, website } = formData;
+  const { name, email, phone, subject, message, website, company, projectTimeline, preferredContact } = formData;
   const timestamp = new Date().toLocaleString('en-US', {
     weekday: 'long',
     year: 'numeric',

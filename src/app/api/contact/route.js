@@ -111,8 +111,13 @@ const sanitizeFormData = (data) => {
   return {
     name: (data.name || '').trim().substring(0, 100),
     email: (data.email || '').trim().toLowerCase().substring(0, 254),
+    phone: (data.phone || '').trim().substring(0, 20),
+    company: (data.company || '').trim().substring(0, 100),
+    website: (data.website || '').trim().substring(0, 200),
     subject: (data.subject || '').trim().substring(0, 200),
     message: (data.message || '').trim().substring(0, 2000),
+    projectTimeline: (data.projectTimeline || '').trim().substring(0, 50),
+    preferredContact: (data.preferredContact || 'email').trim().substring(0, 20),
     projectType: (data.projectType || '').trim().substring(0, 100),
     budget: (data.budget || '').trim().substring(0, 50),
     timestamp: new Date().toISOString()
