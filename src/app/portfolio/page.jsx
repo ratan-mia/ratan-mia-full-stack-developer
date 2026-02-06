@@ -17,6 +17,16 @@ export default function PortfolioPage() {
       
       {/* Portfolio Hero - Following Design Guidelines */}
       <section className="relative min-h-screen w-full overflow-hidden bg-accent-lime">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2064&auto=format&fit=crop" 
+            alt="Background"
+            className="w-full h-full object-cover opacity-8"
+          />
+          <div className="absolute inset-0 bg-accent-lime/80"></div>
+        </div>
+        
         {/* Decorative elements - desktop only */}
         <div className="absolute inset-0 z-10 pointer-events-none hidden lg:block">
           <div className="absolute top-20 right-20 w-32 h-32 rounded-full bg-black/5 animate-pulse" />
