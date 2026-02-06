@@ -1,7 +1,8 @@
 'use client';
 
 import { motion, useInView, useScroll } from 'framer-motion';
-import { ArrowUp, Clock, Code, Database, Download, Github, Globe, Heart, Linkedin, Mail, MapPin, Palette, Send, Smartphone, Twitter, Instagram, Facebook, Zap } from 'lucide-react';
+import { ArrowUp, Code, Database, Download, Github, Globe, Heart, Instagram, Linkedin, Mail, Palette, Smartphone, Twitter, Zap } from 'lucide-react';
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
 // --- Floating Scroll to Top Button ---
@@ -79,50 +80,52 @@ const Footer = () => {
       label: 'Instagram'
     },
     {
-      name: 'Facebook',
-      href: 'https://facebook.com',
-      icon: Facebook,
-      label: 'Facebook'
+      name: 'Mail',
+      href: 'mailto:shorifull@gmail.com',
+      icon: Mail,
+      label: 'Email'
     }
   ];
 
   const services = [
-    'Web Design',
-    'Webflow',
-    'MVP Development',
-    'SaaS Design',
-    'MVP Web',
-    'Mobile App',
-    'Branding'
+    'Web Development',
+    'Mobile Apps',
+    'UI/UX Design',
+    'Full Stack Solutions',
+    'E-commerce',
+    'API Development',
+    'Database Design'
   ];
 
   const servicesColumn2 = [
-    'UI/UX Design',
-    'UI/UX Consulting',
-    'Brand Identity',
-    'Corporate Identity',
-    'Motion Graphics'
+    'React & Next.js',
+    'React Native',
+    'Node.js',
+    'PostgreSQL',
+    'Tailwind CSS',
+    'Figma Design',
+    'Performance Optimization'
   ];
 
   const quickLinks = [
-    { name: 'Work', href: '/portfolio' },
+    { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
-    { name: 'Contact', href: '/contact' },
-    { name: 'Pricing', href: '/quote' },
-    { name: 'Career', href: '/services' },
+    { name: 'Portfolio', href: '/portfolio' },
+    { name: 'Case Studies', href: '/case-studies' },
+    { name: 'Services', href: '/services' },
     { name: 'Blog', href: '/blog' },
-    { name: 'Sitemap', href: '/sitemap' },
-    { name: 'Privacy Policy', href: '/privacy' },
-    { name: 'Terms & Condition', href: '/terms' }
+    { name: 'Contact', href: '/contact' },
+    { name: 'Get Quote', href: '/quote' },
+    { name: 'Resume', href: '/resume' }
   ];
 
   const reviews = [
-    { name: 'Clutch', href: 'https://clutch.co' },
-    { name: 'Good Firms', href: 'https://goodfirms.co' },
-    { name: 'Design Rush', href: 'https://designrush.com' },
+    { name: 'GitHub', href: 'https://github.com/shorifull' },
+    { name: 'LinkedIn', href: 'https://linkedin.com/in/shorifull' },
     { name: 'Behance', href: 'https://behance.net' },
     { name: 'Dribbble', href: 'https://dribbble.com' },
-    { name: 'Webflow', href: 'https://webflow.com' }
+    { name: 'Twitter', href: 'https://twitter.com' },
+    { name: 'Dev.to', href: 'https://dev.to' }
   ];
 
   const skills = [
@@ -173,9 +176,9 @@ const Footer = () => {
         {/* Main Footer Content */}
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 relative z-10">
           
-          {/* Top Section - 4 Column Grid */}
+          {/* Top Section - 5 Column Grid */}
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16"
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
             transition={{ duration: 0.8 }}
@@ -200,20 +203,21 @@ const Footer = () => {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                A Full Stack Developer focusing on building emotional, simple, human-centered digital products for future.
+                A Full Stack Developer focused on building exceptional, user-centered digital experiences with modern web technologies.
               </motion.p>
 
-              <motion.a
-                href="/contact"
-                className="inline-block bg-accent-lime text-black font-bold px-6 py-3 rounded-full hover:bg-lime-300 transition-all duration-300 text-sm"
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
               >
-                Contact me now
-              </motion.a>
+                <Link
+                  href="/contact"
+                  className="inline-block bg-accent-lime text-black font-bold px-8 py-3 rounded-full hover:bg-lime-300 hover:shadow-lime-glow transition-all duration-300 text-sm"
+                >
+                  Contact me now
+                </Link>
+              </motion.div>
             </div>
 
             {/* Services - Column 1 */}
@@ -236,23 +240,15 @@ const Footer = () => {
                 {services.map((service, index) => (
                   <motion.div
                     key={service}
-                    className="text-white hover:text-accent-lime transition-colors duration-300 cursor-pointer text-sm"
+                    className="text-white hover:text-accent-lime transition-colors duration-300 cursor-pointer text-sm font-medium"
                     initial={{ opacity: 0, x: -10 }}
                     animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
                     transition={{ delay: 0.6 + index * 0.05 }}
+                    whileHover={{ x: 4 }}
                   >
                     {service}
                   </motion.div>
                 ))}
-                
-                {/* Services Column 2 - Additional services */}
-                <div className="ml-0 mt-4 space-y-3 pt-3 border-t border-gray-800">
-                  {servicesColumn2.map((item, idx) => (
-                    <div key={idx} className="text-gray-400 text-sm hover:text-accent-lime transition-colors duration-300 cursor-pointer">
-                      {item}
-                    </div>
-                  ))}
-                </div>
               </motion.div>
             </div>
 
@@ -274,22 +270,49 @@ const Footer = () => {
                 transition={{ duration: 0.8, delay: 0.7 }}
               >
                 {quickLinks.map((link, index) => (
-                  <motion.a
+                  <motion.div
                     key={link.name}
-                    href={link.href}
-                    className="block text-white hover:text-accent-lime transition-colors duration-300 text-sm"
                     initial={{ opacity: 0, x: -10 }}
                     animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
                     transition={{ delay: 0.8 + index * 0.05 }}
-                    whileHover={{ x: 4 }}
                   >
-                    {link.name}
-                  </motion.a>
+                    <Link
+                      href={link.href}
+                      className="block text-white hover:text-accent-lime transition-colors duration-300 text-sm font-medium"
+                    >
+                      {link.name}
+                    </Link>
+                  </motion.div>
                 ))}
               </motion.div>
             </div>
 
-            {/* Reviews */}
+            {/* Tech Stack - Column 2 */}
+            <div className="space-y-4">
+              <motion.h4
+                className="text-white text-xs font-bold uppercase tracking-wider mb-6"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.8, delay: 0.65 }}
+              >
+                TECH STACK
+              </motion.h4>
+              
+              <motion.div 
+                className="space-y-3"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.8, delay: 0.75 }}
+              >
+                {servicesColumn2.map((item, idx) => (
+                  <div key={idx} className="text-white hover:text-accent-lime transition-colors duration-300 text-sm font-medium cursor-pointer">
+                    {item}
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+
+            {/* Social Links */}
             <div className="space-y-4">
               <motion.h4
                 className="text-white text-xs font-bold uppercase tracking-wider mb-6"
@@ -297,7 +320,7 @@ const Footer = () => {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
               >
-                REVIEW
+                CONNECT
               </motion.h4>
               
               <motion.div 
@@ -312,7 +335,7 @@ const Footer = () => {
                     href={review.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block text-white hover:text-accent-lime transition-colors duration-300 text-sm"
+                    className="block text-white hover:text-accent-lime transition-colors duration-300 text-sm font-medium"
                     initial={{ opacity: 0, x: -10 }}
                     animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
                     transition={{ delay: 1.0 + index * 0.05 }}
@@ -345,7 +368,7 @@ const Footer = () => {
             </div>
 
             {/* Skills Cards */}
-            <div className="relative z-10 bg-gray-900 rounded-2xl p-8 -mt-20">
+            <div className="relative z-10 bg-gray-900 p-8 -mt-20">
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
                 {skills.map((skill, index) => (
                   <motion.div
@@ -367,30 +390,31 @@ const Footer = () => {
 
           {/* Resume Download Section */}
           <motion.div
-            className="bg-gray-900 rounded-2xl p-8 mb-16"
+            className="bg-gray-900 p-10 mb-16 border-t border-b border-gray-800"
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
-            <motion.a
-              href="/resume/ratan-mia-resume.pdf"
-              download
-              className="flex items-center gap-4 group cursor-pointer"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <div className="w-12 h-12 bg-accent-lime rounded-full flex items-center justify-center group-hover:bg-lime-300 transition-colors duration-300">
-                <Download className="w-6 h-6 text-black" />
-              </div>
+            <div className="flex items-center gap-6 group cursor-pointer">
+              <motion.div 
+                className="w-14 h-14 bg-accent-lime rounded-full flex items-center justify-center group-hover:bg-lime-300 transition-all duration-300"
+                whileHover={{ scale: 1.1, rotate: 5 }}
+              >
+                <Download className="w-7 h-7 text-black" />
+              </motion.div>
               <div>
-                <h3 className="text-white font-bold text-lg group-hover:text-accent-lime transition-colors duration-300">
+                <Link
+                  href="/resume/ratan-mia-resume.pdf"
+                  download
+                  className="text-white font-bold text-xl group-hover:text-accent-lime transition-colors duration-300"
+                >
                   My Resume
-                </h3>
-                <p className="text-gray-400 text-sm">
+                </Link>
+                <p className="text-gray-400 text-sm mt-1">
                   PDF, 3 MB
                 </p>
               </div>
-            </motion.a>
+            </div>
           </motion.div>
 
           {/* Bottom Bar */}
@@ -402,26 +426,26 @@ const Footer = () => {
           >
             <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
               {/* Copyright */}
-              <div className="text-gray-500 text-sm">
-                © 2021-{currentYear}, Ratan Mia | Full Stack Developer | All Rights Reserved.
+              <div className="text-gray-500 text-sm font-medium">
+                © 2021-{currentYear} Ratan Mia. All Rights Reserved.
               </div>
               
               {/* Social Links */}
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3">
                 {socialLinks.map((social, index) => (
                   <motion.a
                     key={social.name}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center text-gray-400 hover:text-accent-lime hover:bg-gray-800 transition-all duration-300"
+                    className="w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center text-gray-400 hover:text-accent-lime hover:bg-gray-800 hover:shadow-lg transition-all duration-300"
                     initial={{ opacity: 0, scale: 0 }}
                     animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
-                    transition={{ delay: 1.1 + index * 0.1 }}
-                    whileHover={{ scale: 1.1, y: -2 }}
+                    transition={{ delay: 1.1 + index * 0.08 }}
+                    whileHover={{ scale: 1.1, y: -3 }}
                     title={social.label}
                   >
-                    <social.icon size={18} />
+                    <social.icon size={18} strokeWidth={2} />
                   </motion.a>
                 ))}
               </div>
