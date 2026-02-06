@@ -287,7 +287,7 @@ export default function CheryBangladeshAppCaseStudy() {
 
         {/* Test Drive Booking */}
         <ImageContentGrid
-          image="/images/projects/cherymobileapp/17-testdrive-vehicle-selection.jpg"
+          image="/images/projects/cherymobileapp/mockup/test-drive-booking.png"
           imageAlt="Test Drive Booking"
           badge="TEST DRIVE"
           badgeIcon={Calendar}
@@ -343,7 +343,7 @@ export default function CheryBangladeshAppCaseStudy() {
 
         {/* E-commerce */}
         <ImageContentGrid
-          image="/images/projects/cherymobileapp/28-shop-accessories.jpg"
+          image="/images/projects/cherymobileapp/mockup/mobile-store.png"
           imageAlt="Parts & Accessories Store"
           badge="E-COMMERCE"
           badgeIcon={Package}
@@ -399,7 +399,7 @@ export default function CheryBangladeshAppCaseStudy() {
 
         {/* Checkout */}
         <ImageContentGrid
-          image="/images/projects/cherymobileapp/31-shop-checkout.jpg"
+          image="/images/projects/cherymobileapp/mockup/secure-checkout-flow.png"
           imageAlt="Secure Checkout"
           badge="PAYMENT"
           badgeIcon={CreditCard}
