@@ -1,37 +1,35 @@
 'use client';
 
 import CaseStudyTemplate, {
-    BusinessImpactCards,
-    CaseStudySection,
-    CTASection,
-    FullWidthImageContent,
-    ImageContentGrid,
-    ImageShowcaseGrid,
-    KeyAchievementsCard,
-    MetricsGrid,
-    OverviewSection
+  BusinessImpactCards,
+  CaseStudySection,
+  CTASection,
+  FullWidthImageContent,
+  ImageContentGrid,
+  ImageShowcaseGrid,
+  KeyAchievementsCard,
+  MetricsGrid,
+  OverviewSection
 } from '@/app/components/case-studies/CaseStudyTemplate';
 import { motion } from 'framer-motion';
 import {
-    ArrowLeft,
-    Award,
-    BarChart,
-    Calendar,
-    Car,
-    Check,
-    CheckCircle,
-    Code,
-    CreditCard,
-    DollarSign,
-    Monitor,
-    Package,
-    ShoppingCart,
-    Smartphone,
-    Star,
-    TrendingUp,
-    Users,
-    Wrench,
-    Zap
+  ArrowLeft,
+  Award,
+  BarChart,
+  Calendar,
+  Car,
+  Check,
+  CheckCircle,
+  Code,
+  CreditCard,
+  DollarSign,
+  Package,
+  ShoppingCart,
+  Smartphone,
+  Star,
+  Users,
+  Wrench,
+  Zap
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -812,16 +810,16 @@ export default function CheryBangladeshAppCaseStudy() {
           <ImageShowcaseGrid
             items={[
               {
-                title: 'Vehicle Showroom',
-                image: '/images/projects/cherymobileapp/22-products-vehicle-browse.jpg',
-                alt: 'Vehicle Showroom',
-                caption: 'Interactive vehicle catalog with 360° views and detailed specifications.'
+                title: 'My Garages Dashboard',
+                image: '/images/projects/cherymobileapp/mockup/my-garages.png',
+                alt: 'My Garages - Booking Management',
+                caption: 'Centralized dashboard to manage all bookings, services, and vehicle information.'
               },
               {
-                title: 'E-commerce Integration',
-                image: '/images/projects/cherymobileapp/28-shop-accessories.jpg',
-                alt: 'Parts & Accessories Store',
-                caption: 'Complete online store with 500+ genuine Chery parts and accessories.'
+                title: 'Service Booking Platform',
+                image: '/images/projects/cherymobileapp/mockup/book-service-online.png',
+                alt: 'Online Service Booking',
+                caption: 'Comprehensive service scheduling with real-time availability and instant confirmation.'
               }
             ]}
           />
