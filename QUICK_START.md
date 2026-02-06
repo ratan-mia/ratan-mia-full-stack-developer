@@ -31,7 +31,7 @@ That's it! Your projects section now uses the new minimal design with all 14 pro
 1. **`src/app/data/portfolio-data.js`**
 
    - Complete database of all 14 projects
-   - Includes: Gamify, Chery App, TufLet, Matchlyzer, and 10 more
+   - Includes: Gamify, Chery App, TurfLet, Matchlyzer, and 10 more
    - Rich metadata: technologies, features, impact metrics, images
 
 2. **`src/app/components/home/ProjectsNew.jsx`**
@@ -92,7 +92,7 @@ That's it! Your projects section now uses the new minimal design with all 14 pro
 
 1. **Gamify (PieQR)** - QR Loyalty Platform
 2. **Chery Bangladesh App** - Automotive Ecosystem
-3. **TufLet** - Sports Booking Platform
+3. **TurfLet** - Sports Booking Platform
 
 ### Client Projects (11):
 

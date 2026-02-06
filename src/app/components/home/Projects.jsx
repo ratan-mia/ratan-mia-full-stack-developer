@@ -47,7 +47,7 @@ const PROJECTS_DATA = [
   },
   {
     id: 4,
-    title: 'TufLet',
+    title: 'TurfLet',
     category: 'SaaS Product',
     year: '2024',
     client: 'Sports Venues',

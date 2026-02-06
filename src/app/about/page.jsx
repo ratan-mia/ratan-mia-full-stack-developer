@@ -115,7 +115,7 @@ export default function AboutPage() {
                   icon: "🎯",
                   year: "2021-Present",
                   highlight: "Building Products",
-                  content: "Building innovative products like Gamify, TufLet, and automotive ecosystems. Focused on React Native, Next.js, and scalable cloud architectures.",
+                  content: "Building innovative products like Gamify, TurfLet, and automotive ecosystems. Focused on React Native, Next.js, and scalable cloud architectures.",
                   achievement: "Leading full-stack development",
                   bgColor: "bg-black",
                   textColor: "text-white",
@@ -194,10 +194,10 @@ export default function AboutPage() {
                   metrics: "50K+ Users • 4.8★ Rating"
                 },
                 {
-                  title: "TufLet Platform",
+                  title: "TurfLet Platform",
                   description: "Sports booking system with 5K+ bookings",
                   image: "/images/projects/turflet/www.turflet.app.png",
-                  link: "/case-studies/TufLet-booking",
+                  link: "/case-studies/TurfLet-booking",
                   metrics: "5K+ Bookings • 95% Success"
                 },
                 {

@@ -2,10 +2,10 @@
 
 import CaseStudyDetail from '@/components/case-studies/CaseStudyDetail';
 
-export default function TufLetCaseStudy() {
+export default function TurfLetCaseStudy() {
   const project = {
-    id: 'TufLet',
-    title: 'TufLet',
+    id: 'TurfLet',
+    title: 'TurfLet',
     subtitle: 'Sports Booking & Reservation Platform',
     category: 'SaaS Product',
     type: 'featured',

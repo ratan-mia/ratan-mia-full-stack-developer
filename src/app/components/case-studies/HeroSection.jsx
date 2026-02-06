@@ -20,7 +20,7 @@ export default function HeroSection() {
               ⚽ BOOKING PLATFORM
             </div>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
-              TufLet<br />Booking System
+              TurfLet<br />Booking System
             </h1>
             <p className="text-xl md:text-2xl text-black/80 mb-8 font-medium leading-relaxed">
               A comprehensive real-time booking platform for sports turfs with integrated payments, availability management, and owner dashboard.
@@ -49,7 +49,7 @@ export default function HeroSection() {
           <div className="relative h-125 rounded-3xl overflow-hidden shadow-2xl">
             <Image
               src="/images/projects/turflet/www.turflet.app.png"
-              alt="TufLet Platform"
+              alt="TurfLet Platform"
               fill
               className="object-contain"
               priority

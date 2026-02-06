@@ -1,24 +1,34 @@
 'use client';
 
-import { 
-  CheckCircle, Code, Monitor, Smartphone, BarChart, Award, 
-  Check, Zap, Trophy, QrCode, Gift, Users, TrendingUp, Star, Wallet
-} from 'lucide-react';
+import CaseStudyTemplate, {
+    BusinessImpactCards,
+    CaseStudySection,
+    CTASection,
+    FullWidthImageContent,
+    ImageContentGrid,
+    ImageShowcaseGrid,
+    KeyAchievementsCard,
+    MetricsGrid,
+    OverviewSection
+} from '@/app/components/case-studies/CaseStudyTemplate';
 import { motion } from 'framer-motion';
+import {
+    ArrowLeft,
+    Award,
+    BarChart,
+    Check,
+    CheckCircle, Code,
+    Gift,
+    QrCode,
+    Star,
+    TrendingUp,
+    Trophy,
+    Users,
+    Wallet,
+    Zap
+} from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
-import CaseStudyTemplate, {
-  OverviewSection,
-  CaseStudySection,
-  ImageContentGrid,
-  FullWidthImageContent,
-  MetricsGrid,
-  ImageShowcaseGrid,
-  BusinessImpactCards,
-  KeyAchievementsCard,
-  CTASection
-} from '@/app/components/case-studies/CaseStudyTemplate';
 
 // Project Data
 const projectData = {
@@ -132,7 +142,7 @@ function HeroSection() {
           >
             <div className="relative h-[600px] w-full rounded-3xl overflow-hidden shadow-2xl border-4 border-black/10">
               <Image
-                src="/images/projects/pieqr/screenshots/home-screen.jpg"
+                src="/images/projects/pieqr/home-screen.png"
                 alt="Gamify Platform"
                 fill
                 className="object-cover"
@@ -163,7 +173,7 @@ export default function GamifyCaseStudy() {
           "FMCG and automotive brands needed a scalable platform to track product distribution, prevent fraud, and drive customer loyalty across 64 districts in Bangladesh. Traditional loyalty programs lacked engagement and provided limited insights into customer behavior.",
           "The solution is a QR-powered gamification platform built with React Native, enabling brands to create interactive experiences while collecting valuable consumer data. The app features games, digital wallets, reward catalogs, and comprehensive analytics dashboards for brand managers to track campaign performance in real-time."
         ]}
-        image="/images/projects/pieqr/screenshots/home-screen.jpg"
+        image="/images/projects/pieqr/home-screen.png"
         imageAlt="Gamify Platform Overview"
       />
 
@@ -200,7 +210,7 @@ export default function GamifyCaseStudy() {
       >
         {/* QR Scanning System */}
         <ImageContentGrid
-          image="/images/projects/pieqr/screenshots/qr-scanner.jpg"
+          image="/images/projects/pieqr/earning-souces.png"
           imageAlt="QR Scanning System"
           badge="QR TECHNOLOGY"
           badgeIcon={QrCode}
@@ -228,7 +238,7 @@ export default function GamifyCaseStudy() {
 
         {/* Gamification Engine */}
         <ImageContentGrid
-          image="/images/projects/pieqr/screenshots/games.jpg"
+          image="/images/projects/pieqr/game-selection.png"
           imageAlt="Gamification System"
           badge="GAMIFICATION"
           badgeIcon={Trophy}
@@ -256,7 +266,7 @@ export default function GamifyCaseStudy() {
 
         {/* Rewards Catalog */}
         <ImageContentGrid
-          image="/images/projects/pieqr/screenshots/rewards.jpg"
+          image="/images/projects/pieqr/Profile-menu.png"
           imageAlt="Rewards Catalog"
           badge="REWARDS"
           badgeIcon={Gift}
@@ -285,7 +295,7 @@ export default function GamifyCaseStudy() {
 
       {/* Digital Wallet */}
       <FullWidthImageContent
-        image="/images/projects/pieqr/screenshots/wallet.jpg"
+        image="/images/projects/pieqr/wallet.png"
         imageAlt="Digital Wallet"
         badge="DIGITAL WALLET"
         badgeIcon={Wallet}
@@ -319,7 +329,7 @@ export default function GamifyCaseStudy() {
 
       {/* Admin Dashboard */}
       <FullWidthImageContent
-        image="/images/projects/pieqr/screenshots/dashboard.jpg"
+        image="/images/projects/pieqr/Profile-menu.png"
         imageAlt="Admin Dashboard"
         badge="ANALYTICS DASHBOARD"
         badgeIcon={BarChart}
@@ -396,13 +406,13 @@ export default function GamifyCaseStudy() {
             items={[
               {
                 title: 'QR Scanner',
-                image: '/images/projects/pieqr/screenshots/qr-scanner.jpg',
+                image: '/images/projects/pieqr/earning-souces.png',
                 alt: 'QR Code Scanner',
                 caption: 'Advanced QR scanning with fraud detection and instant validation for secure product authentication.'
               },
               {
                 title: 'Gamification',
-                image: '/images/projects/pieqr/screenshots/games.jpg',
+                image: '/images/projects/pieqr/game-selection.png',
                 alt: 'Interactive Games',
                 caption: 'Engaging game experiences including spin-the-wheel and scratch cards to boost user engagement.'
               }

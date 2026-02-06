@@ -1,24 +1,36 @@
 'use client';
 
-import { 
-  CheckCircle, Code, Monitor, Smartphone, BarChart, Award, 
-  Check, Zap, Car, Calendar, Wrench, ShoppingCart, MapPin, Bell, Newspaper, Gift, User, ExternalLink, Star
-} from 'lucide-react';
+import CaseStudyTemplate, {
+    BusinessImpactCards,
+    CaseStudySection,
+    CTASection,
+    FullWidthImageContent,
+    ImageContentGrid,
+    ImageShowcaseGrid,
+    KeyAchievementsCard,
+    MetricsGrid,
+    OverviewSection
+} from '@/app/components/case-studies/CaseStudyTemplate';
 import { motion } from 'framer-motion';
+import {
+    ArrowLeft,
+    BarChart,
+    Bell,
+    Calendar,
+    Car,
+    Check,
+    CheckCircle, Code,
+    ExternalLink,
+    Gift,
+    MapPin,
+    ShoppingCart,
+    Smartphone,
+    Star,
+    Wrench,
+    Zap
+} from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
-import CaseStudyTemplate, {
-  OverviewSection,
-  CaseStudySection,
-  ImageContentGrid,
-  FullWidthImageContent,
-  MetricsGrid,
-  ImageShowcaseGrid,
-  BusinessImpactCards,
-  KeyAchievementsCard,
-  CTASection
-} from '@/app/components/case-studies/CaseStudyTemplate';
 
 // Project Data
 const projectData = {

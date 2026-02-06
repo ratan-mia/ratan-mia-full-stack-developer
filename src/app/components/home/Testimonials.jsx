@@ -30,7 +30,7 @@ const TESTIMONIALS_DATA = [
   {
     id: 4,
     name: "Sarah Thompson",
-    position: "Product Manager, TufLet Sports",
+    position: "Product Manager, TurfLet Sports",
     quote: "The booking platform's mobile app is exceptional. React Native expertise delivered a seamless experience for our users. Real-time availability, payment integration, and push notifications work perfectly.",
     avatar: "S",
   }

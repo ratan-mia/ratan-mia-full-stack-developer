@@ -38,7 +38,7 @@ const Header = () => {
       description: 'Automotive E-Commerce Ecosystem'
     },
     { 
-      name: 'TufLet', 
+      name: 'TurfLet', 
       href: '/case-studies/turfnations-booking',
       description: 'Sports Venue Booking Platform'
     }

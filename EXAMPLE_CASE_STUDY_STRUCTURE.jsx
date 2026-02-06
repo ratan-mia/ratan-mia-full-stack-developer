@@ -6,21 +6,29 @@
  * Copy this structure and replace with your own content
  */
 
-import { 
-  CheckCircle, Code, Monitor, Smartphone, Star, BarChart, Award, 
-  Check, Zap, Calendar, Users, DollarSign, Database 
-} from 'lucide-react';
 import CaseStudyTemplate, {
-  OverviewSection,
-  CaseStudySection,
-  ImageContentGrid,
-  FullWidthImageContent,
-  MetricsGrid,
-  ImageShowcaseGrid,
-  BusinessImpactCards,
-  KeyAchievementsCard,
-  CTASection
+    BusinessImpactCards,
+    CaseStudySection,
+    CTASection,
+    FullWidthImageContent,
+    ImageContentGrid,
+    ImageShowcaseGrid,
+    KeyAchievementsCard,
+    MetricsGrid,
+    OverviewSection
 } from '@/app/components/case-studies/CaseStudyTemplate';
+import {
+    Award,
+    BarChart,
+    Calendar,
+    Check,
+    CheckCircle, Code,
+    Database,
+    DollarSign,
+    Monitor, Smartphone,
+    Users,
+    Zap
+} from 'lucide-react';
 import YourHeroSection from './HeroSection'; // Create your own hero
 
 // 1. PROJECT DATA - Update with your project info

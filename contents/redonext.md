@@ -137,7 +137,7 @@ A ready-made mobile app built with **Expo + React Native**.
 
 ---
 
-## **5. TufLet – Booking & Reservation Platform**
+## **5. TurfLet – Booking & Reservation Platform**
 
 Ideal for sports grounds, resorts, convention centers, and local service venues.
 

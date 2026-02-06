@@ -1,27 +1,35 @@
 'use client';
 
-import { 
-  CheckCircle, Code, Monitor, Smartphone, BarChart, Award, 
-  Check, Zap, Calendar, Users, DollarSign, Star
-} from 'lucide-react';
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
 import CaseStudyTemplate, {
-  OverviewSection,
-  CaseStudySection,
-  ImageContentGrid,
-  FullWidthImageContent,
-  MetricsGrid,
-  ImageShowcaseGrid,
-  BusinessImpactCards,
-  KeyAchievementsCard,
-  CTASection
+    BusinessImpactCards,
+    CaseStudySection,
+    CTASection,
+    FullWidthImageContent,
+    ImageContentGrid,
+    ImageShowcaseGrid,
+    KeyAchievementsCard,
+    MetricsGrid,
+    OverviewSection
 } from '@/app/components/case-studies/CaseStudyTemplate';
+import {
+    Award,
+    BarChart,
+    Calendar,
+    Check,
+    CheckCircle, Code,
+    DollarSign,
+    Monitor, Smartphone,
+    Star,
+    Users,
+    Zap
+} from 'lucide-react';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
 import HeroSection from '../../components/case-studies/HeroSection';
 
 // Project Data
 const projectData = {
-  company: 'TufLet',
+  company: 'TurfLet',
   category: 'Booking Platform',
   liveUrl: 'https://www.turflet.app',
   timeline: '3 Months',
@@ -33,7 +41,7 @@ const projectData = {
   ]
 };
 
-export default function TufLetCaseStudy() {
+export default function TurfLetCaseStudy() {
   const [currentScreenshot, setCurrentScreenshot] = useState(0);
 
   const screenshots = [
@@ -75,11 +83,11 @@ export default function TufLetCaseStudy() {
       <OverviewSection
         title="About the Project"
         paragraphs={[
-          "TufLet is a revolutionary booking platform designed to connect sports enthusiasts with turf owners. The platform needed to handle real-time availability checks, prevent double bookings, integrate secure payment processing, and provide comprehensive management tools for turf owners.",
+          "TurfLet is a revolutionary booking platform designed to connect sports enthusiasts with turf owners. The platform needed to handle real-time availability checks, prevent double bookings, integrate secure payment processing, and provide comprehensive management tools for turf owners.",
           "The solution includes a mobile app for players to browse and book turfs, a web-based admin panel for owners to manage their facilities, and a robust backend system that handles complex booking logic, payment processing, and analytics."
         ]}
         image="/images/projects/turflet/mockup/owner-dashboard and player -app.png"
-        imageAlt="TufLet Platform Overview"
+        imageAlt="TurfLet Platform Overview"
       />
 
       {/* Challenge Section */}
@@ -450,7 +458,7 @@ export default function TufLetCaseStudy() {
         title="Built with Modern Technologies"
         description={
           <>
-            The TufLet platform is built using <span className="font-bold text-black">React Native</span> and{' '}
+            The TurfLet platform is built using <span className="font-bold text-black">React Native</span> and{' '}
             <span className="font-bold text-black">Expo</span> for cross-platform mobile development, ensuring a 
             seamless experience on both iOS and Android devices. The admin dashboard is powered by{' '}
             <span className="font-bold text-black">Next.js 14</span> with server-side rendering for optimal 

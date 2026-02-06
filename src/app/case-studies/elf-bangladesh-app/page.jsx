@@ -1,25 +1,36 @@
 'use client';
 
-import { 
-  CheckCircle, Code, Monitor, Smartphone, BarChart, Award, 
-  Check, Zap, ShoppingCart, Wallet, MapPin, Trophy, Gift, Star
+import CaseStudyTemplate, {
+    BusinessImpactCards,
+    CaseStudySection,
+    CTASection,
+    FullWidthImageContent,
+    ImageContentGrid,
+    ImageShowcaseGrid,
+    KeyAchievementsCard,
+    MetricsGrid,
+    OverviewSection
+} from '@/app/components/case-studies/CaseStudyTemplate';
+import { AnimatePresence, motion } from 'framer-motion';
+import {
+    ArrowLeft,
+    BarChart,
+    Check,
+    CheckCircle,
+    ChevronLeft, ChevronRight,
+    Code,
+    Gift,
+    MapPin,
+    ShoppingCart,
+    Smartphone,
+    Star,
+    Trophy,
+    Wallet,
+    Zap
 } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react';
-import CaseStudyTemplate, {
-  OverviewSection,
-  CaseStudySection,
-  ImageContentGrid,
-  FullWidthImageContent,
-  MetricsGrid,
-  ImageShowcaseGrid,
-  BusinessImpactCards,
-  KeyAchievementsCard,
-  CTASection
-} from '@/app/components/case-studies/CaseStudyTemplate';
+import { useState } from 'react';
 
 // Project Data
 const projectData = {

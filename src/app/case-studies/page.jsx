@@ -49,9 +49,9 @@ const caseStudies = [
   },
   {
     id: 2,
-    title: "TufLet",
+    title: "TurfLet",
     subtitle: "Smart Sports Venue Booking",
-    client: "TufLet Bangladesh",
+    client: "TurfLet Bangladesh",
     category: "Sports & Recreation",
     year: "2025",
     duration: "3 months",
@@ -83,7 +83,7 @@ const caseStudies = [
       { label: "Venues", value: "25+", icon: Award }
     ],
     impact: "Streamlined the entire sports venue booking ecosystem, increasing venue utilization by 40% and reducing booking conflicts to near zero.",
-    slug: "TufLet-booking",
+    slug: "TurfLet-booking",
     bgColor: "bg-gray-50",
     accentColor: "accent-lime"
   },

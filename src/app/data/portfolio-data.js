@@ -108,8 +108,8 @@ export const PORTFOLIO_PROJECTS = [
   },
   
   {
-    id: 'TufLet',
-    title: 'TufLet',
+    id: 'TurfLet',
+    title: 'TurfLet',
     subtitle: 'Sports Booking & Reservation Platform',
     category: 'SaaS Product',
     type: 'featured',

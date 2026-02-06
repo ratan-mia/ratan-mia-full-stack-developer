@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import HeroSection from '../../components/case-studies/HeroSection';
 import ProjectInquirySection from '../../components/ProjectInquirySection';
 
-export default function TufLetCaseStudy() {
+export default function TurfLetCaseStudy() {
   const [activeSection, setActiveSection] = useState('overview');
   const [currentScreenshot, setCurrentScreenshot] = useState(0);
   const [showSidebar, setShowSidebar] = useState(true);
@@ -109,7 +109,7 @@ export default function TufLetCaseStudy() {
                 <h3 className="text-xs font-extrabold text-gray-500 mb-3 uppercase tracking-wider">
                   COMPANY
                 </h3>
-                <p className="text-2xl font-extrabold text-black">TufLet</p>
+                <p className="text-2xl font-extrabold text-black">TurfLet</p>
               </div>
 
               <div className="h-px bg-gray-200"></div>
@@ -217,7 +217,7 @@ export default function TufLetCaseStudy() {
             <div className="max-w-7xl">
               <h2 className="text-4xl font-extrabold mb-6">About the Project</h2>
               <p className="text-lg text-gray-700 leading-relaxed mb-6 font-medium">
-                TufLet is a revolutionary booking platform designed to connect sports enthusiasts with turf owners. The platform needed to handle real-time availability checks, prevent double bookings, integrate secure payment processing, and provide comprehensive management tools for turf owners.
+                TurfLet is a revolutionary booking platform designed to connect sports enthusiasts with turf owners. The platform needed to handle real-time availability checks, prevent double bookings, integrate secure payment processing, and provide comprehensive management tools for turf owners.
               </p>
               <p className="text-lg text-gray-700 leading-relaxed font-medium">
                 The solution includes a mobile app for players to browse and book turfs, a web-based admin panel for owners to manage their facilities, and a robust backend system that handles complex booking logic, payment processing, and analytics.
@@ -227,7 +227,7 @@ export default function TufLetCaseStudy() {
             <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
               <Image
                 src="/images/projects/turflet/mockup/owner-dashboard and player -app.png"
-                alt="TufLet Platform Overview"
+                alt="TurfLet Platform Overview"
                 fill
                 className="object-contain"
               />
@@ -878,7 +878,7 @@ export default function TufLetCaseStudy() {
                 </div>
                 <h2 className="text-4xl md:text-5xl font-extrabold mb-6">Built with Modern Technologies</h2>
                 <p className="text-lg text-gray-600 leading-relaxed max-w-4xl mx-auto">
-                  The TufLet platform is built using <span className="font-bold text-black">React Native</span> and <span className="font-bold text-black">Expo</span> for cross-platform mobile development, ensuring a seamless experience on both iOS and Android devices. The admin dashboard is powered by <span className="font-bold text-black">Next.js 14</span> with server-side rendering for optimal performance. We leverage <span className="font-bold text-black">Supabase PostgreSQL</span> for our real-time database and authentication, with <span className="font-bold text-black">Prisma ORM</span> providing type-safe database queries. Payment processing is handled through <span className="font-bold text-black">SSL Commerz</span>, the leading payment gateway in Bangladesh. The application features smooth navigation via <span className="font-bold text-black">React Navigation</span> and is beautifully styled with <span className="font-bold text-black">Tailwind CSS</span>, delivering a modern and responsive user interface across all devices.
+                  The TurfLet platform is built using <span className="font-bold text-black">React Native</span> and <span className="font-bold text-black">Expo</span> for cross-platform mobile development, ensuring a seamless experience on both iOS and Android devices. The admin dashboard is powered by <span className="font-bold text-black">Next.js 14</span> with server-side rendering for optimal performance. We leverage <span className="font-bold text-black">Supabase PostgreSQL</span> for our real-time database and authentication, with <span className="font-bold text-black">Prisma ORM</span> providing type-safe database queries. Payment processing is handled through <span className="font-bold text-black">SSL Commerz</span>, the leading payment gateway in Bangladesh. The application features smooth navigation via <span className="font-bold text-black">React Navigation</span> and is beautifully styled with <span className="font-bold text-black">Tailwind CSS</span>, delivering a modern and responsive user interface across all devices.
                 </p>
               </div>
             </div>
