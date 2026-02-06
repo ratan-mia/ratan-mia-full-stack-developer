@@ -257,7 +257,17 @@ export default function ServicesPage() {
       
       {/* Hero Section */}
       <section className="relative min-h-[70vh] w-full overflow-hidden bg-accent-lime flex items-center">
-        <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-20 text-center">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop" 
+            alt="Services Background"
+            className="w-full h-full object-cover opacity-8"
+          />
+          <div className="absolute inset-0 bg-accent-lime/85"></div>
+        </div>
+        
+        <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-20 text-center relative z-10">
           <div className="inline-flex items-center gap-2 px-6 py-2 bg-black/10 text-black rounded-full text-sm font-extrabold mb-6">
             <Code2 className="w-4 h-4" />
             <span>PROFESSIONAL SERVICES</span>
