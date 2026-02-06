@@ -266,8 +266,15 @@ export default function ServicesPage() {
           />
           <div className="absolute inset-0 bg-accent-lime/85"></div>
         </div>
+
+        {/* Decorative elements - desktop only */}
+        <div className="absolute inset-0 z-10 pointer-events-none hidden lg:block">
+          <div className="absolute top-20 right-20 w-32 h-32 rounded-full bg-black/5 animate-pulse" />
+          <div className="absolute bottom-40 left-20 w-24 h-24 rounded-2xl bg-black/5 animate-pulse" style={{ animationDelay: '1s' }} />
+          <div className="absolute top-1/2 right-1/3 w-20 h-20 rounded-full bg-black/5 animate-pulse" style={{ animationDelay: '2s' }} />
+        </div>
         
-        <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-20 text-center relative z-10">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-20 text-center relative z-20">
           <div className="inline-flex items-center gap-2 px-6 py-2 bg-black/10 text-black rounded-full text-sm font-extrabold mb-6">
             <Code2 className="w-4 h-4" />
             <span>PROFESSIONAL SERVICES</span>
