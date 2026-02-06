@@ -178,15 +178,15 @@ const ProjectFilters = () => {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <motion.div 
-          className="mb-16"
+          className="mb-20"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="flex items-center gap-8 mb-8">
+          <div className="flex items-center gap-8 mb-6">
             <motion.h2 
-              className="text-6xl md:text-7xl lg:text-8xl font-black text-black uppercase tracking-tight"
+              className="text-6xl md:text-7xl lg:text-8xl font-black text-black uppercase tracking-tighter"
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -195,7 +195,7 @@ const ProjectFilters = () => {
               WORK
             </motion.h2>
             <motion.div 
-              className="flex-1 h-1 bg-gradient-to-r from-accent-lime to-transparent"
+              className="flex-1 h-1 bg-gradient-to-r from-accent-lime via-accent-lime/50 to-transparent rounded-full"
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
@@ -204,7 +204,7 @@ const ProjectFilters = () => {
             />
           </div>
           <motion.p 
-            className="text-gray-600 text-lg max-w-3xl"
+            className="text-gray-600 text-lg md:text-xl max-w-3xl leading-relaxed"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -274,26 +274,26 @@ const ProjectFilters = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <motion.div 
-                className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-200 hover:border-accent-lime relative group"
-                whileHover={{ y: -8 }}
-                transition={{ duration: 0.3 }}
+                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-200 hover:border-accent-lime relative group cursor-pointer"
+                whileHover={{ y: -10, scale: 1.02 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
               >
                 {/* Project Image */}
-                <div className="relative overflow-hidden bg-gray-50">
+                <div className="relative overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
                   <motion.img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-auto object-cover group-hover:scale-110 transition-transform duration-700"
+                    className="w-full h-auto object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                   />
                   
                   {/* Hover Content Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/90 to-black/70 flex flex-col justify-between p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/95 to-black/60 flex flex-col justify-between p-6 opacity-0 group-hover:opacity-100 transition-all duration-400">
                     {/* Top Section - Category & Year */}
-                    <div className="flex items-center justify-between transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                      <span className="px-3 py-1.5 bg-accent-lime/20 backdrop-blur-sm text-accent-lime rounded-lg text-xs font-bold border border-accent-lime/30">
+                    <div className="flex items-center justify-between transform translate-y-6 group-hover:translate-y-0 transition-all duration-400">
+                      <span className="px-3 py-1.5 bg-accent-lime/30 backdrop-blur-md text-accent-lime rounded-lg text-xs font-bold border border-accent-lime/50 shadow-lg">
                         {project.category}
                       </span>
-                      <span className="px-3 py-1.5 bg-white/10 backdrop-blur-sm text-white rounded-lg text-xs font-bold">
+                      <span className="px-3 py-1.5 bg-white/15 backdrop-blur-md text-white rounded-lg text-xs font-bold shadow-lg">
                         {project.year}
                       </span>
                     </div>
@@ -301,39 +301,17 @@ const ProjectFilters = () => {
                     {/* Bottom Section - Details */}
                     <div>
                       {/* Title */}
-                      <h3 className="text-white text-xl font-bold mb-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">
+                      <h3 className="text-white text-xl md:text-2xl font-bold mb-5 transform translate-y-6 group-hover:translate-y-0 transition-all duration-400 delay-75 leading-tight">
                         {project.title}
                       </h3>
 
-                      {/* Description */}
-                      <p className="text-gray-300 text-sm mb-4 line-clamp-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-100">
-                        {project.description}
-                      </p>
-
-                      {/* Technologies */}
-                      <div className="flex flex-wrap gap-2 mb-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-150">
-                        {project.tech.slice(0, 3).map((tech) => (
-                          <span
-                            key={tech}
-                            className="px-2 py-1 bg-white/10 backdrop-blur-sm text-white rounded text-xs font-medium border border-white/20"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                        {project.tech.length > 3 && (
-                          <span className="px-2 py-1 bg-accent-lime text-black rounded text-xs font-bold">
-                            +{project.tech.length - 3}
-                          </span>
-                        )}
-                      </div>
-
                       {/* Action Button & Live Status */}
-                      <div className="flex items-center gap-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-200">
+                      <div className="flex items-center gap-3 transform translate-y-6 group-hover:translate-y-0 transition-all duration-400 delay-100">
                         {project.links.live && (
                           <>
                             <a
                               href={project.links.live}
-                              className="flex-1 px-4 py-2.5 bg-accent-lime text-black rounded-lg font-bold text-sm text-center flex items-center justify-center gap-2 hover:bg-white transition-colors"
+                              className="flex-1 px-5 py-3 bg-accent-lime text-black rounded-xl font-bold text-sm text-center flex items-center justify-center gap-2 hover:bg-white hover:scale-105 transition-all duration-300 shadow-xl"
                               target={project.links.live.startsWith('http') ? "_blank" : "_self"}
                               rel={project.links.live.startsWith('http') ? "noopener noreferrer" : undefined}
                               onClick={(e) => e.stopPropagation()}
@@ -341,8 +319,8 @@ const ProjectFilters = () => {
                               <ExternalLink className="w-4 h-4" strokeWidth={2.5} />
                               {project.links.live.startsWith('/case-studies') ? 'Case Study' : 'View Live'}
                             </a>
-                            <span className="flex items-center gap-1.5 text-green-400 font-medium text-xs whitespace-nowrap">
-                              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                            <span className="flex items-center gap-2 px-3 py-1.5 bg-green-500/20 backdrop-blur-md border border-green-400/50 text-green-400 font-bold text-xs whitespace-nowrap rounded-lg shadow-lg">
+                              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-lg shadow-green-400/50" />
                               LIVE
                             </span>
                           </>
@@ -353,9 +331,9 @@ const ProjectFilters = () => {
                 </div>
 
                 {/* Project Content - Only Title Visible by Default */}
-                <div className="p-4 group-hover:opacity-0 transition-opacity duration-300">
+                <div className="p-5 group-hover:opacity-0 transition-opacity duration-300">
                   {/* Title */}
-                  <h3 className="text-lg font-bold text-black line-clamp-2">
+                  <h3 className="text-lg md:text-xl font-bold text-black line-clamp-2 leading-tight">
                     {project.title}
                   </h3>
                 </div>
