@@ -3,6 +3,7 @@
 import { ExternalLink, Search } from 'lucide-react';
 import { useState } from 'react';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 const ProjectFilters = () => {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -143,39 +144,104 @@ const ProjectFilters = () => {
   });
 
   return (
-    <section className="relative w-full py-20 px-4 md:px-6 lg:px-8 bg-white">
-      <div className="max-w-7xl mx-auto">
+    <section className="relative w-full py-20 px-4 md:px-6 lg:px-8 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute top-20 -left-20 w-72 h-72 bg-accent-lime/5 rounded-full blur-3xl"
+          animate={{
+            x: [0, 100, 0],
+            y: [0, 50, 0],
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <motion.div
+          className="absolute bottom-20 -right-20 w-96 h-96 bg-accent-lime/5 rounded-full blur-3xl"
+          animate={{
+            x: [0, -100, 0],
+            y: [0, -50, 0],
+            scale: [1, 1.3, 1],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+      </div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
-        <div className="mb-16">
+        <motion.div 
+          className="mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           <div className="flex items-center gap-8 mb-8">
-            <h2 className="text-6xl md:text-7xl lg:text-8xl font-black text-black uppercase tracking-tight">
+            <motion.h2 
+              className="text-6xl md:text-7xl lg:text-8xl font-black text-black uppercase tracking-tight"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
               WORK
-            </h2>
-            <div className="flex-1 h-1 bg-accent-lime"></div>
+            </motion.h2>
+            <motion.div 
+              className="flex-1 h-1 bg-gradient-to-r from-accent-lime to-transparent"
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, delay: 0.4 }}
+              style={{ transformOrigin: 'left' }}
+            />
           </div>
-          <p className="text-gray-600 text-lg max-w-3xl">
+          <motion.p 
+            className="text-gray-600 text-lg max-w-3xl"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
             We pride ourselves on delivering innovative, impactful, and results-driven projects that exceed expectations.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         {/* Search and Filters */}
-        <div className="flex flex-col lg:flex-row gap-6 mb-16">
+        <motion.div 
+          className="flex flex-col lg:flex-row gap-6 mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
           {/* Search Bar */}
-          <div className="relative flex-1">
+          <motion.div 
+            className="relative flex-1"
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.2 }}
+          >
             <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input
               type="text"
               placeholder="Search projects or technologies..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-xl bg-white text-black placeholder:text-gray-400 focus:outline-none focus:border-accent-lime transition-all font-medium"
+              className="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-xl bg-white text-black placeholder:text-gray-400 focus:outline-none focus:border-accent-lime focus:shadow-lg transition-all font-medium"
             />
-          </div>
+          </motion.div>
 
           {/* Category Filters */}
           <div className="flex flex-wrap gap-3">
-            {categories.map((category) => (
-              <button
+            {categories.map((category, index) => (
+              <motion.button
                 key={category}
                 onClick={() => setActiveFilter(category)}
                 className={`px-6 py-3 rounded-xl font-bold transition-all duration-300 text-sm ${
@@ -183,101 +249,118 @@ const ProjectFilters = () => {
                     ? 'bg-accent-lime text-black shadow-lg'
                     : 'bg-white text-black border-2 border-gray-200 hover:border-accent-lime'
                 }`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.1 * index }}
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
               >
                 {category}
-              </button>
+              </motion.button>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* Projects Masonry Grid */}
         <div className="columns-1 md:columns-2 lg:columns-3 gap-6">
-          {filteredProjects.map((project) => (
-            <div
+          {filteredProjects.map((project, index) => (
+            <motion.div
               key={project.id}
               className="break-inside-avoid mb-6"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 group border border-gray-200 hover:border-accent-lime relative">
+              <motion.div 
+                className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-200 hover:border-accent-lime relative group"
+                whileHover={{ y: -8 }}
+                transition={{ duration: 0.3 }}
+              >
                 {/* Project Image */}
                 <div className="relative overflow-hidden bg-gray-50">
-                  <img
+                  <motion.img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-auto object-cover group-hover:scale-110 transition-transform duration-700"
                   />
                   
                   {/* Hover Content Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5">
-                    {/* Description */}
-                    <p className="text-white text-sm mb-4 line-clamp-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                      {project.description}
-                    </p>
-
-                    {/* Technologies */}
-                    <div className="flex flex-wrap gap-2 mb-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">
-                      {project.tech.slice(0, 3).map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-2 py-1 bg-white/20 backdrop-blur-sm text-white rounded text-xs font-medium"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                      {project.tech.length > 3 && (
-                        <span className="px-2 py-1 bg-accent-lime text-black rounded text-xs font-bold">
-                          +{project.tech.length - 3}
-                        </span>
-                      )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/90 to-black/70 flex flex-col justify-between p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {/* Top Section - Category & Year */}
+                    <div className="flex items-center justify-between transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                      <span className="px-3 py-1.5 bg-accent-lime/20 backdrop-blur-sm text-accent-lime rounded-lg text-xs font-bold border border-accent-lime/30">
+                        {project.category}
+                      </span>
+                      <span className="px-3 py-1.5 bg-white/10 backdrop-blur-sm text-white rounded-lg text-xs font-bold">
+                        {project.year}
+                      </span>
                     </div>
 
-                    {/* Action Buttons */}
-                    <div className="flex gap-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-100">
-                      {project.links.live && (
-                        <a
-                          href={project.links.live}
-                          className="flex-1 px-4 py-2.5 bg-accent-lime text-black rounded-lg hover:bg-white transition-colors font-bold text-sm text-center flex items-center justify-center gap-2"
-                          target={project.links.live.startsWith('http') ? "_blank" : "_self"}
-                          rel={project.links.live.startsWith('http') ? "noopener noreferrer" : undefined}
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          <ExternalLink className="w-4 h-4" strokeWidth={2.5} />
-                          {project.links.live.startsWith('/case-studies') ? 'Case Study' : 'View Live'}
-                        </a>
-                      )}
-                    </div>
-                  </div>
+                    {/* Bottom Section - Details */}
+                    <div>
+                      {/* Title */}
+                      <h3 className="text-white text-xl font-bold mb-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">
+                        {project.title}
+                      </h3>
 
-                  {/* Year Badge - Always Visible */}
-                  <div className="absolute top-3 right-3">
-                    <span className="px-3 py-1 bg-black/70 backdrop-blur-sm text-accent-lime rounded-lg text-xs font-bold">
-                      {project.year}
-                    </span>
+                      {/* Description */}
+                      <p className="text-gray-300 text-sm mb-4 line-clamp-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-100">
+                        {project.description}
+                      </p>
+
+                      {/* Technologies */}
+                      <div className="flex flex-wrap gap-2 mb-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-150">
+                        {project.tech.slice(0, 3).map((tech) => (
+                          <span
+                            key={tech}
+                            className="px-2 py-1 bg-white/10 backdrop-blur-sm text-white rounded text-xs font-medium border border-white/20"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                        {project.tech.length > 3 && (
+                          <span className="px-2 py-1 bg-accent-lime text-black rounded text-xs font-bold">
+                            +{project.tech.length - 3}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Action Button & Live Status */}
+                      <div className="flex items-center gap-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-200">
+                        {project.links.live && (
+                          <>
+                            <a
+                              href={project.links.live}
+                              className="flex-1 px-4 py-2.5 bg-accent-lime text-black rounded-lg font-bold text-sm text-center flex items-center justify-center gap-2 hover:bg-white transition-colors"
+                              target={project.links.live.startsWith('http') ? "_blank" : "_self"}
+                              rel={project.links.live.startsWith('http') ? "noopener noreferrer" : undefined}
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              <ExternalLink className="w-4 h-4" strokeWidth={2.5} />
+                              {project.links.live.startsWith('/case-studies') ? 'Case Study' : 'View Live'}
+                            </a>
+                            <span className="flex items-center gap-1.5 text-green-400 font-medium text-xs whitespace-nowrap">
+                              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                              LIVE
+                            </span>
+                          </>
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                {/* Project Content - Always Visible */}
-                <div className="p-4">
+                {/* Project Content - Only Title Visible by Default */}
+                <div className="p-4 group-hover:opacity-0 transition-opacity duration-300">
                   {/* Title */}
-                  <h3 className="text-lg font-bold text-black mb-2 group-hover:text-accent-lime transition-colors line-clamp-2">
+                  <h3 className="text-lg font-bold text-black line-clamp-2">
                     {project.title}
                   </h3>
-
-                  {/* Meta Info */}
-                  <div className="flex items-center gap-3 text-xs">
-                    <span className="text-gray-600 font-medium">{project.category}</span>
-                    {project.links.live && (
-                      <>
-                        <span className="text-gray-300">•</span>
-                        <span className="flex items-center gap-1 text-green-600 font-medium">
-                          <div className="w-1.5 h-1.5 bg-green-600 rounded-full animate-pulse"></div>
-                          LIVE
-                        </span>
-                      </>
-                    )}
-                  </div>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           ))}
         </div>
 
