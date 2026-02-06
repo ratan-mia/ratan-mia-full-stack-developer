@@ -1,5 +1,6 @@
 'use client';
 
+import FAQ from '@/components/home/FAQ';
 import { motion } from 'framer-motion';
 import {
     AlertCircle,
@@ -510,6 +511,9 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <FAQ />
 
       {/* CTA Section */}
       <section className="relative w-full py-20 bg-white">

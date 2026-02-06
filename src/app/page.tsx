@@ -4,9 +4,7 @@ import About from '@/components/home/About';
 import Contact from '@/components/home/Contact';
 import CTA from '@/components/home/CTA';
 import EmpoweringBusiness from '@/components/home/EmpoweringBusiness';
-import FAQ from '@/components/home/FAQ';
 import FeelanceCTA from '@/components/home/FeelanceCTA';
-import GetQuote from '@/components/home/GetQuote';
 import HeroMain from '@/components/home/HeroMain';
 import PricingPlan from '@/components/home/PricingPlan';
 import ProcessHowIWork from '@/components/home/ProcessHowIWork';
@@ -55,16 +53,6 @@ export default function Home() {
 
       {/* Testimonials */}
       <Testimonials />
-
-
-
-      {/* Get Quote */}
-      <GetQuote />
-
-      {/* FAQ */}
-      <FAQ />
-
-
 
       {/* Contact */}
       <Contact />
