@@ -20,6 +20,7 @@ import {
     CreditCard,
     Package,
     ShoppingCart,
+    Smartphone,
     Star,
     TrendingUp,
     Users,
@@ -28,6 +29,7 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 // Project Data
 const projectData = {
@@ -160,6 +162,48 @@ function HeroSection() {
 }
 
 export default function CheryBangladeshAppCaseStudy() {
+  const [currentScreenshot, setCurrentScreenshot] = useState(0);
+
+  const screenshots = [
+    {
+      image: '02-home-screen.jpg',
+      title: 'Home Dashboard',
+      description: 'Quick access to all features - services, showroom, e-commerce, support with personalized recommendations.'
+    },
+    {
+      image: '22-products-vehicle-browse.jpg',
+      title: 'Vehicle Showroom',
+      description: 'Browse complete vehicle lineup with 360° interactive views, HD galleries, and detailed specifications.'
+    },
+    {
+      image: '17-testdrive-vehicle-selection.jpg',
+      title: 'Test Drive Booking',
+      description: 'Schedule test drives with real-time availability calendar and instant confirmation notifications.'
+    },
+    {
+      image: '11-service-booking-vehicle.jpg',
+      title: 'Service Booking',
+      description: 'Book service appointments with vehicle selection from garage and service history tracking.'
+    },
+    {
+      image: '28-shop-accessories.jpg',
+      title: 'Parts & Accessories',
+      description: 'Shop 500+ genuine Chery parts with category browsing and compatibility checking.'
+    },
+    {
+      image: '30-shop-cart.jpg',
+      title: 'Shopping Cart',
+      description: 'Real-time cart sync with discount codes, stock checking, and free shipping progress.'
+    },
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentScreenshot((prev) => (prev + 1) % screenshots.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [screenshots.length]);
+
   return (
     <CaseStudyTemplate
       project={projectData}
@@ -466,6 +510,101 @@ export default function CheryBangladeshAppCaseStudy() {
           ]}
         />
       </CaseStudySection>
+
+      {/* Mobile App Showcase with Slider */}
+      <section className="py-20 px-4 md:px-6 lg:px-8 bg-white">
+        <div className="max-w-7xl mx-auto">
+          {/* Mobile App Screenshots Section */}
+          <div className="grid lg:grid-cols-2 gap-12 items-center bg-gradient-to-br from-gray-50 to-white p-8 md:p-12 rounded-3xl border-2 border-gray-100">
+            {/* Left - Mobile Mockup with Slider */}
+            <div className="flex justify-center">
+              <div className="relative w-[300px] h-[600px]">
+                {/* Mobile Frame */}
+                <div className="absolute inset-0 bg-black rounded-[3rem] shadow-2xl p-3">
+                  <div className="relative w-full h-full bg-white rounded-[2.5rem] overflow-hidden">
+                    {/* Notch */}
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-black rounded-b-2xl z-10"></div>
+                    
+                    {/* Screenshot Display */}
+                    <div className="relative w-full h-full">
+                      <Image
+                        src={`/images/projects/cherymobileapp/${screenshots[currentScreenshot].image}`}
+                        alt={screenshots[currentScreenshot].title}
+                        fill
+                        className="object-cover transition-opacity duration-500"
+                      />
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Navigation Dots */}
+                <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
+                  {screenshots.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setCurrentScreenshot(idx)}
+                      className={`w-2 h-2 rounded-full transition-all ${
+                        idx === currentScreenshot 
+                          ? 'bg-accent-lime w-8' 
+                          : 'bg-gray-300 hover:bg-gray-400'
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Right - Feature Description */}
+            <div className="space-y-6">
+              <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
+                <Smartphone className="w-4 h-4" />
+                MOBILE APP FEATURES
+              </div>
+              
+              <h3 className="text-4xl md:text-5xl font-extrabold mb-6">
+                Complete Automotive Experience
+              </h3>
+              
+              <p className="text-lg text-gray-600 mb-8">
+                Our comprehensive mobile app transforms the car buying journey. From browsing vehicles to booking services, everything is seamlessly integrated in one powerful platform.
+              </p>
+
+              {/* Feature List */}
+              <div className="space-y-4">
+                {screenshots.map((screenshot, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentScreenshot(idx)}
+                    className={`w-full text-left p-4 rounded-2xl transition-all ${
+                      idx === currentScreenshot
+                        ? 'bg-accent-lime shadow-lg scale-105'
+                        : 'bg-white hover:bg-gray-50 border-2 border-gray-100'
+                    }`}
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
+                        idx === currentScreenshot ? 'bg-black' : 'bg-accent-lime'
+                      }`}>
+                        <Check className={`w-5 h-5 ${
+                          idx === currentScreenshot ? 'text-accent-lime' : 'text-black'
+                        }`} />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="text-lg font-bold mb-1">{screenshot.title}</h4>
+                        <p className={`text-sm ${
+                          idx === currentScreenshot ? 'text-black/80' : 'text-gray-600'
+                        }`}>
+                          {screenshot.description}
+                        </p>
+                      </div>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Full Width Screenshots */}
       <CaseStudySection
