@@ -222,7 +222,7 @@ export default function CheryBangladeshAppCaseStudy() {
           "Chery Bangladesh needed a comprehensive mobile platform to connect customers with their entire automotive ecosystem. Traditional car dealership experiences lacked digital touchpoints, making it difficult for customers to book test drives, schedule services, or purchase accessories.",
           "The solution is a full-stack mobile app built with React Native and Expo, enabling customers to browse vehicles with 360° views, book test drives in real-time, schedule service appointments, and shop for genuine parts and accessories. The app integrates with Supabase for real-time data synchronization and secure authentication."
         ]}
-        image="/images/projects/cherymobileapp/02-home-screen.jpg"
+        image="/images/projects/cherymobileapp/mockup/chery-mobile-app-multi-screens.png"
         imageAlt="Chery Bangladesh App Overview"
       />
 
@@ -259,7 +259,7 @@ export default function CheryBangladeshAppCaseStudy() {
       >
         {/* Vehicle Showroom */}
         <ImageContentGrid
-          image="/images/projects/cherymobileapp/22-products-vehicle-browse.jpg"
+          image="/images/projects/cherymobileapp/mockup/Chery-website.png"
           imageAlt="Vehicle Showroom"
           badge="VEHICLE DISCOVERY"
           badgeIcon={Car}
@@ -315,7 +315,7 @@ export default function CheryBangladeshAppCaseStudy() {
 
         {/* Service Booking */}
         <ImageContentGrid
-          image="/images/projects/cherymobileapp/11-service-booking-vehicle.jpg"
+          image="/images/projects/cherymobileapp/mockup/book-service-online.png"
           imageAlt="Service Booking"
           badge="SERVICE CENTER"
           badgeIcon={Wrench}
@@ -428,7 +428,7 @@ export default function CheryBangladeshAppCaseStudy() {
 
       {/* Vehicle 360 Viewer */}
       <FullWidthImageContent
-        image="/images/projects/cherymobileapp/23-products-vehicle-details.jpg"
+        image="/images/projects/cherymobileapp/mockup/Chery-website.png"
         imageAlt="360° Vehicle Viewer"
         badge="360° EXPERIENCE"
         badgeIcon={Car}
@@ -457,12 +457,12 @@ export default function CheryBangladeshAppCaseStudy() {
 
       {/* Order Tracking */}
       <FullWidthImageContent
-        image="/images/projects/cherymobileapp/36-profile-orders.jpg"
+        image="/images/projects/cherymobileapp/mockup/digital-glovebox.png"
         imageAlt="Order Tracking & Management"
-        badge="ORDER MANAGEMENT"
+        badge="DIGITAL GLOVEBOX"
         badgeIcon={Package}
-        title="Complete Order Tracking"
-        description="Track your parts and accessories orders from confirmation to delivery. Real-time status updates, delivery tracking, and order history management all in one place."
+        title="Digital Glovebox & Documents"
+        description="Store and manage all your vehicle documents digitally. Access insurance papers, registration, service records, and warranty information anytime, anywhere."
         imagePosition="right"
         bgColor="bg-white"
         features={[
@@ -491,7 +491,7 @@ export default function CheryBangladeshAppCaseStudy() {
 
       {/* Booking Management */}
       <FullWidthImageContent
-        image="/images/projects/cherymobileapp/35-profile-bookings.jpg"
+        image="/images/projects/cherymobileapp/mockup/my-garages.png"
         imageAlt="Booking Management Dashboard"
         badge="BOOKING DASHBOARD"
         badgeIcon={Calendar}
@@ -523,6 +523,142 @@ export default function CheryBangladeshAppCaseStudy() {
         ]}
       />
 
+      {/* Emergency SOS */}
+      <FullWidthImageContent
+        image="/images/projects/cherymobileapp/mockup/sos.png"
+        imageAlt="Emergency SOS Feature"
+        badge="SAFETY FIRST"
+        badgeIcon={Award}
+        title="24/7 Emergency SOS"
+        description="One-tap emergency assistance feature connecting you to roadside support, emergency services, and Chery service centers. Your safety is our priority."
+        imagePosition="right"
+        bgColor="bg-white"
+        features={[
+          {
+            icon: Users,
+            title: 'Instant Connect',
+            description: 'One-tap connection to emergency services and roadside assistance'
+          },
+          {
+            icon: Star,
+            title: 'Location Sharing',
+            description: 'Automatic GPS location sharing with emergency responders'
+          },
+          {
+            icon: Calendar,
+            title: '24/7 Availability',
+            description: 'Round-the-clock support whenever you need help'
+          },
+          {
+            icon: Check,
+            title: 'Service Network',
+            description: 'Access to nationwide network of service centers and towing'
+          }
+        ]}
+      />
+
+      {/* Events & Community */}
+      <FullWidthImageContent
+        image="/images/projects/cherymobileapp/mockup/Chery-events.png"
+        imageAlt="Chery Events & Community"
+        badge="COMMUNITY"
+        badgeIcon={Users}
+        title="Events & Owner Community"
+        description="Stay connected with the Chery community. Discover exclusive events, meetups, and special promotions. Connect with fellow Chery owners and share your experiences."
+        imagePosition="left"
+        bgColor="bg-gradient-to-br from-gray-50 to-white"
+        features={[
+          {
+            icon: Calendar,
+            title: 'Exclusive Events',
+            description: 'Access to launch events, test drive days, and owner meetups'
+          },
+          {
+            icon: Star,
+            title: 'Special Offers',
+            description: 'Early access to promotions and exclusive deals for app users'
+          },
+          {
+            icon: Users,
+            title: 'Owner Network',
+            description: 'Connect with other Chery owners and share experiences'
+          },
+          {
+            icon: Award,
+            title: 'Rewards Program',
+            description: 'Earn points for app usage and redeem for services or products'
+          }
+        ]}
+      />
+
+      {/* Home Service */}
+      <FullWidthImageContent
+        image="/images/projects/cherymobileapp/mockup/chery-home-service.png"
+        imageAlt="Home Service Booking"
+        badge="CONVENIENCE"
+        badgeIcon={Car}
+        title="Home Service Booking"
+        description="Book service appointments at your doorstep. Professional technicians will come to your location for routine maintenance, inspections, and minor repairs."
+        imagePosition="right"
+        bgColor="bg-white"
+        features={[
+          {
+            icon: Calendar,
+            title: 'Flexible Scheduling',
+            description: 'Choose your preferred date and time for home service'
+          },
+          {
+            icon: Check,
+            title: 'Certified Technicians',
+            description: 'Trained and certified Chery service professionals'
+          },
+          {
+            icon: Package,
+            title: 'Genuine Parts',
+            description: 'Only authentic Chery parts used for all repairs'
+          },
+          {
+            icon: DollarSign,
+            title: 'Transparent Pricing',
+            description: 'Clear pricing with no hidden charges or surprises'
+          }
+        ]}
+      />
+
+      {/* Fuel Stations */}
+      <FullWidthImageContent
+        image="/images/projects/cherymobileapp/mockup/nearest-fuel-stations.png"
+        imageAlt="Nearest Fuel Stations Finder"
+        badge="NAVIGATION"
+        badgeIcon={Car}
+        title="Find Nearest Fuel Stations"
+        description="Never run out of fuel. Find the nearest gas stations with real-time navigation, pricing information, and amenities available at each location."
+        imagePosition="left"
+        bgColor="bg-gradient-to-br from-gray-50 to-white"
+        features={[
+          {
+            icon: Star,
+            title: 'Real-time Navigation',
+            description: 'Turn-by-turn directions to the nearest fuel stations'
+          },
+          {
+            icon: DollarSign,
+            title: 'Price Comparison',
+            description: 'Compare fuel prices across different stations'
+          },
+          {
+            icon: Check,
+            title: 'Amenities Info',
+            description: 'View available services like car wash, ATM, and shops'
+          },
+          {
+            icon: Users,
+            title: 'User Reviews',
+            description: 'Read ratings and reviews from other drivers'
+          }
+        ]}
+      />
+
       {/* Dual Platform Showcase */}
       <section className="py-20 px-4 md:px-6 lg:px-8 bg-gray-50">
         <div className="max-w-7xl mx-auto">
@@ -533,7 +669,7 @@ export default function CheryBangladeshAppCaseStudy() {
             </div>
             <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-2xl border-2 border-black/10">
               <Image
-                src="/images/projects/cherymobileapp/chery-mobile-app.png"
+                src="/images/projects/cherymobileapp/mockup/chery-mobile-app-multi-screens.png"
                 alt="Complete Platform - Chery Bangladesh Mobile App"
                 fill
                 className="object-contain"
