@@ -371,7 +371,7 @@ export default function CheryBangladeshAppCaseStudy() {
 
         {/* Shopping Cart */}
         <ImageContentGrid
-          image="/images/projects/cherymobileapp/30-shop-cart.jpg"
+          image="/images/projects/cherymobileapp/mockup/smart-shopping-cart.png"
           imageAlt="Shopping Cart"
           badge="CART"
           badgeIcon={ShoppingCart}
@@ -559,7 +559,7 @@ export default function CheryBangladeshAppCaseStudy() {
 
       {/* Events & Community */}
       <FullWidthImageContent
-        image="/images/projects/cherymobileapp/mockup/Chery-events.png"
+        image="/images/projects/cherymobileapp/mockup/chery-events.png"
         imageAlt="Chery Events & Community"
         badge="COMMUNITY"
         badgeIcon={Users}
