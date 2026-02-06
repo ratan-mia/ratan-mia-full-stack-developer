@@ -6,10 +6,25 @@ const TechStack = () => {
 
   return (
     <section className="relative w-full py-20 px-4 md:px-6 lg:px-8 bg-accent-lime overflow-hidden">
-      {/* Watermark Background Text */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden opacity-5">
-        <div className="text-[12rem] md:text-[16rem] lg:text-[20rem] xl:text-[24rem] font-black text-black leading-none whitespace-nowrap">
-          TECH STACK
+      {/* Watermark Background Text - Random Positions */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-5">
+        <div className="absolute top-[10%] left-[5%] text-[6rem] md:text-[8rem] font-black text-black leading-none whitespace-nowrap transform -rotate-12">
+          REACT
+        </div>
+        <div className="absolute top-[25%] right-[10%] text-[5rem] md:text-[7rem] font-black text-black leading-none whitespace-nowrap transform rotate-6">
+          NEXT.JS
+        </div>
+        <div className="absolute top-[50%] left-[15%] text-[7rem] md:text-[9rem] font-black text-black leading-none whitespace-nowrap transform -rotate-6">
+          LARAVEL
+        </div>
+        <div className="absolute bottom-[20%] right-[5%] text-[5rem] md:text-[7rem] font-black text-black leading-none whitespace-nowrap transform rotate-12">
+          NODE.JS
+        </div>
+        <div className="absolute top-[60%] right-[20%] text-[4rem] md:text-[6rem] font-black text-black leading-none whitespace-nowrap transform -rotate-3">
+          TYPESCRIPT
+        </div>
+        <div className="absolute bottom-[35%] left-[8%] text-[5rem] md:text-[7rem] font-black text-black leading-none whitespace-nowrap transform rotate-8">
+          AWS
         </div>
       </div>
       
