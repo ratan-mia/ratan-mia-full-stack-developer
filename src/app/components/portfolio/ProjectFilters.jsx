@@ -191,13 +191,13 @@ const ProjectFilters = () => {
         </div>
 
         {/* Projects Masonry Grid */}
-        <div className="columns-1 md:columns-2 gap-6">
+        <div className="columns-1 md:columns-2 lg:columns-3 gap-6">
           {filteredProjects.map((project) => (
             <div
               key={project.id}
               className="break-inside-avoid mb-6"
             >
-              <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group border-2 border-gray-200 hover:border-accent-lime">
+              <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group border border-gray-200 hover:border-accent-lime">
                 {/* Project Image */}
                 <div className="relative overflow-hidden bg-gray-50">
                   <img
@@ -207,30 +207,30 @@ const ProjectFilters = () => {
                   />
                   
                   {/* Hover Overlay */}
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     {project.links.live && (
                       <a
                         href={project.links.live}
-                        className="p-4 bg-accent-lime text-black rounded-xl hover:scale-110 transition-transform shadow-xl"
+                        className="p-3 bg-accent-lime text-black rounded-lg hover:scale-110 transition-transform shadow-lg"
                         target={project.links.live.startsWith('http') ? "_blank" : "_self"}
                         rel={project.links.live.startsWith('http') ? "noopener noreferrer" : undefined}
                         onClick={(e) => e.stopPropagation()}
                       >
-                        <ExternalLink className="w-6 h-6" strokeWidth={2.5} />
+                        <ExternalLink className="w-5 h-5" strokeWidth={2.5} />
                       </a>
                     )}
                   </div>
                 </div>
 
                 {/* Project Content */}
-                <div className="p-6">
+                <div className="p-4">
                   {/* Title */}
-                  <h3 className="text-xl md:text-2xl font-bold text-black mb-3 group-hover:text-accent-lime transition-colors">
+                  <h3 className="text-lg font-bold text-black mb-2 group-hover:text-accent-lime transition-colors line-clamp-2">
                     {project.title}
                   </h3>
 
                   {/* Meta Info */}
-                  <div className="flex items-center gap-4 text-sm">
+                  <div className="flex items-center gap-3 text-xs">
                     <span className="text-gray-600 font-medium">{project.category}</span>
                     <span className="text-gray-300">•</span>
                     <span className="text-gray-600 font-medium">{project.year}</span>
