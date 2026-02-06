@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useInView, useScroll } from 'framer-motion';
-import { ArrowUp, Clock, Github, Heart, Linkedin, Mail, MapPin, Send } from 'lucide-react';
+import { ArrowUp, Clock, Code, Database, Download, Github, Globe, Heart, Linkedin, Mail, MapPin, Palette, Send, Smartphone, Twitter, Instagram, Facebook, Zap } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 // --- Floating Scroll to Top Button ---
@@ -55,157 +55,232 @@ const Footer = () => {
 
   const socialLinks = [
     {
-      name: 'LinkedIn',
-      href: 'https://linkedin.com/in/shorifull',
-      icon: Linkedin,
-      label: 'LinkedIn'
-    },
-    {
       name: 'GitHub',
       href: 'https://github.com/shorifull',
       icon: Github,
       label: 'GitHub'
     },
     {
-      name: 'Email',
-      href: 'mailto:shorifull@gmail.com',
-      icon: Mail,
-      label: 'Email'
+      name: 'LinkedIn',
+      href: 'https://linkedin.com/in/shorifull',
+      icon: Linkedin,
+      label: 'LinkedIn'
+    },
+    {
+      name: 'Twitter',
+      href: 'https://twitter.com',
+      icon: Twitter,
+      label: 'Twitter'
+    },
+    {
+      name: 'Instagram',
+      href: 'https://instagram.com',
+      icon: Instagram,
+      label: 'Instagram'
+    },
+    {
+      name: 'Facebook',
+      href: 'https://facebook.com',
+      icon: Facebook,
+      label: 'Facebook'
     }
   ];
 
   const services = [
-    'Frontend Development',
-    'Backend Development', 
-    'Full Stack Solutions',
-    'WordPress Development',
-    'E-commerce Solutions'
+    'Web Design',
+    'Webflow',
+    'MVP Development',
+    'SaaS Design',
+    'MVP Web',
+    'Mobile App',
+    'Branding'
+  ];
+
+  const servicesColumn2 = [
+    'UI/UX Design',
+    'UI/UX Consulting',
+    'Brand Identity',
+    'Corporate Identity',
+    'Motion Graphics'
   ];
 
   const quickLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Contact', href: '#contact' }
+    { name: 'Work', href: '/portfolio' },
+    { name: 'About', href: '/about' },
+    { name: 'Contact', href: '/contact' },
+    { name: 'Pricing', href: '/quote' },
+    { name: 'Career', href: '/services' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'Sitemap', href: '/sitemap' },
+    { name: 'Privacy Policy', href: '/privacy' },
+    { name: 'Terms & Condition', href: '/terms' }
+  ];
+
+  const reviews = [
+    { name: 'Clutch', href: 'https://clutch.co' },
+    { name: 'Good Firms', href: 'https://goodfirms.co' },
+    { name: 'Design Rush', href: 'https://designrush.com' },
+    { name: 'Behance', href: 'https://behance.net' },
+    { name: 'Dribbble', href: 'https://dribbble.com' },
+    { name: 'Webflow', href: 'https://webflow.com' }
+  ];
+
+  const skills = [
+    {
+      icon: Code,
+      title: 'React & Next.js',
+      description: 'Building modern, performant web applications with server-side rendering and static generation',
+      level: 'Expert'
+    },
+    {
+      icon: Smartphone,
+      title: 'React Native',
+      description: 'Creating cross-platform mobile applications for iOS and Android with native performance',
+      level: 'Advanced'
+    },
+    {
+      icon: Database,
+      title: 'Node.js & PostgreSQL',
+      description: 'Developing scalable backend systems and efficient database architectures',
+      level: 'Expert'
+    },
+    {
+      icon: Palette,
+      title: 'UI/UX Design',
+      description: 'Designing beautiful, user-centered interfaces with Figma and modern design principles',
+      level: 'Advanced'
+    },
+    {
+      icon: Globe,
+      title: 'Full-Stack Development',
+      description: 'End-to-end application development from conception to deployment',
+      level: 'Expert'
+    },
+    {
+      icon: Zap,
+      title: 'Performance & SEO',
+      description: 'Optimizing web applications for speed, accessibility, and search engine visibility',
+      level: 'Advanced'
+    }
   ];
 
   return (
     <>
       <footer 
         ref={footerRef}
-        className="bg-gray-900 relative overflow-hidden"
+        className="bg-black relative overflow-hidden"
       >
-        {/* Subtle Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" 
-               style={{
-                 backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ccff00' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-               }}
-          />
-        </div>
-
         {/* Main Footer Content */}
-        <div className="max-w-6xl mx-auto px-6 lg:px-8 py-32 relative z-10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 relative z-10">
           
-          {/* Top Section - Visual First */}
+          {/* Top Section - 4 Column Grid */}
           <motion.div
-            className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-24"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16"
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
             transition={{ duration: 0.8 }}
           >
             
-            {/* Brand & Description - 5 Columns */}
-            <div className="lg:col-span-5 space-y-10">
-              {/* Large Logo */}
+            {/* Brand & Description */}
+            <div className="space-y-6">
               <motion.div 
-                className="flex items-center gap-6"
+                className="flex items-center gap-3"
                 initial={{ opacity: 0, x: -20 }}
                 animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
                 transition={{ duration: 0.8, delay: 0.1 }}
               >
-                <div className="w-16 h-16 bg-accent-lime rounded-2xl flex items-center justify-center">
-                  <span className="text-2xl font-black text-black">R</span>
-                </div>
-                <div>
-                  <div className="text-3xl font-black text-white tracking-tight">Ratan Mia</div>
-                  <div className="text-accent-lime font-bold text-lg">Full Stack Developer</div>
+                <div className="w-12 h-12 bg-accent-lime flex items-center justify-center">
+                  <span className="text-xl font-black text-black">R</span>
                 </div>
               </motion.div>
               
-              {/* Minimal Description */}
               <motion.p
-                className="text-xl text-gray-400 leading-relaxed max-w-md font-normal"
+                className="text-white text-sm leading-relaxed max-w-xs"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                Crafting exceptional digital experiences with modern technologies.
+                A Full Stack Developer focusing on building emotional, simple, human-centered digital products for future.
               </motion.p>
 
-              {/* Contact Info - Visual Icons */}
-              <motion.div
-                className="space-y-6"
+              <motion.a
+                href="/contact"
+                className="inline-block bg-accent-lime text-black font-bold px-6 py-3 rounded-full hover:bg-lime-300 transition-all duration-300 text-sm"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <div className="flex items-center gap-4 text-gray-300">
-                  <div className="w-10 h-10 bg-gray-800 rounded-xl flex items-center justify-center">
-                    <Mail className="w-5 h-5 text-accent-lime" />
-                  </div>
-                  <a 
-                    href="mailto:shorifull@gmail.com"
-                    className="hover:text-accent-lime transition-colors duration-300 font-medium"
-                  >
-                    shorifull@gmail.com
-                  </a>
-                </div>
-                
-                <div className="flex items-center gap-4 text-gray-300">
-                  <div className="w-10 h-10 bg-gray-800 rounded-xl flex items-center justify-center">
-                    <MapPin className="w-5 h-5 text-accent-orange" />
-                  </div>
-                  <span className="font-medium">Dhaka, Bangladesh</span>
-                </div>
-                
-                <div className="flex items-center gap-4 text-gray-300">
-                  <div className="w-10 h-10 bg-gray-800 rounded-xl flex items-center justify-center">
-                    <Clock className="w-5 h-5 text-accent-lime" />
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-accent-lime rounded-full animate-pulse" />
-                    <span className="font-medium">Available for projects</span>
-                  </div>
-                </div>
-              </motion.div>
+                Contact me now
+              </motion.a>
             </div>
 
-            {/* Quick Links - 2 Columns */}
-            <div className="lg:col-span-2 space-y-8">
+            {/* Services - Column 1 */}
+            <div className="space-y-4">
               <motion.h4
-                className="text-2xl font-bold text-white"
+                className="text-white text-xs font-bold uppercase tracking-wider mb-6"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                Links
+                SERVICES
               </motion.h4>
               
               <motion.div 
-                className="space-y-4"
+                className="space-y-3"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
+              >
+                {services.map((service, index) => (
+                  <motion.div
+                    key={service}
+                    className="text-white hover:text-accent-lime transition-colors duration-300 cursor-pointer text-sm"
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
+                    transition={{ delay: 0.6 + index * 0.05 }}
+                  >
+                    {service}
+                  </motion.div>
+                ))}
+                
+                {/* Services Column 2 - Additional services */}
+                <div className="ml-0 mt-4 space-y-3 pt-3 border-t border-gray-800">
+                  {servicesColumn2.map((item, idx) => (
+                    <div key={idx} className="text-gray-400 text-sm hover:text-accent-lime transition-colors duration-300 cursor-pointer">
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Quick Links */}
+            <div className="space-y-4">
+              <motion.h4
+                className="text-white text-xs font-bold uppercase tracking-wider mb-6"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              >
+                QUICK LINK
+              </motion.h4>
+              
+              <motion.div 
+                className="space-y-3"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.8, delay: 0.7 }}
               >
                 {quickLinks.map((link, index) => (
                   <motion.a
                     key={link.name}
                     href={link.href}
-                    className="block text-gray-400 hover:text-accent-lime transition-colors duration-300 font-medium text-lg"
+                    className="block text-white hover:text-accent-lime transition-colors duration-300 text-sm"
                     initial={{ opacity: 0, x: -10 }}
                     animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
-                    transition={{ delay: 0.6 + index * 0.1 }}
+                    transition={{ delay: 0.8 + index * 0.05 }}
                     whileHover={{ x: 4 }}
                   >
                     {link.name}
@@ -214,136 +289,141 @@ const Footer = () => {
               </motion.div>
             </div>
 
-            {/* Services - 3 Columns */}
-            <div className="lg:col-span-3 space-y-8">
+            {/* Reviews */}
+            <div className="space-y-4">
               <motion.h4
-                className="text-2xl font-bold text-white"
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-              >
-                Services
-              </motion.h4>
-              
-              <motion.div 
-                className="space-y-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.8, delay: 0.7 }}
-              >
-                {services.map((service, index) => (
-                  <motion.div
-                    key={service}
-                    className="text-gray-400 font-medium text-lg"
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
-                    transition={{ delay: 0.8 + index * 0.1 }}
-                  >
-                    {service}
-                  </motion.div>
-                ))}
-              </motion.div>
-            </div>
-
-            {/* CTA & Social - 2 Columns */}
-            <div className="lg:col-span-2 space-y-8">
-              <motion.h4
-                className="text-2xl font-bold text-white"
+                className="text-white text-xs font-bold uppercase tracking-wider mb-6"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.8, delay: 0.8 }}
               >
-                Connect
+                REVIEW
               </motion.h4>
               
-              <motion.p
-                className="text-gray-400 leading-relaxed font-normal"
+              <motion.div 
+                className="space-y-3"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.8, delay: 0.9 }}
               >
-                Ready to start your project?
-              </motion.p>
-
-              <motion.a
-                href="#contact"
-                className="inline-flex items-center gap-3 bg-accent-lime text-black font-bold px-8 py-4 rounded-xl hover:bg-lime-300 hover:-translate-y-1 hover:shadow-lime-glow transition-all duration-300"
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.8, delay: 1.0 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Send className="w-5 h-5" />
-                <span>Get In Touch</span>
-              </motion.a>
-
-              {/* Large Social Links */}
-              <motion.div
-                className="flex items-center gap-4 pt-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.8, delay: 1.1 }}
-              >
-                {socialLinks.map((social, index) => (
+                {reviews.map((review, index) => (
                   <motion.a
-                    key={social.name}
-                    href={social.href}
+                    key={review.name}
+                    href={review.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-12 h-12 bg-gray-800 border-2 border-gray-700 rounded-xl flex items-center justify-center text-gray-400 hover:text-accent-lime hover:border-accent-lime/50 hover:bg-gray-700 transition-all duration-300"
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
-                    transition={{ delay: 1.2 + index * 0.1 }}
-                    whileHover={{ scale: 1.1, y: -2 }}
-                    title={social.label}
+                    className="block text-white hover:text-accent-lime transition-colors duration-300 text-sm"
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
+                    transition={{ delay: 1.0 + index * 0.05 }}
+                    whileHover={{ x: 4 }}
                   >
-                    <social.icon size={20} />
+                    {review.name}
                   </motion.a>
                 ))}
               </motion.div>
             </div>
           </motion.div>
 
-          {/* Bottom Bar - Minimal */}
+          {/* Large RATAN Background Text */}
+          <div className="relative mb-16">
+            <div className="flex items-center justify-center py-12">
+              <motion.div
+                className="text-[10rem] md:text-[15rem] lg:text-[20rem] xl:text-[25rem] font-black italic select-none whitespace-nowrap leading-none"
+                style={{
+                  WebkitTextStroke: '3px rgba(204, 255, 0, 0.5)',
+                  textStroke: '3px rgba(204, 255, 0, 0.5)',
+                  color: 'rgba(255, 255, 255, 0.03)',
+                  opacity: 1
+                }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+                transition={{ duration: 1.2 }}
+              >
+                RATAN
+              </motion.div>
+            </div>
+
+            {/* Skills Cards */}
+            <div className="relative z-10 bg-gray-900 rounded-2xl p-8 -mt-20">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+                {skills.map((skill, index) => (
+                  <motion.div
+                    key={skill.title}
+                    className="flex flex-col items-center text-center gap-3"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                    transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
+                  >
+                    <div className="w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center group-hover:bg-accent-lime/10 transition-colors duration-300">
+                      <skill.icon className="w-6 h-6 text-accent-lime" />
+                    </div>
+                    <h4 className="text-white font-bold text-sm">{skill.title}</h4>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Resume Download Section */}
+          <motion.div
+            className="bg-gray-900 rounded-2xl p-8 mb-16"
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+          >
+            <motion.a
+              href="/resume/ratan-mia-resume.pdf"
+              download
+              className="flex items-center gap-4 group cursor-pointer"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <div className="w-12 h-12 bg-accent-lime rounded-full flex items-center justify-center group-hover:bg-lime-300 transition-colors duration-300">
+                <Download className="w-6 h-6 text-black" />
+              </div>
+              <div>
+                <h3 className="text-white font-bold text-lg group-hover:text-accent-lime transition-colors duration-300">
+                  My Resume
+                </h3>
+                <p className="text-gray-400 text-sm">
+                  PDF, 3 MB
+                </p>
+              </div>
+            </motion.a>
+          </motion.div>
+
+          {/* Bottom Bar */}
           <motion.div 
-            className="border-t border-gray-800 pt-12"
+            className="pt-8 border-t border-gray-900"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 1.3 }}
+            transition={{ duration: 0.8, delay: 1.0 }}
           >
-            <div className="flex flex-col lg:flex-row justify-between items-center gap-8">
-              {/* Copyright with Heart */}
-              <div className="flex items-center gap-2 text-gray-400">
-                <span>© {currentYear} Ratan Mia. Made with</span>
-                <motion.div
-                  animate={{ scale: [1, 1.2, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                >
-                  <Heart className="w-4 h-4 text-red-400" />
-                </motion.div>
-                <span>in Bangladesh</span>
+            <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
+              {/* Copyright */}
+              <div className="text-gray-500 text-sm">
+                © 2021-{currentYear}, Ratan Mia | Full Stack Developer | All Rights Reserved.
               </div>
               
-              {/* Tech Stack */}
-              <div className="text-gray-500">
-                Next.js × Tailwind × Framer Motion
-              </div>
-              
-              {/* Legal Links */}
-              <div className="flex items-center gap-6">
-                <a 
-                  href="/privacy" 
-                  className="text-gray-400 hover:text-accent-lime transition-colors duration-300"
-                >
-                  Privacy
-                </a>
-                <a 
-                  href="/terms" 
-                  className="text-gray-400 hover:text-accent-lime transition-colors duration-300"
-                >
-                  Terms
-                </a>
+              {/* Social Links */}
+              <div className="flex items-center gap-4">
+                {socialLinks.map((social, index) => (
+                  <motion.a
+                    key={social.name}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center text-gray-400 hover:text-accent-lime hover:bg-gray-800 transition-all duration-300"
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
+                    transition={{ delay: 1.1 + index * 0.1 }}
+                    whileHover={{ scale: 1.1, y: -2 }}
+                    title={social.label}
+                  >
+                    <social.icon size={18} />
+                  </motion.a>
+                ))}
               </div>
             </div>
           </motion.div>
