@@ -7,6 +7,7 @@ The dedicated Contact page provides a comprehensive form for visitors to get in 
 ## Features
 
 ### Contact Page (`/contact`)
+
 - ✅ **Full-screen hero section** with accent-lime background
 - ✅ **Contact info cards** with email, phone, and location
 - ✅ **Comprehensive form** with multiple fields
@@ -16,7 +17,9 @@ The dedicated Contact page provides a comprehensive form for visitors to get in 
 - ✅ **Call-to-action sections** linking to portfolio and quote pages
 
 ### Form Fields
+
 1. **Required Fields:**
+
    - Full Name
    - Email Address
    - Subject
@@ -34,6 +37,7 @@ The dedicated Contact page provides a comprehensive form for visitors to get in 
 #### Two Email Templates
 
 1. **Client Confirmation Email** (`contact-client-template.js`)
+
    - Professional thank you message
    - Summary of submitted information
    - What happens next section
@@ -50,10 +54,12 @@ The dedicated Contact page provides a comprehensive form for visitors to get in 
 ## Gmail SMTP Configuration
 
 ### Step 1: Enable 2-Step Verification
+
 1. Go to [Google Account Security](https://myaccount.google.com/security)
 2. Enable "2-Step Verification"
 
 ### Step 2: Generate App Password
+
 1. Go to [App Passwords](https://myaccount.google.com/apppasswords)
 2. Select "Mail" and your device
 3. Click "Generate"
@@ -70,6 +76,7 @@ GMAIL_APP_PASSWORD=xxxx-xxxx-xxxx-xxxx
 ```
 
 **Important Notes:**
+
 - Use Gmail App Password, NOT your regular password
 - Never commit `.env.local` to version control
 - App password format: 16 characters with hyphens
@@ -79,6 +86,7 @@ GMAIL_APP_PASSWORD=xxxx-xxxx-xxxx-xxxx
 ### POST `/api/contact`
 
 **Request Body:**
+
 ```json
 {
   "name": "John Doe",
@@ -94,6 +102,7 @@ GMAIL_APP_PASSWORD=xxxx-xxxx-xxxx-xxxx
 ```
 
 **Success Response (200):**
+
 ```json
 {
   "message": "Your message has been sent successfully! Check your email for confirmation.",
@@ -103,6 +112,7 @@ GMAIL_APP_PASSWORD=xxxx-xxxx-xxxx-xxxx
 ```
 
 **Error Response (400):**
+
 ```json
 {
   "error": "Validation failed",
@@ -114,18 +124,21 @@ GMAIL_APP_PASSWORD=xxxx-xxxx-xxxx-xxxx
 ## Design Guidelines Compliance
 
 ### Color Scheme
+
 - **Primary**: `#ccff00` (accent-lime) - Hero background, buttons, highlights
 - **Black**: `#000000` - Text, CTA buttons on lime background
 - **White**: `#ffffff` - Form background, section backgrounds
 - **Gray-50**: `#f9fafb` - Alternating section backgrounds
 
 ### Typography
+
 - **Hero Title**: 5xl-7xl (extrabold)
 - **Section Titles**: 4xl-5xl (extrabold)
 - **Body Text**: lg-xl (medium/semibold)
 - **Labels**: sm (bold)
 
 ### Components
+
 - **Hero Section**: Full viewport with decorative animations
 - **Info Cards**: 3-column grid with hover effects
 - **Form**: Rounded-3xl with border-2
@@ -133,6 +146,7 @@ GMAIL_APP_PASSWORD=xxxx-xxxx-xxxx-xxxx
 - **Input Fields**: Border-2 with focus:border-accent-lime
 
 ### Animations
+
 - Framer Motion for all transitions
 - `initial={{ opacity: 0, y: 20 }}`
 - `whileInView={{ opacity: 1, y: 0 }}`
@@ -156,6 +170,7 @@ src/app/
 ## Testing
 
 ### Local Testing
+
 1. Install dependencies: `npm install nodemailer`
 2. Configure `.env.local` with Gmail credentials
 3. Start dev server: `npm run dev`
@@ -164,9 +179,11 @@ src/app/
 6. Check both email inboxes
 
 ### Health Check
+
 Visit: `http://localhost:3000/api/contact` (GET request)
 
 Response shows configuration status:
+
 ```json
 {
   "status": "Contact API is running",
@@ -185,21 +202,25 @@ Response shows configuration status:
 ### Common Issues
 
 **1. "Email service not configured"**
+
 - Check `.env.local` exists in project root
 - Verify `GMAIL_USER` and `GMAIL_APP_PASSWORD` are set
 - Restart dev server after adding env variables
 
 **2. "Authentication failed"**
+
 - Verify App Password is correct (16 characters)
 - Ensure 2-Step Verification is enabled
 - Try generating a new App Password
 
 **3. "Emails not sending"**
+
 - Check Gmail account hasn't hit sending limits
 - Verify "Less secure app access" is not required (using App Password)
 - Check spam folder for confirmation emails
 
 **4. "Invalid JSON data"**
+
 - Ensure `Content-Type: application/json` header
 - Verify request body is valid JSON
 - Check network tab for actual request
@@ -207,11 +228,13 @@ Response shows configuration status:
 ### Debug Mode
 
 Check server logs for detailed information:
+
 ```bash
 npm run dev
 ```
 
 Console will show:
+
 - `📧 Contact form submission started`
 - `✅ Form data validated and sanitized`
 - `📤 Attempting to send emails...`
@@ -230,7 +253,9 @@ Console will show:
 ## Production Deployment
 
 ### Vercel/Netlify
+
 1. Add environment variables in dashboard:
+
    - `GMAIL_USER`
    - `GMAIL_APP_PASSWORD`
 
@@ -239,10 +264,12 @@ Console will show:
 3. Test contact form on production URL
 
 ### Gmail Sending Limits
+
 - **Free Gmail**: 500 emails/day
 - **Google Workspace**: 2,000 emails/day
 
 For higher volumes, consider:
+
 - SendGrid
 - AWS SES
 - Mailgun
@@ -261,6 +288,7 @@ For higher volumes, consider:
 ## Support
 
 For issues or questions:
+
 - Email: hello@ratanmia.com
 - Website: https://ratanmia.com
 

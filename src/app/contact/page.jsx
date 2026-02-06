@@ -1,12 +1,22 @@
 'use client';
 
-import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, 
-  Loader2, User, MessageSquare, Building, Globe, Calendar
+import {
+    AlertCircle,
+    Building,
+    Calendar,
+    CheckCircle,
+    Globe,
+    Loader2,
+    Mail,
+    MapPin,
+    MessageSquare,
+    Phone,
+    Send,
+    User
 } from 'lucide-react';
 import Link from 'next/link';
+import { useState } from 'react';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({

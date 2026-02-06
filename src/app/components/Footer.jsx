@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useInView, useScroll } from 'framer-motion';
-import { ArrowUp, Code, Database, Download, Github, Globe, Heart, Instagram, Linkedin, Mail, Palette, Smartphone, Twitter, Zap } from 'lucide-react';
+import { ArrowUp, Code, Database, Download, Github, Globe, Instagram, Linkedin, Mail, Palette, Smartphone, Twitter, Zap } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 

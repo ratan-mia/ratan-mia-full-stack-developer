@@ -1,9 +1,8 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import { ExternalLink, Search } from 'lucide-react';
 import { useState } from 'react';
-import Image from 'next/image';
-import { motion } from 'framer-motion';
 
 const ProjectFilters = () => {
   const [activeFilter, setActiveFilter] = useState('All');
