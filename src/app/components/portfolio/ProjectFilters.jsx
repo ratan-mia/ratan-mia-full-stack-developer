@@ -197,32 +197,65 @@ const ProjectFilters = () => {
               key={project.id}
               className="break-inside-avoid mb-6"
             >
-              <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group border border-gray-200 hover:border-accent-lime">
+              <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 group border border-gray-200 hover:border-accent-lime relative">
                 {/* Project Image */}
                 <div className="relative overflow-hidden bg-gray-50">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   
-                  {/* Hover Overlay */}
-                  <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    {project.links.live && (
-                      <a
-                        href={project.links.live}
-                        className="p-3 bg-accent-lime text-black rounded-lg hover:scale-110 transition-transform shadow-lg"
-                        target={project.links.live.startsWith('http') ? "_blank" : "_self"}
-                        rel={project.links.live.startsWith('http') ? "noopener noreferrer" : undefined}
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <ExternalLink className="w-5 h-5" strokeWidth={2.5} />
-                      </a>
-                    )}
+                  {/* Hover Content Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5">
+                    {/* Description */}
+                    <p className="text-white text-sm mb-4 line-clamp-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                      {project.description}
+                    </p>
+
+                    {/* Technologies */}
+                    <div className="flex flex-wrap gap-2 mb-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">
+                      {project.tech.slice(0, 3).map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-2 py-1 bg-white/20 backdrop-blur-sm text-white rounded text-xs font-medium"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                      {project.tech.length > 3 && (
+                        <span className="px-2 py-1 bg-accent-lime text-black rounded text-xs font-bold">
+                          +{project.tech.length - 3}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex gap-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-100">
+                      {project.links.live && (
+                        <a
+                          href={project.links.live}
+                          className="flex-1 px-4 py-2.5 bg-accent-lime text-black rounded-lg hover:bg-white transition-colors font-bold text-sm text-center flex items-center justify-center gap-2"
+                          target={project.links.live.startsWith('http') ? "_blank" : "_self"}
+                          rel={project.links.live.startsWith('http') ? "noopener noreferrer" : undefined}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <ExternalLink className="w-4 h-4" strokeWidth={2.5} />
+                          {project.links.live.startsWith('/case-studies') ? 'Case Study' : 'View Live'}
+                        </a>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Year Badge - Always Visible */}
+                  <div className="absolute top-3 right-3">
+                    <span className="px-3 py-1 bg-black/70 backdrop-blur-sm text-accent-lime rounded-lg text-xs font-bold">
+                      {project.year}
+                    </span>
                   </div>
                 </div>
 
-                {/* Project Content */}
+                {/* Project Content - Always Visible */}
                 <div className="p-4">
                   {/* Title */}
                   <h3 className="text-lg font-bold text-black mb-2 group-hover:text-accent-lime transition-colors line-clamp-2">
@@ -232,8 +265,15 @@ const ProjectFilters = () => {
                   {/* Meta Info */}
                   <div className="flex items-center gap-3 text-xs">
                     <span className="text-gray-600 font-medium">{project.category}</span>
-                    <span className="text-gray-300">•</span>
-                    <span className="text-gray-600 font-medium">{project.year}</span>
+                    {project.links.live && (
+                      <>
+                        <span className="text-gray-300">•</span>
+                        <span className="flex items-center gap-1 text-green-600 font-medium">
+                          <div className="w-1.5 h-1.5 bg-green-600 rounded-full animate-pulse"></div>
+                          LIVE
+                        </span>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
