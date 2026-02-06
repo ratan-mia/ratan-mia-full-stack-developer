@@ -1,8 +1,8 @@
 'use client';
 
-import { ExternalLink, Github, Search } from 'lucide-react';
+import { ExternalLink, Search } from 'lucide-react';
 import { useState } from 'react';
-import ProjectImage from './ProjectImage';
+import Image from 'next/image';
 
 const ProjectFilters = () => {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -16,7 +16,7 @@ const ProjectFilters = () => {
       description: "Revolutionary mobile app for Chery Bangladesh featuring vehicle showroom, test drive booking, service management, parts e-commerce, and customer engagement. Built with React Native and Expo.",
       category: "Mobile Apps",
       tech: ["React Native", "Expo", "Supabase", "SSL Commerz", "Push Notifications"],
-      image: "/images/projects/cherybd-mockup.png",
+      image: "/images/projects/cherymobileapp/chery-mobile-app.png",
       links: { live: "/case-studies/chery-bangladesh", github: "/case-studies/chery-bangladesh" },
       liveUrl: null,
       featured: true,
@@ -28,7 +28,7 @@ const ProjectFilters = () => {
       description: "Comprehensive real-time booking platform for sports turfs with 30-day calendar, dynamic pricing, SSL Commerz payment integration, and owner dashboard with analytics.",
       category: "SaaS Platform",
       tech: ["React Native", "Next.js", "Prisma", "SSL Commerz", "Supabase"],
-      image: "/images/projects/turflet/www.turflet.app.png",
+      image: "/images/projects/turflet/owner-dashboard and player.png",
       links: { live: "/case-studies/TurfLet-booking", github: "/case-studies/TurfLet-booking" },
       liveUrl: "https://www.turflet.app",
       featured: true,
@@ -40,7 +40,7 @@ const ProjectFilters = () => {
       description: "Innovative QR-based loyalty platform with gamification (spin wheel, card flip), digital wallet, prize redemption, and fraud prevention for nationwide campaigns.",
       category: "Mobile Apps",
       tech: ["React Native", "Supabase", "QR Scanner", "Gamification", "Fraud Detection"],
-      image: "/images/projects/pieqr/screenshots/home-screen.jpg",
+      image: "/images/projects/pieqr/home-screen.png",
       links: { live: "/case-studies/gamify", github: "/case-studies/gamify" },
       liveUrl: null,
       featured: true,
@@ -112,7 +112,7 @@ const ProjectFilters = () => {
       description: "Official automotive website featuring immersive 360° car viewer and achieving 97% PageSpeed optimization. Revolutionary customer experience with virtual showroom.",
       category: "Web Development",
       tech: ["Next.js", "React.js", "CRM Integration", "Facebook Pixel", "360° Viewer"],
-      image: "/images/projects/cherybd-nextjs.png",
+      image: "/images/projects/cherybd-mockup.png",
       links: { live: "https://www.cherybd.com", github: "https://www.cherybd.com" },
       liveUrl: "https://www.cherybd.com",
       featured: true,
@@ -143,30 +143,32 @@ const ProjectFilters = () => {
   });
 
   return (
-    <section className="py-20 px-4 md:px-6 lg:px-8 bg-gray-50">
-      <div className="max-w-6xl mx-auto">
+    <section className="relative w-full py-20 px-4 md:px-6 lg:px-8 bg-white">
+      <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-12">
-          <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-bold mb-6">
-            📁 ALL PROJECTS
+        <div className="mb-16">
+          <div className="flex items-center gap-8 mb-8">
+            <h2 className="text-6xl md:text-7xl lg:text-8xl font-black text-black uppercase tracking-tight">
+              WORK
+            </h2>
+            <div className="flex-1 h-1 bg-accent-lime"></div>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Complete Portfolio</h2>
-          <p className="body-text text-gray-600 max-w-2xl mx-auto">
-            Explore my complete portfolio of web applications, from e-commerce platforms to AI solutions.
+          <p className="text-gray-600 text-lg max-w-3xl">
+            We pride ourselves on delivering innovative, impactful, and results-driven projects that exceed expectations.
           </p>
         </div>
 
         {/* Search and Filters */}
-        <div className="flex flex-col md:flex-row gap-6 mb-12">
+        <div className="flex flex-col lg:flex-row gap-6 mb-16">
           {/* Search Bar */}
           <div className="relative flex-1">
             <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input
               type="text"
-              placeholder="Search projects, technologies..."
+              placeholder="Search projects or technologies..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-xl bg-white focus:outline-none focus:border-accent-lime transition-all font-medium"
+              className="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-xl bg-white text-black placeholder:text-gray-400 focus:outline-none focus:border-accent-lime transition-all font-medium"
             />
           </div>
 
@@ -176,10 +178,10 @@ const ProjectFilters = () => {
               <button
                 key={category}
                 onClick={() => setActiveFilter(category)}
-                className={`px-6 py-4 rounded-xl font-bold transition-all duration-300 ${
+                className={`px-6 py-3 rounded-xl font-bold transition-all duration-300 text-sm ${
                   activeFilter === category
-                    ? 'bg-black text-accent-lime shadow-lg scale-105'
-                    : 'bg-white text-black border-2 border-gray-200 hover:border-accent-lime hover:bg-accent-lime/10'
+                    ? 'bg-accent-lime text-black shadow-lg'
+                    : 'bg-white text-black border-2 border-gray-200 hover:border-accent-lime'
                 }`}
               >
                 {category}
@@ -188,147 +190,51 @@ const ProjectFilters = () => {
           </div>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Projects Masonry Grid */}
+        <div className="columns-1 md:columns-2 gap-6">
           {filteredProjects.map((project) => (
             <div
               key={project.id}
-              className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group border-2 border-gray-100 hover:border-accent-lime"
+              className="break-inside-avoid mb-6"
             >
-              {/* Project Image */}
-              <div className="relative h-56 overflow-hidden bg-gray-100">
-                <div className="relative w-full h-full">
-                  <ProjectImage 
-                    project={project} 
-                    className="object-cover transition-transform duration-300 group-hover:scale-110"
+              <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group border-2 border-gray-200 hover:border-accent-lime">
+                {/* Project Image */}
+                <div className="relative overflow-hidden bg-gray-50">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                </div>
-                
-                {/* Featured Badge */}
-                {project.featured && (
-                  <div className="absolute top-4 left-4 px-4 py-2 bg-accent-lime text-black rounded-full text-xs font-extrabold z-20 shadow-lg">
-                    ⭐ FEATURED
+                  
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    {project.links.live && (
+                      <a
+                        href={project.links.live}
+                        className="p-4 bg-accent-lime text-black rounded-xl hover:scale-110 transition-transform shadow-xl"
+                        target={project.links.live.startsWith('http') ? "_blank" : "_self"}
+                        rel={project.links.live.startsWith('http') ? "noopener noreferrer" : undefined}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <ExternalLink className="w-6 h-6" strokeWidth={2.5} />
+                      </a>
+                    )}
                   </div>
-                )}
-                
-                {/* Status Badge */}
-                <div className="absolute top-4 right-4 z-20">
-                  {project.links.live ? (
-                    <span className="px-3 py-2 bg-accent-lime text-black rounded-full text-xs font-extrabold flex items-center gap-1.5 shadow-lg">
-                      <div className="w-2 h-2 bg-black rounded-full animate-pulse"></div>
-                      LIVE
-                    </span>
-                  ) : (
-                    <span className="px-3 py-2 bg-orange-400 text-black rounded-full text-xs font-extrabold shadow-lg">
-                      IN DEV
-                    </span>
-                  )}
                 </div>
 
-                {/* Year Badge */}
-                <div className="absolute bottom-4 left-4 z-20">
-                  <span className="bg-black/80 backdrop-blur-sm text-white px-3 py-1.5 rounded-full text-xs font-bold">
-                    {project.year}
-                  </span>
-                </div>
-                {/* Hover overlay with action buttons */}
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3 z-10">
-                  {project.links.live && (
-                    <a
-                      href={project.links.live}
-                      className="p-3 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <ExternalLink className="w-5 h-5 text-white" />
-                    </a>
-                  )}
-                  <a
-                    href={project.links.github}
-                    className="p-3 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <Github className="w-5 h-5 text-white" />
-                  </a>
-                </div>
-              </div>
+                {/* Project Content */}
+                <div className="p-6">
+                  {/* Title */}
+                  <h3 className="text-xl md:text-2xl font-bold text-black mb-3 group-hover:text-accent-lime transition-colors">
+                    {project.title}
+                  </h3>
 
-              {/* Project Content */}
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="px-4 py-1.5 bg-accent-lime/20 text-black rounded-full text-xs font-extrabold">
-                    {project.category}
-                  </span>
-                </div>
-
-                <h3 className="text-xl font-extrabold mb-3 line-clamp-2">
-                  {project.title}
-                </h3>
-
-                <p className="text-gray-600 mb-4 text-sm leading-relaxed line-clamp-3">
-                  {project.description}
-                </p>
-
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-2 mb-5">
-                  {project.tech.slice(0, 3).map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-xs font-semibold"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                  {project.tech.length > 3 && (
-                    <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-xs font-semibold">
-                      +{project.tech.length - 3}
-                    </span>
-                  )}
-                </div>
-
-                {/* Live URL */}
-                {project.liveUrl && (
-                  <div className="mb-5 pb-5 border-b-2 border-gray-100">
-                    <div className="text-xs text-gray-500 mb-1 font-bold">Live URL</div>
-                    <a 
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs text-black hover:text-accent-lime font-semibold break-all transition-colors line-clamp-1"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      {project.liveUrl}
-                    </a>
+                  {/* Meta Info */}
+                  <div className="flex items-center gap-4 text-sm">
+                    <span className="text-gray-600 font-medium">{project.category}</span>
+                    <span className="text-gray-300">•</span>
+                    <span className="text-gray-600 font-medium">{project.year}</span>
                   </div>
-                )}
-
-                {/* Action Buttons */}
-                <div className="flex gap-3">
-                  {project.links.live ? (
-                    <a
-                      href={project.links.live}
-                      className="flex-1 text-center px-4 py-3 bg-black text-accent-lime rounded-xl hover:shadow-lg transition-all font-bold"
-                      target={project.links.live.startsWith('http') ? "_blank" : "_self"}
-                      rel={project.links.live.startsWith('http') ? "noopener noreferrer" : undefined}
-                    >
-                      {project.links.live.startsWith('/case-studies') ? 'View Case' : 'View Live'}
-                    </a>
-                  ) : (
-                    <div className="flex-1 text-center px-4 py-3 bg-gray-400 text-white rounded-xl font-bold">
-                      In Dev
-                    </div>
-                  )}
-                  <a
-                    href={project.links.github}
-                    className="flex-1 text-center px-4 py-3 border-2 border-black text-black rounded-xl hover:bg-black hover:text-white transition-all font-bold"
-                    target={project.links.github.startsWith('http') ? "_blank" : "_self"}
-                    rel={project.links.github.startsWith('http') ? "noopener noreferrer" : undefined}
-                  >
-                    Details
-                  </a>
                 </div>
               </div>
             </div>
@@ -337,21 +243,12 @@ const ProjectFilters = () => {
 
         {/* No Results */}
         {filteredProjects.length === 0 && (
-          <div className="text-center py-12">
-            <div className="text-6xl mb-4">🔍</div>
-            <h3 className="text-xl font-bold mb-2">No projects found</h3>
-            <p className="text-slate-600 dark:text-slate-300">
-              Try adjusting your search terms or filters to find what you're looking for.
+          <div className="text-center py-20">
+            <div className="text-6xl mb-6">🔍</div>
+            <h3 className="text-2xl font-bold text-black mb-3">No projects found</h3>
+            <p className="text-gray-600 text-lg">
+              Try adjusting your search or filters
             </p>
-          </div>
-        )}
-
-        {/* Load More Button */}
-        {filteredProjects.length > 0 && (
-          <div className="text-center mt-12">
-            <button className="px-10 py-4 bg-black text-accent-lime rounded-xl hover:shadow-xl transition-all duration-300 font-extrabold hover:scale-105">
-              Load More Projects
-            </button>
           </div>
         )}
       </div>
