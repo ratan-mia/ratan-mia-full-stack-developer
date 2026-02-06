@@ -41,15 +41,9 @@ export default function Home() {
       <EmpoweringBusiness />
       <VideoIntro />
       {/* Process How I Work */}
-      <ProcessHowIWork />
-
-
-
-
       {/* Training Certificates */}
       <TrainingCertificates />
-
-
+      <ProcessHowIWork />
 
       {/* Testimonials */}
       <Testimonials />

@@ -157,12 +157,12 @@ const Header = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
       >
-        <div className="w-full px-4 md:px-6 lg:px-12 xl:px-20">
-          <nav className="flex justify-between items-center h-20 lg:h-24">
+        <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20">
+          <nav className="flex justify-between items-center h-16 sm:h-18 md:h-20 lg:h-24">
             
             {/* Enhanced Logo */}
             <motion.button 
-              className={`text-2xl lg:text-3xl font-extrabold ${getTextStyle()} tracking-tight group`}
+              className={`text-xl sm:text-2xl lg:text-3xl font-extrabold ${getTextStyle()} tracking-tight group`}
               onClick={() => handleNavigation('#home')}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -170,7 +170,7 @@ const Header = () => {
               <span className="relative">
                 Ratan
                 <motion.span 
-                  className={`${getLogoAccentStyle()} text-4xl lg:text-5xl leading-none`}
+                  className={`${getLogoAccentStyle()} text-3xl sm:text-4xl lg:text-5xl leading-none`}
                   animate={{ 
                     scale: [1, 1.2, 1],
                     rotate: [0, 5, 0]
@@ -301,62 +301,96 @@ const Header = () => {
             </div>
 
             {/* Mobile Menu Button - Enhanced */}
-            <motion.button
-              className={`lg:hidden p-3 ${getTextStyle()} hover:bg-black/10 rounded-xl transition-all duration-300`}
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              whileTap={{ scale: 0.9 }}
-              whileHover={{ scale: 1.05 }}
-            >
-              <motion.div
-                animate={{ rotate: isMenuOpen ? 180 : 0 }}
-                transition={{ duration: 0.3 }}
+            <div className="flex lg:hidden items-center gap-2 sm:gap-3">
+              {/* Mobile Resume Button */}
+              <motion.button
+                onClick={handleDownloadCV}
+                className={`p-2 sm:p-2.5 ${getTextStyle()} hover:bg-black/10 rounded-lg transition-all duration-300`}
+                whileTap={{ scale: 0.9 }}
+                whileHover={{ scale: 1.05 }}
               >
-                {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-              </motion.div>
-            </motion.button>
+                <Download className="w-4 h-4 sm:w-5 sm:h-5" />
+              </motion.button>
+              
+              {/* Menu Toggle */}
+              <motion.button
+                className={`p-2 sm:p-2.5 ${getTextStyle()} hover:bg-black/10 rounded-lg transition-all duration-300`}
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                whileTap={{ scale: 0.9 }}
+                whileHover={{ scale: 1.05 }}
+              >
+                <motion.div
+                  animate={{ rotate: isMenuOpen ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {isMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
+                </motion.div>
+              </motion.button>
+            </div>
           </nav>
         </div>
       </motion.header>
 
-      {/* Enhanced Mobile Menu */}
+      {/* Enhanced Mobile Menu - Redesigned */}
       <AnimatePresence>
         {isMenuOpen && (
-          <motion.div
-            className="fixed inset-0 bg-black/95 backdrop-blur-xl z-40 lg:hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            {/* Background Pattern */}
-            <div className="absolute inset-0 bg-gradient-to-br from-accent-lime/5 to-transparent"></div>
+          <>
+            {/* Backdrop */}
+            <motion.div
+              className="fixed inset-0 bg-black/80 backdrop-blur-md z-40 lg:hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={() => setIsMenuOpen(false)}
+            />
             
-            <div className="flex flex-col items-center justify-center min-h-screen px-8">
-              <motion.div 
-                className="flex flex-col items-center gap-8 w-full max-w-sm"
-                initial={{ y: 50, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
-              >
-                {/* Mobile Navigation */}
+            {/* Slide-in Menu Panel */}
+            <motion.div
+              className="fixed top-0 right-0 bottom-0 w-full sm:w-80 bg-gradient-to-b from-gray-900 to-black z-50 lg:hidden overflow-y-auto shadow-2xl"
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            >
+              {/* Header */}
+              <div className="sticky top-0 bg-gray-900/95 backdrop-blur-sm border-b border-gray-800 px-6 py-4 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-accent-lime animate-pulse"></div>
+                  <span className="text-white font-bold text-sm tracking-wider">MENU</span>
+                </div>
+                <motion.button
+                  onClick={() => setIsMenuOpen(false)}
+                  className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <X className="w-5 h-5 text-white" />
+                </motion.button>
+              </div>
+
+              {/* Navigation Links */}
+              <div className="px-6 py-6 space-y-2">
                 {navigationItems.map((item, index) => {
                   if (item.hasDropdown) {
                     return (
-                      <div key={item.name} className="w-full">
+                      <div key={item.name} className="space-y-2">
                         <motion.button
                           onClick={() => setShowMobileCaseStudies(!showMobileCaseStudies)}
-                          className="text-3xl lg:text-4xl font-bold text-gray-300 hover:text-accent-lime transition-all duration-300 text-center w-full relative group flex items-center justify-center gap-2"
-                          initial={{ opacity: 0, x: -50 }}
+                          className="w-full flex items-center justify-between px-4 py-3 text-left text-white font-semibold hover:bg-white/5 rounded-lg transition-all group"
+                          initial={{ opacity: 0, x: 50 }}
                           animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.3 + index * 0.1 }}
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
+                          transition={{ delay: index * 0.05 }}
+                          whileTap={{ scale: 0.98 }}
                         >
-                          <span className="relative">
+                          <span className="group-hover:text-accent-lime transition-colors">
                             {item.name}
-                            <span className="absolute bottom-0 left-0 w-0 h-1 bg-accent-lime group-hover:w-full transition-all duration-300"></span>
                           </span>
-                          <ChevronDown className={`w-6 h-6 transition-transform duration-300 ${showMobileCaseStudies ? 'rotate-180' : ''}`} />
+                          <motion.div
+                            animate={{ rotate: showMobileCaseStudies ? 180 : 0 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <ChevronDown className="w-4 h-4 text-gray-400 group-hover:text-accent-lime transition-colors" />
+                          </motion.div>
                         </motion.button>
                         
                         <AnimatePresence>
@@ -365,26 +399,45 @@ const Header = () => {
                               initial={{ opacity: 0, height: 0 }}
                               animate={{ opacity: 1, height: 'auto' }}
                               exit={{ opacity: 0, height: 0 }}
-                              className="mt-4 space-y-3 overflow-hidden"
+                              className="pl-4 space-y-1 overflow-hidden"
                             >
                               {caseStudies.map((study, studyIndex) => (
                                 <motion.a
                                   key={study.name}
                                   href={study.href}
-                                  initial={{ opacity: 0, x: -20 }}
+                                  initial={{ opacity: 0, x: -10 }}
                                   animate={{ opacity: 1, x: 0 }}
-                                  transition={{ delay: studyIndex * 0.1 }}
-                                  className="block px-6 py-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors border border-gray-700"
-                                  onClick={() => setIsMenuOpen(false)}
+                                  transition={{ delay: studyIndex * 0.05 }}
+                                  className="block px-4 py-2.5 text-sm rounded-lg hover:bg-white/5 transition-colors group"
+                                  onClick={() => {
+                                    setIsMenuOpen(false);
+                                    setShowMobileCaseStudies(false);
+                                  }}
                                 >
-                                  <div className="text-lg font-semibold text-white mb-1">
+                                  <div className="text-gray-300 group-hover:text-white font-medium mb-0.5">
                                     {study.name}
                                   </div>
-                                  <div className="text-sm text-gray-400">
+                                  <div className="text-xs text-gray-500 group-hover:text-gray-400">
                                     {study.description}
                                   </div>
                                 </motion.a>
                               ))}
+                              <motion.a
+                                href="/case-studies"
+                                initial={{ opacity: 0, x: -10 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: caseStudies.length * 0.05 }}
+                                className="block px-4 py-2.5 text-sm rounded-lg hover:bg-white/5 transition-colors group"
+                                onClick={() => {
+                                  setIsMenuOpen(false);
+                                  setShowMobileCaseStudies(false);
+                                }}
+                              >
+                                <div className="text-accent-lime group-hover:text-lime-300 font-medium flex items-center gap-1">
+                                  View All Case Studies
+                                  <ChevronDown className="w-3 h-3 -rotate-90" />
+                                </div>
+                              </motion.a>
                             </motion.div>
                           )}
                         </AnimatePresence>
@@ -393,53 +446,68 @@ const Header = () => {
                   }
                   
                   return (
-                    <motion.button
+                    <motion.a
                       key={item.name}
-                      onClick={() => handleNavigation(item.href)}
-                      className="text-3xl lg:text-4xl font-bold text-gray-300 hover:text-accent-lime transition-all duration-300 text-center w-full relative group"
-                      initial={{ opacity: 0, x: -50 }}
+                      href={item.href}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleNavigation(item.href);
+                      }}
+                      className="block px-4 py-3 text-white font-semibold hover:bg-white/5 rounded-lg transition-all group"
+                      initial={{ opacity: 0, x: 50 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.3 + index * 0.1 }}
-                      whileHover={{ scale: 1.05, x: 10 }}
-                      whileTap={{ scale: 0.95 }}
+                      transition={{ delay: index * 0.05 }}
+                      whileTap={{ scale: 0.98 }}
                     >
-                      <span className="relative">
+                      <span className="group-hover:text-accent-lime transition-colors">
                         {item.name}
-                        <span className="absolute bottom-0 left-0 w-0 h-1 bg-accent-lime group-hover:w-full transition-all duration-300"></span>
                       </span>
-                    </motion.button>
+                    </motion.a>
                   );
                 })}
-                
-                {/* Mobile Action Buttons */}
-                <motion.div 
-                  className="mt-12 flex flex-col gap-6 w-full"
-                  initial={{ opacity: 0, y: 30 }}
+              </div>
+
+              {/* Divider */}
+              <div className="mx-6 border-t border-gray-800"></div>
+
+              {/* Action Buttons */}
+              <div className="px-6 py-6 space-y-3">
+                <motion.button
+                  onClick={() => {
+                    handleDownloadCV();
+                    setIsMenuOpen(false);
+                  }}
+                  className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-white/5 hover:bg-white/10 border border-gray-700 hover:border-accent-lime text-white rounded-lg transition-all font-medium group"
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.8 }}
+                  transition={{ delay: 0.4 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  <motion.button
-                    onClick={handleDownloadCV}
-                    className="w-full flex items-center justify-center gap-3 py-4 px-6 border-2 border-gray-700 text-white hover:bg-gray-800 hover:border-accent-lime transition-all duration-300 font-medium rounded-xl group"
-                    whileHover={{ scale: 1.02, y: -2 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <Download className="w-5 h-5 group-hover:text-accent-lime transition-colors" />
-                    <span>Download Resume</span>
-                  </motion.button>
-                  
-                  <motion.button
-                    onClick={() => handleNavigation('/quote')}
-                    className="w-full bg-accent-lime text-black py-4 px-6 font-bold tracking-wider hover:bg-lime-300 hover:-translate-y-1 transition-all duration-300 rounded-xl shadow-lg hover:shadow-lime-400/30"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    LET'S BUILD SOMETHING
-                  </motion.button>
-                </motion.div>
-              </motion.div>
-            </div>
-          </motion.div>
+                  <Download className="w-4 h-4 group-hover:text-accent-lime transition-colors" />
+                  <span>Download Resume</span>
+                </motion.button>
+                
+                <motion.button
+                  onClick={() => handleNavigation('/quote')}
+                  className="w-full py-3 px-4 bg-accent-lime hover:bg-lime-300 text-black rounded-lg font-bold tracking-wide transition-all shadow-lg shadow-accent-lime/20"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.45 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  GET A QUOTE
+                </motion.button>
+              </div>
+
+              {/* Footer Info */}
+              <div className="px-6 py-6 mt-auto">
+                <div className="text-xs text-gray-500 text-center">
+                  <p className="mb-2">Full Stack Developer</p>
+                  <p>React Native • Next.js • Laravel</p>
+                </div>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>
