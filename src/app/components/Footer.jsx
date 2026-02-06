@@ -388,35 +388,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Resume Download Section */}
-          <motion.div
-            className="bg-gray-900 p-10 mb-16 border-t border-b border-gray-800"
-            initial={{ opacity: 0, y: 40 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-          >
-            <div className="flex items-center gap-6 group cursor-pointer">
-              <motion.div 
-                className="w-14 h-14 bg-accent-lime rounded-full flex items-center justify-center group-hover:bg-lime-300 transition-all duration-300"
-                whileHover={{ scale: 1.1, rotate: 5 }}
-              >
-                <Download className="w-7 h-7 text-black" />
-              </motion.div>
-              <div>
-                <Link
-                  href="/resume/ratan-mia-resume.pdf"
-                  download
-                  className="text-white font-bold text-xl group-hover:text-accent-lime transition-colors duration-300"
-                >
-                  My Resume
-                </Link>
-                <p className="text-gray-400 text-sm mt-1">
-                  PDF, 3 MB
-                </p>
-              </div>
-            </div>
-          </motion.div>
-
           {/* Bottom Bar */}
           <motion.div 
             className="pt-8 border-t border-gray-900"
@@ -425,6 +396,23 @@ const Footer = () => {
             transition={{ duration: 0.8, delay: 1.0 }}
           >
             <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
+              {/* Resume Download */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.8, delay: 1.1 }}
+              >
+                <Link
+                  href="/resume/ratan-mia-resume.pdf"
+                  download
+                  className="flex items-center gap-3 bg-accent-lime text-black font-bold px-6 py-3 rounded-full hover:bg-lime-300 hover:shadow-lime-glow transition-all duration-300 text-sm group"
+                >
+                  <Download className="w-4 h-4 group-hover:animate-bounce" />
+                  <span>Download Resume</span>
+                  <span className="text-xs opacity-70">PDF</span>
+                </Link>
+              </motion.div>
+              
               {/* Copyright */}
               <div className="text-gray-500 text-sm font-medium">
                 © 2021-{currentYear} Ratan Mia. All Rights Reserved.
