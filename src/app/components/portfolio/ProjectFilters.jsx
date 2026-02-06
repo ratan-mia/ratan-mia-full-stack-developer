@@ -29,7 +29,7 @@ const ProjectFilters = () => {
       description: "Comprehensive real-time booking platform for sports turfs with 30-day calendar, dynamic pricing, SSL Commerz payment integration, and owner dashboard with analytics.",
       category: "SaaS Platform",
       tech: ["React Native", "Next.js", "Prisma", "SSL Commerz", "Supabase"],
-      image: "/images/projects/turflet/owner-dashboard and player.png",
+      image: "/images/projects/turflet/TurfLet.png",
       links: { live: "/case-studies/TurfLet-booking", github: "/case-studies/TurfLet-booking" },
       liveUrl: "https://www.turflet.app",
       featured: true,
@@ -49,6 +49,18 @@ const ProjectFilters = () => {
     },
     {
       id: 4,
+      title: "ELF Bangladesh Mobile App",
+      description: "Enterprise-grade mobile commerce platform for automotive industry combining e-commerce, loyalty rewards, gamification, service bookings, and emergency assistance with 60+ screens.",
+      category: "Mobile Apps",
+      tech: ["React Native", "Expo", "TypeScript", "Supabase", "Redux Toolkit"],
+      image: "/images/projects/elf-mobile-store/Elf-home.png",
+      links: { live: "/case-studies/elf-bangladesh-app", github: "/case-studies/elf-bangladesh-app" },
+      liveUrl: null,
+      featured: true,
+      year: "2024"
+    },
+    {
+      id: 5,
       title: "Elf Bangladesh - Asian Petroleum",
       description: "Complete digital presence for Elf Bangladesh using Next.js, Tailwind CSS, Zoho CRM, WhatsApp Business API, Strapi CMS, and Facebook Pixel. Built with performance optimization.",
       category: "Web Development",
@@ -60,7 +72,7 @@ const ProjectFilters = () => {
       year: "2024"
     },
     {
-      id: 5,
+      id: 6,
       title: "ELF International",
       description: "High-converting e-commerce platform showcasing premium lubricant products with modern design principles. Advanced product configurator and real-time inventory management.",
       category: "E-commerce",
@@ -72,7 +84,7 @@ const ProjectFilters = () => {
       year: "2024"
     },
     {
-      id: 6,
+      id: 7,
       title: "Japan Auto Parts",
       description: "Modern headless e-commerce platform for automotive parts with advanced search, filtering, and inventory management. 20K+ products with real-time stock updates.",
       category: "E-commerce",
@@ -84,7 +96,7 @@ const ProjectFilters = () => {
       year: "2024"
     },
     {
-      id: 7,
+      id: 8,
       title: "Japan Parts Mockup",
       description: "Comprehensive e-commerce platform with intelligent make/model/year specification system. Advanced inventory management and real-time pricing integration.",
       category: "E-commerce",
@@ -96,7 +108,7 @@ const ProjectFilters = () => {
       year: "2023"
     },
     {
-      id: 8,
+      id: 9,
       title: "Matchlyzer",
       description: "Intelligent sports analytics platform using AI to analyze match data, player performance, and team statistics. Real-time insights and predictive analytics for coaches.",
       category: "AI & Analytics",
@@ -108,7 +120,7 @@ const ProjectFilters = () => {
       year: "2024"
     },
     {
-      id: 9,
+      id: 10,
       title: "Chery Bangladesh Website",
       description: "Official automotive website featuring immersive 360° car viewer and achieving 97% PageSpeed optimization. Revolutionary customer experience with virtual showroom.",
       category: "Web Development",
@@ -120,7 +132,7 @@ const ProjectFilters = () => {
       year: "2023"
     },
     {
-      id: 10,
+      id: 11,
       title: "MotoJP Shopify Headless",
       description: "Modern headless Shopify implementation for Japanese motorcycle parts. Seamless shopping experience with advanced filtering and search capabilities.",
       category: "E-commerce",
