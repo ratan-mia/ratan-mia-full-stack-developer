@@ -10,6 +10,12 @@ const Header = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [showCaseStudiesDropdown, setShowCaseStudiesDropdown] = useState(false);
   const [showMobileCaseStudies, setShowMobileCaseStudies] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  // Ensure component is mounted before applying dynamic styles
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const navigationItems = [
     { name: 'HOME', href: '/' },
@@ -116,6 +122,7 @@ const Header = () => {
 
   // Header background based on scroll
   const getHeaderStyle = () => {
+    if (!mounted) return 'bg-transparent';
     if (scrolled) {
       return 'bg-black/95 backdrop-blur-lg shadow-lg shadow-black/20';
     }
@@ -123,6 +130,7 @@ const Header = () => {
   };
 
   const getTextStyle = () => {
+    if (!mounted) return 'text-black';
     if (scrolled) {
       return 'text-white';
     }
@@ -132,6 +140,7 @@ const Header = () => {
   };
 
   const getLogoAccentStyle = () => {
+    if (!mounted) return 'text-black';
     if (scrolled) {
       return 'text-accent-lime';
     }
@@ -141,6 +150,7 @@ const Header = () => {
   };
 
   const getNavTextStyle = () => {
+    if (!mounted) return 'text-black/80 hover:text-black';
     if (scrolled) {
       return 'text-gray-300 hover:text-accent-lime';
     }
