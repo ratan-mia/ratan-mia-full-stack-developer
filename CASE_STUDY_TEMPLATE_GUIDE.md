@@ -1,6 +1,7 @@
 # Case Study Template Usage Guide
 
 ## Overview
+
 The `CaseStudyTemplate` component provides a reusable, consistent structure for all case studies following the TurfNations design pattern with floating sidebar, expandable navigation, and consistent sections.
 
 ## Quick Start
@@ -8,32 +9,32 @@ The `CaseStudyTemplate` component provides a reusable, consistent structure for 
 ### 1. Import Required Components
 
 ```jsx
-'use client';
+"use client";
 
-import CaseStudyTemplate, { 
-  CaseStudySection, 
-  FeatureGrid, 
-  TechStack, 
-  MetricsGrid 
-} from '@/components/case-studies/CaseStudyTemplate';
-import { CheckCircle, Code, Star, Award } from 'lucide-react';
+import CaseStudyTemplate, {
+  CaseStudySection,
+  FeatureGrid,
+  TechStack,
+  MetricsGrid,
+} from "@/components/case-studies/CaseStudyTemplate";
+import { CheckCircle, Code, Star, Award } from "lucide-react";
 ```
 
 ### 2. Define Project Data
 
 ```jsx
 const projectData = {
-  company: 'Your Company Name',
-  category: 'Mobile App / Web App / SaaS',
-  liveUrl: 'https://example.com', // optional
-  timeline: '6 Months',
+  company: "Your Company Name",
+  category: "Mobile App / Web App / SaaS",
+  liveUrl: "https://example.com", // optional
+  timeline: "6 Months",
   services: [
-    'UI/UX Design',
-    'Frontend Development',
-    'Backend Development',
-    'API Integration',
-    'Quality Assurance'
-  ]
+    "UI/UX Design",
+    "Frontend Development",
+    "Backend Development",
+    "API Integration",
+    "Quality Assurance",
+  ],
 };
 ```
 
@@ -41,12 +42,12 @@ const projectData = {
 
 ```jsx
 const navItems = [
-  { id: 'overview', label: 'Overview', icon: Star },
-  { id: 'challenge', label: 'The Challenge', icon: AlertCircle },
-  { id: 'solution', label: 'Our Solution', icon: Lightbulb },
-  { id: 'features', label: 'Key Features', icon: CheckCircle },
-  { id: 'tech-stack', label: 'Tech Stack', icon: Code },
-  { id: 'results', label: 'Results & Impact', icon: Award }
+  { id: "overview", label: "Overview", icon: Star },
+  { id: "challenge", label: "The Challenge", icon: AlertCircle },
+  { id: "solution", label: "Our Solution", icon: Lightbulb },
+  { id: "features", label: "Key Features", icon: CheckCircle },
+  { id: "tech-stack", label: "Tech Stack", icon: Code },
+  { id: "results", label: "Results & Impact", icon: Award },
 ];
 ```
 
@@ -76,7 +77,8 @@ const HeroSection = () => (
         Your Project Title
       </h1>
       <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
-        Brief project description highlighting the main achievement or value proposition.
+        Brief project description highlighting the main achievement or value
+        proposition.
       </p>
     </div>
   </div>
@@ -145,19 +147,21 @@ export default function YourCaseStudyPage() {
         title="Powerful Features That Deliver Results"
         bgColor="bg-gray-50"
       >
-        <FeatureGrid features={[
-          {
-            icon: Star,
-            title: 'Feature 1',
-            description: 'Feature description'
-          },
-          {
-            icon: CheckCircle,
-            title: 'Feature 2',
-            description: 'Feature description'
-          },
-          // More features...
-        ]} />
+        <FeatureGrid
+          features={[
+            {
+              icon: Star,
+              title: "Feature 1",
+              description: "Feature description",
+            },
+            {
+              icon: CheckCircle,
+              title: "Feature 2",
+              description: "Feature description",
+            },
+            // More features...
+          ]}
+        />
       </CaseStudySection>
 
       {/* Tech Stack Section */}
@@ -168,12 +172,14 @@ export default function YourCaseStudyPage() {
         title="Built with Modern Technologies"
         bgColor="bg-white"
       >
-        <TechStack technologies={{
-          'Frontend': ['React', 'Next.js', 'Tailwind CSS'],
-          'Backend': ['Node.js', 'Express', 'PostgreSQL'],
-          'Mobile': ['React Native', 'Expo'],
-          'DevOps': ['Docker', 'AWS', 'GitHub Actions']
-        }} />
+        <TechStack
+          technologies={{
+            Frontend: ["React", "Next.js", "Tailwind CSS"],
+            Backend: ["Node.js", "Express", "PostgreSQL"],
+            Mobile: ["React Native", "Expo"],
+            DevOps: ["Docker", "AWS", "GitHub Actions"],
+          }}
+        />
       </CaseStudySection>
 
       {/* Results Section */}
@@ -184,12 +190,26 @@ export default function YourCaseStudyPage() {
         title="Measurable Success"
         bgColor="bg-gray-50"
       >
-        <MetricsGrid metrics={[
-          { value: '250%', label: 'Increase in Engagement', sublabel: 'Year over year' },
-          { value: '50K+', label: 'Active Users', sublabel: 'First 6 months' },
-          { value: '4.8', label: 'App Store Rating', sublabel: 'Out of 5.0' },
-          { value: '98%', label: 'Customer Satisfaction', sublabel: 'Based on surveys' }
-        ]} />
+        <MetricsGrid
+          metrics={[
+            {
+              value: "250%",
+              label: "Increase in Engagement",
+              sublabel: "Year over year",
+            },
+            {
+              value: "50K+",
+              label: "Active Users",
+              sublabel: "First 6 months",
+            },
+            { value: "4.8", label: "App Store Rating", sublabel: "Out of 5.0" },
+            {
+              value: "98%",
+              label: "Customer Satisfaction",
+              sublabel: "Based on surveys",
+            },
+          ]}
+        />
       </CaseStudySection>
     </CaseStudyTemplate>
   );
@@ -200,42 +220,42 @@ export default function YourCaseStudyPage() {
 
 ### CaseStudyTemplate Props
 
-| Prop | Type | Required | Description |
-|------|------|----------|-------------|
-| project | Object | Yes | Project metadata (company, category, etc.) |
-| navItems | Array | Yes | Navigation items for sidebar |
-| heroSection | ReactNode | Yes | Custom hero section component |
-| children | ReactNode | Yes | Content sections |
+| Prop        | Type      | Required | Description                                |
+| ----------- | --------- | -------- | ------------------------------------------ |
+| project     | Object    | Yes      | Project metadata (company, category, etc.) |
+| navItems    | Array     | Yes      | Navigation items for sidebar               |
+| heroSection | ReactNode | Yes      | Custom hero section component              |
+| children    | ReactNode | Yes      | Content sections                           |
 
 ### CaseStudySection Props
 
-| Prop | Type | Required | Description |
-|------|------|----------|-------------|
-| id | string | Yes | Section ID for navigation |
-| label | string | No | Small label above title |
-| icon | Component | No | Lucide icon component |
-| title | string | No | Section title |
-| description | string | No | Section description |
-| bgColor | string | No | Tailwind background class (default: 'bg-white') |
-| children | ReactNode | Yes | Section content |
+| Prop        | Type      | Required | Description                                     |
+| ----------- | --------- | -------- | ----------------------------------------------- |
+| id          | string    | Yes      | Section ID for navigation                       |
+| label       | string    | No       | Small label above title                         |
+| icon        | Component | No       | Lucide icon component                           |
+| title       | string    | No       | Section title                                   |
+| description | string    | No       | Section description                             |
+| bgColor     | string    | No       | Tailwind background class (default: 'bg-white') |
+| children    | ReactNode | Yes      | Section content                                 |
 
 ### FeatureGrid Props
 
-| Prop | Type | Required | Description |
-|------|------|----------|-------------|
-| features | Array | Yes | Array of feature objects with icon, title, description |
+| Prop     | Type  | Required | Description                                            |
+| -------- | ----- | -------- | ------------------------------------------------------ |
+| features | Array | Yes      | Array of feature objects with icon, title, description |
 
 ### TechStack Props
 
-| Prop | Type | Required | Description |
-|------|------|----------|-------------|
-| technologies | Object | Yes | Object with category keys and tech array values |
+| Prop         | Type   | Required | Description                                     |
+| ------------ | ------ | -------- | ----------------------------------------------- |
+| technologies | Object | Yes      | Object with category keys and tech array values |
 
 ### MetricsGrid Props
 
-| Prop | Type | Required | Description |
-|------|------|----------|-------------|
-| metrics | Array | Yes | Array of metric objects with value, label, sublabel |
+| Prop    | Type  | Required | Description                                         |
+| ------- | ----- | -------- | --------------------------------------------------- |
+| metrics | Array | Yes      | Array of metric objects with value, label, sublabel |
 
 ## Design Guidelines Compliance
 
@@ -296,6 +316,7 @@ The template is designed to be flexible. You can:
 ## Support
 
 For questions or issues with the template, refer to:
+
 - `/DESIGN_GUIDELINES.md` for design system details
 - TurfNations case study for reference implementation
 - Component source code for API details

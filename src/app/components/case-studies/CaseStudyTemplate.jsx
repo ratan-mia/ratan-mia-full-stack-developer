@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowRight, Check, ExternalLink, Facebook, Linkedin, Share2, Twitter } from 'lucide-react';
+import { ArrowRight, Check, Facebook, Linkedin, Share2, Twitter } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -174,13 +174,15 @@ export default function CaseStudyTemplate({ project, navItems = [], heroSection,
 
 /**
  * Section Component - Reusable content section matching TurfNations layout
+ * Use centered={true} for Challenge, Solution, Tech Stack, Results, Impact sections
+ * centered={false} or omit for Overview and other sections
  */
-export function CaseStudySection({ id, label, icon: Icon, title, description, bgColor = 'bg-white', children, className = '' }) {
+export function CaseStudySection({ id, label, icon: Icon, title, description, bgColor = 'bg-white', children, className = '', centered = false }) {
   return (
     <section id={id} className={`py-20 px-4 md:px-6 lg:px-8 ${bgColor} ${className}`}>
       <div className="max-w-7xl mx-auto">
         {(label || title) && (
-          <div className="mb-12">
+          <div className={`${centered ? 'text-center mb-16' : 'mb-12'}`}>
             {label && Icon && (
               <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
                 <Icon className="w-4 h-4" />
@@ -191,7 +193,7 @@ export function CaseStudySection({ id, label, icon: Icon, title, description, bg
               <h2 className="text-4xl md:text-5xl font-extrabold mb-6">{title}</h2>
             )}
             {description && (
-              <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-4xl">
+              <p className={`text-lg text-gray-600 leading-relaxed ${centered ? 'max-w-4xl mx-auto' : ''}`}>
                 {description}
               </p>
             )}
@@ -204,7 +206,7 @@ export function CaseStudySection({ id, label, icon: Icon, title, description, bg
 }
 
 /**
- * Feature Grid Component
+ * Feature Grid Component - For cards layout
  */
 export function FeatureGrid({ features }) {
   return (
@@ -224,6 +226,134 @@ export function FeatureGrid({ features }) {
         );
       })}
     </div>
+  );
+}
+
+/**
+ * Image + Content Grid - Rounded Container (TurfNations Pattern #3)
+ * Use INSIDE CaseStudySection with centered header
+ * @param {string} containerClass - Default: 'bg-gray-50 rounded-3xl overflow-hidden mb-16'
+ */
+export function ImageContentGrid({ 
+  image, 
+  imageAlt, 
+  badge, 
+  badgeIcon: BadgeIcon, 
+  title, 
+  description, 
+  features = [], 
+  imagePosition = 'left',
+  containerClass = 'bg-gray-50 rounded-3xl overflow-hidden mb-16'
+}) {
+  return (
+    <div className={`grid lg:grid-cols-2 gap-0 items-center ${containerClass}`}>
+      <div className={`w-full ${imagePosition === 'right' ? 'order-1 lg:order-2' : ''}`}>
+        <Image
+          src={image}
+          alt={imageAlt}
+          width={2000}
+          height={2000}
+          className="w-full h-auto"
+        />
+      </div>
+
+      <div className={`p-8 md:p-12 ${imagePosition === 'right' ? 'order-2 lg:order-1' : ''}`}>
+        {badge && BadgeIcon && (
+          <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
+            <BadgeIcon className="w-4 h-4" />
+            {badge}
+          </div>
+        )}
+        <h3 className="text-3xl md:text-4xl font-extrabold mb-4">{title}</h3>
+        <p className="text-lg text-gray-600 mb-8">
+          {description}
+        </p>
+
+        {features.length > 0 && (
+          <div className="space-y-4">
+            {features.map((feature, idx) => {
+              const Icon = feature.icon;
+              return (
+                <div key={idx} className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-accent-lime rounded-xl flex items-center justify-center shrink-0">
+                    {Icon && <Icon className="w-5 h-5 text-black" />}
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-bold mb-1">{feature.title}</h4>
+                    <p className="text-gray-600 text-sm">{feature.description}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/**
+ * Full Width Image + Content (TurfNations Pattern #4)
+ * No rounded container, direct grid split
+ * Uses larger icons (w-12 h-12) and titles (text-4xl md:text-5xl)
+ */
+export function FullWidthImageContent({
+  image,
+  imageAlt,
+  badge,
+  badgeIcon: BadgeIcon,
+  title,
+  description,
+  features = [],
+  imagePosition = 'left',
+  bgColor = 'bg-white'
+}) {
+  return (
+    <section className={`py-20 ${bgColor}`}>
+      <div className="grid lg:grid-cols-2 gap-0 items-center">
+        <div className={`w-full ${imagePosition === 'right' ? 'order-1 lg:order-2' : ''}`}>
+          <Image
+            src={image}
+            alt={imageAlt}
+            width={1410}
+            height={1182}
+            className="w-full h-auto"
+          />
+        </div>
+
+        <div className={`px-8 md:px-12 lg:px-16 py-12 ${imagePosition === 'right' ? 'order-2 lg:order-1' : ''}`}>
+          {badge && BadgeIcon && (
+            <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
+              <BadgeIcon className="w-4 h-4" />
+              {badge}
+            </div>
+          )}
+          <h3 className="text-4xl md:text-5xl font-extrabold mb-6">{title}</h3>
+          <p className="text-lg text-gray-600 leading-relaxed mb-8">
+            {description}
+          </p>
+
+          {features.length > 0 && (
+            <div className="space-y-6">
+              {features.map((feature, idx) => {
+                const Icon = feature.icon;
+                return (
+                  <div key={idx} className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-accent-lime rounded-xl flex items-center justify-center shrink-0">
+                      {Icon && <Icon className="w-6 h-6 text-black" />}
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-bold mb-1">{feature.title}</h4>
+                      <p className="text-gray-600 text-sm">{feature.description}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -251,20 +381,160 @@ export function TechStack({ technologies }) {
 }
 
 /**
- * Metrics Grid Component
+ * Metrics Grid Component (TurfNations Pattern #7)
+ * 4-column grid with lime cards
  */
 export function MetricsGrid({ metrics }) {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-      {metrics.map((metric, idx) => (
-        <div key={idx} className="text-center p-6 bg-white rounded-2xl border-2 border-gray-200 hover:border-accent-lime transition-colors">
-          <div className="text-4xl md:text-5xl font-extrabold text-black mb-2">{metric.value}</div>
-          <div className="text-gray-600 font-medium">{metric.label}</div>
-          {metric.sublabel && (
-            <div className="text-sm text-gray-500 mt-1">{metric.sublabel}</div>
-          )}
+    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {metrics.map((metric, idx) => {
+        const Icon = metric.icon;
+        return (
+          <div key={idx} className="bg-accent-lime p-8 rounded-3xl text-center shadow-lg hover:shadow-2xl hover:scale-105 transition-all">
+            {Icon && <Icon className="w-12 h-12 mx-auto mb-4 text-black" />}
+            <div className="text-5xl font-extrabold mb-2">{metric.value}</div>
+            <p className="text-black/80 font-bold">{metric.label}</p>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+/**
+ * Image Showcase Grid (TurfNations Pattern #7)
+ * 2-column grid with gray cards
+ */
+export function ImageShowcaseGrid({ items }) {
+  return (
+    <div className="grid md:grid-cols-2 gap-8">
+      {items.map((item, idx) => (
+        <div key={idx} className="bg-gray-50 p-6 rounded-3xl border-2 border-gray-100">
+          <h3 className="text-xl font-extrabold mb-4">{item.title}</h3>
+          <div className="rounded-xl overflow-hidden mb-4">
+            <Image
+              src={item.image}
+              alt={item.alt}
+              width={2000}
+              height={2000}
+              className="w-full h-auto"
+            />
+          </div>
+          <p className="text-sm text-gray-600">{item.caption}</p>
         </div>
       ))}
     </div>
+  );
+}
+
+/**
+ * Business Impact Cards (TurfNations Pattern #8)
+ * Benefits for different user types
+ */
+export function BusinessImpactCards({ cards }) {
+  return (
+    <div className="grid md:grid-cols-2 gap-8">
+      {cards.map((card, idx) => (
+        <div key={idx} className="bg-white p-8 rounded-3xl shadow-lg border-2 border-gray-100">
+          <h3 className="text-2xl font-extrabold mb-6">{card.title}</h3>
+          <ul className="space-y-4">
+            {card.benefits.map((benefit, benefitIdx) => (
+              <li key={benefitIdx} className="flex items-start gap-3">
+                <div className="w-6 h-6 bg-accent-lime rounded-full flex items-center justify-center shrink-0 mt-0.5">
+                  <Check className="w-4 h-4 text-black" />
+                </div>
+                <span className="text-gray-700 leading-relaxed">{benefit}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/**
+ * Key Achievements Card (TurfNations Pattern #8)
+ * Lime background with 3-column stats
+ */
+export function KeyAchievementsCard({ achievements }) {
+  return (
+    <div className="bg-accent-lime p-8 rounded-3xl">
+      <h3 className="text-2xl font-extrabold mb-6 text-center">Key Achievements</h3>
+      <div className="grid md:grid-cols-3 gap-6">
+        {achievements.map((achievement, idx) => (
+          <div key={idx} className="text-center">
+            <div className="text-4xl font-extrabold mb-2">{achievement.value}</div>
+            <p className="text-black/80 font-medium">{achievement.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/**
+ * CTA Section (TurfNations Pattern #9)
+ */
+export function CTASection({ title, subtitle, primaryButton, secondaryButton }) {
+  return (
+    <section className="py-20 px-4 md:px-6 lg:px-8 bg-accent-lime">
+      <div className="max-w-7xl mx-auto text-center">
+        <h2 className="text-4xl md:text-5xl font-extrabold mb-6">{title}</h2>
+        <p className="text-xl text-black/80 mb-10 font-medium">{subtitle}</p>
+        <div className="flex flex-wrap justify-center gap-4">
+          {primaryButton && (
+            <Link
+              href={primaryButton.href}
+              className="px-10 py-5 bg-black text-accent-lime rounded-xl font-extrabold hover:shadow-2xl transition-all hover:scale-105"
+            >
+              {primaryButton.text}
+            </Link>
+          )}
+          {secondaryButton && (
+            <Link
+              href={secondaryButton.href}
+              className="px-10 py-5 border-2 border-black text-black rounded-xl font-extrabold hover:bg-black hover:text-accent-lime transition-all"
+            >
+              {secondaryButton.text}
+            </Link>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/**
+ * Overview Section (TurfNations Pattern #1)
+ * Simple text content with optional image below
+ */
+export function OverviewSection({ title, paragraphs, image, imageAlt }) {
+  return (
+    <section id="overview" className="py-20 px-4 md:px-6 lg:px-8 bg-gray-50">
+      <div className="max-w-7xl mx-auto">
+        <div className="space-y-12">
+          <div className="max-w-7xl">
+            <h2 className="text-4xl font-extrabold mb-6">{title}</h2>
+            {paragraphs.map((paragraph, idx) => (
+              <p key={idx} className={`text-lg text-gray-700 leading-relaxed font-medium ${idx < paragraphs.length - 1 ? 'mb-6' : ''}`}>
+                {paragraph}
+              </p>
+            ))}
+          </div>
+          
+          {image && (
+            <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
+              <Image
+                src={image}
+                alt={imageAlt}
+                fill
+                className="object-contain"
+              />
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
   );
 }

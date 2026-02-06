@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
+import { AlertCircle, CheckCircle, Loader2, Mail, Send } from 'lucide-react';
+import { useState } from 'react';
 
 export default function ProjectInquirySection() {
   const [formData, setFormData] = useState({

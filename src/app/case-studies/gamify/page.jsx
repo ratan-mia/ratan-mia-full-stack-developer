@@ -1,24 +1,29 @@
 'use client';
 
-import CaseStudyTemplate, { 
-  CaseStudySection, 
-  FeatureGrid, 
-  TechStack, 
-  MetricsGrid 
-} from '@/app/components/case-studies/CaseStudyTemplate';
-import { motion } from 'framer-motion';
 import { 
-  Star, AlertCircle, Lightbulb, CheckCircle, Code, Award,
-  Zap, Smartphone, Gift, Users, TrendingUp, ArrowLeft
+  CheckCircle, Code, Monitor, Smartphone, BarChart, Award, 
+  Check, Zap, Trophy, QrCode, Gift, Users, TrendingUp, Star, Wallet
 } from 'lucide-react';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
+import CaseStudyTemplate, {
+  OverviewSection,
+  CaseStudySection,
+  ImageContentGrid,
+  FullWidthImageContent,
+  MetricsGrid,
+  ImageShowcaseGrid,
+  BusinessImpactCards,
+  KeyAchievementsCard,
+  CTASection
+} from '@/app/components/case-studies/CaseStudyTemplate';
 
 // Project Data
 const projectData = {
   company: 'Gamify',
   category: 'Mobile App / Loyalty Platform / FMCG',
-  liveUrl: null,
   timeline: '4 Months',
   services: [
     'Mobile App Development',
@@ -30,23 +35,12 @@ const projectData = {
   ]
 };
 
-// Navigation Items
-const navItems = [
-  { id: 'overview', label: 'Overview', icon: Star },
-  { id: 'challenge', label: 'The Challenge', icon: AlertCircle },
-  { id: 'solution', label: 'Our Solution', icon: Lightbulb },
-  { id: 'features', label: 'Key Features', icon: CheckCircle },
-  { id: 'tech-stack', label: 'Tech Stack', icon: Code },
-  { id: 'screenshots', label: 'Screenshots', icon: Smartphone },
-  { id: 'results', label: 'Results & Impact', icon: Award }
-];
-
 // Hero Section Component
 function HeroSection() {
   return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-accent-lime">
-      {/* Decorative floating elements - desktop only */}
-      <div className="absolute inset-0 z-10 pointer-events-none hidden lg:block">
+    <section className="relative min-h-screen w-full overflow-hidden bg-accent-lime flex items-center">
+      {/* Background Elements */}
+      <div className="absolute inset-0">
         <motion.div 
           animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
           transition={{ duration: 5, repeat: Infinity }}
@@ -59,99 +53,97 @@ function HeroSection() {
         />
       </div>
 
-      {/* Main content */}
-      <div className="relative z-20 min-h-screen flex items-center">
-        <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-32 w-full">
-          {/* Back Button */}
+      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-20 relative z-10 w-full">
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+        >
           <Link 
-            href="/case-studies"
-            className="inline-flex items-center gap-2 text-black/70 hover:text-black mb-12 font-bold transition-colors group"
+            href="/case-studies" 
+            className="inline-flex items-center gap-2 mb-8 text-black hover:text-black/70 transition-colors font-bold uppercase tracking-wider text-sm"
           >
-            <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+            <ArrowLeft className="w-5 h-5" />
             Back to Case Studies
           </Link>
+        </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Content */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              {/* Badge */}
-              <div className="inline-block px-6 py-2 bg-black/15 text-black rounded-full text-sm font-bold mb-6">
-                🎮 LOYALTY & GAMIFICATION
-              </div>
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
+          {/* Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <div className="inline-block px-4 py-2 bg-black/10 backdrop-blur-sm rounded-full text-sm font-bold mb-6">
+              🎮 LOYALTY & GAMIFICATION
+            </div>
+            
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
+              Gamify
+              <span className="block text-black/70">Loyalty Platform</span>
+            </h1>
+            
+            <p className="text-xl md:text-2xl text-black/80 mb-8 leading-relaxed font-medium">
+              QR-powered engagement platform with interactive games, digital wallet, and comprehensive analytics for FMCG and automotive brands nationwide.
+            </p>
 
-              {/* Hero Title */}
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-black mb-6 leading-tight">
-                Gamify<br />
-                <span className="text-black/80">Loyalty Platform</span>
-              </h1>
-              
-              {/* Description */}
-              <p className="text-xl text-black/80 mb-8 max-w-xl leading-relaxed">
-                QR-powered engagement platform with interactive games, digital wallet, and 
-                comprehensive analytics for FMCG and automotive brands nationwide.
-              </p>
+            {/* Quick Stats Grid */}
+            <div className="grid grid-cols-2 gap-4 mb-8">
+              {[
+                { icon: Users, label: "Active Users", value: "8K+" },
+                { icon: Zap, label: "QR Scans", value: "50K+" },
+                { icon: Trophy, label: "Games Played", value: "25K+" },
+                { icon: TrendingUp, label: "Redemptions", value: "3K+" },
+              ].map((stat, idx) => {
+                const Icon = stat.icon;
+                return (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.4 + idx * 0.1 }}
+                    className="bg-black/10 backdrop-blur-sm p-4 rounded-2xl"
+                  >
+                    <Icon className="w-6 h-6 text-black mb-2" />
+                    <div className="text-2xl font-extrabold text-black">{stat.value}</div>
+                    <div className="text-sm font-semibold text-black/70">{stat.label}</div>
+                  </motion.div>
+                );
+              })}
+            </div>
 
-              {/* Quick Stats */}
-              <div className="grid grid-cols-2 gap-4 mb-8">
-                {[
-                  { icon: Users, label: "Active Users", value: "8K+" },
-                  { icon: Zap, label: "QR Scans", value: "50K+" },
-                  { icon: Award, label: "Games Played", value: "25K+" },
-                  { icon: TrendingUp, label: "Redemptions", value: "3K+" },
-                ].map((stat, idx) => {
-                  const Icon = stat.icon;
-                  return (
-                    <motion.div
-                      key={idx}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.2 + idx * 0.1 }}
-                      className="bg-black/10 backdrop-blur-sm p-4 rounded-2xl"
-                    >
-                      <Icon className="w-6 h-6 text-black mb-2" />
-                      <div className="text-2xl font-extrabold text-black">{stat.value}</div>
-                      <div className="text-sm font-semibold text-black/70">{stat.label}</div>
-                    </motion.div>
-                  );
-                })}
-              </div>
+            {/* Tech Tags */}
+            <div className="flex flex-wrap gap-2">
+              {["React Native", "Node.js", "PostgreSQL", "QR Scanner"].map((tech) => (
+                <span key={tech} className="px-4 py-2 bg-black/15 text-black rounded-lg text-sm font-bold">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </motion.div>
 
-              {/* Tech Tags */}
-              <div className="flex flex-wrap gap-2">
-                {["React Native", "Node.js", "PostgreSQL", "QR Scanner"].map((tech) => (
-                  <span key={tech} className="px-4 py-2 bg-black/15 text-black rounded-lg text-sm font-bold">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Hero Image */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="relative"
-            >
-              <div className="relative h-[600px] rounded-3xl overflow-hidden shadow-2xl border-4 border-black/10">
-                <Image
-                  src="/images/projects/pieqr/screenshots/home-screen.jpg"
-                  alt="Gamify Platform"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
+          {/* Hero Image */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="relative flex justify-center"
+          >
+            <div className="relative h-[600px] w-full rounded-3xl overflow-hidden shadow-2xl border-4 border-black/10">
+              <Image
+                src="/images/projects/pieqr/screenshots/home-screen.jpg"
+                alt="Gamify Platform"
+                fill
+                className="object-cover"
+                priority
+              />
               {/* Floating Badge */}
               <div className="absolute -top-6 -left-6 bg-black text-accent-lime px-6 py-4 rounded-2xl font-extrabold text-xl shadow-2xl">
                 2025
               </div>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -162,251 +154,320 @@ export default function GamifyCaseStudy() {
   return (
     <CaseStudyTemplate
       project={projectData}
-      navItems={navItems}
       heroSection={<HeroSection />}
     >
       {/* Overview Section */}
-      <CaseStudySection
-        id="overview"
-        label="PROJECT OVERVIEW"
-        icon={Star}
-        title="QR-Powered Customer Engagement"
-        description="Revolutionizing brand loyalty for FMCG and automotive companies across Bangladesh"
-        bgColor="bg-white"
-      >
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
-          {[
-            { icon: Gift, title: 'Industry', value: 'FMCG & Automotive' },
-            { icon: Zap, title: 'Duration', value: '4 Months' },
-            { icon: Smartphone, title: 'Platform', value: 'iOS & Android' }
-          ].map((item, index) => {
-            const Icon = item.icon;
-            return (
-              <div key={index} className="bg-gray-50 p-6 rounded-2xl border-2 border-gray-200 hover:border-accent-lime transition-all">
-                <div className="w-12 h-12 rounded-xl bg-accent-lime/10 flex items-center justify-center mb-4">
-                  <Icon className="w-6 h-6 text-black" />
-                </div>
-                <h3 className="text-lg font-bold mb-2">{item.title}</h3>
-                <p className="text-gray-600">{item.value}</p>
-              </div>
-            );
-          })}
-        </div>
-
-        <div className="prose max-w-none">
-          <p className="text-lg text-gray-700 leading-relaxed mb-4">
-            FMCG and automotive brands needed a scalable platform to track product distribution, prevent fraud, and drive customer loyalty across 64 districts in Bangladesh. Traditional loyalty programs lacked engagement and provided limited insights into customer behavior.
-          </p>
-          <p className="text-lg text-gray-700 leading-relaxed">
-            Gamify is a comprehensive <strong>QR-powered loyalty platform</strong> featuring interactive games, digital wallet, and real-time analytics. Built with <strong>React Native</strong> and <strong>Node.js</strong>, the platform serves 8,000+ active users with multi-tier profiles, fraud detection, and payment integration.
-          </p>
-        </div>
-      </CaseStudySection>
+      <OverviewSection
+        title="About the Project"
+        paragraphs={[
+          "FMCG and automotive brands needed a scalable platform to track product distribution, prevent fraud, and drive customer loyalty across 64 districts in Bangladesh. Traditional loyalty programs lacked engagement and provided limited insights into customer behavior.",
+          "The solution is a QR-powered gamification platform built with React Native, enabling brands to create interactive experiences while collecting valuable consumer data. The app features games, digital wallets, reward catalogs, and comprehensive analytics dashboards for brand managers to track campaign performance in real-time."
+        ]}
+        image="/images/projects/pieqr/screenshots/home-screen.jpg"
+        imageAlt="Gamify Platform Overview"
+      />
 
       {/* Challenge Section */}
       <CaseStudySection
         id="challenge"
         label="THE CHALLENGE"
-        icon={AlertCircle}
-        title="Complex Engagement Challenge"
-        description="Multiple obstacles in tracking, preventing fraud, and managing diverse user categories"
+        icon={Zap}
+        title="Complex Brand Requirements"
+        description={
+          <>
+            Building a multi-tenant loyalty platform required addressing several key challenges including{' '}
+            <span className="font-bold text-black">fraud prevention</span> through unique QR codes and scan 
+            validation. We needed to create <span className="font-bold text-black">engaging gamification</span>{' '}
+            with multiple game types and reward mechanisms. The platform demanded{' '}
+            <span className="font-bold text-black">real-time analytics</span> for brand managers to track 
+            campaigns across 64 districts. Additionally, we built a <span className="font-bold text-black">scalable 
+            architecture</span> to support multiple brands with isolated data and custom branding.
+          </>
+        }
         bgColor="bg-gray-50"
-      >
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* Challenge Card */}
-          <div className="p-8 rounded-3xl bg-red-50 border-2 border-red-200">
-            <div className="text-4xl mb-4">🎯</div>
-            <h3 className="text-2xl font-bold mb-4">The Challenge</h3>
-            <ul className="space-y-3 text-gray-700">
-              <li className="flex items-start gap-3">
-                <div className="w-1.5 h-1.5 rounded-full bg-red-500 mt-2 flex-shrink-0" />
-                <span>Track product distribution across entire country (64 districts)</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-1.5 h-1.5 rounded-full bg-red-500 mt-2 flex-shrink-0" />
-                <span>Prevent QR code fraud and duplicate scans with device fingerprinting</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-1.5 h-1.5 rounded-full bg-red-500 mt-2 flex-shrink-0" />
-                <span>Manage 4 different user categories with unique workflows and permissions</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-1.5 h-1.5 rounded-full bg-red-500 mt-2 flex-shrink-0" />
-                <span>Complex reward tiers and eligibility rules for different customer segments</span>
-              </li>
-            </ul>
-          </div>
+        centered={true}
+      />
 
-          {/* Solution Card */}
-          <div className="p-8 rounded-3xl bg-green-50 border-2 border-green-200">
-            <div className="text-4xl mb-4">💡</div>
-            <h3 className="text-2xl font-bold mb-4">The Solution</h3>
-            <ul className="space-y-3 text-gray-700">
-              <li className="flex items-start gap-3">
-                <div className="w-1.5 h-1.5 rounded-full bg-green-500 mt-2 flex-shrink-0" />
-                <span>QR scanning with geo-location tracking and device fingerprinting for fraud prevention</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-1.5 h-1.5 rounded-full bg-green-500 mt-2 flex-shrink-0" />
-                <span>Interactive games (Spin Wheel & Flip Card) with probability-based reward engine</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-1.5 h-1.5 rounded-full bg-green-500 mt-2 flex-shrink-0" />
-                <span>Category-based user profiles with document verification and role permissions</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-1.5 h-1.5 rounded-full bg-green-500 mt-2 flex-shrink-0" />
-                <span>Comprehensive admin dashboard with heat maps and real-time analytics</span>
-              </li>
-            </ul>
-          </div>
-        </div>
+      {/* Solution Section */}
+      <CaseStudySection
+        id="solution"
+        label="OUR SOLUTIONS"
+        icon={CheckCircle}
+        title="Our Approach"
+        description="We built a comprehensive loyalty platform combining QR technology, gamification, and analytics with multi-tenant architecture."
+        bgColor="bg-white"
+        centered={true}
+      >
+        {/* QR Scanning System */}
+        <ImageContentGrid
+          image="/images/projects/pieqr/screenshots/qr-scanner.jpg"
+          imageAlt="QR Scanning System"
+          badge="QR TECHNOLOGY"
+          badgeIcon={QrCode}
+          title="Smart QR Scanning"
+          description="Advanced QR code scanning with fraud detection, offline support, and instant validation for product authentication and point earning."
+          imagePosition="left"
+          features={[
+            {
+              icon: Check,
+              title: 'Fraud Prevention',
+              description: 'Unique QR codes with one-time scan validation'
+            },
+            {
+              icon: Check,
+              title: 'Offline Support',
+              description: 'Queue scans when offline, sync when connected'
+            },
+            {
+              icon: Check,
+              title: 'Instant Rewards',
+              description: 'Real-time point crediting upon successful scan'
+            }
+          ]}
+        />
+
+        {/* Gamification Engine */}
+        <ImageContentGrid
+          image="/images/projects/pieqr/screenshots/games.jpg"
+          imageAlt="Gamification System"
+          badge="GAMIFICATION"
+          badgeIcon={Trophy}
+          title="Interactive Games"
+          description="Engaging game experiences including spin-the-wheel, scratch cards, and lucky draws to boost user engagement and brand loyalty."
+          imagePosition="right"
+          features={[
+            {
+              icon: Check,
+              title: 'Multiple Game Types',
+              description: 'Spin wheel, scratch cards, lucky draws, quizzes'
+            },
+            {
+              icon: Check,
+              title: 'Dynamic Prizes',
+              description: 'Configurable reward pools with probability settings'
+            },
+            {
+              icon: Check,
+              title: 'Fair Play System',
+              description: 'Anti-cheat mechanisms and play limits'
+            }
+          ]}
+        />
+
+        {/* Rewards Catalog */}
+        <ImageContentGrid
+          image="/images/projects/pieqr/screenshots/rewards.jpg"
+          imageAlt="Rewards Catalog"
+          badge="REWARDS"
+          badgeIcon={Gift}
+          title="Digital Rewards"
+          description="Comprehensive rewards catalog with product redemption, vouchers, and exclusive brand offers with real-time inventory management."
+          imagePosition="left"
+          features={[
+            {
+              icon: Check,
+              title: 'Product Catalog',
+              description: 'Browse and redeem rewards with points'
+            },
+            {
+              icon: Check,
+              title: 'Voucher System',
+              description: 'Digital vouchers for partner stores'
+            },
+            {
+              icon: Check,
+              title: 'Order Tracking',
+              description: 'Track redemption status and delivery'
+            }
+          ]}
+        />
       </CaseStudySection>
 
-      {/* Features Section */}
-      <CaseStudySection
-        id="features"
-        label="CORE FEATURES"
-        icon={CheckCircle}
-        title="Complete Engagement Ecosystem"
-        description="A comprehensive suite of features designed to maximize customer engagement"
+      {/* Digital Wallet */}
+      <FullWidthImageContent
+        image="/images/projects/pieqr/screenshots/wallet.jpg"
+        imageAlt="Digital Wallet"
+        badge="DIGITAL WALLET"
+        badgeIcon={Wallet}
+        title="Points & Wallet Management"
+        description="Comprehensive digital wallet system for managing loyalty points, viewing transaction history, tracking rewards, and monitoring balance across all brand activities."
+        imagePosition="left"
         bgColor="bg-white"
-      >
-        <FeatureGrid features={[
+        features={[
           {
-            icon: Zap,
-            title: "QR Code Scanner",
-            description: "Instant product verification with unique codes, geo-location tracking, and fraud detection through device fingerprinting."
+            icon: Wallet,
+            title: 'Points Balance',
+            description: 'Real-time points with earning and spending history'
           },
           {
-            icon: Smartphone,
-            title: "OTP Authentication",
-            description: "Secure phone-based user verification with SMS integration ensuring genuine user registration and account security."
+            icon: TrendingUp,
+            title: 'Transaction History',
+            description: 'Complete audit trail of all point activities'
           },
           {
             icon: Gift,
-            title: "Spin Wheel & Flip Card",
-            description: "Engaging probability-based games with dynamic prize distribution, customizable win rates, and instant reward delivery."
+            title: 'Rewards Tracking',
+            description: 'Track redeemed and pending rewards'
           },
           {
-            icon: Award,
-            title: "Reward Engine",
-            description: "Sophisticated prize distribution system with tier-based rewards, eligibility rules, and redemption tracking."
+            icon: Star,
+            title: 'Multi-Brand Support',
+            description: 'Separate wallets for different brand campaigns'
+          }
+        ]}
+      />
+
+      {/* Admin Dashboard */}
+      <FullWidthImageContent
+        image="/images/projects/pieqr/screenshots/dashboard.jpg"
+        imageAlt="Admin Dashboard"
+        badge="ANALYTICS DASHBOARD"
+        badgeIcon={BarChart}
+        title="Real-Time Analytics"
+        description="Powerful analytics dashboard for brand managers to monitor campaign performance, track user engagement, analyze scan patterns, and optimize reward strategies across all districts."
+        imagePosition="right"
+        bgColor="bg-gray-50"
+        features={[
+          {
+            icon: BarChart,
+            title: 'Campaign Analytics',
+            description: 'Track scans, redemptions, and engagement metrics'
           },
           {
             icon: Users,
-            title: "Multi-Tier Users",
-            description: "Support for Customer, Driver, Retailer, and Mechanic categories with unique workflows and document verification."
+            title: 'User Insights',
+            description: 'Demographic data and behavior patterns'
           },
           {
-            icon: CheckCircle,
-            title: "Digital Wallet",
-            description: "Comprehensive coin balance tracking, transaction history, redemption management, and payment gateway integration."
+            icon: TrendingUp,
+            title: 'District Tracking',
+            description: 'Performance breakdown across 64 districts'
+          },
+          {
+            icon: Award,
+            title: 'ROI Reporting',
+            description: 'Calculate campaign effectiveness and returns'
           }
-        ]} />
-      </CaseStudySection>
+        ]}
+      />
 
       {/* Tech Stack Section */}
       <CaseStudySection
         id="tech-stack"
         label="TECHNOLOGY STACK"
         icon={Code}
-        title="Built with Modern Technology"
-        bgColor="bg-gray-50"
-      >
-        <TechStack technologies={{
-          'Frontend': ['React Native', 'Expo SDK', 'Redux Toolkit', 'TypeScript'],
-          'Backend': ['Node.js', 'Express.js', 'PostgreSQL', 'Redis'],
-          'Features': ['QR Scanner', 'OTP System', 'Geo-tracking', 'Fraud Detection'],
-          'Payment': ['bKash', 'Nagad', 'SSL Commerce', 'Mobile Recharge']
-        }} />
-      </CaseStudySection>
-
-      {/* Screenshots Section */}
-      <CaseStudySection
-        id="screenshots"
-        label="APP SCREENSHOTS"
-        icon={Smartphone}
-        title="Intuitive Interface Design"
-        description="Explore the app's user experience through key screens"
+        title="Built with Modern Technologies"
+        description={
+          <>
+            The platform is built using <span className="font-bold text-black">React Native</span> and{' '}
+            <span className="font-bold text-black">Expo</span> for cross-platform mobile development. The backend 
+            leverages <span className="font-bold text-black">Node.js</span> with{' '}
+            <span className="font-bold text-black">PostgreSQL</span> for scalable data management. We implemented{' '}
+            <span className="font-bold text-black">QR code scanning</span> with fraud detection algorithms. The 
+            analytics dashboard is powered by <span className="font-bold text-black">React</span> with real-time 
+            data visualization. The system features <span className="font-bold text-black">multi-tenant 
+            architecture</span> with isolated brand data and custom configurations.
+          </>
+        }
         bgColor="bg-white"
-      >
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-          {[
-            { src: "/images/projects/pieqr/screenshots/home-screen.jpg", title: "Home & QR Scanner" },
-            { src: "/images/projects/pieqr/screenshots/game-screen.jpg", title: "Spin Wheel Game" },
-            { src: "/images/projects/pieqr/screenshots/game-2-screen.jpg", title: "Flip Card Game" },
-            { src: "/images/projects/pieqr/screenshots/wallet.jpg", title: "Digital Wallet" },
-            { src: "/images/projects/pieqr/screenshots/gifts.jpg", title: "Gifts Catalog" },
-            { src: "/images/projects/pieqr/screenshots/trasactions-insights.jpg", title: "Transaction Insights" },
-          ].map((screenshot, idx) => (
-            <div key={idx} className="group relative aspect-[9/16] rounded-2xl overflow-hidden border-2 border-gray-200 hover:border-accent-lime hover:shadow-lg transition-all">
-              <Image
-                src={screenshot.src}
-                alt={screenshot.title}
-                fill
-                className="object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                <span className="text-white font-bold text-sm">{screenshot.title}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </CaseStudySection>
+        centered={true}
+      />
 
       {/* Results Section */}
       <CaseStudySection
         id="results"
-        label="RESULTS & IMPACT"
-        icon={Award}
-        title="Measurable Business Impact"
-        description="Increased brand engagement by 200% while providing valuable customer insights"
+        label="RESULTS & METRICS"
+        icon={BarChart}
+        title="Outstanding Performance"
         bgColor="bg-gray-50"
+        centered={true}
       >
-        <MetricsGrid metrics={[
-          { value: '200%', label: 'Brand Engagement', sublabel: 'Year over year' },
-          { value: '8K+', label: 'Active Users', sublabel: 'Nationwide reach' },
-          { value: '64', label: 'Districts Covered', sublabel: 'Complete Bangladesh' },
-          { value: '50K+', label: 'QR Scans', sublabel: 'Product verifications' }
-        ]} />
+        <MetricsGrid
+          metrics={[
+            { icon: Users, value: '8K+', label: 'Active Users' },
+            { icon: QrCode, value: '50K+', label: 'QR Scans' },
+            { icon: Trophy, value: '25K+', label: 'Games Played' },
+            { icon: Gift, value: '3K+', label: 'Rewards Redeemed' }
+          ]}
+        />
 
-        <div className="mt-12 grid md:grid-cols-2 gap-8">
-          <div className="bg-accent-lime/10 p-8 rounded-2xl border-2 border-accent-lime/30">
-            <h3 className="text-2xl font-black mb-4">Business Impact</h3>
-            <ul className="space-y-3">
-              {[
-                'Real-time distribution tracking across 64 districts',
-                'Fraud prevention through device fingerprinting',
-                'Data-driven insights into customer behavior',
-                'Increased customer retention and brand loyalty'
-              ].map((item, idx) => (
-                <li key={idx} className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-accent-lime flex-shrink-0 mt-0.5" />
-                  <span className="text-gray-700">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="bg-white p-8 rounded-2xl border-2 border-gray-200">
-            <h3 className="text-2xl font-black mb-4">Technical Achievements</h3>
-            <ul className="space-y-3">
-              {[
-                'Scalable React Native architecture',
-                'Real-time analytics and reporting',
-                'Multi-tier user management system',
-                'Integrated payment gateway support'
-              ].map((item, idx) => (
-                <li key={idx} className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-black flex-shrink-0 mt-0.5" />
-                  <span className="text-gray-700">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+        <div className="mt-12">
+          <ImageShowcaseGrid
+            items={[
+              {
+                title: 'QR Scanner',
+                image: '/images/projects/pieqr/screenshots/qr-scanner.jpg',
+                alt: 'QR Code Scanner',
+                caption: 'Advanced QR scanning with fraud detection and instant validation for secure product authentication.'
+              },
+              {
+                title: 'Gamification',
+                image: '/images/projects/pieqr/screenshots/games.jpg',
+                alt: 'Interactive Games',
+                caption: 'Engaging game experiences including spin-the-wheel and scratch cards to boost user engagement.'
+              }
+            ]}
+          />
         </div>
       </CaseStudySection>
+
+      {/* Business Impact Section */}
+      <CaseStudySection
+        id="impact"
+        label="🚀 BUSINESS IMPACT"
+        title="Transforming Brand Loyalty"
+        bgColor="bg-white"
+        centered={true}
+      >
+        <BusinessImpactCards
+          cards={[
+            {
+              title: 'For Consumers',
+              benefits: [
+                'Scan products to earn instant rewards',
+                'Play interactive games for bonus points',
+                'Redeem points for products and vouchers',
+                'Track loyalty points across multiple brands',
+                'Access exclusive brand offers and promotions'
+              ]
+            },
+            {
+              title: 'For Brands',
+              benefits: [
+                'Real-time campaign performance tracking',
+                'Valuable consumer behavior insights',
+                'Fraud prevention with unique QR codes',
+                'Increased customer engagement and retention',
+                'Scalable platform for nationwide campaigns'
+              ]
+            }
+          ]}
+        />
+
+        <div className="mt-12">
+          <KeyAchievementsCard
+            achievements={[
+              { value: '4x', label: 'User Engagement' },
+              { value: '60%', label: 'Campaign ROI Increase' },
+              { value: '64', label: 'Districts Covered' }
+            ]}
+          />
+        </div>
+      </CaseStudySection>
+
+      {/* CTA Section */}
+      <CTASection
+        title="Need a Loyalty Platform?"
+        subtitle="Let's build a gamification solution that drives engagement and brand loyalty."
+        primaryButton={{
+          text: 'Start Your Project',
+          href: '/quote'
+        }}
+        secondaryButton={{
+          text: 'More Case Studies',
+          href: '/case-studies'
+        }}
+      />
     </CaseStudyTemplate>
   );
 }

@@ -1,19 +1,24 @@
 'use client';
 
-import CaseStudyTemplate, { 
-  CaseStudySection, 
-  FeatureGrid, 
-  TechStack, 
-  MetricsGrid 
-} from '@/app/components/case-studies/CaseStudyTemplate';
-import { motion } from 'framer-motion';
 import { 
-  Star, AlertCircle, Lightbulb, CheckCircle, Code, Award,
-  Car, Calendar, Wrench, ShoppingCart, MapPin, Bell, Newspaper, Gift, User,
-  ArrowLeft, ExternalLink
+  CheckCircle, Code, Monitor, Smartphone, BarChart, Award, 
+  Check, Zap, Car, Calendar, Wrench, ShoppingCart, MapPin, Bell, Newspaper, Gift, User, ExternalLink, Star
 } from 'lucide-react';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
+import CaseStudyTemplate, {
+  OverviewSection,
+  CaseStudySection,
+  ImageContentGrid,
+  FullWidthImageContent,
+  MetricsGrid,
+  ImageShowcaseGrid,
+  BusinessImpactCards,
+  KeyAchievementsCard,
+  CTASection
+} from '@/app/components/case-studies/CaseStudyTemplate';
 
 // Project Data
 const projectData = {
@@ -31,46 +36,45 @@ const projectData = {
   ]
 };
 
-// Navigation Items
-const navItems = [
-  { id: 'overview', label: 'Overview', icon: Star },
-  { id: 'challenge', label: 'The Challenge', icon: AlertCircle },
-  { id: 'solution', label: 'Our Solution', icon: Lightbulb },
-  { id: 'features', label: 'Key Features', icon: CheckCircle },
-  { id: 'tech-stack', label: 'Tech Stack', icon: Code },
-  { id: 'screenshots', label: 'Screenshots', icon: Car },
-  { id: 'results', label: 'Results & Impact', icon: Award }
-];
-
 // Hero Section Component
 function HeroSection() {
   return (
     <section className="relative min-h-screen w-full overflow-hidden bg-accent-lime flex items-center">
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-20 relative z-10 w-full">
-        <Link 
-          href="/case-studies" 
-          className="inline-flex items-center gap-2 mb-8 text-black hover:text-black/70 transition-colors font-bold"
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
         >
-          <ArrowLeft className="w-5 h-5" />
-          Back to Case Studies
-        </Link>
-
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+          <Link 
+            href="/case-studies" 
+            className="inline-flex items-center gap-2 mb-8 text-black hover:text-black/70 transition-colors font-bold uppercase tracking-wider text-sm"
           >
-            <div className="inline-block px-6 py-2 bg-black/10 text-black rounded-full text-sm font-extrabold mb-6">
+            <ArrowLeft className="w-5 h-5" />
+            Back to Case Studies
+          </Link>
+        </motion.div>
+
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
+          {/* Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <div className="inline-block px-4 py-2 bg-black/10 backdrop-blur-sm rounded-full text-sm font-bold mb-6">
               🚗 AUTOMOTIVE PLATFORM
             </div>
+            
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
-              Chery Bangladesh<br />Mobile App
+              Chery Bangladesh
+              <span className="block text-black/70">Mobile App</span>
             </h1>
-            <p className="text-xl md:text-2xl text-black/80 mb-8 font-medium leading-relaxed">
+            
+            <p className="text-xl md:text-2xl text-black/80 mb-8 leading-relaxed font-medium">
               A comprehensive automotive platform revolutionizing the car buying experience with seamless test drives, service bookings, and parts e-commerce.
             </p>
-            
+
             <div className="flex flex-wrap gap-3 mb-8">
               <span className="px-4 py-2 bg-black text-accent-lime rounded-xl font-bold text-sm">React Native</span>
               <span className="px-4 py-2 bg-black text-accent-lime rounded-xl font-bold text-sm">Expo SDK</span>
@@ -91,14 +95,15 @@ function HeroSection() {
             </div>
           </motion.div>
 
+          {/* Hero Image */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
             className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl"
           >
             <Image
-              src="/images/projects/cherybd-mockup.png"
+              src="/images/projects/cherymobileapp/chery-app-hero.jpg"
               alt="Chery Bangladesh App"
               fill
               className="object-cover"
@@ -115,259 +120,320 @@ export default function CheryBangladeshCaseStudy() {
   return (
     <CaseStudyTemplate
       project={projectData}
-      navItems={navItems}
       heroSection={<HeroSection />}
     >
       {/* Overview Section */}
-      <CaseStudySection
-        id="overview"
-        label="PROJECT OVERVIEW"
-        icon={Star}
-        title="Revolutionizing Automotive Retail"
-        description="Comprehensive mobile platform for the complete car ownership journey"
-        bgColor="bg-gray-50"
-      >
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
-          {[
-            { icon: User, title: 'Client', value: 'Chery Bangladesh' },
-            { icon: Calendar, title: 'Duration', value: '4 Months' },
-            { icon: Car, title: 'Platform', value: 'Android & iOS' }
-          ].map((item, index) => {
-            const Icon = item.icon;
-            return (
-              <div key={index} className="bg-white p-6 rounded-2xl border-2 border-gray-200 hover:border-accent-lime transition-all">
-                <div className="w-12 h-12 rounded-xl bg-accent-lime/10 flex items-center justify-center mb-4">
-                  <Icon className="w-6 h-6 text-black" />
-                </div>
-                <h3 className="text-lg font-bold mb-2">{item.title}</h3>
-                <p className="text-gray-600">{item.value}</p>
-              </div>
-            );
-          })}
-        </div>
-
-        <div className="prose max-w-none">
-          <p className="text-lg text-gray-700 leading-relaxed mb-4">
-            Chery Bangladesh needed a comprehensive mobile application to streamline their customer journey from browsing vehicles to booking test drives and managing after-sales services. The platform had to handle multiple user types, integrate with their existing systems, and provide a seamless experience across both iOS and Android devices.
-          </p>
-          <p className="text-lg text-gray-700 leading-relaxed">
-            The solution combines modern mobile development with robust backend architecture, featuring real-time booking systems, secure payment processing, and an intuitive user interface that reflects the premium Chery brand experience.
-          </p>
-        </div>
-      </CaseStudySection>
+      <OverviewSection
+        title="About the Project"
+        paragraphs={[
+          "Chery Bangladesh needed to modernize their customer experience by creating a unified digital platform that connects potential buyers with their showrooms, service centers, and parts inventory. The challenge was to build an intuitive mobile app that simplifies the entire car ownership journey from initial research to after-sales service.",
+          "The solution is a comprehensive mobile application built with React Native and Expo, offering seamless vehicle browsing, test drive bookings, service appointments, and an integrated e-commerce platform for genuine Chery parts. The app serves as the primary digital touchpoint for Chery customers across Bangladesh."
+        ]}
+        image="/images/projects/cherymobileapp/chery-overview.jpg"
+        imageAlt="Chery Bangladesh App Overview"
+      />
 
       {/* Challenge Section */}
       <CaseStudySection
         id="challenge"
         label="THE CHALLENGE"
-        icon={AlertCircle}
-        title="Key Challenges"
-        description="Complex requirements across multiple business domains"
-        bgColor="bg-white"
-      >
-        <div className="grid md:grid-cols-2 gap-8">
-          {[
-            {
-              title: "Complex Booking System",
-              description: "Managing real-time availability for test drives and service appointments across multiple dealerships with conflicting schedules and varying operational hours."
-            },
-            {
-              title: "Multi-Role Access",
-              description: "Creating distinct experiences for customers, dealers, and service centers while maintaining a unified codebase and consistent brand experience."
-            },
-            {
-              title: "E-commerce Integration",
-              description: "Implementing a full-featured parts store with inventory management, secure payments, and order tracking while ensuring fast performance."
-            },
-            {
-              title: "Offline Capability",
-              description: "Ensuring the app remains functional with limited connectivity, storing critical data locally and syncing when connection is restored."
-            }
-          ].map((challenge, index) => (
-            <div key={index} className="bg-gray-50 p-8 rounded-3xl border-l-4 border-accent-lime">
-              <h3 className="text-2xl font-extrabold mb-4">{challenge.title}</h3>
-              <p className="text-gray-700 leading-relaxed">{challenge.description}</p>
-            </div>
-          ))}
-        </div>
-      </CaseStudySection>
+        icon={Zap}
+        title="Digital Transformation"
+        description={
+          <>
+            Building a comprehensive automotive platform required addressing several key challenges including{' '}
+            <span className="font-bold text-black">complex booking workflows</span> for test drives and service 
+            appointments across multiple showrooms. We needed to create an <span className="font-bold text-black">integrated 
+            e-commerce system</span> for genuine parts with inventory management. The platform demanded{' '}
+            <span className="font-bold text-black">real-time availability tracking</span> for vehicles, service 
+            slots, and parts. Additionally, we built <span className="font-bold text-black">location-based 
+            services</span> to help customers find nearest showrooms and service centers with map integration.
+          </>
+        }
+        bgColor="bg-gray-50"
+        centered={true}
+      />
 
       {/* Solution Section */}
       <CaseStudySection
         id="solution"
-        label="OUR SOLUTION"
-        icon={Lightbulb}
-        title="Technical Architecture"
-        description="Modern technology stack powering a seamless experience"
-        bgColor="bg-gray-50"
+        label="OUR SOLUTIONS"
+        icon={CheckCircle}
+        title="Our Approach"
+        description="We built a comprehensive automotive platform combining vehicle browsing, booking management, and e-commerce with modern technology stack."
+        bgColor="bg-white"
+        centered={true}
       >
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-12">
-          <div>
-            <h3 className="text-3xl font-extrabold mb-6">Implementation Highlights</h3>
-            <ul className="space-y-4">
-              {[
-                'React Native with Expo for cross-platform development',
-                'Supabase PostgreSQL for real-time data synchronization',
-                'Row-Level Security (RLS) for data protection',
-                'Custom booking engine with conflict resolution',
-                'Offline-first architecture with local storage',
-                'Push notifications for booking confirmations',
-                'Integrated payment gateway (SSL Commerz)',
-                'Google Maps API for dealership locations'
-              ].map((item, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  <CheckCircle className="w-6 h-6 text-accent-lime flex-shrink-0 mt-1" />
-                  <span className="text-lg text-gray-700">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+        {/* Vehicle Showroom */}
+        <ImageContentGrid
+          image="/images/projects/cherymobileapp/vehicle-showroom.jpg"
+          imageAlt="Vehicle Showroom"
+          badge="VEHICLE BROWSING"
+          badgeIcon={Car}
+          title="Digital Showroom"
+          description="Comprehensive vehicle catalog with detailed specifications, 360° views, photo galleries, and comparison tools to help customers make informed decisions."
+          imagePosition="left"
+          features={[
+            {
+              icon: Check,
+              title: 'Vehicle Catalog',
+              description: 'Browse all Chery models with detailed specs'
+            },
+            {
+              icon: Check,
+              title: 'Photo Galleries',
+              description: '360° views and high-resolution images'
+            },
+            {
+              icon: Check,
+              title: 'Comparison Tool',
+              description: 'Compare features and prices side-by-side'
+            }
+          ]}
+        />
 
-          <div className="grid grid-cols-2 gap-4">
-            <div className="relative h-80 rounded-2xl overflow-hidden shadow-xl border-2 border-gray-200 hover:border-accent-lime transition-all">
-              <Image
-                src="/images/projects/cherymobileapp/02-home-screen.jpg"
-                alt="Home Screen"
-                fill
-                className="object-cover"
-              />
-            </div>
-            <div className="relative h-80 rounded-2xl overflow-hidden shadow-xl border-2 border-gray-200 hover:border-accent-lime transition-all">
-              <Image
-                src="/images/projects/cherymobileapp/03-services-menu.jpg"
-                alt="Services Menu"
-                fill
-                className="object-cover"
-              />
-            </div>
-            <div className="relative h-80 rounded-2xl overflow-hidden shadow-xl border-2 border-gray-200 hover:border-accent-lime transition-all">
-              <Image
-                src="/images/projects/cherymobileapp/05-featured-products.jpg"
-                alt="Products"
-                fill
-                className="object-cover"
-              />
-            </div>
-            <div className="relative h-80 rounded-2xl overflow-hidden shadow-xl border-2 border-gray-200 hover:border-accent-lime transition-all">
-              <Image
-                src="/images/projects/cherymobileapp/06-latest-news.jpg"
-                alt="News"
-                fill
-                className="object-cover"
-              />
-            </div>
-          </div>
-        </div>
+        {/* Test Drive Booking */}
+        <ImageContentGrid
+          image="/images/projects/cherymobileapp/test-drive.jpg"
+          imageAlt="Test Drive Booking"
+          badge="BOOKING SYSTEM"
+          badgeIcon={Calendar}
+          title="Test Drive Booking"
+          description="Seamless test drive scheduling with real-time availability, showroom selection, and instant confirmation notifications."
+          imagePosition="right"
+          features={[
+            {
+              icon: Check,
+              title: 'Real-Time Availability',
+              description: 'Check available slots across showrooms'
+            },
+            {
+              icon: Check,
+              title: 'Easy Scheduling',
+              description: 'Book test drives with preferred date and time'
+            },
+            {
+              icon: Check,
+              title: 'Instant Confirmation',
+              description: 'Automated confirmations and reminders'
+            }
+          ]}
+        />
+
+        {/* Service Center */}
+        <ImageContentGrid
+          image="/images/projects/cherymobileapp/service-booking.jpg"
+          imageAlt="Service Booking"
+          badge="SERVICE CENTER"
+          badgeIcon={Wrench}
+          title="Service Appointments"
+          description="Complete service booking system with service type selection, center locator, appointment tracking, and service history management."
+          imagePosition="left"
+          features={[
+            {
+              icon: Check,
+              title: 'Service Booking',
+              description: 'Schedule maintenance and repairs easily'
+            },
+            {
+              icon: Check,
+              title: 'Center Locator',
+              description: 'Find nearest authorized service centers'
+            },
+            {
+              icon: Check,
+              title: 'Service History',
+              description: 'Track all service records and warranties'
+            }
+          ]}
+        />
       </CaseStudySection>
 
-      {/* Features Section */}
-      <CaseStudySection
-        id="features"
-        label="CORE FEATURES"
-        icon={CheckCircle}
-        title="Core Functionality"
-        description="Comprehensive features covering the entire customer journey"
+      {/* Parts E-Commerce */}
+      <FullWidthImageContent
+        image="/images/projects/cherymobileapp/parts-store.jpg"
+        imageAlt="Parts E-Commerce"
+        badge="E-COMMERCE"
+        badgeIcon={ShoppingCart}
+        title="Genuine Parts Store"
+        description="Integrated e-commerce platform for browsing and purchasing genuine Chery parts with detailed product information, secure checkout, and doorstep delivery across Bangladesh."
+        imagePosition="left"
         bgColor="bg-white"
-      >
-        <FeatureGrid features={[
-          {
-            icon: Car,
-            title: "Vehicle Showroom",
-            description: "Browse complete vehicle lineup with specs, images, 360° views, and pricing information"
-          },
-          {
-            icon: Calendar,
-            title: "Test Drive Booking",
-            description: "Schedule test drives with preferred dealerships, select time slots, and receive confirmations"
-          },
-          {
-            icon: Wrench,
-            title: "Service Booking",
-            description: "Book maintenance and repairs with service centers, track service history, and get reminders"
-          },
+        features={[
           {
             icon: ShoppingCart,
-            title: "Parts E-commerce",
-            description: "Purchase genuine parts and accessories with secure payments and doorstep delivery"
+            title: 'Parts Catalog',
+            description: 'Browse genuine parts with compatibility info'
           },
           {
-            icon: MapPin,
-            title: "Dealer Locator",
-            description: "Find nearest dealerships and service centers with map integration and directions"
-          },
-          {
-            icon: Bell,
-            title: "Push Notifications",
-            description: "Real-time updates for bookings, promotions, and service reminders"
-          },
-          {
-            icon: Newspaper,
-            title: "News & Events",
-            description: "Stay updated with latest automotive news, launches, and company events"
+            icon: Check,
+            title: 'Secure Checkout',
+            description: 'Multiple payment options with order tracking'
           },
           {
             icon: Gift,
-            title: "Promotions",
-            description: "Access exclusive offers, discounts, and seasonal campaigns"
+            title: 'Delivery Service',
+            description: 'Nationwide delivery to your doorstep'
           },
           {
-            icon: User,
-            title: "Profile Management",
-            description: "Manage personal details, vehicle information, and booking history"
+            icon: Star,
+            title: 'Warranty Support',
+            description: 'All genuine parts with manufacturer warranty'
           }
-        ]} />
-      </CaseStudySection>
+        ]}
+      />
+
+      {/* Showroom Locator */}
+      <FullWidthImageContent
+        image="/images/projects/cherymobileapp/showroom-locator.jpg"
+        imageAlt="Showroom Locator"
+        badge="LOCATION SERVICES"
+        badgeIcon={MapPin}
+        title="Showroom & Service Center Finder"
+        description="Interactive map integration helping customers locate nearest Chery showrooms and authorized service centers with directions, contact information, and real-time operating hours."
+        imagePosition="right"
+        bgColor="bg-gray-50"
+        features={[
+          {
+            icon: MapPin,
+            title: 'Map Integration',
+            description: 'Find locations with Google Maps integration'
+          },
+          {
+            icon: Smartphone,
+            title: 'Turn-by-Turn Directions',
+            description: 'Get navigation to selected location'
+          },
+          {
+            icon: Bell,
+            title: 'Contact Details',
+            description: 'Phone numbers and operating hours'
+          },
+          {
+            icon: Star,
+            title: 'Center Info',
+            description: 'Available services and facilities'
+          }
+        ]}
+      />
 
       {/* Tech Stack Section */}
       <CaseStudySection
         id="tech-stack"
         label="TECHNOLOGY STACK"
         icon={Code}
-        title="Technologies Used"
-        bgColor="bg-gray-50"
-      >
-        <TechStack technologies={{
-          'Frontend': ['React Native', 'Expo SDK 54', 'React Navigation', 'AsyncStorage', 'Expo Camera', 'React Native Maps'],
-          'Backend': ['Supabase', 'PostgreSQL', 'Row Level Security', 'Supabase Auth', 'Real-time APIs', 'Cloud Functions'],
-          'Integrations': ['SSL Commerz', 'Google Maps', 'Push Notifications', 'Firebase Analytics', 'Sentry', 'AWS S3']
-        }} />
-      </CaseStudySection>
+        title="Built with Modern Technologies"
+        description={
+          <>
+            The platform is built using <span className="font-bold text-black">React Native</span> and{' '}
+            <span className="font-bold text-black">Expo SDK</span> for cross-platform mobile development. The backend 
+            is powered by <span className="font-bold text-black">Supabase</span> with{' '}
+            <span className="font-bold text-black">PostgreSQL</span> for database management. We integrated{' '}
+            <span className="font-bold text-black">Google Maps API</span> for location services and navigation. The 
+            app features <span className="font-bold text-black">secure payment gateways</span> for e-commerce 
+            transactions and <span className="font-bold text-black">push notifications</span> for booking 
+            confirmations and reminders.
+          </>
+        }
+        bgColor="bg-white"
+        centered={true}
+      />
 
       {/* Results Section */}
       <CaseStudySection
         id="results"
-        label="RESULTS & IMPACT"
-        icon={Award}
-        title="Measurable Success"
-        description="Significant improvements across all key business metrics"
-        bgColor="bg-white"
+        label="RESULTS & METRICS"
+        icon={BarChart}
+        title="Outstanding Performance"
+        bgColor="bg-gray-50"
+        centered={true}
       >
-        <MetricsGrid metrics={[
-          { value: '300%', label: 'Test Drive Bookings', sublabel: 'Increase in bookings' },
-          { value: '50K+', label: 'Active App Users', sublabel: 'Growing user base' },
-          { value: '4.8', label: 'App Store Rating', sublabel: 'Out of 5.0 stars' },
-          { value: '85%', label: 'Customer Satisfaction', sublabel: 'Based on surveys' }
-        ]} />
+        <MetricsGrid
+          metrics={[
+            { icon: Calendar, value: '500+', label: 'Test Drives Booked' },
+            { icon: Wrench, value: '300+', label: 'Service Appointments' },
+            { icon: ShoppingCart, value: '200+', label: 'Parts Orders' },
+            { icon: Star, value: '4.7', label: 'App Store Rating' }
+          ]}
+        />
 
-        <div className="mt-12 bg-white p-10 rounded-3xl border-2 border-gray-200">
-          <h3 className="text-3xl font-extrabold mb-6">Business Impact</h3>
-          <ul className="grid md:grid-cols-2 gap-6">
-            {[
-              'Streamlined customer journey from discovery to purchase',
-              'Reduced booking management overhead by 60%',
-              'Increased service center utilization by 45%',
-              'Enhanced brand presence in digital marketplace',
-              'Improved customer retention through engagement features',
-              'Generated additional revenue stream through parts sales'
-            ].map((impact, index) => (
-              <li key={index} className="flex items-start gap-3">
-                <div className="w-2 h-2 bg-accent-lime rounded-full mt-2 flex-shrink-0"></div>
-                <span className="text-lg text-gray-700">{impact}</span>
-              </li>
-            ))}
-          </ul>
+        <div className="mt-12">
+          <ImageShowcaseGrid
+            items={[
+              {
+                title: 'Vehicle Showroom',
+                image: '/images/projects/cherymobileapp/vehicle-detail.jpg',
+                alt: 'Vehicle Detail Screen',
+                caption: 'Comprehensive vehicle information with specifications, features, and high-quality images.'
+              },
+              {
+                title: 'Service Booking',
+                image: '/images/projects/cherymobileapp/booking-confirmation.jpg',
+                alt: 'Booking Confirmation',
+                caption: 'Seamless booking experience with instant confirmations and automated reminders.'
+              }
+            ]}
+          />
         </div>
       </CaseStudySection>
+
+      {/* Business Impact Section */}
+      <CaseStudySection
+        id="impact"
+        label="🚀 BUSINESS IMPACT"
+        title="Transforming Car Buying Experience"
+        bgColor="bg-white"
+        centered={true}
+      >
+        <BusinessImpactCards
+          cards={[
+            {
+              title: 'For Customers',
+              benefits: [
+                'Browse complete Chery vehicle lineup anytime',
+                'Book test drives at convenient times',
+                'Schedule service appointments hassle-free',
+                'Purchase genuine parts from anywhere',
+                'Find nearest showrooms and service centers'
+              ]
+            },
+            {
+              title: 'For Chery Bangladesh',
+              benefits: [
+                'Digital transformation of sales process',
+                'Streamlined booking and appointment management',
+                'Direct channel for parts sales',
+                'Enhanced customer engagement and retention',
+                'Valuable insights into customer preferences'
+              ]
+            }
+          ]}
+        />
+
+        <div className="mt-12">
+          <KeyAchievementsCard
+            achievements={[
+              { value: '40%', label: 'Increase in Test Drives' },
+              { value: '60%', label: 'Service Booking Growth' },
+              { value: '1000+', label: 'Active Users' }
+            ]}
+          />
+        </div>
+      </CaseStudySection>
+
+      {/* CTA Section */}
+      <CTASection
+        title="Need an Automotive Platform?"
+        subtitle="Let's build a custom mobile solution for your automotive business."
+        primaryButton={{
+          text: 'Start Your Project',
+          href: '/quote'
+        }}
+        secondaryButton={{
+          text: 'More Case Studies',
+          href: '/case-studies'
+        }}
+      />
     </CaseStudyTemplate>
   );
 }

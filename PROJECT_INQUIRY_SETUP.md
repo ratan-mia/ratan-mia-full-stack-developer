@@ -46,6 +46,7 @@ yarn install
 ```
 
 Required packages:
+
 - `nodemailer` - For sending emails
 - `framer-motion` - For animations
 - `lucide-react` - For icons
@@ -55,7 +56,7 @@ Required packages:
 Import and use the component in any page:
 
 ```jsx
-import ProjectInquirySection from '@/components/ProjectInquirySection';
+import ProjectInquirySection from "@/components/ProjectInquirySection";
 
 export default function YourPage() {
   return (
@@ -86,14 +87,18 @@ src/
 ## Email Templates
 
 ### Client Email
+
 Beautiful, branded email sent to the person who submitted the inquiry:
+
 - Thank you message
 - Project summary
 - Next steps (3-step process)
 - Your contact information
 
 ### Admin Email
+
 Comprehensive notification email sent to you:
+
 - Client information
 - Project details
 - Budget and service required
@@ -102,12 +107,12 @@ Comprehensive notification email sent to you:
 
 ## Form Fields
 
-- **Full Name*** (required)
-- **Email*** (required)
+- **Full Name\*** (required)
+- **Email\*** (required)
 - **Company Name** (optional)
-- **Service Required*** (dropdown - required)
-- **Project Budget*** (dropdown - required)
-- **Project Details*** (textarea - required, min 20 chars)
+- **Service Required\*** (dropdown - required)
+- **Project Budget\*** (dropdown - required)
+- **Project Details\*** (textarea - required, min 20 chars)
 
 ## Service Options
 
@@ -154,6 +159,7 @@ Edit `ProjectInquirySection.jsx`:
 ### Update Email Templates
 
 Edit the templates in `src/app/lib/email-templates/`:
+
 - `project-client-template.js` - Customize client email
 - `project-admin-template.js` - Customize admin email
 
@@ -163,8 +169,8 @@ Edit the `services` array in `ProjectInquirySection.jsx`:
 
 ```jsx
 const services = [
-  'Your Service 1',
-  'Your Service 2',
+  "Your Service 1",
+  "Your Service 2",
   // Add more...
 ];
 ```
@@ -175,8 +181,8 @@ Edit the `budgetRanges` array:
 
 ```jsx
 const budgetRanges = [
-  '$1,000 - $5,000',
-  '$5,000 - $10,000',
+  "$1,000 - $5,000",
+  "$5,000 - $10,000",
   // Add more...
 ];
 ```
@@ -184,6 +190,7 @@ const budgetRanges = [
 ## Testing
 
 1. Start the development server:
+
 ```bash
 npm run dev
 ```
@@ -202,19 +209,23 @@ npm run dev
 ### Emails Not Sending
 
 1. **Check environment variables**
+
    ```bash
    echo $GMAIL_USER
    echo $GMAIL_APP_PASSWORD
    ```
 
 2. **Verify App Password**
+
    - Make sure you're using an App Password, not your regular Gmail password
    - Remove any spaces from the password
 
 3. **Check 2-Step Verification**
+
    - Must be enabled to create App Passwords
 
 4. **Check Gmail "Less secure app access"**
+
    - Should be disabled (use App Passwords instead)
 
 5. **Review server logs**
@@ -233,6 +244,7 @@ npm run dev
 ## API Response Format
 
 ### Success Response
+
 ```json
 {
   "success": true,
@@ -245,6 +257,7 @@ npm run dev
 ```
 
 ### Error Response
+
 ```json
 {
   "success": false,
@@ -264,6 +277,7 @@ npm run dev
 ## Support
 
 For issues or questions, check:
+
 1. Server console logs
 2. Browser console logs
 3. Gmail SMTP settings
