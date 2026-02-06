@@ -110,7 +110,7 @@ const structuredData = {
     addressCountry: "Bangladesh"
   },
   email: "shorifull@gmail.com",
-  telephone: "+8801234567890",
+  telephone: "+8801751010966",
   knowsAbout: [
     "React.js", "Next.js", "Laravel", "WordPress", "JavaScript", "PHP", "Full Stack Development"
   ]

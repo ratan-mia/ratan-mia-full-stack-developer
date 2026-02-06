@@ -94,14 +94,14 @@ export default function ContactPage() {
     {
       icon: Mail,
       label: 'Email',
-      value: 'hello@ratanmia.com',
-      link: 'mailto:hello@ratanmia.com'
+      value: 'shorifull@gmail.com',
+      link: 'mailto:shorifull@gmail.com'
     },
     {
       icon: Phone,
       label: 'Phone',
-      value: '+880 1234-567890',
-      link: 'tel:+8801234567890'
+      value: '+880 1751-010966',
+      link: 'tel:+8801751010966'
     },
     {
       icon: MapPin,
@@ -351,7 +351,7 @@ export default function ContactPage() {
                           value={formData.phone}
                           onChange={handleChange}
                           className="w-full pl-12 pr-4 py-4 border-2 border-gray-700 bg-gray-800 text-white rounded-xl focus:border-accent-lime focus:outline-none hover:border-gray-600 transition-all font-medium placeholder:text-gray-500"
-                          placeholder="+880 1234-567890"
+                          placeholder="+880 1751-010966"
                         />
                       </div>
                     </div>

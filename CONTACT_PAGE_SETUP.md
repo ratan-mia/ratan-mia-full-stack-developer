@@ -91,7 +91,7 @@ GMAIL_APP_PASSWORD=xxxx-xxxx-xxxx-xxxx
 {
   "name": "John Doe",
   "email": "john@example.com",
-  "phone": "+880 1234-567890",
+  "phone": "+880 1751-010966",
   "company": "Tech Company",
   "website": "https://example.com",
   "subject": "Project Inquiry",
@@ -289,7 +289,7 @@ For higher volumes, consider:
 
 For issues or questions:
 
-- Email: hello@ratanmia.com
+- Email: shorifull@gmail.com
 - Website: https://ratanmia.com
 
 ---
