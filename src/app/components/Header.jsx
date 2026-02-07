@@ -29,6 +29,11 @@ const Header = () => {
 
   const caseStudies = [
     { 
+      name: 'AutoTrader BD', 
+      href: '/case-studies/auto-trader',
+      description: 'B2B Car Trading Platform'
+    },
+    { 
       name: 'Gamify (PieQR)', 
       href: '/case-studies/gamify',
       description: 'QR Loyalty & Engagement Platform'
