@@ -133,7 +133,46 @@ const ContactInfo = ({ isInView }) => (
 
 // --- MAIN ABOUT SECTION ---
 const MainAboutSection = ({ isInView }) => (
-  <div className="relative bg-white" id="about-main">
+  <div className="relative bg-gradient-to-br from-white via-gray-50 to-white" id="about-main">
+    {/* Decorative Background Elements */}
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute top-20 -right-20 w-96 h-96 bg-accent-lime/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 -left-20 w-96 h-96 bg-gray-200/50 rounded-full blur-3xl" />
+    </div>
+
+    {/* Desktop Image - Improved positioning */}
+    <div className="hidden lg:block absolute right-0 top-0 w-1/2 h-full z-10">
+      <motion.div
+        className="sticky top-24 h-[80vh] ml-auto mr-8 xl:mr-16 rounded-3xl overflow-hidden shadow-2xl border-4 border-white"
+        variants={ANIMATION_VARIANTS.fadeUp}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        transition={{ duration: 1.2 }}
+        style={{ maxWidth: '600px' }}
+      >
+        <img 
+          src="/images/about-image.jpg"
+          alt="Ratan Mia - Full Stack Developer"
+          className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+        
+        {/* Floating badges on image */}
+        <div className="absolute bottom-8 left-8 right-8 space-y-3">
+          <div className="bg-black/80 backdrop-blur-md text-accent-lime px-5 py-3 rounded-xl text-sm font-bold inline-flex items-center gap-2 shadow-lg">
+            <span className="text-lg">🏆</span>
+            <span>Top Rated Plus on Upwork</span>
+          </div>
+          <div className="bg-accent-lime/95 backdrop-blur-md text-black px-5 py-3 rounded-xl text-sm font-bold inline-flex items-center gap-2 shadow-lg">
+            <span className="text-lg">⚡</span>
+            <span>100% Job Success Score</span>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+
+    {/* Main Content Section */}
     <section className="relative py-16 sm:py-20 lg:py-24">
       <motion.div 
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
@@ -141,161 +180,107 @@ const MainAboutSection = ({ isInView }) => (
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
       >
-        {/* Top Section - Label & Content */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start mb-16">
-          {/* Left Column - Label & Additional Content */}
-          <motion.div
-            className="space-y-8"
+        <div className="lg:grid lg:grid-cols-2 lg:gap-16 xl:gap-24">
+          {/* Left Column: Content */}
+          <motion.div 
+            className="flex flex-col justify-center relative z-20"
             variants={ANIMATION_VARIANTS.fadeUp}
           >
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-black" />
-              <span className="text-black font-medium text-sm">Who WE Are</span>
-            </div>
-
-            {/* Additional Content Cards - Moved here */}
-            <motion.div 
-              className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.3 }}
+            {/* Section Label */}
+            <motion.div
+              className="inline-flex items-center gap-3 mb-6 sm:mb-8"
+              variants={ANIMATION_VARIANTS.fadeUp}
             >
-              <h3 className="text-xl font-bold text-black mb-3 flex items-center gap-3">
-                <span className="text-2xl">👋</span>
-                <span>Hi, I'm Ratan Mia</span>
-              </h3>
-              <p className="text-sm text-gray-700 leading-relaxed">
-                I started coding at 16 and haven't stopped building since. I specialize in <strong className="text-black">React Native mobile apps</strong>, <strong className="text-black">Next.js web applications</strong>, and <strong className="text-black">Laravel backend systems</strong>.
-              </p>
+              <div className="w-10 sm:w-12 h-1 bg-accent-lime rounded-full" />
+              <span className="text-black/70 font-bold text-xs sm:text-sm uppercase tracking-widest">About Me</span>
             </motion.div>
 
-            <motion.div 
-              className="bg-gradient-to-br from-accent-lime/10 to-accent-lime/5 rounded-2xl p-6 border-2 border-accent-lime/20"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.4 }}
+            {/* Main Heading */}
+            <motion.h2 
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-extrabold tracking-tight leading-[1.05] mb-6 sm:mb-8"
+              variants={ANIMATION_VARIANTS.fadeUp}
             >
-              <h4 className="text-xl font-bold text-black mb-4 flex items-center gap-3">
-                <span className="text-2xl">💡</span>
-                <span>What I Bring</span>
-              </h4>
-              <ul className="space-y-2 text-sm text-gray-700 leading-relaxed">
-                <li className="flex items-start gap-2">
-                  <span className="text-accent-lime text-lg font-black mt-0.5">✓</span>
-                  <span><strong className="text-black">10+ years</strong> of production-ready apps</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-accent-lime text-lg font-black mt-0.5">✓</span>
-                  <span><strong className="text-black">Cross-platform expertise</strong> in iOS/Android</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-accent-lime text-lg font-black mt-0.5">✓</span>
-                  <span><strong className="text-black">End-to-end solutions</strong> & support</span>
-                </li>
-              </ul>
+              Building Exceptional
+              <br />
+              <span className="bg-gradient-to-r from-black via-gray-700 to-black bg-clip-text text-transparent">Web & Mobile Experiences</span>
+            </motion.h2>
+            
+            {/* Personal Introduction */}
+            <motion.div
+              className="space-y-6 sm:space-y-8 mb-8 sm:mb-10"
+              variants={ANIMATION_VARIANTS.fadeUp}
+            >
+              <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-black mb-4 flex items-center gap-3">
+                  <span className="text-3xl">👋</span>
+                  <span>Hi, I'm Ratan Mia</span>
+                </h3>
+                <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                  A passionate full stack developer from Dhaka, Bangladesh, specializing in <strong className="text-black">React Native mobile apps</strong>, <strong className="text-black">Next.js web applications</strong>, and <strong className="text-black">Laravel backend systems</strong>. I started coding at 16 and haven't stopped building since.
+                </p>
+              </div>
+
+              <div className="bg-gradient-to-br from-accent-lime/10 to-accent-lime/5 rounded-2xl p-6 sm:p-8 border-2 border-accent-lime/20 hover:border-accent-lime/40 transition-colors">
+                <h4 className="text-xl sm:text-2xl lg:text-3xl font-bold text-black mb-5 flex items-center gap-3">
+                  <span className="text-3xl">💡</span>
+                  <span>What I Bring to Your Project</span>
+                </h4>
+                <ul className="space-y-4 text-base sm:text-lg text-gray-700 leading-relaxed">
+                  <li className="flex items-start gap-3 group">
+                    <span className="text-accent-lime text-2xl font-black mt-0.5 group-hover:scale-125 transition-transform">✓</span>
+                    <span><strong className="text-black">10+ years</strong> of hands-on experience building production-ready apps</span>
+                  </li>
+                  <li className="flex items-start gap-3 group">
+                    <span className="text-accent-lime text-2xl font-black mt-0.5 group-hover:scale-125 transition-transform">✓</span>
+                    <span><strong className="text-black">Cross-platform expertise</strong> in mobile (iOS/Android) and web development</span>
+                  </li>
+                  <li className="flex items-start gap-3 group">
+                    <span className="text-accent-lime text-2xl font-black mt-0.5 group-hover:scale-125 transition-transform">✓</span>
+                    <span><strong className="text-black">End-to-end solutions</strong> from concept to deployment and ongoing support</span>
+                  </li>
+                  <li className="flex items-start gap-3 group">
+                    <span className="text-accent-lime text-2xl font-black mt-0.5 group-hover:scale-125 transition-transform">✓</span>
+                    <span><strong className="text-black">Real results</strong> with 50K+ app users and 150+ successful projects delivered</span>
+                  </li>
+                </ul>
+              </div>
             </motion.div>
 
-            {/* Contact Info - Moved here */}
+            {/* Contact Info */}
             <ContactInfo isInView={isInView} />
           </motion.div>
 
-          {/* Right Column - Main Heading & Description */}
-          <motion.div
-            className="space-y-6"
-            variants={ANIMATION_VARIANTS.fadeUp}
-          >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-black leading-tight">
-              Building Exceptional Web & Mobile Experiences for Entrepreneurs
-            </h2>
-            <p className="text-base text-gray-600 leading-relaxed">
-              A passionate full stack developer from Dhaka, Bangladesh, specializing in React Native mobile apps, Next.js web applications, and Laravel backend systems. I leverage digital technologies to achieve specific business goals.
-            </p>
-          </motion.div>
-        </div>
-
-        {/* Bottom Section - Stats & Images */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start lg:items-end">
-          {/* Left Column - Stats & Content Cards */}
-          <div className="lg:col-span-5 space-y-8">
-            {/* Years of Experience */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.4 }}
+          {/* Right Column: Mobile Image */}
+          <div className="lg:hidden mt-12">
+            <motion.div 
+              className="relative h-[400px] sm:h-[500px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white"
+              variants={ANIMATION_VARIANTS.fadeUp}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              transition={{ delay: 0.3 }}
             >
-              <div className="text-7xl sm:text-8xl lg:text-9xl font-bold text-black leading-none mb-2">
-                10<sup className="text-3xl sm:text-4xl">+</sup>
-              </div>
-              <div className="text-sm font-medium text-black">
-                Years Of<br />Experience
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Right Column - Images & Geometric Element */}
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-12 gap-6 items-end">
-            {/* First Image */}
-            <motion.div
-              className="sm:col-span-5"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.6, delay: 0.5 }}
-            >
-              <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-lg">
-                <img 
-                  src="/images/freelancer-working.jpg"
-                  alt="Professional developer"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </motion.div>
-
-            {/* Geometric Element */}
-            <motion.div
-              className="sm:col-span-2 flex items-center justify-center"
-              initial={{ opacity: 0, rotate: -45 }}
-              animate={isInView ? { opacity: 1, rotate: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              <div className="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 relative">
-                <div className="absolute inset-0 bg-accent-lime transform rotate-45 origin-center" />
-                <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-black transform rotate-45 origin-bottom-right" />
-              </div>
-            </motion.div>
-
-            {/* Second Image */}
-            <motion.div
-              className="sm:col-span-5"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.6, delay: 0.7 }}
-            >
-              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-lg">
-                <img 
-                  src="/images/about-image.jpg"
-                  alt="Ratan Mia - Full Stack Developer"
-                  className="w-full h-full object-cover"
-                />
+              <img 
+                src="/images/about-image.jpg"
+                alt="Ratan Mia - Full Stack Developer"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+              
+              {/* Floating badges */}
+              <div className="absolute bottom-6 left-6 right-6 space-y-3">
+                <div className="bg-black/80 backdrop-blur-md text-accent-lime px-4 py-2.5 rounded-xl text-sm font-bold inline-flex items-center gap-2 shadow-lg">
+                  <span className="text-lg">🏆</span>
+                  <span>Top Rated Plus</span>
+                </div>
+                <div className="bg-accent-lime/95 backdrop-blur-md text-black px-4 py-2.5 rounded-xl text-sm font-bold inline-flex items-center gap-2 shadow-lg">
+                  <span className="text-lg">⚡</span>
+                  <span>100% Job Success</span>
+                </div>
               </div>
             </motion.div>
           </div>
         </div>
-
-        {/* Start Journey Link */}
-        <motion.div
-          className="mt-12 flex justify-end"
-          initial={{ opacity: 0, x: 20 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.8 }}
-        >
-          <a 
-            href="#contact" 
-            className="inline-flex items-center gap-2 text-black font-medium text-sm group hover:text-accent-lime transition-colors"
-          >
-            <span className="text-right leading-tight">START THE<br />JOURNEY</span>
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </a>
-        </motion.div>
       </motion.div>
     </section>
   </div>
