@@ -1,7 +1,7 @@
 'use client';
 import Contact from '@/app/components/home/Contact';
 import { motion } from 'framer-motion';
-import { ArrowRight, Award, Calendar, Check, CheckCircle, Code, Monitor, Smartphone, Star, TrendingUp, Users, Zap } from 'lucide-react';
+import { ArrowRight, Award, Calendar, Monitor, Smartphone, Star, TrendingUp, Users, Zap } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 

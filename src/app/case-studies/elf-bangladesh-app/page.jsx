@@ -1,5 +1,9 @@
 'use client';
 
+import CaseStudyAbout from '@/app/components/case-studies/CaseStudyAbout';
+import CaseStudyChallenge from '@/app/components/case-studies/CaseStudyChallenge';
+import CaseStudyHero from '@/app/components/case-studies/CaseStudyHero';
+import CaseStudySolution from '@/app/components/case-studies/CaseStudySolution';
 import CaseStudyTemplate, {
     BusinessImpactCards,
     CaseStudySection,
@@ -8,235 +12,121 @@ import CaseStudyTemplate, {
     ImageContentGrid,
     ImageShowcaseGrid,
     KeyAchievementsCard,
-    MetricsGrid,
-    OverviewSection
+    MetricsGrid
 } from '@/app/components/case-studies/CaseStudyTemplate';
-import { AnimatePresence, motion } from 'framer-motion';
 import {
-    ArrowLeft,
+    Award,
     BarChart,
     Check,
     CheckCircle,
-    ChevronLeft, ChevronRight,
     Code,
     Gift,
-    MapPin,
     ShoppingCart,
     Smartphone,
     Star,
+    TrendingUp,
     Trophy,
     Wallet,
     Zap
 } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // Project Data
 const projectData = {
   company: 'ELF Bangladesh',
-  category: 'Mobile App / E-Commerce / Automotive',
-  timeline: '6 Months (Ongoing)',
+  category: 'E-Commerce / Mobile App',
+  liveUrl: 'https://elf.zestgeek.com',
+  timeline: '6 Months',
   services: [
     'UI/UX Design',
     'Mobile App Development',
     'Backend Development',
     'Payment Integration',
-    'Gamification System',
-    'Quality Assurance'
+    'Gamification System'
   ]
 };
 
-// Hero Section Component
-function HeroSection() {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+export default function ELFBangladeshCaseStudy() {
+  const [currentScreenshot, setCurrentScreenshot] = useState(0);
 
-  const heroImages = [
-    { src: '/images/projects/elf-mobile-store/01-splash-screen.jpg', alt: 'Splash Screen' },
-    { src: '/images/projects/elf-mobile-store/02-products-listing.jpg', alt: 'Products Listing' },
-    { src: '/images/projects/elf-mobile-store/03-product-detail-transmission-fluid.jpg', alt: 'Product Detail' },
-    { src: '/images/projects/elf-mobile-store/04-qr-scan.jpg', alt: 'QR Scanner' },
-    { src: '/images/projects/elf-mobile-store/07-gamification-spin-wheel.jpg', alt: 'Spin Wheel Game' },
-    { src: '/images/projects/elf-mobile-store/11-rewards-catalog.jpg', alt: 'Rewards Catalog' },
-    { src: '/images/projects/elf-mobile-store/12-elf-workshops.jpg', alt: 'Workshop Finder' },
-    { src: '/images/projects/elf-mobile-store/13-roadside-assistance.jpg', alt: 'Roadside Assistance' },
-    { src: '/images/projects/elf-mobile-store/18-wishlist.jpg', alt: 'Wishlist' },
-    { src: '/images/projects/elf-mobile-store/21-my-wallet.jpg', alt: 'Digital Wallet' },
+  const screenshots = [
+    {
+      image: 'app-home-screen.png',
+      title: 'Home & Discovery',
+      description: 'Browse 500+ automotive products with smart search and category navigation for easy product discovery.'
+    },
+    {
+      image: 'elf-mobile-onboarding.png',
+      title: 'Smooth Onboarding',
+      description: 'User-friendly onboarding experience introducing key features and benefits to new users.'
+    },
+    {
+      image: 'gamify-rewards-system.png',
+      title: 'Rewards & Loyalty',
+      description: 'Earn points on purchases and activities, unlock achievements, and enjoy exclusive member benefits.'
+    },
+    {
+      image: 'wallet-management.png',
+      title: 'Digital Wallet',
+      description: 'Integrated wallet with bKash, Nagad, and SSL Commerz for secure and convenient payments.'
+    }
   ];
 
-  const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
-  };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentScreenshot((prev) => (prev + 1) % screenshots.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
 
-  const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + heroImages.length) % heroImages.length);
-  };
-
-  return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-accent-lime flex items-center">
-      {/* Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-black/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-black/5 rounded-full blur-3xl" />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-20 relative z-10 w-full">
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <Link 
-            href="/case-studies" 
-            className="inline-flex items-center gap-2 mb-8 text-black hover:text-black/70 transition-colors font-bold uppercase tracking-wider text-sm"
-          >
-            <ArrowLeft className="w-5 h-5" />
-            Back to Case Studies
-          </Link>
-        </motion.div>
-
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
-          {/* Content */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <div className="inline-block px-4 py-2 bg-black/10 backdrop-blur-sm rounded-full text-sm font-bold mb-6">
-              MOBILE APP DEVELOPMENT
-            </div>
-            
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
-              ELF Bangladesh
-              <span className="block text-black/70">Automotive Mobile App</span>
-            </h1>
-            
-            <p className="text-xl md:text-2xl text-black/80 mb-8 leading-relaxed font-medium">
-              A comprehensive automotive e-commerce platform with gamification, loyalty rewards, and service bookings for vehicle owners across Bangladesh.
-            </p>
-
-            <div className="flex flex-wrap gap-4">
-              <div className="flex items-center gap-3 bg-black/10 backdrop-blur-sm px-6 py-3 rounded-xl">
-                <Smartphone className="w-5 h-5" />
-                <span className="font-bold">iOS & Android</span>
-              </div>
-              <div className="flex items-center gap-3 bg-black/10 backdrop-blur-sm px-6 py-3 rounded-xl">
-                <ShoppingCart className="w-5 h-5" />
-                <span className="font-bold">E-Commerce</span>
-              </div>
-              <div className="flex items-center gap-3 bg-black/10 backdrop-blur-sm px-6 py-3 rounded-xl">
-                <Trophy className="w-5 h-5" />
-                <span className="font-bold">Gamification</span>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Mobile Mockup with Image Slider */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative flex justify-center"
-          >
-            <div className="relative w-[280px] h-[560px]">
-              {/* Phone Frame */}
-              <div className="absolute inset-0 bg-black rounded-[3rem] shadow-2xl p-3">
-                <div className="relative w-full h-full bg-white rounded-[2.5rem] overflow-hidden">
-                  {/* Notch */}
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-black rounded-b-2xl z-10"></div>
-                  
-                  {/* Image Carousel */}
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={currentImageIndex}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.5 }}
-                      className="relative w-full h-full"
-                    >
-                      <Image
-                        src={heroImages[currentImageIndex].src}
-                        alt={heroImages[currentImageIndex].alt}
-                        fill
-                        className="object-cover"
-                      />
-                    </motion.div>
-                  </AnimatePresence>
-                  
-                  {/* Navigation arrows */}
-                  <button
-                    onClick={prevImage}
-                    className="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/70 transition-all z-10"
-                    aria-label="Previous image"
-                  >
-                    <ChevronLeft className="w-5 h-5" />
-                  </button>
-                  <button
-                    onClick={nextImage}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/70 transition-all z-10"
-                    aria-label="Next image"
-                  >
-                    <ChevronRight className="w-5 h-5" />
-                  </button>
-                  
-                  {/* Dots indicator */}
-                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
-                    {heroImages.map((_, index) => (
-                      <button
-                        key={index}
-                        onClick={() => setCurrentImageIndex(index)}
-                        className={`w-1.5 h-1.5 rounded-full transition-all ${
-                          index === currentImageIndex 
-                            ? 'bg-accent-lime w-4' 
-                            : 'bg-white/50 hover:bg-white/80'
-                        }`}
-                        aria-label={`Go to image ${index + 1}`}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export default function ELFBangladeshCaseStudy() {
   return (
     <CaseStudyTemplate
       project={projectData}
-      heroSection={<HeroSection />}
+      heroSection={
+        <CaseStudyHero
+          category="E-Commerce / Mobile App"
+          categoryIcon={Smartphone}
+          title="ELF Bangladesh"
+          subtitle="Mobile App"
+          description="Enterprise-grade automotive e-commerce platform with gamification, loyalty rewards, service booking, and emergency assistance."
+          techStack={['React Native', 'Expo 54', 'Supabase', 'Redux Toolkit', 'TypeScript']}
+          liveUrl="https://elf.zestgeek.com"
+          heroImage="/images/projects/elf-mobile-store/mockup/web-store-and-mobile-app.png"
+          imageAlt="ELF Bangladesh Platform"
+          badge1Text="95% Complete"
+          badge1Icon={TrendingUp}
+          badge2Text="60+ Screens"
+          badge2Icon={Smartphone}
+        />
+      }
     >
-      {/* Overview Section */}
-      <OverviewSection
+      {/* About Section */}
+      <CaseStudyAbout
         title="About the Project"
         paragraphs={[
-          "ELF Bangladesh needed to transform their traditional automotive product sales into an engaging digital ecosystem. The challenge was to create a unified mobile platform that seamlessly integrates e-commerce, customer loyalty, service bookings, and emergency assistance while maintaining a user-friendly interface for diverse user segments.",
-          "The solution is a feature-rich mobile application built with React Native and Expo 54, offering over 60 screens covering everything from browsing automotive products to booking workshop services and earning loyalty rewards through gamification. The app serves vehicle owners across Bangladesh with multi-language support and integrated payment gateways."
+          "ELF Bangladesh Mobile App is a feature-rich, enterprise-grade mobile commerce platform built for the automotive industry. Developed using React Native and Expo 54, the app serves as a comprehensive digital ecosystem combining e-commerce, loyalty programs, gamification, service bookings, and emergency assistance.",
+          "With 60+ screens, 25+ database tables, and 50,000+ lines of code, this platform represents a complete digital transformation of traditional automotive product sales into an engaging, service-integrated experience. The app employs a unique dual-service architecture connecting legacy systems with modern Supabase infrastructure."
         ]}
-        image="/images/projects/elf-mobile-store/app-overview.jpg"
-        imageAlt="ELF Bangladesh App Overview"
+        image="/images/projects/elf-mobile-store/mockup/web-store-and-mobile-app.png"
+        imageAlt="ELF Bangladesh Platform Overview"
       />
 
       {/* Challenge Section */}
-      <CaseStudySection
+      <CaseStudyChallenge
         id="challenge"
         label="REQUIREMENTS & CHALLENGES"
         icon={Zap}
-        title="Complex Requirements"
+        title="Complex Business Requirements"
         description={
           <>
-            Building a comprehensive automotive platform required solving several technical challenges including{' '}
-            <span className="font-bold text-black">legacy system integration</span> while maintaining existing backend 
-            compatibility. We implemented <span className="font-bold text-black">complex state management</span> across 
-            60+ screens with offline-first architecture. The platform features{' '}
-            <span className="font-bold text-black">multi-language support</span> with complete Bengali and English 
-            translation coverage. Additionally, we developed a <span className="font-bold text-black">gamification system</span>{' '}
-            with QR scanning, loyalty points, and reward redemption integrated with the e-commerce platform.
+            Transforming traditional automotive retail required solving multiple challenges including{' '}
+            <span className="font-bold text-black">managing 500+ products</span> with technical specifications 
+            and compatibility data. We needed to build <span className="font-bold text-black">customer engagement 
+            mechanisms</span> to compete with traditional retail relationships. The platform required{' '}
+            <span className="font-bold text-black">legacy system integration</span> while adding modern features, 
+            and we had to make <span className="font-bold text-black">service centers accessible</span> through 
+            an integrated GPS-based workshop finder with online booking capabilities.
           </>
         }
         bgColor="bg-gray-50"
@@ -244,133 +134,267 @@ export default function ELFBangladeshCaseStudy() {
       />
 
       {/* Solution Section */}
-      <CaseStudySection
+      <CaseStudySolution
         id="solution"
         label="OUR SOLUTIONS"
         icon={CheckCircle}
-        title="Our Approach"
-        description="We built a comprehensive mobile platform combining e-commerce, gamification, and service bookings with modern technology stack."
+        title="Comprehensive Digital Ecosystem"
+        description="We built a feature-rich mobile platform that combines shopping, rewards, services, and community features into one seamless experience."
         bgColor="bg-white"
         centered={true}
       >
-        {/* E-Commerce Platform */}
+        {/* E-Commerce Marketplace */}
         <ImageContentGrid
-          image="/images/projects/elf-mobile-store/02-products-listing.jpg"
-          imageAlt="E-Commerce Platform - Product Browsing"
+          image="/images/projects/elf-mobile-store/mockup/app-home-screen.png"
+          imageAlt="E-Commerce Marketplace"
           badge="E-COMMERCE"
           badgeIcon={ShoppingCart}
-          title="Product Catalog & Shopping"
-          description="Full-featured e-commerce platform with product catalog, cart management, wishlist, and secure checkout process with multiple payment options."
+          title="Product Marketplace"
+          description="Browse and purchase 500+ automotive products including engine oils, lubricants, and accessories with advanced filtering by viscosity, API grade, and vehicle compatibility."
           imagePosition="left"
           features={[
             {
               icon: Check,
-              title: 'Product Browsing',
-              description: 'Advanced filtering and search with real-time inventory'
+              title: 'Smart Search',
+              description: 'Advanced filtering by category, brand, viscosity, and specifications'
             },
             {
               icon: Check,
-              title: 'Cart & Wishlist',
-              description: 'Persistent shopping cart with offline support'
+              title: 'Product Details',
+              description: 'Complete specs, TDS downloads, and compatibility information'
             },
             {
               icon: Check,
-              title: 'Secure Checkout',
-              description: 'Multiple payment gateways with order tracking'
+              title: 'Wishlist & Cart',
+              description: 'Save favorites and manage purchases with ease'
             }
           ]}
         />
 
         {/* Gamification System */}
         <ImageContentGrid
-          image="/images/projects/elf-mobile-store/07-gamification-spin-wheel.jpg"
-          imageAlt="Gamification System - Loyalty Rewards"
+          image="/images/projects/elf-mobile-store/mockup/game-selection.png"
+          imageAlt="Gamification & Rewards"
           badge="GAMIFICATION"
           badgeIcon={Trophy}
-          title="Loyalty & Rewards Program"
-          description="Engaging gamification system with QR code scanning, spin-the-wheel games, loyalty points earning, and reward redemption catalog."
+          title="Interactive Games & Rewards"
+          description="Engage users with interactive games, achievement systems, and loyalty rewards that boost customer engagement and retention significantly."
           imagePosition="right"
           features={[
             {
               icon: Check,
-              title: 'QR Code Scanning',
-              description: 'Scan products to earn points and unlock rewards'
+              title: 'Game Hub',
+              description: 'Multiple interactive games with leaderboards and prizes'
             },
             {
               icon: Check,
-              title: 'Interactive Games',
-              description: 'Spin-the-wheel and other games for bonus points'
+              title: 'Achievements',
+              description: 'Unlock badges and rewards for completing activities'
             },
             {
               icon: Check,
-              title: 'Rewards Catalog',
-              description: 'Redeem points for products and services'
+              title: 'Loyalty Points',
+              description: 'Earn points on purchases and redeem exclusive benefits'
             }
           ]}
         />
 
-        {/* Service Bookings */}
+        {/* Digital Wallet */}
         <ImageContentGrid
-          image="/images/projects/elf-mobile-store/12-elf-workshops.jpg"
-          imageAlt="Workshop Finder - Service Bookings"
-          badge="SERVICES"
-          badgeIcon={MapPin}
-          title="Workshop & Service Bookings"
-          description="Integrated workshop finder with map view, service booking system, and roadside assistance for vehicle emergencies."
+          image="/images/projects/elf-mobile-store/mockup/wallet-management.png"
+          imageAlt="Digital Wallet & Payments"
+          badge="PAYMENTS"
+          badgeIcon={Wallet}
+          title="Integrated Payment Solution"
+          description="Secure digital wallet with multiple payment methods including bKash, Nagad, and SSL Commerz for seamless and convenient transactions."
           imagePosition="left"
           features={[
             {
               icon: Check,
-              title: 'Workshop Finder',
-              description: 'Find authorized workshops with map integration'
+              title: 'Multiple Methods',
+              description: 'bKash, Nagad, credit/debit cards, and cash on delivery'
             },
             {
               icon: Check,
-              title: 'Service Booking',
-              description: 'Book maintenance services with real-time availability'
+              title: 'Transaction History',
+              description: 'Complete payment records with detailed invoices'
             },
             {
               icon: Check,
-              title: 'Emergency Assistance',
-              description: 'Request roadside assistance with location tracking'
+              title: 'Secure Processing',
+              description: 'SSL Commerz integration with encrypted transactions'
             }
           ]}
         />
-      </CaseStudySection>
 
-      {/* Digital Wallet */}
-      <FullWidthImageContent
-        image="/images/projects/elf-mobile-store/21-my-wallet.jpg"
-        imageAlt="Digital Wallet - Points Management"
-        badge="DIGITAL WALLET"
-        badgeIcon={Wallet}
-        title="Loyalty Points & Wallet"
-        description="Comprehensive digital wallet system for managing loyalty points, viewing transaction history, tracking reward redemptions, and monitoring point balance across all activities."
-        imagePosition="left"
-        bgColor="bg-white"
-        features={[
-          {
-            icon: Wallet,
-            title: 'Points Balance',
-            description: 'Real-time points balance with earning history'
-          },
-          {
-            icon: Gift,
-            title: 'Reward Tracking',
-            description: 'Track redeemed rewards and available offers'
-          },
-          {
-            icon: BarChart,
-            title: 'Activity History',
-            description: 'Complete history of points earned and spent'
-          },
-          {
-            icon: Star,
-            title: 'Tier Benefits',
-            description: 'Unlock exclusive benefits based on loyalty tier'
-          }
-        ]}
-      />
+        {/* Service Center Booking */}
+        <FullWidthImageContent
+          image="/images/projects/elf-mobile-store/mockup/app-referral-and-achivements.png"
+          imageAlt="Referral & Achievements System"
+          badge="REFERRALS"
+          badgeIcon={Gift}
+          title="Referral Program & Achievements"
+          description="Share the app with friends and earn rewards. Track your achievements, view referral history, and unlock exclusive benefits as you grow your network."
+          imagePosition="left"
+          bgColor="bg-white"
+          features={[
+            {
+              icon: Gift,
+              title: 'Earn Rewards',
+              description: 'Get points for every successful referral and unlock bonuses'
+            },
+            {
+              icon: Trophy,
+              title: 'Achievement Tracking',
+              description: 'Complete challenges and earn badges for milestones'
+            },
+            {
+              icon: Star,
+              title: 'Exclusive Benefits',
+              description: 'Access special discounts and early product launches'
+            }
+          ]}
+        />
+
+        {/* Practice & Learning */}
+        <FullWidthImageContent
+          image="/images/projects/elf-mobile-store/mockup/game-hub-and-prctice.png"
+          imageAlt="Game Hub & Practice Mode"
+          badge="LEARNING"
+          badgeIcon={Zap}
+          title="Interactive Learning Experience"
+          description="Practice mode helps users learn about automotive products through engaging games. Improve knowledge about engine oils, maintenance, and product selection while having fun."
+          imagePosition="right"
+          bgColor="bg-gray-50"
+          features={[
+            {
+              icon: Zap,
+              title: 'Practice Games',
+              description: 'Learn through interactive quizzes and challenges'
+            },
+            {
+              icon: BarChart,
+              title: 'Track Progress',
+              description: 'Monitor your learning journey with detailed statistics'
+            },
+            {
+              icon: Award,
+              title: 'Level Up',
+              description: 'Unlock advanced content as you progress'
+            }
+          ]}
+        />
+      </CaseStudySolution>
+
+      {/* Platform Showcase */}
+      <section className="py-20 px-4 md:px-6 lg:px-8 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-accent-lime via-accent-lime to-accent-lime/70 p-12">
+            <div className="text-center mb-8">
+              <h3 className="text-4xl font-extrabold mb-3">Complete Platform Solution</h3>
+              <p className="text-lg text-black/80 font-medium">Web Store + Mobile App Integration</p>
+            </div>
+            <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-2xl border-2 border-black/10">
+              <Image
+                src="/images/projects/elf-mobile-store/mockup/website-ui-ux-enhancement.png"
+                alt="Website UI/UX Enhancement"
+                fill
+                className="object-contain"
+              />
+            </div>
+          </div>
+
+          {/* Mobile App Screenshots Section */}
+          <div className="grid lg:grid-cols-2 gap-12 items-center mt-16 bg-gradient-to-br from-gray-50 to-white p-8 md:p-12 rounded-3xl border-2 border-gray-100">
+            {/* Left - Mobile Mockup with Slider */}
+            <div className="flex justify-center">
+              <div className="relative w-[300px] h-[600px]">
+                {/* Mobile Frame */}
+                <div className="absolute inset-0 bg-black rounded-[3rem] shadow-2xl p-3">
+                  <div className="relative w-full h-full bg-white rounded-[2.5rem] overflow-hidden">
+                    {/* Notch */}
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-black rounded-b-2xl z-10"></div>
+                    
+                    {/* Screenshot Display */}
+                    <div className="relative w-full h-full">
+                      <Image
+                        src={`/images/projects/elf-mobile-store/mockup/${screenshots[currentScreenshot].image}`}
+                        alt={screenshots[currentScreenshot].title}
+                        fill
+                        className="object-cover transition-opacity duration-500"
+                      />
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Navigation Dots */}
+                <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
+                  {screenshots.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setCurrentScreenshot(idx)}
+                      className={`w-2 h-2 rounded-full transition-all ${
+                        idx === currentScreenshot 
+                          ? 'bg-accent-lime w-8' 
+                          : 'bg-gray-300 hover:bg-gray-400'
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Right - Content */}
+            <div>
+              <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
+                <Smartphone className="w-4 h-4" />
+                MOBILE APP FEATURES
+              </div>
+              
+              <h3 className="text-4xl md:text-5xl font-extrabold mb-6">
+                Seamless Mobile Experience
+              </h3>
+              
+              <p className="text-lg text-gray-600 mb-8">
+                Our intuitive mobile app makes shopping for automotive products effortless. From discovering products to managing orders, everything is just a tap away.
+              </p>
+
+              {/* Feature List */}
+              <div className="space-y-6">
+                {screenshots.map((screenshot, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentScreenshot(idx)}
+                    className={`w-full text-left p-4 rounded-2xl transition-all ${
+                      idx === currentScreenshot
+                        ? 'bg-accent-lime shadow-lg scale-105'
+                        : 'bg-white hover:bg-gray-50 border-2 border-gray-100'
+                    }`}
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
+                        idx === currentScreenshot ? 'bg-black' : 'bg-accent-lime'
+                      }`}>
+                        <Check className={`w-5 h-5 ${
+                          idx === currentScreenshot ? 'text-accent-lime' : 'text-black'
+                        }`} />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="text-lg font-bold mb-1">{screenshot.title}</h4>
+                        <p className={`text-sm ${
+                          idx === currentScreenshot ? 'text-black/80' : 'text-gray-600'
+                        }`}>
+                          {screenshot.description}
+                        </p>
+                      </div>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Tech Stack Section */}
       <CaseStudySection
@@ -380,15 +404,17 @@ export default function ELFBangladeshCaseStudy() {
         title="Built with Modern Technologies"
         description={
           <>
-            The platform is built using <span className="font-bold text-black">React Native</span> and{' '}
-            <span className="font-bold text-black">Expo 54</span> for cross-platform mobile development. The backend 
-            is powered by <span className="font-bold text-black">Supabase PostgreSQL</span> for real-time database 
-            and authentication. We utilize <span className="font-bold text-black">Redux Toolkit</span> for complex 
-            state management with AsyncStorage persistence. The app features{' '}
-            <span className="font-bold text-black">i18next</span> for multi-language support and integrates{' '}
-            <span className="font-bold text-black">multiple payment gateways</span> for secure transactions. Map 
-            integration via <span className="font-bold text-black">Google Maps API</span> enables workshop finder 
-            and location services.
+            The ELF Bangladesh platform is built using <span className="font-bold text-black">React Native</span> and{' '}
+            <span className="font-bold text-black">Expo 54</span> for cross-platform mobile development, ensuring a 
+            seamless experience on both iOS and Android devices. State management is handled by{' '}
+            <span className="font-bold text-black">Redux Toolkit 2.0</span> with persistent storage. The UI leverages{' '}
+            <span className="font-bold text-black">React Native Paper 5.14</span> for Material Design 3 components. 
+            We use <span className="font-bold text-black">Supabase</span> for our backend infrastructure with{' '}
+            <span className="font-bold text-black">PostgreSQL</span> database and Row-Level Security. Payment processing 
+            is handled through <span className="font-bold text-black">SSL Commerz</span>, <span className="font-bold text-black">bKash</span>, 
+            and <span className="font-bold text-black">Nagad</span> integrations. The app features full{' '}
+            <span className="font-bold text-black">internationalization</span> support with Bengali and English using{' '}
+            <span className="font-bold text-black">i18next</span>, delivering a localized experience for all users.
           </>
         }
         bgColor="bg-gray-50"
@@ -406,10 +432,10 @@ export default function ELFBangladeshCaseStudy() {
       >
         <MetricsGrid
           metrics={[
-            { icon: ShoppingCart, value: '60+', label: 'App Screens' },
-            { icon: Trophy, value: '10K+', label: 'Loyalty Points Earned' },
-            { icon: MapPin, value: '100+', label: 'Workshops Registered' },
-            { icon: Star, value: '4.8', label: 'App Store Rating' }
+            { icon: Smartphone, value: '60+', label: 'App Screens' },
+            { icon: ShoppingCart, value: '500+', label: 'Products' },
+            { icon: Code, value: '50K+', label: 'Lines of Code' },
+            { icon: Award, value: '95%', label: 'Project Complete' }
           ]}
         />
 
@@ -417,16 +443,16 @@ export default function ELFBangladeshCaseStudy() {
           <ImageShowcaseGrid
             items={[
               {
-                title: 'E-Commerce Platform',
-                image: '/images/projects/elf-mobile-store/03-product-detail-transmission-fluid.jpg',
-                alt: 'Product Detail Screen',
-                caption: 'Comprehensive product information with ratings, reviews, and secure purchase options.'
+                title: 'Mobile App Interface',
+                image: '/images/projects/elf-mobile-store/mockup/app-home-screen.png',
+                alt: 'ELF Mobile App Home Screen',
+                caption: 'Intuitive home screen with quick actions and featured products.'
               },
               {
-                title: 'Gamification System',
-                image: '/images/projects/elf-mobile-store/11-rewards-catalog.jpg',
-                alt: 'Rewards Catalog',
-                caption: 'Interactive rewards catalog where users can redeem their loyalty points for products and services.'
+                title: 'Rewards System',
+                image: '/images/projects/elf-mobile-store/mockup/gamify-rewards-system.png',
+                alt: 'Gamification & Rewards',
+                caption: 'Engaging gamification system with loyalty points and achievements.'
               }
             ]}
           />
@@ -444,23 +470,23 @@ export default function ELFBangladeshCaseStudy() {
         <BusinessImpactCards
           cards={[
             {
-              title: 'For Vehicle Owners',
+              title: 'For Customers',
               benefits: [
-                'Easy online shopping for automotive products',
-                'Earn loyalty points on every purchase',
-                'Find and book authorized workshops nearby',
-                'Access emergency roadside assistance',
-                'Multi-language support for local users'
+                'Browse and purchase 500+ automotive products anytime, anywhere',
+                'Earn rewards and points through gamification and purchases',
+                'Find and book service centers with GPS integration',
+                'Access emergency roadside assistance instantly',
+                'Track orders and manage vehicles in one convenient app'
               ]
             },
             {
-              title: 'For ELF Bangladesh',
+              title: 'For Business',
               benefits: [
-                'Digital transformation of traditional retail',
+                'Digital transformation of traditional retail operations',
                 'Increased customer engagement through gamification',
-                'Direct channel for product distribution',
-                'Valuable customer data and insights',
-                'Stronger brand presence in Bangladesh market'
+                'Automated order processing and inventory management',
+                'Data-driven insights into customer behavior and preferences',
+                'Reduced operational costs with integrated digital services'
               ]
             }
           ]}
@@ -469,9 +495,9 @@ export default function ELFBangladeshCaseStudy() {
         <div className="mt-12">
           <KeyAchievementsCard
             achievements={[
-              { value: '3x', label: 'Customer Engagement' },
-              { value: '50%', label: 'Increase in Loyalty Signups' },
-              { value: '100+', label: 'Partner Workshops' }
+              { value: '25+', label: 'Database Tables' },
+              { value: 'iOS+Android', label: 'Cross-Platform' },
+              { value: '100%', label: 'Type Safety' }
             ]}
           />
         </div>
@@ -479,8 +505,8 @@ export default function ELFBangladeshCaseStudy() {
 
       {/* CTA Section */}
       <CTASection
-        title="Need a Mobile App Platform?"
-        subtitle="Let's build a custom mobile solution that transforms your business."
+        title="Ready to Transform Your Business?"
+        subtitle="Let's build an enterprise-grade mobile platform that drives customer engagement and business growth."
         primaryButton={{
           text: 'Start Your Project',
           href: '/quote'
