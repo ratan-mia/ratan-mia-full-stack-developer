@@ -34,6 +34,11 @@ const Header = () => {
       description: 'B2B Car Trading Platform'
     },
     { 
+      name: 'Shopify Headless CMS', 
+      href: '/case-studies/shopify-headless-cms',
+      description: 'Headless Commerce Platform'
+    },
+    { 
       name: 'Gamify (PieQR)', 
       href: '/case-studies/gamify',
       description: 'QR Loyalty & Engagement Platform'

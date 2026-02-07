@@ -7,7 +7,6 @@ import CaseStudySolution from '@/app/components/case-studies/CaseStudySolution';
 import CaseStudyTemplate, {
     BusinessImpactCards,
     CaseStudySection,
-    FullWidthImageContent,
     ImageContentGrid,
     KeyAchievementsCard,
     MetricsGrid
@@ -34,7 +33,6 @@ import {
     Users,
     Zap
 } from 'lucide-react';
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 // Project Data
