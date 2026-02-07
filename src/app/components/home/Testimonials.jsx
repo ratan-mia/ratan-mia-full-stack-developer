@@ -21,7 +21,7 @@ const TESTIMONIALS_DATA = [
   {
     id: 2,
     name: "Mohammad Nayab",
-    position: "Operations Manager",
+    position: "Managing Director",
     company: "Chery Bangladesh",
     quote: "The React Native mobile app and CRM integration delivered were game-changers for our operations. The cross-platform solution works flawlessly on both iOS and Android.",
     avatar: "M",
@@ -33,8 +33,8 @@ const TESTIMONIALS_DATA = [
   {
     id: 3,
     name: "Ahmed Hassan",
-    position: "CEO",
-    company: "ELF Lubricants Bangladesh",
+    position: "Managing Director",
+    company: "ELF Bangladesh",
     quote: "The e-commerce mobile app built with React Native transformed how we connect with customers. The intuitive design and smooth performance have significantly boosted our online sales.",
     avatar: "A",
     projectTitle: "ELF Bangladesh Mobile App",
@@ -45,8 +45,8 @@ const TESTIMONIALS_DATA = [
   {
     id: 4,
     name: "Sarah Thompson",
-    position: "Product Manager",
-    company: "TurfLet Sports",
+    position: "Co-Founder & CEO",
+    company: "TurfLet",
     quote: "The booking platform's mobile app is exceptional. React Native expertise delivered a seamless experience for our users with real-time availability and payment integration.",
     avatar: "S",
     projectTitle: "TurfLet",
