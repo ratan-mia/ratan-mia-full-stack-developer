@@ -148,195 +148,38 @@ const Testimonials = () => {
 
   return (
     <>
-      <section ref={ref} className="py-8 lg:py-12 bg-black relative overflow-hidden" id="testimonials">
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0 z-0">
-          <div 
-            className="absolute inset-0 opacity-50"
-            style={{
-              backgroundImage: 'url(https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=2000&auto=format&fit=crop)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundAttachment: 'fixed'
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/70 to-black/60" />
-        </div>
-
-        {/* Animated Background Gradient Blobs - Much More Visible */}
-        <motion.div 
-          className="absolute top-20 -left-20 w-[600px] h-[600px] rounded-full blur-3xl z-0"
-          style={{ background: 'radial-gradient(circle, rgba(204, 255, 0, 0.15) 0%, transparent 70%)' }}
-          animate={{
-            scale: [1, 1.3, 1],
-            x: [0, 50, 0],
-            y: [0, -30, 0],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div 
-          className="absolute bottom-20 -right-20 w-[600px] h-[600px] rounded-full blur-3xl z-0"
-          style={{ background: 'radial-gradient(circle, rgba(204, 255, 0, 0.1) 0%, transparent 70%)' }}
-          animate={{
-            scale: [1, 1.4, 1],
-            x: [0, -50, 0],
-            y: [0, 30, 0],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1
-          }}
-        />
+      <section ref={ref} className="py-12 lg:py-20 bg-black relative overflow-hidden" id="testimonials">
         
-        {/* Floating Particles - Many More */}
-        {PARTICLES.map((particle) => (
-          <motion.div
-            key={particle.id}
-            className="absolute w-1 h-1 rounded-full bg-accent-lime"
-            style={{
-              left: `${particle.left}%`,
-              top: `${particle.top}%`,
-            }}
-            animate={{
-              y: [0, -30 - (particle.id % 5) * 10, 0],
-              x: [0, ((particle.id % 3) - 1) * 20, 0],
-              opacity: [0.2, 1, 0.2],
-              scale: [1, 1.5, 1],
-            }}
-            transition={{
-              duration: particle.duration,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: particle.delay,
-            }}
-          />
-        ))}
-        
-        {/* Larger Floating Dots */}
-        {LARGE_DOTS.map((dot) => (
-          <motion.div
-            key={`dot-${dot.id}`}
-            className="absolute rounded-full bg-accent-lime/30"
-            style={{
-              left: `${dot.left}%`,
-              top: `${dot.top}%`,
-              width: `${dot.width}px`,
-              height: `${dot.height}px`,
-            }}
-            animate={{
-              y: [0, -20 - (dot.id % 3) * 10, 0],
-              x: [0, ((dot.id % 2) - 0.5) * 30, 0],
-              opacity: [0.3, 0.8, 0.3],
-            }}
-            transition={{
-              duration: dot.duration,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: dot.delay,
-            }}
-          />
-        ))}
-
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `
-              linear-gradient(rgba(204, 255, 0, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(204, 255, 0, 0.1) 1px, transparent 1px)
-            `,
-            backgroundSize: '100px 100px'
-          }} />
-        </div>
-
-        {/* Decorative Lines */}
-        <motion.div 
-          className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent-lime to-transparent opacity-20"
-          animate={{
-            opacity: [0.1, 0.3, 0.1],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div 
-          className="absolute bottom-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent-lime to-transparent opacity-20"
-          animate={{
-            opacity: [0.1, 0.3, 0.1],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1.5
-          }}
-        />
-
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid lg:grid-cols-12 gap-6 lg:gap-8">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             
-            {/* Left Column - Video Intro & Stats */}
+            {/* Left Column - Info & Video */}
             <motion.div
-              className="lg:col-span-4 space-y-4"
+              className="space-y-6"
               initial={{ opacity: 0, x: -30 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8 }}
             >
               {/* Section Label */}
-              <motion.div
-                className="flex items-center gap-2"
-                initial={{ opacity: 0, y: 10 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
+              <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-accent-lime" />
-                <span className="text-accent-lime font-bold text-sm uppercase tracking-wider">What're They Says</span>
-              </motion.div>
-
-              {/* Main Title */}
-              <motion.h2 
-                className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-tight"
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.3, duration: 0.6 }}
-              >
-                TESTIMONIALS
-              </motion.h2>
+                <span className="text-accent-lime font-semibold text-sm uppercase tracking-wider">What're They Says</span>
+              </div>
 
               {/* Description */}
-              <motion.p
-                className="text-sm lg:text-base text-gray-400 leading-relaxed max-w-md"
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.4, duration: 0.6 }}
-              >
+              <p className="text-base text-gray-400 leading-relaxed">
                 I pride myself on delivering innovative, impactful, and results-driven projects.
-              </motion.p>
+              </p>
 
-              {/* Stats Counter */}
-              <motion.div
-                className="pt-2"
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.5, duration: 0.6 }}
-              >
-                <div className="text-4xl lg:text-5xl font-bold text-accent-lime mb-1">&gt;208</div>
-                <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Total Contract Agents</div>
-              </motion.div>
+              {/* Decorative Dot */}
+              <div className="w-3 h-3 rounded-full bg-accent-lime" />
 
               {/* Video Introduction */}
               <motion.div
-                className="relative aspect-[4/5] rounded-2xl overflow-hidden border-3 border-accent-lime/30 hover:border-accent-lime shadow-xl cursor-pointer group"
+                className="relative aspect-[4/5] max-w-sm rounded-3xl overflow-hidden shadow-2xl cursor-pointer group"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ delay: 0.6, duration: 0.6 }}
+                transition={{ delay: 0.4, duration: 0.6 }}
                 onClick={() => setIsModalOpen(true)}
               >
                 <img 
@@ -345,92 +188,78 @@ const Testimonials = () => {
                   className="w-full h-full object-cover"
                 />
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent group-hover:from-black/90 transition-all">
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <h3 className="text-white font-bold text-xl mb-2">Meet Ratan Mia</h3>
-                    <p className="text-gray-300 text-sm">Watch my introduction video</p>
-                  </div>
-                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent group-hover:from-black/70 transition-all" />
+                
                 {/* Play Button */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <motion.div
-                    className="w-20 h-20 rounded-full bg-accent-lime flex items-center justify-center shadow-xl"
+                    className="w-16 h-16 rounded-full bg-accent-lime flex items-center justify-center shadow-xl"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <Play className="w-8 h-8 text-black fill-black ml-1" />
+                    <Play className="w-7 h-7 text-black fill-black ml-1" />
                   </motion.div>
                 </div>
               </motion.div>
+
+              {/* Stats Counter */}
+              <div>
+                <div className="text-5xl font-bold text-accent-lime mb-1">&gt;208</div>
+                <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Total Contract Agents</div>
+              </div>
             </motion.div>
 
-            {/* Right Column - Testimonial Card */}
-            <div className="lg:col-span-8 flex items-center">
+            {/* Right Column - Testimonial & Title */}
+            <div className="space-y-8">
+              {/* Main Title */}
+              <motion.h2 
+                className="text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.2, duration: 0.6 }}
+              >
+                TESTIMONIALS
+              </motion.h2>
+
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentIndex}
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -50 }}
-                  transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
-                  className="w-full"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5 }}
+                  className="space-y-6"
                 >
-                  {/* Testimonial Card */}
-                  <div className="relative bg-gradient-to-br from-gray-900 to-black border-2 border-gray-800 hover:border-accent-lime/50 rounded-2xl p-5 sm:p-6 lg:p-8 shadow-xl transition-all duration-500">
-                    
-                    {/* Quote Text */}
-                    <blockquote className="text-lg sm:text-xl lg:text-2xl font-medium text-white leading-relaxed mb-6">
-                      "{TESTIMONIALS_DATA[currentIndex].quote}"
-                    </blockquote>
+                  {/* Quote */}
+                  <blockquote className="text-xl lg:text-2xl font-medium text-gray-300 leading-relaxed">
+                    {TESTIMONIALS_DATA[currentIndex].quote}
+                  </blockquote>
 
-                    {/* Client Info */}
-                    <div className="flex items-center justify-between flex-wrap gap-3">
-                      <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 rounded-full bg-accent-lime flex items-center justify-center">
-                          <span className="text-black font-bold text-lg">
-                            {TESTIMONIALS_DATA[currentIndex].avatar}
-                          </span>
-                        </div>
-                        <div>
-                          <h4 className="font-bold text-base sm:text-lg text-white mb-1">
-                            {TESTIMONIALS_DATA[currentIndex].name}
-                          </h4>
-                          <p className="text-xs sm:text-sm text-gray-400">
-                            {TESTIMONIALS_DATA[currentIndex].position}
-                          </p>
-                          <p className="text-xs sm:text-sm text-accent-lime font-medium">
-                            {TESTIMONIALS_DATA[currentIndex].company}
-                          </p>
-                        </div>
-                      </div>
-
-                      {/* Navigation Counter */}
-                      <div className="flex items-center gap-3">
-                        <span className="text-2xl font-bold text-accent-lime">
-                          0{currentIndex + 1}
-                        </span>
-                        <div className="w-px h-8 bg-gray-700" />
-                        <span className="text-lg font-semibold text-gray-600">
-                          0{TESTIMONIALS_DATA.length}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Progress Line */}
-                    <div className="mt-6 h-1 bg-gray-800 rounded-full overflow-hidden">
-                      <motion.div
-                        className="h-full bg-accent-lime"
-                        initial={{ width: "0%" }}
-                        animate={{ width: `${((currentIndex + 1) / TESTIMONIALS_DATA.length) * 100}%` }}
-                        transition={{ duration: 0.5, ease: "easeOut" }}
-                      />
-                    </div>
+                  {/* Client Info */}
+                  <div className="space-y-2">
+                    <h4 className="text-xl font-bold text-white">
+                      {TESTIMONIALS_DATA[currentIndex].name}
+                    </h4>
+                    <p className="text-sm text-gray-400">
+                      {TESTIMONIALS_DATA[currentIndex].position}, {TESTIMONIALS_DATA[currentIndex].company}
+                    </p>
                   </div>
 
-                  {/* Project Thumbnail (Bottom Right) */}
+                  {/* Counter */}
+                  <div className="flex items-center gap-4">
+                    <span className="text-3xl font-bold text-accent-lime">
+                      0{currentIndex + 1}
+                    </span>
+                    <div className="flex-1 h-px bg-gray-800" />
+                    <span className="text-lg font-semibold text-gray-600">
+                      0{TESTIMONIALS_DATA.length}
+                    </span>
+                  </div>
+
+                  {/* Project Thumbnail */}
                   <motion.div
-                    className="absolute -bottom-10 -right-10 w-52 h-52 rounded-2xl overflow-hidden border-3 border-accent-lime shadow-xl hidden xl:block"
-                    initial={{ opacity: 0, scale: 0.8 }}
+                    className="relative w-full max-w-xs h-48 rounded-2xl overflow-hidden shadow-lg"
+                    initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.3 }}
                   >
@@ -444,33 +273,10 @@ const Testimonials = () => {
               </AnimatePresence>
             </div>
           </div>
-
-          {/* Navigation Arrows */}
-          <motion.div
-            className="flex justify-end gap-3 mt-4 lg:mt-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.8, duration: 0.6 }}
-          >
-            <button
-              onClick={handlePrev}
-              className="w-14 h-14 bg-gray-900 hover:bg-accent-lime border border-gray-800 hover:border-accent-lime text-white hover:text-black rounded-full flex items-center justify-center transition-all duration-300"
-              aria-label="Previous testimonial"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-            <button
-              onClick={handleNext}
-              className="w-14 h-14 bg-gray-900 hover:bg-accent-lime border border-gray-800 hover:border-accent-lime text-white hover:text-black rounded-full flex items-center justify-center transition-all duration-300"
-              aria-label="Next testimonial"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
-          </motion.div>
         </div>
 
         {/* Bottom Lime Accent Bar */}
-        <div className="absolute bottom-0 left-0 right-0 h-3 bg-accent-lime" />
+        <div className="absolute bottom-0 left-0 right-0 h-2 bg-accent-lime" />
       </section>
 
       {/* Video Modal */}
