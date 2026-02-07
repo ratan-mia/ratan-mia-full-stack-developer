@@ -247,8 +247,20 @@ export function ImageContentGrid({
   containerClass = 'bg-gray-50 rounded-3xl overflow-hidden mb-16'
 }) {
   return (
-    <div className={`grid lg:grid-cols-2 gap-0 items-stretch ${containerClass} transition-all duration-500 hover:shadow-xl`}>
-      <div className={`w-full flex items-center justify-center p-8 lg:p-16 bg-gradient-to-br from-white to-gray-100 ${imagePosition === 'right' ? 'order-1 lg:order-2' : ''}`}>
+    <motion.div 
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className={`grid lg:grid-cols-2 gap-0 items-stretch ${containerClass} transition-all duration-500 hover:shadow-xl`}
+    >
+      <motion.div 
+        initial={{ opacity: 0, x: imagePosition === 'left' ? -30 : 30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7, delay: 0.2 }}
+        className={`w-full flex items-center justify-center p-8 lg:p-16 bg-gradient-to-br from-white to-gray-100 ${imagePosition === 'right' ? 'order-1 lg:order-2' : ''}`}
+      >
         <div className="relative w-full h-full flex items-center justify-center">
           {/* Decorative background element */}
           <div className="absolute inset-0 bg-accent-lime/5 rounded-2xl"></div>
@@ -264,26 +276,59 @@ export function ImageContentGrid({
             />
           </div>
         </div>
-      </div>
+      </motion.div>
 
-      <div className={`p-8 md:p-12 flex flex-col justify-center ${imagePosition === 'right' ? 'order-2 lg:order-1' : ''}`}>
+      <motion.div 
+        initial={{ opacity: 0, x: imagePosition === 'left' ? 30 : -30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7, delay: 0.3 }}
+        className={`p-8 md:p-12 flex flex-col justify-center ${imagePosition === 'right' ? 'order-2 lg:order-1' : ''}`}
+      >
         {badge && BadgeIcon && (
-          <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6"
+          >
             <BadgeIcon className="w-4 h-4" />
             {badge}
-          </div>
+          </motion.div>
         )}
-        <h3 className="text-3xl md:text-4xl font-extrabold mb-4">{title}</h3>
-        <p className="text-lg text-gray-600 mb-8">
+        <motion.h3 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="text-3xl md:text-4xl font-extrabold mb-4"
+        >
+          {title}
+        </motion.h3>
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="text-lg text-gray-600 mb-8"
+        >
           {description}
-        </p>
+        </motion.p>
 
         {features.length > 0 && (
           <div className="space-y-4">
             {features.map((feature, idx) => {
               const Icon = feature.icon;
               return (
-                <div key={idx} className="flex items-start gap-4 p-4 rounded-xl hover:bg-white/50 transition-all duration-300 group">
+                <motion.div 
+                  key={idx}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.7 + (idx * 0.1) }}
+                  className="flex items-start gap-4 p-4 rounded-xl hover:bg-white/50 transition-all duration-300 group"
+                >
                   <div className="w-12 h-12 bg-accent-lime rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-md">
                     {Icon && <Icon className="w-6 h-6 text-black" />}
                   </div>
@@ -291,13 +336,13 @@ export function ImageContentGrid({
                     <h4 className="text-lg font-bold mb-1 group-hover:text-accent-lime transition-colors">{feature.title}</h4>
                     <p className="text-gray-600 text-sm leading-relaxed">{feature.description}</p>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
         )}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
 
