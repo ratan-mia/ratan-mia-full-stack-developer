@@ -12,6 +12,7 @@ import CaseStudyTemplate, {
 } from '@/app/components/case-studies/CaseStudyTemplate';
 import CaseStudyHero from '@/app/components/case-studies/CaseStudyHero';
 import CaseStudyAbout from '@/app/components/case-studies/CaseStudyAbout';
+import CaseStudyChallenge from '@/app/components/case-studies/CaseStudyChallenge';
 import { motion } from 'framer-motion';
 import {
     ArrowLeft,
@@ -85,7 +86,7 @@ export default function CheryBangladeshCaseStudy() {
       />
 
       {/* Challenge Section */}
-      <CaseStudySection
+      <CaseStudyChallenge
         id="challenge"
         label="THE CHALLENGE"
         icon={Zap}

@@ -12,6 +12,7 @@ import CaseStudyTemplate, {
 } from '@/app/components/case-studies/CaseStudyTemplate';
 import CaseStudyHero from '@/app/components/case-studies/CaseStudyHero';
 import CaseStudyAbout from '@/app/components/case-studies/CaseStudyAbout';
+import CaseStudyChallenge from '@/app/components/case-studies/CaseStudyChallenge';
 import {
     ArrowLeft,
     ArrowRight,
@@ -117,7 +118,7 @@ export default function AutoTraderCaseStudy() {
       />
 
       {/* Challenge Section */}
-      <CaseStudySection
+      <CaseStudyChallenge
         id="challenge"
         label="REQUIREMENTS & CHALLENGES"
         icon={Zap}
