@@ -2,53 +2,47 @@
 
 import About from '@/components/home/About';
 import Contact from '@/components/home/Contact';
-import CTA from '@/components/home/CTA';
-import EmpoweringBusiness from '@/components/home/EmpoweringBusiness';
 import Experience from '@/components/home/Experience';
-import FeelanceCTA from '@/components/home/FeelanceCTA';
 import HeroMain from '@/components/home/HeroMain';
 import Process from '@/components/home/Process';
 import Projects from '@/components/home/Projects';
 import Services from '@/components/home/Services';
-import Skills from '@/components/home/Skills';
+import TechnicalExpertise from '@/components/home/TechnicalExpertise';
 import Testimonials from '@/components/home/Testimonials';
 import TrainingCertificates from '@/components/home/TrainingCertificates';
-import VideoIntro from '@/components/home/VideoIntro';
 
 export default function Home() {
   return (
     <div className="relative w-full overflow-hidden">
-      {/* Hero Section */}
+      {/* Hero Section - Dark */}
       <HeroMain />
-      {/* About */}
+      
+      {/* About - Light (White background) */}
       <About />
-      {/* Services */}
+      
+      {/* Services - Dark (Black background) */}
       <Services />
-
-      <FeelanceCTA />
-
-      {/* Skills */}
-      <Skills />
-
-      {/* Projects */}
-      <Projects />
-      <EmpoweringBusiness />
-      <VideoIntro />
-      {/* Process How I Work */}
+      
+      {/* Process - Light (White background) */}
       <Process />
-      {/* Technical Expertise */}
-      <CTA />
-      {/* Experience */}
+      
+      {/* Technical Expertise - Dark (Black background) */}
+      <TechnicalExpertise />
+      
+      {/* Experience - Light (White background) */}
       <Experience />
-      {/* Training Certificates */}
+      
+      {/* Projects - Dark (Black background) */}
+      <Projects />
+      
+      {/* Training Certificates - Light (White background) */}
       <TrainingCertificates />
-
-      {/* Testimonials */}
+      
+      {/* Testimonials - Dark (Black background) */}
       <Testimonials />
-
-      {/* Contact */}
+      
+      {/* Contact - Light (White background) */}
       <Contact />
-
     </div>
   );
 }
