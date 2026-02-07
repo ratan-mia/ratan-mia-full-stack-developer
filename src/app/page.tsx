@@ -16,31 +16,31 @@ export default function Home() {
     <div className="relative w-full overflow-hidden">
       {/* Hero Section - Dark */}
       <HeroMain />
-      
+
       {/* About - Light (White background) */}
       <About />
-      
+
       {/* Services - Dark (Black background) */}
       <Services />
-      
+
       {/* Process - Light (White background) */}
       <Process />
-      
+
       {/* Technical Expertise - Dark (Black background) */}
       <TechnicalExpertise />
-      
+
       {/* Experience - Light (White background) */}
       <Experience />
-      
+
       {/* Projects - Dark (Black background) */}
       <Projects />
-      
+
       {/* Training Certificates - Light (White background) */}
       <TrainingCertificates />
-      
+
       {/* Testimonials - Dark (Black background) */}
       <Testimonials />
-      
+
       {/* Contact - Light (White background) */}
       <Contact />
     </div>
