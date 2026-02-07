@@ -8,10 +8,10 @@ import CaseStudyTemplate, {
     ImageContentGrid,
     ImageShowcaseGrid,
     KeyAchievementsCard,
-    MetricsGrid,
-    OverviewSection
+    MetricsGrid
 } from '@/app/components/case-studies/CaseStudyTemplate';
 import CaseStudyHero from '@/app/components/case-studies/CaseStudyHero';
+import CaseStudyAbout from '@/app/components/case-studies/CaseStudyAbout';
 import { motion } from 'framer-motion';
 import {
     ArrowLeft,
@@ -69,8 +69,8 @@ export default function GamifyCaseStudy() {
         />
       }
     >
-      {/* Overview Section */}
-      <OverviewSection
+      {/* About Section */}
+      <CaseStudyAbout
         title="About the Project"
         paragraphs={[
           "FMCG and automotive brands needed a scalable platform to track product distribution, prevent fraud, and drive customer loyalty across 64 districts in Bangladesh. Traditional loyalty programs lacked engagement and provided limited insights into customer behavior.",

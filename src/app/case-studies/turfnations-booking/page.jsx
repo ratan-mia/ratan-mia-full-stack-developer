@@ -8,10 +8,10 @@ import CaseStudyTemplate, {
   ImageContentGrid,
   ImageShowcaseGrid,
   KeyAchievementsCard,
-  MetricsGrid,
-  OverviewSection
+  MetricsGrid
 } from '@/app/components/case-studies/CaseStudyTemplate';
 import CaseStudyHero from '@/app/components/case-studies/CaseStudyHero';
+import CaseStudyAbout from '@/app/components/case-studies/CaseStudyAbout';
 import {
   Award,
   BarChart,
@@ -96,8 +96,8 @@ export default function TurfLetCaseStudy() {
         />
       }
     >
-      {/* Overview Section */}
-      <OverviewSection
+      {/* About Section */}
+      <CaseStudyAbout
         title="About the Project"
         paragraphs={[
           "TurfLet is a revolutionary booking platform designed to connect sports enthusiasts with turf owners. The platform needed to handle real-time availability checks, prevent double bookings, integrate secure payment processing, and provide comprehensive management tools for turf owners.",

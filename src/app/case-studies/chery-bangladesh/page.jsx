@@ -8,10 +8,10 @@ import CaseStudyTemplate, {
     ImageContentGrid,
     ImageShowcaseGrid,
     KeyAchievementsCard,
-    MetricsGrid,
-    OverviewSection
+    MetricsGrid
 } from '@/app/components/case-studies/CaseStudyTemplate';
 import CaseStudyHero from '@/app/components/case-studies/CaseStudyHero';
+import CaseStudyAbout from '@/app/components/case-studies/CaseStudyAbout';
 import { motion } from 'framer-motion';
 import {
     ArrowLeft,
@@ -73,8 +73,8 @@ export default function CheryBangladeshCaseStudy() {
         />
       }
     >
-      {/* Overview Section */}
-      <OverviewSection
+      {/* About Section */}
+      <CaseStudyAbout
         title="About the Project"
         paragraphs={[
           "Chery Bangladesh needed to modernize their customer experience by creating a unified digital platform that connects potential buyers with their showrooms, service centers, and parts inventory. The challenge was to build an intuitive mobile app that simplifies the entire car ownership journey from initial research to after-sales service.",

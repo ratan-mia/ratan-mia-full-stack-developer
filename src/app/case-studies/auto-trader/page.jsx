@@ -8,10 +8,10 @@ import CaseStudyTemplate, {
     ImageContentGrid,
     ImageShowcaseGrid,
     KeyAchievementsCard,
-    MetricsGrid,
-    OverviewSection
+    MetricsGrid
 } from '@/app/components/case-studies/CaseStudyTemplate';
 import CaseStudyHero from '@/app/components/case-studies/CaseStudyHero';
+import CaseStudyAbout from '@/app/components/case-studies/CaseStudyAbout';
 import {
     ArrowLeft,
     ArrowRight,
@@ -105,8 +105,8 @@ export default function AutoTraderCaseStudy() {
         />
       }
     >
-      {/* Overview Section */}
-      <OverviewSection
+      {/* About Section */}
+      <CaseStudyAbout
         title="About the Project"
         paragraphs={[
           "AutoTrader BD is a comprehensive B2B car trading platform designed specifically for the Bangladesh automotive market. The platform connects car dealers, importers, and buyers through a sophisticated web application featuring advanced search capabilities, role-based access control, and comprehensive admin management tools.",
