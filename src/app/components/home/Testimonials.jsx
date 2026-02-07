@@ -129,7 +129,87 @@ const Testimonials = () => {
 
   return (
     <>
-      <section ref={ref} className="py-20 lg:py-32 bg-black relative overflow-hidden" id="testimonials">
+      <section ref={ref} className="py-16 lg:py-24 bg-black relative overflow-hidden" id="testimonials">
+        {/* Animated Background Gradient Blobs - Much More Visible */}
+        <motion.div 
+          className="absolute top-20 -left-20 w-[600px] h-[600px] rounded-full blur-3xl"
+          style={{ background: 'radial-gradient(circle, rgba(204, 255, 0, 0.15) 0%, transparent 70%)' }}
+          animate={{
+            scale: [1, 1.3, 1],
+            x: [0, 50, 0],
+            y: [0, -30, 0],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <motion.div 
+          className="absolute bottom-20 -right-20 w-[600px] h-[600px] rounded-full blur-3xl"
+          style={{ background: 'radial-gradient(circle, rgba(204, 255, 0, 0.1) 0%, transparent 70%)' }}
+          animate={{
+            scale: [1, 1.4, 1],
+            x: [0, -50, 0],
+            y: [0, 30, 0],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1
+          }}
+        />
+        
+        {/* Floating Particles - Many More */}
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 rounded-full bg-accent-lime"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -30 - Math.random() * 50, 0],
+              x: [0, (Math.random() - 0.5) * 40, 0],
+              opacity: [0.2, 1, 0.2],
+              scale: [1, 1.5, 1],
+            }}
+            transition={{
+              duration: 3 + Math.random() * 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: Math.random() * 2,
+            }}
+          />
+        ))}
+        
+        {/* Larger Floating Dots */}
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={`dot-${i}`}
+            className="absolute rounded-full bg-accent-lime/30"
+            style={{
+              left: `${10 + Math.random() * 80}%`,
+              top: `${10 + Math.random() * 80}%`,
+              width: `${4 + Math.random() * 8}px`,
+              height: `${4 + Math.random() * 8}px`,
+            }}
+            animate={{
+              y: [0, -20 - Math.random() * 30, 0],
+              x: [0, (Math.random() - 0.5) * 30, 0],
+              opacity: [0.3, 0.8, 0.3],
+            }}
+            transition={{
+              duration: 4 + Math.random() * 3,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: Math.random() * 3,
+            }}
+          />
+        ))}
+
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{
@@ -141,12 +221,37 @@ const Testimonials = () => {
           }} />
         </div>
 
+        {/* Decorative Lines */}
+        <motion.div 
+          className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent-lime to-transparent opacity-20"
+          animate={{
+            opacity: [0.1, 0.3, 0.1],
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <motion.div 
+          className="absolute bottom-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent-lime to-transparent opacity-20"
+          animate={{
+            opacity: [0.1, 0.3, 0.1],
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1.5
+          }}
+        />
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 xl:gap-16">
             
             {/* Left Column - Video Intro & Stats */}
             <motion.div
-              className="lg:col-span-4 space-y-8"
+              className="lg:col-span-4 space-y-6"
               initial={{ opacity: 0, x: -30 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8 }}
@@ -184,7 +289,7 @@ const Testimonials = () => {
 
               {/* Stats Counter */}
               <motion.div
-                className="pt-8"
+                className="pt-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.5, duration: 0.6 }}
@@ -238,10 +343,10 @@ const Testimonials = () => {
                   className="w-full"
                 >
                   {/* Testimonial Card */}
-                  <div className="relative bg-gradient-to-br from-gray-900 to-black border-2 border-gray-800 hover:border-accent-lime/50 rounded-3xl p-8 sm:p-10 lg:p-12 xl:p-14 shadow-2xl transition-all duration-500">
+                  <div className="relative bg-gradient-to-br from-gray-900 to-black border-2 border-gray-800 hover:border-accent-lime/50 rounded-3xl p-6 sm:p-8 lg:p-10 shadow-2xl transition-all duration-500">
                     
                     {/* Quote Text */}
-                    <blockquote className="text-xl sm:text-2xl lg:text-3xl font-medium text-white leading-relaxed mb-10">
+                    <blockquote className="text-xl sm:text-2xl lg:text-3xl font-medium text-white leading-relaxed mb-8">
                       "{TESTIMONIALS_DATA[currentIndex].quote}"
                     </blockquote>
 
@@ -309,7 +414,7 @@ const Testimonials = () => {
 
           {/* Navigation Arrows */}
           <motion.div
-            className="flex justify-end gap-3 mt-8 lg:mt-12"
+            className="flex justify-end gap-3 mt-6 lg:mt-8"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.8, duration: 0.6 }}
