@@ -288,14 +288,14 @@ const MainAboutSection = ({ isInView }) => (
 
 // --- CTA SECTION ---
 const CTASection = ({ isInView }) => (
-  <div className="bg-black py-12 sm:py-16">
+  <div className="bg-white py-12 sm:py-16">
     <motion.div 
       className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"
       variants={ANIMATION_VARIANTS.fadeUp}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
     >
-      <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 sm:p-10 lg:p-12 rounded-3xl text-center relative overflow-hidden border-2 border-gray-700 hover:border-accent-lime/50 transition-all group">
+      <div className="bg-gradient-to-br from-black to-gray-900 p-8 sm:p-10 lg:p-12 rounded-3xl text-center relative overflow-hidden border-2 border-gray-200 hover:border-accent-lime/50 transition-all group">
         {/* Background Pattern */}
         <div className="absolute inset-0 bg-gradient-to-br from-accent-lime/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         
@@ -344,7 +344,7 @@ export default function About() {
   const ctaInView = useInView(ctaRef, { once: true, amount: 0.5 });
 
   return (
-    <section ref={sectionRef} id="about" className="bg-black">
+    <section ref={sectionRef} id="about" className="bg-white">
       {/* Main About Section */}
       <div ref={servicesRef}>
         <MainAboutSection isInView={servicesInView} />
