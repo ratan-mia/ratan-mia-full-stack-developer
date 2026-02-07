@@ -107,7 +107,7 @@ const ContactInfo = ({ isInView }) => (
       </div>
       <div className="flex-1 min-w-0">
         <p className="text-xs sm:text-sm text-gray-500 font-bold uppercase tracking-wide mb-1">Location</p>
-        <p className="text-black font-extrabold text-base sm:text-lg truncate">Dhaka, Bangladesh 🇧🇩</p>
+        <p className="text-black font-extrabold text-base sm:text-lg">Dhaka, Bangladesh 🇧🇩</p>
       </div>
     </motion.div>
     
@@ -122,7 +122,7 @@ const ContactInfo = ({ isInView }) => (
         <p className="text-xs sm:text-sm text-gray-500 font-bold uppercase tracking-wide mb-1">Email</p>
         <a 
           href="mailto:shorifull@gmail.com" 
-          className="text-black hover:text-accent-lime transition-colors font-extrabold text-base sm:text-lg truncate block"
+          className="text-black hover:text-accent-lime transition-colors font-extrabold text-base sm:text-lg block"
         >
           shorifull@gmail.com
         </a>
