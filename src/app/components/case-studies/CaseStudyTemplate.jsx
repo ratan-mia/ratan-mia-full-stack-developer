@@ -43,26 +43,26 @@ export default function CaseStudyTemplate({ project, navItems = [], heroSection,
       {/* Case Study Content with Sidebar */}
       <div className="relative">
         {/* Left Sidebar - Project Details (Fixed Position like TurfNations) */}
-        <aside className={`hidden lg:block fixed left-8 top-32 w-80 z-30 transition-opacity duration-300 ${showSidebar ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+        <aside className={`hidden lg:block fixed left-8 top-32 w-72 z-30 transition-opacity duration-300 ${showSidebar ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
           <div className="space-y-6">
             {/* Project Details Card */}
-            <div className="bg-gray-50 rounded-2xl p-8 space-y-6">
+            <div className="bg-white border border-gray-200 rounded-2xl p-6 space-y-5 shadow-md hover:shadow-lg transition-all duration-300">
               {/* Company */}
               <div>
-                <h3 className="text-xs font-extrabold text-gray-500 mb-3 uppercase tracking-wider">
+                <h3 className="text-xs font-bold text-gray-600 mb-2 uppercase tracking-wide">
                   COMPANY
                 </h3>
-                <p className="text-2xl font-extrabold text-black">{project.company}</p>
+                <p className="text-xl font-bold text-black">{project.company}</p>
               </div>
 
               <div className="h-px bg-gray-200"></div>
 
               {/* Category */}
               <div>
-                <h3 className="text-xs font-extrabold text-gray-500 mb-3 uppercase tracking-wider">
+                <h3 className="text-xs font-bold text-gray-600 mb-2 uppercase tracking-wide">
                   CATEGORY
                 </h3>
-                <p className="text-xl font-bold text-black">{project.category}</p>
+                <p className="text-sm font-semibold text-gray-700 leading-relaxed">{project.category}</p>
               </div>
 
               <div className="h-px bg-gray-200"></div>
@@ -71,17 +71,17 @@ export default function CaseStudyTemplate({ project, navItems = [], heroSection,
               {project.liveUrl && (
                 <>
                   <div>
-                    <h3 className="text-xs font-extrabold text-gray-500 mb-3 uppercase tracking-wider">
+                    <h3 className="text-xs font-bold text-gray-600 mb-2 uppercase tracking-wide">
                       LIVE VIEW
                     </h3>
                     <a 
                       href={project.liveUrl} 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-lg font-bold text-black hover:text-accent-lime transition-colors group"
+                      className="inline-flex items-center gap-2 text-sm font-bold text-black hover:text-accent-lime transition-colors group"
                     >
                       Visit Website
-                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </a>
                   </div>
                   <div className="h-px bg-gray-200"></div>
@@ -92,10 +92,10 @@ export default function CaseStudyTemplate({ project, navItems = [], heroSection,
               {project.timeline && (
                 <>
                   <div>
-                    <h3 className="text-xs font-extrabold text-gray-500 mb-3 uppercase tracking-wider">
+                    <h3 className="text-xs font-bold text-gray-600 mb-2 uppercase tracking-wide">
                       TIMELINE
                     </h3>
-                    <p className="text-2xl font-extrabold text-black">{project.timeline}</p>
+                    <p className="text-xl font-bold text-black">{project.timeline}</p>
                   </div>
                   <div className="h-px bg-gray-200"></div>
                 </>
@@ -105,12 +105,12 @@ export default function CaseStudyTemplate({ project, navItems = [], heroSection,
               {project.services && project.services.length > 0 && (
                 <>
                   <div>
-                    <h3 className="text-xs font-extrabold text-gray-500 mb-4 uppercase tracking-wider">
+                    <h3 className="text-xs font-bold text-gray-600 mb-3 uppercase tracking-wide">
                       SERVICES WE PROVIDED
                     </h3>
                     <div className="space-y-2">
                       {project.services.map((service, idx) => (
-                        <div key={idx} className="px-4 py-2 bg-white rounded-xl text-sm font-medium text-black">
+                        <div key={idx} className="px-3 py-2 bg-gray-50 hover:bg-accent-lime/20 border border-gray-200 hover:border-accent-lime rounded-lg text-xs font-semibold text-black transition-all">
                           {service}
                         </div>
                       ))}
@@ -122,37 +122,37 @@ export default function CaseStudyTemplate({ project, navItems = [], heroSection,
 
               {/* Share */}
               <div>
-                <h3 className="text-lg font-extrabold text-black mb-4">
+                <h3 className="text-sm font-bold text-black mb-3">
                   Share this Case Study:
                 </h3>
-                <div className="flex gap-3">
+                <div className="flex gap-2">
                   <button 
                     onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank')}
-                    className="w-12 h-12 bg-white hover:bg-accent-lime rounded-full flex items-center justify-center transition-all hover:scale-110 shadow-sm"
+                    className="w-10 h-10 bg-white hover:bg-accent-lime border border-gray-200 hover:border-accent-lime rounded-lg flex items-center justify-center transition-all hover:scale-105"
                     aria-label="Share on Facebook"
                   >
-                    <Facebook className="w-5 h-5" />
+                    <Facebook className="w-4 h-4" />
                   </button>
                   <button 
                     onClick={() => window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=Check out this amazing case study!`, '_blank')}
-                    className="w-12 h-12 bg-white hover:bg-accent-lime rounded-full flex items-center justify-center transition-all hover:scale-110 shadow-sm"
+                    className="w-10 h-10 bg-white hover:bg-accent-lime border border-gray-200 hover:border-accent-lime rounded-lg flex items-center justify-center transition-all hover:scale-105"
                     aria-label="Share on Twitter"
                   >
-                    <Twitter className="w-5 h-5" />
+                    <Twitter className="w-4 h-4" />
                   </button>
                   <button 
                     onClick={() => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`, '_blank')}
-                    className="w-12 h-12 bg-white hover:bg-accent-lime rounded-full flex items-center justify-center transition-all hover:scale-110 shadow-sm"
+                    className="w-10 h-10 bg-white hover:bg-accent-lime border border-gray-200 hover:border-accent-lime rounded-lg flex items-center justify-center transition-all hover:scale-105"
                     aria-label="Share on LinkedIn"
                   >
-                    <Linkedin className="w-5 h-5" />
+                    <Linkedin className="w-4 h-4" />
                   </button>
                   <button 
                     onClick={() => window.open(`https://wa.me/?text=${encodeURIComponent('Check out this case study! ' + window.location.href)}`, '_blank')}
-                    className="w-12 h-12 bg-white hover:bg-accent-lime rounded-full flex items-center justify-center transition-all hover:scale-110 shadow-sm"
+                    className="w-10 h-10 bg-white hover:bg-accent-lime border border-gray-200 hover:border-accent-lime rounded-lg flex items-center justify-center transition-all hover:scale-105"
                     aria-label="Share on WhatsApp"
                   >
-                    <Share2 className="w-5 h-5" />
+                    <Share2 className="w-4 h-4" />
                   </button>
                 </div>
               </div>
@@ -161,7 +161,7 @@ export default function CaseStudyTemplate({ project, navItems = [], heroSection,
         </aside>
 
         {/* Main Content Area - With left margin to accommodate sidebar */}
-        <div className="lg:ml-96 lg:mr-8">
+        <div className="lg:ml-80 lg:mr-8">
           {children}
         </div>
 

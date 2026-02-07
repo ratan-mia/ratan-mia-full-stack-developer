@@ -1,36 +1,34 @@
 'use client';
 
 import CaseStudyTemplate, {
-  BusinessImpactCards,
-  CaseStudySection,
-  CTASection,
-  FullWidthImageContent,
-  ImageContentGrid,
-  ImageShowcaseGrid,
-  KeyAchievementsCard,
-  MetricsGrid,
-  OverviewSection
+    BusinessImpactCards,
+    CaseStudySection,
+    CTASection,
+    FullWidthImageContent,
+    ImageContentGrid,
+    ImageShowcaseGrid,
+    KeyAchievementsCard,
+    MetricsGrid,
+    OverviewSection
 } from '@/app/components/case-studies/CaseStudyTemplate';
 import {
-  ArrowLeft,
-  Award,
-  BarChart,
-  Calendar,
-  Check,
-  CheckCircle,
-  Code,
-  DollarSign,
-  ExternalLink,
-  FileText,
-  Lock,
-  Monitor,
-  Search,
-  Shield,
-  Smartphone,
-  Star,
-  TrendingUp,
-  Users,
-  Zap
+    ArrowLeft,
+    Award,
+    BarChart,
+    Calendar,
+    Check,
+    CheckCircle,
+    Code,
+    ExternalLink,
+    FileText,
+    Lock,
+    Monitor,
+    Search,
+    Shield,
+    Star,
+    TrendingUp,
+    Users,
+    Zap
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
