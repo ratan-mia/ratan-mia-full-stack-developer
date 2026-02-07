@@ -1,5 +1,9 @@
 'use client';
 
+import CaseStudyAbout from '@/app/components/case-studies/CaseStudyAbout';
+import CaseStudyChallenge from '@/app/components/case-studies/CaseStudyChallenge';
+import CaseStudyHero from '@/app/components/case-studies/CaseStudyHero';
+import CaseStudySolution from '@/app/components/case-studies/CaseStudySolution';
 import CaseStudyTemplate, {
   BusinessImpactCards,
   CaseStudySection,
@@ -10,9 +14,6 @@ import CaseStudyTemplate, {
   KeyAchievementsCard,
   MetricsGrid
 } from '@/app/components/case-studies/CaseStudyTemplate';
-import CaseStudyHero from '@/app/components/case-studies/CaseStudyHero';
-import CaseStudyAbout from '@/app/components/case-studies/CaseStudyAbout';
-import CaseStudyChallenge from '@/app/components/case-studies/CaseStudyChallenge';
 import {
   Award,
   BarChart,
@@ -132,7 +133,7 @@ export default function TurfLetCaseStudy() {
       />
 
       {/* Solution Section */}
-      <CaseStudySection
+      <CaseStudySolution
         id="solution"
         label="OUR SOLUTIONS"
         icon={CheckCircle}
@@ -225,9 +226,7 @@ export default function TurfLetCaseStudy() {
             }
           ]}
         />
-      </CaseStudySection>
-
-      {/* Key Features - Players Community */}
+      </CaseStudySolution>
       <FullWidthImageContent
         image="/images/projects/turflet/players-community.png"
         imageAlt="Players Community - Social Features"

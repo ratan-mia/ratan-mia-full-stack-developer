@@ -1,41 +1,37 @@
 'use client';
 
-import CaseStudyTemplate, {
-  BusinessImpactCards,
-  CaseStudySection,
-  CTASection,
-  FullWidthImageContent,
-  ImageContentGrid,
-  ImageShowcaseGrid,
-  KeyAchievementsCard,
-  MetricsGrid
-} from '@/app/components/case-studies/CaseStudyTemplate';
-import CaseStudyHero from '@/app/components/case-studies/CaseStudyHero';
 import CaseStudyAbout from '@/app/components/case-studies/CaseStudyAbout';
-import CaseStudyChallenge from '@/app/components/case-studies/CaseStudyChallenge';
-import { motion } from 'framer-motion';
+import CaseStudyHero from '@/app/components/case-studies/CaseStudyHero';
+import CaseStudySolution from '@/app/components/case-studies/CaseStudySolution';
+import CaseStudyTemplate, {
+    BusinessImpactCards,
+    CaseStudySection,
+    CTASection,
+    FullWidthImageContent,
+    ImageContentGrid,
+    ImageShowcaseGrid,
+    KeyAchievementsCard,
+    MetricsGrid
+} from '@/app/components/case-studies/CaseStudyTemplate';
 import {
-  ArrowLeft,
-  Award,
-  BarChart,
-  Calendar,
-  Car,
-  Check,
-  CheckCircle,
-  Code,
-  CreditCard,
-  DollarSign,
-  Package,
-  ShoppingCart,
-  Smartphone,
-  Star,
-  TrendingUp,
-  Users,
-  Wrench,
-  Zap
+    Award,
+    BarChart,
+    Calendar,
+    Car,
+    Check,
+    CheckCircle,
+    Code,
+    CreditCard,
+    DollarSign,
+    Package,
+    ShoppingCart,
+    Smartphone,
+    Star,
+    Users,
+    Wrench,
+    Zap
 } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 // Project Data
@@ -150,7 +146,7 @@ export default function CheryBangladeshAppCaseStudy() {
       />
 
       {/* Solution Section */}
-      <CaseStudySection
+      <CaseStudySolution
         id="solution"
         label="OUR SOLUTIONS"
         icon={CheckCircle}
@@ -326,9 +322,7 @@ export default function CheryBangladeshAppCaseStudy() {
             }
           ]}
         />
-      </CaseStudySection>
-
-      {/* Vehicle 360 Viewer */}
+      </CaseStudySolution>
       <FullWidthImageContent
         image="/images/projects/cherymobileapp/mockup/Chery-website.png"
         imageAlt="360° Vehicle Viewer"

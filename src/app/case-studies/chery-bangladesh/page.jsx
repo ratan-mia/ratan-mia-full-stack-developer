@@ -1,5 +1,9 @@
 'use client';
 
+import CaseStudyAbout from '@/app/components/case-studies/CaseStudyAbout';
+import CaseStudyChallenge from '@/app/components/case-studies/CaseStudyChallenge';
+import CaseStudyHero from '@/app/components/case-studies/CaseStudyHero';
+import CaseStudySolution from '@/app/components/case-studies/CaseStudySolution';
 import CaseStudyTemplate, {
     BusinessImpactCards,
     CaseStudySection,
@@ -10,19 +14,13 @@ import CaseStudyTemplate, {
     KeyAchievementsCard,
     MetricsGrid
 } from '@/app/components/case-studies/CaseStudyTemplate';
-import CaseStudyHero from '@/app/components/case-studies/CaseStudyHero';
-import CaseStudyAbout from '@/app/components/case-studies/CaseStudyAbout';
-import CaseStudyChallenge from '@/app/components/case-studies/CaseStudyChallenge';
-import { motion } from 'framer-motion';
 import {
-    ArrowLeft,
     BarChart,
     Bell,
     Calendar,
     Car,
     Check,
     CheckCircle, Code,
-    ExternalLink,
     Gift,
     MapPin,
     ShoppingCart,
@@ -33,8 +31,6 @@ import {
     Wrench,
     Zap
 } from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
 
 // Project Data
 const projectData = {
@@ -107,7 +103,7 @@ export default function CheryBangladeshCaseStudy() {
       />
 
       {/* Solution Section */}
-      <CaseStudySection
+      <CaseStudySolution
         id="solution"
         label="OUR SOLUTIONS"
         icon={CheckCircle}
@@ -199,9 +195,7 @@ export default function CheryBangladeshCaseStudy() {
             }
           ]}
         />
-      </CaseStudySection>
-
-      {/* Parts E-Commerce */}
+      </CaseStudySolution>
       <FullWidthImageContent
         image="/images/projects/cherymobileapp/parts-store.jpg"
         imageAlt="Parts E-Commerce"

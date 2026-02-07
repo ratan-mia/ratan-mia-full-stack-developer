@@ -1,5 +1,9 @@
 'use client';
 
+import CaseStudyAbout from '@/app/components/case-studies/CaseStudyAbout';
+import CaseStudyChallenge from '@/app/components/case-studies/CaseStudyChallenge';
+import CaseStudyHero from '@/app/components/case-studies/CaseStudyHero';
+import CaseStudySolution from '@/app/components/case-studies/CaseStudySolution';
 import CaseStudyTemplate, {
     BusinessImpactCards,
     CaseStudySection,
@@ -10,12 +14,7 @@ import CaseStudyTemplate, {
     KeyAchievementsCard,
     MetricsGrid
 } from '@/app/components/case-studies/CaseStudyTemplate';
-import CaseStudyHero from '@/app/components/case-studies/CaseStudyHero';
-import CaseStudyAbout from '@/app/components/case-studies/CaseStudyAbout';
-import CaseStudyChallenge from '@/app/components/case-studies/CaseStudyChallenge';
-import { motion } from 'framer-motion';
 import {
-    ArrowLeft,
     Award,
     BarChart,
     Check,
@@ -30,8 +29,6 @@ import {
     Wallet,
     Zap
 } from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
 
 // Project Data
 const projectData = {
@@ -103,7 +100,7 @@ export default function GamifyCaseStudy() {
       />
 
       {/* Solution Section */}
-      <CaseStudySection
+      <CaseStudySolution
         id="solution"
         label="OUR SOLUTIONS"
         icon={CheckCircle}
@@ -195,9 +192,7 @@ export default function GamifyCaseStudy() {
             }
           ]}
         />
-      </CaseStudySection>
-
-      {/* Digital Wallet */}
+      </CaseStudySolution>
       <FullWidthImageContent
         image="/images/projects/pieqr/wallet.png"
         imageAlt="Digital Wallet"

@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { AlertCircle, CheckCircle, Zap } from 'lucide-react';
+import { AlertCircle, Zap } from 'lucide-react';
 
 /**
  * Reusable Case Study Challenge/Requirements Section Component

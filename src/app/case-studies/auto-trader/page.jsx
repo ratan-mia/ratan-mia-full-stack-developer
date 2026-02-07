@@ -1,5 +1,9 @@
 'use client';
 
+import CaseStudyAbout from '@/app/components/case-studies/CaseStudyAbout';
+import CaseStudyChallenge from '@/app/components/case-studies/CaseStudyChallenge';
+import CaseStudyHero from '@/app/components/case-studies/CaseStudyHero';
+import CaseStudySolution from '@/app/components/case-studies/CaseStudySolution';
 import CaseStudyTemplate, {
     BusinessImpactCards,
     CaseStudySection,
@@ -10,32 +14,24 @@ import CaseStudyTemplate, {
     KeyAchievementsCard,
     MetricsGrid
 } from '@/app/components/case-studies/CaseStudyTemplate';
-import CaseStudyHero from '@/app/components/case-studies/CaseStudyHero';
-import CaseStudyAbout from '@/app/components/case-studies/CaseStudyAbout';
-import CaseStudyChallenge from '@/app/components/case-studies/CaseStudyChallenge';
 import {
-    ArrowLeft,
-    ArrowRight,
     Award,
     BarChart,
     Calendar,
     Check,
     CheckCircle,
     Code,
-    ExternalLink,
     FileText,
     Lock,
     Monitor,
     Search,
     Shield,
-    Smartphone,
     Star,
     TrendingUp,
     Users,
     Zap
 } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 // Project Data
@@ -142,7 +138,7 @@ export default function AutoTraderCaseStudy() {
       />
 
       {/* Solution Section */}
-      <CaseStudySection
+      <CaseStudySolution
         id="solution"
         label="OUR SOLUTIONS"
         icon={CheckCircle}
@@ -235,9 +231,7 @@ export default function AutoTraderCaseStudy() {
             }
           ]}
         />
-      </CaseStudySection>
-
-      {/* Key Features - User Dashboard */}
+      </CaseStudySolution>
       <FullWidthImageContent
         image="/images/projects/auto-trader/mockup/user-dashboard.png"
         imageAlt="User Dashboard - Personal Management"
