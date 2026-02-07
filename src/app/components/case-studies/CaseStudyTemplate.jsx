@@ -1,6 +1,7 @@
 'use client';
 
 import { ArrowRight, Check, Facebook, Linkedin, Share2, Twitter } from 'lucide-react';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -318,8 +319,20 @@ export function FullWidthImageContent({
 }) {
   return (
     <section className={`py-20 ${bgColor} transition-all duration-500`}>
-      <div className="grid lg:grid-cols-2 gap-0 items-stretch">
-        <div className={`w-full flex items-center justify-center p-8 lg:p-16 ${imagePosition === 'right' ? 'order-1 lg:order-2 bg-gradient-to-bl from-gray-50 to-white' : 'bg-gradient-to-br from-gray-50 to-white'}`}>
+      <motion.div 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="grid lg:grid-cols-2 gap-0 items-stretch"
+      >
+        <motion.div 
+          initial={{ opacity: 0, x: imagePosition === 'left' ? -30 : 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className={`w-full flex items-center justify-center p-8 lg:p-16 ${imagePosition === 'right' ? 'order-1 lg:order-2 bg-gradient-to-bl from-gray-50 to-white' : 'bg-gradient-to-br from-gray-50 to-white'}`}
+        >
           <div className="relative w-full h-full flex items-center justify-center">
             {/* Decorative elements */}
             <div className="absolute inset-0 bg-accent-lime/5 rounded-3xl"></div>
@@ -337,26 +350,59 @@ export function FullWidthImageContent({
               />
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        <div className={`px-8 md:px-12 lg:px-16 py-12 flex flex-col justify-center ${imagePosition === 'right' ? 'order-2 lg:order-1' : ''}`}>
+        <motion.div 
+          initial={{ opacity: 0, x: imagePosition === 'left' ? 30 : -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className={`px-8 md:px-12 lg:px-16 py-12 flex flex-col justify-center ${imagePosition === 'right' ? 'order-2 lg:order-1' : ''}`}
+        >
           {badge && BadgeIcon && (
-            <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6"
+            >
               <BadgeIcon className="w-4 h-4" />
               {badge}
-            </div>
+            </motion.div>
           )}
-          <h3 className="text-4xl md:text-5xl font-extrabold mb-6">{title}</h3>
-          <p className="text-lg text-gray-600 leading-relaxed mb-8">
+          <motion.h3 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="text-4xl md:text-5xl font-extrabold mb-6"
+          >
+            {title}
+          </motion.h3>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="text-lg text-gray-600 leading-relaxed mb-8"
+          >
             {description}
-          </p>
+          </motion.p>
 
           {features.length > 0 && (
             <div className="space-y-4">
               {features.map((feature, idx) => {
                 const Icon = feature.icon;
                 return (
-                  <div key={idx} className="flex items-start gap-4 p-5 rounded-2xl bg-gray-50 hover:bg-accent-lime/10 border border-gray-200 hover:border-accent-lime/30 transition-all duration-300 group">
+                  <motion.div 
+                    key={idx}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.7 + (idx * 0.1) }}
+                    className="flex items-start gap-4 p-5 rounded-2xl bg-gray-50 hover:bg-accent-lime/10 border border-gray-200 hover:border-accent-lime/30 transition-all duration-300 group"
+                  >
                     <div className="w-14 h-14 bg-accent-lime rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-md">
                       {Icon && <Icon className="w-7 h-7 text-black" />}
                     </div>
@@ -364,13 +410,13 @@ export function FullWidthImageContent({
                       <h4 className="text-xl font-bold mb-2 group-hover:text-accent-lime transition-colors">{feature.title}</h4>
                       <p className="text-gray-600 leading-relaxed">{feature.description}</p>
                     </div>
-                  </div>
+                  </motion.div>
                 );
               })}
             </div>
           )}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }
