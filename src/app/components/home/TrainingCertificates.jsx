@@ -9,8 +9,6 @@ const AccordionItem = ({ item, index, expanded, onToggle }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const isOpen = index === expanded;
-  const accentColor = index % 2 === 0 ? 'text-accent-lime' : 'text-accent-orange';
-  const bgColor = index % 2 === 0 ? 'bg-accent-lime' : 'bg-accent-orange';
 
   const getTypeIcon = (type) => {
     switch(type) {
@@ -26,36 +24,40 @@ const AccordionItem = ({ item, index, expanded, onToggle }) => {
   return (
     <motion.div 
       ref={ref}
-      className="border-b border-gray-200 group hover:bg-gray-50/50 transition-colors duration-300"
+      className="border-b border-gray-200 last:border-b-0"
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       transition={{ 
         duration: 0.6, 
-        delay: index * 0.1,
+        delay: index * 0.08,
         ease: [0.23, 1, 0.32, 1]
       }}
     >
       <motion.header
         onClick={() => onToggle(isOpen ? false : index)}
-        className="flex justify-between items-center cursor-pointer py-6 lg:py-8 group-hover:py-8 transition-all duration-300"
-        whileHover={{ x: 4 }}
+        className="flex justify-between items-center cursor-pointer py-6 lg:py-8 hover:bg-gray-50/50 transition-colors duration-300"
+        whileHover={{ x: 2 }}
       >
         <div className="flex items-center gap-4 lg:gap-6">
           {/* Type Icon */}
           <motion.div 
-            className={`w-12 h-12 rounded-xl ${isOpen ? bgColor : 'bg-gray-200'} flex items-center justify-center transition-all duration-300`}
-            whileHover={{ scale: 1.1, rotate: 5 }}
+            className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
+              isOpen 
+                ? 'bg-accent-lime text-black' 
+                : 'bg-gray-100 text-gray-600'
+            }`}
+            whileHover={{ scale: 1.05 }}
           >
-            <TypeIcon className={`w-6 h-6 ${isOpen ? 'text-white' : 'text-gray-600'}`} />
+            <TypeIcon className="w-6 h-6" />
           </motion.div>
           
           {/* Number and Title */}
           <div>
-            <span className="text-gray-400 font-mono text-sm block mb-1">
+            <span className="text-gray-400 font-mono text-xs lg:text-sm block mb-1">
               {String(index + 1).padStart(2, '0')}
             </span>
-            <h3 className={`text-xl lg:text-2xl xl:text-3xl font-bold transition-colors duration-300 ${
-              isOpen ? accentColor : 'text-black group-hover:text-gray-700'
+            <h3 className={`text-lg lg:text-xl xl:text-2xl font-bold transition-colors duration-300 ${
+              isOpen ? 'text-black' : 'text-gray-900'
             }`}>
               {item.title}
             </h3>
@@ -64,7 +66,11 @@ const AccordionItem = ({ item, index, expanded, onToggle }) => {
         
         {/* Toggle Button */}
         <motion.div 
-          className={`w-10 h-10 rounded-lg ${isOpen ? bgColor : 'bg-gray-100'} flex items-center justify-center transition-all duration-300`}
+          className={`w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 ${
+            isOpen 
+              ? 'bg-accent-lime text-black' 
+              : 'bg-gray-100 text-gray-600'
+          }`}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
         >
@@ -72,11 +78,7 @@ const AccordionItem = ({ item, index, expanded, onToggle }) => {
             animate={{ rotate: isOpen ? 180 : 0 }}
             transition={{ duration: 0.3 }}
           >
-            {isOpen ? (
-              <Minus className={`w-5 h-5 ${isOpen ? 'text-white' : 'text-gray-600'}`} />
-            ) : (
-              <Plus className={`w-5 h-5 ${isOpen ? 'text-white' : 'text-gray-600'}`} />
-            )}
+            {isOpen ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
           </motion.div>
         </motion.div>
       </motion.header>
@@ -92,20 +94,20 @@ const AccordionItem = ({ item, index, expanded, onToggle }) => {
               open: { opacity: 1, height: 'auto' },
               collapsed: { opacity: 0, height: 0 },
             }}
-            transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+            transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
             className="overflow-hidden"
           >
-            <div className="pb-8 lg:pb-12 grid md:grid-cols-3 gap-6 lg:gap-8 pl-16">
+            <div className="pb-8 lg:pb-10 grid md:grid-cols-3 gap-6 lg:gap-8 pl-0 lg:pl-16">
               <div className="md:col-span-2">
-                <p className="text-gray-600 text-lg lg:text-xl leading-relaxed mb-6">
+                <p className="text-gray-600 text-base lg:text-lg leading-relaxed mb-6">
                   {item.description}
                 </p>
                 {item.skills && (
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 mb-6">
                     {item.skills.map(skill => (
                       <motion.span 
                         key={skill} 
-                        className="px-4 py-2 bg-gray-100 hover:bg-accent-lime hover:text-black text-gray-700 text-sm font-semibold rounded-xl border border-gray-200 hover:border-accent-lime transition-all duration-300 cursor-default"
+                        className="px-3 py-1.5 bg-gray-100 hover:bg-accent-lime hover:text-black text-gray-700 text-sm font-medium rounded-lg transition-all duration-300 cursor-default"
                         whileHover={{ scale: 1.05, y: -2 }}
                       >
                         {skill}
@@ -114,13 +116,13 @@ const AccordionItem = ({ item, index, expanded, onToggle }) => {
                   </div>
                 )}
                 {item.highlights && (
-                  <div className="mt-6">
-                    <h4 className="font-bold text-black mb-3">Key Achievements:</h4>
+                  <div>
+                    <h4 className="font-bold text-black mb-3 text-sm uppercase tracking-wide">Key Achievements:</h4>
                     <ul className="space-y-2">
                       {item.highlights.map((highlight, idx) => (
-                        <li key={idx} className="flex items-start gap-2">
-                          <div className="w-2 h-2 rounded-full bg-accent-lime mt-2 flex-shrink-0" />
-                          <span className="text-gray-600">{highlight}</span>
+                        <li key={idx} className="flex items-start gap-3">
+                          <div className="w-1.5 h-1.5 rounded-full bg-accent-lime mt-2 flex-shrink-0" />
+                          <span className="text-gray-600 text-sm">{highlight}</span>
                         </li>
                       ))}
                     </ul>
@@ -128,17 +130,17 @@ const AccordionItem = ({ item, index, expanded, onToggle }) => {
                 )}
               </div>
               <div className="text-left md:text-right">
-                <div className="space-y-2">
-                  <p className="font-bold text-black text-lg">
+                <div className="space-y-3">
+                  <p className="font-bold text-black text-base lg:text-lg">
                     {item.provider || item.organization}
                   </p>
-                  <p className="text-gray-500 font-medium">
+                  <p className="text-gray-500 font-medium text-sm">
                     {item.duration || item.date}
                   </p>
                   {item.credential && (
-                    <div className="inline-flex items-center gap-2 bg-accent-lime/10 px-3 py-1 rounded-lg">
+                    <div className="inline-flex items-center gap-2 bg-accent-lime/10 px-3 py-1.5 rounded-lg border border-accent-lime/20">
                       <Award className="w-4 h-4 text-accent-lime" />
-                      <span className="text-accent-lime font-medium text-sm">
+                      <span className="text-accent-lime font-medium text-xs">
                         {item.credential}
                       </span>
                     </div>
@@ -161,18 +163,18 @@ const ProviderLogo = ({ provider, index }) => {
   return (
     <motion.div 
       ref={ref}
-      className="bg-gray-50 hover:bg-white border border-gray-200 hover:border-accent-lime/30 p-6 rounded-xl flex flex-col items-center justify-center text-center h-32 transition-all duration-300 group"
+      className="bg-white border border-gray-200 hover:border-accent-lime/50 p-6 rounded-xl flex flex-col items-center justify-center text-center h-28 transition-all duration-300 group hover:shadow-md"
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       transition={{ 
-        duration: 0.6, 
-        delay: index * 0.1,
+        duration: 0.5, 
+        delay: index * 0.08,
         ease: [0.23, 1, 0.32, 1]
       }}
-      whileHover={{ scale: 1.05, y: -4 }}
+      whileHover={{ y: -4 }}
     >
       <provider.icon className={`w-8 h-8 ${provider.color} mb-2 group-hover:scale-110 transition-transform`} />
-      <p className="font-bold text-gray-700 group-hover:text-gray-900 transition-colors">{provider.name}</p>
+      <p className="font-bold text-gray-700 text-sm group-hover:text-black transition-colors">{provider.name}</p>
     </motion.div>
   );
 };
@@ -301,45 +303,44 @@ const TrainingCertificates = () => {
   ];
 
   return (
-    <section ref={sectionRef} className="py-20 lg:py-24 bg-white text-black" id="education">
-      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+    <section ref={sectionRef} className="py-20 lg:py-32 bg-white text-black" id="education">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
         
         {/* Section Header */}
         <motion.div 
           ref={headerRef}
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 50 }}
-          animate={headerInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
+          className="text-center mb-20"
+          initial={{ opacity: 0, y: 40 }}
+          animate={headerInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+          transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
         >
           <motion.div
-            className="inline-flex items-center gap-4 mb-6"
+            className="inline-flex items-center gap-3 mb-6"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={headerInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="w-12 h-1 bg-accent-lime" />
-            <span className="text-gray-400 font-semibold text-sm uppercase tracking-wider">Education & Certifications</span>
+            <div className="w-12 h-1 bg-accent-lime rounded-full" />
+            <span className="text-black font-bold text-sm uppercase tracking-wider">Education & Certifications</span>
+            <div className="w-12 h-1 bg-accent-lime rounded-full" />
           </motion.div>
           
           <motion.h2 
-            className="text-4xl lg:text-5xl xl:text-6xl font-extrabold mb-6 tracking-tight leading-tight"
-            initial={{ opacity: 0, y: 30 }}
-            animate={headerInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-4xl lg:text-5xl xl:text-6xl font-extrabold mb-6 leading-tight"
+            initial={{ opacity: 0, y: 20 }}
+            animate={headerInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
           >
-            Continuous Learning &
-            <br />
-            <span className="text-accent-lime">Professional Growth</span>
+            Continuous Learning &<br />Professional Growth
           </motion.h2>
           
           <motion.p 
-            className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+            className="text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={headerInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
           >
-            My commitment to staying current with emerging technologies and industry best practices through formal education and professional certifications.
+            Commitment to staying current with emerging technologies through formal education and professional certifications.
           </motion.p>
         </motion.div>
 
@@ -349,41 +350,41 @@ const TrainingCertificates = () => {
           className="mb-20 text-center"
           initial={{ opacity: 0, y: 40 }}
           animate={educationInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.8 }}
         >
           <motion.div 
-            className="inline-block bg-accent-lime/10 p-6 rounded-2xl mb-6"
+            className="inline-flex items-center justify-center w-16 h-16 bg-accent-lime rounded-2xl mb-6"
             initial={{ opacity: 0, scale: 0 }}
             animate={educationInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
-            transition={{ duration: 0.6, delay: 0.4, type: 'spring', stiffness: 200 }}
-            whileHover={{ scale: 1.05, rotate: 2 }}
+            transition={{ duration: 0.5, delay: 0.2, type: 'spring', stiffness: 200 }}
+            whileHover={{ scale: 1.1, rotate: 5 }}
           >
-            <GraduationCap className="w-12 h-12 text-accent-lime mx-auto" />
+            <GraduationCap className="w-8 h-8 text-black" />
           </motion.div>
           
           <motion.h3 
-            className="text-3xl lg:text-4xl font-extrabold mb-4 tracking-tight"
+            className="text-2xl lg:text-3xl font-extrabold mb-3"
             initial={{ opacity: 0, y: 20 }}
             animate={educationInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
           >
             Academic Foundation
           </motion.h3>
           
           <motion.p 
-            className="text-2xl lg:text-3xl font-bold text-gray-800 mb-2"
+            className="text-xl lg:text-2xl font-bold text-gray-800 mb-2"
             initial={{ opacity: 0, y: 20 }}
             animate={educationInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
           >
             {education.degree}
           </motion.p>
           
           <motion.p 
-            className="text-lg text-gray-500 mb-4"
+            className="text-base text-gray-500 font-medium mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={educationInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 1.0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
           >
             {education.institution} • {education.period}
           </motion.p>
@@ -392,7 +393,7 @@ const TrainingCertificates = () => {
             className="text-gray-600 max-w-2xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={educationInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 1.2 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
           >
             {education.description}
           </motion.p>
@@ -413,16 +414,16 @@ const TrainingCertificates = () => {
 
         {/* Provider Logos */}
         <motion.div 
-          className="mt-20 pt-12 border-t border-gray-200"
+          className="pt-12 border-t border-gray-200"
           initial={{ opacity: 0, y: 40 }}
           animate={sectionInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-          transition={{ duration: 0.8, delay: 1.5 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
         >
           <motion.h3 
-            className="text-2xl lg:text-3xl font-bold text-center mb-12 text-gray-800"
+            className="text-xl lg:text-2xl font-bold text-center mb-10 text-black"
             initial={{ opacity: 0, y: 20 }}
             animate={sectionInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 1.7 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
           >
             Trusted Learning Partners
           </motion.h3>
