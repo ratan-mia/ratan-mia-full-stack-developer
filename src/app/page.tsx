@@ -4,6 +4,7 @@ import About from '@/components/home/About';
 import Contact from '@/components/home/Contact';
 import CTA from '@/components/home/CTA';
 import EmpoweringBusiness from '@/components/home/EmpoweringBusiness';
+import Experience from '@/components/home/Experience';
 import FeelanceCTA from '@/components/home/FeelanceCTA';
 import HeroMain from '@/components/home/HeroMain';
 import Process from '@/components/home/Process';
@@ -37,6 +38,8 @@ export default function Home() {
       <Process />
       {/* Technical Expertise */}
       <CTA />
+      {/* Experience */}
+      <Experience />
       {/* Training Certificates */}
       <TrainingCertificates />
 

@@ -3,11 +3,8 @@
 import { motion, useInView } from 'framer-motion';
 import {
   ArrowRight,
-  Award,
   Mail,
-  MapPin,
-  Target,
-  Users
+  MapPin
 } from 'lucide-react';
 import { useRef } from 'react';
 
@@ -47,158 +44,12 @@ const ANIMATION_VARIANTS = {
   }
 };
 
-const CORE_STATS = [
-  { 
-    number: '10+', 
-    label: 'Years Experience', 
-    description: 'Building robust web and mobile applications with modern technologies like React Native, Next.js, and Laravel across diverse industries.',
-    icon: Award 
-  },
-  { 
-    number: '150+', 
-    label: 'Projects Delivered', 
-    description: 'Delivered complete solutions including mobile apps, e-commerce platforms, and enterprise systems from concept to deployment.',
-    icon: Target 
-  },
-  { 
-    number: '98%', 
-    label: 'Client Satisfaction', 
-    description: 'Maintained exceptional relationships through clear communication, timely delivery, ongoing support, and quality-driven development.',
-    icon: Users 
-  }
-];
-
-const EXPERIENCE = [
-  {
-    company: 'ELF Bangladesh',
-    role: 'Senior Mobile App Developer',
-    period: '2022 - Present',
-    tech: ['React Native', 'TypeScript', 'Supabase', 'Redux'],
-    description: 'Developing cross-platform mobile applications for e-commerce, implementing real-time features and payment integrations.'
-  },
-  {
-    company: 'Kawasaki Bangladesh',
-    role: 'Senior Full Stack Developer',
-    period: '2020 - 2022',
-    tech: ['React', 'Laravel', 'AWS', 'MySQL'],
-    description: 'Led development of enterprise-level applications, managed cloud infrastructure, and mentored junior developers.'
-  },
-  {
-    company: 'Continental Motors',
-    role: 'IT Manager & Lead Developer',
-    period: '2018 - 2020',
-    tech: ['PHP', 'WordPress', 'MySQL', 'Linux'],
-    description: 'Managed IT operations while developing custom business solutions, CRM systems, and team leadership.'
-  },
-  {
-    company: 'Chery Bangladesh',
-    role: 'Lead Web Developer',
-    period: '2016 - 2018',
-    tech: ['HTML5', 'CSS3', 'JavaScript', 'PHP'],
-    description: 'Developed responsive websites, mobile-first designs, and e-commerce platforms for automotive industry.'
-  }
-];
-
 const DEVELOPMENT_SERVICES = [
   { name: 'Mobile App Development (React Native)', level: 95, color: 'bg-black' },
   { name: 'Front-End Development (React/Next.js)', level: 95, color: 'bg-black' },
   { name: 'Back-End Development (Laravel/Node.js)', level: 90, color: 'bg-black' },
   { name: 'E-commerce Solutions & API Integration', level: 92, color: 'bg-black' },
 ];
-
-// --- SECTION HEADER COMPONENT ---
-const SectionHeader = ({ children, isInView, textColor = 'text-white' }) => (
-  <motion.div
-    className="text-center mb-12 lg:mb-16"
-    variants={ANIMATION_VARIANTS.fadeUp}
-    initial="hidden"
-    animate={isInView ? "visible" : "hidden"}
-  >
-    {children}
-  </motion.div>
-);
-
-// --- STAT COLUMN COMPONENT ---
-const StatColumn = ({ stat, index, isInView }) => (
-  <motion.div
-    className="text-center px-4 sm:px-6 lg:px-8 py-6 md:py-0 group"
-    variants={ANIMATION_VARIANTS.fadeUp}
-    initial="hidden"
-    animate={isInView ? "visible" : "hidden"}
-    transition={{ delay: 0.2 + index * 0.15 }}
-    whileHover={{ y: -8 }}
-  >
-    <motion.div
-      className="w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 mx-auto mb-4 sm:mb-6 rounded-2xl bg-accent-lime flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg"
-      whileHover={{ rotate: 5 }}
-    >
-      <stat.icon className="w-7 h-7 sm:w-8 sm:h-8 lg:w-10 lg:h-10 text-black" />
-    </motion.div>
-    <motion.h3 
-      className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-black mb-2 sm:mb-3"
-      whileHover={{ scale: 1.05 }}
-    >
-      {stat.number}
-    </motion.h3>
-    <h4 className="text-base sm:text-lg lg:text-xl xl:text-2xl font-bold text-black mb-3 sm:mb-4 lg:mb-6">{stat.label}</h4>
-    <p className="text-gray-600 leading-relaxed text-sm sm:text-base lg:text-lg max-w-xs mx-auto">{stat.description}</p>
-  </motion.div>
-);
-
-// --- EXPERIENCE ROW COMPONENT ---
-const ExperienceRow = ({ experience, index, isInView }) => (
-  <motion.div
-    className="group grid grid-cols-1 lg:grid-cols-12 items-start lg:items-center gap-4 lg:gap-6 py-8 lg:py-12 border-b border-gray-200 hover:bg-gray-50/50 rounded-lg px-0 lg:px-6 transition-all duration-300"
-    variants={ANIMATION_VARIANTS.slideInLeft}
-    initial="hidden"
-    animate={isInView ? "visible" : "hidden"}
-    transition={{ delay: 0.2 + index * 0.15 }}
-    whileHover={{ x: 8 }}
-  >
-    {/* Year/Period - 2-3 columns */}
-    <div className="lg:col-span-3 flex items-center gap-3">
-      <div className="w-12 h-12 rounded-xl bg-gray-100 group-hover:bg-accent-lime flex items-center justify-center transition-all duration-300 flex-shrink-0">
-        <Award className="w-6 h-6 text-black" />
-      </div>
-      <div>
-        <div className="text-accent-lime font-bold text-base lg:text-lg group-hover:scale-105 transition-transform">
-          {experience.period.split(' - ')[0]}
-        </div>
-        <div className="text-gray-500 text-sm">
-          {experience.period.split(' - ')[1]}
-        </div>
-      </div>
-    </div>
-
-    {/* Main Content - 6 columns */}
-    <div className="lg:col-span-6">
-      <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-black mb-2 group-hover:text-accent-lime transition-colors">
-        {experience.role}
-      </h3>
-      <p className="text-gray-600 mb-3 text-base leading-relaxed">{experience.description}</p>
-
-      {/* Tech tags */}
-      <div className="flex flex-wrap gap-2">
-        {experience.tech.map(tech => (
-          <span 
-            key={tech}
-            className="px-3 py-1 text-xs bg-gray-100 text-gray-700 rounded-full font-medium hover:bg-accent-lime/20 hover:text-black transition-colors"
-          >
-            {tech}
-          </span>
-        ))}
-      </div>
-    </div>
-
-    {/* Company Info - 3 columns */}
-    <div className="lg:col-span-3 text-left lg:text-right mt-2 lg:mt-0">
-      <div className="text-lg lg:text-xl font-bold text-black group-hover:text-accent-lime transition-colors">
-        {experience.company}
-      </div>
-      <div className="text-sm text-gray-500 font-medium">Company</div>
-    </div>
-  </motion.div>
-);
 
 // --- SERVICE SKILL BAR COMPONENT ---
 const ServiceSkillBar = ({ service, index, isInView }) => (
@@ -435,115 +286,6 @@ const MainAboutSection = ({ isInView }) => (
   </div>
 );
 
-// --- STATS SECTION ---
-const StatsSection = ({ isInView }) => (
-  <div className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-black via-gray-900 to-black relative overflow-hidden">
-    {/* Decorative elements */}
-    <div className="absolute inset-0 pointer-events-none">
-      <div className="absolute top-20 left-20 w-64 h-64 bg-accent-lime/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 right-20 w-80 h-80 bg-accent-lime/5 rounded-full blur-3xl" />
-    </div>
-    
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <motion.div
-        className="text-center mb-16 sm:mb-20"
-        variants={ANIMATION_VARIANTS.fadeUp}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-      >
-        <motion.div
-          className="inline-block px-6 py-2 bg-accent-lime/20 text-accent-lime rounded-full text-xs sm:text-sm font-bold mb-6 uppercase tracking-wider"
-          variants={ANIMATION_VARIANTS.fadeUp}
-        >
-          📊 By The Numbers
-        </motion.div>
-        <h3 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold mb-6 text-white">
-          Proven Track Record
-        </h3>
-        <p className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto">
-          Numbers that reflect commitment, quality, and client success
-        </p>
-      </motion.div>
-      
-      <motion.div 
-        className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 lg:gap-12"
-        variants={ANIMATION_VARIANTS.stagger}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-      >
-        {CORE_STATS.map((stat, index) => (
-          <motion.div
-            key={stat.label}
-            className="relative group"
-            variants={ANIMATION_VARIANTS.fadeUp}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            transition={{ delay: 0.2 + index * 0.15 }}
-          >
-            <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-8 sm:p-10 lg:p-12 border-2 border-gray-700 group-hover:border-accent-lime/50 transition-all duration-300 hover:shadow-2xl hover:shadow-accent-lime/20 hover:-translate-y-2">
-              <motion.div
-                className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 mx-auto mb-6 sm:mb-8 rounded-2xl bg-gradient-to-br from-accent-lime to-lime-300 flex items-center justify-center shadow-lg shadow-accent-lime/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300"
-                whileHover={{ rotate: 5 }}
-              >
-                <stat.icon className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-black" />
-              </motion.div>
-              <motion.h3 
-                className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-extrabold text-white mb-3 sm:mb-4 group-hover:text-accent-lime transition-colors"
-                whileHover={{ scale: 1.05 }}
-              >
-                {stat.number}
-              </motion.h3>
-              <h4 className="text-lg sm:text-xl lg:text-2xl font-bold text-accent-lime mb-4 sm:mb-6">{stat.label}</h4>
-              <p className="text-gray-400 leading-relaxed text-sm sm:text-base lg:text-lg">{stat.description}</p>
-            </div>
-          </motion.div>
-        ))}
-      </motion.div>
-    </div>
-  </div>
-);
-
-// --- EXPERIENCE SECTION ---
-const ExperienceSection = ({ isInView }) => (
-  <div className="py-20 bg-white relative">
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <motion.div
-        className="text-center mb-12 lg:mb-16"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-bold mb-6 uppercase tracking-wider">
-          💼 Experience
-        </div>
-        <h2 className="text-4xl md:text-5xl font-bold mb-4 text-black">
-          Professional Journey
-        </h2>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Over a decade of experience across web, mobile, and enterprise development with leading companies in Bangladesh
-        </p>
-      </motion.div>
-      
-      <motion.div 
-        className="space-y-0"
-        variants={ANIMATION_VARIANTS.stagger}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-      >
-        {EXPERIENCE.map((experience, index) => (
-          <ExperienceRow 
-            key={experience.company} 
-            experience={experience} 
-            index={index} 
-            isInView={isInView} 
-          />
-        ))}
-      </motion.div>
-    </div>
-  </div>
-);
-
 // --- CTA SECTION ---
 const CTASection = ({ isInView }) => (
   <div className="bg-black py-12 sm:py-16">
@@ -595,14 +337,10 @@ const CTASection = ({ isInView }) => (
 // --- MAIN ABOUT COMPONENT ---
 export default function About() {
   const sectionRef = useRef(null);
-  const statsRef = useRef(null);
   const servicesRef = useRef(null);
-  const experienceRef = useRef(null);
   const ctaRef = useRef(null);
 
-  const statsInView = useInView(statsRef, { once: true, amount: 0.2 });
   const servicesInView = useInView(servicesRef, { once: true, amount: 0.2 });
-  const experienceInView = useInView(experienceRef, { once: true, amount: 0.1 });
   const ctaInView = useInView(ctaRef, { once: true, amount: 0.5 });
 
   return (
@@ -610,16 +348,6 @@ export default function About() {
       {/* Main About Section */}
       <div ref={servicesRef}>
         <MainAboutSection isInView={servicesInView} />
-      </div>
-
-      {/* Stats Section */}
-      <div ref={statsRef}>
-        <StatsSection isInView={statsInView} />
-      </div>
-
-      {/* Experience Section */}
-      <div ref={experienceRef}>
-        <ExperienceSection isInView={experienceInView} />
       </div>
 
       {/* CTA Section */}
