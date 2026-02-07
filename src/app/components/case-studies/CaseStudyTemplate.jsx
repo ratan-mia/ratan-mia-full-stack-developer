@@ -247,13 +247,13 @@ export function ImageContentGrid({
 }) {
   return (
     <div className={`grid lg:grid-cols-2 gap-0 items-center ${containerClass}`}>
-      <div className={`w-full ${imagePosition === 'right' ? 'order-1 lg:order-2' : ''}`}>
+      <div className={`w-full flex items-center justify-center p-8 lg:p-12 ${imagePosition === 'right' ? 'order-1 lg:order-2' : ''}`}>
         <Image
           src={image}
           alt={imageAlt}
           width={2000}
           height={2000}
-          className="w-full h-auto"
+          className="w-full h-auto max-h-[600px] object-contain"
         />
       </div>
 
@@ -311,13 +311,13 @@ export function FullWidthImageContent({
   return (
     <section className={`py-20 ${bgColor}`}>
       <div className="grid lg:grid-cols-2 gap-0 items-center">
-        <div className={`w-full ${imagePosition === 'right' ? 'order-1 lg:order-2' : ''}`}>
+        <div className={`w-full flex items-center justify-center p-8 lg:p-12 ${imagePosition === 'right' ? 'order-1 lg:order-2' : ''}`}>
           <Image
             src={image}
             alt={imageAlt}
             width={1410}
             height={1182}
-            className="w-full h-auto"
+            className="w-full h-auto max-h-[700px] object-contain"
           />
         </div>
 
