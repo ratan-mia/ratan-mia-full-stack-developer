@@ -51,18 +51,18 @@ const ANIMATION_VARIANTS = {
 const CORE_STATS = [
   { 
     number: '10+', 
-    label: 'Years of Experience', 
+    label: 'Years Experience', 
     description: 'Building robust web and mobile applications with modern technologies like React Native, Next.js, and Laravel across diverse industries.',
     icon: Award 
   },
   { 
     number: '150+', 
-    label: 'Successful Projects', 
+    label: 'Projects Delivered', 
     description: 'Delivered complete solutions including mobile apps, e-commerce platforms, and enterprise systems from concept to deployment.',
     icon: Target 
   },
   { 
-    number: '100%', 
+    number: '98%', 
     label: 'Client Satisfaction', 
     description: 'Maintained exceptional relationships through clear communication, timely delivery, ongoing support, and quality-driven development.',
     icon: Users 
@@ -122,7 +122,7 @@ const SectionHeader = ({ children, isInView, textColor = 'text-white' }) => (
 // --- STAT COLUMN COMPONENT ---
 const StatColumn = ({ stat, index, isInView }) => (
   <motion.div
-    className="text-center px-4 sm:px-6 lg:px-8 group"
+    className="text-center px-4 sm:px-6 lg:px-8 py-6 md:py-0 group"
     variants={ANIMATION_VARIANTS.fadeUp}
     initial="hidden"
     animate={isInView ? "visible" : "hidden"}
@@ -130,19 +130,19 @@ const StatColumn = ({ stat, index, isInView }) => (
     whileHover={{ y: -8 }}
   >
     <motion.div
-      className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 sm:mb-6 rounded-2xl bg-accent-lime flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+      className="w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 mx-auto mb-4 sm:mb-6 rounded-2xl bg-accent-lime flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg"
       whileHover={{ rotate: 5 }}
     >
-      <stat.icon className="w-6 h-6 sm:w-8 sm:h-8 text-black" />
+      <stat.icon className="w-7 h-7 sm:w-8 sm:h-8 lg:w-10 lg:h-10 text-black" />
     </motion.div>
     <motion.h3 
-      className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-black mb-3 sm:mb-4"
+      className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-black mb-2 sm:mb-3"
       whileHover={{ scale: 1.05 }}
     >
       {stat.number}
     </motion.h3>
-    <h4 className="text-lg sm:text-xl lg:text-2xl font-bold text-black mb-4 sm:mb-6">{stat.label}</h4>
-    <p className="text-gray-600 leading-relaxed text-sm sm:text-base lg:text-lg">{stat.description}</p>
+    <h4 className="text-base sm:text-lg lg:text-xl xl:text-2xl font-bold text-black mb-3 sm:mb-4 lg:mb-6">{stat.label}</h4>
+    <p className="text-gray-600 leading-relaxed text-sm sm:text-base lg:text-lg max-w-xs mx-auto">{stat.description}</p>
   </motion.div>
 );
 
@@ -338,27 +338,42 @@ const MainAboutSection = ({ isInView }) => (
             <span className="text-black/80">Web & Mobile Experiences</span>
           </motion.h2>
           
-          {/* Content Sections */}
+          {/* Personal Introduction */}
           <motion.div
             className="mb-6 sm:mb-8 space-y-6 sm:space-y-8"
             variants={ANIMATION_VARIANTS.fadeUp}
           >
             <div>
               <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-black mb-3 sm:mb-4">
-                Full Stack & Mobile Developer
+                Hi, I'm Ratan Mia 👋
               </h3>
               <p className="text-base sm:text-lg text-black/80 leading-relaxed max-w-lg">
-                Specializing in React Native mobile apps, Next.js web applications, and Laravel backend systems. With 10+ years of experience, I build scalable solutions using cutting-edge technologies and industry best practices.
+                A passionate full stack developer from Dhaka, Bangladesh, specializing in React Native mobile apps, Next.js web applications, and Laravel backend systems. I started coding at 16 and haven't stopped building since.
               </p>
             </div>
 
             <div>
               <h4 className="text-lg sm:text-xl lg:text-2xl font-bold text-black mb-3 sm:mb-4">
-                Why Choose My Services
+                What I Bring to Your Project
               </h4>
-              <p className="text-base sm:text-lg text-black/80 leading-relaxed max-w-lg">
-                I deliver cross-platform mobile apps, progressive web applications, and enterprise solutions that drive business growth. From concept to deployment, I combine technical expertise with strategic thinking to create products users love.
-              </p>
+              <ul className="space-y-3 text-base sm:text-lg text-black/80 leading-relaxed max-w-lg">
+                <li className="flex items-start gap-3">
+                  <span className="text-accent-lime text-xl font-bold mt-0.5">✓</span>
+                  <span><strong className="text-black">10+ years</strong> of hands-on experience building production apps</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-accent-lime text-xl font-bold mt-0.5">✓</span>
+                  <span><strong className="text-black">Cross-platform expertise</strong> in mobile (iOS/Android) and web</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-accent-lime text-xl font-bold mt-0.5">✓</span>
+                  <span><strong className="text-black">End-to-end solutions</strong> from concept to deployment and support</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-accent-lime text-xl font-bold mt-0.5">✓</span>
+                  <span><strong className="text-black">Real results</strong> with 50K+ app users and 150+ successful projects</span>
+                </li>
+              </ul>
             </div>
           </motion.div>
 
@@ -462,40 +477,69 @@ const CTASection = ({ isInView }) => (
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
     >
-      <div className="bg-gray-800 p-6 sm:p-8 md:p-12 lg:p-16 rounded-3xl text-center relative overflow-hidden border border-gray-700 hover:border-gray-600 transition-colors group">
+      <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 sm:p-10 md:p-14 lg:p-16 xl:p-20 rounded-3xl text-center relative overflow-hidden border-2 border-gray-700 hover:border-accent-lime/50 transition-all group">
         {/* Background Pattern */}
         <div className="absolute inset-0 bg-gradient-to-br from-accent-lime/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="absolute top-10 right-10 w-32 h-32 bg-accent-lime/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-10 left-10 w-40 h-40 bg-accent-lime/5 rounded-full blur-3xl" />
         
         <div className="relative z-10">
+          <motion.div
+            className="inline-block px-6 py-2 bg-accent-lime/20 text-accent-lime rounded-full text-xs sm:text-sm font-bold mb-6 uppercase tracking-wider"
+            variants={ANIMATION_VARIANTS.fadeUp}
+          >
+            💬 Let's Talk
+          </motion.div>
+          
           <motion.h3 
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-white mb-4 sm:mb-6"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-white mb-4 sm:mb-6 leading-tight"
             whileHover={{ scale: 1.02 }}
           >
-            Ready to Collaborate?
+            Ready to Build Something
+            <br className="hidden sm:block" />
+            <span className="text-accent-lime"> Amazing Together?</span>
           </motion.h3>
-          <p className="text-base sm:text-lg lg:text-xl text-gray-300 mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed">
-            Let's discuss your project and build something exceptional together.
+          <p className="text-base sm:text-lg lg:text-xl text-gray-300 mb-10 sm:mb-12 max-w-3xl mx-auto leading-relaxed">
+            Whether you need a mobile app, web platform, or custom solution - I'm here to help bring your vision to life with clean code and exceptional results.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center items-center">
             <motion.a 
               href="#contact" 
-              className="bg-accent-lime text-black font-bold px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-xl hover:bg-lime-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-lime-400/30 transition-all duration-300 inline-flex items-center justify-center gap-2 sm:gap-3 text-base sm:text-lg"
+              className="w-full sm:w-auto bg-accent-lime text-black font-extrabold px-8 sm:px-10 lg:px-12 py-4 sm:py-5 rounded-xl hover:bg-lime-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-lime-400/40 transition-all duration-300 inline-flex items-center justify-center gap-3 text-base sm:text-lg"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <span>Start a Project</span>
-              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+              <ArrowRight className="w-5 h-5" />
             </motion.a>
             <motion.a 
-              href="/resume.pdf" 
-              className="border-2 border-gray-500 text-white font-bold px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-xl hover:bg-gray-700 hover:border-gray-400 hover:-translate-y-1 transition-all duration-300 inline-flex items-center justify-center gap-2 sm:gap-3 text-base sm:text-lg"
+              href="/portfolio" 
+              className="w-full sm:w-auto border-2 border-gray-600 text-white font-bold px-8 sm:px-10 lg:px-12 py-4 sm:py-5 rounded-xl hover:bg-gray-700 hover:border-accent-lime/50 hover:-translate-y-1 transition-all duration-300 inline-flex items-center justify-center gap-3 text-base sm:text-lg"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Download className="w-4 h-4 sm:w-5 sm:h-5" />
-              <span>Download Resume</span>
+              <span>View Portfolio</span>
             </motion.a>
           </div>
+          
+          {/* Additional Info */}
+          <motion.div
+            className="mt-10 sm:mt-12 pt-8 border-t border-gray-700 flex flex-wrap justify-center gap-6 sm:gap-8 text-sm text-gray-400"
+            variants={ANIMATION_VARIANTS.fadeUp}
+          >
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-accent-lime rounded-full animate-pulse" />
+              <span>Available for new projects</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-accent-lime rounded-full" />
+              <span>Response within 24 hours</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-accent-lime rounded-full" />
+              <span>Free consultation call</span>
+            </div>
+          </motion.div>
         </div>
       </div>
     </motion.div>
