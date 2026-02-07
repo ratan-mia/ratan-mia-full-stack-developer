@@ -152,15 +152,15 @@ const Testimonials = () => {
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <div 
-            className="absolute inset-0 opacity-30"
+            className="absolute inset-0 opacity-50"
             style={{
-              backgroundImage: 'url(https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000&auto=format&fit=crop)',
+              backgroundImage: 'url(https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=2000&auto=format&fit=crop)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundAttachment: 'fixed'
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/80 to-black/70" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/70 to-black/60" />
         </div>
 
         {/* Animated Background Gradient Blobs - Much More Visible */}
