@@ -149,9 +149,23 @@ const Testimonials = () => {
   return (
     <>
       <section ref={ref} className="py-8 lg:py-12 bg-black relative overflow-hidden" id="testimonials">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0 z-0">
+          <div 
+            className="absolute inset-0 opacity-30"
+            style={{
+              backgroundImage: 'url(https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000&auto=format&fit=crop)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundAttachment: 'fixed'
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/80 to-black/70" />
+        </div>
+
         {/* Animated Background Gradient Blobs - Much More Visible */}
         <motion.div 
-          className="absolute top-20 -left-20 w-[600px] h-[600px] rounded-full blur-3xl"
+          className="absolute top-20 -left-20 w-[600px] h-[600px] rounded-full blur-3xl z-0"
           style={{ background: 'radial-gradient(circle, rgba(204, 255, 0, 0.15) 0%, transparent 70%)' }}
           animate={{
             scale: [1, 1.3, 1],
@@ -165,7 +179,7 @@ const Testimonials = () => {
           }}
         />
         <motion.div 
-          className="absolute bottom-20 -right-20 w-[600px] h-[600px] rounded-full blur-3xl"
+          className="absolute bottom-20 -right-20 w-[600px] h-[600px] rounded-full blur-3xl z-0"
           style={{ background: 'radial-gradient(circle, rgba(204, 255, 0, 0.1) 0%, transparent 70%)' }}
           animate={{
             scale: [1, 1.4, 1],
