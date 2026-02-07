@@ -53,6 +53,54 @@ const TESTIMONIALS_DATA = [
     projectCategory: "SaaS Product",
     projectImage: "/images/projects/turflet/TurfLet.png",
     projectTechnologies: ["React Native", "Next.js", "Prisma", "PostgreSQL"]
+  },
+  {
+    id: 5,
+    name: "David Chen",
+    position: "Freelance Manager",
+    company: "Matchlyzer",
+    quote: "The Chrome extension revolutionized how I find jobs on Upwork. The AI-powered matching and proposal suggestions have increased my success rate by 300%.",
+    avatar: "D",
+    projectTitle: "Matchlyzer",
+    projectCategory: "Chrome Extension",
+    projectImage: "/images/projects/matchlyzer.png",
+    projectTechnologies: ["JavaScript", "Chrome API", "Machine Learning", "OpenAI"]
+  },
+  {
+    id: 6,
+    name: "Kamal Ahmed",
+    position: "Marketing Director",
+    company: "ELF International",
+    quote: "The corporate website perfectly represents our global brand. The performance optimization and multilingual support have significantly improved our reach.",
+    avatar: "K",
+    projectTitle: "Elf BD",
+    projectCategory: "Mobile App",
+    projectImage: "/images/projects/elf-international-mockup.png",
+    projectTechnologies: ["React Native", "Redux", "Firebase", "Analytics"]
+  },
+  {
+    id: 7,
+    name: "Rahman Hossain",
+    position: "Sales Director",
+    company: "Chery Bangladesh",
+    quote: "The automotive e-commerce platform with 360° car viewing has transformed our customer experience. Sales inquiries have doubled since launch.",
+    avatar: "R",
+    projectTitle: "Chery Bangladesh",
+    projectCategory: "E-commerce",
+    projectImage: "/images/projects/cherybd-mockup.png",
+    projectTechnologies: ["React.js", "Laravel", "360° View", "MySQL"]
+  },
+  {
+    id: 8,
+    name: "Michael Torres",
+    position: "Operations Manager",
+    company: "MotoJP",
+    quote: "The headless Shopify solution delivered exceptional performance. Our page load times improved by 60% and conversion rates increased significantly.",
+    avatar: "M",
+    projectTitle: "Chery Bangladesh",
+    projectCategory: "E-commerce",
+    projectImage: "/images/projects/cherybd-mockup.png",
+    projectTechnologies: ["Next.js", "Shopify API", "GraphQL", "Tailwind"]
   }
 ];
 
@@ -154,7 +202,7 @@ const Testimonials = () => {
                 onClick={() => setIsModalOpen(true)}
               >
                 <img 
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop"
+                  src="/images/about-image.jpg"
                   alt="Ratan Mia - Full Stack Developer"
                   className="w-full h-full object-cover"
                 />
