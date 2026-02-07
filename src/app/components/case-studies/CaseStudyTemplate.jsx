@@ -246,18 +246,26 @@ export function ImageContentGrid({
   containerClass = 'bg-gray-50 rounded-3xl overflow-hidden mb-16'
 }) {
   return (
-    <div className={`grid lg:grid-cols-2 gap-0 items-center ${containerClass}`}>
-      <div className={`w-full flex items-center justify-center p-8 lg:p-12 ${imagePosition === 'right' ? 'order-1 lg:order-2' : ''}`}>
-        <Image
-          src={image}
-          alt={imageAlt}
-          width={2000}
-          height={2000}
-          className="w-full h-auto max-h-[600px] object-contain"
-        />
+    <div className={`grid lg:grid-cols-2 gap-0 items-stretch ${containerClass} transition-all duration-500 hover:shadow-xl`}>
+      <div className={`w-full flex items-center justify-center p-8 lg:p-16 bg-gradient-to-br from-white to-gray-100 ${imagePosition === 'right' ? 'order-1 lg:order-2' : ''}`}>
+        <div className="relative w-full h-full flex items-center justify-center">
+          {/* Decorative background element */}
+          <div className="absolute inset-0 bg-accent-lime/5 rounded-2xl"></div>
+          
+          {/* Image container */}
+          <div className="relative z-10 w-full flex items-center justify-center">
+            <Image
+              src={image}
+              alt={imageAlt}
+              width={2000}
+              height={2000}
+              className="w-full h-auto max-h-[600px] object-contain rounded-xl transition-transform duration-500 hover:scale-[1.02]"
+            />
+          </div>
+        </div>
       </div>
 
-      <div className={`p-8 md:p-12 ${imagePosition === 'right' ? 'order-2 lg:order-1' : ''}`}>
+      <div className={`p-8 md:p-12 flex flex-col justify-center ${imagePosition === 'right' ? 'order-2 lg:order-1' : ''}`}>
         {badge && BadgeIcon && (
           <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
             <BadgeIcon className="w-4 h-4" />
@@ -274,13 +282,13 @@ export function ImageContentGrid({
             {features.map((feature, idx) => {
               const Icon = feature.icon;
               return (
-                <div key={idx} className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-accent-lime rounded-xl flex items-center justify-center shrink-0">
-                    {Icon && <Icon className="w-5 h-5 text-black" />}
+                <div key={idx} className="flex items-start gap-4 p-4 rounded-xl hover:bg-white/50 transition-all duration-300 group">
+                  <div className="w-12 h-12 bg-accent-lime rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-md">
+                    {Icon && <Icon className="w-6 h-6 text-black" />}
                   </div>
-                  <div>
-                    <h4 className="text-lg font-bold mb-1">{feature.title}</h4>
-                    <p className="text-gray-600 text-sm">{feature.description}</p>
+                  <div className="flex-1">
+                    <h4 className="text-lg font-bold mb-1 group-hover:text-accent-lime transition-colors">{feature.title}</h4>
+                    <p className="text-gray-600 text-sm leading-relaxed">{feature.description}</p>
                   </div>
                 </div>
               );
@@ -309,19 +317,29 @@ export function FullWidthImageContent({
   bgColor = 'bg-white'
 }) {
   return (
-    <section className={`py-20 ${bgColor}`}>
-      <div className="grid lg:grid-cols-2 gap-0 items-center">
-        <div className={`w-full flex items-center justify-center p-8 lg:p-12 ${imagePosition === 'right' ? 'order-1 lg:order-2' : ''}`}>
-          <Image
-            src={image}
-            alt={imageAlt}
-            width={1410}
-            height={1182}
-            className="w-full h-auto max-h-[700px] object-contain"
-          />
+    <section className={`py-20 ${bgColor} transition-all duration-500`}>
+      <div className="grid lg:grid-cols-2 gap-0 items-stretch">
+        <div className={`w-full flex items-center justify-center p-8 lg:p-16 ${imagePosition === 'right' ? 'order-1 lg:order-2 bg-gradient-to-bl from-gray-50 to-white' : 'bg-gradient-to-br from-gray-50 to-white'}`}>
+          <div className="relative w-full h-full flex items-center justify-center">
+            {/* Decorative elements */}
+            <div className="absolute inset-0 bg-accent-lime/5 rounded-3xl"></div>
+            <div className="absolute top-4 right-4 w-32 h-32 bg-accent-lime/10 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-4 left-4 w-32 h-32 bg-accent-lime/10 rounded-full blur-3xl"></div>
+            
+            {/* Image container */}
+            <div className="relative z-10 w-full flex items-center justify-center">
+              <Image
+                src={image}
+                alt={imageAlt}
+                width={1410}
+                height={1182}
+                className="w-full h-auto max-h-[600px] object-contain rounded-2xl transition-transform duration-500 hover:scale-[1.02]"
+              />
+            </div>
+          </div>
         </div>
 
-        <div className={`px-8 md:px-12 lg:px-16 py-12 ${imagePosition === 'right' ? 'order-2 lg:order-1' : ''}`}>
+        <div className={`px-8 md:px-12 lg:px-16 py-12 flex flex-col justify-center ${imagePosition === 'right' ? 'order-2 lg:order-1' : ''}`}>
           {badge && BadgeIcon && (
             <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
               <BadgeIcon className="w-4 h-4" />
@@ -334,17 +352,17 @@ export function FullWidthImageContent({
           </p>
 
           {features.length > 0 && (
-            <div className="space-y-6">
+            <div className="space-y-4">
               {features.map((feature, idx) => {
                 const Icon = feature.icon;
                 return (
-                  <div key={idx} className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-accent-lime rounded-xl flex items-center justify-center shrink-0">
-                      {Icon && <Icon className="w-6 h-6 text-black" />}
+                  <div key={idx} className="flex items-start gap-4 p-5 rounded-2xl bg-gray-50 hover:bg-accent-lime/10 border border-gray-200 hover:border-accent-lime/30 transition-all duration-300 group">
+                    <div className="w-14 h-14 bg-accent-lime rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-md">
+                      {Icon && <Icon className="w-7 h-7 text-black" />}
                     </div>
-                    <div>
-                      <h4 className="text-lg font-bold mb-1">{feature.title}</h4>
-                      <p className="text-gray-600 text-sm">{feature.description}</p>
+                    <div className="flex-1">
+                      <h4 className="text-xl font-bold mb-2 group-hover:text-accent-lime transition-colors">{feature.title}</h4>
+                      <p className="text-gray-600 leading-relaxed">{feature.description}</p>
                     </div>
                   </div>
                 );
