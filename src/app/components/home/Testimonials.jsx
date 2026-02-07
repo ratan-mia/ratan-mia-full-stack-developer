@@ -106,6 +106,25 @@ const TESTIMONIALS_DATA = [
 
 const YOUTUBE_VIDEO_ID = 'eIGiaRxOqGk';
 
+// Generate particles once to avoid hydration mismatch
+const PARTICLES = Array.from({ length: 20 }, (_, i) => ({
+  id: i,
+  left: [68, 0, 1, 54, 46, 39, 17, 95, 63, 74, 25, 20, 61, 15, 51, 20, 86, 76, 62, 64][i],
+  top: [50, 41, 60, 41, 0, 53, 80, 46, 72, 17, 46, 5, 77, 69, 44, 23, 35, 50, 82, 48][i],
+  duration: 3 + (i % 4),
+  delay: (i % 5) * 0.4,
+}));
+
+const LARGE_DOTS = Array.from({ length: 8 }, (_, i) => ({
+  id: i,
+  left: [64, 18, 27, 75, 74, 21, 34, 63][i],
+  top: [73, 81, 77, 25, 37, 71, 65, 43][i],
+  width: [7.6, 8.5, 6.8, 11.9, 9.3, 5.0, 5.5, 7.3][i],
+  height: [5.0, 5.6, 6.7, 4.5, 4.4, 9.0, 6.6, 6.0][i],
+  duration: 4 + (i % 3),
+  delay: (i % 4) * 0.75,
+}));
+
 // --- MAIN TESTIMONIALS COMPONENT ---
 const Testimonials = () => {
   const ref = useRef(null);
@@ -129,7 +148,7 @@ const Testimonials = () => {
 
   return (
     <>
-      <section ref={ref} className="py-16 lg:py-24 bg-black relative overflow-hidden" id="testimonials">
+      <section ref={ref} className="py-12 lg:py-16 bg-black relative overflow-hidden" id="testimonials">
         {/* Animated Background Gradient Blobs - Much More Visible */}
         <motion.div 
           className="absolute top-20 -left-20 w-[600px] h-[600px] rounded-full blur-3xl"
@@ -162,50 +181,50 @@ const Testimonials = () => {
         />
         
         {/* Floating Particles - Many More */}
-        {[...Array(20)].map((_, i) => (
+        {PARTICLES.map((particle) => (
           <motion.div
-            key={i}
+            key={particle.id}
             className="absolute w-1 h-1 rounded-full bg-accent-lime"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              left: `${particle.left}%`,
+              top: `${particle.top}%`,
             }}
             animate={{
-              y: [0, -30 - Math.random() * 50, 0],
-              x: [0, (Math.random() - 0.5) * 40, 0],
+              y: [0, -30 - (particle.id % 5) * 10, 0],
+              x: [0, ((particle.id % 3) - 1) * 20, 0],
               opacity: [0.2, 1, 0.2],
               scale: [1, 1.5, 1],
             }}
             transition={{
-              duration: 3 + Math.random() * 4,
+              duration: particle.duration,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: Math.random() * 2,
+              delay: particle.delay,
             }}
           />
         ))}
         
         {/* Larger Floating Dots */}
-        {[...Array(8)].map((_, i) => (
+        {LARGE_DOTS.map((dot) => (
           <motion.div
-            key={`dot-${i}`}
+            key={`dot-${dot.id}`}
             className="absolute rounded-full bg-accent-lime/30"
             style={{
-              left: `${10 + Math.random() * 80}%`,
-              top: `${10 + Math.random() * 80}%`,
-              width: `${4 + Math.random() * 8}px`,
-              height: `${4 + Math.random() * 8}px`,
+              left: `${dot.left}%`,
+              top: `${dot.top}%`,
+              width: `${dot.width}px`,
+              height: `${dot.height}px`,
             }}
             animate={{
-              y: [0, -20 - Math.random() * 30, 0],
-              x: [0, (Math.random() - 0.5) * 30, 0],
+              y: [0, -20 - (dot.id % 3) * 10, 0],
+              x: [0, ((dot.id % 2) - 0.5) * 30, 0],
               opacity: [0.3, 0.8, 0.3],
             }}
             transition={{
-              duration: 4 + Math.random() * 3,
+              duration: dot.duration,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: Math.random() * 3,
+              delay: dot.delay,
             }}
           />
         ))}
