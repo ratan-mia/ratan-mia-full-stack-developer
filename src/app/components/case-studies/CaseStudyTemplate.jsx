@@ -78,7 +78,7 @@ export default function CaseStudyTemplate({ project, navItems = [], heroSection,
                       href={project.liveUrl} 
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-sm font-bold text-black hover:text-accent-lime transition-colors group"
+                      className="inline-flex items-center justify-center gap-2 w-full px-4 py-3 text-sm font-bold text-black bg-accent-lime hover:bg-accent-lime/80 transition-all duration-300 rounded-xl hover:shadow-lg hover:scale-105 group"
                     >
                       Visit Website
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -128,31 +128,31 @@ export default function CaseStudyTemplate({ project, navItems = [], heroSection,
                 <div className="flex gap-2">
                   <button 
                     onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank')}
-                    className="w-10 h-10 bg-white hover:bg-accent-lime border border-gray-200 hover:border-accent-lime rounded-lg flex items-center justify-center transition-all hover:scale-105"
+                    className="w-10 h-10 bg-accent-lime hover:bg-accent-lime/80 text-black border-0 rounded-lg flex items-center justify-center transition-all hover:scale-110 shadow-md"
                     aria-label="Share on Facebook"
                   >
-                    <Facebook className="w-4 h-4" />
+                    <Facebook className="w-5 h-5" />
                   </button>
                   <button 
                     onClick={() => window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=Check out this amazing case study!`, '_blank')}
-                    className="w-10 h-10 bg-white hover:bg-accent-lime border border-gray-200 hover:border-accent-lime rounded-lg flex items-center justify-center transition-all hover:scale-105"
+                    className="w-10 h-10 bg-accent-lime hover:bg-accent-lime/80 text-black border-0 rounded-lg flex items-center justify-center transition-all hover:scale-110 shadow-md"
                     aria-label="Share on Twitter"
                   >
-                    <Twitter className="w-4 h-4" />
+                    <Twitter className="w-5 h-5" />
                   </button>
                   <button 
                     onClick={() => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`, '_blank')}
-                    className="w-10 h-10 bg-white hover:bg-accent-lime border border-gray-200 hover:border-accent-lime rounded-lg flex items-center justify-center transition-all hover:scale-105"
+                    className="w-10 h-10 bg-accent-lime hover:bg-accent-lime/80 text-black border-0 rounded-lg flex items-center justify-center transition-all hover:scale-110 shadow-md"
                     aria-label="Share on LinkedIn"
                   >
-                    <Linkedin className="w-4 h-4" />
+                    <Linkedin className="w-5 h-5" />
                   </button>
                   <button 
                     onClick={() => window.open(`https://wa.me/?text=${encodeURIComponent('Check out this case study! ' + window.location.href)}`, '_blank')}
-                    className="w-10 h-10 bg-white hover:bg-accent-lime border border-gray-200 hover:border-accent-lime rounded-lg flex items-center justify-center transition-all hover:scale-105"
+                    className="w-10 h-10 bg-accent-lime hover:bg-accent-lime/80 text-black border-0 rounded-lg flex items-center justify-center transition-all hover:scale-110 shadow-md"
                     aria-label="Share on WhatsApp"
                   >
-                    <Share2 className="w-4 h-4" />
+                    <Share2 className="w-5 h-5" />
                   </button>
                 </div>
               </div>
