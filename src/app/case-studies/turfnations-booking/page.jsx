@@ -11,6 +11,7 @@ import CaseStudyTemplate, {
   MetricsGrid,
   OverviewSection
 } from '@/app/components/case-studies/CaseStudyTemplate';
+import CaseStudyHero from '@/app/components/case-studies/CaseStudyHero';
 import {
   Award,
   BarChart,
@@ -20,12 +21,12 @@ import {
   DollarSign,
   Monitor, Smartphone,
   Star,
+  TrendingUp,
   Users,
   Zap
 } from 'lucide-react';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import HeroSection from '../../components/case-studies/HeroSection';
 
 // Project Data
 const projectData = {
@@ -77,7 +78,23 @@ export default function TurfLetCaseStudy() {
   return (
     <CaseStudyTemplate
       project={projectData}
-      heroSection={<HeroSection />}
+      heroSection={
+        <CaseStudyHero
+          category="Booking Platform"
+          categoryIcon={Smartphone}
+          title="TurfLet"
+          subtitle="Booking System"
+          description="A comprehensive real-time booking platform for sports turfs with integrated payments, availability management, and owner dashboard."
+          techStack={['React Native', 'Next.js', 'Prisma', 'SSL Commerz']}
+          liveUrl="https://www.turflet.app"
+          heroImage="/images/projects/turflet/www.turflet.app.png"
+          imageAlt="TurfLet Platform"
+          badge1Text="Live Platform"
+          badge1Icon={TrendingUp}
+          badge2Text="50K+ Users"
+          badge2Icon={Users}
+        />
+      }
     >
       {/* Overview Section */}
       <OverviewSection

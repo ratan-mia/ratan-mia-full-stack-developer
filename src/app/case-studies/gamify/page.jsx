@@ -11,6 +11,7 @@ import CaseStudyTemplate, {
     MetricsGrid,
     OverviewSection
 } from '@/app/components/case-studies/CaseStudyTemplate';
+import CaseStudyHero from '@/app/components/case-studies/CaseStudyHero';
 import { motion } from 'framer-motion';
 import {
     ArrowLeft,
@@ -20,6 +21,7 @@ import {
     CheckCircle, Code,
     Gift,
     QrCode,
+    Smartphone,
     Star,
     TrendingUp,
     Trophy,
@@ -45,126 +47,27 @@ const projectData = {
   ]
 };
 
-// Hero Section Component
-function HeroSection() {
-  return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-accent-lime flex items-center">
-      {/* Background Elements */}
-      <div className="absolute inset-0">
-        <motion.div 
-          animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
-          transition={{ duration: 5, repeat: Infinity }}
-          className="absolute top-40 right-20 w-24 h-24 rounded-2xl bg-black/5"
-        />
-        <motion.div 
-          animate={{ y: [0, 20, 0], rotate: [0, -5, 0] }}
-          transition={{ duration: 6, repeat: Infinity }}
-          className="absolute bottom-40 left-20 w-32 h-32 rounded-full bg-black/5"
-        />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-20 relative z-10 w-full">
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <Link 
-            href="/case-studies" 
-            className="inline-flex items-center gap-2 mb-8 text-black hover:text-black/70 transition-colors font-bold uppercase tracking-wider text-sm"
-          >
-            <ArrowLeft className="w-5 h-5" />
-            Back to Case Studies
-          </Link>
-        </motion.div>
-
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
-          {/* Content */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <div className="inline-block px-4 py-2 bg-black/10 backdrop-blur-sm rounded-full text-sm font-bold mb-6">
-              🎮 LOYALTY & GAMIFICATION
-            </div>
-            
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
-              Gamify
-              <span className="block text-black/70">Loyalty Platform</span>
-            </h1>
-            
-            <p className="text-xl md:text-2xl text-black/80 mb-8 leading-relaxed font-medium">
-              QR-powered engagement platform with interactive games, digital wallet, and comprehensive analytics for FMCG and automotive brands nationwide.
-            </p>
-
-            {/* Quick Stats Grid */}
-            <div className="grid grid-cols-2 gap-4 mb-8">
-              {[
-                { icon: Users, label: "Active Users", value: "8K+" },
-                { icon: Zap, label: "QR Scans", value: "50K+" },
-                { icon: Trophy, label: "Games Played", value: "25K+" },
-                { icon: TrendingUp, label: "Redemptions", value: "3K+" },
-              ].map((stat, idx) => {
-                const Icon = stat.icon;
-                return (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.4 + idx * 0.1 }}
-                    className="bg-black/10 backdrop-blur-sm p-4 rounded-2xl"
-                  >
-                    <Icon className="w-6 h-6 text-black mb-2" />
-                    <div className="text-2xl font-extrabold text-black">{stat.value}</div>
-                    <div className="text-sm font-semibold text-black/70">{stat.label}</div>
-                  </motion.div>
-                );
-              })}
-            </div>
-
-            {/* Tech Tags */}
-            <div className="flex flex-wrap gap-2">
-              {["React Native", "Node.js", "PostgreSQL", "QR Scanner"].map((tech) => (
-                <span key={tech} className="px-4 py-2 bg-black/15 text-black rounded-lg text-sm font-bold">
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Hero Image */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative flex justify-center"
-          >
-            <div className="relative h-[600px] w-full rounded-3xl overflow-hidden shadow-2xl border-4 border-black/10">
-              <Image
-                src="/images/projects/pieqr/home-screen.png"
-                alt="Gamify Platform"
-                fill
-                className="object-cover"
-                priority
-              />
-              {/* Floating Badge */}
-              <div className="absolute -top-6 -left-6 bg-black text-accent-lime px-6 py-4 rounded-2xl font-extrabold text-xl shadow-2xl">
-                2025
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export default function GamifyCaseStudy() {
   return (
     <CaseStudyTemplate
       project={projectData}
-      heroSection={<HeroSection />}
+      heroSection={
+        <CaseStudyHero
+          category="Loyalty & Gamification"
+          categoryIcon={Smartphone}
+          title="Gamify"
+          subtitle="Loyalty Platform"
+          description="QR-powered engagement platform with interactive games, digital wallet, and comprehensive analytics for FMCG and automotive brands nationwide."
+          techStack={['React Native', 'Node.js', 'PostgreSQL', 'QR Scanner']}
+          liveUrl={null}
+          heroImage="/images/projects/pieqr/home-screen.png"
+          imageAlt="Gamify Platform"
+          badge1Text="8K+ Users"
+          badge1Icon={Users}
+          badge2Text="50K+ Scans"
+          badge2Icon={QrCode}
+        />
+      }
     >
       {/* Overview Section */}
       <OverviewSection

@@ -11,6 +11,7 @@ import CaseStudyTemplate, {
     MetricsGrid,
     OverviewSection
 } from '@/app/components/case-studies/CaseStudyTemplate';
+import CaseStudyHero from '@/app/components/case-studies/CaseStudyHero';
 import {
     ArrowLeft,
     ArrowRight,
@@ -26,6 +27,7 @@ import {
     Monitor,
     Search,
     Shield,
+    Smartphone,
     Star,
     TrendingUp,
     Users,
@@ -86,109 +88,21 @@ export default function AutoTraderCaseStudy() {
     <CaseStudyTemplate
       project={projectData}
       heroSection={
-        <section className="relative min-h-screen overflow-hidden bg-accent-lime">
-          {/* Decorative Elements */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div className="absolute top-10 left-10 w-72 h-72 bg-black/5 rounded-full blur-3xl animate-pulse"></div>
-            <div className="absolute bottom-10 right-10 w-96 h-96 bg-black/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-black/3 rounded-full blur-3xl"></div>
-          </div>
-
-          <div className="relative container max-w-7xl mx-auto px-4 md:px-6 lg:px-8 h-screen flex items-center">
-            <div className="grid lg:grid-cols-2 gap-16 items-center w-full">
-              {/* Left Content */}
-              <div className="space-y-8">
-                {/* Category Badge */}
-                <div className="inline-flex items-center gap-2 px-6 py-3 bg-black rounded-full border-2 border-black shadow-lg">
-                  <Monitor className="w-4 h-4 text-accent-lime" />
-                  <span className="text-sm font-extrabold text-accent-lime uppercase tracking-wider">B2B Trading Platform</span>
-                </div>
-
-                {/* Title with Animation */}
-                <div className="space-y-4">
-                  <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-black leading-[1.05]">
-                    AutoTrader
-                  </h1>
-                  <div className="flex items-center gap-4">
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-black/60">
-                      Bangladesh
-                    </h2>
-                    <div className="flex-1 h-1 bg-black/20 rounded-full"></div>
-                  </div>
-                </div>
-
-                {/* Description */}
-                <p className="text-lg md:text-xl text-black/90 font-semibold leading-relaxed max-w-xl">
-                  A comprehensive B2B car trading platform connecting dealers, importers, and buyers with secure authentication and advanced search.
-                </p>
-                
-                {/* Tech Stack - Improved */}
-                <div className="space-y-3">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center shadow-md">
-                      <Code className="w-4 h-4 text-accent-lime" />
-                    </div>
-                    <span className="text-sm font-extrabold text-black uppercase tracking-wider">Technology Stack</span>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="px-4 py-2 bg-black text-accent-lime rounded-xl font-bold text-sm shadow-lg hover:scale-105 hover:shadow-xl transition-all">Next.js 14</span>
-                    <span className="px-4 py-2 bg-black text-accent-lime rounded-xl font-bold text-sm shadow-lg hover:scale-105 hover:shadow-xl transition-all">Supabase</span>
-                    <span className="px-4 py-2 bg-black text-accent-lime rounded-xl font-bold text-sm shadow-lg hover:scale-105 hover:shadow-xl transition-all">Prisma ORM</span>
-                    <span className="px-4 py-2 bg-black text-accent-lime rounded-xl font-bold text-sm shadow-lg hover:scale-105 hover:shadow-xl transition-all">JWT Auth</span>
-                  </div>
-                </div>
-
-                {/* CTA Button - Enhanced */}
-                <div className="pt-2">
-                  <a 
-                    href="https://autotraderbd.com" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-3 px-8 py-4 bg-black text-accent-lime rounded-xl font-extrabold text-base hover:shadow-2xl transition-all duration-300 hover:scale-105 group shadow-xl border-2 border-black"
-                  >
-                    <ExternalLink className="w-5 h-5 group-hover:rotate-45 transition-transform duration-300" />
-                    View Live Platform
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </a>
-                </div>
-              </div>
-
-              {/* Right Image - Enhanced */}
-              <div className="relative lg:h-full flex items-center">
-                {/* Glow Effect */}
-                <div className="absolute inset-0 bg-black/10 rounded-3xl blur-2xl scale-95"></div>
-                
-                <div className="relative w-full">
-                  {/* Image Container with Border */}
-                  <div className="relative bg-black/10 backdrop-blur-sm rounded-3xl p-1 border-2 border-black/20">
-                    <div className="bg-white rounded-2xl p-3 shadow-2xl">
-                      <div className="relative h-[450px] lg:h-[500px] rounded-xl overflow-hidden border-2 border-gray-100">
-                        <Image
-                          src="/images/projects/auto-trader/mockup/web-home.png"
-                          alt="AutoTrader Platform"
-                          fill
-                          className="object-cover"
-                          priority
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Floating Badges */}
-                  <div className="absolute -top-4 -left-4 px-5 py-3 bg-black text-accent-lime rounded-xl font-extrabold shadow-2xl flex items-center gap-2 border-2 border-black">
-                    <TrendingUp className="w-5 h-5" />
-                    <span className="text-sm">Live Platform</span>
-                  </div>
-                  
-                  <div className="absolute -bottom-4 -right-4 px-5 py-3 bg-black text-accent-lime rounded-xl font-extrabold shadow-2xl flex items-center gap-2 border-2 border-black">
-                    <Zap className="w-5 h-5" />
-                    <span className="text-sm">Production Ready</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <CaseStudyHero
+          category="B2B Trading Platform"
+          categoryIcon={Monitor}
+          title="AutoTrader"
+          subtitle="Bangladesh"
+          description="A comprehensive B2B car trading platform connecting dealers, importers, and buyers with secure authentication and advanced search."
+          techStack={['Next.js 14', 'Supabase', 'Prisma ORM', 'JWT Auth']}
+          liveUrl="https://autotraderbd.com"
+          heroImage="/images/projects/auto-trader/mockup/web-home.png"
+          imageAlt="AutoTrader Platform"
+          badge1Text="Live Platform"
+          badge1Icon={TrendingUp}
+          badge2Text="Production Ready"
+          badge2Icon={Zap}
+        />
       }
     >
       {/* Overview Section */}

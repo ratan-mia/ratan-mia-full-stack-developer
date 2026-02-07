@@ -11,6 +11,7 @@ import CaseStudyTemplate, {
     MetricsGrid,
     OverviewSection
 } from '@/app/components/case-studies/CaseStudyTemplate';
+import CaseStudyHero from '@/app/components/case-studies/CaseStudyHero';
 import { motion } from 'framer-motion';
 import {
     ArrowLeft,
@@ -26,6 +27,8 @@ import {
     ShoppingCart,
     Smartphone,
     Star,
+    TrendingUp,
+    Users,
     Wrench,
     Zap
 } from 'lucide-react';
@@ -48,91 +51,27 @@ const projectData = {
   ]
 };
 
-// Hero Section Component
-function HeroSection() {
-  return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-accent-lime flex items-center">
-      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-20 relative z-10 w-full">
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <Link 
-            href="/case-studies" 
-            className="inline-flex items-center gap-2 mb-8 text-black hover:text-black/70 transition-colors font-bold uppercase tracking-wider text-sm"
-          >
-            <ArrowLeft className="w-5 h-5" />
-            Back to Case Studies
-          </Link>
-        </motion.div>
-
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
-          {/* Content */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <div className="inline-block px-4 py-2 bg-black/10 backdrop-blur-sm rounded-full text-sm font-bold mb-6">
-              🚗 AUTOMOTIVE PLATFORM
-            </div>
-            
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
-              Chery Bangladesh
-              <span className="block text-black/70">Mobile App</span>
-            </h1>
-            
-            <p className="text-xl md:text-2xl text-black/80 mb-8 leading-relaxed font-medium">
-              A comprehensive automotive platform revolutionizing the car buying experience with seamless test drives, service bookings, and parts e-commerce.
-            </p>
-
-            <div className="flex flex-wrap gap-3 mb-8">
-              <span className="px-4 py-2 bg-black text-accent-lime rounded-xl font-bold text-sm">React Native</span>
-              <span className="px-4 py-2 bg-black text-accent-lime rounded-xl font-bold text-sm">Expo SDK</span>
-              <span className="px-4 py-2 bg-black text-accent-lime rounded-xl font-bold text-sm">Supabase</span>
-              <span className="px-4 py-2 bg-black text-accent-lime rounded-xl font-bold text-sm">PostgreSQL</span>
-            </div>
-
-            <div className="flex gap-4">
-              <a 
-                href="https://www.cherybd.com" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-black text-accent-lime rounded-xl font-extrabold hover:shadow-2xl transition-all hover:scale-105"
-              >
-                <ExternalLink className="w-5 h-5" />
-                View Website
-              </a>
-            </div>
-          </motion.div>
-
-          {/* Hero Image */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl"
-          >
-            <Image
-              src="/images/projects/cherymobileapp/chery-app-hero.jpg"
-              alt="Chery Bangladesh App"
-              fill
-              className="object-cover"
-              priority
-            />
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export default function CheryBangladeshCaseStudy() {
   return (
     <CaseStudyTemplate
       project={projectData}
-      heroSection={<HeroSection />}
+      heroSection={
+        <CaseStudyHero
+          category="Automotive Platform"
+          categoryIcon={Car}
+          title="Chery Bangladesh"
+          subtitle="Mobile App"
+          description="A comprehensive automotive platform revolutionizing the car buying experience with seamless test drives, service bookings, and parts e-commerce."
+          techStack={['React Native', 'Expo SDK', 'Supabase', 'PostgreSQL']}
+          liveUrl="https://www.cherybd.com"
+          heroImage="/images/projects/cherymobileapp/chery-app-hero.jpg"
+          imageAlt="Chery Bangladesh App"
+          badge1Text="Live Platform"
+          badge1Icon={TrendingUp}
+          badge2Text="5K+ Users"
+          badge2Icon={Users}
+        />
+      }
     >
       {/* Overview Section */}
       <OverviewSection
