@@ -546,42 +546,31 @@ const ExperienceSection = ({ isInView }) => (
 
 // --- CTA SECTION ---
 const CTASection = ({ isInView }) => (
-  <div className="bg-black py-16 sm:py-20 lg:py-24">
+  <div className="bg-black py-12 sm:py-16">
     <motion.div 
-      className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"
+      className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"
       variants={ANIMATION_VARIANTS.fadeUp}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
     >
-      <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 sm:p-10 md:p-14 lg:p-16 xl:p-20 rounded-3xl text-center relative overflow-hidden border-2 border-gray-700 hover:border-accent-lime/50 transition-all group">
+      <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 sm:p-10 lg:p-12 rounded-3xl text-center relative overflow-hidden border-2 border-gray-700 hover:border-accent-lime/50 transition-all group">
         {/* Background Pattern */}
         <div className="absolute inset-0 bg-gradient-to-br from-accent-lime/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-        <div className="absolute top-10 right-10 w-32 h-32 bg-accent-lime/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 left-10 w-40 h-40 bg-accent-lime/5 rounded-full blur-3xl" />
         
         <div className="relative z-10">
-          <motion.div
-            className="inline-block px-6 py-2 bg-accent-lime/20 text-accent-lime rounded-full text-xs sm:text-sm font-bold mb-6 uppercase tracking-wider"
-            variants={ANIMATION_VARIANTS.fadeUp}
-          >
-            💬 Let's Talk
-          </motion.div>
-          
           <motion.h3 
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-white mb-4 sm:mb-6 leading-tight"
+            className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mb-3 leading-tight"
             whileHover={{ scale: 1.02 }}
           >
-            Ready to Build Something
-            <br className="hidden sm:block" />
-            <span className="text-accent-lime"> Amazing Together?</span>
+            Ready to Build Something <span className="text-accent-lime">Amazing?</span>
           </motion.h3>
-          <p className="text-base sm:text-lg lg:text-xl text-gray-300 mb-10 sm:mb-12 max-w-3xl mx-auto leading-relaxed">
-            Whether you need a mobile app, web platform, or custom solution - I'm here to help bring your vision to life with clean code and exceptional results.
+          <p className="text-base sm:text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
+            Let's discuss your project and bring your vision to life with clean code and exceptional results.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
             <motion.a 
               href="#contact" 
-              className="w-full sm:w-auto bg-accent-lime text-black font-extrabold px-8 sm:px-10 lg:px-12 py-4 sm:py-5 rounded-xl hover:bg-lime-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-lime-400/40 transition-all duration-300 inline-flex items-center justify-center gap-3 text-base sm:text-lg"
+              className="w-full sm:w-auto bg-accent-lime text-black font-extrabold px-8 py-3 rounded-xl hover:bg-lime-300 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 inline-flex items-center justify-center gap-2 text-base"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -590,32 +579,13 @@ const CTASection = ({ isInView }) => (
             </motion.a>
             <motion.a 
               href="/portfolio" 
-              className="w-full sm:w-auto border-2 border-gray-600 text-white font-bold px-8 sm:px-10 lg:px-12 py-4 sm:py-5 rounded-xl hover:bg-gray-700 hover:border-accent-lime/50 hover:-translate-y-1 transition-all duration-300 inline-flex items-center justify-center gap-3 text-base sm:text-lg"
+              className="w-full sm:w-auto border-2 border-gray-600 text-white font-bold px-8 py-3 rounded-xl hover:bg-gray-700 hover:border-accent-lime/50 transition-all duration-300 inline-flex items-center justify-center gap-2 text-base"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <span>View Portfolio</span>
             </motion.a>
           </div>
-          
-          {/* Additional Info */}
-          <motion.div
-            className="mt-10 sm:mt-12 pt-8 border-t border-gray-700 flex flex-wrap justify-center gap-6 sm:gap-8 text-sm text-gray-400"
-            variants={ANIMATION_VARIANTS.fadeUp}
-          >
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-accent-lime rounded-full animate-pulse" />
-              <span>Available for new projects</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-accent-lime rounded-full" />
-              <span>Response within 24 hours</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-accent-lime rounded-full" />
-              <span>Free consultation call</span>
-            </div>
-          </motion.div>
         </div>
       </div>
     </motion.div>
