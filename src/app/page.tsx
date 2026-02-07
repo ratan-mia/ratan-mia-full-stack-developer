@@ -6,7 +6,7 @@ import CTA from '@/components/home/CTA';
 import EmpoweringBusiness from '@/components/home/EmpoweringBusiness';
 import FeelanceCTA from '@/components/home/FeelanceCTA';
 import HeroMain from '@/components/home/HeroMain';
-import ProcessHowIWork from '@/components/home/ProcessHowIWork';
+import Process from '@/components/home/Process';
 import Projects from '@/components/home/Projects';
 import Services from '@/components/home/Services';
 import Skills from '@/components/home/Skills';
@@ -23,6 +23,7 @@ export default function Home() {
       <About />
       {/* Services */}
       <Services />
+
       <FeelanceCTA />
 
       {/* Skills */}
@@ -33,16 +34,18 @@ export default function Home() {
       <EmpoweringBusiness />
       <VideoIntro />
       {/* Process How I Work */}
+      <Process />
+      {/* Technical Expertise */}
+      <CTA />
       {/* Training Certificates */}
       <TrainingCertificates />
-      <ProcessHowIWork />
 
       {/* Testimonials */}
       <Testimonials />
 
       {/* Contact */}
       <Contact />
-      <CTA />
+
     </div>
   );
 }
