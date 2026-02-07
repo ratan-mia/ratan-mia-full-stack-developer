@@ -400,275 +400,99 @@ export default function CaseStudiesPage() {
             </p>
           </motion.div>
 
-          <div className="space-y-40">
+          {/* Case Studies Grid - Portfolio Style */}
+          <div className="grid md:grid-cols-2 gap-8">
             {caseStudies.map((study, index) => (
-              <motion.div
+              <Link
                 key={study.id}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                className="space-y-12"
+                href={`/case-studies/${study.slug}`}
+                className="group relative block"
               >
-                {/* Big Hero Image */}
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                  className="relative group cursor-pointer"
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className="relative bg-gradient-to-br from-gray-900 to-black rounded-3xl overflow-hidden border-2 border-gray-800 hover:border-accent-lime/50 transition-all duration-500 shadow-xl hover:shadow-2xl hover:shadow-accent-lime/20"
                 >
-                  <div className="aspect-video bg-gradient-to-br from-gray-100 to-gray-200 rounded-3xl shadow-2xl overflow-hidden border-4 border-gray-200 relative transform group-hover:scale-[1.02] group-hover:shadow-accent-lime/20 transition-all duration-700">
+                  {/* Big Hero Image */}
+                  <div className="relative w-full aspect-[16/10] overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900">
                     <Image
                       src={study.heroImage}
-                      alt={`${study.title} - Main Screenshot`}
+                      alt={study.title}
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-700"
-                      sizes="(max-width: 768px) 100vw, 1400px"
-                      priority={index === 0}
+                      priority={index === 0 || index === 1}
+                      className="object-cover transition-all duration-700 group-hover:scale-110"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                     />
                     
-                    {/* Overlay on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 flex items-center justify-center">
-                      <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
-                        <div className="bg-accent-lime text-black px-8 py-4 rounded-2xl font-black flex items-center gap-3 shadow-2xl">
-                          <Monitor className="w-6 h-6" />
-                          View Full Case Study
-                        </div>
-                      </div>
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                    
+                    {/* Year Badge */}
+                    <motion.div
+                      whileHover={{ scale: 1.1 }}
+                      className="absolute top-6 right-6 px-5 py-2 bg-accent-lime text-black rounded-xl font-black text-sm shadow-lg"
+                    >
+                      {study.year}
+                    </motion.div>
+
+                    {/* Platform Badge */}
+                    <div className="absolute top-6 left-6 px-5 py-2 bg-black/60 backdrop-blur-sm text-white rounded-xl font-bold text-sm flex items-center gap-2">
+                      <Monitor className="w-4 h-4" />
+                      {study.platform}
                     </div>
                   </div>
-                  
-                  {/* Year Badge */}
-                  <div className="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br from-accent-lime to-accent-lime/80 rounded-3xl flex items-center justify-center text-2xl font-black border-4 border-white shadow-2xl transform rotate-6 group-hover:rotate-0 group-hover:scale-110 transition-all duration-700">
-                    {study.year.split('-')[0]}
-                  </div>
 
-                  {/* Platform Badge */}
-                  <div className="absolute -bottom-4 -left-4 bg-gradient-to-r from-black to-gray-900 text-accent-lime px-8 py-4 rounded-2xl font-black text-base shadow-2xl border-2 border-accent-lime/20 group-hover:border-accent-lime transition-all duration-500">
-                    {study.platform}
-                  </div>
-                </motion.div>
-
-                {/* Content Below Image */}
-                <div className="space-y-8">
-                  {/* Header */}
-                  <div>
-                    <div className="flex flex-wrap items-center gap-4 mb-8">
-                      <span className="px-6 py-3 bg-black text-accent-lime rounded-2xl text-sm font-black shadow-2xl border border-black/10">
+                  {/* Content Section */}
+                  <div className="p-8">
+                    {/* Category Badge */}
+                    <div className="flex items-center gap-3 mb-4">
+                      <span className="px-4 py-2 bg-accent-lime/10 text-accent-lime rounded-lg text-xs font-black uppercase tracking-wider">
                         {study.category}
                       </span>
-                      <span className="text-gray-600 text-sm font-black flex items-center gap-2 bg-gray-100 px-4 py-3 rounded-xl">
-                        <Calendar className="w-4 h-4" />
-                        {study.duration}
-                      </span>
                     </div>
 
-                    <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-black leading-[0.9] mb-6 tracking-tight">
+                    {/* Title */}
+                    <h3 className="text-3xl font-black mb-4 text-white leading-tight group-hover:text-accent-lime transition-colors duration-300">
                       {study.title}
-                    </h2>
-                    
-                    {study.subtitle && (
-                      <div className="flex items-center gap-4 mb-8">
-                        <div className="h-1.5 w-16 bg-accent-lime rounded-full"></div>
-                        <p className="text-2xl font-black text-gray-700">{study.subtitle}</p>
-                      </div>
-                    )}
-
-                    <p className="text-xl text-gray-700 font-bold bg-gray-50 px-6 py-4 rounded-2xl inline-block">
-                      Client: <span className="text-black font-black">{study.client}</span>
-                    </p>
-                  </div>
-
-                  {/* 2 Column Layout */}
-                  <div className="grid lg:grid-cols-2 gap-8">
-                    {/* Left Column */}
-                    <div className="space-y-8">
-                      {/* Technologies */}
-                      <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 rounded-3xl p-8 border-2 border-gray-200 shadow-lg overflow-hidden">
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-accent-lime/10 rounded-full blur-3xl"></div>
-                        <h3 className="font-black text-xl mb-6 flex items-center gap-3 relative z-10">
-                          <div className="w-10 h-10 bg-accent-lime rounded-xl flex items-center justify-center">
-                            <Code className="w-5 h-5 text-black" />
-                          </div>
-                          Technologies Used
-                        </h3>
-                        <div className="flex flex-wrap gap-3 relative z-10">
-                          {study.technologies.map((tech, techIdx) => (
-                            <motion.span
-                              key={tech}
-                              initial={{ opacity: 0, scale: 0.8 }}
-                              whileInView={{ opacity: 1, scale: 1 }}
-                              viewport={{ once: true }}
-                              transition={{ duration: 0.4, delay: techIdx * 0.05 }}
-                              className="px-5 py-3 bg-white text-gray-900 rounded-xl text-sm font-black border-2 border-gray-200 hover:border-accent-lime hover:shadow-lg transition-all duration-300 cursor-default"
-                            >
-                              {tech}
-                            </motion.span>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Challenge */}
-                      <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="group relative p-10 bg-gradient-to-br from-red-50 via-red-50/50 to-white border-l-8 border-red-500 rounded-3xl shadow-2xl hover:shadow-red-100 transition-all duration-500 overflow-hidden"
-                      >
-                        <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-red-500/10 rounded-full blur-3xl transform translate-x-32 -translate-y-32"></div>
-                        
-                        <h3 className="font-black text-red-700 mb-4 flex items-center gap-3 text-2xl relative z-10">
-                          <div className="w-12 h-12 bg-red-500 rounded-2xl flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-500">
-                            <Zap className="w-6 h-6 text-white" />
-                          </div>
-                          Challenge
-                        </h3>
-                        <p className="text-gray-800 leading-relaxed relative z-10 font-medium text-lg">{study.challenge}</p>
-                      </motion.div>
-
-                      {/* Solution */}
-                      <motion.div
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="group relative p-10 bg-gradient-to-br from-green-50 via-green-50/50 to-white border-l-8 border-green-500 rounded-3xl shadow-2xl hover:shadow-green-100 transition-all duration-500 overflow-hidden"
-                      >
-                        <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-green-500/10 rounded-full blur-3xl transform translate-x-32 -translate-y-32"></div>
-                        
-                        <h3 className="font-black text-green-700 mb-4 flex items-center gap-3 text-2xl relative z-10">
-                          <div className="w-12 h-12 bg-green-500 rounded-2xl flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-500">
-                            <CheckCircle className="w-6 h-6 text-white" />
-                          </div>
-                          Solution
-                        </h3>
-                        <p className="text-gray-800 leading-relaxed relative z-10 font-medium text-lg">{study.solution}</p>
-                      </motion.div>
-                    </div>
-
-                    {/* Right Column */}
-                    <div className="space-y-8">
-                      {/* Key Features */}
-                      <div className="relative bg-white rounded-3xl p-10 border-2 border-gray-200 shadow-2xl overflow-hidden group hover:border-accent-lime/50 transition-all duration-500">
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-accent-lime/5 rounded-full blur-3xl group-hover:bg-accent-lime/10 transition-all duration-500"></div>
-                        
-                        <h3 className="font-black mb-8 text-2xl flex items-center gap-3 relative z-10">
-                          <div className="w-12 h-12 bg-accent-lime rounded-2xl flex items-center justify-center shadow-xl">
-                            <Star className="w-6 h-6 text-black" />
-                          </div>
-                          Key Features
-                        </h3>
-                        
-                        <div className="grid gap-5 relative z-10">
-                          {study.features.slice(0, 6).map((feature, idx) => (
-                            <motion.div
-                              key={idx}
-                              initial={{ opacity: 0, x: 20 }}
-                              whileInView={{ opacity: 1, x: 0 }}
-                              viewport={{ once: true }}
-                              transition={{ duration: 0.4, delay: idx * 0.05 }}
-                              className="flex items-start gap-5 group/item p-4 rounded-2xl hover:bg-gray-50 transition-all duration-300"
-                            >
-                              <div className="w-10 h-10 rounded-xl bg-accent-lime flex items-center justify-center flex-shrink-0 mt-0.5 group-hover/item:scale-125 group-hover/item:rotate-12 transition-all duration-300 shadow-lg">
-                                <Check className="w-6 h-6 text-black font-bold" strokeWidth={3} />
-                              </div>
-                              <span className="text-gray-800 font-semibold leading-relaxed text-lg group-hover/item:text-black transition-colors">{feature}</span>
-                            </motion.div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Additional Screenshots */}
-                      <div className="grid grid-cols-2 gap-4">
-                        {study.screenshots.slice(0, 4).map((screenshot, idx) => (
-                          <motion.div
-                            key={idx}
-                            initial={{ opacity: 0, scale: 0.7, rotate: -10 }}
-                            whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                            className="aspect-[9/16] bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl overflow-hidden border-2 border-gray-200 relative hover:scale-110 hover:z-20 transition-all duration-500 cursor-pointer shadow-lg hover:shadow-2xl group/img"
-                          >
-                            <Image
-                              src={screenshot}
-                              alt={`${study.title} - Screenshot ${idx + 1}`}
-                              fill
-                              className="object-cover group-hover/img:scale-110 transition-transform duration-500"
-                              sizes="(max-width: 768px) 50vw, 300px"
-                            />
-                            <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/20 transition-colors duration-500"></div>
-                          </motion.div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Results Metrics - Full Width */}
-                  <div className="relative bg-gradient-to-br from-black via-gray-900 to-black text-white rounded-3xl p-12 overflow-hidden shadow-2xl group hover:shadow-accent-lime/20 transition-all duration-500">
-                    <div className="absolute inset-0 bg-gradient-to-br from-accent-lime/10 via-transparent to-accent-lime/5"></div>
-                    <div className="absolute -top-32 -right-32 w-96 h-96 bg-accent-lime/20 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-1000"></div>
-                    <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-accent-lime/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-1000"></div>
-                    
-                    {/* Noise texture overlay */}
-                    <div className="absolute inset-0 opacity-5 mix-blend-overlay" style={{
-                      backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 400 400\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' /%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\' /%3E%3C/svg%3E")'
-                    }}></div>
-                    
-                    <h3 className="font-black mb-10 text-3xl relative z-10 flex items-center gap-3">
-                      <div className="w-14 h-14 bg-accent-lime rounded-2xl flex items-center justify-center shadow-2xl">
-                        <TrendingUp className="w-7 h-7 text-black" />
-                      </div>
-                      Impact & Results
                     </h3>
                     
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10 relative z-10">
-                      {study.results.map((result, idx) => {
-                        const Icon = result.icon;
-                        return (
-                          <motion.div
-                            key={idx}
-                            initial={{ opacity: 0, scale: 0.5 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                            className="text-center group/stat"
-                          >
-                            <div className="w-16 h-16 bg-accent-lime rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-2xl group-hover/stat:scale-125 group-hover/stat:rotate-12 transition-all duration-500">
-                              <Icon className="w-8 h-8 text-black" />
-                            </div>
-                            <div className="text-4xl md:text-5xl font-black mb-3 text-accent-lime group-hover/stat:scale-110 transition-transform duration-500">
-                              {result.value}
-                            </div>
-                            <div className="text-sm font-black text-white/70 uppercase tracking-wider">
-                              {result.label}
-                            </div>
-                          </motion.div>
-                        );
-                      })}
+                    {/* Description */}
+                    <p className="text-gray-400 mb-6 leading-relaxed font-medium line-clamp-3">
+                      {study.subtitle}
+                    </p>
+
+                    {/* Tags/Technologies */}
+                    <div className="flex flex-wrap gap-2">
+                      {study.technologies.slice(0, 4).map((tech, techIdx) => (
+                        <span
+                          key={techIdx}
+                          className="px-4 py-2 bg-white/5 backdrop-blur-sm text-white/80 rounded-lg text-xs font-bold border border-white/10 group-hover:border-accent-lime/30 transition-all duration-300"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                      {study.technologies.length > 4 && (
+                        <span className="px-4 py-2 bg-white/5 backdrop-blur-sm text-white/80 rounded-lg text-xs font-bold border border-white/10">
+                          +{study.technologies.length - 4}
+                        </span>
+                      )}
                     </div>
-                    
-                    <div className="relative z-10 pt-8 border-t-2 border-white/10">
-                      <p className="text-white/90 leading-relaxed font-medium text-xl">{study.impact}</p>
+
+                    {/* Hover Arrow */}
+                    <div className="absolute bottom-8 right-8 w-12 h-12 bg-accent-lime rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0 transition-all duration-500 shadow-lg">
+                      <ArrowRight className="w-6 h-6 text-black" strokeWidth={3} />
                     </div>
                   </div>
 
-                  {/* CTA Button - Full Width */}
-                  <div className="text-center">
-                    <Link 
-                      href={`/case-studies/${study.slug}`}
-                      className="group relative inline-flex items-center px-12 py-6 bg-gradient-to-r from-accent-lime to-accent-lime/90 text-black rounded-2xl font-black text-xl hover:shadow-2xl hover:shadow-accent-lime/30 transition-all duration-500 hover:scale-105 border-2 border-black/10 overflow-hidden"
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-r from-black/0 via-black/5 to-black/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
-                      <span className="relative z-10">View Full Case Study</span>
-                      <ArrowRight className="relative z-10 w-6 h-6 ml-4 group-hover:translate-x-2 transition-transform duration-300" strokeWidth={3} />
-                    </Link>
+                  {/* Decorative Elements */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                    <div className="absolute -top-24 -right-24 w-64 h-64 bg-accent-lime/20 rounded-full blur-3xl"></div>
+                    <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-accent-lime/10 rounded-full blur-3xl"></div>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
+              </Link>
             ))}
           </div>
         </div>
