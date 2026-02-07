@@ -12,6 +12,7 @@ import CaseStudyTemplate, {
   OverviewSection
 } from '@/app/components/case-studies/CaseStudyTemplate';
 import {
+  ArrowLeft,
   Award,
   BarChart,
   Calendar,
@@ -19,6 +20,7 @@ import {
   CheckCircle,
   Code,
   DollarSign,
+  ExternalLink,
   FileText,
   Lock,
   Monitor,
@@ -31,8 +33,8 @@ import {
   Zap
 } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import HeroSection from '../../components/case-studies/HeroSection';
 
 // Project Data
 const projectData = {
@@ -53,22 +55,22 @@ export default function AutoTraderCaseStudy() {
 
   const screenshots = [
     {
-      image: 'web-home.png',
+      image: 'mockup/web-home.png',
       title: 'Browse Premium Vehicles',
       description: 'Explore a curated selection of reconditioned and used vehicles with detailed specifications, high-quality images, and verified documentation.'
     },
     {
-      image: 'web-listing-page.png',
+      image: 'mockup/web-listing-page.png',
       title: 'Advanced Search & Filters',
       description: 'Find your perfect vehicle using powerful search filters including brand, model, year, price range, transmission, and more.'
     },
     {
-      image: 'web-single-listing-page.png',
-      title: 'Detailed Vehicle Information',
-      description: 'View comprehensive vehicle details including auction grades, documentation, pricing, and submit purchase applications instantly.'
+      image: 'mockup/admin-dashboard.png',
+      title: 'Admin Dashboard',
+      description: 'Comprehensive admin panel for managing users, approving listings, monitoring applications, and tracking all platform activities.'
     },
     {
-      image: 'user-dashboard.png',
+      image: 'mockup/user-dashboard.png',
       title: 'User Dashboard',
       description: 'Manage your listings, track purchase applications, monitor favorites, and view detailed analytics from your personal dashboard.'
     },
@@ -84,7 +86,62 @@ export default function AutoTraderCaseStudy() {
   return (
     <CaseStudyTemplate
       project={projectData}
-      heroSection={<HeroSection />}
+      heroSection={
+        <section className="relative min-h-[80vh] overflow-hidden bg-accent-lime flex items-center justify-center">
+          <div className="container max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-20">
+            <Link 
+              href="/case-studies" 
+              className="inline-flex items-center gap-2 mb-8 text-black hover:text-black/70 transition-colors font-bold"
+            >
+              <ArrowLeft className="w-5 h-5" />
+              Back to Case Studies
+            </Link>
+
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <div className="inline-block px-6 py-2 bg-black/10 text-black rounded-full text-sm font-extrabold mb-6">
+                  🚗 B2B TRADING PLATFORM
+                </div>
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
+                  AutoTrader<br />Bangladesh
+                </h1>
+                <p className="text-xl md:text-2xl text-black/80 mb-8 font-medium leading-relaxed">
+                  A comprehensive B2B car trading platform connecting dealers, importers, and buyers with secure authentication, advanced search, and complete admin management.
+                </p>
+                
+                <div className="flex flex-wrap gap-3 mb-8">
+                  <span className="px-4 py-2 bg-black text-accent-lime rounded-xl font-bold text-sm">Next.js 14</span>
+                  <span className="px-4 py-2 bg-black text-accent-lime rounded-xl font-bold text-sm">Supabase</span>
+                  <span className="px-4 py-2 bg-black text-accent-lime rounded-xl font-bold text-sm">Prisma ORM</span>
+                  <span className="px-4 py-2 bg-black text-accent-lime rounded-xl font-bold text-sm">JWT Auth</span>
+                </div>
+
+                <div className="flex gap-4">
+                  <a 
+                    href="https://autotraderbd.com" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-8 py-4 bg-black text-accent-lime rounded-xl font-extrabold hover:shadow-2xl transition-all hover:scale-105"
+                  >
+                    <ExternalLink className="w-5 h-5" />
+                    View Live Platform
+                  </a>
+                </div>
+              </div>
+
+              <div className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl">
+                <Image
+                  src="/images/projects/auto-trader/mockup/web-home.png"
+                  alt="AutoTrader Platform"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+      }
     >
       {/* Overview Section */}
       <OverviewSection
@@ -93,7 +150,7 @@ export default function AutoTraderCaseStudy() {
           "AutoTrader BD is a comprehensive B2B car trading platform designed specifically for the Bangladesh automotive market. The platform connects car dealers, importers, and buyers through a sophisticated web application featuring advanced search capabilities, role-based access control, and comprehensive admin management tools.",
           "Built with Next.js 14, Supabase, and Prisma ORM, AutoTrader handles complex business workflows including JWT authentication, multi-tenant user management, vehicle listing management with automated expiry, purchase application processing, and detailed activity tracking. The platform supports 24+ active users with 58+ vehicle listings and comprehensive analytics."
         ]}
-        image="/images/projects/auto-trader/mockup/web-home.png"
+        image="/images/projects/auto-trader/mockup/web-listing-page.png"
         imageAlt="AutoTrader Platform Overview"
       />
 
@@ -133,7 +190,7 @@ export default function AutoTraderCaseStudy() {
       >
         {/* Web Platform */}
         <ImageContentGrid
-          image="/images/projects/auto-trader/mockup/web-home.png"
+          image="/images/projects/auto-trader/mockup/web-listing-page.png"
           imageAlt="Web Platform - Home Page"
           badge="WEB PLATFORM"
           badgeIcon={Monitor}
@@ -189,7 +246,7 @@ export default function AutoTraderCaseStudy() {
 
         {/* Car Management System */}
         <ImageContentGrid
-          image="/images/projects/auto-trader/admin-car-management.png"
+          image="/images/projects/auto-trader/mockup/admin-dashboard.png"
           imageAlt="Car Management System"
           badge="CAR MANAGEMENT"
           badgeIcon={FileText}
@@ -219,7 +276,7 @@ export default function AutoTraderCaseStudy() {
 
       {/* Key Features - User Dashboard */}
       <FullWidthImageContent
-        image="/images/projects/auto-trader/user-dashboard.png"
+        image="/images/projects/auto-trader/mockup/user-dashboard.png"
         imageAlt="User Dashboard - Personal Management"
         badge="USER DASHBOARD"
         badgeIcon={Users}
@@ -253,7 +310,7 @@ export default function AutoTraderCaseStudy() {
 
       {/* Purchase Application System */}
       <FullWidthImageContent
-        image="/images/projects/auto-trader/my-purchase-application.png"
+        image="/images/projects/auto-trader/mockup/my-purchase-application.png"
         imageAlt="Purchase Application Management"
         badge="APPLICATION SYSTEM"
         badgeIcon={FileText}
@@ -287,7 +344,7 @@ export default function AutoTraderCaseStudy() {
 
       {/* Market Price Insights */}
       <FullWidthImageContent
-        image="/images/projects/auto-trader/market-price-insight.png"
+        image="/images/projects/auto-trader/mockup/market-price-insight.png"
         imageAlt="Market Price Insights"
         badge="MARKET INSIGHTS"
         badgeIcon={TrendingUp}
@@ -321,7 +378,7 @@ export default function AutoTraderCaseStudy() {
 
       {/* Admin Features - Dealer Registration */}
       <FullWidthImageContent
-        image="/images/projects/auto-trader/admin-dealer-registration.png"
+        image="/images/projects/auto-trader/mockup/user-dashboard-on-tv.png"
         imageAlt="Admin Dealer Registration Management"
         badge="DEALER VERIFICATION"
         badgeIcon={Shield}
@@ -509,13 +566,13 @@ export default function AutoTraderCaseStudy() {
             items={[
               {
                 title: 'Admin Dashboard Analytics',
-                image: '/images/projects/auto-trader/admin-dashboard.png',
+                image: '/images/projects/auto-trader/mockup/admin-dashboard.png',
                 alt: 'Admin Dashboard with Analytics',
                 caption: 'Comprehensive admin panel showing user statistics, listing approvals, and platform activity.'
               },
               {
                 title: 'User Management System',
-                image: '/images/projects/auto-trader/user-dashboard.png',
+                image: '/images/projects/auto-trader/mockup/user-dashboard.png',
                 alt: 'User Dashboard Interface',
                 caption: 'Personal dashboard for managing listings, applications, and tracking trading activities.'
               }
