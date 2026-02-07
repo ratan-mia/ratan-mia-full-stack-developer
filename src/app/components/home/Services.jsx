@@ -5,7 +5,7 @@ import { ArrowRight, BarChart3, Cloud, Code2, Database, Globe, Layers, Palette, 
 import { useRef } from 'react';
 
 // --- Enhanced Service Card Component ---
-const ServiceCard = ({ icon: Icon, title, description, features, price, index, inView, isPopular = false }) => {
+const ServiceCard = ({ icon: Icon, title, description, features, index, inView, isPopular = false }) => {
   const cardVariants = {
     hidden: { opacity: 0, y: 60, rotateX: 10 },
     visible: { 
@@ -56,14 +56,6 @@ const ServiceCard = ({ icon: Icon, title, description, features, price, index, i
         <h3 className="text-2xl lg:text-3xl font-extrabold text-black mb-4 leading-tight">
           {title}
         </h3>
-        
-        {/* Price */}
-        {price && (
-          <div className="mb-4">
-            <span className="text-sm text-black/60 font-medium">Starting from</span>
-            <div className="text-3xl lg:text-4xl font-black text-black">{price}</div>
-          </div>
-        )}
         
         {/* Description */}
         <p className="text-black/80 mb-6 text-lg leading-relaxed flex-grow">
@@ -117,7 +109,6 @@ const Services = () => {
     {
       icon: Code2,
       title: 'Frontend Development',
-      price: '$1,500',
       description: 'Stunning, responsive user interfaces built with modern React, Next.js, and cutting-edge CSS frameworks.',
       features: ['React & Next.js', 'Responsive Design', 'Performance Optimization', 'Modern UI/UX'],
       isPopular: false
@@ -125,7 +116,6 @@ const Services = () => {
     {
       icon: Smartphone,
       title: 'Mobile App Development',
-      price: '$8,000',
       description: 'Native-quality mobile applications for iOS and Android using React Native, delivering seamless cross-platform experiences.',
       features: ['React Native Development', 'iOS & Android Apps', 'Cross-Platform Solutions', 'App Store Deployment'],
       isPopular: true
@@ -133,7 +123,6 @@ const Services = () => {
     {
       icon: Database,
       title: 'Backend Development',
-      price: '$2,500',
       description: 'Scalable server-side solutions with robust APIs, secure authentication, and optimized database architecture.',
       features: ['Laravel & Node.js', 'RESTful APIs', 'Database Design', 'Security Implementation'],
       isPopular: false
@@ -141,7 +130,6 @@ const Services = () => {
     {
       icon: Cloud,
       title: 'Full Stack Solutions',
-      price: '$5,000',
       description: 'Complete web and mobile applications from concept to deployment, handling both frontend and backend development.',
       features: ['End-to-End Development', 'Supabase & Firebase', 'Cloud Deployment', 'Maintenance & Support'],
       isPopular: true
@@ -149,7 +137,6 @@ const Services = () => {
     {
       icon: ShoppingCart,
       title: 'E-commerce Solutions',
-      price: '$6,000',
       description: 'High-converting online stores with secure payment processing, inventory management, and real-time analytics.',
       features: ['Mobile E-commerce Apps', 'Payment Gateway Integration', 'Inventory Management', 'Analytics & Reporting'],
       isPopular: false
@@ -157,7 +144,6 @@ const Services = () => {
     {
       icon: Palette,
       title: 'UI/UX Design',
-      price: '$1,200',
       description: 'Beautiful, intuitive interfaces designed with user experience in mind, from wireframes to high-fidelity prototypes.',
       features: ['User Interface Design', 'Prototyping & Wireframes', 'Design Systems', 'Usability Testing'],
       isPopular: false
@@ -165,7 +151,6 @@ const Services = () => {
     {
       icon: BarChart3,
       title: 'API Integration',
-      price: '$1,800',
       description: 'Seamless integration of third-party services, payment gateways, and custom APIs to extend your application capabilities.',
       features: ['Third-party APIs', 'Payment Integration', 'Data Synchronization', 'Webhook Implementation'],
       isPopular: false
@@ -173,7 +158,6 @@ const Services = () => {
     {
       icon: Layers,
       title: 'CMS Development',
-      price: '$2,000',
       description: 'Custom content management systems and WordPress solutions including themes, plugins, and headless CMS integration.',
       features: ['WordPress Development', 'Headless CMS', 'Custom Themes', 'Plugin Development'],
       isPopular: false
@@ -181,7 +165,6 @@ const Services = () => {
     {
       icon: Globe,
       title: 'Web Optimization',
-      price: '$1,200',
       description: 'Performance enhancement, SEO optimization, and technical improvements to boost your online presence and rankings.',
       features: ['SEO Optimization', 'Speed Enhancement', 'Technical Audits', 'Analytics Setup'],
       isPopular: false

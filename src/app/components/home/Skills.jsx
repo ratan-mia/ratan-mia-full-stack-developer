@@ -61,52 +61,45 @@ const Skills = () => {
   };
 
   return (
-    <div className="relative" id="skills">
-      {/* Image that bleeds outside the main section - only top */}
-      <div className="absolute left-0 top-0 w-1/2 z-10 -mt-20">
-        <motion.div
-          className="h-[90vh]"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-        >
-          <img 
-            src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=1470&auto=format&fit=crop"
-            alt="Team collaborating on a project"
-            className="w-full h-full object-cover"
-          />
-        </motion.div>
-      </div>
-
-      {/* Main lime section */}
-      <section ref={ref} className="bg-accent-lime relative min-h-[70vh] overflow-visible">
+    <section ref={ref} className="bg-accent-lime relative overflow-hidden" id="skills">
+      <motion.div 
+        className="grid lg:grid-cols-2 min-h-[70vh]"
+        initial={{ opacity: 0, y: 50 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+      >
+        {/* Left Column: Image */}
         <motion.div 
-          className="grid lg:grid-cols-2 min-h-[70vh]"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className="relative hidden lg:block"
+          initial={{ opacity: 0, x: -50 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
         >
-          {/* Left Column: Space for bleeding image */}
-          <div className="relative">
-            {/* Empty space - image is positioned absolutely outside */}
+          <div className="h-full w-full">
+            <img 
+              src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=1470&auto=format&fit=crop"
+              alt="Team collaborating on a project"
+              className="w-full h-full object-cover"
+            />
           </div>
+        </motion.div>
 
-          {/* Right Column: Content on lime background */}
-          <motion.div 
-            className="text-black flex flex-col justify-center px-12 py-16 lg:px-16 xl:px-20 lg:py-20 relative"
-            variants={containerVariants}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-          >
+        {/* Right Column: Content on lime background */}
+        <motion.div 
+          className="text-black flex flex-col justify-center px-8 py-16 lg:px-12 xl:px-16 lg:py-20 relative"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
             <motion.h2 
-              className="text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight leading-[1.1] mb-8"
+              className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6 lg:mb-8"
               variants={itemVariants}
             >
               Skills & Technical Expertise
             </motion.h2>
             
             <motion.p 
-              className="text-lg lg:text-xl text-black/80 leading-relaxed mb-12 max-w-lg"
+              className="text-base md:text-lg lg:text-xl text-black/80 leading-relaxed mb-8 lg:mb-12"
               variants={itemVariants}
             >
               Mastering cross-platform mobile development, modern web technologies, and cloud infrastructure to build scalable applications that deliver exceptional user experiences.
@@ -125,7 +118,7 @@ const Skills = () => {
 
             {/* Up Arrow - Bottom Right */}
             <motion.div 
-              className="absolute bottom-8 right-8"
+              className="mt-8 lg:absolute lg:bottom-8 lg:right-8"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 1.5, duration: 0.5 }}
@@ -142,7 +135,6 @@ const Skills = () => {
           </motion.div>
         </motion.div>
       </section>
-    </div>
   );
 };
 

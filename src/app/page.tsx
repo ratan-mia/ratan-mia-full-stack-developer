@@ -6,7 +6,6 @@ import CTA from '@/components/home/CTA';
 import EmpoweringBusiness from '@/components/home/EmpoweringBusiness';
 import FeelanceCTA from '@/components/home/FeelanceCTA';
 import HeroMain from '@/components/home/HeroMain';
-import PricingPlan from '@/components/home/PricingPlan';
 import ProcessHowIWork from '@/components/home/ProcessHowIWork';
 import Projects from '@/components/home/Projects';
 import Services from '@/components/home/Services';
@@ -29,9 +28,6 @@ export default function Home() {
       {/* About */}
       <About />
       <FeelanceCTA />
-
-      {/* Pricing Plan */}
-      <PricingPlan />
 
       {/* Skills */}
       <Skills />
