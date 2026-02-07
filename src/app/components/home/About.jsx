@@ -134,106 +134,85 @@ const ContactInfo = ({ isInView }) => (
 // --- MAIN ABOUT SECTION ---
 const MainAboutSection = ({ isInView }) => (
   <div className="relative bg-white" id="about-main">
-    <section className="relative py-16 sm:py-20 lg:py-24">
+    <section className="relative py-20">
       <motion.div 
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8"
         variants={ANIMATION_VARIANTS.stagger}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
       >
         {/* Top Section - Label & Content */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start mb-16">
-          {/* Left Column - Label & Additional Content */}
-          <motion.div
-            className="space-y-8"
-            variants={ANIMATION_VARIANTS.fadeUp}
-          >
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-black" />
-              <span className="text-black font-medium text-sm">Who WE Are</span>
-            </div>
-
-            {/* Additional Content Cards - Moved here */}
-            <motion.div 
-              className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              <h3 className="text-xl font-bold text-black mb-3 flex items-center gap-3">
-                <span className="text-2xl">👋</span>
-                <span>Hi, I'm Ratan Mia</span>
-              </h3>
-              <p className="text-sm text-gray-700 leading-relaxed">
-                I started coding at 16 and haven't stopped building since. I specialize in <strong className="text-black">React Native mobile apps</strong>, <strong className="text-black">Next.js web applications</strong>, and <strong className="text-black">Laravel backend systems</strong>.
-              </p>
-            </motion.div>
-
-            <motion.div 
-              className="bg-gradient-to-br from-accent-lime/10 to-accent-lime/5 rounded-2xl p-6 border-2 border-accent-lime/20"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              <h4 className="text-xl font-bold text-black mb-4 flex items-center gap-3">
-                <span className="text-2xl">💡</span>
-                <span>What I Bring</span>
-              </h4>
-              <ul className="space-y-2 text-sm text-gray-700 leading-relaxed">
-                <li className="flex items-start gap-2">
-                  <span className="text-accent-lime text-lg font-black mt-0.5">✓</span>
-                  <span><strong className="text-black">10+ years</strong> of production-ready apps</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-accent-lime text-lg font-black mt-0.5">✓</span>
-                  <span><strong className="text-black">Cross-platform expertise</strong> in iOS/Android</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-accent-lime text-lg font-black mt-0.5">✓</span>
-                  <span><strong className="text-black">End-to-end solutions</strong> & support</span>
-                </li>
-              </ul>
-            </motion.div>
-
-            {/* Contact Info - Moved here */}
-            <ContactInfo isInView={isInView} />
-          </motion.div>
-
-          {/* Right Column - Main Heading & Description */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start mb-20">
+          {/* Left Column - Simple Text Content */}
           <motion.div
             className="space-y-6"
             variants={ANIMATION_VARIANTS.fadeUp}
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-black leading-tight">
-              Building Exceptional Web & Mobile Experiences for Entrepreneurs
+            <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-bold mb-4">
+              WHO WE ARE
+            </div>
+            
+            <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
+              <p>
+                Hi, I'm <strong className="text-black">Ratan Mia</strong> – a passionate full stack developer from Dhaka, Bangladesh. I started coding at 16 and haven't stopped building since.
+              </p>
+              <p>
+                I specialize in <strong className="text-black">React Native mobile apps</strong>, <strong className="text-black">Next.js web applications</strong>, and <strong className="text-black">Laravel backend systems</strong>.
+              </p>
+              <div className="space-y-2 pt-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-1.5 h-1.5 rounded-full bg-black"></div>
+                  <span><strong className="text-black">10+ years</strong> building production-ready apps</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-1.5 h-1.5 rounded-full bg-black"></div>
+                  <span><strong className="text-black">Cross-platform expertise</strong> in iOS/Android & web</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-1.5 h-1.5 rounded-full bg-black"></div>
+                  <span><strong className="text-black">End-to-end solutions</strong> from concept to deployment</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Contact Info */}
+            <div className="pt-6">
+              <ContactInfo isInView={isInView} />
+            </div>
+          </motion.div>
+
+          {/* Right Column - Main Heading */}
+          <motion.div
+            variants={ANIMATION_VARIANTS.fadeUp}
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black leading-tight mb-6">
+              Building Exceptional <span className="text-accent-lime">Web & Mobile</span> Experiences for Entrepreneurs
             </h2>
-            <p className="text-base text-gray-600 leading-relaxed">
-              A passionate full stack developer from Dhaka, Bangladesh, specializing in React Native mobile apps, Next.js web applications, and Laravel backend systems. I leverage digital technologies to achieve specific business goals.
+            <p className="text-lg text-gray-600 leading-relaxed">
+              I leverage digital technologies to achieve specific business goals – creating scalable solutions that drive real results for my clients.
             </p>
           </motion.div>
         </div>
 
         {/* Bottom Section - Stats & Images */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start lg:items-end">
-          {/* Left Column - Stats & Content Cards */}
-          <div className="lg:col-span-5 space-y-8">
-            {/* Years of Experience */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              <div className="text-7xl sm:text-8xl lg:text-9xl font-bold text-black leading-none mb-2">
-                10<sup className="text-3xl sm:text-4xl">+</sup>
-              </div>
-              <div className="text-sm font-medium text-black">
-                Years Of<br />Experience
-              </div>
-            </motion.div>
-          </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+          {/* Years of Experience - Simple */}
+          <motion.div
+            className="lg:col-span-3"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <div className="text-6xl lg:text-7xl font-bold text-black leading-none mb-3">
+              10<sup className="text-3xl">+</sup>
+            </div>
+            <div className="text-sm font-bold text-gray-600 uppercase tracking-wider">
+              Years Of<br />Experience
+            </div>
+          </motion.div>
 
-          {/* Right Column - Images & Geometric Element */}
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-12 gap-6 items-end">
+          {/* Images & Geometric Element */}
+          <div className="lg:col-span-9 grid grid-cols-1 sm:grid-cols-12 gap-6 items-end">
             {/* First Image */}
             <motion.div
               className="sm:col-span-5"
@@ -241,7 +220,7 @@ const MainAboutSection = ({ isInView }) => (
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
-              <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-lg">
+              <div className="relative aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
                 <img 
                   src="/images/freelancer-working.jpg"
                   alt="Professional developer"
@@ -270,7 +249,7 @@ const MainAboutSection = ({ isInView }) => (
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.6, delay: 0.7 }}
             >
-              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-lg">
+              <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
                 <img 
                   src="/images/about-image.jpg"
                   alt="Ratan Mia - Full Stack Developer"
@@ -281,7 +260,7 @@ const MainAboutSection = ({ isInView }) => (
           </div>
         </div>
 
-        {/* Start Journey Link */}
+        {/* CTA Button */}
         <motion.div
           className="mt-12 flex justify-end"
           initial={{ opacity: 0, x: 20 }}
@@ -290,10 +269,10 @@ const MainAboutSection = ({ isInView }) => (
         >
           <a 
             href="#contact" 
-            className="inline-flex items-center gap-2 text-black font-medium text-sm group hover:text-accent-lime transition-colors"
+            className="inline-flex items-center gap-3 bg-accent-lime text-black px-8 py-4 font-bold rounded-xl hover:shadow-xl transition-all duration-300 hover:scale-105"
           >
-            <span className="text-right leading-tight">START THE<br />JOURNEY</span>
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <span>START THE JOURNEY</span>
+            <ArrowRight className="w-5 h-5" />
           </a>
         </motion.div>
       </motion.div>
