@@ -152,26 +152,40 @@ const MainAboutSection = ({ isInView }) => (
               WHO WE ARE
             </div>
             
-            <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
-              <p>
-                Hi, I'm <strong className="text-black">Ratan Mia</strong> – a passionate full stack developer from Dhaka, Bangladesh. I started coding at 16 and haven't stopped building since.
-              </p>
-              <p>
-                I specialize in <strong className="text-black">React Native mobile apps</strong>, <strong className="text-black">Next.js web applications</strong>, and <strong className="text-black">Laravel backend systems</strong>.
-              </p>
-              <div className="space-y-2 pt-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-black"></div>
-                  <span><strong className="text-black">10+ years</strong> building production-ready apps</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-black"></div>
-                  <span><strong className="text-black">Cross-platform expertise</strong> in iOS/Android & web</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-black"></div>
-                  <span><strong className="text-black">End-to-end solutions</strong> from concept to deployment</span>
-                </div>
+            <div className="space-y-6 sm:space-y-8">
+              <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-black mb-4 flex items-center gap-3">
+                  <span className="text-3xl">👋</span>
+                  <span>Hi, I'm Ratan Mia</span>
+                </h3>
+                <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                  A passionate full stack developer from Dhaka, Bangladesh, specializing in <strong className="text-black">React Native mobile apps</strong>, <strong className="text-black">Next.js web applications</strong>, and <strong className="text-black">Laravel backend systems</strong>. I started coding at 16 and haven't stopped building since.
+                </p>
+              </div>
+
+              <div className="bg-gradient-to-br from-accent-lime/10 to-accent-lime/5 rounded-2xl p-6 sm:p-8 border-2 border-accent-lime/20 hover:border-accent-lime/40 transition-colors">
+                <h4 className="text-xl sm:text-2xl lg:text-3xl font-bold text-black mb-5 flex items-center gap-3">
+                  <span className="text-3xl">💡</span>
+                  <span>What I Bring to Your Project</span>
+                </h4>
+                <ul className="space-y-4 text-base sm:text-lg text-gray-700 leading-relaxed">
+                  <li className="flex items-start gap-3 group">
+                    <span className="text-accent-lime text-2xl font-black mt-0.5 group-hover:scale-125 transition-transform">✓</span>
+                    <span><strong className="text-black">10+ years</strong> of hands-on experience building production-ready apps</span>
+                  </li>
+                  <li className="flex items-start gap-3 group">
+                    <span className="text-accent-lime text-2xl font-black mt-0.5 group-hover:scale-125 transition-transform">✓</span>
+                    <span><strong className="text-black">Cross-platform expertise</strong> in mobile (iOS/Android) and web development</span>
+                  </li>
+                  <li className="flex items-start gap-3 group">
+                    <span className="text-accent-lime text-2xl font-black mt-0.5 group-hover:scale-125 transition-transform">✓</span>
+                    <span><strong className="text-black">End-to-end solutions</strong> from concept to deployment and ongoing support</span>
+                  </li>
+                  <li className="flex items-start gap-3 group">
+                    <span className="text-accent-lime text-2xl font-black mt-0.5 group-hover:scale-125 transition-transform">✓</span>
+                    <span><strong className="text-black">Real results</strong> with 50K+ app users and 150+ successful projects delivered</span>
+                  </li>
+                </ul>
               </div>
             </div>
 
@@ -185,12 +199,24 @@ const MainAboutSection = ({ isInView }) => (
           <motion.div
             variants={ANIMATION_VARIANTS.fadeUp}
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black leading-tight mb-6">
-              Building Exceptional <span className="text-accent-lime">Web & Mobile</span> Experiences for Entrepreneurs
-            </h2>
-            <p className="text-lg text-gray-600 leading-relaxed">
-              I leverage digital technologies to achieve specific business goals – creating scalable solutions that drive real results for my clients.
-            </p>
+            {/* Section Label */}
+            <motion.div
+              className="inline-flex items-center gap-3 mb-6 sm:mb-8"
+              variants={ANIMATION_VARIANTS.fadeUp}
+            >
+              <div className="w-10 sm:w-12 h-1 bg-accent-lime rounded-full" />
+              <span className="text-black/70 font-bold text-xs sm:text-sm uppercase tracking-widest">About Me</span>
+            </motion.div>
+
+            {/* Main Heading */}
+            <motion.h2 
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-extrabold tracking-tight leading-[1.05] mb-6 sm:mb-8"
+              variants={ANIMATION_VARIANTS.fadeUp}
+            >
+              Building Exceptional
+              <br />
+              <span className="bg-gradient-to-r from-black via-gray-700 to-black bg-clip-text text-transparent">Web & Mobile Experiences</span>
+            </motion.h2>
           </motion.div>
         </div>
 
