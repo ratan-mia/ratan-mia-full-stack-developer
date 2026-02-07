@@ -4,32 +4,32 @@ import CaseStudyAbout from '@/app/components/case-studies/CaseStudyAbout';
 import CaseStudyHero from '@/app/components/case-studies/CaseStudyHero';
 import CaseStudySolution from '@/app/components/case-studies/CaseStudySolution';
 import CaseStudyTemplate, {
-    BusinessImpactCards,
-    CaseStudySection,
-    CTASection,
-    FullWidthImageContent,
-    ImageContentGrid,
-    ImageShowcaseGrid,
-    KeyAchievementsCard,
-    MetricsGrid
+  BusinessImpactCards,
+  CaseStudySection,
+  CTASection,
+  FullWidthImageContent,
+  ImageContentGrid,
+  ImageShowcaseGrid,
+  KeyAchievementsCard,
+  MetricsGrid
 } from '@/app/components/case-studies/CaseStudyTemplate';
 import {
-    Award,
-    BarChart,
-    Calendar,
-    Car,
-    Check,
-    CheckCircle,
-    Code,
-    CreditCard,
-    DollarSign,
-    Package,
-    ShoppingCart,
-    Smartphone,
-    Star,
-    Users,
-    Wrench,
-    Zap
+  Award,
+  BarChart,
+  Calendar,
+  Car,
+  Check,
+  CheckCircle,
+  Code,
+  CreditCard,
+  DollarSign,
+  Package,
+  ShoppingCart,
+  Smartphone,
+  Star,
+  Users,
+  Wrench,
+  Zap
 } from 'lucide-react';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
