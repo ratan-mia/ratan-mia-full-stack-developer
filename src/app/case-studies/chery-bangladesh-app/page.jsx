@@ -323,44 +323,56 @@ export default function CheryBangladeshAppCaseStudy() {
           ]}
         />
       </CaseStudySolution>
-      <FullWidthImageContent
-        image="/images/projects/cherymobileapp/mockup/Chery-website.png"
-        imageAlt="360° Vehicle Viewer"
-        badge="360° EXPERIENCE"
-        badgeIcon={Car}
-        title="Immersive Vehicle Exploration"
-        description="Interactive 360° vehicle viewer allowing customers to explore every angle of their dream car. High-resolution imagery with zoom capabilities and detailed feature highlights."
-        imagePosition="left"
-        bgColor="bg-white"
-        features={[
-          {
-            icon: Car,
-            title: '360° Rotation',
-            description: 'Smooth rotation with gesture controls for complete vehicle exploration'
-          },
-          {
-            icon: Star,
-            title: 'HD Image Gallery',
-            description: 'High-resolution photos showcasing interior, exterior, and features'
-          },
-          {
-            icon: Check,
-            title: 'Feature Highlights',
-            description: 'Interactive hotspots highlighting key features and specifications'
-          }
-        ]}
-      />
 
-      {/* Order Tracking */}
-      <FullWidthImageContent
-        image="/images/projects/cherymobileapp/mockup/digital-glovebox.png"
-        imageAlt="Order Tracking & Management"
-        badge="DIGITAL GLOVEBOX"
-        badgeIcon={Package}
-        title="Digital Glovebox & Documents"
-        description="Store and manage all your vehicle documents digitally. Access insurance papers, registration, service records, and warranty information anytime, anywhere."
-        imagePosition="right"
+      {/* Key Features Section */}
+      <CaseStudySection
+        id="key-features"
+        label="KEY FEATURES"
+        icon={Star}
+        title="Comprehensive Feature Set"
+        description="Explore the powerful features that make the Chery Bangladesh app a complete automotive ecosystem, from vehicle exploration to emergency assistance."
         bgColor="bg-white"
+        centered={true}
+      >
+        <div className="space-y-0">
+        <FullWidthImageContent
+          image="/images/projects/cherymobileapp/mockup/Chery-website.png"
+          imageAlt="360° Vehicle Viewer"
+          badge="360° EXPERIENCE"
+          badgeIcon={Car}
+          title="Immersive Vehicle Exploration"
+          description="Interactive 360° vehicle viewer allowing customers to explore every angle of their dream car. High-resolution imagery with zoom capabilities and detailed feature highlights."
+          imagePosition="left"
+          bgColor="bg-gray-50"
+          features={[
+            {
+              icon: Car,
+              title: '360° Rotation',
+              description: 'Smooth rotation with gesture controls for complete vehicle exploration'
+            },
+            {
+              icon: Star,
+              title: 'HD Image Gallery',
+              description: 'High-resolution photos showcasing interior, exterior, and features'
+            },
+            {
+              icon: Check,
+              title: 'Feature Highlights',
+              description: 'Interactive hotspots highlighting key features and specifications'
+            }
+          ]}
+        />
+
+        {/* Order Tracking */}
+        <FullWidthImageContent
+          image="/images/projects/cherymobileapp/mockup/digital-glovebox.png"
+          imageAlt="Order Tracking & Management"
+          badge="DIGITAL GLOVEBOX"
+          badgeIcon={Package}
+          title="Digital Glovebox & Documents"
+          description="Store and manage all your vehicle documents digitally. Access insurance papers, registration, service records, and warranty information anytime, anywhere."
+          imagePosition="right"
+          bgColor="bg-white"
         features={[
           {
             icon: Package,
@@ -385,50 +397,50 @@ export default function CheryBangladeshAppCaseStudy() {
         ]}
       />
 
-      {/* Booking Management */}
-      <FullWidthImageContent
-        image="/images/projects/cherymobileapp/mockup/my-garages.png"
-        imageAlt="Booking Management Dashboard"
-        badge="BOOKING DASHBOARD"
-        badgeIcon={Calendar}
-        title="Manage All Your Bookings"
-        description="Centralized dashboard for managing test drives and service appointments. View upcoming bookings, track history, and easily reschedule or cancel when needed."
-        imagePosition="left"
-        bgColor="bg-gradient-to-br from-gray-50 to-white"
-        features={[
-          {
-            icon: Calendar,
-            title: 'Upcoming Bookings',
-            description: 'View all scheduled test drives and service appointments'
-          },
-          {
-            icon: Check,
-            title: 'Easy Rescheduling',
-            description: 'Modify bookings with real-time availability checking'
-          },
-          {
-            icon: Award,
-            title: 'Booking History',
-            description: 'Track past appointments and service records'
-          },
-          {
-            icon: Users,
-            title: 'Quick Rebooking',
-            description: 'One-tap rebooking for favorite services and vehicles'
-          }
-        ]}
-      />
+        {/* Booking Management */}
+        <FullWidthImageContent
+          image="/images/projects/cherymobileapp/mockup/my-garages.png"
+          imageAlt="Booking Management Dashboard"
+          badge="BOOKING DASHBOARD"
+          badgeIcon={Calendar}
+          title="Manage All Your Bookings"
+          description="Centralized dashboard for managing test drives and service appointments. View upcoming bookings, track history, and easily reschedule or cancel when needed."
+          imagePosition="left"
+          bgColor="bg-gray-50"
+          features={[
+            {
+              icon: Calendar,
+              title: 'Upcoming Bookings',
+              description: 'View all scheduled test drives and service appointments'
+            },
+            {
+              icon: Check,
+              title: 'Easy Rescheduling',
+              description: 'Modify bookings with real-time availability checking'
+            },
+            {
+              icon: Award,
+              title: 'Booking History',
+              description: 'Track past appointments and service records'
+            },
+            {
+              icon: Users,
+              title: 'Quick Rebooking',
+              description: 'One-tap rebooking for favorite services and vehicles'
+            }
+          ]}
+        />
 
-      {/* Emergency SOS */}
-      <FullWidthImageContent
-        image="/images/projects/cherymobileapp/mockup/sos.png"
-        imageAlt="Emergency SOS Feature"
-        badge="SAFETY FIRST"
-        badgeIcon={Award}
-        title="24/7 Emergency SOS"
-        description="One-tap emergency assistance feature connecting you to roadside support, emergency services, and Chery service centers. Your safety is our priority."
-        imagePosition="right"
-        bgColor="bg-white"
+        {/* Emergency SOS */}
+        <FullWidthImageContent
+          image="/images/projects/cherymobileapp/mockup/sos.png"
+          imageAlt="Emergency SOS Feature"
+          badge="SAFETY FIRST"
+          badgeIcon={Award}
+          title="24/7 Emergency SOS"
+          description="One-tap emergency assistance feature connecting you to roadside support, emergency services, and Chery service centers. Your safety is our priority."
+          imagePosition="right"
+          bgColor="bg-white"
         features={[
           {
             icon: Users,
@@ -487,16 +499,16 @@ export default function CheryBangladeshAppCaseStudy() {
         ]}
       />
 
-      {/* Home Service */}
-      <FullWidthImageContent
-        image="/images/projects/cherymobileapp/mockup/chery-home-service.png"
-        imageAlt="Home Service Booking"
-        badge="CONVENIENCE"
-        badgeIcon={Car}
-        title="Home Service Booking"
-        description="Book service appointments at your doorstep. Professional technicians will come to your location for routine maintenance, inspections, and minor repairs."
-        imagePosition="right"
-        bgColor="bg-white"
+        {/* Home Service */}
+        <FullWidthImageContent
+          image="/images/projects/cherymobileapp/mockup/chery-home-service.png"
+          imageAlt="Home Service Booking"
+          badge="CONVENIENCE"
+          badgeIcon={Car}
+          title="Home Service Booking"
+          description="Book service appointments at your doorstep. Professional technicians will come to your location for routine maintenance, inspections, and minor repairs."
+          imagePosition="right"
+          bgColor="bg-gray-50"
         features={[
           {
             icon: Calendar,
@@ -521,16 +533,16 @@ export default function CheryBangladeshAppCaseStudy() {
         ]}
       />
 
-      {/* Fuel Stations */}
-      <FullWidthImageContent
-        image="/images/projects/cherymobileapp/mockup/nearest-fuel-stations.png"
-        imageAlt="Nearest Fuel Stations Finder"
-        badge="NAVIGATION"
-        badgeIcon={Car}
-        title="Find Nearest Fuel Stations"
-        description="Never run out of fuel. Find the nearest gas stations with real-time navigation, pricing information, and amenities available at each location."
-        imagePosition="left"
-        bgColor="bg-gradient-to-br from-gray-50 to-white"
+        {/* Fuel Stations */}
+        <FullWidthImageContent
+          image="/images/projects/cherymobileapp/mockup/nearest-fuel-stations.png"
+          imageAlt="Nearest Fuel Stations Finder"
+          badge="NAVIGATION"
+          badgeIcon={Car}
+          title="Find Nearest Fuel Stations"
+          description="Never run out of fuel. Find the nearest gas stations with real-time navigation, pricing information, and amenities available at each location."
+          imagePosition="left"
+          bgColor="bg-white"
         features={[
           {
             icon: Star,
@@ -554,6 +566,8 @@ export default function CheryBangladeshAppCaseStudy() {
           }
         ]}
       />
+      </div>
+      </CaseStudySection>
 
       {/* Dual Platform Showcase */}
       <section className="py-20 px-4 md:px-6 lg:px-8 bg-gray-50">
