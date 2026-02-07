@@ -19,14 +19,10 @@ export default function Home() {
     <div className="relative w-full overflow-hidden">
       {/* Hero Section */}
       <HeroMain />
-
-      {/* Services */}
-      <Services />
-
-
-
       {/* About */}
       <About />
+      {/* Services */}
+      <Services />
       <FeelanceCTA />
 
       {/* Skills */}

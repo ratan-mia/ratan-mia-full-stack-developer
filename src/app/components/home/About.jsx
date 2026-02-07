@@ -148,51 +148,54 @@ const StatColumn = ({ stat, index, isInView }) => (
 // --- EXPERIENCE ROW COMPONENT ---
 const ExperienceRow = ({ experience, index, isInView }) => (
   <motion.div
-    className="bg-white rounded-2xl lg:rounded-3xl p-6 sm:p-8 lg:p-10 shadow-lg border-2 border-gray-100 hover:border-accent-lime/50 hover:shadow-2xl transition-all duration-300 group"
+    className="group grid grid-cols-1 lg:grid-cols-12 items-start lg:items-center gap-4 lg:gap-6 py-8 lg:py-12 border-b border-gray-200 hover:bg-gray-50/50 rounded-lg px-0 lg:px-6 transition-all duration-300"
     variants={ANIMATION_VARIANTS.slideInLeft}
     initial="hidden"
     animate={isInView ? "visible" : "hidden"}
     transition={{ delay: 0.2 + index * 0.15 }}
-    whileHover={{ x: 8, y: -4 }}
+    whileHover={{ x: 8 }}
   >
-    <div className="flex flex-col lg:grid lg:grid-cols-12 items-start lg:items-center gap-4 lg:gap-8">
-      {/* Period Column */}
-      <div className="lg:col-span-3 xl:col-span-2">
-        <div className="inline-flex lg:flex flex-col items-start gap-1">
-          <div className="px-4 py-2 bg-accent-lime/20 text-black rounded-xl font-bold text-sm lg:text-base group-hover:bg-accent-lime group-hover:scale-105 transition-all">
-            {experience.period}
-          </div>
+    {/* Year/Period - 2-3 columns */}
+    <div className="lg:col-span-3 flex items-center gap-3">
+      <div className="w-12 h-12 rounded-xl bg-gray-100 group-hover:bg-accent-lime flex items-center justify-center transition-all duration-300 flex-shrink-0">
+        <Award className="w-6 h-6 text-black" />
+      </div>
+      <div>
+        <div className="text-accent-lime font-bold text-base lg:text-lg group-hover:scale-105 transition-transform">
+          {experience.period.split(' - ')[0]}
+        </div>
+        <div className="text-gray-500 text-sm">
+          {experience.period.split(' - ')[1]}
         </div>
       </div>
+    </div>
 
-      {/* Main Content */}
-      <div className="w-full lg:col-span-6 xl:col-span-7">
-        <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-black mb-2 group-hover:text-accent-lime transition-colors">
-          {experience.role}
-        </h3>
-        <div className="text-base sm:text-lg font-bold text-gray-600 mb-3 lg:hidden">
-          {experience.company}
-        </div>
-        <p className="text-gray-600 mb-4 text-sm sm:text-base lg:text-lg leading-relaxed">{experience.description}</p>
-        <div className="flex flex-wrap gap-2">
-          {experience.tech.map(tech => (
-            <span 
-              key={tech}
-              className="px-3 py-1.5 text-xs sm:text-sm bg-gray-100 text-gray-700 rounded-lg font-semibold hover:bg-accent-lime hover:text-black transition-all cursor-default border border-gray-200 hover:border-accent-lime hover:scale-105"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-      </div>
+    {/* Main Content - 6 columns */}
+    <div className="lg:col-span-6">
+      <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-black mb-2 group-hover:text-accent-lime transition-colors">
+        {experience.role}
+      </h3>
+      <p className="text-gray-600 mb-3 text-base leading-relaxed">{experience.description}</p>
 
-      {/* Company Column */}
-      <div className="hidden lg:block lg:col-span-3 xl:col-span-3 text-right">
-        <div className="text-xl lg:text-2xl font-extrabold text-black group-hover:text-accent-lime transition-colors mb-1">
-          {experience.company}
-        </div>
-        <div className="text-sm text-gray-500 font-medium">Company</div>
+      {/* Tech tags */}
+      <div className="flex flex-wrap gap-2">
+        {experience.tech.map(tech => (
+          <span 
+            key={tech}
+            className="px-3 py-1 text-xs bg-gray-100 text-gray-700 rounded-full font-medium hover:bg-accent-lime/20 hover:text-black transition-colors"
+          >
+            {tech}
+          </span>
+        ))}
       </div>
+    </div>
+
+    {/* Company Info - 3 columns */}
+    <div className="lg:col-span-3 text-left lg:text-right mt-2 lg:mt-0">
+      <div className="text-lg lg:text-xl font-bold text-black group-hover:text-accent-lime transition-colors">
+        {experience.company}
+      </div>
+      <div className="text-sm text-gray-500 font-medium">Company</div>
     </div>
   </motion.div>
 );
@@ -392,22 +395,6 @@ const MainAboutSection = ({ isInView }) => (
               </div>
             </motion.div>
 
-            {/* Skills Section */}
-            <motion.div 
-              className="space-y-5 mb-6"
-              variants={ANIMATION_VARIANTS.fadeUp}
-            >
-              <h4 className="text-lg sm:text-xl font-bold text-black mb-4 uppercase tracking-wider">Core Expertise</h4>
-              {DEVELOPMENT_SERVICES.map((service, index) => (
-                <ServiceSkillBar
-                  key={service.name}
-                  service={service}
-                  index={index}
-                  isInView={isInView}
-                />
-              ))}
-            </motion.div>
-
             {/* Contact Info */}
             <ContactInfo isInView={isInView} />
           </motion.div>
@@ -518,31 +505,28 @@ const StatsSection = ({ isInView }) => (
 
 // --- EXPERIENCE SECTION ---
 const ExperienceSection = ({ isInView }) => (
-  <div className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-gray-50 via-white to-gray-50 relative overflow-hidden">
-    {/* Decorative background */}
-    <div className="absolute inset-0 pointer-events-none opacity-30">
-      <div className="absolute top-0 left-1/4 w-px h-full bg-gradient-to-b from-transparent via-gray-300 to-transparent" />
-      <div className="absolute top-0 right-1/4 w-px h-full bg-gradient-to-b from-transparent via-gray-300 to-transparent" />
-    </div>
-    
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <SectionHeader isInView={isInView} textColor="text-black">
-        <motion.div
-          className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-xs sm:text-sm font-bold mb-6 uppercase tracking-wider"
-          variants={ANIMATION_VARIANTS.fadeUp}
-        >
+  <div className="py-20 bg-white relative">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <motion.div
+        className="text-center mb-12 lg:mb-16"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-bold mb-6 uppercase tracking-wider">
           💼 Experience
-        </motion.div>
-        <h3 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold mb-6 text-black">
+        </div>
+        <h2 className="text-4xl md:text-5xl font-bold mb-4 text-black">
           Professional Journey
-        </h3>
-        <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto">
+        </h2>
+        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
           Over a decade of experience across web, mobile, and enterprise development with leading companies in Bangladesh
         </p>
-      </SectionHeader>
+      </motion.div>
       
       <motion.div 
-        className="mt-12 sm:mt-16 lg:mt-20 space-y-6 sm:space-y-8"
+        className="space-y-0"
         variants={ANIMATION_VARIANTS.stagger}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
