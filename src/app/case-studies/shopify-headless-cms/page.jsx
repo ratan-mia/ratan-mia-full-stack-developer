@@ -373,6 +373,117 @@ export default function ShopifyHeadlessCMSCaseStudy() {
             }
           ]}
         />
+        {/* Content Management */}
+        <ImageContentGrid
+          image="/images/projects/headless-cms/mockup/headless-cms-web-and-mobile-app.png"
+          imageAlt="Content Management System"
+          badge="CMS INTEGRATION"
+          badgeIcon={Database}
+          title="Shopify Metaobjects CMS"
+          description="Powerful content management system using Shopify Metaobjects, enabling marketing team to manage hero slides, vehicle database, and product metadata without developer intervention."
+          imagePosition="left"
+          features={[
+            {
+              icon: Check,
+              title: 'Visual Content Editor',
+              description: 'Non-technical interface for managing banners, promotions, and content'
+            },
+            {
+              icon: Check,
+              title: 'Real-time Updates',
+              description: 'Content changes reflect immediately without deployment'
+            },
+            {
+              icon: Check,
+              title: 'Version Control',
+              description: 'Track content changes with rollback capability'
+            }
+          ]}
+        />
+
+        {/* SEO Optimization */}
+        <ImageContentGrid
+          image="/images/projects/headless-cms/mockup/vehicle-fitment-search.png"
+          imageAlt="SEO Optimization"
+          badge="SEO & PERFORMANCE"
+          badgeIcon={TrendingUp}
+          title="Advanced SEO Optimization"
+          description="Comprehensive SEO strategy with Bangladesh-specific keywords, local business schema, structured data, and mobile-first optimization achieving 98/100 Lighthouse SEO score."
+          imagePosition="right"
+          features={[
+            {
+              icon: Check,
+              title: 'Dynamic Metadata',
+              description: 'Auto-generated SEO tags for products, collections, and pages'
+            },
+            {
+              icon: Check,
+              title: 'Structured Data',
+              description: 'Product schema, breadcrumbs, and local business markup'
+            },
+            {
+              icon: Check,
+              title: 'Local SEO',
+              description: 'Dhaka and Tejgaon location targeting with Bengali keywords'
+            }
+          ]}
+        />
+
+        {/* Local Pickup */}
+        <ImageContentGrid
+          image="/images/projects/headless-cms/mockup/real-time-order-tracking.png"
+          imageAlt="Local Pickup System"
+          badge="LOCAL PICKUP"
+          badgeIcon={Package}
+          title="Store Availability API"
+          description="Real-time inventory checking across multiple Dhaka locations using Shopify's official storeAvailability API, enabling customers to pick up orders and avoid delivery delays."
+          imagePosition="left"
+          features={[
+            {
+              icon: Check,
+              title: 'Multi-location Inventory',
+              description: 'Real-time stock status across all pickup locations'
+            },
+            {
+              icon: Check,
+              title: 'Geolocation Sorting',
+              description: 'Find nearest pickup location with distance calculation'
+            },
+            {
+              icon: Check,
+              title: 'Time Slot Booking',
+              description: 'Schedule pickup appointments with date/time selection'
+            }
+          ]}
+        />
+
+        {/* Analytics & Insights */}
+        <ImageContentGrid
+          image="/images/projects/headless-cms/mockup/collections-dynamic-mega-menu.png"
+          imageAlt="Analytics Dashboard"
+          badge="ANALYTICS"
+          badgeIcon={BarChart}
+          title="Business Intelligence"
+          description="Comprehensive analytics tracking customer behavior, search patterns, conversion funnels, and inventory performance with real-time dashboards and automated reports."
+          imagePosition="right"
+          features={[
+            {
+              icon: Check,
+              title: 'Customer Insights',
+              description: 'Track user journeys, behavior patterns, and preferences'
+            },
+            {
+              icon: Check,
+              title: 'Search Analytics',
+              description: 'Vehicle search patterns and product discovery trends'
+            },
+            {
+              icon: Check,
+              title: 'Performance Metrics',
+              description: 'Real-time monitoring of page speed, conversions, and errors'
+            }
+          ]}
+        />
       </CaseStudySolution>
 
       {/* Technical Stack Section */}
