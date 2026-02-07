@@ -3,11 +3,11 @@
 import About from '@/components/home/About';
 import Contact from '@/components/home/Contact';
 import Experience from '@/components/home/Experience';
+import OurCommitment from '@/components/home/OurCommitment';
 import HeroMain from '@/components/home/HeroMain';
 import Process from '@/components/home/Process';
 import Projects from '@/components/home/Projects';
 import Services from '@/components/home/Services';
-import TechnicalExpertise from '@/components/home/TechnicalExpertise';
 import Testimonials from '@/components/home/Testimonials';
 import TrainingCertificates from '@/components/home/TrainingCertificates';
 
@@ -26,8 +26,8 @@ export default function Home() {
       {/* Process - Light (White background) */}
       <Process />
 
-      {/* Technical Expertise - Dark (Black background) */}
-      <TechnicalExpertise />
+      {/* Our Commitment - Dark (Black background) */}
+      <OurCommitment />
 
       {/* Experience - Light (White background) */}
       <Experience />
