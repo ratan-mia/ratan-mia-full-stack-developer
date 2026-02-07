@@ -164,7 +164,7 @@ const Testimonials = () => {
 
               {/* Main Title */}
               <motion.h2 
-                className="text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white leading-tight"
+                className="text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.3, duration: 0.6 }}
@@ -174,7 +174,7 @@ const Testimonials = () => {
 
               {/* Description */}
               <motion.p
-                className="text-base lg:text-lg text-gray-400 leading-relaxed max-w-md"
+                className="text-sm lg:text-base text-gray-400 leading-relaxed max-w-md"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.4, duration: 0.6 }}
@@ -189,8 +189,8 @@ const Testimonials = () => {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.5, duration: 0.6 }}
               >
-                <div className="text-6xl lg:text-7xl font-extrabold text-accent-lime mb-2">&gt;208</div>
-                <div className="text-sm font-bold text-gray-500 uppercase tracking-wider">Total Contract Agents</div>
+                <div className="text-5xl lg:text-6xl font-bold text-accent-lime mb-2">&gt;208</div>
+                <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Total Contract Agents</div>
               </motion.div>
 
               {/* Video Introduction */}
@@ -241,7 +241,7 @@ const Testimonials = () => {
                   <div className="relative bg-gradient-to-br from-gray-900 to-black border-2 border-gray-800 hover:border-accent-lime/50 rounded-3xl p-8 sm:p-10 lg:p-12 xl:p-14 shadow-2xl transition-all duration-500">
                     
                     {/* Quote Text */}
-                    <blockquote className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-relaxed mb-10">
+                    <blockquote className="text-xl sm:text-2xl lg:text-3xl font-medium text-white leading-relaxed mb-10">
                       "{TESTIMONIALS_DATA[currentIndex].quote}"
                     </blockquote>
 
@@ -249,18 +249,18 @@ const Testimonials = () => {
                     <div className="flex items-center justify-between flex-wrap gap-4">
                       <div className="flex items-center gap-4">
                         <div className="w-14 h-14 rounded-full bg-accent-lime flex items-center justify-center">
-                          <span className="text-black font-extrabold text-2xl">
+                          <span className="text-black font-bold text-xl">
                             {TESTIMONIALS_DATA[currentIndex].avatar}
                           </span>
                         </div>
                         <div>
-                          <h4 className="font-extrabold text-xl sm:text-2xl text-white mb-1">
+                          <h4 className="font-bold text-lg sm:text-xl text-white mb-1">
                             {TESTIMONIALS_DATA[currentIndex].name}
                           </h4>
-                          <p className="text-sm sm:text-base text-gray-400">
+                          <p className="text-xs sm:text-sm text-gray-400">
                             {TESTIMONIALS_DATA[currentIndex].position}
                           </p>
-                          <p className="text-xs sm:text-sm text-accent-lime font-semibold">
+                          <p className="text-xs sm:text-sm text-accent-lime font-medium">
                             {TESTIMONIALS_DATA[currentIndex].company}
                           </p>
                         </div>
@@ -268,11 +268,11 @@ const Testimonials = () => {
 
                       {/* Navigation Counter */}
                       <div className="flex items-center gap-4">
-                        <span className="text-4xl font-extrabold text-accent-lime">
+                        <span className="text-3xl font-bold text-accent-lime">
                           0{currentIndex + 1}
                         </span>
                         <div className="w-px h-10 bg-gray-700" />
-                        <span className="text-2xl font-bold text-gray-600">
+                        <span className="text-xl font-semibold text-gray-600">
                           0{TESTIMONIALS_DATA.length}
                         </span>
                       </div>
