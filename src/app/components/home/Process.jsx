@@ -18,13 +18,13 @@ const ProcessStep = ({ step, index, inView }) => {
       }}
     >
       {/* Step Number and Icon */}
-      <div className="flex items-center mb-6">
+      <div className="flex items-center mb-5">
         <motion.div 
-          className="relative w-16 h-16 rounded-2xl bg-accent-lime flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-300"
+          className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-accent-lime flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300"
           whileHover={{ scale: 1.05, rotate: 5 }}
           transition={{ type: "spring", stiffness: 300 }}
         >
-          <step.icon className="w-8 h-8 text-black" />
+          <step.icon className="w-7 h-7 sm:w-8 sm:h-8 text-black" />
           
           {/* Number Badge */}
           <motion.div
@@ -37,23 +37,23 @@ const ProcessStep = ({ step, index, inView }) => {
           </motion.div>
         </motion.div>
         
-        <div className="ml-4">
-          <div className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">
+        <div className="ml-3 sm:ml-4">
+          <div className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">
             Step {index + 1}
           </div>
-          <div className="text-sm font-bold text-accent-lime">
+          <div className="text-sm font-extrabold text-black">
             {step.phase}
           </div>
         </div>
       </div>
       
       {/* Title */}
-      <h3 className="text-xl lg:text-2xl font-extrabold text-black mb-3 leading-tight">
+      <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-black mb-3 leading-tight">
         {step.title}
       </h3>
       
       {/* Description */}
-      <p className="text-gray-600 leading-relaxed text-sm lg:text-base">
+      <p className="text-gray-600 text-sm sm:text-base" style={{ lineHeight: '1.6' }}>
         {step.description}
       </p>
 
@@ -104,8 +104,8 @@ const Process = () => {
   ];
 
   return (
-    <section ref={ref} className="py-20 lg:py-32 bg-white" id="process">
-      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+    <section ref={ref} className="py-16 md:py-20 bg-white" id="process">
+      <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
         
         {/* Section Header */}
         <motion.div 
@@ -120,15 +120,17 @@ const Process = () => {
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="w-12 h-1 bg-accent-lime rounded-full" />
-            <span className="text-black font-bold text-sm uppercase tracking-wider">
+            <div className="w-8 h-8 bg-accent-lime rounded-xl flex items-center justify-center">
+              <Zap className="w-4 h-4 text-black" />
+            </div>
+            <span className="text-black font-extrabold text-sm uppercase tracking-widest">
               My Process
             </span>
-            <div className="w-12 h-1 bg-accent-lime rounded-full" />
           </motion.div>
           
           <motion.h2 
-            className="text-4xl lg:text-5xl xl:text-6xl font-extrabold mb-6 leading-tight"
+            className="font-extrabold mb-6 leading-tight text-black"
+            style={{ fontSize: 'clamp(32px, 4vw, 48px)', letterSpacing: '-0.02em' }}
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -137,7 +139,8 @@ const Process = () => {
           </motion.h2>
           
           <motion.p 
-            className="text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+            className="text-lg text-gray-700 max-w-3xl mx-auto"
+            style={{ lineHeight: '1.7' }}
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -147,20 +150,20 @@ const Process = () => {
 
           {/* Success metrics */}
           <motion.div 
-            className="flex flex-wrap justify-center items-center gap-4 lg:gap-6 mt-10"
+            className="flex flex-wrap justify-center items-center gap-3 sm:gap-4 mt-8"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ delay: 0.5, duration: 0.6 }}
           >
-            <div className="flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-lg">
+            <div className="flex items-center gap-2 px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl hover:border-accent-lime/50 transition-colors">
               <CheckCircle size={18} className="text-accent-lime" />
               <span className="text-sm font-bold text-black">150+ Projects</span>
             </div>
-            <div className="flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-lg">
+            <div className="flex items-center gap-2 px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl hover:border-accent-lime/50 transition-colors">
               <Zap size={18} className="text-accent-lime" />
               <span className="text-sm font-bold text-black">98% Satisfaction</span>
             </div>
-            <div className="flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-lg">
+            <div className="flex items-center gap-2 px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl hover:border-accent-lime/50 transition-colors">
               <Star size={18} className="text-accent-lime" />
               <span className="text-sm font-bold text-black">10+ Years</span>
             </div>
@@ -179,7 +182,7 @@ const Process = () => {
             />
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
             {processSteps.map((step, index) => (
               <ProcessStep
                 key={step.title}
