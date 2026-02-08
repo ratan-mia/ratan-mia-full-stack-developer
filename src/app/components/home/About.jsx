@@ -161,11 +161,20 @@ const MainAboutSection = ({ isInView }) => (
             variants={ANIMATION_VARIANTS.fadeUp}
             className="relative"
           >
-            <div className="relative h-[600px] lg:h-[750px] rounded-3xl overflow-hidden shadow-2xl">
+            <div className="relative h-[600px] lg:h-[750px] rounded-3xl overflow-hidden shadow-2xl bg-gray-100">
+              {/* Background Texture */}
+              <div 
+                className="absolute inset-0 opacity-30"
+                style={{
+                  backgroundImage: `radial-gradient(circle, #d1d5db 1px, transparent 1px)`,
+                  backgroundSize: '24px 24px'
+                }}
+              />
+              
               <img
                 src="/images/freelancer-working.jpg"
                 alt="Professional developer workspace"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover relative z-10"
               />
               
               {/* Circular Badge Overlay */}
