@@ -229,27 +229,41 @@ const Services = () => {
 
         {/* Bottom CTA */}
         <motion.div
-          className="text-center mt-20"
-          initial={{ opacity: 0, y: 30 }}
+          className="mt-16"
+          initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 1.5 }}
         >
-          <div className="bg-gradient-to-r from-accent-lime/20 via-accent-lime/10 to-accent-lime/20 p-12 rounded-3xl border border-accent-lime/20 backdrop-blur-xl">
-            <h3 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+          <div className="bg-gray-900 border-2 border-accent-lime rounded-2xl p-8 md:p-10 text-center">
+            <h3 className="text-2xl md:text-3xl font-black text-white mb-3 leading-tight">
               Ready to Start Your Project?
             </h3>
-            <p className="text-gray-300 mb-8 max-w-2xl mx-auto text-lg">
+            
+            <p className="text-gray-300 text-base mb-6 max-w-2xl mx-auto">
               Let's discuss your requirements and create something amazing together.
             </p>
-            <motion.a
-              href="#contact"
-              className="inline-flex items-center gap-3 bg-accent-lime text-black font-bold px-8 py-4 rounded-2xl hover:bg-accent-lime/90 transition-all duration-300 text-lg uppercase tracking-wider"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span>Get Started Today</span>
-              <ArrowRight className="w-5 h-5" />
-            </motion.a>
+
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <motion.a
+                href="#contact"
+                className="inline-flex items-center justify-center gap-2 bg-accent-lime text-black font-bold px-6 py-3.5 rounded-xl hover:bg-accent-lime/90 transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span>Get Started</span>
+                <ArrowRight className="w-5 h-5" />
+              </motion.a>
+
+              <motion.a
+                href="#portfolio"
+                className="inline-flex items-center justify-center gap-2 bg-white/10 border border-white/20 text-white font-bold px-6 py-3.5 rounded-xl hover:bg-white/20 transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span>View Portfolio</span>
+                <ArrowRight className="w-5 h-5" />
+              </motion.a>
+            </div>
           </div>
         </motion.div>
       </div>
