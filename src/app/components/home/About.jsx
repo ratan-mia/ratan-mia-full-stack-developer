@@ -142,8 +142,8 @@ const MainAboutSection = ({ isInView }) => (
         animate={isInView ? "visible" : "hidden"}
       >
         {/* Main Two-Column Layout */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 mb-16">
-          {/* Left Column - Main Image */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left Column - Image with Badge */}
           <motion.div
             variants={ANIMATION_VARIANTS.fadeUp}
             className="relative"
@@ -154,92 +154,102 @@ const MainAboutSection = ({ isInView }) => (
                 alt="Professional developer workspace"
                 className="w-full h-full object-cover"
               />
+              
+              {/* Circular Badge Overlay */}
+              <motion.div
+                className="absolute bottom-8 left-8 w-40 h-40 bg-accent-lime rounded-full flex items-center justify-center shadow-2xl"
+                initial={{ scale: 0, rotate: -180 }}
+                animate={isInView ? { scale: 1, rotate: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.5, type: "spring" }}
+              >
+                <div className="text-center">
+                  <div className="text-black font-black text-sm uppercase tracking-wider leading-tight">
+                    Full Stack<br />Developer
+                  </div>
+                </div>
+              </motion.div>
             </div>
           </motion.div>
 
           {/* Right Column - Content */}
           <motion.div
             variants={ANIMATION_VARIANTS.fadeUp}
-            className="flex flex-col justify-center"
+            className="space-y-8"
           >
             {/* Section Label */}
-            <div className="inline-flex items-center gap-2 mb-6">
-              <div className="w-2 h-2 bg-accent-lime rounded-full"></div>
+            <div className="inline-flex items-center gap-2">
+              <div className="w-6 h-6 bg-accent-lime rounded-full flex items-center justify-center">
+                <span className="text-black font-black text-xs">⚡</span>
+              </div>
               <span className="text-black font-bold text-sm uppercase tracking-widest">About Me</span>
             </div>
 
             {/* Main Heading */}
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-black mb-8 leading-[1.1]">
-              Full Stack Developer<br />
-              Turning <span className="text-accent-lime">Ideas Into</span> Stunning<br />
-              <span className="text-accent-lime">Digital Products</span> And Smart<br />
-              Experiences
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-black leading-[1.1]">
+              Web & Mobile  <span className="text-accent-lime">Experiences</span>
+             
             </h2>
 
+            {/* Stats Section */}
+            <div className="flex items-start gap-8">
+              {/* Years Experience */}
+              <div className="flex-shrink-0">
+                <div className="text-7xl lg:text-8xl font-black text-black leading-none mb-2">
+                  10<sup className="text-3xl">+</sup>
+                </div>
+                <div className="text-accent-lime font-bold text-sm uppercase tracking-wide">
+                  Years Of Experience
+                </div>
+              </div>
+
+              {/* Divider */}
+              <div className="w-px h-32 bg-gray-300"></div>
+
+              {/* Rating & Image */}
+              <div className="space-y-4">
+                {/* Team Image */}
+                <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                  <img
+                    src="/images/about-image.jpg"
+                    alt="Ratan Mia"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                {/* Stars & Rating */}
+                <div>
+                  <div className="flex items-center gap-1 mb-1">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="text-accent-lime text-xl">★</span>
+                    ))}
+                  </div>
+                  <div className="text-black font-bold text-sm">150+ Projects Delivered</div>
+                </div>
+              </div>
+            </div>
+
             {/* Description */}
-            <p className="text-lg text-gray-600 leading-relaxed mb-8">
-              Hi, I'm <strong className="text-black">Ratan Mia</strong>, a passionate full-stack developer based in Dhaka, Bangladesh. I specialize in building high-performance mobile applications with React Native and modern web applications with Next.js and Laravel. I started coding at 16 and have since delivered 150+ successful projects reaching over 50,000 active users.
+            <p className="text-lg text-gray-700 leading-relaxed">
+              Hi, I'm <strong className="text-black">Ratan Mia</strong>, a passionate full-stack developer from Dhaka, Bangladesh. I bring your ideas to life by crafting engaging, impactful digital experiences using React Native, Next.js, and Laravel. With 10+ years of experience and 50,000+ active users across my projects.
             </p>
 
-            {/* Contact Info Cards */}
-            <div className="space-y-4">
-              <ContactInfo isInView={isInView} />
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Bottom Section - Stats, Features & Image */}
-        <div className="grid lg:grid-cols-12 gap-8 items-center">
-          {/* Years of Experience */}
-          <motion.div
-            className="lg:col-span-3"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <div className="relative">
-              <div className="text-8xl lg:text-9xl font-black text-black leading-none">
-                10<sup className="text-4xl">+</sup>
+            {/* Contact Info */}
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div className="flex items-center gap-3 p-4 rounded-xl bg-gray-50 border border-gray-200">
+                <MapPin className="w-5 h-5 text-accent-lime flex-shrink-0" />
+                <div>
+                  <div className="text-xs text-gray-500 font-semibold uppercase">Location</div>
+                  <div className="text-black font-bold text-sm">Dhaka, Bangladesh</div>
+                </div>
               </div>
-              <div className="inline-block bg-accent-lime px-6 py-2 rounded-full mt-4">
-                <span className="text-black font-bold text-sm uppercase tracking-wide">Years Of Experience</span>
+              <div className="flex items-center gap-3 p-4 rounded-xl bg-gray-50 border border-gray-200">
+                <Mail className="w-5 h-5 text-accent-lime flex-shrink-0" />
+                <div>
+                  <div className="text-xs text-gray-500 font-semibold uppercase">Email</div>
+                  <div className="text-black font-bold text-sm break-all">shorifull@gmail.com</div>
+                </div>
               </div>
             </div>
-          </motion.div>
-
-          {/* Features List */}
-          <motion.div
-            className="lg:col-span-5"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.5 }}
-          >
-            <ul className="space-y-4 mb-8">
-              <li className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-accent-lime flex items-center justify-center flex-shrink-0">
-                  <span className="text-black font-black text-lg">✓</span>
-                </div>
-                <span className="text-lg font-semibold text-black">Cross-Platform Mobile & Web Development</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-accent-lime flex items-center justify-center flex-shrink-0">
-                  <span className="text-black font-black text-lg">✓</span>
-                </div>
-                <span className="text-lg font-semibold text-black">Clean & Scalable Code Architecture</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-accent-lime flex items-center justify-center flex-shrink-0">
-                  <span className="text-black font-black text-lg">✓</span>
-                </div>
-                <span className="text-lg font-semibold text-black">On-Time Delivery With Quality Assurance</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-accent-lime flex items-center justify-center flex-shrink-0">
-                  <span className="text-black font-black text-lg">✓</span>
-                </div>
-                <span className="text-lg font-semibold text-black">150+ Projects & 50K+ Active Users</span>
-              </li>
-            </ul>
 
             {/* CTA Button */}
             <motion.a
@@ -247,25 +257,9 @@ const MainAboutSection = ({ isInView }) => (
               className="inline-flex items-center gap-3 bg-gray-800 text-white px-8 py-4 rounded-full font-bold hover:bg-black transition-all duration-300"
               whileHover={{ scale: 1.05, x: 4 }}
             >
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="w-5 h-5 text-accent-lime" />
               <span>Let's Work Together</span>
             </motion.a>
-          </motion.div>
-
-          {/* Second Image */}
-          <motion.div
-            className="lg:col-span-4"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.7, delay: 0.6 }}
-          >
-            <div className="relative h-[400px] rounded-3xl overflow-hidden shadow-2xl">
-              <img
-                src="/images/about-image.jpg"
-                alt="Ratan Mia - Full Stack Developer"
-                className="w-full h-full object-cover"
-              />
-            </div>
           </motion.div>
         </div>
       </motion.div>
