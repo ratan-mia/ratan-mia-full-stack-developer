@@ -177,16 +177,20 @@ const MainAboutSection = ({ isInView }) => (
                 className="w-full h-full object-cover relative z-10"
               />
               
-              {/* Circular Badge Overlay */}
+              {/* Circular Badge Overlay - Enhanced */}
               <motion.div
-                className="absolute bottom-8 left-8 w-40 h-40 bg-accent-lime rounded-full flex items-center justify-center shadow-2xl"
+                className="absolute bottom-8 left-8 w-48 h-48 bg-accent-lime rounded-full flex items-center justify-center shadow-2xl z-20"
                 initial={{ scale: 0, rotate: -180 }}
                 animate={isInView ? { scale: 1, rotate: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.5, type: "spring" }}
               >
-                <div className="text-center">
-                  <div className="text-black font-black text-sm uppercase tracking-wider leading-tight">
-                    Full Stack<br />Developer
+                <div className="text-center p-6">
+                  <div className="text-black font-black text-xl uppercase tracking-wider leading-tight mb-2">
+                    Full Stack
+                  </div>
+                  <div className="w-12 h-1 bg-black mx-auto mb-2"></div>
+                  <div className="text-black font-black text-base uppercase tracking-wider leading-tight">
+                    Developer
                   </div>
                 </div>
               </motion.div>
