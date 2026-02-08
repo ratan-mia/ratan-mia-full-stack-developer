@@ -157,13 +157,13 @@ const MainAboutSection = ({ isInView }) => (
         animate={isInView ? "visible" : "hidden"}
       >
         {/* Main Two-Column Layout */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-stretch">
           {/* Left Column - Image with Badge */}
           <motion.div
             variants={ANIMATION_VARIANTS.fadeUp}
-            className="relative"
+            className="relative flex"
           >
-            <div className="relative h-[600px] lg:h-[750px] rounded-3xl overflow-hidden shadow-2xl bg-gray-100">
+            <div className="relative w-full h-[600px] lg:h-auto rounded-3xl overflow-hidden shadow-2xl bg-gray-100">
               {/* Background Texture */}
               <div 
                 className="absolute inset-0 opacity-30"
