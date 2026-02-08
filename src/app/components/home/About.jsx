@@ -202,7 +202,7 @@ const MainAboutSection = ({ isInView }) => (
           {/* Right Column - Content */}
           <motion.div
             variants={ANIMATION_VARIANTS.fadeUp}
-            className="space-y-8"
+            className="space-y-5"
           >
             {/* Section Label */}
             <motion.div 
