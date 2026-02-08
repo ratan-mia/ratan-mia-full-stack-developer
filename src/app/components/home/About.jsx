@@ -4,7 +4,9 @@ import { motion, useInView } from 'framer-motion';
 import {
   ArrowRight,
   Mail,
-  MapPin
+  MapPin,
+  Sparkles,
+  Zap
 } from 'lucide-react';
 import { useRef } from 'react';
 
@@ -203,89 +205,178 @@ const MainAboutSection = ({ isInView }) => (
             className="space-y-8"
           >
             {/* Section Label */}
-            <div className="inline-flex items-center gap-3 mb-2">
-              <div className="w-8 h-8 bg-accent-lime rounded-full flex items-center justify-center">
-                <span className="text-black font-black text-base">⚡</span>
-              </div>
+            <motion.div 
+              className="inline-flex items-center gap-3 mb-2"
+              initial={{ opacity: 0, x: -20 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ delay: 0.3 }}
+            >
+              <motion.div 
+                className="w-10 h-10 bg-accent-lime rounded-xl flex items-center justify-center shadow-lg"
+                whileHover={{ rotate: 360, scale: 1.1 }}
+                transition={{ duration: 0.6 }}
+              >
+                <Zap className="w-5 h-5 text-black" />
+              </motion.div>
               <span className="text-black font-extrabold text-sm uppercase tracking-widest">About Me</span>
-            </div>
+            </motion.div>
 
             {/* Main Heading */}
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-black leading-[1.1] tracking-tight">
+            <motion.h2 
+              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-black leading-[1.05] tracking-tight"
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.4 }}
+            >
               Building Exceptional<br />
-              <span className="text-accent-lime">Web & Mobile</span><br />
-              Experiences
-            </h2>
+              <span className="relative inline-block">
+                <span className="text-black">Web & Mobile</span>
+                <motion.div 
+                  className="absolute -bottom-2 left-0 right-0 h-3 bg-accent-lime -z-10"
+                  initial={{ scaleX: 0 }}
+                  animate={isInView ? { scaleX: 1 } : {}}
+                  transition={{ delay: 0.8, duration: 0.6 }}
+                  style={{ transformOrigin: 'left' }}
+                />
+              </span><br />
+              <span className="text-gray-400">Experiences</span>
+            </motion.h2>
 
             {/* Stats Section */}
-            <div className="flex items-start gap-8 py-4">
+            <motion.div 
+              className="flex items-start gap-8 py-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.6 }}
+            >
               {/* Years Experience */}
-              <div className="flex-shrink-0">
-                <div className="text-8xl lg:text-9xl font-black text-black leading-none mb-3">
+              <motion.div 
+                className="flex-shrink-0"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <motion.div 
+                  className="text-8xl lg:text-9xl font-black text-black leading-none mb-3"
+                  initial={{ scale: 0.5, opacity: 0 }}
+                  animate={isInView ? { scale: 1, opacity: 1 } : {}}
+                  transition={{ delay: 0.7, type: "spring" }}
+                >
                   10<sup className="text-4xl">+</sup>
-                </div>
-                <div className="inline-block bg-accent-lime px-6 py-2 rounded-full">
+                </motion.div>
+                <motion.div 
+                  className="inline-block bg-accent-lime px-6 py-2 rounded-full shadow-lg hover:shadow-xl transition-shadow"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                >
                   <span className="text-black font-black text-xs uppercase tracking-wider">Years Of Experience</span>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
 
               {/* Divider */}
-              <div className="w-px h-40 bg-gray-300"></div>
+              <motion.div 
+                className="w-px h-40 bg-gradient-to-b from-transparent via-gray-300 to-transparent"
+                initial={{ scaleY: 0 }}
+                animate={isInView ? { scaleY: 1 } : {}}
+                transition={{ delay: 0.8 }}
+              ></motion.div>
 
               {/* Rating & Image */}
               <div className="space-y-5">
                 {/* Team Image */}
-                <div className="w-36 h-36 rounded-full overflow-hidden border-4 border-accent-lime shadow-2xl">
+                <motion.div 
+                  className="w-36 h-36 rounded-full overflow-hidden border-4 border-accent-lime shadow-2xl hover:shadow-accent-lime/50 transition-all"
+                  initial={{ scale: 0, rotate: -180 }}
+                  animate={isInView ? { scale: 1, rotate: 0 } : {}}
+                  transition={{ delay: 0.9, type: "spring" }}
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                >
                   <img
                     src="/images/about-image.jpg"
                     alt="Ratan Mia"
                     className="w-full h-full object-cover"
                   />
-                </div>
+                </motion.div>
 
                 {/* Stars & Rating */}
-                <div>
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: 1.0 }}
+                >
                   <div className="flex items-center gap-1 mb-2">
                     {[...Array(5)].map((_, i) => (
-                      <span key={i} className="text-accent-lime text-2xl">★</span>
+                      <motion.span 
+                        key={i} 
+                        className="text-accent-lime text-2xl"
+                        initial={{ opacity: 0, scale: 0 }}
+                        animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                        transition={{ delay: 1.1 + i * 0.1, type: "spring" }}
+                        whileHover={{ scale: 1.3, rotate: 360 }}
+                      >
+                        ★
+                      </motion.span>
                     ))}
                   </div>
                   <div className="text-black font-extrabold text-base">150+ Projects Delivered</div>
                   <div className="text-gray-600 font-semibold text-sm">50K+ Active Users</div>
-                </div>
+                </motion.div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Description */}
-            <p className="text-xl text-gray-700 leading-relaxed font-medium">
-              Hi, I'm <strong className="text-black font-bold">Ratan Mia</strong>, a passionate full-stack developer from Dhaka, Bangladesh. I bring your ideas to life by crafting engaging, impactful digital experiences using React Native, Next.js, and Laravel.
-            </p>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : {}}
+              transition={{ delay: 1.0 }}
+            >
+              <p className="text-xl text-gray-700 leading-relaxed font-medium">
+                Hi, I'm <strong className="text-black font-bold">Ratan Mia</strong>, a passionate full-stack developer from Dhaka, Bangladesh 🇧🇩
+              </p>
+              <p className="text-xl text-gray-700 leading-relaxed font-medium mt-4">
+                I bring your ideas to life by crafting <span className="text-black font-bold relative inline-block">engaging, impactful digital experiences</span> using React Native, Next.js, and Laravel.
+              </p>
+            </motion.div>
 
             {/* Contact Info - Elegant Cards */}
             <div className="grid sm:grid-cols-2 gap-4">
               <motion.div 
-                className="flex items-center gap-4 p-5 rounded-2xl bg-gradient-to-br from-gray-50 to-white border-2 border-gray-200 hover:border-accent-lime transition-all"
-                whileHover={{ y: -4, scale: 1.02 }}
+                className="flex items-center gap-4 p-5 rounded-2xl bg-accent-lime hover:bg-yellow-300 transition-all group overflow-hidden relative shadow-lg"
+                whileHover={{ y: -6, scale: 1.03 }}
+                initial={{ opacity: 0, x: -20 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: 1.2 }}
               >
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-black to-gray-800 flex items-center justify-center shadow-lg">
-                  <MapPin className="w-6 h-6 text-accent-lime" />
+                {/* Background pattern */}
+                <div className="absolute inset-0 opacity-10">
+                  <div className="absolute top-2 right-2 w-20 h-20 rounded-full bg-black blur-2xl"></div>
                 </div>
-                <div>
-                  <div className="text-xs text-gray-500 font-bold uppercase tracking-wide mb-1">Location</div>
+                
+                <div className="relative z-10 w-14 h-14 rounded-xl bg-black/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                  <MapPin className="w-7 h-7 text-accent-lime" />
+                </div>
+                <div className="relative z-10">
+                  <div className="text-xs text-black/60 font-bold uppercase tracking-wide mb-1">Location</div>
                   <div className="text-black font-extrabold text-base">Dhaka, Bangladesh</div>
                 </div>
               </motion.div>
               
               <motion.div 
-                className="flex items-center gap-4 p-5 rounded-2xl bg-gradient-to-br from-gray-50 to-white border-2 border-gray-200 hover:border-accent-lime transition-all"
-                whileHover={{ y: -4, scale: 1.02 }}
+                className="flex items-center gap-4 p-5 rounded-2xl bg-black hover:bg-gray-900 transition-all group overflow-hidden relative shadow-lg"
+                whileHover={{ y: -6, scale: 1.03 }}
+                initial={{ opacity: 0, x: 20 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: 1.3 }}
               >
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-black to-gray-800 flex items-center justify-center shadow-lg">
-                  <Mail className="w-6 h-6 text-accent-lime" />
+                {/* Background pattern */}
+                <div className="absolute inset-0 opacity-10">
+                  <div className="absolute bottom-2 left-2 w-20 h-20 rounded-full bg-accent-lime blur-2xl"></div>
                 </div>
-                <div className="flex-1 min-w-0">
-                  <div className="text-xs text-gray-500 font-bold uppercase tracking-wide mb-1">Email</div>
-                  <a href="mailto:shorifull@gmail.com" className="text-black font-extrabold text-base hover:text-accent-lime transition-colors break-all">
+                
+                <div className="relative z-10 w-14 h-14 rounded-xl bg-accent-lime flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                  <Mail className="w-7 h-7 text-black" />
+                </div>
+                <div className="relative z-10 flex-1 min-w-0">
+                  <div className="text-xs text-accent-lime/60 font-bold uppercase tracking-wide mb-1">Email</div>
+                  <a href="mailto:shorifull@gmail.com" className="text-accent-lime font-extrabold text-base hover:text-white transition-colors break-all">
                     shorifull@gmail.com
                   </a>
                 </div>
@@ -295,11 +386,15 @@ const MainAboutSection = ({ isInView }) => (
             {/* CTA Button */}
             <motion.a
               href="#contact"
-              className="inline-flex items-center gap-3 bg-gray-800 text-white px-8 py-4 rounded-full font-bold hover:bg-black transition-all duration-300"
-              whileHover={{ scale: 1.05, x: 4 }}
+              className="inline-flex items-center gap-3 bg-black text-accent-lime px-10 py-5 rounded-full font-extrabold text-lg hover:bg-accent-lime hover:text-black transition-all duration-300 shadow-xl hover:shadow-2xl group"
+              whileHover={{ scale: 1.05 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 1.4 }}
             >
-              <ArrowRight className="w-5 h-5 text-accent-lime" />
+              <Sparkles className="w-6 h-6 group-hover:rotate-180 transition-transform duration-500" />
               <span>Let's Work Together</span>
+              <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
             </motion.a>
           </motion.div>
         </div>
