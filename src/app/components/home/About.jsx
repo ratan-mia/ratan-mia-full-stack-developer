@@ -136,188 +136,138 @@ const MainAboutSection = ({ isInView }) => (
   <div className="relative bg-white" id="about-main">
     <section className="relative py-20">
       <motion.div
-        className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8"
+        className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8"
         variants={ANIMATION_VARIANTS.stagger}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
       >
-        {/* Section Header - Bold & Elegant */}
-        <motion.div
-          className="mb-16"
-          variants={ANIMATION_VARIANTS.fadeUp}
-        >
-          <div className="inline-flex items-center gap-3 mb-8">
-            <div className="w-12 h-1 bg-accent-lime rounded-full" />
-            <span className="text-black/70 font-bold text-sm uppercase tracking-widest">About Me</span>
-          </div>
-          
-          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-black mb-8 leading-[1.1] tracking-tight">
-            Building Digital Products<br />
-            That <span className="text-accent-lime">Drive Results</span>
-          </h2>
-          
-          <p className="text-xl sm:text-2xl text-gray-700 max-w-4xl leading-relaxed font-light">
-            Full-stack developer with <strong className="font-bold text-black">10+ years of experience</strong> creating scalable, high-performance web and mobile applications that deliver measurable business impact
-          </p>
-        </motion.div>
-
-        {/* Main Content Grid - Bold Layout */}
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 mb-20">
-          {/* Main Content - Larger Column */}
+        {/* Main Two-Column Layout */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 mb-16">
+          {/* Left Column - Main Image */}
           <motion.div
-            className="lg:col-span-7"
             variants={ANIMATION_VARIANTS.fadeUp}
+            className="relative"
           >
-            {/* Introduction - Bold Typography */}
-            <div className="space-y-8">
-              <div className="relative">
-                <div className="absolute -left-4 top-0 w-1 h-full bg-accent-lime rounded-full" />
-                <p className="text-2xl sm:text-3xl font-bold text-black leading-tight mb-6 pl-6">
-                  Hi, I'm Ratan Mia
-                </p>
-              </div>
-              
-              <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
-                A passionate full-stack developer based in <strong className="text-black font-semibold">Dhaka, Bangladesh</strong>, specializing in building exceptional digital experiences that combine beautiful design with powerful functionality.
-              </p>
-              
-              <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
-                I started coding at 16 and have since delivered <strong className="text-black font-bold">150+ successful projects</strong> reaching over <strong className="text-black font-bold">50,000 active users</strong>. My expertise spans React Native mobile applications, Next.js web platforms, and Laravel backend systems.
-              </p>
-
-              {/* CTA Button */}
-              <motion.div 
-                className="pt-8"
-                whileHover={{ scale: 1.02 }}
-              >
-                <a 
-                  href="#contact" 
-                  className="inline-flex items-center gap-3 bg-accent-lime text-black px-8 py-5 font-extrabold text-lg rounded-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 uppercase tracking-wide"
-                >
-                  <span>Let's Work Together</span>
-                  <ArrowRight className="w-6 h-6" />
-                </a>
-              </motion.div>
+            <div className="relative h-[500px] lg:h-[600px] rounded-3xl overflow-hidden shadow-2xl">
+              <img
+                src="/images/freelancer-working.jpg"
+                alt="Professional developer workspace"
+                className="w-full h-full object-cover"
+              />
             </div>
           </motion.div>
 
-          {/* Sidebar - Contact */}
+          {/* Right Column - Content */}
           <motion.div
-            className="lg:col-span-5"
             variants={ANIMATION_VARIANTS.fadeUp}
+            className="flex flex-col justify-center"
           >
-            <div className="lg:sticky lg:top-8 space-y-8">
+            {/* Section Label */}
+            <div className="inline-flex items-center gap-2 mb-6">
+              <div className="w-2 h-2 bg-accent-lime rounded-full"></div>
+              <span className="text-black font-bold text-sm uppercase tracking-widest">About Me</span>
+            </div>
+
+            {/* Main Heading */}
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-black mb-8 leading-[1.1]">
+              Full Stack Developer<br />
+              Turning <span className="text-accent-lime">Ideas Into</span> Stunning<br />
+              <span className="text-accent-lime">Digital Products</span> And Smart<br />
+              Experiences
+            </h2>
+
+            {/* Description */}
+            <p className="text-lg text-gray-600 leading-relaxed mb-8">
+              Hi, I'm <strong className="text-black">Ratan Mia</strong>, a passionate full-stack developer based in Dhaka, Bangladesh. I specialize in building high-performance mobile applications with React Native and modern web applications with Next.js and Laravel. I started coding at 16 and have since delivered 150+ successful projects reaching over 50,000 active users.
+            </p>
+
+            {/* Contact Info Cards */}
+            <div className="space-y-4">
               <ContactInfo isInView={isInView} />
-              
-              {/* Additional Info Card */}
-              <div className="bg-black text-white p-8 rounded-3xl">
-                <h3 className="text-2xl font-bold mb-4">Why Choose Me?</h3>
-                <ul className="space-y-4">
-                  <li className="flex items-start gap-3">
-                    <div className="w-6 h-6 rounded-full bg-accent-lime flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-black text-sm font-black">✓</span>
-                    </div>
-                    <span className="text-gray-300 leading-relaxed">Clean, maintainable code that scales with your business</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-6 h-6 rounded-full bg-accent-lime flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-black text-sm font-black">✓</span>
-                    </div>
-                    <span className="text-gray-300 leading-relaxed">On-time delivery with attention to detail</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="w-6 h-6 rounded-full bg-accent-lime flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-black text-sm font-black">✓</span>
-                    </div>
-                    <span className="text-gray-300 leading-relaxed">Ongoing support and maintenance</span>
-                  </li>
-                </ul>
-              </div>
             </div>
           </motion.div>
         </div>
 
-        {/* Bottom Section - Stats & Images */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
-          {/* Years of Experience - Simple */}
+        {/* Bottom Section - Stats, Features & Image */}
+        <div className="grid lg:grid-cols-12 gap-8 items-center">
+          {/* Years of Experience */}
           <motion.div
             className="lg:col-span-3"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <div className="text-6xl lg:text-7xl font-bold text-black leading-none mb-3">
-              10<sup className="text-3xl">+</sup>
-            </div>
-            <div className="text-sm font-bold text-gray-600 uppercase tracking-wider">
-              Years Of<br />Experience
+            <div className="relative">
+              <div className="text-8xl lg:text-9xl font-black text-black leading-none">
+                10<sup className="text-4xl">+</sup>
+              </div>
+              <div className="inline-block bg-accent-lime px-6 py-2 rounded-full mt-4">
+                <span className="text-black font-bold text-sm uppercase tracking-wide">Years Of Experience</span>
+              </div>
             </div>
           </motion.div>
 
-          {/* Images & Geometric Element */}
-          <div className="lg:col-span-9 grid grid-cols-1 sm:grid-cols-12 gap-6 items-end">
-            {/* First Image */}
-            <motion.div
-              className="sm:col-span-5"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.6, delay: 0.5 }}
-            >
-              <div className="relative aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
-                <img
-                  src="/images/freelancer-working.jpg"
-                  alt="Professional developer"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </motion.div>
-
-            {/* Geometric Element */}
-            <motion.div
-              className="sm:col-span-2 flex items-center justify-center"
-              initial={{ opacity: 0, rotate: -45 }}
-              animate={isInView ? { opacity: 1, rotate: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              <div className="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 relative">
-                <div className="absolute inset-0 bg-accent-lime transform rotate-45 origin-center" />
-                <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-black transform rotate-45 origin-bottom-right" />
-              </div>
-            </motion.div>
-
-            {/* Second Image */}
-            <motion.div
-              className="sm:col-span-5"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.6, delay: 0.7 }}
-            >
-              <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
-                <img
-                  src="/images/about-image.jpg"
-                  alt="Ratan Mia - Full Stack Developer"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </motion.div>
-          </div>
-        </div>
-
-        {/* CTA Button */}
-        <motion.div
-          className="mt-12 flex justify-end"
-          initial={{ opacity: 0, x: 20 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.8 }}
-        >
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-3 bg-accent-lime text-black px-8 py-4 font-bold rounded-xl hover:shadow-xl transition-all duration-300 hover:scale-105"
+          {/* Features List */}
+          <motion.div
+            className="lg:col-span-5"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.5 }}
           >
-            <span>START THE JOURNEY</span>
-            <ArrowRight className="w-5 h-5" />
-          </a>
-        </motion.div>
+            <ul className="space-y-4 mb-8">
+              <li className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-accent-lime flex items-center justify-center flex-shrink-0">
+                  <span className="text-black font-black text-lg">✓</span>
+                </div>
+                <span className="text-lg font-semibold text-black">Cross-Platform Mobile & Web Development</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-accent-lime flex items-center justify-center flex-shrink-0">
+                  <span className="text-black font-black text-lg">✓</span>
+                </div>
+                <span className="text-lg font-semibold text-black">Clean & Scalable Code Architecture</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-accent-lime flex items-center justify-center flex-shrink-0">
+                  <span className="text-black font-black text-lg">✓</span>
+                </div>
+                <span className="text-lg font-semibold text-black">On-Time Delivery With Quality Assurance</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-accent-lime flex items-center justify-center flex-shrink-0">
+                  <span className="text-black font-black text-lg">✓</span>
+                </div>
+                <span className="text-lg font-semibold text-black">150+ Projects & 50K+ Active Users</span>
+              </li>
+            </ul>
+
+            {/* CTA Button */}
+            <motion.a
+              href="#contact"
+              className="inline-flex items-center gap-3 bg-gray-800 text-white px-8 py-4 rounded-full font-bold hover:bg-black transition-all duration-300"
+              whileHover={{ scale: 1.05, x: 4 }}
+            >
+              <ArrowRight className="w-5 h-5" />
+              <span>Let's Work Together</span>
+            </motion.a>
+          </motion.div>
+
+          {/* Second Image */}
+          <motion.div
+            className="lg:col-span-4"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.7, delay: 0.6 }}
+          >
+            <div className="relative h-[400px] rounded-3xl overflow-hidden shadow-2xl">
+              <img
+                src="/images/about-image.jpg"
+                alt="Ratan Mia - Full Stack Developer"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </motion.div>
+        </div>
       </motion.div>
     </section>
   </div>
