@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import { ArrowRight, BarChart3, Cloud, Code2, Database, Globe, Layers, Palette, ShoppingCart, Smartphone, Star, TrendingUp, Zap } from 'lucide-react';
+import { ArrowRight, BarChart3, Cloud, Code2, Database, Globe, Layers, Palette, ShoppingCart, Smartphone, Star } from 'lucide-react';
 import { useRef } from 'react';
 
 // --- Enhanced Service Card Component ---
@@ -171,12 +171,6 @@ const Services = () => {
     }
   ];
 
-  const stats = [
-    { icon: TrendingUp, number: '150+', label: 'Projects Completed' },
-    { icon: Star, number: '98%', label: 'Client Satisfaction' },
-    { icon: Zap, number: '10+', label: 'Years Experience' }
-  ];
-
   return (
     <section ref={ref} className="py-32 lg:py-40 bg-gradient-to-br from-black via-gray-900 to-black relative overflow-hidden" id="services">
       {/* Background Elements */}
@@ -214,30 +208,6 @@ const Services = () => {
           <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
             From custom front-end designs to complex back-end systems, I provide comprehensive development services that transform your vision into powerful digital solutions.
           </p>
-        </motion.div>
-
-        {/* Stats Section */}
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.4 }}
-        >
-          {stats.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              className="text-center group"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: 0.5 + index * 0.1 }}
-            >
-              <div className="w-16 h-16 bg-accent-lime/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                <stat.icon className="w-8 h-8 text-accent-lime" />
-              </div>
-              <div className="text-4xl lg:text-5xl font-extrabold text-white mb-2">{stat.number}</div>
-              <div className="text-gray-400 font-medium">{stat.label}</div>
-            </motion.div>
-          ))}
         </motion.div>
 
         {/* Services Grid */}
