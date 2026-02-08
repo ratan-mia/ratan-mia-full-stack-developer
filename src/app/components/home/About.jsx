@@ -92,37 +92,37 @@ const ServiceSkillBar = ({ service, index, isInView }) => (
 // --- CONTACT INFO COMPONENT ---
 const ContactInfo = ({ isInView }) => (
   <motion.div
-    className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5"
+    className="space-y-4"
     variants={ANIMATION_VARIANTS.fadeUp}
     initial="hidden"
     animate={isInView ? "visible" : "hidden"}
     transition={{ delay: 0.6 }}
   >
     <motion.div
-      className="flex items-center gap-4 p-4 sm:p-5 rounded-2xl bg-white shadow-md border-2 border-gray-100 hover:border-accent-lime/50 hover:shadow-lg transition-all group"
+      className="flex items-start gap-4 p-5 rounded-2xl bg-white shadow-md border-2 border-gray-100 hover:border-accent-lime/50 hover:shadow-lg transition-all group"
       whileHover={{ scale: 1.02, y: -2 }}
     >
-      <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-black to-gray-800 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+      <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-black to-gray-800 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg flex-shrink-0">
         <MapPin className="w-6 h-6 text-accent-lime" />
       </div>
-      <div className="flex-1 min-w-0">
-        <p className="text-xs sm:text-sm text-gray-500 font-bold uppercase tracking-wide mb-1">Location</p>
-        <p className="text-black font-extrabold text-base sm:text-lg">Dhaka, Bangladesh 🇧🇩</p>
+      <div className="flex-1">
+        <p className="text-sm text-gray-500 font-bold uppercase tracking-wide mb-2">Location</p>
+        <p className="text-black font-extrabold text-lg leading-relaxed">Dhaka, Bangladesh 🇧🇩</p>
       </div>
     </motion.div>
 
     <motion.div
-      className="flex items-center gap-4 p-4 sm:p-5 rounded-2xl bg-white shadow-md border-2 border-gray-100 hover:border-accent-lime/50 hover:shadow-lg transition-all group"
+      className="flex items-start gap-4 p-5 rounded-2xl bg-white shadow-md border-2 border-gray-100 hover:border-accent-lime/50 hover:shadow-lg transition-all group"
       whileHover={{ scale: 1.02, y: -2 }}
     >
-      <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-black to-gray-800 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+      <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-black to-gray-800 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg flex-shrink-0">
         <Mail className="w-6 h-6 text-accent-lime" />
       </div>
-      <div className="min-w-0 flex-1">
-        <p className="text-xs sm:text-sm text-gray-500 font-bold uppercase tracking-wide mb-1">Email</p>
+      <div className="flex-1">
+        <p className="text-sm text-gray-500 font-bold uppercase tracking-wide mb-2">Email</p>
         <a
           href="mailto:shorifull@gmail.com"
-          className="text-black hover:text-accent-lime transition-colors font-extrabold text-base sm:text-lg block"
+          className="text-black hover:text-accent-lime transition-colors font-extrabold text-lg block break-all"
         >
           shorifull@gmail.com
         </a>
@@ -141,51 +141,98 @@ const MainAboutSection = ({ isInView }) => (
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
       >
-        {/* Section Header */}
+        {/* Section Header - Bold & Elegant */}
         <motion.div
-          className="mb-12"
+          className="mb-16"
           variants={ANIMATION_VARIANTS.fadeUp}
         >
-          <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-bold mb-6">
-            ABOUT ME
+          <div className="inline-flex items-center gap-3 mb-8">
+            <div className="w-12 h-1 bg-accent-lime rounded-full" />
+            <span className="text-black/70 font-bold text-sm uppercase tracking-widest">About Me</span>
           </div>
           
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black mb-6 leading-tight max-w-4xl">
-            Building Digital Products That{' '}
-            <span className="text-accent-lime">Drive Results</span>
+          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-black mb-8 leading-[1.1] tracking-tight">
+            Building Digital Products<br />
+            That <span className="text-accent-lime">Drive Results</span>
           </h2>
           
-          <p className="text-xl text-gray-600 max-w-3xl leading-relaxed">
-            Full-stack developer with 10+ years of experience creating scalable web and mobile applications
+          <p className="text-xl sm:text-2xl text-gray-700 max-w-4xl leading-relaxed font-light">
+            Full-stack developer with <strong className="font-bold text-black">10+ years of experience</strong> creating scalable, high-performance web and mobile applications that deliver measurable business impact
           </p>
         </motion.div>
 
-        {/* Main Content Grid */}
-        <div className="grid lg:grid-cols-3 gap-8 lg:gap-12 mb-12">
-          {/* Main Content - 2 Columns */}
+        {/* Main Content Grid - Bold Layout */}
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 mb-20">
+          {/* Main Content - Larger Column */}
           <motion.div
-            className="lg:col-span-2"
+            className="lg:col-span-7"
             variants={ANIMATION_VARIANTS.fadeUp}
           >
-            {/* Introduction */}
-            <div className="space-y-6">
-              <p className="text-lg text-gray-700 leading-relaxed">
-                Hi, I'm <strong className="text-black">Ratan Mia</strong>, a passionate full-stack developer based in Dhaka, Bangladesh. I specialize in building high-performance mobile applications with React Native and modern web applications with Next.js and Laravel.
+            {/* Introduction - Bold Typography */}
+            <div className="space-y-8">
+              <div className="relative">
+                <div className="absolute -left-4 top-0 w-1 h-full bg-accent-lime rounded-full" />
+                <p className="text-2xl sm:text-3xl font-bold text-black leading-tight mb-6 pl-6">
+                  Hi, I'm Ratan Mia
+                </p>
+              </div>
+              
+              <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
+                A passionate full-stack developer based in <strong className="text-black font-semibold">Dhaka, Bangladesh</strong>, specializing in building exceptional digital experiences that combine beautiful design with powerful functionality.
               </p>
               
-              <p className="text-lg text-gray-700 leading-relaxed">
-                I started coding at 16 and have since delivered <strong className="text-black">150+ successful projects</strong> reaching over <strong className="text-black">50,000 active users</strong>. From startups to established businesses, I help turn ideas into reality with clean, maintainable code.
+              <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
+                I started coding at 16 and have since delivered <strong className="text-black font-bold">150+ successful projects</strong> reaching over <strong className="text-black font-bold">50,000 active users</strong>. My expertise spans React Native mobile applications, Next.js web platforms, and Laravel backend systems.
               </p>
+
+              {/* CTA Button */}
+              <motion.div 
+                className="pt-8"
+                whileHover={{ scale: 1.02 }}
+              >
+                <a 
+                  href="#contact" 
+                  className="inline-flex items-center gap-3 bg-accent-lime text-black px-8 py-5 font-extrabold text-lg rounded-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 uppercase tracking-wide"
+                >
+                  <span>Let's Work Together</span>
+                  <ArrowRight className="w-6 h-6" />
+                </a>
+              </motion.div>
             </div>
           </motion.div>
 
           {/* Sidebar - Contact */}
           <motion.div
-            className="lg:col-span-1"
+            className="lg:col-span-5"
             variants={ANIMATION_VARIANTS.fadeUp}
           >
-            <div className="lg:sticky lg:top-8">
+            <div className="lg:sticky lg:top-8 space-y-8">
               <ContactInfo isInView={isInView} />
+              
+              {/* Additional Info Card */}
+              <div className="bg-black text-white p-8 rounded-3xl">
+                <h3 className="text-2xl font-bold mb-4">Why Choose Me?</h3>
+                <ul className="space-y-4">
+                  <li className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-accent-lime flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-black text-sm font-black">✓</span>
+                    </div>
+                    <span className="text-gray-300 leading-relaxed">Clean, maintainable code that scales with your business</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-accent-lime flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-black text-sm font-black">✓</span>
+                    </div>
+                    <span className="text-gray-300 leading-relaxed">On-time delivery with attention to detail</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-accent-lime flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-black text-sm font-black">✓</span>
+                    </div>
+                    <span className="text-gray-300 leading-relaxed">Ongoing support and maintenance</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </motion.div>
         </div>
