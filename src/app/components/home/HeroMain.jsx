@@ -100,14 +100,14 @@ const HeroMain = () => {
 
       <section
         ref={ref}
-        className="relative h-screen flex items-center w-full z-20 focus:outline-none"
+        className="relative min-h-screen flex items-center w-full z-20 focus:outline-none py-16 md:py-20"
         tabIndex={-1}
       >
-        <div className="w-full px-4 md:px-6 lg:px-12 xl:px-20 h-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 h-full min-h-screen">
+        <div className="w-full px-4 md:px-6 lg:px-12 xl:px-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[calc(100vh-8rem)]">
             {/* Left: Hero Main Content */}
             <motion.div
-              className="col-span-1 lg:col-span-7 flex flex-col justify-center h-full py-24"
+              className="flex flex-col justify-center space-y-8 lg:space-y-10"
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : {}}
               transition={{ duration: 0.8 }}
@@ -126,18 +126,18 @@ const HeroMain = () => {
               >
                 {/* Brand/Subtitle */}
                 <motion.div
-                  className="inline-flex items-center gap-6"
+                  className="inline-flex items-center gap-4 sm:gap-6"
                   variants={{
                     hidden: { opacity: 0, y: 30 },
                     visible: { opacity: 1, y: 0, transition: { duration: 0.7 } },
                   }}
                 >
-                  <div className="w-12 h-1.5 bg-black" />
+                  <div className="w-10 sm:w-12 h-1.5 bg-black flex-shrink-0" />
                   <div>
-                    <span className="text-2xl font-black uppercase text-black tracking-wider">
+                    <span className="text-xl sm:text-2xl font-black uppercase text-black tracking-wider">
                       Ratan Mia
                     </span>
-                    <p className="text-sm text-black/70 font-semibold tracking-wide">
+                    <p className="text-xs sm:text-sm text-black/70 font-semibold tracking-wide">
                       IBM Certified Developer
                     </p>
                   </div>
@@ -153,11 +153,10 @@ const HeroMain = () => {
                     <h1
                       className="font-extrabold tracking-tight leading-tight text-black"
                       style={{
-                        fontSize: 'clamp(2.75rem, 7vw, 5.5rem)',
-                        minHeight: '1.15em',
-                        whiteSpace: 'nowrap',
-                        display: 'inline-block',
-                        letterSpacing: '-0.03em',
+                        fontSize: 'clamp(2.5rem, 7vw, 5rem)',
+                        minHeight: '1.1em',
+                        display: 'block',
+                        letterSpacing: '-0.025em',
                       }}
                     >
                       <span
@@ -168,24 +167,15 @@ const HeroMain = () => {
                       >
                         {typedRole}
                       </span>
-                      <motion.span
-                        className="ml-1"
-                        aria-hidden
-                        animate={{ opacity: [1, 0, 1] }}
-                        transition={{ duration: 1, repeat: Infinity }}
-                        style={{ display: 'inline-block', width: '1ch' }}
-                      >
-                        |
-                      </motion.span>
                     </h1>
                   </div>
-                  <h2 className="font-extrabold text-black text-4xl md:text-5xl leading-tight">
+                  <h2 className="font-extrabold text-black text-3xl sm:text-4xl md:text-5xl leading-tight">
                     Developer
                   </h2>
                 </motion.div>
                 {/* Description */}
                 <motion.p
-                  className="text-lg lg:text-xl text-black/80 leading-relaxed max-w-2xl"
+                  className="text-base sm:text-lg leading-relaxed text-gray-700 max-w-2xl"
                   variants={{
                     hidden: { opacity: 0, y: 30 },
                     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
@@ -195,34 +185,34 @@ const HeroMain = () => {
                 </motion.p>
                 {/* Stats */}
                 <motion.div
-                  className="grid grid-cols-3 gap-6 py-6"
+                  className="grid grid-cols-3 gap-4 sm:gap-6 py-4"
                   variants={{
                     hidden: { opacity: 0, y: 30 },
                     visible: { opacity: 1, y: 0, transition: { duration: 0.7 } },
                   }}
                 >
                   <div>
-                    <div className="text-4xl lg:text-5xl font-extrabold text-black mb-1">10+</div>
-                    <div className="text-xs tracking-wide font-medium text-black/70 uppercase">
+                    <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-black mb-1">10+</div>
+                    <div className="text-xs sm:text-sm tracking-wide font-medium text-gray-600 uppercase">
                       Years Exp
                     </div>
                   </div>
                   <div>
-                    <div className="text-4xl lg:text-5xl font-extrabold text-black mb-1">150+</div>
-                    <div className="text-xs tracking-wide font-medium text-black/70 uppercase">
+                    <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-black mb-1">150+</div>
+                    <div className="text-xs sm:text-sm tracking-wide font-medium text-gray-600 uppercase">
                       Projects
                     </div>
                   </div>
                   <div>
-                    <div className="text-4xl lg:text-5xl font-extrabold text-black mb-1">15+</div>
-                    <div className="text-xs tracking-wide font-medium text-black/70 uppercase">
+                    <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-black mb-1">15+</div>
+                    <div className="text-xs sm:text-sm tracking-wide font-medium text-gray-600 uppercase">
                       Tech Stacks
                     </div>
                   </div>
                 </motion.div>
                 {/* CTA Buttons */}
                 <motion.div
-                  className="flex flex-col sm:flex-row items-start sm:items-center gap-6"
+                  className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4"
                   variants={{
                     hidden: { opacity: 0, y: 30 },
                     visible: { opacity: 1, y: 0, transition: { duration: 0.7 } },
@@ -230,10 +220,10 @@ const HeroMain = () => {
                 >
                   <motion.a
                     href="#contact"
-                    className="bg-black text-accent-lime font-semibold px-8 py-4 rounded-xl
-                      hover:bg-black/95 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/30
-                      transition-all duration-300 inline-flex items-center gap-2 text-lg"
-                    whileHover={{ scale: 1.04 }}
+                    className="bg-black text-accent-lime font-bold px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl
+                      hover:bg-black/90 hover:-translate-y-0.5 hover:shadow-xl
+                      transition-all duration-300 inline-flex items-center justify-center gap-2 text-base sm:text-lg"
+                    whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     <span>Let&apos;s Build Something</span>
@@ -242,10 +232,10 @@ const HeroMain = () => {
                   <motion.a
                     href="/resume.pdf"
                     download
-                    className="border-2 border-black text-black font-semibold px-8 py-4 rounded-xl
-                      hover:bg-black hover:text-accent-lime hover:-translate-y-1
-                      transition-all duration-300 inline-flex items-center gap-2 text-lg"
-                    whileHover={{ scale: 1.04 }}
+                    className="border-2 border-black text-black font-bold px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl
+                      hover:bg-black hover:text-accent-lime hover:-translate-y-0.5
+                      transition-all duration-300 inline-flex items-center justify-center gap-2 text-base sm:text-lg"
+                    whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     <Download className="w-5 h-5" />
@@ -254,14 +244,14 @@ const HeroMain = () => {
                 </motion.div>
                 {/* Social Links */}
                 <motion.div
-                  className="flex items-center gap-4 pt-8"
+                  className="flex items-center gap-3 sm:gap-4 pt-4"
                   variants={{
                     hidden: { opacity: 0, y: 30 },
                     visible: { opacity: 1, y: 0, transition: { duration: 0.7 } },
                   }}
                 >
-                  <span className="text-black/60 font-normal text-sm uppercase tracking-wider">Follow</span>
-                  <div className="w-8 h-px bg-black/30"></div>
+                  <span className="text-gray-600 font-medium text-xs sm:text-sm uppercase tracking-wider">Follow</span>
+                  <div className="w-6 sm:w-8 h-px bg-gray-300"></div>
                   {socialLinks.map((social, idx) => (
                     <motion.a
                       key={social.label}
@@ -285,11 +275,11 @@ const HeroMain = () => {
               </motion.div>
             </motion.div>
 
-            {/* Right: DRAMATICALLY ENHANCED IMAGE DESIGN - IMPROVED HEIGHT */}
-            <div className="col-span-1 lg:col-span-5 flex items-center justify-end h-full relative">
+            {/* Right: Enhanced Image Section */}
+            <div className="flex items-center justify-center lg:justify-end relative mt-8 lg:mt-0">
               
-              {/* Desktop Enhanced Image - Better proportioned height */}
-              <div className="hidden lg:block relative w-full h-4/5 z-0">
+              {/* Desktop Enhanced Image */}
+              <div className="hidden lg:block relative w-full h-[600px] max-w-lg z-0">
                 
                 {/* Background Enhancement Layer */}
                 <motion.div
