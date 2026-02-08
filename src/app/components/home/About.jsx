@@ -280,10 +280,10 @@ const MainAboutSection = ({ isInView }) => (
               ></motion.div>
 
               {/* Rating & Image */}
-              <div className="space-y-5">
+              <div className="flex items-center gap-6">
                 {/* Team Image */}
                 <motion.div 
-                  className="w-36 h-36 rounded-full overflow-hidden border-4 border-accent-lime shadow-2xl hover:shadow-accent-lime/50 transition-all"
+                  className="w-36 h-36 rounded-full overflow-hidden border-4 border-accent-lime shadow-2xl hover:shadow-accent-lime/50 transition-all flex-shrink-0"
                   initial={{ scale: 0, rotate: -180 }}
                   animate={isInView ? { scale: 1, rotate: 0 } : {}}
                   transition={{ delay: 0.9, type: "spring" }}
