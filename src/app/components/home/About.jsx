@@ -133,8 +133,21 @@ const ContactInfo = ({ isInView }) => (
 
 // --- MAIN ABOUT SECTION ---
 const MainAboutSection = ({ isInView }) => (
-  <div className="relative bg-white" id="about-main">
-    <section className="relative py-20">
+  <div className="relative bg-gray-50 overflow-hidden" id="about-main">
+    {/* Background Texture & Pattern */}
+    <div className="absolute inset-0 opacity-40">
+      {/* Dot Pattern */}
+      <div className="absolute inset-0" style={{
+        backgroundImage: 'radial-gradient(circle, #e5e7eb 1px, transparent 1px)',
+        backgroundSize: '32px 32px'
+      }}></div>
+      
+      {/* Gradient Overlays */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent-lime/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-black/5 rounded-full blur-3xl"></div>
+    </div>
+
+    <section className="relative py-20 lg:py-28">
       <motion.div
         className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8"
         variants={ANIMATION_VARIANTS.stagger}
@@ -142,7 +155,7 @@ const MainAboutSection = ({ isInView }) => (
         animate={isInView ? "visible" : "hidden"}
       >
         {/* Main Two-Column Layout */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left Column - Image with Badge */}
           <motion.div
             variants={ANIMATION_VARIANTS.fadeUp}
