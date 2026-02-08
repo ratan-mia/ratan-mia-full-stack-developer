@@ -12,8 +12,8 @@ import { useRef } from 'react';
 const ANIMATION_VARIANTS = {
   fadeUp: {
     hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: {
         duration: 0.8,
@@ -65,7 +65,7 @@ const ServiceSkillBar = ({ service, index, isInView }) => (
       <span className="font-bold text-black text-sm sm:text-base lg:text-lg uppercase tracking-wider group-hover:text-black/80 transition-colors">
         {service.name}
       </span>
-      <motion.span 
+      <motion.span
         className="font-bold text-black text-base sm:text-lg"
         whileHover={{ scale: 1.1 }}
       >
@@ -77,10 +77,10 @@ const ServiceSkillBar = ({ service, index, isInView }) => (
         className="h-full bg-black rounded-full relative overflow-hidden"
         initial={{ width: 0 }}
         animate={isInView ? { width: `${service.level}%` } : {}}
-        transition={{ 
-          duration: 1.5, 
-          delay: 0.6 + index * 0.15, 
-          ease: "easeOut" 
+        transition={{
+          duration: 1.5,
+          delay: 0.6 + index * 0.15,
+          ease: "easeOut"
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse" />
@@ -91,14 +91,14 @@ const ServiceSkillBar = ({ service, index, isInView }) => (
 
 // --- CONTACT INFO COMPONENT ---
 const ContactInfo = ({ isInView }) => (
-  <motion.div 
+  <motion.div
     className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5"
     variants={ANIMATION_VARIANTS.fadeUp}
     initial="hidden"
     animate={isInView ? "visible" : "hidden"}
     transition={{ delay: 0.6 }}
   >
-    <motion.div 
+    <motion.div
       className="flex items-center gap-4 p-4 sm:p-5 rounded-2xl bg-white shadow-md border-2 border-gray-100 hover:border-accent-lime/50 hover:shadow-lg transition-all group"
       whileHover={{ scale: 1.02, y: -2 }}
     >
@@ -110,8 +110,8 @@ const ContactInfo = ({ isInView }) => (
         <p className="text-black font-extrabold text-base sm:text-lg">Dhaka, Bangladesh 🇧🇩</p>
       </div>
     </motion.div>
-    
-    <motion.div 
+
+    <motion.div
       className="flex items-center gap-4 p-4 sm:p-5 rounded-2xl bg-white shadow-md border-2 border-gray-100 hover:border-accent-lime/50 hover:shadow-lg transition-all group"
       whileHover={{ scale: 1.02, y: -2 }}
     >
@@ -120,8 +120,8 @@ const ContactInfo = ({ isInView }) => (
       </div>
       <div className="min-w-0 flex-1">
         <p className="text-xs sm:text-sm text-gray-500 font-bold uppercase tracking-wide mb-1">Email</p>
-        <a 
-          href="mailto:shorifull@gmail.com" 
+        <a
+          href="mailto:shorifull@gmail.com"
           className="text-black hover:text-accent-lime transition-colors font-extrabold text-base sm:text-lg block"
         >
           shorifull@gmail.com
@@ -135,88 +135,58 @@ const ContactInfo = ({ isInView }) => (
 const MainAboutSection = ({ isInView }) => (
   <div className="relative bg-white" id="about-main">
     <section className="relative py-20">
-      <motion.div 
+      <motion.div
         className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8"
         variants={ANIMATION_VARIANTS.stagger}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
       >
-        {/* Top Section - Label & Content */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start mb-20">
-          {/* Left Column - Simple Text Content */}
+        {/* Section Header */}
+        <motion.div
+          className="mb-12"
+          variants={ANIMATION_VARIANTS.fadeUp}
+        >
+          <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-bold mb-6">
+            ABOUT ME
+          </div>
+          
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black mb-6 leading-tight max-w-4xl">
+            Building Digital Products That{' '}
+            <span className="text-accent-lime">Drive Results</span>
+          </h2>
+          
+          <p className="text-xl text-gray-600 max-w-3xl leading-relaxed">
+            Full-stack developer with 10+ years of experience creating scalable web and mobile applications
+          </p>
+        </motion.div>
+
+        {/* Main Content Grid */}
+        <div className="grid lg:grid-cols-3 gap-8 lg:gap-12 mb-12">
+          {/* Main Content - 2 Columns */}
           <motion.div
-            className="space-y-6"
+            className="lg:col-span-2"
             variants={ANIMATION_VARIANTS.fadeUp}
           >
-            <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-bold mb-4">
-              WHO WE ARE
-            </div>
-            
-            <div className="space-y-6 sm:space-y-8">
-              <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
-                <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-black mb-4 flex items-center gap-3">
-                  <span className="text-3xl">👋</span>
-                  <span>Hi, I'm Ratan Mia</span>
-                </h3>
-                <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-                  A passionate full stack developer from Dhaka, Bangladesh, specializing in <strong className="text-black">React Native mobile apps</strong>, <strong className="text-black">Next.js web applications</strong>, and <strong className="text-black">Laravel backend systems</strong>. I started coding at 16 and haven't stopped building since.
-                </p>
-              </div>
-
-              <div className="bg-gradient-to-br from-accent-lime/10 to-accent-lime/5 rounded-2xl p-6 sm:p-8 border-2 border-accent-lime/20 hover:border-accent-lime/40 transition-colors">
-                <h4 className="text-xl sm:text-2xl lg:text-3xl font-bold text-black mb-5 flex items-center gap-3">
-                  <span className="text-3xl">💡</span>
-                  <span>What I Bring to Your Project</span>
-                </h4>
-                <ul className="space-y-4 text-base sm:text-lg text-gray-700 leading-relaxed">
-                  <li className="flex items-start gap-3 group">
-                    <span className="text-accent-lime text-2xl font-black mt-0.5 group-hover:scale-125 transition-transform">✓</span>
-                    <span><strong className="text-black">10+ years</strong> of hands-on experience building production-ready apps</span>
-                  </li>
-                  <li className="flex items-start gap-3 group">
-                    <span className="text-accent-lime text-2xl font-black mt-0.5 group-hover:scale-125 transition-transform">✓</span>
-                    <span><strong className="text-black">Cross-platform expertise</strong> in mobile (iOS/Android) and web development</span>
-                  </li>
-                  <li className="flex items-start gap-3 group">
-                    <span className="text-accent-lime text-2xl font-black mt-0.5 group-hover:scale-125 transition-transform">✓</span>
-                    <span><strong className="text-black">End-to-end solutions</strong> from concept to deployment and ongoing support</span>
-                  </li>
-                  <li className="flex items-start gap-3 group">
-                    <span className="text-accent-lime text-2xl font-black mt-0.5 group-hover:scale-125 transition-transform">✓</span>
-                    <span><strong className="text-black">Real results</strong> with 50K+ app users and 150+ successful projects delivered</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Contact Info */}
-            <div className="pt-6">
-              <ContactInfo isInView={isInView} />
+            {/* Introduction */}
+            <div className="space-y-6">
+              <p className="text-lg text-gray-700 leading-relaxed">
+                Hi, I'm <strong className="text-black">Ratan Mia</strong>, a passionate full-stack developer based in Dhaka, Bangladesh. I specialize in building high-performance mobile applications with React Native and modern web applications with Next.js and Laravel.
+              </p>
+              
+              <p className="text-lg text-gray-700 leading-relaxed">
+                I started coding at 16 and have since delivered <strong className="text-black">150+ successful projects</strong> reaching over <strong className="text-black">50,000 active users</strong>. From startups to established businesses, I help turn ideas into reality with clean, maintainable code.
+              </p>
             </div>
           </motion.div>
 
-          {/* Right Column - Main Heading */}
+          {/* Sidebar - Contact */}
           <motion.div
+            className="lg:col-span-1"
             variants={ANIMATION_VARIANTS.fadeUp}
           >
-            {/* Section Label */}
-            <motion.div
-              className="inline-flex items-center gap-3 mb-6 sm:mb-8"
-              variants={ANIMATION_VARIANTS.fadeUp}
-            >
-              <div className="w-10 sm:w-12 h-1 bg-accent-lime rounded-full" />
-              <span className="text-black/70 font-bold text-xs sm:text-sm uppercase tracking-widest">About Me</span>
-            </motion.div>
-
-            {/* Main Heading */}
-            <motion.h2 
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-extrabold tracking-tight leading-[1.05] mb-6 sm:mb-8"
-              variants={ANIMATION_VARIANTS.fadeUp}
-            >
-              Building Exceptional
-              <br />
-              <span className="bg-gradient-to-r from-black via-gray-700 to-black bg-clip-text text-transparent">Web & Mobile Experiences</span>
-            </motion.h2>
+            <div className="lg:sticky lg:top-8">
+              <ContactInfo isInView={isInView} />
+            </div>
           </motion.div>
         </div>
 
@@ -247,7 +217,7 @@ const MainAboutSection = ({ isInView }) => (
               transition={{ duration: 0.6, delay: 0.5 }}
             >
               <div className="relative aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
-                <img 
+                <img
                   src="/images/freelancer-working.jpg"
                   alt="Professional developer"
                   className="w-full h-full object-cover"
@@ -276,7 +246,7 @@ const MainAboutSection = ({ isInView }) => (
               transition={{ duration: 0.6, delay: 0.7 }}
             >
               <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
-                <img 
+                <img
                   src="/images/about-image.jpg"
                   alt="Ratan Mia - Full Stack Developer"
                   className="w-full h-full object-cover"
@@ -293,8 +263,8 @@ const MainAboutSection = ({ isInView }) => (
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.8 }}
         >
-          <a 
-            href="#contact" 
+          <a
+            href="#contact"
             className="inline-flex items-center gap-3 bg-accent-lime text-black px-8 py-4 font-bold rounded-xl hover:shadow-xl transition-all duration-300 hover:scale-105"
           >
             <span>START THE JOURNEY</span>
@@ -309,7 +279,7 @@ const MainAboutSection = ({ isInView }) => (
 // --- CTA SECTION ---
 const CTASection = ({ isInView }) => (
   <div className="bg-white py-12 sm:py-16">
-    <motion.div 
+    <motion.div
       className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"
       variants={ANIMATION_VARIANTS.fadeUp}
       initial="hidden"
@@ -318,9 +288,9 @@ const CTASection = ({ isInView }) => (
       <div className="bg-gradient-to-br from-black to-gray-900 p-8 sm:p-10 lg:p-12 rounded-3xl text-center relative overflow-hidden border-2 border-gray-200 hover:border-accent-lime/50 transition-all group">
         {/* Background Pattern */}
         <div className="absolute inset-0 bg-gradient-to-br from-accent-lime/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-        
+
         <div className="relative z-10">
-          <motion.h3 
+          <motion.h3
             className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mb-3 leading-tight"
             whileHover={{ scale: 1.02 }}
           >
@@ -330,8 +300,8 @@ const CTASection = ({ isInView }) => (
             Let's discuss your project and bring your vision to life with clean code and exceptional results.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
-            <motion.a 
-              href="#contact" 
+            <motion.a
+              href="#contact"
               className="w-full sm:w-auto bg-accent-lime text-black font-extrabold px-8 py-3 rounded-xl hover:bg-lime-300 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 inline-flex items-center justify-center gap-2 text-base"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -339,8 +309,8 @@ const CTASection = ({ isInView }) => (
               <span>Start a Project</span>
               <ArrowRight className="w-5 h-5" />
             </motion.a>
-            <motion.a 
-              href="/portfolio" 
+            <motion.a
+              href="/portfolio"
               className="w-full sm:w-auto border-2 border-gray-600 text-white font-bold px-8 py-3 rounded-xl hover:bg-gray-700 hover:border-accent-lime/50 transition-all duration-300 inline-flex items-center justify-center gap-2 text-base"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
