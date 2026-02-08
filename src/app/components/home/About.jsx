@@ -161,7 +161,7 @@ const MainAboutSection = ({ isInView }) => (
             variants={ANIMATION_VARIANTS.fadeUp}
             className="relative"
           >
-            <div className="relative h-[500px] lg:h-[600px] rounded-3xl overflow-hidden shadow-2xl">
+            <div className="relative h-[600px] lg:h-[750px] rounded-3xl overflow-hidden shadow-2xl">
               <img
                 src="/images/freelancer-working.jpg"
                 alt="Professional developer workspace"
