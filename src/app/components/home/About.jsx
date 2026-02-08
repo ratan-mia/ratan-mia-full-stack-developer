@@ -177,38 +177,39 @@ const MainAboutSection = ({ isInView }) => (
             className="space-y-8"
           >
             {/* Section Label */}
-            <div className="inline-flex items-center gap-2">
-              <div className="w-6 h-6 bg-accent-lime rounded-full flex items-center justify-center">
-                <span className="text-black font-black text-xs">⚡</span>
+            <div className="inline-flex items-center gap-3 mb-2">
+              <div className="w-8 h-8 bg-accent-lime rounded-full flex items-center justify-center">
+                <span className="text-black font-black text-base">⚡</span>
               </div>
-              <span className="text-black font-bold text-sm uppercase tracking-widest">About Me</span>
+              <span className="text-black font-extrabold text-sm uppercase tracking-widest">About Me</span>
             </div>
 
             {/* Main Heading */}
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-black leading-[1.1]">
-              Web & Mobile  <span className="text-accent-lime">Experiences</span>
-             
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-black leading-[1.1] tracking-tight">
+              Building Exceptional<br />
+              <span className="text-accent-lime">Web & Mobile</span><br />
+              Experiences
             </h2>
 
             {/* Stats Section */}
-            <div className="flex items-start gap-8">
+            <div className="flex items-start gap-8 py-4">
               {/* Years Experience */}
               <div className="flex-shrink-0">
-                <div className="text-7xl lg:text-8xl font-black text-black leading-none mb-2">
-                  10<sup className="text-3xl">+</sup>
+                <div className="text-8xl lg:text-9xl font-black text-black leading-none mb-3">
+                  10<sup className="text-4xl">+</sup>
                 </div>
-                <div className="text-accent-lime font-bold text-sm uppercase tracking-wide">
-                  Years Of Experience
+                <div className="inline-block bg-accent-lime px-6 py-2 rounded-full">
+                  <span className="text-black font-black text-xs uppercase tracking-wider">Years Of Experience</span>
                 </div>
               </div>
 
               {/* Divider */}
-              <div className="w-px h-32 bg-gray-300"></div>
+              <div className="w-px h-40 bg-gray-300"></div>
 
               {/* Rating & Image */}
-              <div className="space-y-4">
+              <div className="space-y-5">
                 {/* Team Image */}
-                <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                <div className="w-36 h-36 rounded-full overflow-hidden border-4 border-accent-lime shadow-2xl">
                   <img
                     src="/images/about-image.jpg"
                     alt="Ratan Mia"
@@ -218,37 +219,51 @@ const MainAboutSection = ({ isInView }) => (
 
                 {/* Stars & Rating */}
                 <div>
-                  <div className="flex items-center gap-1 mb-1">
+                  <div className="flex items-center gap-1 mb-2">
                     {[...Array(5)].map((_, i) => (
-                      <span key={i} className="text-accent-lime text-xl">★</span>
+                      <span key={i} className="text-accent-lime text-2xl">★</span>
                     ))}
                   </div>
-                  <div className="text-black font-bold text-sm">150+ Projects Delivered</div>
+                  <div className="text-black font-extrabold text-base">150+ Projects Delivered</div>
+                  <div className="text-gray-600 font-semibold text-sm">50K+ Active Users</div>
                 </div>
               </div>
             </div>
 
             {/* Description */}
-            <p className="text-lg text-gray-700 leading-relaxed">
-              Hi, I'm <strong className="text-black">Ratan Mia</strong>, a passionate full-stack developer from Dhaka, Bangladesh. I bring your ideas to life by crafting engaging, impactful digital experiences using React Native, Next.js, and Laravel. With 10+ years of experience and 50,000+ active users across my projects.
+            <p className="text-xl text-gray-700 leading-relaxed font-medium">
+              Hi, I'm <strong className="text-black font-bold">Ratan Mia</strong>, a passionate full-stack developer from Dhaka, Bangladesh. I bring your ideas to life by crafting engaging, impactful digital experiences using React Native, Next.js, and Laravel.
             </p>
 
-            {/* Contact Info */}
+            {/* Contact Info - Elegant Cards */}
             <div className="grid sm:grid-cols-2 gap-4">
-              <div className="flex items-center gap-3 p-4 rounded-xl bg-gray-50 border border-gray-200">
-                <MapPin className="w-5 h-5 text-accent-lime flex-shrink-0" />
-                <div>
-                  <div className="text-xs text-gray-500 font-semibold uppercase">Location</div>
-                  <div className="text-black font-bold text-sm">Dhaka, Bangladesh</div>
+              <motion.div 
+                className="flex items-center gap-4 p-5 rounded-2xl bg-gradient-to-br from-gray-50 to-white border-2 border-gray-200 hover:border-accent-lime transition-all"
+                whileHover={{ y: -4, scale: 1.02 }}
+              >
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-black to-gray-800 flex items-center justify-center shadow-lg">
+                  <MapPin className="w-6 h-6 text-accent-lime" />
                 </div>
-              </div>
-              <div className="flex items-center gap-3 p-4 rounded-xl bg-gray-50 border border-gray-200">
-                <Mail className="w-5 h-5 text-accent-lime flex-shrink-0" />
                 <div>
-                  <div className="text-xs text-gray-500 font-semibold uppercase">Email</div>
-                  <div className="text-black font-bold text-sm break-all">shorifull@gmail.com</div>
+                  <div className="text-xs text-gray-500 font-bold uppercase tracking-wide mb-1">Location</div>
+                  <div className="text-black font-extrabold text-base">Dhaka, Bangladesh</div>
                 </div>
-              </div>
+              </motion.div>
+              
+              <motion.div 
+                className="flex items-center gap-4 p-5 rounded-2xl bg-gradient-to-br from-gray-50 to-white border-2 border-gray-200 hover:border-accent-lime transition-all"
+                whileHover={{ y: -4, scale: 1.02 }}
+              >
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-black to-gray-800 flex items-center justify-center shadow-lg">
+                  <Mail className="w-6 h-6 text-accent-lime" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-xs text-gray-500 font-bold uppercase tracking-wide mb-1">Email</div>
+                  <a href="mailto:shorifull@gmail.com" className="text-black font-extrabold text-base hover:text-accent-lime transition-colors break-all">
+                    shorifull@gmail.com
+                  </a>
+                </div>
+              </motion.div>
             </div>
 
             {/* CTA Button */}
@@ -267,73 +282,18 @@ const MainAboutSection = ({ isInView }) => (
   </div>
 );
 
-// --- CTA SECTION ---
-const CTASection = ({ isInView }) => (
-  <div className="bg-white py-12 sm:py-16">
-    <motion.div
-      className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"
-      variants={ANIMATION_VARIANTS.fadeUp}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-    >
-      <div className="bg-gradient-to-br from-black to-gray-900 p-8 sm:p-10 lg:p-12 rounded-3xl text-center relative overflow-hidden border-2 border-gray-200 hover:border-accent-lime/50 transition-all group">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 bg-gradient-to-br from-accent-lime/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-        <div className="relative z-10">
-          <motion.h3
-            className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mb-3 leading-tight"
-            whileHover={{ scale: 1.02 }}
-          >
-            Ready to Build Something <span className="text-accent-lime">Amazing?</span>
-          </motion.h3>
-          <p className="text-base sm:text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-            Let's discuss your project and bring your vision to life with clean code and exceptional results.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
-            <motion.a
-              href="#contact"
-              className="w-full sm:w-auto bg-accent-lime text-black font-extrabold px-8 py-3 rounded-xl hover:bg-lime-300 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 inline-flex items-center justify-center gap-2 text-base"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span>Start a Project</span>
-              <ArrowRight className="w-5 h-5" />
-            </motion.a>
-            <motion.a
-              href="/portfolio"
-              className="w-full sm:w-auto border-2 border-gray-600 text-white font-bold px-8 py-3 rounded-xl hover:bg-gray-700 hover:border-accent-lime/50 transition-all duration-300 inline-flex items-center justify-center gap-2 text-base"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span>View Portfolio</span>
-            </motion.a>
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  </div>
-);
-
 // --- MAIN ABOUT COMPONENT ---
 export default function About() {
   const sectionRef = useRef(null);
   const servicesRef = useRef(null);
-  const ctaRef = useRef(null);
 
   const servicesInView = useInView(servicesRef, { once: true, amount: 0.2 });
-  const ctaInView = useInView(ctaRef, { once: true, amount: 0.5 });
 
   return (
     <section ref={sectionRef} id="about" className="bg-white">
       {/* Main About Section */}
       <div ref={servicesRef}>
         <MainAboutSection isInView={servicesInView} />
-      </div>
-
-      {/* CTA Section */}
-      <div ref={ctaRef}>
-        <CTASection isInView={ctaInView} />
       </div>
     </section>
   );
