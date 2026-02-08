@@ -18,21 +18,27 @@ import ProjectInquirySection from '../ProjectInquirySection';
  * @param {React.ReactNode} props.children - Content sections
  */
 export default function CaseStudyTemplate({ project, navItems = [], heroSection, children }) {
-  const [showSidebar, setShowSidebar] = useState(true);
+  const [showSidebar, setShowSidebar] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 200;
+      const scrollPosition = window.scrollY;
 
+      // Show sidebar after scrolling past hero (viewport height)
+      const viewportHeight = window.innerHeight;
+      
       // Hide sidebar when reaching inquiry section
       const inquirySection = document.querySelector('#project-inquiry-section');
       if (inquirySection) {
         const inquiryTop = inquirySection.offsetTop;
-        setShowSidebar(scrollPosition < inquiryTop - 1000);
+        setShowSidebar(scrollPosition > viewportHeight - 200 && scrollPosition < inquiryTop - 1000);
+      } else {
+        setShowSidebar(scrollPosition > viewportHeight - 200);
       }
     };
 
     window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Call once on mount
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
