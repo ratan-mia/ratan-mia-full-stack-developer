@@ -102,11 +102,13 @@ const ProjectShowcase = () => {
     {
       id: 6,
       title: "Japan Auto Parts",
+
+    
       subtitle: "Headless E-commerce Solution",
       description: "Modern headless e-commerce platform for automotive parts with advanced search, filtering, and inventory management. Built with Next.js and headless CMS for maximum flexibility.",
       tech: ["Next.js", "Headless CMS", "E-commerce", "Search Engine", "Inventory Management"],
       category: "ecommerce",
-      link: "https://japanparts.com.bd",
+      link: "  /case-studies/shopify-headless-cms",
       liveUrl: "https://japanparts.com.bd",
       image: "/images/projects/japan-parts-headless.png",
       status: "Live",
