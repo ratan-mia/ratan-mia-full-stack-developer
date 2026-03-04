@@ -423,6 +423,16 @@ export default function ServicesPage() {
 
       {/* Process Section */}
       <section className="px-4 md:px-6 lg:px-8 py-24 bg-black relative overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop"
+            alt=""
+            className="w-full h-full object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-black/50" />
+        </div>
+
         {/* Background decoration */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent-lime/5 rounded-full blur-3xl" />
