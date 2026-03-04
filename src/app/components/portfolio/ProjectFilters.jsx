@@ -42,19 +42,19 @@ const ProjectFilters = () => {
       tech: ["React Native", "Supabase", "QR Scanner", "Gamification", "Fraud Detection"],
       image: "/images/projects/pieqr/home-screen.png",
       links: { live: "/case-studies/gamify", github: "/case-studies/gamify" },
-      liveUrl: null,
+      liveUrl: "https://pieqr.app",
       featured: true,
       year: "2024"
     },
     {
       id: 4,
-      title: "ELF Bangladesh Mobile App",
+      title: "ELF Bangladesh Mobile App and Web app",
       description: "Enterprise-grade mobile commerce platform for automotive industry combining e-commerce, loyalty rewards, gamification, service bookings, and emergency assistance with 60+ screens.",
       category: "Mobile Apps",
       tech: ["React Native", "Expo", "TypeScript", "Supabase", "Redux Toolkit"],
       image: "/images/projects/elf-mobile-store/Elf-home.png",
       links: { live: "/case-studies/elf-bangladesh-app", github: "/case-studies/elf-bangladesh-app" },
-      liveUrl: null,
+      liveUrl: "https://elf-gamification.vercel.app/",
       featured: true,
       year: "2024"
     },
@@ -90,7 +90,7 @@ const ProjectFilters = () => {
       tech: ["Next.js", "Headless CMS", "E-commerce", "Search Engine", "Inventory"],
       image: "/images/projects/japan-parts-headless.png",
       links: { live: null, github: "#" },
-      liveUrl: null,
+      liveUrl: "https://japanparts.com.bd/",
       featured: true,
       year: "2024"
     },
@@ -138,7 +138,7 @@ const ProjectFilters = () => {
       tech: ["Next.js", "Shopify", "Headless Commerce", "GraphQL", "Tailwind CSS"],
       image: "/images/projects/motojp-shopify-headless.png",
       links: { live: null, github: "#" },
-      liveUrl: null,
+      liveUrl: "https://motojp.vercel.app/",
       featured: false,
       year: "2024"
     }
