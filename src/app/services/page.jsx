@@ -410,9 +410,9 @@ export default function ServicesPage() {
 
                   {/* CTA Buttons */}
                   <div className="space-y-3">
-                    <button className="w-full px-4 py-3 bg-black text-accent-lime rounded-xl hover:shadow-lg transition-all font-extrabold hover:scale-105">
+                    <a href="#quote" className="block w-full px-4 py-3 bg-black text-accent-lime rounded-xl hover:shadow-lg transition-all font-extrabold hover:scale-105 text-center">
                       Get Started
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>
