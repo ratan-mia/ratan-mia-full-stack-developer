@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronDown, Download, Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,6 +12,11 @@ const Header = () => {
   const [showCaseStudiesDropdown, setShowCaseStudiesDropdown] = useState(false);
   const [showMobileCaseStudies, setShowMobileCaseStudies] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const pathname = usePathname();
+
+  // Pages with dark hero sections that need white text at the top
+  const darkHeroPages = ['/portfolio', '/case-studies', '/blog'];
+  const hasDarkHero = darkHeroPages.some(page => pathname?.startsWith(page));
 
   // Ensure component is mounted before applying dynamic styles
   useEffect(() => {
@@ -140,31 +146,33 @@ const Header = () => {
   };
 
   const getTextStyle = () => {
-    if (!mounted) return 'text-black';
+    if (!mounted) return 'text-white';
     if (scrolled) {
       return 'text-white';
     }
-    return (!scrolled && activeSection === 'home') 
+    // Use white text for pages with dark hero sections, black text for home/light pages
+    return (!scrolled && !hasDarkHero && activeSection === 'home') 
       ? 'text-black' 
       : 'text-white';
   };
 
   const getLogoAccentStyle = () => {
-    if (!mounted) return 'text-black';
+    if (!mounted) return 'text-accent-lime';
     if (scrolled) {
       return 'text-accent-lime';
     }
-    return (!scrolled && activeSection === 'home') 
+    return (!scrolled && !hasDarkHero && activeSection === 'home') 
       ? 'text-black' 
       : 'text-accent-lime';
   };
 
   const getNavTextStyle = () => {
-    if (!mounted) return 'text-black/80 hover:text-black';
+    if (!mounted) return 'text-gray-300 hover:text-accent-lime';
     if (scrolled) {
       return 'text-gray-300 hover:text-accent-lime';
     }
-    return (!scrolled && activeSection === 'home') 
+    // Use light text for pages with dark backgrounds
+    return (!scrolled && !hasDarkHero && activeSection === 'home') 
       ? 'text-black/80 hover:text-black' 
       : 'text-gray-300 hover:text-accent-lime';
   };
@@ -172,7 +180,7 @@ const Header = () => {
   return (
     <>
       <motion.header 
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${getHeaderStyle()}`}
+        className={`fixed top-0 left-0 right-0 z-[100] isolate transition-all duration-500 ${getHeaderStyle()}`}
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
@@ -240,7 +248,7 @@ const Header = () => {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: 10 }}
                             transition={{ duration: 0.2 }}
-                            className="absolute top-full mt-2 left-0 w-80 bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden"
+                            className="absolute top-full mt-2 left-0 w-80 bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden z-[110]"
                           >
                             {caseStudies.map((study, index) => (
                               <motion.a
@@ -325,7 +333,7 @@ const Header = () => {
               {/* Mobile Resume Button */}
               <motion.button
                 onClick={handleDownloadCV}
-                className={`p-2 sm:p-2.5 ${getTextStyle()} hover:bg-black/10 rounded-lg transition-all duration-300`}
+                className={`p-2 sm:p-2.5 ${getTextStyle()} hover:bg-white/10 rounded-lg transition-all duration-300`}
                 whileTap={{ scale: 0.9 }}
                 whileHover={{ scale: 1.05 }}
               >
@@ -334,7 +342,7 @@ const Header = () => {
               
               {/* Menu Toggle */}
               <motion.button
-                className={`p-2 sm:p-2.5 ${getTextStyle()} hover:bg-black/10 rounded-lg transition-all duration-300`}
+                className={`p-2 sm:p-2.5 ${getTextStyle()} hover:bg-white/10 rounded-lg transition-all duration-300`}
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 whileTap={{ scale: 0.9 }}
                 whileHover={{ scale: 1.05 }}
@@ -357,7 +365,7 @@ const Header = () => {
           <>
             {/* Backdrop */}
             <motion.div
-              className="fixed inset-0 bg-black/80 backdrop-blur-md z-40 lg:hidden"
+              className="fixed inset-0 bg-black/80 backdrop-blur-md z-[90] lg:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -367,7 +375,7 @@ const Header = () => {
             
             {/* Slide-in Menu Panel */}
             <motion.div
-              className="fixed top-0 right-0 bottom-0 w-full sm:w-80 bg-gradient-to-b from-gray-900 to-black z-50 lg:hidden overflow-y-auto shadow-2xl"
+              className="fixed top-0 right-0 bottom-0 w-full sm:w-80 bg-gradient-to-b from-gray-900 to-black z-[100] lg:hidden overflow-y-auto shadow-2xl"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}

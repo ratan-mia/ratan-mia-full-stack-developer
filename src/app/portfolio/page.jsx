@@ -13,13 +13,13 @@ export const metadata = {
 
 export default function PortfolioPage() {
   return (
-    <main className="bg-white text-black overflow-hidden">
+    <main className="bg-white text-black">
       
       {/* Portfolio Hero */}
       <section className="relative min-h-screen w-full overflow-hidden bg-black flex flex-col">
 
         {/* Lime accent strip — top */}
-        <div className="absolute top-0 left-0 right-0 h-1.5 bg-accent-lime z-20" />
+        <div className="absolute top-0 left-0 right-0 h-1.5 bg-accent-lime z-0" />
 
         {/* Background glow */}
         <div className="absolute inset-0 pointer-events-none z-0">
@@ -28,7 +28,7 @@ export default function PortfolioPage() {
         </div>
 
         {/* Main grid layout */}
-        <div className="relative z-10 flex-1 grid lg:grid-cols-2 max-w-7xl mx-auto w-full px-4 md:px-6 lg:px-8 pt-28 pb-0 gap-0">
+        <div className="relative z-0 flex-1 grid lg:grid-cols-2 max-w-7xl mx-auto w-full px-4 md:px-6 lg:px-8 pt-28 pb-0 gap-0">
 
           {/* Left — headline */}
           <div className="flex flex-col justify-center py-12 lg:pr-16 lg:border-r border-white/10">
@@ -137,7 +137,7 @@ export default function PortfolioPage() {
         </div>
 
         {/* Scrolling marquee strip */}
-        <div className="relative z-10 border-t border-white/10 overflow-hidden py-4 mt-auto">
+        <div className="relative z-0 border-t border-white/10 overflow-hidden py-4 mt-auto">
           <div
             className="flex whitespace-nowrap w-max"
             style={{ animation: 'marquee 20s linear infinite' }}
