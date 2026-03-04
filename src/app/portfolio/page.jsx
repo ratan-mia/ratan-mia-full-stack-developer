@@ -138,10 +138,14 @@ export default function PortfolioPage() {
 
         {/* Scrolling marquee strip */}
         <div className="relative z-10 border-t border-white/10 overflow-hidden py-4 mt-auto">
-          <div className="flex gap-12 animate-[marquee_20s_linear_infinite] whitespace-nowrap w-max">
-            {['React Native', 'Next.js', 'Supabase', 'TypeScript', 'Laravel', 'Tailwind CSS', 'PostgreSQL', 'AWS', 'React Native', 'Next.js', 'Supabase', 'TypeScript', 'Laravel', 'Tailwind CSS', 'PostgreSQL', 'AWS'].map((tech, i) => (
-              <span key={i} className="text-xs font-extrabold uppercase tracking-widest text-white/25 flex items-center gap-3">
-                <span className="w-1 h-1 bg-accent-lime rounded-full" />
+          <div
+            className="flex whitespace-nowrap w-max"
+            style={{ animation: 'marquee 20s linear infinite' }}
+          >
+            {['React Native', 'Next.js', 'Supabase', 'TypeScript', 'Laravel', 'Tailwind CSS', 'PostgreSQL', 'AWS', 'React.js', 'Node.js',
+              'React Native', 'Next.js', 'Supabase', 'TypeScript', 'Laravel', 'Tailwind CSS', 'PostgreSQL', 'AWS', 'React.js', 'Node.js'].map((tech, i) => (
+              <span key={i} className="text-xs font-extrabold uppercase tracking-widest text-white/25 flex items-center gap-3 px-6">
+                <span className="w-1 h-1 bg-accent-lime rounded-full flex-shrink-0" />
                 {tech}
               </span>
             ))}
