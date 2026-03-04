@@ -17,8 +17,8 @@ const ProjectFilters = () => {
       category: "Mobile Apps",
       tech: ["React Native", "Expo", "Supabase", "SSL Commerz", "Push Notifications"],
       image: "/images/projects/cherymobileapp/chery-mobile-app.png",
-      links: { live: "/case-studies/chery-bangladesh", github: "/case-studies/chery-bangladesh" },
-      liveUrl: null,
+      links: { live: "/case-studies/chery-bangladesh-app", github: "/case-studies/chery-bangladesh" },
+      liveUrl: "https://www.meetratan.com/case-studies/chery-bangladesh-app",
       featured: true,
       year: "2024"
     },
