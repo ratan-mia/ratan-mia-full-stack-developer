@@ -425,9 +425,6 @@ export default function ServicesPage() {
                     <button className="w-full px-4 py-3 bg-black text-accent-lime rounded-xl hover:shadow-lg transition-all font-extrabold hover:scale-105">
                       Get Started
                     </button>
-                    <button className="w-full px-4 py-3 border-2 border-black text-black rounded-xl hover:bg-black hover:text-white transition-all font-bold">
-                      Learn More
-                    </button>
                   </div>
                 </div>
               </div>
