@@ -260,11 +260,11 @@ export default function ServicesPage() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1557672172-298e090bd0f1?q=80&w=2187&auto=format&fit=crop" 
+            src="https://images.unsplash.com/photo-1522252234503-e356532cafd5?q=80&w=2025&auto=format&fit=crop" 
             alt="Services Background"
-            className="w-full h-full object-cover opacity-6"
+            className="w-full h-full object-cover opacity-20"
           />
-          <div className="absolute inset-0 bg-accent-lime/90"></div>
+          <div className="absolute inset-0 bg-accent-lime/80"></div>
         </div>
 
         {/* Decorative elements - desktop only */}
