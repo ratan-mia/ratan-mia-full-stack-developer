@@ -79,46 +79,46 @@ export default function PortfolioPage() {
           <div className="hidden md:flex flex-col justify-center py-12 md:pl-8 lg:pl-16 gap-5 lg:gap-6">
 
             {/* Card 1 - Main Featured Project */}
-            <div className="group relative rounded-2xl lg:rounded-3xl overflow-hidden border-2 border-white/10 hover:border-accent-lime/50 transition-all duration-500 bg-white/5 hover:shadow-2xl">
+            <div className="group relative rounded-2xl lg:rounded-3xl overflow-hidden border-2 border-white/20 hover:border-accent-lime/60 transition-all duration-500 bg-white/5 hover:shadow-2xl">
               <img
                 src="/images/projects/cherymobileapp/chery-mobile-app.png"
                 alt="Chery Bangladesh App"
-                className="w-full h-52 md:h-56 lg:h-64 xl:h-72 object-cover opacity-60 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700"
+                className="w-full h-52 md:h-56 lg:h-64 xl:h-72 object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
               <div className="absolute bottom-5 lg:bottom-6 left-5 lg:left-6 right-5 lg:right-6 flex items-end justify-between">
                 <div>
-                  <div className="text-xs lg:text-sm text-white/50 font-bold mb-1">Mobile App</div>
-                  <div className="text-white font-extrabold text-lg lg:text-xl leading-tight">Chery Bangladesh App</div>
+                  <div className="text-xs lg:text-sm text-accent-lime font-bold mb-1 uppercase tracking-wider">Mobile App</div>
+                  <div className="text-white font-extrabold text-lg lg:text-xl xl:text-2xl leading-tight drop-shadow-lg">Chery Bangladesh App</div>
                 </div>
-                <span className="px-4 py-1.5 bg-accent-lime text-black text-xs lg:text-sm font-extrabold rounded-full">2024</span>
+                <span className="px-4 py-1.5 bg-accent-lime text-black text-xs lg:text-sm font-extrabold rounded-full shadow-lg">2024</span>
               </div>
             </div>
 
             {/* Card 2 row — two cards */}
             <div className="grid grid-cols-2 gap-4 lg:gap-5">
-              <div className="group relative rounded-xl lg:rounded-2xl overflow-hidden border-2 border-white/10 hover:border-accent-lime/40 transition-all duration-500 bg-white/5">
+              <div className="group relative rounded-xl lg:rounded-2xl overflow-hidden border-2 border-white/20 hover:border-accent-lime/60 transition-all duration-500 bg-white/5">
                 <img
                   src="/images/projects/turflet/TurfLet.png"
                   alt="TurfLet"
-                  className="w-full h-40 md:h-44 lg:h-48 xl:h-52 object-cover opacity-60 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700"
+                  className="w-full h-40 md:h-44 lg:h-48 xl:h-52 object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
                 <div className="absolute bottom-3 lg:bottom-4 left-3 lg:left-4 right-3 lg:right-4">
-                  <div className="text-white font-extrabold text-sm lg:text-base leading-tight">TurfLet Platform</div>
-                  <div className="text-white/50 text-xs mt-1 hidden lg:block">Booking App</div>
+                  <div className="text-white font-extrabold text-sm lg:text-base xl:text-lg leading-tight drop-shadow-lg">TurfLet Platform</div>
+                  <div className="text-accent-lime text-xs font-bold mt-1 hidden lg:block uppercase tracking-wide">Booking App</div>
                 </div>
               </div>
-              <div className="group relative rounded-xl lg:rounded-2xl overflow-hidden border-2 border-white/10 hover:border-accent-lime/40 transition-all duration-500 bg-white/5">
+              <div className="group relative rounded-xl lg:rounded-2xl overflow-hidden border-2 border-white/20 hover:border-accent-lime/60 transition-all duration-500 bg-white/5">
                 <img
                   src="/images/projects/elf-mobile-store/Elf-home.png"
                   alt="ELF App"
-                  className="w-full h-40 md:h-44 lg:h-48 xl:h-52 object-cover opacity-60 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700"
+                  className="w-full h-40 md:h-44 lg:h-48 xl:h-52 object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
                 <div className="absolute bottom-3 lg:bottom-4 left-3 lg:left-4 right-3 lg:right-4">
-                  <div className="text-white font-extrabold text-sm lg:text-base leading-tight">ELF Bangladesh App</div>
-                  <div className="text-white/50 text-xs mt-1 hidden lg:block">E-commerce</div>
+                  <div className="text-white font-extrabold text-sm lg:text-base xl:text-lg leading-tight drop-shadow-lg">ELF Bangladesh App</div>
+                  <div className="text-accent-lime text-xs font-bold mt-1 hidden lg:block uppercase tracking-wide">E-commerce</div>
                 </div>
               </div>
             </div>
