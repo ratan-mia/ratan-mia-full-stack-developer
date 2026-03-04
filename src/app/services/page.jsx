@@ -422,78 +422,104 @@ export default function ServicesPage() {
       </section>
 
       {/* Process Section */}
-      <section className="px-4 md:px-6 lg:px-8 py-24 bg-black relative overflow-hidden">
+      <section className="py-32 bg-black relative overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop"
             alt=""
-            className="w-full h-full object-cover opacity-30"
+            className="w-full h-full object-cover opacity-20"
           />
-          <div className="absolute inset-0 bg-black/50" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black" />
         </div>
 
-        {/* Background decoration */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent-lime/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent-lime/5 rounded-full blur-3xl" />
+        {/* Lime glow orbs */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <div className="absolute top-1/4 -left-32 w-[500px] h-[500px] bg-accent-lime/8 rounded-full blur-[120px]" />
+          <div className="absolute bottom-1/4 -right-32 w-[500px] h-[500px] bg-accent-lime/8 rounded-full blur-[120px]" />
         </div>
 
-        <div className="max-w-6xl mx-auto relative z-10">
-          {/* Header */}
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/15 border border-accent-lime/30 text-accent-lime rounded-full text-sm font-extrabold mb-6">
-              <Settings className="w-4 h-4" />
-              <span>WORK PROCESS</span>
+        <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 relative z-10">
+
+          {/* Header — bold & asymmetric */}
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-24">
+            <div>
+              <div className="inline-flex items-center gap-2 px-5 py-2 bg-accent-lime/10 border border-accent-lime/30 text-accent-lime rounded-full text-xs font-extrabold tracking-widest mb-6 uppercase">
+                <Settings className="w-3.5 h-3.5" />
+                <span>Work Process</span>
+              </div>
+              <h2 className="text-6xl md:text-7xl lg:text-8xl font-black text-white uppercase tracking-tighter leading-none">
+                HOW I<br />
+                <span className="text-accent-lime [-webkit-text-stroke:2px_theme(colors.accent-lime)] [text-stroke:2px_theme(colors.accent-lime)]">WORK.</span>
+              </h2>
             </div>
-            <h2 className="text-5xl md:text-6xl font-extrabold text-white mb-5">
-              How I <span className="text-accent-lime">Work</span>
-            </h2>
-            <p className="text-xl text-white/60 max-w-2xl mx-auto font-medium">
-              A battle-tested process that delivers on time, on budget, and beyond expectations — every single time.
+            <p className="text-lg text-white/50 max-w-sm font-medium leading-relaxed lg:text-right lg:pb-4">
+              A battle-tested process that delivers on time, on budget, and beyond expectations — every time.
             </p>
           </div>
 
-          {/* Steps */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-4 relative">
-            {/* Connecting line desktop */}
-            <div className="hidden lg:block absolute top-10 left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-accent-lime/40 to-transparent z-0" />
-
+          {/* Steps — bold numbered list */}
+          <div className="space-y-0">
             {processSteps.map((step, index) => (
-              <div key={step.step} className="relative z-10 flex flex-col items-center text-center group">
-                {/* Number bubble */}
-                <div className="relative mb-6">
-                  <div className="w-20 h-20 bg-accent-lime rounded-2xl flex items-center justify-center text-2xl font-extrabold text-black shadow-lg shadow-accent-lime/20 group-hover:scale-110 group-hover:shadow-accent-lime/40 transition-all duration-300">
-                    {step.step}
-                  </div>
-                  {/* Pulse ring */}
-                  <div className="absolute inset-0 rounded-2xl border-2 border-accent-lime/30 scale-110 group-hover:scale-125 transition-transform duration-300 opacity-0 group-hover:opacity-100" />
+              <div
+                key={step.step}
+                className="group relative flex flex-col md:flex-row md:items-center gap-0 border-t border-white/10 hover:border-accent-lime/40 transition-all duration-500 py-10 cursor-default"
+              >
+                {/* Hover background sweep */}
+                <div className="absolute inset-0 bg-gradient-to-r from-accent-lime/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-xl" />
+
+                {/* Step number — oversized */}
+                <div className="relative flex-shrink-0 w-32 md:w-44">
+                  <span className="text-7xl md:text-9xl font-black text-white/8 group-hover:text-accent-lime/20 transition-colors duration-500 leading-none select-none">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  {/* Small lime dot */}
+                  <div className="absolute top-1/2 -translate-y-1/2 left-2 w-3 h-3 bg-accent-lime rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg shadow-accent-lime/50" />
                 </div>
 
-                {/* Content card */}
-                <div className="bg-white/5 border border-white/10 rounded-2xl p-5 w-full group-hover:bg-white/10 group-hover:border-accent-lime/30 transition-all duration-300">
-                  <h3 className="font-extrabold text-white text-lg mb-2 group-hover:text-accent-lime transition-colors duration-300">
+                {/* Icon bubble */}
+                <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-accent-lime group-hover:border-accent-lime transition-all duration-300 mr-8 hidden md:flex">
+                  <Settings className="w-6 h-6 text-white/50 group-hover:text-black transition-colors duration-300" />
+                </div>
+
+                {/* Title */}
+                <div className="flex-1 md:pr-12">
+                  <h3 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tight group-hover:text-accent-lime transition-colors duration-300 mb-2">
                     {step.title}
                   </h3>
-                  <p className="text-sm text-white/50 leading-relaxed group-hover:text-white/70 transition-colors duration-300">
+                  <p className="text-base text-white/40 font-medium leading-relaxed group-hover:text-white/60 transition-colors duration-300 max-w-xl">
                     {step.description}
                   </p>
                 </div>
+
+                {/* Arrow indicator */}
+                <div className="flex-shrink-0 w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:border-accent-lime group-hover:bg-accent-lime transition-all duration-300 hidden md:flex">
+                  <ArrowRight className="w-5 h-5 text-white/30 group-hover:text-black transition-colors duration-300" />
+                </div>
               </div>
             ))}
+            {/* Bottom border */}
+            <div className="border-t border-white/10" />
           </div>
 
-          {/* Bottom CTA */}
-          <div className="mt-20 text-center">
-            <p className="text-white/50 text-lg mb-6 font-medium">Ready to kick off your project?</p>
+          {/* Bold CTA strip */}
+          <div className="mt-20 flex flex-col lg:flex-row items-center justify-between gap-8 p-10 bg-accent-lime rounded-3xl">
+            <div>
+              <p className="text-3xl md:text-4xl font-black text-black uppercase tracking-tight leading-tight">
+                Ready to start<br />your project?
+              </p>
+              <p className="text-black/60 font-medium mt-2">Let's build something remarkable together.</p>
+            </div>
             <a
               href="#quote"
-              className="inline-flex items-center gap-3 px-10 py-5 bg-accent-lime text-black rounded-xl font-extrabold text-lg hover:shadow-2xl hover:shadow-accent-lime/30 hover:scale-105 transition-all duration-300"
+              className="flex-shrink-0 inline-flex items-center gap-3 px-10 py-5 bg-black text-accent-lime rounded-2xl font-extrabold text-lg hover:scale-105 hover:shadow-2xl hover:shadow-black/40 transition-all duration-300 whitespace-nowrap"
             >
               <Calendar className="w-5 h-5" />
               Start the Process
+              <ArrowRight className="w-5 h-5" />
             </a>
           </div>
+
         </div>
       </section>
 
