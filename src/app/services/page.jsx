@@ -422,40 +422,67 @@ export default function ServicesPage() {
       </section>
 
       {/* Process Section */}
-      <section className="px-4 md:px-6 lg:px-8 py-20 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
+      <section className="px-4 md:px-6 lg:px-8 py-24 bg-black relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent-lime/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent-lime/5 rounded-full blur-3xl" />
+        </div>
+
+        <div className="max-w-6xl mx-auto relative z-10">
+          {/* Header */}
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/15 border border-accent-lime/30 text-accent-lime rounded-full text-sm font-extrabold mb-6">
               <Settings className="w-4 h-4" />
               <span>WORK PROCESS</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-4">How I Work</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto font-medium">
-              A proven process that ensures project success and client satisfaction every time.
+            <h2 className="text-5xl md:text-6xl font-extrabold text-white mb-5">
+              How I <span className="text-accent-lime">Work</span>
+            </h2>
+            <p className="text-xl text-white/60 max-w-2xl mx-auto font-medium">
+              A battle-tested process that delivers on time, on budget, and beyond expectations — every single time.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
+          {/* Steps */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-4 relative">
+            {/* Connecting line desktop */}
+            <div className="hidden lg:block absolute top-10 left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-accent-lime/40 to-transparent z-0" />
+
             {processSteps.map((step, index) => (
-              <div key={step.step} className="relative text-center">
-                <div className="w-20 h-20 bg-accent-lime text-black rounded-2xl flex items-center justify-center text-2xl font-extrabold mx-auto mb-6 shadow-lg">
-                  {step.step}
-                </div>
-                <h3 className="font-extrabold mb-3 text-lg">{step.title}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed font-medium">
-                  {step.description}
-                </p>
-                
-                {/* Arrow */}
-                {index < processSteps.length - 1 && (
-                  <div className="hidden lg:block absolute top-10 -right-4 text-accent-lime">
-                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                    </svg>
+              <div key={step.step} className="relative z-10 flex flex-col items-center text-center group">
+                {/* Number bubble */}
+                <div className="relative mb-6">
+                  <div className="w-20 h-20 bg-accent-lime rounded-2xl flex items-center justify-center text-2xl font-extrabold text-black shadow-lg shadow-accent-lime/20 group-hover:scale-110 group-hover:shadow-accent-lime/40 transition-all duration-300">
+                    {step.step}
                   </div>
-                )}
+                  {/* Pulse ring */}
+                  <div className="absolute inset-0 rounded-2xl border-2 border-accent-lime/30 scale-110 group-hover:scale-125 transition-transform duration-300 opacity-0 group-hover:opacity-100" />
+                </div>
+
+                {/* Content card */}
+                <div className="bg-white/5 border border-white/10 rounded-2xl p-5 w-full group-hover:bg-white/10 group-hover:border-accent-lime/30 transition-all duration-300">
+                  <h3 className="font-extrabold text-white text-lg mb-2 group-hover:text-accent-lime transition-colors duration-300">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm text-white/50 leading-relaxed group-hover:text-white/70 transition-colors duration-300">
+                    {step.description}
+                  </p>
+                </div>
               </div>
             ))}
+          </div>
+
+          {/* Bottom CTA */}
+          <div className="mt-20 text-center">
+            <p className="text-white/50 text-lg mb-6 font-medium">Ready to kick off your project?</p>
+            <a
+              href="#quote"
+              className="inline-flex items-center gap-3 px-10 py-5 bg-accent-lime text-black rounded-xl font-extrabold text-lg hover:shadow-2xl hover:shadow-accent-lime/30 hover:scale-105 transition-all duration-300"
+            >
+              <Calendar className="w-5 h-5" />
+              Start the Process
+            </a>
           </div>
         </div>
       </section>
