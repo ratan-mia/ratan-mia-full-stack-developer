@@ -408,18 +408,6 @@ export default function ServicesPage() {
                     </div>
                   </div>
 
-                  {/* Testimonial */}
-                  {service.testimonial && (
-                    <div className="mb-6 p-5 bg-gray-50 rounded-2xl border-l-4 border-accent-lime">
-                      <p className="text-sm font-medium text-gray-700 mb-2">
-                        "{service.testimonial.text}"
-                      </p>
-                      <div className="text-xs text-gray-600 font-bold">
-                        - {service.testimonial.author}, {service.testimonial.company}
-                      </div>
-                    </div>
-                  )}
-
                   {/* CTA Buttons */}
                   <div className="space-y-3">
                     <button className="w-full px-4 py-3 bg-black text-accent-lime rounded-xl hover:shadow-lg transition-all font-extrabold hover:scale-105">
