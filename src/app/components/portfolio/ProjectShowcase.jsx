@@ -144,7 +144,7 @@ const ProjectShowcase = () => {
       description: "Official automotive website featuring immersive 360° car viewer and achieving 97% PageSpeed optimization. Revolutionary customer experience with virtual showroom capabilities.",
       tech: ["Next.js", "React.js", "CRM Integration", "Facebook Pixel", "360° Viewer"],
       category: "web-development",
-      link: "https://www.cherybd.com",
+      link: "/case-studies/chery-bangladesh-app",
       liveUrl: "https://www.cherybd.com",
       image: "/images/projects/cherybd-nextjs.png",
       status: "Live",
