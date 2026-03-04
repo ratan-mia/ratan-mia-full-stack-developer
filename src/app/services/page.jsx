@@ -422,7 +422,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Process Section */}
-      <section className="py-32 bg-black relative overflow-hidden">
+      <section className="py-16 bg-black relative overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
@@ -435,20 +435,20 @@ export default function ServicesPage() {
 
         {/* Lime glow orbs */}
         <div className="absolute inset-0 pointer-events-none z-0">
-          <div className="absolute top-1/4 -left-32 w-[500px] h-[500px] bg-accent-lime/8 rounded-full blur-[120px]" />
-          <div className="absolute bottom-1/4 -right-32 w-[500px] h-[500px] bg-accent-lime/8 rounded-full blur-[120px]" />
+          <div className="absolute top-1/4 -left-32 w-[300px] h-[300px] bg-accent-lime/8 rounded-full blur-[120px]" />
+          <div className="absolute bottom-1/4 -right-32 w-[300px] h-[300px] bg-accent-lime/8 rounded-full blur-[120px]" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 relative z-10">
 
           {/* Header — bold & asymmetric */}
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-24">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12">
             <div>
               <div className="inline-flex items-center gap-2 px-5 py-2 bg-accent-lime/10 border border-accent-lime/30 text-accent-lime rounded-full text-xs font-extrabold tracking-widest mb-6 uppercase">
                 <Settings className="w-3.5 h-3.5" />
                 <span>Work Process</span>
               </div>
-              <h2 className="text-6xl md:text-7xl lg:text-8xl font-black text-white uppercase tracking-tighter leading-none">
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-white uppercase tracking-tighter leading-none">
                 HOW I<br />
                 <span className="text-accent-lime [-webkit-text-stroke:2px_theme(colors.accent-lime)] [text-stroke:2px_theme(colors.accent-lime)]">WORK.</span>
               </h2>
@@ -463,14 +463,14 @@ export default function ServicesPage() {
             {processSteps.map((step, index) => (
               <div
                 key={step.step}
-                className="group relative flex flex-col md:flex-row md:items-center gap-0 border-t border-white/10 hover:border-accent-lime/40 transition-all duration-500 py-10 cursor-default"
+                className="group relative flex flex-col md:flex-row md:items-center gap-0 border-t border-white/10 hover:border-accent-lime/40 transition-all duration-500 py-6 cursor-default"
               >
                 {/* Hover background sweep */}
                 <div className="absolute inset-0 bg-gradient-to-r from-accent-lime/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-xl" />
 
                 {/* Step number — oversized */}
-                <div className="relative flex-shrink-0 w-32 md:w-44">
-                  <span className="text-7xl md:text-9xl font-black text-white/8 group-hover:text-accent-lime/20 transition-colors duration-500 leading-none select-none">
+                <div className="relative flex-shrink-0 w-24 md:w-36">
+                  <span className="text-5xl md:text-7xl font-black text-white/8 group-hover:text-accent-lime/20 transition-colors duration-500 leading-none select-none">
                     {String(index + 1).padStart(2, '0')}
                   </span>
                   {/* Small lime dot */}
@@ -478,13 +478,13 @@ export default function ServicesPage() {
                 </div>
 
                 {/* Icon bubble */}
-                <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-accent-lime group-hover:border-accent-lime transition-all duration-300 mr-8 hidden md:flex">
-                  <Settings className="w-6 h-6 text-white/50 group-hover:text-black transition-colors duration-300" />
+                <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-accent-lime group-hover:border-accent-lime transition-all duration-300 mr-6 hidden md:flex">
+                  <Settings className="w-5 h-5 text-white/50 group-hover:text-black transition-colors duration-300" />
                 </div>
 
                 {/* Title */}
                 <div className="flex-1 md:pr-12">
-                  <h3 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tight group-hover:text-accent-lime transition-colors duration-300 mb-2">
+                  <h3 className="text-xl md:text-2xl font-black text-white uppercase tracking-tight group-hover:text-accent-lime transition-colors duration-300 mb-1">
                     {step.title}
                   </h3>
                   <p className="text-base text-white/40 font-medium leading-relaxed group-hover:text-white/60 transition-colors duration-300 max-w-xl">
@@ -493,7 +493,7 @@ export default function ServicesPage() {
                 </div>
 
                 {/* Arrow indicator */}
-                <div className="flex-shrink-0 w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:border-accent-lime group-hover:bg-accent-lime transition-all duration-300 hidden md:flex">
+                <div className="flex-shrink-0 w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:border-accent-lime group-hover:bg-accent-lime transition-all duration-300 hidden md:flex">
                   <ArrowRight className="w-5 h-5 text-white/30 group-hover:text-black transition-colors duration-300" />
                 </div>
               </div>
@@ -503,16 +503,16 @@ export default function ServicesPage() {
           </div>
 
           {/* Bold CTA strip */}
-          <div className="mt-20 flex flex-col lg:flex-row items-center justify-between gap-8 p-10 bg-accent-lime rounded-3xl">
+          <div className="mt-12 flex flex-col lg:flex-row items-center justify-between gap-6 p-7 bg-accent-lime rounded-2xl">
             <div>
-              <p className="text-3xl md:text-4xl font-black text-black uppercase tracking-tight leading-tight">
+              <p className="text-2xl md:text-3xl font-black text-black uppercase tracking-tight leading-tight">
                 Ready to start<br />your project?
               </p>
               <p className="text-black/60 font-medium mt-2">Let's build something remarkable together.</p>
             </div>
             <a
               href="#quote"
-              className="flex-shrink-0 inline-flex items-center gap-3 px-10 py-5 bg-black text-accent-lime rounded-2xl font-extrabold text-lg hover:scale-105 hover:shadow-2xl hover:shadow-black/40 transition-all duration-300 whitespace-nowrap"
+              className="flex-shrink-0 inline-flex items-center gap-3 px-8 py-4 bg-black text-accent-lime rounded-xl font-extrabold text-base hover:scale-105 hover:shadow-2xl hover:shadow-black/40 transition-all duration-300 whitespace-nowrap"
             >
               <Calendar className="w-5 h-5" />
               Start the Process
