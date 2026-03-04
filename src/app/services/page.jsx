@@ -400,12 +400,8 @@ export default function ServicesPage() {
                     </div>
                   </div>
 
-                  {/* Pricing and Timeline */}
-                  <div className="flex justify-between items-center mb-6 p-5 bg-accent-lime rounded-2xl">
-                    <div>
-                      <div className="text-sm text-black/70 font-bold mb-1">Starting from</div>
-                      <div className="text-2xl font-extrabold text-black">{service.basePrice}</div>
-                    </div>
+                  {/* Timeline */}
+                  <div className="flex justify-end items-center mb-6 p-5 bg-accent-lime rounded-2xl">
                     <div className="text-right">
                       <div className="text-sm text-black/70 font-bold mb-1">Timeline</div>
                       <div className="font-extrabold">{service.timeline}</div>
@@ -575,38 +571,6 @@ export default function ServicesPage() {
             </div>
           </div>
 
-          {/* Price Range Overview */}
-          <div className="bg-gradient-to-r from-gray-900 via-black to-gray-900 rounded-3xl p-8 md:p-12 mb-12 text-white">
-            <div className="text-center mb-10">
-              <h3 className="text-3xl md:text-4xl font-extrabold mb-4">Starting Investment Ranges</h3>
-              <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-                Get a clear understanding of project costs. Final pricing is customized to your specific needs.
-              </p>
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all border border-white/20">
-                <div className="text-accent-lime text-2xl font-extrabold mb-2">$1,500+</div>
-                <div className="text-white font-bold mb-2">WordPress & CMS</div>
-                <div className="text-gray-300 text-sm">Custom themes, plugins, optimization</div>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all border border-white/20">
-                <div className="text-accent-lime text-2xl font-extrabold mb-2">$2,500+</div>
-                <div className="text-white font-bold mb-2">Web Applications</div>
-                <div className="text-gray-300 text-sm">Full stack React, Next.js, Laravel</div>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all border border-white/20">
-                <div className="text-accent-lime text-2xl font-extrabold mb-2">$5,000+</div>
-                <div className="text-white font-bold mb-2">E-commerce Solutions</div>
-                <div className="text-gray-300 text-sm">Online stores, payment integration</div>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all border border-accent-lime/50">
-                <div className="text-accent-lime text-2xl font-extrabold mb-2">$8,000+</div>
-                <div className="text-white font-bold mb-2">Mobile Apps</div>
-                <div className="text-gray-300 text-sm">React Native iOS & Android apps</div>
-              </div>
-            </div>
-          </div>
-
           {/* CTA Section */}
           <div className="bg-gradient-to-br from-accent-lime to-lime-400 rounded-3xl p-10 md:p-12 text-center shadow-xl">
             <div className="max-w-3xl mx-auto">
@@ -614,8 +578,7 @@ export default function ServicesPage() {
                 Ready to Discuss Your Project?
               </h3>
               <p className="text-xl text-black/80 leading-relaxed font-bold mb-8">
-                Every project is unique. The prices shown are starting points, and I'll provide a detailed 
-                custom quote based on your specific requirements, timeline, and business goals during our discovery call.
+                Every project is unique. I'll provide a detailed custom quote based on your specific requirements, timeline, and business goals during our discovery call.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button className="px-10 py-5 bg-black text-accent-lime rounded-xl font-extrabold hover:shadow-2xl transition-all duration-300 hover:scale-105 inline-flex items-center justify-center gap-3">
