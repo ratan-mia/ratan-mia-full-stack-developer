@@ -83,7 +83,7 @@ export default function PortfolioPage() {
               <img
                 src="/images/projects/cherymobileapp/chery-mobile-app.png"
                 alt="Chery Bangladesh App"
-                className="w-full h-52 md:h-56 lg:h-64 xl:h-72 object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                className="w-full h-64 md:h-72 lg:h-80 xl:h-96 object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
               <div className="absolute bottom-5 lg:bottom-6 left-5 lg:left-6 right-5 lg:right-6 flex items-end justify-between">
@@ -101,7 +101,7 @@ export default function PortfolioPage() {
                 <img
                   src="/images/projects/turflet/TurfLet.png"
                   alt="TurfLet"
-                  className="w-full h-40 md:h-44 lg:h-48 xl:h-52 object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                  className="w-full h-48 md:h-56 lg:h-64 xl:h-72 object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
                 <div className="absolute bottom-3 lg:bottom-4 left-3 lg:left-4 right-3 lg:right-4">
@@ -113,7 +113,7 @@ export default function PortfolioPage() {
                 <img
                   src="/images/projects/elf-mobile-store/Elf-home.png"
                   alt="ELF App"
-                  className="w-full h-40 md:h-44 lg:h-48 xl:h-52 object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                  className="w-full h-48 md:h-56 lg:h-64 xl:h-72 object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
                 <div className="absolute bottom-3 lg:bottom-4 left-3 lg:left-4 right-3 lg:right-4">
