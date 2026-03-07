@@ -1,151 +1,133 @@
-import { ArrowDownRight, ArrowRight, Bot, Code2, Globe, ShoppingCart, Smartphone, Zap } from 'lucide-react';
+import { ArrowUpRight, Asterisk } from 'lucide-react';
 
-const services = [
-  { icon: Smartphone, label: 'Mobile Apps', color: 'bg-accent-lime text-black' },
-  { icon: Code2,      label: 'Full Stack',  color: 'bg-white text-black' },
-  { icon: ShoppingCart, label: 'E-Commerce', color: 'bg-accent-lime text-black' },
-  { icon: Globe,      label: 'WordPress',   color: 'bg-white text-black' },
-  { icon: Bot,        label: 'AI & Automation', color: 'bg-accent-lime text-black' },
-  { icon: Zap,        label: 'Performance', color: 'bg-white text-black' },
-];
-
-const stats = [
-  { value: '150+', label: 'Projects Delivered' },
-  { value: '8+',   label: 'Years Experience' },
-  { value: '25+',  label: 'Countries Served' },
-  { value: '98%',  label: 'Client Satisfaction' },
-];
-
-const marqueeItems = [
-  'React Native', 'Next.js', 'Laravel', 'Node.js', 'TypeScript',
-  'Tailwind CSS', 'Supabase', 'AWS', 'Docker', 'OpenAI',
-  'Shopify', 'WordPress', 'React', 'CI/CD', 'Firebase',
+const serviceList = [
+  { num: '01', name: 'Mobile Apps',     tech: 'React Native · Expo · TypeScript' },
+  { num: '02', name: 'Full Stack Dev',  tech: 'Next.js · Laravel · Node.js' },
+  { num: '03', name: 'E-Commerce',      tech: 'Shopify · WooCommerce · Stripe' },
+  { num: '04', name: 'WordPress',       tech: 'Themes · Plugins · WooCommerce' },
+  { num: '05', name: 'DevOps & Cloud',  tech: 'AWS · Docker · CI/CD' },
+  { num: '06', name: 'Performance',     tech: 'Core Web Vitals · Lighthouse' },
+  { num: '07', name: 'AI Integration',  tech: 'OpenAI · NLP · Automation' },
 ];
 
 export default function ServicesHero() {
   return (
-    <section className="relative w-full bg-black overflow-hidden">
+    <section className="relative w-full flex flex-col lg:flex-row min-h-screen">
 
-      {/* ── Oversized watermark text ── */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none select-none absolute inset-0 flex items-center justify-center z-0 overflow-hidden"
-      >
-        <span
-          className="text-[22vw] font-black uppercase leading-none tracking-tighter whitespace-nowrap"
-          style={{
-            color: 'transparent',
-            WebkitTextStroke: '1px rgba(204,255,0,0.07)',
-          }}
-        >
-          SERVICES
-        </span>
-      </div>
+      {/* ── LEFT PANEL — White editorial ── */}
+      <div className="relative flex-1 bg-white flex flex-col justify-between px-8 md:px-14 pt-20 pb-10 lg:min-h-screen overflow-hidden">
 
-      {/* ── Lime glow blobs ── */}
-      <div className="pointer-events-none absolute inset-0 z-0">
-        <div className="absolute -top-32 -right-32 w-[500px] h-[500px] bg-accent-lime/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 -left-20 w-[300px] h-[300px] bg-accent-lime/6 rounded-full blur-[100px]" />
-      </div>
+        {/* Corner accent blob */}
+        <div className="pointer-events-none absolute -bottom-24 -left-24 w-64 h-64 bg-accent-lime/20 rounded-full blur-3xl" />
 
-      {/* ── Main content ── */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 lg:px-12 pt-24 pb-0">
-
-        {/* Top label row */}
-        <div className="flex items-center justify-between mb-10 flex-wrap gap-4">
-          <div className="inline-flex items-center gap-2 px-5 py-2 border border-accent-lime/30 bg-accent-lime/8 text-accent-lime rounded-full text-xs font-extrabold uppercase tracking-widest">
-            <span className="w-2 h-2 bg-accent-lime rounded-full animate-pulse" />
-            Professional Services
+        {/* Top meta row */}
+        <div className="relative flex items-center justify-between">
+          <span className="text-xs font-bold text-black/30 uppercase tracking-[0.2em]">
+            Est. 2016 · Full Stack Developer
+          </span>
+          <div className="w-8 h-8 bg-accent-lime rounded-full flex items-center justify-center">
+            <Asterisk className="w-4 h-4 text-black" />
           </div>
+        </div>
+
+        {/* Main headline */}
+        <div className="relative flex-1 flex flex-col justify-center py-10 lg:py-0">
+          <h1
+            className="font-black uppercase tracking-tighter leading-[0.88]"
+            style={{ fontSize: 'clamp(58px, 7.5vw, 108px)' }}
+          >
+            <span className="block text-black">We</span>
+            <span
+              className="block italic"
+              style={{ color: 'transparent', WebkitTextStroke: '2.5px black' }}
+            >
+              Craft
+            </span>
+            <span className="block text-black">Digital</span>
+            <span className="block bg-black text-accent-lime px-3 -mx-1 inline-block mt-1">
+              Products.
+            </span>
+          </h1>
+
+          <p className="mt-8 text-base text-black/45 max-w-sm leading-relaxed font-medium">
+            7 specialized services. 150+ delivered projects. Trusted across 25+ countries — built to grow your business.
+          </p>
+
+          <div className="mt-10 flex flex-col sm:flex-row gap-4">
+            <a
+              href="#quote"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-black text-accent-lime font-extrabold rounded-2xl hover:scale-105 transition-transform duration-300"
+            >
+              Start a Project <ArrowUpRight className="w-5 h-5" />
+            </a>
+            <a
+              href="#services"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-black/15 text-black font-extrabold rounded-2xl hover:border-black transition-colors duration-300"
+            >
+              View Services
+            </a>
+          </div>
+        </div>
+
+        {/* Stats footer row */}
+        <div className="relative grid grid-cols-3 gap-4 pt-8 border-t-2 border-black/8">
+          {[['150+', 'Projects'], ['8+', 'Years'], ['98%', 'Success']].map(([v, l]) => (
+            <div key={l}>
+              <div className="text-3xl font-black text-black leading-none">{v}</div>
+              <div className="text-xs text-black/35 font-semibold uppercase tracking-wider mt-1">{l}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ── Vertical divider ── */}
+      <div className="hidden lg:block w-px bg-black/10 self-stretch" />
+
+      {/* ── RIGHT PANEL — Black service directory ── */}
+      <div className="lg:w-[44%] bg-black flex flex-col justify-center px-8 md:px-12 py-16 lg:min-h-screen">
+
+        {/* Section label */}
+        <p className="text-[10px] font-extrabold text-white/25 uppercase tracking-[0.25em] mb-8">
+          // What I Build
+        </p>
+
+        {/* Directory list */}
+        <div>
+          {serviceList.map((s) => (
+            <div
+              key={s.num}
+              className="group flex items-center justify-between py-[18px] border-b border-white/[0.07] hover:border-accent-lime/30 cursor-default transition-all duration-300 hover:pl-2"
+            >
+              <div className="flex items-center gap-5">
+                <span className="text-xs font-bold text-white/20 group-hover:text-accent-lime transition-colors duration-300 w-5 shrink-0">
+                  {s.num}
+                </span>
+                <div>
+                  <div className="text-[17px] font-extrabold text-white group-hover:text-accent-lime transition-colors duration-300 leading-tight">
+                    {s.name}
+                  </div>
+                  <div className="text-xs text-white/25 font-medium mt-0.5">{s.tech}</div>
+                </div>
+              </div>
+              <ArrowUpRight className="w-4 h-4 text-white/0 group-hover:text-accent-lime transition-all duration-300 shrink-0" />
+            </div>
+          ))}
+        </div>
+
+        {/* Lime CTA card */}
+        <div className="mt-10 p-6 bg-accent-lime rounded-2xl">
+          <p className="text-black font-extrabold text-lg leading-tight">Need something custom?</p>
+          <p className="text-black/55 text-sm font-medium mt-1 mb-5">
+            Let's talk about your project requirements.
+          </p>
           <a
             href="#quote"
-            className="hidden sm:inline-flex items-center gap-2 text-sm font-bold text-white/50 hover:text-accent-lime transition-colors duration-300"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-black text-accent-lime font-extrabold text-sm rounded-xl hover:scale-105 transition-transform duration-300"
           >
-            Get a free quote <ArrowRight className="w-4 h-4" />
+            Get a Free Quote <ArrowUpRight className="w-4 h-4" />
           </a>
         </div>
-
-        {/* Split layout: heading  +  service pills */}
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-
-          {/* Left — Giant heading */}
-          <div>
-            <h1 className="text-[clamp(52px,7vw,96px)] font-black leading-[0.95] tracking-tighter text-white uppercase">
-              I Build<br />
-              <span className="text-accent-lime">Digital</span><br />
-              Products.
-            </h1>
-            <p className="mt-8 text-lg text-white/50 max-w-md leading-relaxed font-medium">
-              From mobile apps to full-stack platforms — fast, scalable, and built to grow your business across every device and market.
-            </p>
-            <div className="mt-10 flex flex-wrap gap-4">
-              <a
-                href="#services"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-accent-lime text-black rounded-xl font-extrabold hover:scale-105 hover:shadow-2xl hover:shadow-accent-lime/20 transition-all duration-300"
-              >
-                Explore Services <ArrowDownRight className="w-5 h-5" />
-              </a>
-              <a
-                href="#quote"
-                className="inline-flex items-center gap-2 px-8 py-4 border-2 border-white/15 text-white rounded-xl font-extrabold hover:border-accent-lime hover:text-accent-lime transition-all duration-300"
-              >
-                Start a Project
-              </a>
-            </div>
-          </div>
-
-          {/* Right — Service pills grid */}
-          <div className="grid grid-cols-2 gap-4 lg:pt-4">
-            {services.map(({ icon: Icon, label, color }, i) => (
-              <div
-                key={label}
-                className={`group flex items-center gap-4 px-5 py-5 rounded-2xl font-extrabold text-sm cursor-default border-2 border-transparent hover:border-accent-lime/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${color}`}
-                style={{ animationDelay: `${i * 80}ms` }}
-              >
-                <div className="w-10 h-10 rounded-xl bg-black/10 flex items-center justify-center flex-shrink-0">
-                  <Icon className="w-5 h-5" />
-                </div>
-                <span className="leading-tight">{label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Stats row */}
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 border-t border-white/10">
-          {stats.map(({ value, label }, i) => (
-            <div
-              key={label}
-              className={`py-8 px-6 ${i !== 0 ? 'border-l border-white/10' : ''} flex flex-col gap-1`}
-            >
-              <span className="text-4xl font-black text-accent-lime leading-none">{value}</span>
-              <span className="text-sm text-white/40 font-semibold">{label}</span>
-            </div>
-          ))}
-        </div>
       </div>
-
-      {/* ── Scrolling marquee strip ── */}
-      <div className="relative z-10 mt-0 border-t border-white/10 bg-accent-lime overflow-hidden py-3">
-        <div
-          className="flex gap-10 whitespace-nowrap"
-          style={{ animation: 'marquee 30s linear infinite' }}
-        >
-          {[...marqueeItems, ...marqueeItems].map((item, i) => (
-            <span key={i} className="text-black font-extrabold text-sm uppercase tracking-widest flex-shrink-0 flex items-center gap-3">
-              {item}
-              <span className="w-1.5 h-1.5 bg-black/30 rounded-full" />
-            </span>
-          ))}
-        </div>
-      </div>
-
-      <style>{`
-        @keyframes marquee {
-          from { transform: translateX(0); }
-          to   { transform: translateX(-50%); }
-        }
-      `}</style>
     </section>
   );
 }

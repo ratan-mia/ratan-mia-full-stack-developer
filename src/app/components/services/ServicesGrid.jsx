@@ -1,4 +1,4 @@
-import { Bot, Code2, Globe, Settings, ShoppingCart, Smartphone, Zap } from 'lucide-react';
+import { ArrowUpRight, Bot, Code2, Globe, Settings, ShoppingCart, Smartphone, Zap } from 'lucide-react';
 import Image from 'next/image';
 
 const SERVICE_DATA = [
@@ -216,127 +216,125 @@ const SERVICE_DATA = [
 
 export default function ServicesGrid() {
   return (
-    <section className="px-4 md:px-6 lg:px-8 py-20 bg-gray-50">
-      <div className="max-w-6xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
-            <Zap className="w-4 h-4" />
-            <span>OUR SERVICES</span>
-          </div>
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
-            What I <span className="text-accent-lime">Offer</span>
-          </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto font-medium">
-            Comprehensive mobile and web development solutions tailored to your business needs
-          </p>
-        </div>
+    <section id="services" className="bg-[#f5f4ef] py-24">
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {SERVICE_DATA.map((service) => (
-            <div
+      {/* ── Header ── */}
+      <div className="max-w-7xl mx-auto px-8 md:px-14 mb-12">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 pb-8 border-b-[3px] border-black">
+          <h2
+            className="font-black uppercase leading-none tracking-tighter text-black"
+            style={{ fontSize: 'clamp(60px, 9vw, 128px)' }}
+          >
+            Services
+          </h2>
+          <div className="sm:text-right sm:mb-2 space-y-1.5">
+            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-black/35">07 Specializations</p>
+            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-black/35">150+ Projects Delivered</p>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Neo-brutalist card grid ── */}
+      <div className="max-w-7xl mx-auto px-8 md:px-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        {SERVICE_DATA.map((service, i) => {
+          const isHero = i === 0;
+          return (
+            <a
               key={service.id}
-              className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-gray-100 hover:border-accent-lime group"
+              href="#quote"
+              className={`group relative border-[3px] border-black bg-white flex flex-col transition-all duration-150 hover:-translate-y-1 hover:shadow-[8px_8px_0_#000] ${isHero ? 'lg:col-span-2' : ''}`}
             >
-              {/* Project Image with Overlay */}
-              <div className="relative h-64 overflow-hidden bg-gray-100">
+              {/* Image panel */}
+              <div className={`relative overflow-hidden border-b-[3px] border-black ${isHero ? 'h-64' : 'h-44'}`}>
                 <Image
                   src={service.projectImage}
                   alt={service.projectExample}
                   fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-
-                {/* Icon Badge */}
-                <div className="absolute top-4 left-4 w-14 h-14 bg-accent-lime rounded-2xl flex items-center justify-center shadow-lg">
-                  <service.icon className="w-7 h-7 text-black" />
+                {/* Scrim */}
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
+                {/* Number badge top-left */}
+                <span className="absolute top-3 left-4 text-[10px] font-black text-white/70 tabular-nums tracking-widest">
+                  {String(service.id).padStart(2, '0')} /
+                </span>
+                {/* Icon top-right */}
+                <div className="absolute top-3 right-3 w-9 h-9 bg-white border-2 border-black flex items-center justify-center">
+                  <service.icon className="w-4 h-4 text-black" />
                 </div>
-
-                {/* Featured Badge */}
+                {/* Featured badge */}
                 {service.featured && (
-                  <div className="absolute top-4 right-4 px-4 py-1.5 bg-accent-lime text-black rounded-full text-xs font-extrabold shadow-lg">
-                    ⭐ FEATURED
-                  </div>
+                  <span className="absolute bottom-3 left-4 text-[8px] font-black uppercase tracking-[0.25em] bg-accent-lime text-black px-2.5 py-1">
+                    Popular
+                  </span>
                 )}
-
-                {/* Project Example Label */}
-                <div className="absolute bottom-4 left-4 right-4">
-                  <div className="text-xs text-white/80 font-bold mb-1">Example Project:</div>
-                  <div className="text-white font-extrabold text-lg">{service.projectExample}</div>
-                </div>
               </div>
 
-              {/* Card Content */}
-              <div className="p-8">
-                {/* Title */}
-                <h3 className="text-2xl font-extrabold mb-3 group-hover:text-accent-lime transition-colors">
-                  {service.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-gray-600 mb-6 leading-relaxed font-medium">
-                  {service.shortDescription}
-                </p>
-
-                {/* Features */}
-                <div className="mb-6">
-                  <h4 className="font-extrabold mb-4 text-sm uppercase tracking-wider">Key Features:</h4>
-                  <ul className="space-y-3">
-                    {service.features.slice(0, 4).map((feature, idx) => (
-                      <li key={idx} className="flex items-start text-sm">
-                        <span className="w-1.5 h-1.5 bg-accent-lime rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                        <span className="text-gray-700 font-medium">{feature}</span>
-                      </li>
-                    ))}
-                    {service.features.length > 4 && (
-                      <li className="text-sm font-bold text-black pl-5">
-                        +{service.features.length - 4} more features
-                      </li>
-                    )}
-                  </ul>
-                </div>
-
-                {/* Technologies */}
-                <div className="mb-6">
-                  <h4 className="font-extrabold mb-3 text-sm uppercase tracking-wider">Technologies:</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {service.technologies.slice(0, 3).map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-3 py-1.5 bg-gray-100 text-gray-800 rounded-lg text-xs font-bold"
-                      >
-                        {tech}
+              {/* Text content */}
+              <div className={`flex flex-col justify-between flex-1 group-hover:bg-accent-lime transition-colors duration-150 ${isHero ? 'p-8' : 'p-6'}`}>
+                <div>
+                  <h3
+                    className="font-black uppercase tracking-tighter text-black leading-[0.88] mb-2.5"
+                    style={{ fontSize: isHero ? 'clamp(28px, 3.5vw, 48px)' : 'clamp(18px, 1.8vw, 24px)' }}
+                  >
+                    {service.title}
+                  </h3>
+                  <p className={`text-sm text-black/50 font-medium leading-relaxed mb-4 ${isHero ? '' : 'line-clamp-2'}`}>
+                    {service.shortDescription}
+                  </p>
+                  {/* Tech tags */}
+                  <div className="flex flex-wrap gap-1.5 mb-5">
+                    {service.technologies.slice(0, isHero ? 5 : 3).map(t => (
+                      <span key={t} className="text-[9px] font-black uppercase tracking-wide border-2 border-black/15 group-hover:border-black/40 px-2.5 py-0.5 text-black/40 group-hover:text-black/70 transition-colors">
+                        {t}
                       </span>
                     ))}
-                    {service.technologies.length > 3 && (
-                      <span className="px-3 py-1.5 bg-accent-lime/20 text-black rounded-lg text-xs font-bold">
-                        +{service.technologies.length - 3}
-                      </span>
-                    )}
                   </div>
                 </div>
-
-                {/* Timeline */}
-                <div className="flex justify-end items-center mb-6 p-5 bg-accent-lime rounded-2xl">
-                  <div className="text-right">
-                    <div className="text-sm text-black/70 font-bold mb-1">Timeline</div>
-                    <div className="font-extrabold">{service.timeline}</div>
+                {/* Footer */}
+                <div className="flex items-center justify-between pt-4 border-t-2 border-black/10 group-hover:border-black/25 transition-colors">
+                  <div>
+                    <p className="text-[8px] font-black uppercase tracking-[0.3em] text-black/25 mb-0.5">From</p>
+                    <p className="text-xl font-black text-black">{service.basePrice}</p>
                   </div>
-                </div>
-
-                {/* CTA Button */}
-                <div className="space-y-3">
-                  <a href="#quote" className="block w-full px-4 py-3 bg-black text-accent-lime rounded-xl hover:shadow-lg transition-all font-extrabold hover:scale-105 text-center">
-                    Get Started
-                  </a>
+                  <div className="w-10 h-10 border-2 border-black bg-transparent group-hover:bg-black flex items-center justify-center transition-colors duration-150">
+                    <ArrowUpRight className="w-4 h-4 text-black group-hover:text-accent-lime transition-colors duration-150" />
+                  </div>
                 </div>
               </div>
+            </a>
+          );
+        })}
+
+        {/* ── CTA tile ── */}
+        <a
+          href="#quote"
+          className="group border-[3px] border-black bg-black flex flex-col justify-between p-8 min-h-64 transition-all duration-150 hover:-translate-y-1 hover:shadow-[8px_8px_0_#ccff00]"
+        >
+          <div>
+            <p className="text-[8px] font-black uppercase tracking-[0.3em] text-white/25 mb-1">08 /</p>
+            <p className="text-[8px] font-black uppercase tracking-[0.3em] text-white/25">Custom Build</p>
+          </div>
+          <div>
+            <h3
+              className="font-black uppercase tracking-tighter text-white leading-[0.88] mb-3"
+              style={{ fontSize: 'clamp(28px, 3.2vw, 44px)' }}
+            >
+              Got a<br />Unique<br />Idea?
+            </h3>
+            <p className="text-sm text-white/40 font-medium leading-relaxed mb-7">
+              Let's build something remarkable together.
+            </p>
+            <div className="inline-flex items-center gap-3 border-2 border-accent-lime px-5 py-3 group-hover:bg-accent-lime group-hover:text-black transition-colors duration-150">
+              <span className="text-accent-lime group-hover:text-black font-black text-[10px] uppercase tracking-widest transition-colors duration-150">
+                Start a Project
+              </span>
+              <ArrowUpRight className="w-3.5 h-3.5 text-accent-lime group-hover:text-black transition-colors duration-150" />
             </div>
-          ))}
-        </div>
+          </div>
+        </a>
       </div>
+
     </section>
   );
 }

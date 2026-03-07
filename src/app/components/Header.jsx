@@ -2,8 +2,8 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronDown, Download, Menu, X } from 'lucide-react';
-import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,7 +15,7 @@ const Header = () => {
   const pathname = usePathname();
 
   // Pages with dark hero sections that need white text at the top
-  const darkHeroPages = ['/portfolio', '/case-studies', '/blog'];
+  const darkHeroPages = ['/portfolio', '/case-studies', '/blog', '/about'];
   const hasDarkHero = darkHeroPages.some(page => pathname?.startsWith(page));
 
   // Ensure component is mounted before applying dynamic styles
