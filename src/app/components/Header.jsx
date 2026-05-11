@@ -55,6 +55,11 @@ const Header = () => {
       description: 'Full-stack Automotive Platform'
     },
     { 
+      name: 'Omoda & Jaecoo App', 
+      href: '/case-studies/omoda-jaecoo',
+      description: 'Dual-Brand Automotive Platform'
+    },
+    { 
       name: 'ELF Bangladesh App', 
       href: '/case-studies/elf-bangladesh-app',
       description: 'Automotive E-Commerce Ecosystem'
