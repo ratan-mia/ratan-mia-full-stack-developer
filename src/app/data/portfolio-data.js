@@ -106,6 +106,62 @@ export const PORTFOLIO_PROJECTS = [
     playStoreUrl: '#',
     appStoreUrl: '#',
   },
+
+  {
+    id: 'omoda-jaecoo-app',
+    title: 'Omoda & Jaecoo Bangladesh App',
+    subtitle: 'Dual-Brand Automotive Platform',
+    category: 'Mobile App',
+    type: 'featured',
+    year: '2026',
+    status: 'live',
+    client: 'Omoda & Jaecoo Bangladesh',
+    thumbnail: '/images/projects/omodajaecoo/home.png',
+    images: [
+      '/images/projects/omodajaecoo/home.png',
+      '/images/projects/omodajaecoo/quick-actions.png',
+      '/images/projects/omodajaecoo/service-booking.png',
+      '/images/projects/omodajaecoo/digital-glovebox.png',
+      '/images/projects/omodajaecoo/nearby-fuel-station.png',
+      '/images/projects/omodajaecoo/finance-calculator.png',
+    ],
+    description: 'Full-stack dual-brand automotive platform for Omoda and Jaecoo featuring test drive booking, service scheduling, finance calculator, digital glovebox, and a complete vehicle ecosystem.',
+    shortDescription: 'Dual-brand automotive app with booking, finance tools, and vehicle management',
+
+    technologies: {
+      frontend: ['React Native', 'Expo SDK 54', 'TypeScript'],
+      backend: ['Supabase', 'PostgreSQL', 'REST API'],
+      features: ['Finance Calculator', 'Push Notifications', 'Maps Integration', 'Digital Glovebox'],
+    },
+
+    features: [
+      'Dual-brand UI for Omoda & Jaecoo',
+      'Test drive booking with scheduling',
+      'Service booking & workshop management',
+      'Interactive EMI & finance calculator',
+      'Multi-bank rate comparison',
+      'Digital glovebox for vehicle documents',
+      'Nearby fuel station finder',
+      'Dealer & service centre locator',
+      'Push notifications & reminders',
+      'Real-time booking management',
+      'Vehicle garage management',
+      'Roadside emergency assistance',
+    ],
+
+    impact: [
+      '3K+ app downloads in first 3 months',
+      '600+ service bookings',
+      '80% reduction in booking phone calls',
+      '4.7/5 app store rating',
+    ],
+
+    caseStudyPath: '/contents/case-studies/Omoda-Jaecoo-app.md',
+    caseStudyUrl: '/case-studies/omoda-jaecoo',
+    liveUrl: '#',
+    playStoreUrl: '#',
+    appStoreUrl: '#',
+  },
   
   {
     id: 'TurfLet',

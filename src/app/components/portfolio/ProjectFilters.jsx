@@ -24,6 +24,18 @@ const ProjectFilters = () => {
     },
     {
       id: 2,
+      title: "Omoda & Jaecoo Bangladesh App",
+      description: "Full-stack dual-brand mobile app for Omoda and Jaecoo Bangladesh featuring test drive booking, service scheduling, interactive EMI finance calculator with multi-bank rate comparison, digital glovebox, nearby fuel station finder, and complete vehicle ecosystem.",
+      category: "Mobile Apps",
+      tech: ["React Native", "Expo", "Supabase", "TypeScript", "Finance Calculator"],
+      image: "/images/projects/omodajaecoo/home.png",
+      links: { live: "/case-studies/omoda-jaecoo", github: "/case-studies/omoda-jaecoo" },
+      liveUrl: "/case-studies/omoda-jaecoo",
+      featured: true,
+      year: "2026"
+    },
+    {
+      id: 3,
       title: "TurfLet Booking Platform",
       description: "Comprehensive real-time booking platform for sports turfs with 30-day calendar, dynamic pricing, SSL Commerz payment integration, and owner dashboard with analytics.",
       category: "SaaS Platform",
@@ -35,7 +47,7 @@ const ProjectFilters = () => {
       year: "2024"
     },
     {
-      id: 3,
+      id: 4,
       title: "Gamify Loyalty Platform",
       description: "Innovative QR-based loyalty platform with gamification (spin wheel, card flip), digital wallet, prize redemption, and fraud prevention for nationwide campaigns.",
       category: "Mobile Apps",
@@ -47,7 +59,7 @@ const ProjectFilters = () => {
       year: "2024"
     },
     {
-      id: 4,
+      id: 5,
       title: "ELF Bangladesh Mobile App and Web app",
       description: "Enterprise-grade mobile commerce platform for automotive industry combining e-commerce, loyalty rewards, gamification, service bookings, and emergency assistance with 60+ screens.",
       category: "Mobile Apps",
@@ -59,7 +71,7 @@ const ProjectFilters = () => {
       year: "2024"
     },
     {
-      id: 5,
+      id: 6,
       title: "Elf Bangladesh - Asian Petroleum",
       description: "Complete digital presence for Elf Bangladesh using Next.js, Tailwind CSS, Zoho CRM, WhatsApp Business API, Strapi CMS, and Facebook Pixel. Built with performance optimization.",
       category: "Web Development",
@@ -71,7 +83,7 @@ const ProjectFilters = () => {
       year: "2024"
     },
     {
-      id: 6,
+      id: 7,
       title: "ELF International",
       description: "High-converting e-commerce platform showcasing premium lubricant products with modern design principles. Advanced product configurator and real-time inventory management.",
       category: "E-commerce",
@@ -83,7 +95,7 @@ const ProjectFilters = () => {
       year: "2024"
     },
     {
-      id: 7,
+      id: 8,
       title: "Japan Auto Parts",
       description: "Modern headless e-commerce platform for automotive parts with advanced search, filtering, and inventory management. 20K+ products with real-time stock updates.",
       category: "E-commerce",
@@ -95,7 +107,7 @@ const ProjectFilters = () => {
       year: "2024"
     },
     {
-      id: 8,
+      id: 9,
       title: "Japan Parts Mockup",
       description: "Comprehensive e-commerce platform with intelligent make/model/year specification system. Advanced inventory management and real-time pricing integration.",
       category: "E-commerce",
@@ -107,7 +119,7 @@ const ProjectFilters = () => {
       year: "2023"
     },
     {
-      id: 9,
+      id: 10,
       title: "Matchlyzer",
       description: "Intelligent sports analytics platform using AI to analyze match data, player performance, and team statistics. Real-time insights and predictive analytics for coaches.",
       category: "AI & Analytics",
@@ -119,7 +131,7 @@ const ProjectFilters = () => {
       year: "2024"
     },
     {
-      id: 10,
+      id: 11,
       title: "Chery Bangladesh Website",
       description: "Official automotive website featuring immersive 360° car viewer and achieving 97% PageSpeed optimization. Revolutionary customer experience with virtual showroom.",
       category: "Web Development",
@@ -131,7 +143,7 @@ const ProjectFilters = () => {
       year: "2023"
     },
     {
-      id: 11,
+      id: 12,
       title: "MotoJP Shopify Headless",
       description: "Modern headless Shopify implementation for Japanese motorcycle parts. Seamless shopping experience with advanced filtering and search capabilities.",
       category: "E-commerce",
