@@ -90,7 +90,7 @@ export default function Capabilities() {
           {CAPABILITIES.map((c, i) => (
             <article
               key={c.no}
-              className="cap-card sticky origin-top overflow-hidden rounded-[32px] p-6 ring-1 ring-white/5 will-change-transform sm:p-10 lg:p-14"
+              className="cap-card sticky origin-top overflow-hidden rounded-[32px] p-6 will-change-transform sm:p-10 lg:p-14"
               style={{
                 top: `calc(12vh + ${i * 28}px)`,
                 background:
@@ -100,13 +100,10 @@ export default function Capabilities() {
                 color: '#f2f0e9',
               }}
             >
-              <div className="pointer-events-none absolute inset-0 hero-grid opacity-[0.25]" aria-hidden="true" />
               <div className="relative grid grid-cols-12 items-stretch gap-x-4 gap-y-8 lg:gap-10">
                 <div className="col-span-12 flex flex-col items-start gap-6 lg:col-span-4 lg:justify-between">
                   <span className="cap-in inline-flex items-center gap-3 font-mono text-sm text-lime">
                     {c.no}
-                    <span className="h-px w-10 bg-lime/50" />
-                    <span className="text-paper/40">{String(CAPABILITIES.length).padStart(2, '0')}</span>
                   </span>
                   <h3 className="cap-in font-display text-[clamp(34px,7vw,64px)] font-bold leading-[0.95] tracking-[-0.04em] lg:text-[clamp(36px,3.8vw,58px)]">
                     {c.title}
