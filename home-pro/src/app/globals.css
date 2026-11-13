@@ -1,0 +1,213 @@
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/jetbrains-mono";
+@import "@fontsource/instrument-serif/400.css";
+@import "@fontsource/instrument-serif/400-italic.css";
+@import "tailwindcss";
+@source not "../../_archive";
+
+/* Design tokens for the 2026 home page */
+@theme {
+  --color-ink: #0b0b0b;
+  --color-paper: #f2f0e9;
+  --color-lime: #ccff00;
+  --color-mute: #8a8a84;
+  --font-display: "Inter Variable", "Inter", system-ui, sans-serif;
+  --font-sans: "Inter Variable", "Inter", system-ui, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+}
+
+@layer base {
+  /* Essential custom properties only */
+  :root {
+    --accent-lime: #ccff00;
+    --accent-orange: #ff8c42;
+  }
+
+  body {
+    font-family: var(--font-sans);
+  }
+
+  /* Lenis handles smooth scrolling */
+  html.lenis, html.lenis body { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+  .lenis.lenis-stopped { overflow: hidden; }
+}
+
+@layer components {
+  /* Custom accent colors that extend Tailwind */
+  .bg-accent-lime {
+    background-color: var(--accent-lime);
+  }
+
+  .text-accent-lime {
+    color: var(--accent-lime);
+  }
+
+  .border-accent-lime {
+    border-color: var(--accent-lime);
+  }
+
+  .bg-accent-orange {
+    background-color: var(--accent-orange);
+  }
+
+  .text-accent-orange {
+    color: var(--accent-orange);
+  }
+
+  .border-accent-orange {
+    border-color: var(--accent-orange);
+  }
+
+  /* Lime accent shadow utilities */
+  .shadow-lime-glow {
+    box-shadow: 0 8px 25px rgba(204, 255, 0, 0.3);
+  }
+
+  .shadow-orange-glow {
+    box-shadow: 0 8px 25px rgba(255, 140, 66, 0.2);
+  }
+
+  /* Typography utilities */
+  .hero-title {
+    font-size: clamp(60px, 8vw, 80px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+
+  .section-header {
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .body-text {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.7;
+  }
+
+  .body-text-small {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  .caption-text {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  /* Contact section with lime background */
+  .contact-section {
+    background-color: var(--accent-lime);
+    color: #000000;
+  }
+
+  .contact-section input,
+  .contact-section textarea {
+    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    color: #000000;
+  }
+
+  .contact-section input::placeholder,
+  .contact-section textarea::placeholder {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .contact-section input:focus,
+  .contact-section textarea:focus {
+    outline: none;
+    border-color: #000000;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: clamp(40px, 10vw, 60px);
+  }
+
+  .section-header {
+    font-size: clamp(28px, 6vw, 36px);
+  }
+}
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ---------- 2026 home page ---------- */
+.hero-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 8.333vw 8.333vw;
+  mask-image: radial-gradient(ellipse at 60% 40%, #000 20%, transparent 75%);
+}
+
+.text-outline-paper {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(242, 240, 233, 0.25);
+}
+
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--color-ink);
+}
+
+/* SplitText masks shouldn't clip descenders or italic overhang */
+.hero-char, .hero-name > span { padding-bottom: 0.04em; }
+
+/* Custom cursor */
+.has-custom-cursor, .has-custom-cursor a, .has-custom-cursor button { cursor: none; }
+.cursor-dot, .cursor-ring {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  pointer-events: none;
+  border-radius: 9999px;
+  translate: -50% -50%;
+}
+.cursor-dot { width: 6px; height: 6px; background: var(--color-lime); }
+.cursor-ring {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(204, 255, 0, 0.7);
+  mix-blend-mode: difference;
+  backdrop-filter: invert(0);
+}
+.cursor-ring span {
+  font-family: var(--font-mono);
+  font-size: 4px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-lime);
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+/* Film grain: a faint noise layer that softens flat dark surfaces. */
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.045;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
