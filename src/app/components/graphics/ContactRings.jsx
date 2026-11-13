@@ -45,7 +45,7 @@ export default function ContactRings({ className = '' }) {
       ))}
       <circle className="cr-pulse" cx="300" cy="300" r="9" fill="none" stroke="#0b0b0b" strokeWidth="1.5" />
       <circle cx="300" cy="300" r="7" fill="#0b0b0b" />
-      <text x="316" y="294" fill="#0b0b0b" fillOpacity="0.7" style={{ font: '500 11px var(--font-mono, monospace)', letterSpacing: 2 }}>
+      <text x="284" y="294" textAnchor="end" fill="#0b0b0b" fillOpacity="0.7" style={{ font: '500 11px var(--font-mono, monospace)', letterSpacing: 2 }}>
         DHAKA · GMT+6
       </text>
     </svg>

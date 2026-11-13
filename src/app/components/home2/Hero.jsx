@@ -189,9 +189,9 @@ export default function Hero() {
           <div className="col-span-12 md:col-span-6">
             <div className="hero-fade flex items-center gap-3 text-lg leading-none text-paper/60 sm:text-xl">
               <span>I build</span>
-              <span className="relative inline-block h-[1.2em] min-w-[16ch] overflow-hidden text-paper">
+              <span className="relative inline-block h-[1.4em] min-w-[24ch] overflow-hidden text-paper">
                 {ROLES.map((r) => (
-                  <span key={r} className="hero-role absolute left-0 top-0 whitespace-nowrap font-serif text-[1.15em] italic leading-[1.05em] text-lime">
+                  <span key={r} className="hero-role absolute left-0 top-0 whitespace-nowrap font-serif text-[1.15em] italic leading-[1.2em] text-lime">
                     {r}
                   </span>
                 ))}
