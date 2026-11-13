@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useRef, useState } from 'react';
 import { ArrowUpRight, Check, Loader2 } from 'lucide-react';
 import Magnetic from '@/components/motion/Magnetic';
@@ -58,7 +59,7 @@ export default function Contact() {
     'w-full border-b border-ink/20 bg-transparent py-4 text-lg text-ink placeholder:text-ink/35 focus:border-ink focus:outline-none transition-colors';
 
   return (
-    <section ref={root} id="contact" className="relative overflow-hidden bg-lime text-ink">
+    <section ref={root} id="get-in-touch" className="relative overflow-hidden bg-lime text-ink">
       <div className="mx-auto max-w-[1440px] px-5 py-24 sm:px-8 sm:py-32 lg:px-12">
         <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink/60">(05) — Contact</p>
         <h2 className="cta-big mt-6 font-display text-[clamp(44px,12.5vw,220px)] font-extrabold uppercase leading-[0.82] tracking-[-0.06em]">
@@ -82,7 +83,12 @@ export default function Contact() {
                 <ArrowUpRight className="h-7 w-7 transition-transform duration-500 group-hover:rotate-45" />
               </a>
             </Magnetic>
-            <ul className="contact-in mt-10 flex flex-wrap gap-2">
+            <p className="contact-in mt-8 text-sm text-ink/70">
+              Prefer more detail? Use the{' '}
+              <Link href="/contact" className="font-semibold underline underline-offset-4">contact page</Link> or{' '}
+              <Link href="/quote" className="font-semibold underline underline-offset-4">request a quote</Link>.
+            </p>
+            <ul className="contact-in mt-6 flex flex-wrap gap-2">
               {PROFILE.socials.map((s) => (
                 <li key={s.label}>
                   <a

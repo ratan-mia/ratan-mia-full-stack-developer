@@ -223,7 +223,7 @@ const Header = () => {
             {/* Desktop Navigation - Enhanced */}
             <div className="hidden lg:flex items-center gap-6 xl:gap-8">
               {navigationItems.map((item) => {
-                const isActive = activeSection === item.href.slice(1);
+                const isActive = item.href === '/' ? pathname === '/' : !!pathname?.startsWith(item.href);
                 
                 if (item.hasDropdown) {
                   return (

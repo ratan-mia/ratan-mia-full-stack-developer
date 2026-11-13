@@ -1,6 +1,8 @@
 'use client';
 
+import Link from 'next/link';
 import { useRef } from 'react';
+import { ArrowUpRight } from 'lucide-react';
 import { gsap, MOTION_OK, useGSAP } from '@/lib/gsap';
 import { CAPABILITIES } from '@/app/data/site';
 
@@ -39,7 +41,7 @@ export default function Capabilities() {
   }, { scope: root });
 
   return (
-    <section ref={root} id="services" className="relative bg-paper text-ink">
+    <section ref={root} id="capabilities" className="relative bg-paper text-ink">
       <div className="mx-auto max-w-[1440px] px-5 py-24 sm:px-8 sm:py-32 lg:px-12">
         <div className="cap-head grid grid-cols-12 gap-6">
           <p className="col-span-12 font-mono text-[11px] uppercase tracking-[0.2em] text-ink/50 lg:col-span-3">
@@ -83,6 +85,25 @@ export default function Capabilities() {
               </div>
             </article>
           ))}
+        </div>
+
+        <div className="mt-16 flex flex-wrap items-center justify-between gap-6 border-t border-ink/15 pt-10">
+          <p className="max-w-md text-lg text-ink/70">Pricing, packages and how an engagement works.</p>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href="/services"
+              className="group inline-flex items-center gap-3 rounded-full bg-ink px-7 py-4 text-sm font-semibold text-paper transition-colors hover:bg-lime hover:text-ink"
+            >
+              All services
+              <ArrowUpRight className="h-4 w-4 transition-transform duration-500 group-hover:rotate-45" />
+            </Link>
+            <Link
+              href="/quote"
+              className="inline-flex items-center rounded-full border border-ink/25 px-7 py-4 text-sm font-semibold transition-colors hover:border-ink"
+            >
+              Get a quote
+            </Link>
+          </div>
         </div>
       </div>
     </section>

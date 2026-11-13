@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useRef } from 'react';
 import { Download } from 'lucide-react';
 import { gsap, MOTION_OK, useGSAP } from '@/lib/gsap';
@@ -61,6 +62,9 @@ export default function Experience() {
               >
                 <Download className="h-4 w-4" /> Download résumé
               </a>
+              <Link href="/resume" className="mt-4 block w-fit border-b border-white/30 pb-1 text-sm text-paper/70 transition-colors hover:border-lime hover:text-lime">
+                View full résumé page
+              </Link>
             </div>
           </div>
 

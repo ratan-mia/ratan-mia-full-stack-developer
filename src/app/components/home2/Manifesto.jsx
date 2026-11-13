@@ -1,6 +1,8 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowUpRight } from 'lucide-react';
 import { useRef } from 'react';
 import { gsap, MOTION_OK, SplitText, useGSAP } from '@/lib/gsap';
 import { MANIFESTO, STATS } from '@/app/data/site';
@@ -63,7 +65,7 @@ export default function Manifesto() {
   }, { scope: root });
 
   return (
-    <section ref={root} id="about" className="relative bg-paper text-ink">
+    <section ref={root} id="intro" className="relative bg-paper text-ink">
       <div className="mx-auto max-w-[1440px] px-5 py-24 sm:px-8 sm:py-32 lg:px-12 lg:py-40">
         <div className="grid grid-cols-12 gap-6">
           <p className="col-span-12 font-mono text-[11px] uppercase tracking-[0.2em] text-ink/50 lg:col-span-3">
@@ -99,6 +101,13 @@ export default function Manifesto() {
                 and <span className="font-serif text-xl italic text-ink">TurfLet</span>, and consult for the Asian
                 Automotive group on its commerce and app platforms.
               </p>
+              <Link
+                href="/about"
+                className="group inline-flex items-center gap-2 border-b border-ink pb-1 text-base font-semibold text-ink"
+              >
+                More about me
+                <ArrowUpRight className="h-4 w-4 transition-transform duration-500 group-hover:rotate-45" />
+              </Link>
             </div>
 
             <dl className="stats-grid grid grid-cols-2 gap-x-4 gap-y-10 border-t border-ink/15 pt-10 sm:gap-x-6">

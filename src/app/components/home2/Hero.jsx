@@ -55,7 +55,7 @@ export default function Hero() {
   }, { scope: root });
 
   return (
-    <section ref={root} id="home" className="relative min-h-[100svh] overflow-hidden bg-ink text-paper">
+    <section ref={root} id="top" className="relative min-h-[100svh] overflow-hidden bg-ink text-paper">
       <div className="pointer-events-none absolute inset-0 hero-grid opacity-[0.35]" aria-hidden="true" />
 
       <div className="relative mx-auto flex min-h-[100svh] max-w-[1440px] flex-col px-5 pb-10 pt-28 sm:px-8 lg:px-12">
@@ -133,7 +133,7 @@ export default function Hero() {
             </Magnetic>
             <Magnetic className="hero-fade">
               <a
-                href="#contact"
+                href="#get-in-touch"
                 className="group inline-flex items-center gap-3 rounded-full border border-white/20 px-7 py-4 text-sm font-semibold text-paper transition-colors hover:border-paper"
               >
                 Start a project
