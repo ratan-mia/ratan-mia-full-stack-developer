@@ -136,7 +136,7 @@ export const projectClientTemplate = (formData) => `
               </p>
               <p style="margin: 0; font-size: 14px; line-height: 1.5; color: #6b7280;">
                 Full Stack Developer<br>
-                📧 ${process.env.GMAIL_USER || 'contact@ratanmia.com'}<br>
+                📧 ${process.env.EMAIL_FROM || process.env.SMTP_USER || 'hello@ratanmia.pro'}<br>
                 🌐 <a href="https://yourportfolio.com" style="color: #000000; text-decoration: none;">yourportfolio.com</a>
               </p>
             </td>
