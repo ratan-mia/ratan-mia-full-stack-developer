@@ -2,7 +2,7 @@ import Capabilities from '@/components/home2/Capabilities';
 import Contact from '@/components/home2/Contact';
 import Experience from '@/components/home2/Experience';
 import Hero from '@/components/home2/Hero';
-import Manifesto from '@/components/home2/Manifesto';
+import About from '@/components/home2/About';
 import Marquee from '@/components/home2/Marquee';
 import Work from '@/components/home2/Work';
 
@@ -11,7 +11,7 @@ export default function Home() {
     <div className="relative w-full overflow-x-clip">
       <Hero />
       <Marquee />
-      <Manifesto />
+      <About />
       <Work />
       <Capabilities />
       <Experience />

@@ -7,42 +7,46 @@ import CapGraphic from '@/components/graphics/CapGraphic';
 import { gsap, MOTION_OK, useGSAP } from '@/lib/gsap';
 import { CAPABILITIES } from '@/app/data/site';
 
-// Stacking cards: each card pins under the header and the previous one
-// scales back and dims as the next slides over it. Each card carries a line
-// illustration that draws itself in when the card arrives.
+// Two-by-two grid of capability cards. Each card's line illustration draws
+// itself in on arrival and keeps a small loop running; the card tilts gently
+// toward the pointer.
 export default function Capabilities() {
   const root = useRef(null);
 
   useGSAP(() => {
     const mm = gsap.matchMedia();
     mm.add(MOTION_OK, () => {
-      const cards = gsap.utils.toArray('.cap-card');
-      cards.forEach((card, i) => {
-        // Illustration draw-in.
-        const tl = gsap.timeline({ scrollTrigger: { trigger: card, start: 'top 75%' } });
-        tl.from(card.querySelectorAll('.cg-draw'), { drawSVG: '0%', duration: 1.6, stagger: 0.04, ease: 'power2.inOut' })
+      const off = [];
+      gsap.utils.toArray('.cap-card').forEach((card, i) => {
+        const tl = gsap.timeline({ scrollTrigger: { trigger: card, start: 'top 80%' } });
+        tl.from(card, { y: 80, autoAlpha: 0, duration: 1.2, ease: 'expo.out', delay: (i % 2) * 0.12 })
+          .from(card.querySelectorAll('.cg-draw'), { drawSVG: '0%', duration: 1.6, stagger: 0.04, ease: 'power2.inOut' }, 0.2)
           .from(
             card.querySelectorAll('.cg-pop'),
             { scale: 0, autoAlpha: 0, transformOrigin: '50% 50%', stagger: 0.04, duration: 0.8, ease: 'back.out(2)' },
-            0.5
-          )
-          .from(card.querySelectorAll('.cap-in'), { y: 30, autoAlpha: 0, stagger: 0.08, duration: 1, ease: 'expo.out' }, 0.1);
+            0.7
+          );
 
-        if (i === cards.length - 1) return;
-        gsap.to(card, {
-          scale: 0.9 + i * 0.015,
-          filter: 'brightness(0.7)',
-          ease: 'none',
-          scrollTrigger: {
-            trigger: cards[i + 1],
-            start: 'top 65%',
-            end: 'top 20%',
-            scrub: true,
-          },
+        // Pointer tilt.
+        const rx = gsap.quickTo(card, 'rotationX', { duration: 0.8, ease: 'power3' });
+        const ry = gsap.quickTo(card, 'rotationY', { duration: 0.8, ease: 'power3' });
+        const move = (e) => {
+          const r = card.getBoundingClientRect();
+          ry(((e.clientX - r.left) / r.width - 0.5) * 6);
+          rx(((e.clientY - r.top) / r.height - 0.5) * -6);
+        };
+        const leave = () => {
+          rx(0);
+          ry(0);
+        };
+        card.addEventListener('pointermove', move);
+        card.addEventListener('pointerleave', leave);
+        off.push(() => {
+          card.removeEventListener('pointermove', move);
+          card.removeEventListener('pointerleave', leave);
         });
       });
 
-      // Ambient loops inside the illustrations.
       gsap.to('.cg-blink', { autoAlpha: 0, duration: 0.55, repeat: -1, yoyo: true, ease: 'steps(1)' });
       gsap.utils.toArray('.cg-pulse').forEach((el, i) => {
         gsap.fromTo(
@@ -69,8 +73,9 @@ export default function Capabilities() {
         ease: 'expo.out',
         scrollTrigger: { trigger: '.cap-head', start: 'top 85%' },
       });
-    });
 
+      return () => off.forEach((fn) => fn());
+    });
   }, { scope: root });
 
   return (
@@ -86,50 +91,36 @@ export default function Capabilities() {
           </h2>
         </div>
 
-        <div className="mt-16 space-y-6">
+        <div className="mt-16 grid grid-cols-1 gap-4 [perspective:1400px] md:grid-cols-2">
           {CAPABILITIES.map((c, i) => (
             <article
               key={c.no}
-              className="cap-card sticky origin-top overflow-hidden rounded-[32px] p-6 ring-1 ring-white/5 will-change-transform sm:p-10 lg:p-14"
-              style={{
-                top: `calc(12vh + ${i * 28}px)`,
-                background:
-                  i % 2
-                    ? 'radial-gradient(120% 90% at 50% 0%, #1c1c1a 0%, #121212 60%)'
-                    : 'radial-gradient(120% 90% at 50% 0%, #171716 0%, #0b0b0b 60%)',
-                color: '#f2f0e9',
-              }}
+              className="cap-card group relative flex flex-col overflow-hidden rounded-[32px] bg-ink p-7 text-paper will-change-transform sm:p-10"
             >
-              <div className="pointer-events-none absolute inset-0 hero-grid opacity-[0.25]" aria-hidden="true" />
-              <div className="relative grid grid-cols-12 items-stretch gap-x-4 gap-y-8 lg:gap-10">
-                <div className="col-span-12 flex flex-col items-start gap-6 lg:col-span-4 lg:justify-between">
-                  <span className="cap-in inline-flex items-center gap-3 font-mono text-sm text-lime">
-                    {c.no}
-                    <span className="h-px w-10 bg-lime/50" />
-                    <span className="text-paper/40">{String(CAPABILITIES.length).padStart(2, '0')}</span>
-                  </span>
-                  <h3 className="cap-in font-display text-[clamp(34px,7vw,64px)] font-bold leading-[0.95] tracking-[-0.04em] lg:text-[clamp(36px,3.8vw,58px)]">
-                    {c.title}
-                  </h3>
-                </div>
+              <div className="pointer-events-none absolute inset-0 hero-grid opacity-20" aria-hidden="true" />
+              <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-lime/0 blur-3xl transition-colors duration-700 group-hover:bg-lime/15" />
 
-                <div className="col-span-12 flex items-center justify-center lg:col-span-4">
-                  <div className="w-full max-w-[360px] text-paper/45 lg:max-w-[400px]">
-                    <CapGraphic index={i} />
-                  </div>
-                </div>
+              <div className="relative flex items-center justify-between">
+                <span className="font-mono text-sm text-lime">{c.no}</span>
+                <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-paper/40">
+                  {['Web', 'Mobile', 'Commerce', 'Ops'][i]}
+                </span>
+              </div>
 
-                <div className="col-span-12 flex flex-col justify-end gap-8 lg:col-span-4">
-                  <p className="cap-in text-lg leading-relaxed text-paper/70">{c.body}</p>
-                  <ul className="cap-in divide-y divide-white/10 border-y border-white/10">
-                    {c.points.map((pt) => (
-                      <li key={pt} className="flex items-center justify-between py-4 font-mono text-xs uppercase tracking-[0.15em] text-paper/80">
-                        {pt}
-                        <span className="h-1.5 w-1.5 rounded-full bg-lime" />
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              <div className="relative mx-auto my-8 w-full max-w-[380px] text-paper/45 sm:my-10">
+                <CapGraphic index={i} />
+              </div>
+
+              <div className="relative mt-auto">
+                <h3 className="font-display text-[clamp(30px,3.4vw,48px)] font-bold leading-[0.95] tracking-[-0.04em]">{c.title}</h3>
+                <p className="mt-4 max-w-lg text-paper/65">{c.body}</p>
+                <ul className="mt-6 flex flex-wrap gap-2">
+                  {c.points.map((pt) => (
+                    <li key={pt} className="rounded-full border border-white/10 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-paper/75">
+                      {pt}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </article>
           ))}
