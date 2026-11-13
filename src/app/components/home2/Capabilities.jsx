@@ -97,7 +97,6 @@ export default function Capabilities() {
               key={c.no}
               className="cap-card group relative flex flex-col overflow-hidden rounded-[32px] bg-ink p-7 text-paper will-change-transform sm:p-10"
             >
-              <div className="pointer-events-none absolute inset-0 hero-grid opacity-20" aria-hidden="true" />
               <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-lime/0 blur-3xl transition-colors duration-700 group-hover:bg-lime/15" />
 
               <div className="relative flex items-center justify-between">

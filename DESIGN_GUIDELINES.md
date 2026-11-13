@@ -9,6 +9,7 @@ This document describes the design system of the portfolio as it stands on the `
 ## 1. Principles
 
 1. **Contrast first.** Sections alternate between `ink` (dark) and `paper` (light). Lime is the only accent colour.
+   **Restraint:** professional before playful. One decorative graphic per section at most, and textures stay barely visible.
 2. **Type is the hero.** Oversized uppercase display headlines carry most of the design. A serif-italic word inside a headline adds the "voice".
 3. **Graphics are line art.** Illustrations are thin-stroke SVG drawings in paper/white at low opacity, with lime highlights. There are no stock illustrations or emoji.
 4. **Motion with purpose.** Things reveal, draw in and respond to scroll or pointer, and every motion has a reduced-motion fallback.
@@ -45,7 +46,7 @@ Defined as Tailwind v4 theme tokens in `src/app/globals.css` (`@theme`):
 | Section | Background |
 |---|---|
 | Hero | ink |
-| Marquee | lime |
+| Marquee (stack band) | ink, between hairlines |
 | About (bento) | paper |
 | Work | ink |
 | What I do | paper |
@@ -171,10 +172,10 @@ All graphics are inline SVG or HTML, decorative (`aria-hidden`), and coloured wi
 
 | Component | What it is | Where |
 |---|---|---|
-| `HeroOrbit` | Tick ring, rotating lime arc, two counter-rotating rings with stack labels that stay upright | Hero, straddling the photo panel |
-| `RotatingBadge` | Circular text that spins (`textLength` fills the circle), with an icon or letter in the centre. Tones: `lime`, `ink`, `paper` | Hero, About portrait |
+| `HeroOrbit` | Two fine counter-rotating rings with small lime dots and one slow lime arc (labels are screen-reader only) | Hero, straddling the photo panel |
+| `RotatingBadge` | Circular text that spins (`textLength` fills the circle), with an icon or letter in the centre. Tones: `lime`, `ink`, `paper`. Use sparingly. | Available; not on the home page |
 | `CapGraphic` | Four line illustrations (browser, phone, commerce chart, automation flow) | What I do cards |
-| `ContactRings` | Radar rings around Dhaka with a sweep and pulsing client pins | Contact |
+| `ContactRings` | Three faint rings, a slow radar sweep and a centre pulse | Contact |
 
 **Line-art rules**
 - Stroke width is `1.2` (lime emphasis strokes up to `2–3`), with round caps and joins.
@@ -186,9 +187,9 @@ All graphics are inline SVG or HTML, decorative (`aria-hidden`), and coloured wi
   - `cg-blink`, `cg-pulse`, `cg-dot`: looping details. A `cg-dot` needs `data-path` pointing at a path id.
 
 **Textures**
-- **`.grain`:** an SVG-noise overlay at 7% opacity with an `overlay` blend. Add it to dark sections (Hero, Work, Experience).
-- **`.hero-grid`:** a masked grid of hairlines. Use it on the hero and dark cards at 20–30% opacity.
-- **Glow:** a radial lime gradient (`rgba(204,255,0,.15)` fading to transparent) that follows the cursor in the hero.
+- **`.grain`:** an SVG-noise overlay at 4.5% opacity with an `overlay` blend. Add it to dark sections (Hero, Work, Experience).
+- **`.hero-grid`:** a masked grid of hairlines. Reserved for inner-page heroes; the home page no longer uses it.
+- **Glow:** a soft radial lime gradient (`rgba(204,255,0,.08)` fading to transparent) that follows the cursor in the hero.
 - **Outline text:** `.text-outline` (on lime) and `.text-outline-paper` (on ink) give stroked display type.
 
 ---
@@ -235,7 +236,8 @@ useGSAP(() => {
 | Line drawing | `drawSVG: '0%'` on `.cg-draw` / `.cr-ring` |
 | Loops | Infinite `rotation` with `ease: 'none'`; pulses scale 1 → 2.6–4 while fading |
 | Parallax | `yPercent` scrub on inner images; pointer drift on orbit and photo |
-| Marquee | Two rows moving in opposite directions; scroll speed and direction change their speed and skew |
+| Marquee | One row, sans and serif-italic names alternating, edge-faded; scroll speed and direction change its speed |
+| Scroll progress | 2px lime bar fixed at the top, `scaleX` scrubbed to page scroll (`motion/ScrollProgress`) |
 | Sticky index | `ScrollTrigger.onToggle` sets the active project; clicking scrolls with Lenis |
 | Tilt | `rotationX`/`rotationY` via `quickTo`, ±3°, inside a `[perspective:1400px]` parent |
 | Cursor labels | `data-cursor="Visit" / "Case study" / "Open"` on links shows a label in the custom cursor ring |
@@ -299,7 +301,7 @@ All copy lives in data files. Components only render it.
 src/app/
   globals.css            tokens, fonts, grain, hero-grid, cursor, outline text
   layout.tsx             metadata, JSON-LD, SmoothScroll, AutoReveal, Cursor, Header, Footer
-  page.tsx               Hero → Marquee → About → Work → Capabilities → Experience → Contact
+  page.tsx               ScrollProgress → Hero → Marquee → About → Work → Capabilities → Experience → Contact
   lib/gsap.js            plugin registration + MOTION_OK
   components/
     home2/               home page sections
@@ -314,7 +316,7 @@ _archive/                retired components (excluded from build and Tailwind)
 
 ## 12. Checklist for a new section
 
-- [ ] Alternates background with its neighbours (ink ↔ paper; lime only for marquee and contact).
+- [ ] Alternates background with its neighbours (ink ↔ paper; lime only for the contact section).
 - [ ] Starts with a numbered mono label and a display headline with one serif-italic accent.
 - [ ] Uses the container, 12-column grid and section padding above.
 - [ ] Content comes from `data/*`.

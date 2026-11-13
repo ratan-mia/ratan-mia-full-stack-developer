@@ -4,7 +4,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { useRef } from 'react';
-import RotatingBadge from '@/components/graphics/RotatingBadge';
 import { gsap, MOTION_OK, SplitText, useGSAP } from '@/lib/gsap';
 import { MANIFESTO, PROFILE, STACK, STATS } from '@/app/data/site';
 
@@ -115,7 +114,6 @@ export default function About() {
         <div className="bento-grid mt-14 grid grid-cols-12 gap-3 sm:gap-4">
           {/* Manifesto */}
           <div className="bento-tile relative col-span-12 flex flex-col justify-between overflow-hidden rounded-[28px] bg-ink p-7 text-paper sm:p-10 lg:col-span-7 lg:row-span-2">
-            <div className="pointer-events-none absolute inset-0 hero-grid opacity-25" aria-hidden="true" />
             <div className="relative flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.2em] text-mute">
               <span>Why I do this</span>
               <span className="text-lime">●</span>
@@ -142,14 +140,6 @@ export default function About() {
                 </p>
               </div>
             </div>
-            <RotatingBadge
-              tone="lime"
-              text="Since 2015 · Full-stack · Mobile · "
-              size={112}
-              className="absolute -top-6 right-6"
-            >
-              <span className="font-serif text-4xl italic">R</span>
-            </RotatingBadge>
           </div>
 
           {/* Stats */}

@@ -5,10 +5,12 @@ import Hero from '@/components/home2/Hero';
 import About from '@/components/home2/About';
 import Marquee from '@/components/home2/Marquee';
 import Work from '@/components/home2/Work';
+import ScrollProgress from '@/components/motion/ScrollProgress';
 
 export default function Home() {
   return (
     <div className="relative w-full overflow-x-clip">
+      <ScrollProgress />
       <Hero />
       <Marquee />
       <About />

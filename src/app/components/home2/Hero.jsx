@@ -5,7 +5,6 @@ import { useRef } from 'react';
 import { ArrowDownRight, ArrowUpRight } from 'lucide-react';
 import Magnetic from '@/components/motion/Magnetic';
 import HeroOrbit from '@/components/graphics/HeroOrbit';
-import RotatingBadge from '@/components/graphics/RotatingBadge';
 import { gsap, MOTION_OK, SplitText, useGSAP } from '@/lib/gsap';
 import { PROFILE } from '@/app/data/site';
 
@@ -29,7 +28,6 @@ export default function Hero() {
         .from(split.chars, { yPercent: 110, duration: 1.4, stagger: 0.05 }, 0.3)
         .from('.hero-orbit', { scale: 0.5, rotation: -50, autoAlpha: 0, duration: 2.4 }, 0.3)
         .from('.hero-chip', { y: 30, autoAlpha: 0, stagger: 0.1, duration: 1 }, 0.9)
-        .from('.hero-badge', { scale: 0, rotation: -120, duration: 1.4, ease: 'back.out(1.6)' }, 1)
         .from('.hero-fade', { y: 24, autoAlpha: 0, duration: 1, stagger: 0.07 }, 0.6)
         .from('.hero-rule', { scaleX: 0, transformOrigin: 'left center', duration: 1.4 }, 0.5);
 
@@ -39,9 +37,7 @@ export default function Hero() {
       spin('.orbit-ring-a .orbit-label', -360, 70);
       spin('.orbit-ring-b', -360, 110);
       spin('.orbit-ring-b .orbit-label', 360, 110);
-      spin('.orbit-ticks', 360, 160);
       gsap.to('.orbit-arc', { rotation: 360, svgOrigin: '100 100', duration: 12, repeat: -1, ease: 'none' });
-      gsap.to('.orbit-arc-2', { rotation: -360, svgOrigin: '100 100', duration: 8, repeat: -1, ease: 'none' });
 
       // Role ticker.
       const roleTl = gsap.timeline({ repeat: -1, delay: 1.6 });
@@ -92,9 +88,8 @@ export default function Hero() {
 
   return (
     <section ref={root} id="top" className="grain relative isolate overflow-hidden bg-ink text-paper">
-      <div className="pointer-events-none absolute inset-0 hero-grid opacity-[0.3]" aria-hidden="true" />
       <div
-        className="hero-glow pointer-events-none absolute left-0 top-0 h-[620px] w-[620px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(204,255,0,0.15)_0%,rgba(204,255,0,0.04)_40%,transparent_70%)]"
+        className="hero-glow pointer-events-none absolute left-0 top-0 h-[620px] w-[620px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(204,255,0,0.08)_0%,rgba(204,255,0,0.02)_40%,transparent_70%)]"
         aria-hidden="true"
       />
 
@@ -115,11 +110,10 @@ export default function Hero() {
                 fill
                 priority
                 sizes="(min-width: 1024px) 42vw, 100vw"
-                className="object-cover object-[50%_22%] grayscale-[40%] contrast-[1.05]"
+                className="object-cover object-[50%_22%] grayscale-[30%]"
               />
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/10 to-ink/30" />
-            <div className="absolute inset-0 bg-gradient-to-tr from-lime/15 via-transparent to-transparent mix-blend-overlay" />
 
             <div className="absolute left-5 top-5 flex items-center gap-2 rounded-full bg-ink/60 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-paper/80 backdrop-blur sm:left-6 sm:top-6">
               <span className="h-2 w-2 animate-pulse rounded-full bg-lime" />
@@ -140,16 +134,6 @@ export default function Hero() {
             </div>
           </div>
 
-          <RotatingBadge
-            href="#get-in-touch"
-            label="Start a project"
-            text="Open for work · Let’s talk · 2026 · "
-            size={124}
-            className="hero-badge absolute -right-10 top-1/2 z-20 hidden -translate-y-1/2 lg:grid"
-          >
-            <ArrowUpRight className="h-7 w-7" />
-          </RotatingBadge>
-
         </div>
 
         {/* Copy */}
@@ -158,7 +142,7 @@ export default function Hero() {
             <span>Portfolio ’26</span>
             <span className="hidden sm:inline">Full-stack · Mobile · IT</span>
           </div>
-          <div className="hero-rule mt-4 h-px w-full bg-gradient-to-r from-white/25 via-white/10 to-transparent" />
+          <div className="hero-rule mt-4 h-px w-full bg-white/10" />
 
           <div className="mt-auto pt-10">
             <p className="hero-fade flex items-center gap-4 font-serif text-2xl italic text-paper/70 sm:text-3xl">
