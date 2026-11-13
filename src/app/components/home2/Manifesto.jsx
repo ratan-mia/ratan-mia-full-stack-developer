@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { useRef } from 'react';
+import RotatingBadge from '@/components/graphics/RotatingBadge';
 import { gsap, MOTION_OK, SplitText, useGSAP } from '@/lib/gsap';
 import { MANIFESTO, STATS } from '@/app/data/site';
 
@@ -32,6 +33,13 @@ export default function Manifesto() {
         duration: 1.4,
         ease: 'expo.out',
         scrollTrigger: { trigger: '.about-photo', start: 'top 85%' },
+      });
+      gsap.from('.about-badge', {
+        scale: 0,
+        rotation: -120,
+        duration: 1.4,
+        ease: 'back.out(1.6)',
+        scrollTrigger: { trigger: '.about-photo', start: 'top 60%' },
       });
       gsap.to('.about-photo img', {
         yPercent: -12,
@@ -71,15 +79,22 @@ export default function Manifesto() {
           <p className="col-span-12 font-mono text-[11px] uppercase tracking-[0.2em] text-ink/50 lg:col-span-3">
             (01) — About
           </p>
-          <div className="col-span-12 lg:col-span-9">
-            <p className="manifesto-text font-display text-[clamp(28px,4.2vw,64px)] font-semibold leading-[1.08] tracking-[-0.035em]">
+          <div className="relative col-span-12 lg:col-span-9">
+            <span
+              className="pointer-events-none absolute -left-4 -top-16 select-none font-serif text-[180px] leading-none text-lime [-webkit-text-stroke:1px_#0b0b0b] sm:-left-14 lg:-top-24 lg:text-[260px]"
+              aria-hidden="true"
+            >
+              “
+            </span>
+            <p className="manifesto-text relative font-display text-[clamp(28px,4.2vw,64px)] font-semibold leading-[1.08] tracking-[-0.035em]">
               {MANIFESTO}
             </p>
           </div>
         </div>
 
         <div className="mt-20 grid grid-cols-12 gap-6 lg:mt-28">
-          <div className="about-photo relative col-span-12 aspect-[4/5] overflow-hidden rounded-3xl bg-ink/5 sm:col-span-5 lg:col-span-4">
+          <div className="relative col-span-12 sm:col-span-5 lg:col-span-4">
+          <div className="about-photo relative aspect-[4/5] overflow-hidden rounded-[28px] bg-ink/5">
             <Image
               src="/images/about-image.jpg"
               alt="Ratan Mia"
@@ -87,6 +102,15 @@ export default function Manifesto() {
               sizes="(min-width: 1024px) 33vw, (min-width: 640px) 42vw, 100vw"
               className="scale-110 object-cover"
             />
+          </div>
+          <RotatingBadge
+            tone="ink"
+            text="Ratan Mia · Full-stack · Since 2015 · "
+            size={128}
+            className="about-badge absolute -bottom-10 right-6 sm:-right-10"
+          >
+            <span className="font-serif text-4xl italic text-lime">R</span>
+          </RotatingBadge>
           </div>
 
           <div className="col-span-12 flex flex-col justify-between gap-12 sm:col-span-7 lg:col-span-7 lg:col-start-6">

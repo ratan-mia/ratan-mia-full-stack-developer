@@ -80,7 +80,7 @@ export default function Work() {
   }, { scope: root });
 
   return (
-    <section ref={root} id="work" className="relative bg-ink text-paper">
+    <section ref={root} id="work" className="grain relative bg-ink text-paper">
       <div className="work-pin relative lg:flex lg:h-[100svh] lg:flex-col lg:justify-center lg:overflow-hidden">
         <div className="mx-auto w-full max-w-[1440px] px-5 pt-24 sm:px-8 lg:px-12 lg:pt-20">
           <div className="flex flex-wrap items-end justify-between gap-6">

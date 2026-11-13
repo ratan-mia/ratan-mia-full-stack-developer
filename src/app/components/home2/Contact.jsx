@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useRef } from 'react';
 import { ArrowUpRight } from 'lucide-react';
+import ContactRings from '@/components/graphics/ContactRings';
 import ContactForm from '@/components/site/ContactForm';
 import Magnetic from '@/components/motion/Magnetic';
 import { gsap, MOTION_OK, SplitText, useGSAP } from '@/lib/gsap';
@@ -22,13 +23,34 @@ export default function Contact() {
         ease: 'expo.out',
         scrollTrigger: { trigger: '.cta-big', start: 'top 85%' },
       });
+      gsap.from('.cr-ring', {
+        drawSVG: '0%',
+        duration: 2,
+        stagger: 0.12,
+        ease: 'power2.inOut',
+        scrollTrigger: { trigger: root.current, start: 'top 70%' },
+      });
+      gsap.to('.cr-sweep', { rotation: 360, svgOrigin: '300 300', duration: 9, repeat: -1, ease: 'none' });
+      gsap.utils.toArray('.cr-pulse').forEach((el, i) => {
+        gsap.fromTo(
+          el,
+          { scale: 1, autoAlpha: 0.8, transformOrigin: '50% 50%' },
+          { scale: 4, autoAlpha: 0, duration: 2.4, repeat: -1, ease: 'power2.out', delay: i * 0.5 }
+        );
+      });
+      gsap.to('.contact-rings', {
+        yPercent: -12,
+        ease: 'none',
+        scrollTrigger: { trigger: root.current, start: 'top bottom', end: 'bottom top', scrub: true },
+      });
       return () => split.revert();
     });
   }, { scope: root });
 
   return (
     <section ref={root} id="get-in-touch" className="relative overflow-hidden bg-lime text-ink">
-      <div className="mx-auto max-w-[1440px] px-5 py-24 sm:px-8 sm:py-32 lg:px-12">
+      <ContactRings className="contact-rings absolute -right-[30%] top-0 w-[140vw] max-w-none opacity-70 sm:-right-[12%] sm:w-[80vw] lg:-right-[18%] lg:top-[-4%] lg:w-[min(60vw,860px)]" />
+      <div className="relative mx-auto max-w-[1440px] px-5 py-24 sm:px-8 sm:py-32 lg:px-12">
         <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink/60">(05) — Contact</p>
         <h2 className="cta-big mt-6 font-display text-[clamp(44px,12.5vw,220px)] font-extrabold uppercase leading-[0.82] tracking-[-0.06em]">
           Let’s build

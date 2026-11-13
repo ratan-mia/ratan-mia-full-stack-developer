@@ -42,7 +42,7 @@ export default function Experience() {
   }, { scope: root });
 
   return (
-    <section ref={root} id="experience" className="relative bg-ink text-paper">
+    <section ref={root} id="experience" className="grain relative bg-ink text-paper">
       <div className="mx-auto max-w-[1440px] px-5 py-24 sm:px-8 sm:py-32 lg:px-12">
         <div className="grid grid-cols-12 gap-6">
           <div className="col-span-12 lg:col-span-4">
