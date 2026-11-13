@@ -1,57 +1,20 @@
-'use client';
-
-import About from '@/components/home/About';
-import Contact from '@/components/home/Contact';
-import Experience from '@/components/home/Experience';
-import OurCommitment from '@/components/home/OurCommitment';
-import HeroMain from '@/components/home/HeroMain';
-import CTA from '@/components/home/CTA';
-import Process from '@/components/home/Process';
-import Projects from '@/components/home/Projects';
-import Services from '@/components/home/Services';
-import Testimonials from '@/components/home/Testimonials';
-import TrainingCertificates from '@/components/home/TrainingCertificates';
-import VideoIntro from '@/components/home/VideoIntro';
+import Capabilities from '@/components/home2/Capabilities';
+import Contact from '@/components/home2/Contact';
+import Experience from '@/components/home2/Experience';
+import Hero from '@/components/home2/Hero';
+import Manifesto from '@/components/home2/Manifesto';
+import Marquee from '@/components/home2/Marquee';
+import Work from '@/components/home2/Work';
 
 export default function Home() {
   return (
-    <div className="relative w-full overflow-hidden">
-      {/* Hero Section - Dark */}
-      <HeroMain />
-
-      {/* About - Light (White background) */}
-      <About />
-
-      {/* Services - Dark (Black background) */}
-      <Services />
-
-      {/* Process - Light (White background) */}
-      <Process />
-
-      {/* Our Commitment - Dark (Black background) */}
-      <OurCommitment />
-
-
-      {/* CTA - Light (White background) */}
-      <CTA />
-
-      {/* Experience - Light (White background) */}
+    <div className="relative w-full overflow-x-clip">
+      <Hero />
+      <Marquee />
+      <Manifesto />
+      <Work />
+      <Capabilities />
       <Experience />
-
-      {/* Video Intro - Dark (Black background) */}
-      <VideoIntro />
-
-      {/* Projects - Dark (Black background) */}
-      <Projects />
-
-      {/* Training Certificates - Light (White background) */}
-      <TrainingCertificates />
-
-      {/* Testimonials - Dark (Black background) */}
-      <Testimonials />
-
-
-      {/* Contact - Light (White background) */}
       <Contact />
     </div>
   );

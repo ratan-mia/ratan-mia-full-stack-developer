@@ -57,27 +57,15 @@ const Footer = () => {
   const socialLinks = [
     {
       name: 'GitHub',
-      href: 'https://github.com/shorifull',
+      href: 'https://github.com/ratan-mia',
       icon: Github,
       label: 'GitHub'
     },
     {
       name: 'LinkedIn',
-      href: 'https://linkedin.com/in/shorifull',
+      href: 'https://www.linkedin.com/in/shorifull/',
       icon: Linkedin,
       label: 'LinkedIn'
-    },
-    {
-      name: 'Twitter',
-      href: 'https://twitter.com',
-      icon: Twitter,
-      label: 'Twitter'
-    },
-    {
-      name: 'Instagram',
-      href: 'https://instagram.com',
-      icon: Instagram,
-      label: 'Instagram'
     },
     {
       name: 'Mail',
@@ -120,12 +108,11 @@ const Footer = () => {
   ];
 
   const reviews = [
-    { name: 'GitHub', href: 'https://github.com/shorifull' },
-    { name: 'LinkedIn', href: 'https://linkedin.com/in/shorifull' },
-    { name: 'Behance', href: 'https://behance.net' },
-    { name: 'Dribbble', href: 'https://dribbble.com' },
-    { name: 'Twitter', href: 'https://twitter.com' },
-    { name: 'Dev.to', href: 'https://dev.to' }
+    { name: 'GitHub', href: 'https://github.com/ratan-mia' },
+    { name: 'LinkedIn', href: 'https://www.linkedin.com/in/shorifull/' },
+    { name: 'Upwork', href: 'https://www.upwork.com/freelancers/ratanmia' },
+    { name: 'NextPilot Chat', href: 'https://www.nextpilot.chat' },
+    { name: 'TurfLet', href: 'https://turflet.app' }
   ];
 
   const skills = [
@@ -402,15 +389,15 @@ const Footer = () => {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.8, delay: 1.1 }}
               >
-                <Link
-                  href="/resume/ratan-mia-resume.pdf"
-                  download
+                <a
+                  href="/resume.pdf"
+                  download="Ratan_Mia_Resume.pdf"
                   className="flex items-center gap-3 bg-accent-lime text-black font-bold px-6 py-3 rounded-full hover:bg-lime-300 hover:shadow-lime-glow transition-all duration-300 text-sm group"
                 >
                   <Download className="w-4 h-4 group-hover:animate-bounce" />
                   <span>Download Resume</span>
                   <span className="text-xs opacity-70">PDF</span>
-                </Link>
+                </a>
               </motion.div>
               
               {/* Copyright */}

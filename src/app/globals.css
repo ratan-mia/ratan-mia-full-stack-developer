@@ -1,5 +1,21 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/jetbrains-mono";
+@import "@fontsource/instrument-serif/400.css";
+@import "@fontsource/instrument-serif/400-italic.css";
 @import "tailwindcss";
+@source not "../../_archive";
+
+/* Design tokens for the 2026 home page */
+@theme {
+  --color-ink: #0b0b0b;
+  --color-paper: #f2f0e9;
+  --color-lime: #ccff00;
+  --color-mute: #8a8a84;
+  --font-display: "Inter Variable", "Inter", system-ui, sans-serif;
+  --font-sans: "Inter Variable", "Inter", system-ui, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+}
 
 @layer base {
   /* Essential custom properties only */
@@ -8,13 +24,14 @@
     --accent-orange: #ff8c42;
   }
 
-  html {
-    scroll-behavior: smooth;
+  body {
+    font-family: var(--font-sans);
   }
 
-  body {
-    font-family: "Inter", system-ui, -apple-system, sans-serif;
-  }
+  /* Lenis handles smooth scrolling */
+  html.lenis, html.lenis body { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+  .lenis.lenis-stopped { overflow: hidden; }
 }
 
 @layer components {
@@ -124,4 +141,56 @@
 @keyframes marquee {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
+}
+
+/* ---------- 2026 home page ---------- */
+.hero-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 8.333vw 8.333vw;
+  mask-image: radial-gradient(ellipse at 60% 40%, #000 20%, transparent 75%);
+}
+
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--color-ink);
+}
+
+/* SplitText masks shouldn't clip descenders or italic overhang */
+.hero-char, .hero-name > span { padding-bottom: 0.04em; }
+
+/* Custom cursor */
+.has-custom-cursor, .has-custom-cursor a, .has-custom-cursor button { cursor: none; }
+.cursor-dot, .cursor-ring {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  pointer-events: none;
+  border-radius: 9999px;
+  translate: -50% -50%;
+}
+.cursor-dot { width: 6px; height: 6px; background: var(--color-lime); }
+.cursor-ring {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(204, 255, 0, 0.7);
+  mix-blend-mode: difference;
+  backdrop-filter: invert(0);
+}
+.cursor-ring span {
+  font-family: var(--font-mono);
+  font-size: 4px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-lime);
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }

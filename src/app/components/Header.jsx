@@ -16,7 +16,7 @@ const Header = () => {
 
   // Pages with dark hero sections that need white text at the top
   const darkHeroPages = ['/portfolio', '/case-studies', '/blog'];
-  const hasDarkHero = darkHeroPages.some(page => pathname?.startsWith(page));
+  const hasDarkHero = pathname === '/' || darkHeroPages.some(page => pathname?.startsWith(page));
 
   // Ensure component is mounted before applying dynamic styles
   useEffect(() => {

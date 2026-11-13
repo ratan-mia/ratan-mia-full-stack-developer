@@ -1,174 +1,109 @@
 import Footer from "@/app/components/Footer";
 import Header from "@/app/components/Header";
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import Cursor from "@/app/components/motion/Cursor";
+import SmoothScroll from "@/app/components/motion/SmoothScroll";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-inter",
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
-});
+const SITE = "https://www.ratanmia.pro";
+const DESCRIPTION =
+  "Ratan Mia — full-stack & mobile engineer and IT manager in Dhaka with 10+ years building SaaS products, React Native apps, headless Shopify stores and WhatsApp & AI automation.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ratanmia.dev"),
+  metadataBase: new URL(SITE),
   title: {
-    default: "Ratan Mia - Full Stack Developer | React.js & Next.js Expert",
-    template: "%s | Ratan Mia - Full Stack Developer"
+    default: "Ratan Mia — Full-Stack & Mobile Engineer",
+    template: "%s | Ratan Mia",
   },
-  description: "Experienced Full Stack Developer with 10+ years expertise in React.js, Next.js, Laravel & WordPress. Building high-performance web applications for global clients. Available for new projects.",
+  description: DESCRIPTION,
   keywords: [
-    "Full Stack Developer",
-    "React.js Developer",
-    "Next.js Expert",
-    "Laravel Developer",
-    "WordPress Developer",
-    "Web Development",
-    "JavaScript Developer",
-    "PHP Developer",
-    "Dhaka Bangladesh",
-    "Remote Developer"
+    "Ratan Mia",
+    "Full Stack Developer Bangladesh",
+    "React Native Developer",
+    "Next.js Developer",
+    "Shopify Headless Developer",
+    "Supabase",
+    "WhatsApp CRM",
+    "IT Manager Dhaka",
+    "Remote Developer",
   ],
-  authors: [{ name: "Ratan Mia", url: "https://ratanmia.dev" }],
+  authors: [{ name: "Ratan Mia", url: SITE }],
   creator: "Ratan Mia",
-
-  // Open Graph for social sharing
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://ratanmia.dev",
-    siteName: "Ratan Mia - Full Stack Developer",
-    title: "Ratan Mia - Expert Full Stack Developer | React.js & Next.js Specialist",
-    description: "Professional Full Stack Developer with 10+ years experience building high-performance web applications. Specializing in React.js, Next.js, Laravel, and WordPress development.",
-    images: [
-      {
-        url: "/images/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Ratan Mia - Full Stack Developer",
-      }
-    ],
+    url: SITE,
+    siteName: "Ratan Mia",
+    title: "Ratan Mia — Full-Stack & Mobile Engineer",
+    description: DESCRIPTION,
   },
-
-  // Twitter Cards
   twitter: {
     card: "summary_large_image",
-    site: "@shorifull",
-    creator: "@shorifull",
-    title: "Ratan Mia - Full Stack Developer | React.js & Next.js Expert",
-    description: "Professional Full Stack Developer with 10+ years experience. Specializing in React.js, Next.js, Laravel & WordPress.",
-    images: ["/images/twitter-image.jpg"],
+    title: "Ratan Mia — Full-Stack & Mobile Engineer",
+    description: DESCRIPTION,
   },
-
-  // Search Engine Settings
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
   },
-
-  // Icons
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
-  },
-
-  verification: {
-    google: "your-google-verification-code",
-  },
-
-  alternates: {
-    canonical: "https://ratanmia.dev",
-  },
+  icons: { icon: "/favicon.ico" },
+  alternates: { canonical: "/" },
 };
 
-// Structured Data for SEO
+export const viewport: Viewport = {
+  themeColor: "#0b0b0b",
+  width: "device-width",
+  initialScale: 1,
+};
+
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Ratan Mia",
-  jobTitle: "Full Stack Developer",
-  description: "Full Stack Developer with 10+ years of experience specializing in React.js, Next.js, Laravel, and WordPress development",
-  url: "https://ratanmia.dev",
-  image: "https://ratanmia.dev/images/profile.jpg",
+  jobTitle: "Full-Stack & Mobile Engineer",
+  description: DESCRIPTION,
+  url: SITE,
+  image: `${SITE}/images/hero-image.png`,
   sameAs: [
-    "https://linkedin.com/in/shorifull",
-    "https://github.com/shorifull",
-    "https://twitter.com/shorifull"
+    "https://www.linkedin.com/in/shorifull/",
+    "https://github.com/ratan-mia",
+    "https://www.upwork.com/freelancers/ratanmia",
   ],
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Dhaka",
-    addressCountry: "Bangladesh"
-  },
-  email: "shorifull@gmail.com",
-  telephone: "+8801751010966",
+  address: { "@type": "PostalAddress", addressLocality: "Dhaka", addressCountry: "BD" },
+  email: "mailto:shorifull@gmail.com",
+  alumniOf: { "@type": "CollegeOrUniversity", name: "University of Dhaka" },
   knowsAbout: [
-    "React.js", "Next.js", "Laravel", "WordPress", "JavaScript", "PHP", "Full Stack Development"
-  ]
+    "React Native", "Next.js", "TypeScript", "Supabase", "Shopify Headless",
+    "Laravel", "WordPress", "WhatsApp Cloud API", "IT Management",
+  ],
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-
-        {/* Performance */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-
-        {/* Structured Data for SEO */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </head>
 
-      <body className={`${inter.variable} font-sans antialiased bg-black text-white selection:bg-accent selection:text-black overflow-x-hidden`}>
-        {/* Header */}
+      <body className="bg-ink font-sans text-white antialiased selection:bg-lime selection:text-black overflow-x-hidden">
+        <SmoothScroll />
+        <Cursor />
         <Header />
-
-        {/* Main Content */}
-        <main className="min-h-screen">
-          {children}
-        </main>
-
-        {/* Footer */}
+        <main className="min-h-screen">{children}</main>
         <Footer />
 
-        {/* Analytics & Tracking Scripts */}
-        {process.env.NODE_ENV === 'production' && (
+        {process.env.NODE_ENV === "production" && GA_ID && (
           <>
-            {/* Google Analytics GA4 */}
-            <script
-              async
-              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
-            />
+            <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
             <script
               dangerouslySetInnerHTML={{
-                __html: `
-                  window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  gtag('js', new Date());
-                  gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
-                    page_title: document.title,
-                    page_location: window.location.href,
-                  });
-                `,
+                __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');`,
               }}
             />
           </>
