@@ -152,6 +152,11 @@
   mask-image: radial-gradient(ellipse at 60% 40%, #000 20%, transparent 75%);
 }
 
+.text-outline-paper {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(242, 240, 233, 0.25);
+}
+
 .text-outline {
   color: transparent;
   -webkit-text-stroke: 1.5px var(--color-ink);
