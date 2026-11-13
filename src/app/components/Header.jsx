@@ -1,550 +1,225 @@
 'use client';
 
-import { AnimatePresence, motion } from 'framer-motion';
-import { ChevronDown, Download, Menu, X } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
+import { ArrowUpRight, ChevronDown, Download } from 'lucide-react';
+import { gsap, useGSAP } from '@/lib/gsap';
 
-const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
-  const [showCaseStudiesDropdown, setShowCaseStudiesDropdown] = useState(false);
-  const [showMobileCaseStudies, setShowMobileCaseStudies] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  const pathname = usePathname();
+const NAV = [
+  { name: 'About', href: '/about' },
+  { name: 'Services', href: '/services' },
+  { name: 'Work', href: '/portfolio' },
+  { name: 'Case studies', href: '/case-studies', dropdown: true },
+  { name: 'Blog', href: '/blog' },
+  { name: 'Contact', href: '/contact' },
+];
 
-  // Pages with dark hero sections that need white text at the top
-  const darkHeroPages = ['/portfolio', '/case-studies', '/blog'];
-  const hasDarkHero = pathname === '/' || darkHeroPages.some(page => pathname?.startsWith(page));
+const CASE_STUDIES = [
+  { name: 'AutoTrader BD', href: '/case-studies/auto-trader', note: 'B2B car trading' },
+  { name: 'Japan Parts Headless', href: '/case-studies/shopify-headless-cms', note: 'Headless commerce' },
+  { name: 'Chery Bangladesh', href: '/case-studies/chery-bangladesh-app', note: 'Automotive app' },
+  { name: 'OMODA & JAECOO', href: '/case-studies/omoda-jaecoo', note: 'Dual-brand app' },
+  { name: 'ELF Bangladesh', href: '/case-studies/elf-bangladesh-app', note: 'Commerce super-app' },
+  { name: 'TurfLet', href: '/case-studies/turfnations-booking', note: 'Venue booking' },
+  { name: 'Gamify · PieQR', href: '/case-studies/gamify', note: 'QR loyalty' },
+];
 
-  // Ensure component is mounted before applying dynamic styles
+export default function Header() {
+  const pathname = usePathname() || '/';
+  const bar = useRef(null);
+  const overlay = useRef(null);
+  const [open, setOpen] = useState(false);
+  const [drop, setDrop] = useState(false);
+  const [solid, setSolid] = useState(false);
+
+  const isActive = (href) => (href === '/' ? pathname === '/' : pathname.startsWith(href));
+
+  // Hide on scroll down, reveal on scroll up; add a backdrop once scrolled.
   useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const navigationItems = [
-    { name: 'HOME', href: '/' },
-    { name: 'ABOUT', href: '/about' },
-    { name: 'SERVICES', href: '/services' },
-    { name: 'PORTFOLIO', href: '/portfolio' },
-    { name: 'CASE STUDIES', href: '/case-studies', hasDropdown: true },
-    { name: 'BLOG', href: '/blog' },
-    { name: 'CONTACT', href: '/contact' }
-  ];
-
-  const caseStudies = [
-    { 
-      name: 'AutoTrader BD', 
-      href: '/case-studies/auto-trader',
-      description: 'B2B Car Trading Platform'
-    },
-    { 
-      name: 'Shopify Headless CMS', 
-      href: '/case-studies/shopify-headless-cms',
-      description: 'Headless Commerce Platform'
-    },
-    { 
-      name: 'Gamify (PieQR)', 
-      href: '/case-studies/gamify',
-      description: 'QR Loyalty & Engagement Platform'
-    },
-    { 
-      name: 'Chery Bangladesh App', 
-      href: '/case-studies/chery-bangladesh-app',
-      description: 'Full-stack Automotive Platform'
-    },
-    { 
-      name: 'Omoda & Jaecoo App', 
-      href: '/case-studies/omoda-jaecoo',
-      description: 'Dual-Brand Automotive Platform'
-    },
-    { 
-      name: 'ELF Bangladesh App', 
-      href: '/case-studies/elf-bangladesh-app',
-      description: 'Automotive E-Commerce Ecosystem'
-    },
-    { 
-      name: 'TurfLet', 
-      href: '/case-studies/turfnations-booking',
-      description: 'Sports Venue Booking Platform'
-    }
-  ];
-
-  // Enhanced scroll detection with section tracking
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      setScrolled(scrollPosition > 100);
-
-      // Track active section for better visual feedback
-      const sections = navigationItems.map(item => item.href.slice(1));
-      const currentSection = sections.find(section => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 200 && rect.bottom >= 200;
-        }
-        return false;
-      });
-      
-      if (currentSection && currentSection !== activeSection) {
-        setActiveSection(currentSection);
-      }
+    let last = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setSolid(y > 40);
+      if (!bar.current || open) return;
+      if (y > last && y > 240) gsap.to(bar.current, { yPercent: -120, duration: 0.5, ease: 'power3.out' });
+      else gsap.to(bar.current, { yPercent: 0, duration: 0.5, ease: 'power3.out' });
+      last = y;
     };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [open]);
 
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Call once to set initial state
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [activeSection]);
-
-  // Prevent body scroll when mobile menu is open
+  // Close menus on navigation.
   useEffect(() => {
-    document.body.style.overflow = isMenuOpen ? 'hidden' : 'unset';
-    return () => { document.body.style.overflow = 'unset'; };
-  }, [isMenuOpen]);
+    setOpen(false);
+    setDrop(false);
+  }, [pathname]);
 
-  const handleNavigation = (href) => {
-    if (href.startsWith('#')) {
-      // Handle anchor links
-      if (window.location.pathname !== '/') {
-        // If not on home page, go to home first
-        window.location.href = '/' + href;
-      } else {
-        // On home page, smooth scroll
-        const element = document.getElementById(href.slice(1));
-        if (element) {
-          const headerHeight = 88;
-          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-          const offsetPosition = elementPosition - headerHeight;
-          window.scrollTo({ 
-            top: href === '#home' ? 0 : offsetPosition, 
-            behavior: 'smooth' 
-          });
-        }
-      }
-    } else if (href.startsWith('/')) {
-      // Navigate to internal page
-      window.location.href = href;
+  // Full-screen mobile menu.
+  useGSAP(() => {
+    if (!overlay.current) return;
+    if (open) {
+      document.documentElement.style.overflow = 'hidden';
+      window.__lenis?.stop();
+      gsap.set(overlay.current, { display: 'block' });
+      gsap.fromTo(overlay.current, { clipPath: 'inset(0 0 100% 0)' }, { clipPath: 'inset(0 0 0% 0)', duration: 0.8, ease: 'expo.inOut' });
+      gsap.from('.mnav-item', { yPercent: 120, duration: 1, stagger: 0.05, ease: 'expo.out', delay: 0.35 });
+    } else {
+      document.documentElement.style.overflow = '';
+      window.__lenis?.start();
+      gsap.to(overlay.current, {
+        clipPath: 'inset(0 0 100% 0)',
+        duration: 0.6,
+        ease: 'expo.inOut',
+        onComplete: () => gsap.set(overlay.current, { display: 'none' }),
+      });
     }
-    setIsMenuOpen(false);
-    setShowCaseStudiesDropdown(false);
-    setShowMobileCaseStudies(false);
-  };
-  
-  const handleDownloadCV = () => {
-    const link = document.createElement('a');
-    link.href = '/resume.pdf';
-    link.download = 'Ratan_Mia_Resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
-  // Header background based on scroll
-  const getHeaderStyle = () => {
-    if (!mounted) return 'bg-transparent';
-    if (scrolled) {
-      return 'bg-black/95 backdrop-blur-lg shadow-lg shadow-black/20';
-    }
-    return 'bg-transparent';
-  };
-
-  const getTextStyle = () => {
-    if (!mounted) return 'text-white';
-    if (scrolled) {
-      return 'text-white';
-    }
-    // Use white text for pages with dark hero sections, black text for home/light pages
-    return (!scrolled && !hasDarkHero && activeSection === 'home') 
-      ? 'text-black' 
-      : 'text-white';
-  };
-
-  const getLogoAccentStyle = () => {
-    if (!mounted) return 'text-accent-lime';
-    if (scrolled) {
-      return 'text-accent-lime';
-    }
-    return (!scrolled && !hasDarkHero && activeSection === 'home') 
-      ? 'text-black' 
-      : 'text-accent-lime';
-  };
-
-  const getNavTextStyle = () => {
-    if (!mounted) return 'text-gray-300 hover:text-accent-lime';
-    if (scrolled) {
-      return 'text-gray-300 hover:text-accent-lime';
-    }
-    // Use light text for pages with dark backgrounds
-    return (!scrolled && !hasDarkHero && activeSection === 'home') 
-      ? 'text-black/80 hover:text-black' 
-      : 'text-gray-300 hover:text-accent-lime';
-  };
+  }, { dependencies: [open], scope: overlay });
 
   return (
     <>
-      <motion.header 
-        className={`fixed top-0 left-0 right-0 z-[100] isolate transition-all duration-500 ${getHeaderStyle()}`}
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-      >
-        <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20">
-          <nav className="flex justify-between items-center h-16 sm:h-18 md:h-20 lg:h-24">
-            
-            {/* Enhanced Logo */}
-            <motion.button 
-              className={`text-xl sm:text-2xl lg:text-3xl font-extrabold ${getTextStyle()} tracking-tight group`}
-              onClick={() => handleNavigation('#home')}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span className="relative">
-                Ratan
-                <motion.span 
-                  className={`${getLogoAccentStyle()} text-3xl sm:text-4xl lg:text-5xl leading-none`}
-                  animate={{ 
-                    scale: [1, 1.2, 1],
-                    rotate: [0, 5, 0]
-                  }}
-                  transition={{ 
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
+      <header ref={bar} className="fixed inset-x-0 top-0 z-50 will-change-transform">
+        <div
+          className={`mx-auto flex max-w-[1440px] items-center justify-between gap-4 px-5 py-4 transition-colors duration-500 sm:px-8 lg:px-12 ${
+            solid ? 'lg:py-3' : 'lg:py-5'
+          }`}
+        >
+          <Link
+            href="/"
+            className={`rounded-full px-4 py-2 font-display text-xl font-extrabold tracking-[-0.04em] text-paper transition-colors ${
+              solid ? 'bg-ink/80 backdrop-blur-md' : ''
+            }`}
+          >
+            Ratan<span className="text-lime">.</span>
+          </Link>
+
+          <nav
+            aria-label="Main"
+            className="hidden items-center gap-1 rounded-full border border-white/10 bg-ink/70 p-1.5 backdrop-blur-md lg:flex"
+          >
+            {NAV.map((item) =>
+              item.dropdown ? (
+                <div
+                  key={item.href}
+                  className="relative"
+                  onMouseEnter={() => setDrop(true)}
+                  onMouseLeave={() => setDrop(false)}
                 >
-                  .
-                </motion.span>
-                <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-current group-hover:w-full transition-all duration-300"></div>
-              </span>
-            </motion.button>
-            
-            {/* Desktop Navigation - Enhanced */}
-            <div className="hidden lg:flex items-center gap-6 xl:gap-8">
-              {navigationItems.map((item) => {
-                const isActive = item.href === '/' ? pathname === '/' : !!pathname?.startsWith(item.href);
-                
-                if (item.hasDropdown) {
-                  return (
-                    <div 
-                      key={item.name}
-                      className="relative"
-                      onMouseEnter={() => setShowCaseStudiesDropdown(true)}
-                      onMouseLeave={() => setShowCaseStudiesDropdown(false)}
-                    >
-                      <motion.button
-                        className={`${getNavTextStyle()} transition-all duration-300 font-semibold text-sm tracking-wider relative group flex items-center gap-1`}
-                        whileHover={{ y: -2 }}
-                        whileTap={{ y: 0 }}
-                      >
-                        {item.name}
-                        <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${showCaseStudiesDropdown ? 'rotate-180' : ''}`} />
-                        <motion.span 
-                          className="absolute bottom-[-6px] left-0 h-0.5 bg-accent-lime transition-all duration-300 w-0 group-hover:w-full"
-                        />
-                      </motion.button>
-                      
-                      {/* Dropdown Menu */}
-                      <AnimatePresence>
-                        {showCaseStudiesDropdown && (
-                          <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: 10 }}
-                            transition={{ duration: 0.2 }}
-                            className="absolute top-full mt-2 left-0 w-80 bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden z-[110]"
-                          >
-                            {caseStudies.map((study, index) => (
-                              <motion.a
-                                key={study.name}
-                                href={study.href}
-                                initial={{ opacity: 0, x: -20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: index * 0.05 }}
-                                className="block px-6 py-4 hover:bg-gray-50 transition-colors duration-200 border-b border-gray-100 last:border-b-0 group"
-                              >
-                                <div className="font-semibold text-black group-hover:text-accent-lime transition-colors text-sm mb-1">
-                                  {study.name}
-                                </div>
-                                <div className="text-xs text-gray-600">
-                                  {study.description}
-                                </div>
-                              </motion.a>
-                            ))}
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  );
-                }
-                
-                return (
-                  <motion.button
-                    key={item.name}
-                    onClick={() => handleNavigation(item.href)}
-                    className={`${getNavTextStyle()} transition-all duration-300 font-semibold text-sm tracking-wider relative group ${
-                      isActive ? 'text-accent-lime' : ''
+                  <Link
+                    href={item.href}
+                    className={`inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                      isActive(item.href) ? 'bg-paper text-ink' : 'text-paper/80 hover:text-paper'
                     }`}
-                    whileHover={{ y: -2 }}
-                    whileTap={{ y: 0 }}
+                    aria-expanded={drop}
+                    onFocus={() => setDrop(true)}
                   >
                     {item.name}
-                    <motion.span 
-                      className={`absolute bottom-[-6px] left-0 h-0.5 bg-accent-lime transition-all duration-300 ${
-                        isActive ? 'w-full' : 'w-0 group-hover:w-full'
-                      }`}
-                      layoutId="activeIndicator"
-                    />
-                  </motion.button>
-                );
-              })}
-            </div>
-
-            {/* Desktop Right Side - Enhanced */}
-            <div className="hidden lg:flex items-center gap-6">
-              {/* Download CV Button */}
-              <motion.button
-                onClick={handleDownloadCV}
-                className={`flex items-center gap-2 ${getNavTextStyle()} transition-all duration-300 font-medium text-sm tracking-wide hover:scale-105 group`}
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <motion.div
-                  whileHover={{ rotate: 180 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <Download className="w-4 h-4" />
-                </motion.div>
-                <span className="relative">
-                  Resume
-                  <span className="absolute bottom-0 left-0 w-0 h-px bg-current group-hover:w-full transition-all duration-300"></span>
-                </span>
-              </motion.button>
-              
-              {/* Primary CTA Button */}
-              <motion.button
-                onClick={() => handleNavigation('/quote')}
-                className="bg-black text-accent-lime px-8 py-3 font-bold text-sm tracking-wider rounded-xl hover:bg-black/90 hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-black/30 border border-black/20"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                LET'S WORK
-              </motion.button>
-            </div>
-
-            {/* Mobile Menu Button - Enhanced */}
-            <div className="flex lg:hidden items-center gap-2 sm:gap-3">
-              {/* Mobile Resume Button */}
-              <motion.button
-                onClick={handleDownloadCV}
-                className={`p-2 sm:p-2.5 ${getTextStyle()} hover:bg-white/10 rounded-lg transition-all duration-300`}
-                whileTap={{ scale: 0.9 }}
-                whileHover={{ scale: 1.05 }}
-              >
-                <Download className="w-4 h-4 sm:w-5 sm:h-5" />
-              </motion.button>
-              
-              {/* Menu Toggle */}
-              <motion.button
-                className={`p-2 sm:p-2.5 ${getTextStyle()} hover:bg-white/10 rounded-lg transition-all duration-300`}
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                whileTap={{ scale: 0.9 }}
-                whileHover={{ scale: 1.05 }}
-              >
-                <motion.div
-                  animate={{ rotate: isMenuOpen ? 180 : 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {isMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
-                </motion.div>
-              </motion.button>
-            </div>
-          </nav>
-        </div>
-      </motion.header>
-
-      {/* Enhanced Mobile Menu - Redesigned */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              className="fixed inset-0 bg-black/80 backdrop-blur-md z-[90] lg:hidden"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              onClick={() => setIsMenuOpen(false)}
-            />
-            
-            {/* Slide-in Menu Panel */}
-            <motion.div
-              className="fixed top-0 right-0 bottom-0 w-full sm:w-80 bg-gradient-to-b from-gray-900 to-black z-[100] lg:hidden overflow-y-auto shadow-2xl"
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            >
-              {/* Header */}
-              <div className="sticky top-0 bg-gray-900/95 backdrop-blur-sm border-b border-gray-800 px-6 py-4 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-accent-lime animate-pulse"></div>
-                  <span className="text-white font-bold text-sm tracking-wider">MENU</span>
-                </div>
-                <motion.button
-                  onClick={() => setIsMenuOpen(false)}
-                  className="p-2 hover:bg-white/10 rounded-lg transition-colors"
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <X className="w-5 h-5 text-white" />
-                </motion.button>
-              </div>
-
-              {/* Navigation Links */}
-              <div className="px-6 py-6 space-y-2">
-                {navigationItems.map((item, index) => {
-                  if (item.hasDropdown) {
-                    return (
-                      <div key={item.name} className="space-y-2">
-                        <motion.button
-                          onClick={() => setShowMobileCaseStudies(!showMobileCaseStudies)}
-                          className="w-full flex items-center justify-between px-4 py-3 text-left text-white font-semibold hover:bg-white/5 rounded-lg transition-all group"
-                          initial={{ opacity: 0, x: 50 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: index * 0.05 }}
-                          whileTap={{ scale: 0.98 }}
-                        >
-                          <span className="group-hover:text-accent-lime transition-colors">
-                            {item.name}
-                          </span>
-                          <motion.div
-                            animate={{ rotate: showMobileCaseStudies ? 180 : 0 }}
-                            transition={{ duration: 0.3 }}
+                    <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-300 ${drop ? 'rotate-180' : ''}`} />
+                  </Link>
+                  <div
+                    className={`absolute left-1/2 top-full w-[340px] -translate-x-1/2 pt-3 transition-all duration-300 ${
+                      drop ? 'visible opacity-100' : 'invisible -translate-y-1 opacity-0'
+                    }`}
+                  >
+                    <ul className="rounded-3xl border border-white/10 bg-ink/95 p-2 shadow-2xl backdrop-blur-xl">
+                      {CASE_STUDIES.map((c) => (
+                        <li key={c.href}>
+                          <Link
+                            href={c.href}
+                            onBlur={(e) => !e.currentTarget.closest('ul')?.contains(e.relatedTarget) && setDrop(false)}
+                            className="group flex items-center justify-between rounded-2xl px-4 py-3 text-paper transition-colors hover:bg-white/[0.06]"
                           >
-                            <ChevronDown className="w-4 h-4 text-gray-400 group-hover:text-accent-lime transition-colors" />
-                          </motion.div>
-                        </motion.button>
-                        
-                        <AnimatePresence>
-                          {showMobileCaseStudies && (
-                            <motion.div
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: 'auto' }}
-                              exit={{ opacity: 0, height: 0 }}
-                              className="pl-4 space-y-1 overflow-hidden"
-                            >
-                              {caseStudies.map((study, studyIndex) => (
-                                <motion.a
-                                  key={study.name}
-                                  href={study.href}
-                                  initial={{ opacity: 0, x: -10 }}
-                                  animate={{ opacity: 1, x: 0 }}
-                                  transition={{ delay: studyIndex * 0.05 }}
-                                  className="block px-4 py-2.5 text-sm rounded-lg hover:bg-white/5 transition-colors group"
-                                  onClick={() => {
-                                    setIsMenuOpen(false);
-                                    setShowMobileCaseStudies(false);
-                                  }}
-                                >
-                                  <div className="text-gray-300 group-hover:text-white font-medium mb-0.5">
-                                    {study.name}
-                                  </div>
-                                  <div className="text-xs text-gray-500 group-hover:text-gray-400">
-                                    {study.description}
-                                  </div>
-                                </motion.a>
-                              ))}
-                              <motion.a
-                                href="/case-studies"
-                                initial={{ opacity: 0, x: -10 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: caseStudies.length * 0.05 }}
-                                className="block px-4 py-2.5 text-sm rounded-lg hover:bg-white/5 transition-colors group"
-                                onClick={() => {
-                                  setIsMenuOpen(false);
-                                  setShowMobileCaseStudies(false);
-                                }}
-                              >
-                                <div className="text-accent-lime group-hover:text-lime-300 font-medium flex items-center gap-1">
-                                  View All Case Studies
-                                  <ChevronDown className="w-3 h-3 -rotate-90" />
-                                </div>
-                              </motion.a>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    );
-                  }
-                  
-                  return (
-                    <motion.a
-                      key={item.name}
-                      href={item.href}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handleNavigation(item.href);
-                      }}
-                      className="block px-4 py-3 text-white font-semibold hover:bg-white/5 rounded-lg transition-all group"
-                      initial={{ opacity: 0, x: 50 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.05 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <span className="group-hover:text-accent-lime transition-colors">
-                        {item.name}
-                      </span>
-                    </motion.a>
-                  );
-                })}
-              </div>
-
-              {/* Divider */}
-              <div className="mx-6 border-t border-gray-800"></div>
-
-              {/* Action Buttons */}
-              <div className="px-6 py-6 space-y-3">
-                <motion.button
-                  onClick={() => {
-                    handleDownloadCV();
-                    setIsMenuOpen(false);
-                  }}
-                  className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-white/5 hover:bg-white/10 border border-gray-700 hover:border-accent-lime text-white rounded-lg transition-all font-medium group"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Download className="w-4 h-4 group-hover:text-accent-lime transition-colors" />
-                  <span>Download Resume</span>
-                </motion.button>
-                
-                <motion.button
-                  onClick={() => handleNavigation('/quote')}
-                  className="w-full py-3 px-4 bg-accent-lime hover:bg-lime-300 text-black rounded-lg font-bold tracking-wide transition-all shadow-lg shadow-accent-lime/20"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.45 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  GET A QUOTE
-                </motion.button>
-              </div>
-
-              {/* Footer Info */}
-              <div className="px-6 py-6 mt-auto">
-                <div className="text-xs text-gray-500 text-center">
-                  <p className="mb-2">Full Stack Developer</p>
-                  <p>React Native • Next.js • Laravel</p>
+                            <span>
+                              <span className="block text-sm font-semibold">{c.name}</span>
+                              <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-mute">{c.note}</span>
+                            </span>
+                            <ArrowUpRight className="h-4 w-4 text-mute transition-all group-hover:rotate-45 group-hover:text-lime" />
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                    isActive(item.href) ? 'bg-paper text-ink' : 'text-paper/80 hover:text-paper'
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              )
+            )}
+          </nav>
+
+          <div className="flex items-center gap-2">
+            <a
+              href="/resume.pdf"
+              download="Ratan_Mia_Resume.pdf"
+              className="hidden items-center gap-2 rounded-full border border-white/10 bg-ink/70 px-4 py-2.5 text-sm font-medium text-paper backdrop-blur-md transition-colors hover:border-white/30 sm:inline-flex"
+            >
+              <Download className="h-4 w-4" /> Résumé
+            </a>
+            <Link
+              href="/quote"
+              className="hidden items-center gap-2 rounded-full bg-lime px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:bg-paper sm:inline-flex"
+            >
+              Let’s talk
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
+            <button
+              type="button"
+              onClick={() => setOpen((v) => !v)}
+              aria-expanded={open}
+              aria-controls="mobile-menu"
+              aria-label={open ? 'Close menu' : 'Open menu'}
+              className="relative z-[60] grid h-11 w-11 place-items-center rounded-full bg-paper text-ink lg:hidden"
+            >
+              <span className="relative block h-3 w-5">
+                <span className={`absolute left-0 h-0.5 w-5 bg-ink transition-all duration-500 ${open ? 'top-1.5 rotate-45' : 'top-0'}`} />
+                <span className={`absolute left-0 h-0.5 w-5 bg-ink transition-all duration-500 ${open ? 'top-1.5 -rotate-45' : 'top-2.5'}`} />
+              </span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <div
+        ref={overlay}
+        id="mobile-menu"
+        className="fixed inset-0 z-40 hidden overflow-y-auto bg-ink text-paper lg:hidden"
+        style={{ clipPath: 'inset(0 0 100% 0)' }}
+      >
+        <div className="flex min-h-full flex-col justify-between px-5 pb-10 pt-28 sm:px-8">
+          <ul className="space-y-1">
+            {[{ name: 'Home', href: '/' }, ...NAV, { name: 'Résumé', href: '/resume' }].map((item, i) => (
+              <li key={item.href} className="overflow-hidden">
+                <Link
+                  href={item.href}
+                  className={`mnav-item flex items-baseline gap-4 py-1 font-display text-5xl font-extrabold uppercase tracking-[-0.05em] sm:text-6xl ${
+                    isActive(item.href) ? 'text-lime' : ''
+                  }`}
+                >
+                  <span className="font-mono text-xs font-normal text-mute">{String(i + 1).padStart(2, '0')}</span>
+                  {item.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-12 flex flex-wrap gap-3">
+            <Link href="/quote" className="rounded-full bg-lime px-6 py-3 text-sm font-semibold text-ink">
+              Get a quote
+            </Link>
+            <a href="mailto:shorifull@gmail.com" className="rounded-full border border-white/20 px-6 py-3 text-sm font-semibold">
+              shorifull@gmail.com
+            </a>
+          </div>
+        </div>
+      </div>
     </>
   );
-};
-
-export default Header;
+}

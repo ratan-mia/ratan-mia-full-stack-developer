@@ -1,42 +1,51 @@
-import Contact from '@/components/home/Contact';
-import FAQ from '@/components/home/FAQ';
-import GetQuote from '@/components/home/GetQuote';
-import PricingPlan from '@/components/home/PricingPlan';
-import ProcessHowIWork from '@/components/home/ProcessHowIWork';
-import Services from '@/components/home/Services';
-import Testimonials from '@/components/home/Testimonials';
-import ProjectTypes from '@/components/quote/ProjectTypes';
-import QuoteCTA from '@/components/quote/QuoteCTA';
-import QuoteHeroSection from '@/components/quote/QuoteHeroSection';
-import WhyChooseMe from '@/components/quote/WhyChooseMe';
+import { Suspense } from 'react';
+import Faq from '@/components/site/Faq';
+import PageHero from '@/components/site/PageHero';
+import PricingGrid from '@/components/site/PricingGrid';
+import QuoteWizard from '@/components/quote/QuoteWizard';
 
 export const metadata = {
-  title: 'Get Your Project Quote | Ratan Mia - Mobile & Web Developer',
-  description: 'Get a detailed quote for your mobile app or web development project. Expert React Native and Next.js development with transparent pricing. 24-hour response time.',
-  keywords: 'mobile app quote, web development quote, React Native developer, project estimate, custom development, Next.js expert',
+  title: 'Get a quote',
+  description: 'Request a free, detailed quote for your app, website, store or automation project. Reply within 24 hours.',
+  alternates: { canonical: '/quote' },
 };
+
+const PROMISES = [
+  { k: '24h', v: 'Detailed reply' },
+  { k: '$0', v: 'Cost of a quote' },
+  { k: '30 min', v: 'Free strategy call' },
+];
 
 export default function QuotePage() {
   return (
-    <main className="bg-white overflow-hidden">
-      {/* Hero Section */}
-      <QuoteHeroSection />
-   {/* Supporting Content Sections */}
-      <WhyChooseMe />
-      {/* Prominent Quote Form Section - Moved Early */}
-      <div id="quote-form" className="bg-accent-lime">
-        <GetQuote />
-      </div>
+    <>
+      <PageHero
+        eyebrow="Get a quote"
+        title="Tell me about"
+        accent="your project"
+        intro="Three quick steps. You’ll get a written quote with scope, timeline and price within 24 hours — no obligation."
+      >
+        <dl className="grid grid-cols-3 gap-6">
+          {PROMISES.map((p) => (
+            <div key={p.v}>
+              <dt className="sr-only">{p.v}</dt>
+              <dd className="font-display text-4xl font-bold tracking-[-0.04em] text-lime">{p.k}</dd>
+              <p className="mt-1 text-sm text-paper/55">{p.v}</p>
+            </div>
+          ))}
+        </dl>
+      </PageHero>
 
-   
-      <Services />
-      <ProjectTypes />
-      <ProcessHowIWork />
-      <PricingPlan />
-      <Testimonials />
-      <FAQ />
-      <QuoteCTA />
-      <Contact />
-    </main>
+      <section className="bg-paper text-ink">
+        <div className="mx-auto max-w-[1100px] px-5 py-20 sm:px-8 sm:py-28">
+          <Suspense fallback={<div className="min-h-[520px] rounded-3xl border border-ink/15" />}>
+            <QuoteWizard />
+          </Suspense>
+        </div>
+      </section>
+
+      <PricingGrid label="Pricing" />
+      <Faq />
+    </>
   );
 }

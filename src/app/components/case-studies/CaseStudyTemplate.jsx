@@ -1,234 +1,144 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { ArrowRight, Check, Facebook, Linkedin, Share2, Twitter } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { ArrowUpRight, Check, Link2, Linkedin, Share2 } from 'lucide-react';
+import { useState } from 'react';
 import ProjectInquirySection from '../ProjectInquirySection';
 
 /**
- * Reusable Case Study Template Component
- * Following TurfNations design structure with floating sidebar and consistent sections
- * 
- * @param {Object} props - Component props
- * @param {Object} props.project - Project data including company, category, timeline, etc.
- * @param {Array} props.navItems - Navigation items for sidebar
- * @param {React.ReactNode} props.heroSection - Custom hero section component
- * @param {React.ReactNode} props.children - Content sections
+ * Case study layout: hero, then a sticky project-details sidebar beside the
+ * content on large screens. All exported building blocks keep their original
+ * props so existing case study pages work unchanged.
  */
-export default function CaseStudyTemplate({ project, navItems = [], heroSection, children }) {
-  const [showSidebar, setShowSidebar] = useState(false);
+export default function CaseStudyTemplate({ project, heroSection, children }) {
+  const [copied, setCopied] = useState(false);
+  const share = (url) => window.open(url, '_blank', 'noopener,noreferrer');
+  const here = () => encodeURIComponent(window.location.href);
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1800);
+    } catch {}
+  };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-
-      // Show sidebar after scrolling past hero (viewport height)
-      const viewportHeight = window.innerHeight;
-      
-      // Hide sidebar when reaching inquiry section
-      const inquirySection = document.querySelector('#project-inquiry-section');
-      if (inquirySection) {
-        const inquiryTop = inquirySection.offsetTop;
-        setShowSidebar(scrollPosition > viewportHeight - 200 && scrollPosition < inquiryTop - 1000);
-      } else {
-        setShowSidebar(scrollPosition > viewportHeight - 200);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Call once on mount
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const rows = [
+    ['Client', project.company],
+    ['Category', project.category],
+    ['Timeline', project.timeline],
+  ].filter(([, v]) => v);
 
   return (
-    <main className="bg-white text-black">
-      {/* Hero Section - Full Width */}
+    <div className="bg-paper text-ink">
       {heroSection}
 
-      {/* Case Study Content with Sidebar */}
-      <div className="relative">
-        {/* Left Sidebar - Project Details (Fixed Position like TurfNations) */}
-        <aside className={`hidden lg:block fixed left-8 top-32 w-72 z-30 transition-opacity duration-300 ${showSidebar ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-          <div className="space-y-6">
-            {/* Project Details Card */}
-            <div className="bg-white border border-gray-200 rounded-2xl p-6 space-y-5 shadow-md hover:shadow-lg transition-all duration-300">
-              {/* Company */}
-              <div>
-                <h3 className="text-xs font-bold text-gray-600 mb-2 uppercase tracking-wide">
-                  COMPANY
-                </h3>
-                <p className="text-xl font-bold text-black">{project.company}</p>
-              </div>
-
-              <div className="h-px bg-gray-200"></div>
-
-              {/* Category */}
-              <div>
-                <h3 className="text-xs font-bold text-gray-600 mb-2 uppercase tracking-wide">
-                  CATEGORY
-                </h3>
-                <p className="text-sm font-semibold text-gray-700 leading-relaxed">{project.category}</p>
-              </div>
-
-              <div className="h-px bg-gray-200"></div>
-
-              {/* Live View */}
-              {project.liveUrl && (
-                <>
-                  <div>
-                    <h3 className="text-xs font-bold text-gray-600 mb-2 uppercase tracking-wide">
-                      LIVE VIEW
-                    </h3>
-                    <a 
-                      href={project.liveUrl} 
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 w-full px-4 py-3 text-sm font-bold text-black bg-accent-lime hover:bg-accent-lime/80 transition-all duration-300 rounded-xl hover:shadow-lg hover:scale-105 group"
-                    >
-                      Visit Website
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </a>
-                  </div>
-                  <div className="h-px bg-gray-200"></div>
-                </>
-              )}
-
-              {/* Timeline */}
-              {project.timeline && (
-                <>
-                  <div>
-                    <h3 className="text-xs font-bold text-gray-600 mb-2 uppercase tracking-wide">
-                      TIMELINE
-                    </h3>
-                    <p className="text-xl font-bold text-black">{project.timeline}</p>
-                  </div>
-                  <div className="h-px bg-gray-200"></div>
-                </>
-              )}
-
-              {/* Services Provided */}
-              {project.services && project.services.length > 0 && (
-                <>
-                  <div>
-                    <h3 className="text-xs font-bold text-gray-600 mb-3 uppercase tracking-wide">
-                      SERVICES WE PROVIDED
-                    </h3>
-                    <div className="space-y-2">
-                      {project.services.map((service, idx) => (
-                        <div key={idx} className="px-3 py-2 bg-gray-50 hover:bg-accent-lime/20 border border-gray-200 hover:border-accent-lime rounded-lg text-xs font-semibold text-black transition-all">
-                          {service}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="h-px bg-gray-200"></div>
-                </>
-              )}
-
-              {/* Share */}
-              <div>
-                <h3 className="text-sm font-bold text-black mb-3">
-                  Share this Case Study:
-                </h3>
-                <div className="flex gap-2">
-                  <button 
-                    onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank')}
-                    className="w-10 h-10 bg-accent-lime hover:bg-accent-lime/80 text-black border-0 rounded-lg flex items-center justify-center transition-all hover:scale-110 shadow-md"
-                    aria-label="Share on Facebook"
-                  >
-                    <Facebook className="w-5 h-5" />
-                  </button>
-                  <button 
-                    onClick={() => window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=Check out this amazing case study!`, '_blank')}
-                    className="w-10 h-10 bg-accent-lime hover:bg-accent-lime/80 text-black border-0 rounded-lg flex items-center justify-center transition-all hover:scale-110 shadow-md"
-                    aria-label="Share on Twitter"
-                  >
-                    <Twitter className="w-5 h-5" />
-                  </button>
-                  <button 
-                    onClick={() => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`, '_blank')}
-                    className="w-10 h-10 bg-accent-lime hover:bg-accent-lime/80 text-black border-0 rounded-lg flex items-center justify-center transition-all hover:scale-110 shadow-md"
-                    aria-label="Share on LinkedIn"
-                  >
-                    <Linkedin className="w-5 h-5" />
-                  </button>
-                  <button 
-                    onClick={() => window.open(`https://wa.me/?text=${encodeURIComponent('Check out this case study! ' + window.location.href)}`, '_blank')}
-                    className="w-10 h-10 bg-accent-lime hover:bg-accent-lime/80 text-black border-0 rounded-lg flex items-center justify-center transition-all hover:scale-110 shadow-md"
-                    aria-label="Share on WhatsApp"
-                  >
-                    <Share2 className="w-5 h-5" />
-                  </button>
+      <div className="mx-auto grid max-w-[1440px] lg:grid-cols-[300px_minmax(0,1fr)] lg:gap-6 lg:px-12">
+        <aside className="hidden lg:block">
+          <div className="sticky top-28 space-y-6 py-24">
+            <dl className="space-y-5 border-t border-ink/15 pt-6">
+              {rows.map(([k, v]) => (
+                <div key={k}>
+                  <dt className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink/50">{k}</dt>
+                  <dd className="mt-1 font-display text-lg font-bold leading-snug tracking-[-0.02em]">{v}</dd>
                 </div>
+              ))}
+            </dl>
+
+            {project.services?.length > 0 && (
+              <div className="border-t border-ink/15 pt-6">
+                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink/50">What I did</p>
+                <ul className="mt-3 flex flex-wrap gap-1.5">
+                  {project.services.map((s) => (
+                    <li key={s} className="rounded-full border border-ink/15 px-3 py-1 text-xs">
+                      {s}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center justify-between rounded-full bg-ink px-5 py-3.5 text-sm font-semibold text-lime"
+              >
+                Visit website
+                <ArrowUpRight className="h-4 w-4 transition-transform duration-500 group-hover:rotate-45" />
+              </a>
+            )}
+
+            <div className="border-t border-ink/15 pt-6">
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink/50">Share</p>
+              <div className="mt-3 flex gap-2">
+                <button type="button" onClick={() => share(`https://www.linkedin.com/sharing/share-offsite/?url=${here()}`)} aria-label="Share on LinkedIn" className="grid h-10 w-10 place-items-center rounded-full border border-ink/15 transition-colors hover:border-ink hover:bg-ink hover:text-lime">
+                  <Linkedin className="h-4 w-4" />
+                </button>
+                <button type="button" onClick={() => share(`https://wa.me/?text=${here()}`)} aria-label="Share on WhatsApp" className="grid h-10 w-10 place-items-center rounded-full border border-ink/15 transition-colors hover:border-ink hover:bg-ink hover:text-lime">
+                  <Share2 className="h-4 w-4" />
+                </button>
+                <button type="button" onClick={copy} aria-label="Copy link" className="grid h-10 w-10 place-items-center rounded-full border border-ink/15 transition-colors hover:border-ink hover:bg-ink hover:text-lime">
+                  {copied ? <Check className="h-4 w-4" /> : <Link2 className="h-4 w-4" />}
+                </button>
               </div>
             </div>
+
+            <Link href="/case-studies" className="block font-mono text-[10px] uppercase tracking-[0.2em] text-ink/50 hover:text-ink">
+              ← All case studies
+            </Link>
           </div>
         </aside>
 
-        {/* Main Content Area - With left margin to accommodate sidebar */}
-        <div className="lg:ml-80 lg:mr-8">
-          {children}
-        </div>
-
-        {/* Project Inquiry Section - Full Width */}
-        <ProjectInquirySection />
+        <div className="min-w-0">{children}</div>
       </div>
-    </main>
+
+      <ProjectInquirySection />
+    </div>
   );
 }
 
-/**
- * Section Component - Reusable content section matching TurfNations layout
- * Use centered={true} for Challenge, Solution, Tech Stack, Results, Impact sections
- * centered={false} or omit for Overview and other sections
- */
-export function CaseStudySection({ id, label, icon: Icon, title, description, bgColor = 'bg-white', children, className = '', centered = false }) {
+/** Generic content section. */
+export function CaseStudySection({ id, label, icon: Icon, title, description, children, className = '', centered = false }) {
   return (
-    <section id={id} className={`py-20 px-4 md:px-6 lg:px-8 ${bgColor} ${className}`}>
-      <div className="max-w-7xl mx-auto">
-        {(label || title) && (
-          <div className={`${centered ? 'text-center mb-16' : 'mb-12'}`}>
-            {label && Icon && (
-              <div className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
-                <Icon className="w-4 h-4" />
-                {label}
-              </div>
-            )}
-            {title && (
-              <h2 className="text-4xl md:text-5xl font-extrabold mb-6">{title}</h2>
-            )}
-            {description && (
-              <p className={`text-lg text-gray-600 leading-relaxed ${centered ? 'max-w-4xl mx-auto' : ''}`}>
-                {description}
-              </p>
-            )}
-          </div>
-        )}
-        {children}
-      </div>
+    <section id={id} className={`px-5 py-20 sm:px-8 sm:py-24 lg:px-10 ${className}`}>
+      {(label || title) && (
+        <div className={centered ? 'mx-auto mb-14 max-w-4xl text-center' : 'mb-12'}>
+          {label && (
+            <p data-reveal className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-ink/50">
+              {Icon && <Icon className="h-3.5 w-3.5" />}
+              {label}
+            </p>
+          )}
+          {title && (
+            <h2 data-reveal className="mt-4 font-display text-[clamp(32px,4.2vw,60px)] font-extrabold leading-[0.95] tracking-[-0.045em]">
+              {title}
+            </h2>
+          )}
+          {description && (
+            <p data-reveal className={`mt-6 text-lg leading-relaxed text-ink/70 ${centered ? 'mx-auto max-w-3xl' : 'max-w-3xl'}`}>
+              {description}
+            </p>
+          )}
+        </div>
+      )}
+      {children}
     </section>
   );
 }
 
-/**
- * Feature Grid Component - For cards layout
- */
+/** Cards grid. */
 export function FeatureGrid({ features }) {
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {features.map((feature, idx) => {
-        const Icon = feature.icon;
+    <div className="grid gap-px overflow-hidden rounded-3xl bg-ink/10 md:grid-cols-2 xl:grid-cols-3">
+      {features.map((f, i) => {
+        const Icon = f.icon;
         return (
-          <div key={idx} className="p-6 bg-gray-50 hover:bg-accent-lime/10 rounded-2xl border-2 border-gray-200 hover:border-accent-lime transition-all duration-300">
-            {Icon && (
-              <div className="w-12 h-12 bg-accent-lime rounded-xl flex items-center justify-center mb-4">
-                <Icon className="w-6 h-6 text-black" />
-              </div>
-            )}
-            <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
-            <p className="text-gray-600">{feature.description}</p>
+          <div key={i} data-reveal className="group bg-paper p-7 transition-colors duration-500 hover:bg-ink hover:text-paper">
+            {Icon && <Icon className="h-6 w-6 text-ink/50 transition-colors group-hover:text-lime" />}
+            <h3 className="mt-6 font-display text-xl font-bold tracking-[-0.02em]">{f.title}</h3>
+            <p className="mt-2 leading-relaxed text-ink/65 transition-colors group-hover:text-paper/65">{f.description}</p>
           </div>
         );
       })}
@@ -236,256 +146,101 @@ export function FeatureGrid({ features }) {
   );
 }
 
-/**
- * Image + Content Grid - Rounded Container (TurfNations Pattern #3)
- * Use INSIDE CaseStudySection with centered header
- * @param {string} containerClass - Default: 'bg-gray-50 rounded-3xl overflow-hidden mb-16'
- */
-export function ImageContentGrid({ 
-  image, 
-  imageAlt, 
-  badge, 
-  badgeIcon: BadgeIcon, 
-  title, 
-  description, 
-  features = [], 
-  imagePosition = 'left',
-  containerClass = 'bg-gray-50 rounded-3xl overflow-hidden mb-16'
-}) {
+function FeatureList({ features }) {
+  if (!features.length) return null;
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className={`grid lg:grid-cols-2 gap-0 items-stretch ${containerClass} transition-all duration-500 hover:shadow-xl`}
-    >
-      <motion.div 
-        initial={{ opacity: 0, x: imagePosition === 'left' ? -30 : 30 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7, delay: 0.2 }}
-        className={`w-full flex items-center justify-center p-8 lg:p-16 bg-gradient-to-br from-white to-gray-100 ${imagePosition === 'right' ? 'order-1 lg:order-2' : ''}`}
-      >
-        <div className="relative w-full h-full flex items-center justify-center">
-          {/* Decorative background element */}
-          <div className="absolute inset-0 bg-accent-lime/5 rounded-2xl"></div>
-          
-          {/* Image container */}
-          <div className="relative z-10 w-full flex items-center justify-center">
-            <Image
-              src={image}
-              alt={imageAlt}
-              width={2000}
-              height={2000}
-              className="w-full h-auto max-h-[600px] object-contain rounded-xl transition-transform duration-500 hover:scale-[1.02]"
-            />
-          </div>
-        </div>
-      </motion.div>
-
-      <motion.div 
-        initial={{ opacity: 0, x: imagePosition === 'left' ? 30 : -30 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7, delay: 0.3 }}
-        className={`p-8 md:p-12 flex flex-col justify-center ${imagePosition === 'right' ? 'order-2 lg:order-1' : ''}`}
-      >
-        {badge && BadgeIcon && (
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6"
-          >
-            <BadgeIcon className="w-4 h-4" />
-            {badge}
-          </motion.div>
-        )}
-        <motion.h3 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="text-3xl md:text-4xl font-extrabold mb-4"
-        >
-          {title}
-        </motion.h3>
-        <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-lg text-gray-600 mb-8"
-        >
-          {description}
-        </motion.p>
-
-        {features.length > 0 && (
-          <div className="space-y-4">
-            {features.map((feature, idx) => {
-              const Icon = feature.icon;
-              return (
-                <motion.div 
-                  key={idx}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.7 + (idx * 0.1) }}
-                  className="flex items-start gap-4 p-4 rounded-xl hover:bg-white/50 transition-all duration-300 group"
-                >
-                  <div className="w-12 h-12 bg-accent-lime rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-md">
-                    {Icon && <Icon className="w-6 h-6 text-black" />}
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="text-lg font-bold mb-1 group-hover:text-accent-lime transition-colors">{feature.title}</h4>
-                    <p className="text-gray-600 text-sm leading-relaxed">{feature.description}</p>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        )}
-      </motion.div>
-    </motion.div>
+    <ul className="mt-8 divide-y divide-ink/10 border-y border-ink/10">
+      {features.map((f, i) => {
+        const Icon = f.icon;
+        return (
+          <li key={i} className="flex gap-4 py-4">
+            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-ink text-lime">
+              {Icon ? <Icon className="h-4 w-4" /> : <Check className="h-4 w-4" />}
+            </span>
+            <div>
+              <h4 className="font-semibold">{f.title}</h4>
+              <p className="mt-1 text-[15px] leading-relaxed text-ink/65">{f.description}</p>
+            </div>
+          </li>
+        );
+      })}
+    </ul>
   );
 }
 
-/**
- * Full Width Image + Content (TurfNations Pattern #4)
- * No rounded container, direct grid split
- * Uses larger icons (w-12 h-12) and titles (text-4xl md:text-5xl)
- */
-export function FullWidthImageContent({
-  image,
-  imageAlt,
-  badge,
-  badgeIcon: BadgeIcon,
-  title,
-  description,
-  features = [],
-  imagePosition = 'left',
-  bgColor = 'bg-white'
-}) {
+/** Image beside text, inside a rounded panel. */
+export function ImageContentGrid({ image, imageAlt, badge, badgeIcon: BadgeIcon, title, description, features = [], imagePosition = 'left' }) {
+  const right = imagePosition === 'right';
   return (
-    <section className={`py-20 ${bgColor} transition-all duration-500`}>
-      <motion.div 
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="grid lg:grid-cols-2 gap-0 items-stretch"
-      >
-        <motion.div 
-          initial={{ opacity: 0, x: imagePosition === 'left' ? -30 : 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className={`w-full flex items-center justify-center p-8 lg:p-16 ${imagePosition === 'right' ? 'order-1 lg:order-2 bg-gradient-to-bl from-gray-50 to-white' : 'bg-gradient-to-br from-gray-50 to-white'}`}
-        >
-          <div className="relative w-full h-full flex items-center justify-center">
-            {/* Decorative elements */}
-            <div className="absolute inset-0 bg-accent-lime/5 rounded-3xl"></div>
-            <div className="absolute top-4 right-4 w-32 h-32 bg-accent-lime/10 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-4 left-4 w-32 h-32 bg-accent-lime/10 rounded-full blur-3xl"></div>
-            
-            {/* Image container */}
-            <div className="relative z-10 w-full flex items-center justify-center">
-              <Image
-                src={image}
-                alt={imageAlt}
-                width={1410}
-                height={1182}
-                className="w-full h-auto max-h-[600px] object-contain rounded-2xl transition-transform duration-500 hover:scale-[1.02]"
-              />
-            </div>
-          </div>
-        </motion.div>
-
-        <motion.div 
-          initial={{ opacity: 0, x: imagePosition === 'left' ? 30 : -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.3 }}
-          className={`px-8 md:px-12 lg:px-16 py-12 flex flex-col justify-center ${imagePosition === 'right' ? 'order-2 lg:order-1' : ''}`}
-        >
-          {badge && BadgeIcon && (
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="inline-flex items-center gap-2 px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6"
-            >
-              <BadgeIcon className="w-4 h-4" />
-              {badge}
-            </motion.div>
-          )}
-          <motion.h3 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="text-4xl md:text-5xl font-extrabold mb-6"
-          >
-            {title}
-          </motion.h3>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="text-lg text-gray-600 leading-relaxed mb-8"
-          >
+    <div className="mb-10 grid items-stretch overflow-hidden rounded-3xl border border-ink/10 bg-white lg:grid-cols-2">
+      <div data-reveal="scale" className={`flex items-center justify-center bg-[#ebe8df] p-6 sm:p-10 ${right ? 'lg:order-2' : ''}`}>
+        <Image src={image} alt={imageAlt || title} width={1600} height={1600} sizes="(min-width: 1024px) 40vw, 100vw" className="h-auto max-h-[560px] w-full rounded-xl object-contain" />
+      </div>
+      <div className={`flex flex-col justify-center p-7 sm:p-10 ${right ? 'lg:order-1' : ''}`}>
+        {badge && (
+          <p data-reveal className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-ink/50">
+            {BadgeIcon && <BadgeIcon className="h-3.5 w-3.5" />}
+            {badge}
+          </p>
+        )}
+        <h3 data-reveal className="mt-3 font-display text-3xl font-bold leading-tight tracking-[-0.035em] sm:text-4xl">
+          {title}
+        </h3>
+        {description && (
+          <p data-reveal className="mt-4 text-lg leading-relaxed text-ink/70">
             {description}
-          </motion.p>
+          </p>
+        )}
+        <div data-reveal>
+          <FeatureList features={features} />
+        </div>
+      </div>
+    </div>
+  );
+}
 
-          {features.length > 0 && (
-            <div className="space-y-4">
-              {features.map((feature, idx) => {
-                const Icon = feature.icon;
-                return (
-                  <motion.div 
-                    key={idx}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.7 + (idx * 0.1) }}
-                    className="flex items-start gap-4 p-5 rounded-2xl bg-gray-50 hover:bg-accent-lime/10 border border-gray-200 hover:border-accent-lime/30 transition-all duration-300 group"
-                  >
-                    <div className="w-14 h-14 bg-accent-lime rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300 shadow-md">
-                      {Icon && <Icon className="w-7 h-7 text-black" />}
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="text-xl font-bold mb-2 group-hover:text-accent-lime transition-colors">{feature.title}</h4>
-                      <p className="text-gray-600 leading-relaxed">{feature.description}</p>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          )}
-        </motion.div>
-      </motion.div>
+/** Full-width image + text split (no panel). */
+export function FullWidthImageContent({ image, imageAlt, badge, badgeIcon: BadgeIcon, title, description, features = [], imagePosition = 'left' }) {
+  const right = imagePosition === 'right';
+  return (
+    <section className="grid items-center gap-10 px-5 py-16 sm:px-8 lg:grid-cols-2 lg:px-10">
+      <div data-reveal="scale" className={`overflow-hidden rounded-3xl bg-[#ebe8df] p-6 sm:p-10 ${right ? 'lg:order-2' : ''}`}>
+        <Image src={image} alt={imageAlt || title} width={1410} height={1182} sizes="(min-width: 1024px) 40vw, 100vw" className="h-auto max-h-[600px] w-full rounded-xl object-contain" />
+      </div>
+      <div className={right ? 'lg:order-1' : ''}>
+        {badge && (
+          <p data-reveal className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-ink/50">
+            {BadgeIcon && <BadgeIcon className="h-3.5 w-3.5" />}
+            {badge}
+          </p>
+        )}
+        <h3 data-reveal className="mt-3 font-display text-[clamp(30px,3.6vw,52px)] font-extrabold leading-[0.98] tracking-[-0.04em]">
+          {title}
+        </h3>
+        {description && (
+          <p data-reveal className="mt-5 text-lg leading-relaxed text-ink/70">
+            {description}
+          </p>
+        )}
+        <div data-reveal>
+          <FeatureList features={features} />
+        </div>
+      </div>
     </section>
   );
 }
 
-/**
- * Tech Stack Component
- */
+/** Tech stack by category. */
 export function TechStack({ technologies }) {
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {Object.entries(technologies).map(([category, techs]) => (
-        <div key={category} className="p-6 bg-gray-50 rounded-2xl border-2 border-gray-200">
-          <h3 className="text-lg font-bold mb-4 text-accent-lime">{category}</h3>
-          <ul className="space-y-2">
-            {techs.map((tech, idx) => (
-              <li key={idx} className="flex items-center gap-2 text-sm text-gray-700">
-                <div className="w-1.5 h-1.5 bg-accent-lime rounded-full" />
-                {tech}
+    <div className="divide-y divide-ink/10 border-y border-ink/10">
+      {Object.entries(technologies).map(([cat, techs]) => (
+        <div key={cat} data-reveal className="grid gap-3 py-6 sm:grid-cols-[200px_1fr]">
+          <h3 className="font-display text-lg font-bold">{cat}</h3>
+          <ul className="flex flex-wrap gap-2">
+            {techs.map((t) => (
+              <li key={t} className="rounded-full border border-ink/15 px-3 py-1 text-sm text-ink/80">
+                {t}
               </li>
             ))}
           </ul>
@@ -495,20 +250,17 @@ export function TechStack({ technologies }) {
   );
 }
 
-/**
- * Metrics Grid Component (TurfNations Pattern #7)
- * 4-column grid with lime cards
- */
+/** Big numbers. */
 export function MetricsGrid({ metrics }) {
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-      {metrics.map((metric, idx) => {
-        const Icon = metric.icon;
+    <div className="grid grid-cols-2 gap-px overflow-hidden rounded-3xl bg-ink/15 lg:grid-cols-4">
+      {metrics.map((m, i) => {
+        const Icon = m.icon;
         return (
-          <div key={idx} className="bg-accent-lime p-8 rounded-3xl text-center shadow-lg hover:shadow-2xl hover:scale-105 transition-all">
-            {Icon && <Icon className="w-12 h-12 mx-auto mb-4 text-black" />}
-            <div className="text-5xl font-extrabold mb-2">{metric.value}</div>
-            <p className="text-black/80 font-bold">{metric.label}</p>
+          <div key={i} data-reveal className="bg-ink p-7 text-paper sm:p-8">
+            {Icon && <Icon className="h-5 w-5 text-lime" />}
+            <div className="mt-8 font-display text-[clamp(36px,4vw,60px)] font-bold leading-none tracking-[-0.05em]">{m.value}</div>
+            <p className="mt-2 text-sm text-paper/60">{m.label}</p>
           </div>
         );
       })}
@@ -516,49 +268,39 @@ export function MetricsGrid({ metrics }) {
   );
 }
 
-/**
- * Image Showcase Grid (TurfNations Pattern #7)
- * 2-column grid with gray cards
- */
+/** Two-up captioned screenshots. */
 export function ImageShowcaseGrid({ items }) {
   return (
-    <div className="grid md:grid-cols-2 gap-8">
-      {items.map((item, idx) => (
-        <div key={idx} className="bg-gray-50 p-6 rounded-3xl border-2 border-gray-100">
-          <h3 className="text-xl font-extrabold mb-4">{item.title}</h3>
-          <div className="rounded-xl overflow-hidden mb-4">
-            <Image
-              src={item.image}
-              alt={item.alt}
-              width={2000}
-              height={2000}
-              className="w-full h-auto"
-            />
+    <div className="grid gap-6 md:grid-cols-2">
+      {items.map((it, i) => (
+        <figure key={i} data-reveal className="overflow-hidden rounded-3xl border border-ink/10 bg-white">
+          <div className="bg-[#ebe8df] p-5">
+            <Image src={it.image} alt={it.alt || it.title} width={1600} height={1600} sizes="(min-width: 768px) 35vw, 100vw" className="h-auto w-full rounded-xl" />
           </div>
-          <p className="text-sm text-gray-600">{item.caption}</p>
-        </div>
+          <figcaption className="p-6">
+            <h3 className="font-display text-xl font-bold tracking-[-0.02em]">{it.title}</h3>
+            {it.caption && <p className="mt-2 text-[15px] text-ink/65">{it.caption}</p>}
+          </figcaption>
+        </figure>
       ))}
     </div>
   );
 }
 
-/**
- * Business Impact Cards (TurfNations Pattern #8)
- * Benefits for different user types
- */
+/** Benefits per audience. */
 export function BusinessImpactCards({ cards }) {
   return (
-    <div className="grid md:grid-cols-2 gap-8">
-      {cards.map((card, idx) => (
-        <div key={idx} className="bg-white p-8 rounded-3xl shadow-lg border-2 border-gray-100">
-          <h3 className="text-2xl font-extrabold mb-6">{card.title}</h3>
-          <ul className="space-y-4">
-            {card.benefits.map((benefit, benefitIdx) => (
-              <li key={benefitIdx} className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-accent-lime rounded-full flex items-center justify-center shrink-0 mt-0.5">
-                  <Check className="w-4 h-4 text-black" />
-                </div>
-                <span className="text-gray-700 leading-relaxed">{benefit}</span>
+    <div className="grid gap-6 md:grid-cols-2">
+      {cards.map((c, i) => (
+        <div key={i} data-reveal className="rounded-3xl border border-ink/10 bg-white p-8">
+          <h3 className="font-display text-2xl font-bold tracking-[-0.03em]">{c.title}</h3>
+          <ul className="mt-6 space-y-3">
+            {c.benefits.map((b, j) => (
+              <li key={j} className="flex items-start gap-3">
+                <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-lime">
+                  <Check className="h-3 w-3 text-ink" />
+                </span>
+                <span className="leading-relaxed text-ink/75">{b}</span>
               </li>
             ))}
           </ul>
@@ -568,19 +310,16 @@ export function BusinessImpactCards({ cards }) {
   );
 }
 
-/**
- * Key Achievements Card (TurfNations Pattern #8)
- * Lime background with 3-column stats
- */
+/** Lime highlight with three key numbers. */
 export function KeyAchievementsCard({ achievements }) {
   return (
-    <div className="bg-accent-lime p-8 rounded-3xl">
-      <h3 className="text-2xl font-extrabold mb-6 text-center">Key Achievements</h3>
-      <div className="grid md:grid-cols-3 gap-6">
-        {achievements.map((achievement, idx) => (
-          <div key={idx} className="text-center">
-            <div className="text-4xl font-extrabold mb-2">{achievement.value}</div>
-            <p className="text-black/80 font-medium">{achievement.label}</p>
+    <div data-reveal className="mt-6 rounded-3xl bg-lime p-8 sm:p-10">
+      <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink/60">Key achievements</p>
+      <div className="mt-6 grid gap-6 sm:grid-cols-3">
+        {achievements.map((a, i) => (
+          <div key={i}>
+            <div className="font-display text-5xl font-bold tracking-[-0.05em]">{a.value}</div>
+            <p className="mt-1 text-ink/70">{a.label}</p>
           </div>
         ))}
       </div>
@@ -588,68 +327,53 @@ export function KeyAchievementsCard({ achievements }) {
   );
 }
 
-/**
- * CTA Section (TurfNations Pattern #9)
- */
+/** Closing call to action. */
 export function CTASection({ title, subtitle, primaryButton, secondaryButton }) {
   return (
-    <section className="py-20 px-4 md:px-6 lg:px-8 bg-accent-lime">
-      <div className="max-w-7xl mx-auto text-center">
-        <h2 className="text-4xl md:text-5xl font-extrabold mb-6">{title}</h2>
-        <p className="text-xl text-black/80 mb-10 font-medium">{subtitle}</p>
-        <div className="flex flex-wrap justify-center gap-4">
-          {primaryButton && (
-            <Link
-              href={primaryButton.href}
-              className="px-10 py-5 bg-black text-accent-lime rounded-xl font-extrabold hover:shadow-2xl transition-all hover:scale-105"
-            >
-              {primaryButton.text}
-            </Link>
-          )}
-          {secondaryButton && (
-            <Link
-              href={secondaryButton.href}
-              className="px-10 py-5 border-2 border-black text-black rounded-xl font-extrabold hover:bg-black hover:text-accent-lime transition-all"
-            >
-              {secondaryButton.text}
-            </Link>
-          )}
-        </div>
+    <section className="mx-5 my-16 rounded-3xl bg-ink px-8 py-16 text-paper sm:mx-8 sm:px-12 lg:mx-10">
+      <h2 data-reveal className="max-w-3xl font-display text-[clamp(32px,4.5vw,64px)] font-extrabold leading-[0.95] tracking-[-0.045em]">
+        {title}
+      </h2>
+      {subtitle && (
+        <p data-reveal className="mt-5 max-w-2xl text-lg text-paper/65">
+          {subtitle}
+        </p>
+      )}
+      <div data-reveal className="mt-10 flex flex-wrap gap-3">
+        {primaryButton && (
+          <Link href={primaryButton.href} className="inline-flex items-center gap-2 rounded-full bg-lime px-7 py-4 text-sm font-semibold text-ink transition-colors hover:bg-paper">
+            {primaryButton.text} <ArrowUpRight className="h-4 w-4" />
+          </Link>
+        )}
+        {secondaryButton && (
+          <Link href={secondaryButton.href} className="inline-flex items-center rounded-full border border-white/20 px-7 py-4 text-sm font-semibold transition-colors hover:border-paper">
+            {secondaryButton.text}
+          </Link>
+        )}
       </div>
     </section>
   );
 }
 
-/**
- * Overview Section (TurfNations Pattern #1)
- * Simple text content with optional image below
- */
+/** Simple overview text + optional image. */
 export function OverviewSection({ title, paragraphs, image, imageAlt }) {
   return (
-    <section id="overview" className="py-20 px-4 md:px-6 lg:px-8 bg-gray-50">
-      <div className="max-w-7xl mx-auto">
-        <div className="space-y-12">
-          <div className="max-w-7xl">
-            <h2 className="text-4xl font-extrabold mb-6">{title}</h2>
-            {paragraphs.map((paragraph, idx) => (
-              <p key={idx} className={`text-lg text-gray-700 leading-relaxed font-medium ${idx < paragraphs.length - 1 ? 'mb-6' : ''}`}>
-                {paragraph}
-              </p>
-            ))}
-          </div>
-          
-          {image && (
-            <div className="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border border-gray-200">
-              <Image
-                src={image}
-                alt={imageAlt}
-                fill
-                className="object-contain"
-              />
-            </div>
-          )}
-        </div>
+    <section id="overview" className="px-5 py-20 sm:px-8 sm:py-24 lg:px-10">
+      <h2 data-reveal className="font-display text-[clamp(32px,4.2vw,60px)] font-extrabold leading-[0.95] tracking-[-0.045em]">
+        {title}
+      </h2>
+      <div className="mt-8 max-w-3xl space-y-5">
+        {paragraphs.map((p, i) => (
+          <p key={i} data-reveal className="text-lg leading-relaxed text-ink/70">
+            {p}
+          </p>
+        ))}
       </div>
+      {image && (
+        <div data-reveal="scale" className="relative mt-12 aspect-video overflow-hidden rounded-3xl border border-ink/10 bg-white">
+          <Image src={image} alt={imageAlt || title} fill sizes="(min-width: 1024px) 70vw, 100vw" className="object-contain" />
+        </div>
+      )}
     </section>
   );
 }

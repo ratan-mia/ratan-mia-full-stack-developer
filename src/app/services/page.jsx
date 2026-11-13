@@ -1,25 +1,42 @@
-import Contact from '@/components/home/Contact';
-import GetQuote from '@/components/home/GetQuote';
-import ServicesGrid from '@/components/services/ServicesGrid';
-import ServicesHero from '@/components/services/ServicesHero';
-import ServicesPricing from '@/components/services/ServicesPricing';
-import ServicesProcess from '@/components/services/ServicesProcess';
+import CtaBand from '@/components/site/CtaBand';
+import Faq from '@/components/site/Faq';
+import PageHero from '@/components/site/PageHero';
+import PricingGrid from '@/components/site/PricingGrid';
+import SectionHead from '@/components/site/SectionHead';
+import ProcessSteps from '@/components/services/ProcessSteps';
+import ServiceList from '@/components/services/ServiceList';
 
 export const metadata = {
-  title: 'Mobile & Web Development Services - Ratan Mia | Full Stack Solutions',
-  description: 'Professional mobile app and web development services including React Native apps, Next.js development, Laravel APIs, e-commerce solutions, and custom applications.',
-  keywords: 'mobile app development, React Native, web development services, React development, Laravel development, e-commerce, custom web applications',
+  title: 'Services',
+  description:
+    'Mobile apps, full-stack web apps and SaaS, Shopify and headless commerce, WhatsApp & AI automation, WordPress and IT management by Ratan Mia.',
+  alternates: { canonical: '/services' },
 };
 
 export default function ServicesPage() {
   return (
-    <main className="bg-white text-black overflow-hidden">
-      <ServicesHero />
-      <ServicesGrid />
-      <ServicesProcess />
-      <ServicesPricing />
-      <GetQuote />
-      <Contact />
-    </main>
+    <>
+      <PageHero
+        eyebrow="Services"
+        title="What I can"
+        accent="build for you"
+        meta={['Remote-friendly', 'Fixed or capped pricing']}
+        intro="From a single landing page to a full product with mobile apps, admin panels and the servers underneath — one person accountable for the whole thing."
+      />
+
+      <section className="bg-paper text-ink">
+        <div className="mx-auto max-w-[1440px] px-5 py-24 sm:px-8 sm:py-32 lg:px-12">
+          <SectionHead label="(01) — Capabilities" title="Seven ways" accent="I help" />
+          <div className="mt-16">
+            <ServiceList />
+          </div>
+        </div>
+      </section>
+
+      <ProcessSteps />
+      <PricingGrid label="(03) — Pricing" />
+      <Faq label="(04) — FAQ" />
+      <CtaBand />
+    </>
   );
 }

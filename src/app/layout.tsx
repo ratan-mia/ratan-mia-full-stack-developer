@@ -1,5 +1,6 @@
 import Footer from "@/app/components/Footer";
 import Header from "@/app/components/Header";
+import AutoReveal from "@/app/components/motion/AutoReveal";
 import Cursor from "@/app/components/motion/Cursor";
 import SmoothScroll from "@/app/components/motion/SmoothScroll";
 import type { Metadata, Viewport } from "next";
@@ -93,6 +94,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
       <body className="bg-ink font-sans text-white antialiased selection:bg-lime selection:text-black overflow-x-hidden">
         <SmoothScroll />
+        <AutoReveal />
         <Cursor />
         <Header />
         <main className="min-h-screen">{children}</main>

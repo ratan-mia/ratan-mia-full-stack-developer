@@ -1,400 +1,175 @@
-'use client';
-
-import Skills from '@/app/components/home/Skills';
-import TrainingCertificates from '@/app/components/home/TrainingCertificates';
-import { motion } from 'framer-motion';
-import { Award, Code, Heart, Sparkles, Target, TrendingUp, Users } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowUpRight } from 'lucide-react';
+import CtaBand from '@/components/site/CtaBand';
+import PageHero from '@/components/site/PageHero';
+import SectionHead from '@/components/site/SectionHead';
+import Journey from '@/components/about/Journey';
+import { CERTIFICATIONS, PROFILE, PROJECTS, STATS } from '@/app/data/site';
+import { EDUCATION, SKILL_GROUPS, VALUES } from '@/app/data/pages';
+
+export const metadata = {
+  title: 'About',
+  description:
+    'Ratan Mia is a full-stack and mobile engineer and IT manager in Dhaka with 10+ years building SaaS products, React Native apps and commerce platforms.',
+  alternates: { canonical: '/about' },
+};
+
+const FEATURED = ['nextpilot', 'turflet', 'elf'];
 
 export default function AboutPage() {
+  const featured = PROJECTS.filter((p) => FEATURED.includes(p.id));
+
   return (
-    <main className="bg-white text-black overflow-hidden">
-      
-      {/* Hero Section - Following Design Guidelines */}
-      <section className="relative min-h-screen w-full overflow-hidden bg-accent-lime">
-        {/* Decorative elements - desktop only */}
-        <div className="absolute inset-0 z-10 pointer-events-none hidden lg:block">
-          <div className="absolute top-20 left-20 w-32 h-32 rounded-full bg-black/5 animate-pulse" />
-          <div className="absolute bottom-40 right-20 w-24 h-24 rounded-2xl bg-black/5 animate-pulse" style={{ animationDelay: '1s' }} />
-        </div>
+    <>
+      <PageHero
+        eyebrow="About"
+        title="Engineer with an"
+        accent="IT manager’s habits"
+        meta={[PROFILE.location, '10+ years', 'IBM certified']}
+        intro="I’m Ratan — I build web, mobile and commerce products end-to-end, and I’ve spent a decade keeping the servers, vendors and budgets behind them in order."
+      />
 
-        {/* Main content */}
-        <div className="relative z-20 min-h-screen flex items-center">
-          <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-32 w-full">
-            {/* Badge */}
-            <div className="inline-block px-6 py-2 bg-black/15 text-black rounded-full text-sm font-extrabold mb-6">
-              👋 ABOUT ME
+      {/* Story */}
+      <section className="bg-paper text-ink">
+        <div className="mx-auto grid max-w-[1440px] grid-cols-12 gap-x-4 gap-y-12 px-5 py-24 sm:px-8 sm:py-32 lg:px-12">
+          <div className="col-span-12 sm:col-span-6 lg:col-span-5">
+            <div data-reveal="scale" className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-ink/5">
+              <Image src="/images/hero-image.png" alt="Ratan Mia" fill sizes="(min-width: 1024px) 40vw, (min-width: 640px) 50vw, 100vw" className="object-cover object-[50%_25%]" priority />
+            </div>
+          </div>
+          <div className="col-span-12 flex flex-col justify-between gap-12 sm:col-span-6 lg:col-span-6 lg:col-start-7">
+            <div className="space-y-6 text-lg leading-relaxed text-ink/75 sm:text-xl">
+              <p data-reveal className="font-display text-[clamp(26px,3vw,40px)] font-semibold leading-[1.15] tracking-[-0.03em] text-ink">
+                I started building websites in 2015. Ten years and 150+ projects later, I still enjoy the moment a product goes live.
+              </p>
+              <p data-reveal>
+                My work sits where software meets operations. I’ve led a 15-person development team, run IT for an
+                automotive group, built 100+ Shopify stores — including one doing around $13M a year — and shipped
+                mobile apps used every day by mechanics, retailers and car owners.
+              </p>
+              <p data-reveal>
+                Today I consult for the Asian Automotive group and build my own products:{' '}
+                <span className="font-serif text-2xl italic text-ink">NextPilot Chat</span>, a WhatsApp-first CRM;{' '}
+                <span className="font-serif text-2xl italic text-ink">TurfLet</span>, a sports-venue marketplace; and{' '}
+                <span className="font-serif text-2xl italic text-ink">PieQR</span>, white-label loyalty infrastructure.
+              </p>
+              <p data-reveal>
+                I studied English at the University of Dhaka, which turns out to be useful: most software problems are
+                communication problems first.
+              </p>
             </div>
 
-            {/* Hero Title */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight text-black">
-              Building Digital<br />
-              <span className="text-black/70">Experiences</span>
-            </h1>
-            
-            {/* Description */}
-            <p className="text-xl md:text-2xl text-black/80 mb-12 max-w-3xl font-medium leading-relaxed">
-              I'm Ratan Mia, a passionate full stack developer with 10+ years of experience 
-              crafting scalable web and mobile applications that drive business growth and user satisfaction.
-            </p>
-
-            {/* Stats Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 mb-12 max-w-4xl">
-              {[
-                { value: '50+', label: 'Projects', icon: Code },
-                { value: '35+', label: 'Clients', icon: Users },
-                { value: '10+', label: 'Years', icon: Award },
-                { value: '98%', label: 'Success', icon: TrendingUp }
-              ].map((stat, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.2 + i * 0.1 }}
-                  className="text-center p-6 bg-black/10 rounded-xl backdrop-blur-sm"
-                >
-                  <stat.icon className="w-8 h-8 mx-auto mb-3 text-black" />
-                  <div className="text-3xl md:text-4xl font-extrabold mb-1 text-black">{stat.value}</div>
-                  <div className="text-sm font-bold text-black/70">{stat.label}</div>
-                </motion.div>
+            <dl className="grid grid-cols-2 gap-x-4 gap-y-8 border-t border-ink/15 pt-10 sm:grid-cols-4">
+              {STATS.map((s) => (
+                <div key={s.label} data-reveal>
+                  <dd className="font-display text-5xl font-bold tracking-[-0.05em]">
+                    {s.prefix}
+                    {s.value}
+                    <span className="text-ink/30">{s.suffix}</span>
+                  </dd>
+                  <dt className="mt-2 text-sm text-ink/60">{s.label}</dt>
+                </div>
               ))}
-            </div>
+            </dl>
           </div>
         </div>
       </section>
 
-      {/* Story Section - My Journey */}
-      <section className="px-4 md:px-6 lg:px-8 py-24 md:py-32 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="text-center mb-16">
-              <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
-                📖 MY JOURNEY
+      <Journey />
+
+      {/* Values */}
+      <section className="bg-paper text-ink">
+        <div className="mx-auto max-w-[1440px] px-5 py-24 sm:px-8 sm:py-32 lg:px-12">
+          <SectionHead label="(02) — How I work" title="What I" accent="care about" />
+          <div className="mt-16 grid gap-px overflow-hidden rounded-3xl bg-ink/10 sm:grid-cols-2">
+            {VALUES.map((v, i) => (
+              <article key={v.title} data-reveal className="group bg-paper p-8 transition-colors duration-500 hover:bg-ink hover:text-paper sm:p-12">
+                <span className="font-mono text-sm text-ink/40 transition-colors group-hover:text-lime">{String(i + 1).padStart(2, '0')}</span>
+                <h3 className="mt-10 font-display text-3xl font-bold tracking-[-0.03em] sm:text-4xl">{v.title}</h3>
+                <p className="mt-4 max-w-md text-lg leading-relaxed text-ink/65 transition-colors group-hover:text-paper/65">{v.body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Skills */}
+      <section className="bg-ink text-paper">
+        <div className="mx-auto max-w-[1440px] px-5 py-24 sm:px-8 sm:py-32 lg:px-12">
+          <SectionHead tone="dark" label="(03) — Toolkit" title="Tools I" accent="reach for" />
+          <div className="mt-16 divide-y divide-white/10 border-y border-white/10">
+            {SKILL_GROUPS.map((g) => (
+              <div key={g.group} data-reveal className="grid grid-cols-12 gap-x-4 gap-y-4 py-8">
+                <h3 className="col-span-12 font-display text-2xl font-bold tracking-[-0.03em] lg:col-span-3">{g.group}</h3>
+                <ul className="col-span-12 flex flex-wrap gap-2 lg:col-span-9">
+                  {g.items.map((s) => (
+                    <li key={s} className="rounded-full border border-white/15 px-4 py-2 text-sm text-paper/80 transition-colors hover:border-lime hover:text-lime">
+                      {s}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight">
-                The Story Behind the Code
-              </h2>
-              <p className="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto font-medium">
-                From building my first website to delivering enterprise solutions for global brands
-              </p>
-            </div>
-            
-            <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
-              {[
-                {
-                  title: "The Beginning",
-                  icon: "🌱",
-                  year: "2015",
-                  highlight: "First E-commerce Site",
-                  content: "Started my journey in web development during college. Built my first e-commerce website and discovered my passion for creating digital solutions that solve real problems.",
-                  achievement: "Learned PHP, MySQL & JavaScript",
-                  bgColor: "bg-accent-lime",
-                  textColor: "text-black",
-                  badgeBg: "bg-black/15",
-                  borderColor: "border-black/10"
-                },
-                {
-                  title: "Professional Growth",
-                  icon: "🚀",
-                  year: "2016-2020",
-                  highlight: "50+ Projects Delivered",
-                  content: "Worked with 30+ clients ranging from startups to established brands. Delivered mobile apps, SaaS platforms, and enterprise systems across multiple industries.",
-                  achievement: "Mastered React, React Native & Node.js",
-                  bgColor: "bg-accent-orange",
-                  textColor: "text-white",
-                  badgeBg: "bg-white/20",
-                  borderColor: "border-white/10"
-                },
-                {
-                  title: "Current Focus",
-                  icon: "🎯",
-                  year: "2021-Present",
-                  highlight: "Building Products",
-                  content: "Building innovative products like Gamify, TurfLet, and automotive ecosystems. Focused on React Native, Next.js, and scalable cloud architectures.",
-                  achievement: "Leading full-stack development",
-                  bgColor: "bg-black",
-                  textColor: "text-white",
-                  badgeBg: "bg-accent-lime/20",
-                  borderColor: "border-accent-lime/20"
-                }
-              ].map((story, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.1 }}
-                  className={`relative ${story.bgColor} rounded-3xl p-8 md:p-10 shadow-xl border-2 ${story.borderColor} hover:shadow-2xl hover:-translate-y-1 transition-all group`}
-                >
-                  {/* Timeline connector - hidden on mobile */}
-                  {i < 2 && (
-                    <div className="hidden md:block absolute top-1/2 -right-4 w-8 h-0.5 bg-gray-300 group-hover:bg-accent-lime transition-colors z-10" />
-                  )}
-                  
-                  <div className="text-6xl mb-6 group-hover:scale-110 transition-transform">{story.icon}</div>
-                  
-                  <div className="flex flex-wrap items-center gap-3 mb-4">
-                    <div className={`px-4 py-1.5 ${story.badgeBg} ${story.textColor} rounded-full text-xs font-extrabold backdrop-blur-sm`}>
-                      {story.year}
-                    </div>
-                    <div className={`px-4 py-1.5 ${story.badgeBg} ${story.textColor} rounded-full text-xs font-bold backdrop-blur-sm`}>
-                      {story.highlight}
-                    </div>
-                  </div>
-                  
-                  <h3 className={`text-2xl md:text-3xl font-extrabold mb-4 ${story.textColor}`}>{story.title}</h3>
-                  <p className={`${story.textColor} ${story.textColor === 'text-white' ? 'opacity-90' : 'opacity-80'} text-base md:text-lg leading-relaxed font-medium mb-4`}>
-                    {story.content}
-                  </p>
-                  
-                  <div className={`pt-4 border-t-2 ${story.borderColor}`}>
-                    <div className={`flex items-center gap-2 ${story.textColor === 'text-white' ? 'text-accent-lime' : 'text-black'}`}>
-                      <span className="text-lg">✓</span>
-                      <span className="text-sm font-bold">{story.achievement}</span>
-                    </div>
-                  </div>
-                </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Education & certifications */}
+      <section className="bg-paper text-ink">
+        <div className="mx-auto grid max-w-[1440px] grid-cols-12 gap-x-4 gap-y-16 px-5 py-24 sm:px-8 sm:py-32 lg:px-12">
+          <div className="col-span-12 lg:col-span-5">
+            <p data-reveal className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink/50">(04) — Education</p>
+            <ul className="mt-8 space-y-8">
+              {EDUCATION.map((e) => (
+                <li key={e.title} data-reveal className="border-t border-ink/15 pt-6">
+                  <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink/50">{e.year}</p>
+                  <h3 className="mt-2 font-display text-2xl font-bold tracking-[-0.03em]">{e.title}</h3>
+                  <p className="mt-1 font-serif text-xl italic text-ink/70">{e.place}</p>
+                </li>
               ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Values Section - What Drives Me */}
-      <section className="px-4 md:px-6 lg:px-8 py-24 md:py-32 bg-gray-50">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="text-center mb-16">
-              <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
-                🚀 FEATURED WORK
-              </div>
-              <h2 className="text-4xl md:text-5xl font-extrabold mb-6">Projects I'm Proud Of</h2>
-              <p className="text-gray-600 max-w-3xl mx-auto font-medium">
-                Real solutions for real businesses across automotive, sports, and loyalty industries
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              {[
-                {
-                  title: "Chery Bangladesh App",
-                  description: "Complete automotive ecosystem with 50K+ users",
-                  image: "/images/projects/cherybd-mockup.png",
-                  link: "/case-studies/chery-bangladesh",
-                  metrics: "50K+ Users • 4.8★ Rating"
-                },
-                {
-                  title: "TurfLet Platform",
-                  description: "Sports booking system with 5K+ bookings",
-                  image: "/images/projects/turflet/www.turflet.app.png",
-                  link: "/case-studies/TurfLet-booking",
-                  metrics: "5K+ Bookings • 95% Success"
-                },
-                {
-                  title: "Gamify Loyalty",
-                  description: "QR-based engagement for 8K+ users",
-                  image: "/images/projects/pieqr/screenshots/home-screen.jpg",
-                  link: "/case-studies/gamify",
-                  metrics: "8K+ Users • 50K+ Scans"
-                }
-              ].map((project, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.1 }}
-                  className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all group border-2 border-gray-100 hover:border-accent-lime"
-                >
-                  <div className="relative h-56 overflow-hidden bg-gray-100">
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-110"
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-extrabold mb-2">{project.title}</h3>
-                    <p className="text-gray-600 mb-4 font-medium">{project.description}</p>
-                    <div className="text-sm font-bold text-accent-lime mb-4">{project.metrics}</div>
-                    <a
-                      href={project.link}
-                      className="inline-flex items-center px-6 py-3 bg-black text-accent-lime rounded-xl font-bold hover:shadow-lg transition-all hover:scale-105"
-                    >
-                      View Case Study →
-                    </a>
-                  </div>
-                </motion.div>
+            </ul>
+          </div>
+          <div className="col-span-12 lg:col-span-6 lg:col-start-7">
+            <p data-reveal className="font-mono text-[11px] uppercase tracking-[0.2em] text-ink/50">(05) — Certifications</p>
+            <ul className="mt-8 grid gap-3">
+              {CERTIFICATIONS.map((c) => (
+                <li key={c.title} data-reveal className="flex items-center justify-between gap-4 rounded-2xl border border-ink/15 px-5 py-4">
+                  <span className="text-[15px]">{c.title}</span>
+                  <span className="shrink-0 font-mono text-[10px] uppercase tracking-[0.18em] text-ink/50">
+                    {c.issuer} · {c.year}
+                  </span>
+                </li>
               ))}
-            </div>
-          </motion.div>
+            </ul>
+          </div>
         </div>
       </section>
 
-      {/* Skills Section */}
-      <Skills />
-
-      {/* Featured Projects Showcase */}
-      <section className="px-4 md:px-6 lg:px-8 py-24 md:py-32 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="text-center mb-16 md:mb-20">
-              <div className="inline-block px-6 py-2 bg-accent-lime/20 text-black rounded-full text-sm font-extrabold mb-6">
-                💎 CORE VALUES
-              </div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight">
-                What Drives Me
-              </h2>
-              <p className="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto font-medium">
-                Principles that guide every line of code I write
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-              {[
-                {
-                  icon: Heart,
-                  emoji: "❤️",
-                  title: "Passion for Craft",
-                  subtitle: "Love What I Do",
-                  content: "Every project is an opportunity to create something meaningful that makes a real difference. I bring enthusiasm and dedication to every line of code, every design decision, and every user interaction.",
-                  highlight: "10+ years of passionate coding",
-                  bgColor: "bg-accent-lime",
-                  textColor: "text-black",
-                  iconBg: "bg-black",
-                  iconText: "text-accent-lime",
-                  subtitleColor: "text-black/70",
-                  borderColor: "border-black/10"
-                },
-                {
-                  icon: Award,
-                  emoji: "🏆",
-                  title: "Excellence Always",
-                  subtitle: "No Compromise on Quality",
-                  content: "Quality is non-negotiable. I take pride in delivering work that exceeds expectations, follows industry best practices, and stands the test of time through maintainable, scalable architecture.",
-                  highlight: "98% client satisfaction rate",
-                  bgColor: "bg-accent-orange",
-                  textColor: "text-white",
-                  iconBg: "bg-white",
-                  iconText: "text-accent-orange",
-                  subtitleColor: "text-white/80",
-                  borderColor: "border-white/10"
-                },
-                {
-                  icon: Sparkles,
-                  emoji: "✨",
-                  title: "Innovation First",
-                  subtitle: "Stay Ahead of the Curve",
-                  content: "I embrace cutting-edge technologies and modern approaches. Constantly learning and experimenting with new tools to deliver exceptional value and future-proof solutions.",
-                  highlight: "Early adopter of React Native & Next.js",
-                  bgColor: "bg-black",
-                  textColor: "text-white",
-                  iconBg: "bg-accent-lime",
-                  iconText: "text-black",
-                  subtitleColor: "text-accent-lime/90",
-                  borderColor: "border-accent-lime/20"
-                },
-                {
-                  icon: Target,
-                  emoji: "🎯",
-                  title: "Results That Matter",
-                  subtitle: "Business Impact Focus",
-                  content: "Success isn't just about shipping features - it's about creating solutions that drive measurable business results, revenue growth, and genuine user satisfaction.",
-                  highlight: "50+ successful project launches",
-                  bgColor: "bg-gray-900",
-                  textColor: "text-white",
-                  iconBg: "bg-accent-orange",
-                  iconText: "text-white",
-                  subtitleColor: "text-accent-orange/90",
-                  borderColor: "border-accent-orange/20"
-                }
-              ].map((value, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.1 }}
-                  className={`${value.bgColor} rounded-3xl p-8 md:p-10 lg:p-12 shadow-xl border-2 ${value.borderColor} hover:shadow-2xl hover:-translate-y-1 transition-all group`}
-                >
-                  <div className="flex items-start gap-6 mb-6">
-                    <div className={`${value.iconBg} w-20 h-20 rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform`}>
-                      <span className={`text-4xl ${value.iconText}`}>{value.emoji}</span>
-                    </div>
-                    <div className="flex-1 pt-2">
-                      <h3 className={`text-2xl md:text-3xl font-extrabold ${value.textColor} mb-2`}>{value.title}</h3>
-                      <p className={`${value.subtitleColor} text-sm font-bold`}>{value.subtitle}</p>
-                    </div>
-                  </div>
-                  <p className={`${value.textColor} ${value.textColor === 'text-white' ? 'opacity-90' : 'opacity-80'} text-base md:text-lg leading-relaxed font-medium mb-6`}>
-                    {value.content}
-                  </p>
-                  <div className={`pt-4 border-t-2 ${value.borderColor}`}>
-                    <div className="flex items-center gap-2">
-                      <div className={`w-2 h-2 ${value.textColor === 'text-white' ? 'bg-accent-lime' : 'bg-black'} rounded-full`} />
-                      <span className={`text-sm font-bold ${value.textColor}`}>{value.highlight}</span>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+      {/* Featured work */}
+      <section className="bg-ink text-paper">
+        <div className="mx-auto max-w-[1440px] px-5 py-24 sm:px-8 sm:py-32 lg:px-12">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <SectionHead tone="dark" label="(06) — Recent work" title="Lately" accent="I’ve built" className="flex-1" />
+            <Link data-reveal href="/portfolio" className="group inline-flex items-center gap-2 border-b border-white/30 pb-1 text-sm font-semibold hover:border-lime hover:text-lime">
+              All work <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
+            </Link>
+          </div>
+          <div className="mt-16 grid gap-6 md:grid-cols-3">
+            {featured.map((p) => (
+              <Link key={p.id} href={p.caseStudy || p.live} data-reveal className="group block" data-cursor="View">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-2xl" style={{ backgroundColor: p.accent }}>
+                  <Image src={p.image} alt={p.title} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-105" />
+                </div>
+                <h3 className="mt-5 font-display text-2xl font-bold tracking-[-0.03em]">{p.title}</h3>
+                <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.18em] text-mute">{p.category}</p>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Training Certificates */}
-      <TrainingCertificates />
-
-      {/* Contact CTA */}
-      <section className="px-4 md:px-6 lg:px-8 py-20 bg-black">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="inline-block px-6 py-2 bg-accent-lime/20 text-accent-lime rounded-full text-sm font-extrabold mb-8">
-              💬 LET'S CONNECT
-            </div>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-6">Ready to Build Something Great?</h2>
-            <p className="text-xl text-gray-300 mb-10 font-medium max-w-2xl mx-auto">
-              Whether you need a mobile app, web platform, or custom solution - let's discuss how I can help bring your vision to life.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="/#contact"
-                className="inline-flex items-center justify-center px-8 py-4 bg-accent-lime text-black font-extrabold rounded-xl hover:shadow-2xl hover:shadow-accent-lime/50 transition-all duration-300 hover:scale-105"
-              >
-                Get In Touch →
-              </a>
-              <a
-                href="/portfolio"
-                className="inline-flex items-center justify-center px-8 py-4 bg-white/10 text-white font-extrabold rounded-xl border-2 border-white/20 hover:bg-white/20 transition-all duration-300"
-              >
-                View Portfolio
-              </a>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-    </main>
+      <CtaBand />
+    </>
   );
 }
