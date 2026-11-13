@@ -29,7 +29,8 @@ export default function Hero() {
         .from('.hero-glow', { autoAlpha: 0, duration: 2 }, 0.3)
         .from('.hero-badge', { scale: 0, rotation: -120, duration: 1.4, ease: 'back.out(1.6)' }, 1)
         .from('.hero-fade', { y: 24, autoAlpha: 0, duration: 1, stagger: 0.08 }, 0.7)
-        .from('.hero-line', { scaleX: 0, transformOrigin: 'left center', duration: 1.4 }, 0.5);
+        .from('.hero-line', { scaleX: 0, transformOrigin: 'left center', duration: 1.4 }, 0.5)
+        .from('.hero-corner', { autoAlpha: 0, scale: 0.4, duration: 1, stagger: 0.06 }, 1.1);
 
       // Orbit system: rings counter-rotate, labels stay upright.
       const spin = (sel, deg, duration) => gsap.to(sel, { rotation: deg, duration, repeat: -1, ease: 'none' });
@@ -39,6 +40,7 @@ export default function Hero() {
       spin('.orbit-ring-b .orbit-label', 360, 110);
       spin('.orbit-ticks', 360, 160);
       gsap.to('.orbit-arc', { rotation: 360, svgOrigin: '100 100', duration: 12, repeat: -1, ease: 'none' });
+      gsap.to('.orbit-arc-2', { rotation: -360, svgOrigin: '100 100', duration: 8, repeat: -1, ease: 'none' });
 
       // Scroll cue.
       gsap.fromTo('.hero-scroll-fill', { scaleY: 0, transformOrigin: 'top' }, { scaleY: 1, duration: 1.4, repeat: -1, ease: 'power2.inOut', yoyo: true });
@@ -94,8 +96,9 @@ export default function Hero() {
   return (
     <section ref={root} id="top" className="grain relative isolate min-h-[100svh] overflow-hidden bg-ink text-paper">
       {/* Atmosphere */}
+      <div className="pointer-events-none absolute inset-0 hero-grid opacity-[0.3]" aria-hidden="true" />
       <div
-        className="hero-glow pointer-events-none absolute left-0 top-0 -z-0 h-[560px] w-[560px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(204,255,0,0.09)_0%,rgba(204,255,0,0.025)_40%,transparent_70%)]"
+        className="hero-glow pointer-events-none absolute left-0 top-0 -z-0 h-[560px] w-[560px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(204,255,0,0.16)_0%,rgba(204,255,0,0.04)_40%,transparent_70%)]"
         aria-hidden="true"
       />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-ink to-transparent" aria-hidden="true" />
@@ -120,7 +123,7 @@ export default function Hero() {
           <p className="hero-fade hidden text-right sm:block">Portfolio ’26</p>
         </div>
 
-        <div className="hero-line mt-5 h-px w-full bg-white/10" />
+        <div className="hero-line mt-5 h-px w-full bg-gradient-to-r from-white/25 via-white/10 to-transparent" />
 
         {/* Main composition */}
         <div className="relative grid flex-1 grid-cols-12 items-end gap-6 pt-10 lg:pt-6">
@@ -145,7 +148,7 @@ export default function Hero() {
                 </div>
               </div>
 
-              <div className="hero-portrait relative aspect-[4/5] overflow-hidden rounded-[28px] bg-white/5">
+              <div className="hero-portrait relative aspect-[4/5] overflow-hidden rounded-[28px] bg-white/5 ring-1 ring-white/10">
                 <Image
                   src="/images/hero-image.png"
                   alt="Ratan Mia at his desk"
@@ -154,14 +157,26 @@ export default function Hero() {
                   sizes="(min-width: 1024px) 340px, 192px"
                   className="object-cover object-[50%_25%] grayscale-[35%]"
                 />
-                              </div>
+                <div className="absolute inset-0 bg-gradient-to-tr from-lime/10 via-transparent to-transparent mix-blend-overlay" />
+                <div className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-black/75 to-transparent p-4 font-mono text-[10px] uppercase tracking-[0.2em] text-paper/80">
+                  <span>Full-Stack · Mobile · IT</span>
+                  <span className="text-lime">●</span>
+                </div>
+              </div>
+
+              {/* Viewfinder corners */}
+              {['-left-2 -top-2 border-l border-t', '-right-2 -top-2 border-r border-t', '-left-2 -bottom-2 border-b border-l', '-right-2 -bottom-2 border-b border-r'].map(
+                (c) => (
+                  <span key={c} className={`hero-corner absolute h-5 w-5 border-lime/70 ${c}`} aria-hidden="true" />
+                )
+              )}
 
               <RotatingBadge
                 href="#get-in-touch"
                 label="Start a project"
                 text="Open for work · Let’s talk · 2026 · "
-                size={112}
-                className="hero-badge absolute -bottom-10 -left-12 z-20 hidden lg:grid"
+                size={124}
+                className="hero-badge absolute -left-16 top-10 z-20 hidden lg:grid"
               >
                 <ArrowUpRight className="h-7 w-7" />
               </RotatingBadge>

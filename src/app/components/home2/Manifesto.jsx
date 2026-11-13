@@ -81,7 +81,7 @@ export default function Manifesto() {
           </p>
           <div className="relative col-span-12 lg:col-span-9">
             <span
-              className="pointer-events-none absolute -left-4 -top-16 select-none font-serif text-[180px] leading-none text-ink/[0.07] sm:-left-14 lg:-top-24 lg:text-[260px]"
+              className="pointer-events-none absolute -left-4 -top-16 select-none font-serif text-[180px] leading-none text-lime [-webkit-text-stroke:1px_#0b0b0b] sm:-left-14 lg:-top-24 lg:text-[260px]"
               aria-hidden="true"
             >
               “
